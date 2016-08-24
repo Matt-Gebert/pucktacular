@@ -1,0 +1,1939 @@
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Camera.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Camera_WriteReg,"ax",%progbits
+  19              		.align	2
+  20              		.global	Camera_WriteReg
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Camera_WriteReg, %function
+  24              	Camera_WriteReg:
+  25              	.LFB63:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Camera.c"
+   1:.\Generated_Source\PSoC5/Camera.c **** #include "Camera.h"
+   2:.\Generated_Source\PSoC5/Camera.c **** 
+   3:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_settings[][2];
+   4:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_format[];
+   5:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_sxga[];
+   6:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_vga[];
+   7:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_qvga[];
+   8:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_cif[];
+   9:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_qcif[];
+  10:.\Generated_Source\PSoC5/Camera.c **** 
+  11:.\Generated_Source\PSoC5/Camera.c **** static uint8 DMA_channel,DMA_TD;
+  12:.\Generated_Source\PSoC5/Camera.c **** 
+  13:.\Generated_Source\PSoC5/Camera.c **** void Camera_WriteReg(const uint8 reg,const uint8 value)
+  14:.\Generated_Source\PSoC5/Camera.c **** {
+  27              		.loc 1 14 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0546     		mov	r5, r0
+  39 0004 0C46     		mov	r4, r1
+  40              	.LVL1:
+  41              	.L2:
+  15:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,0)!=Camera_I2C_MSTR_NO_ERROR);
+  42              		.loc 1 15 0 discriminator 1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 2
+
+
+  43 0006 3020     		movs	r0, #48
+  44 0008 0021     		movs	r1, #0
+  45 000a FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+  46              	.LVL2:
+  47 000e 0028     		cmp	r0, #0
+  48 0010 F9D1     		bne	.L2
+  16:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(reg);
+  49              		.loc 1 16 0
+  50 0012 2846     		mov	r0, r5
+  51 0014 FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+  52              	.LVL3:
+  17:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(value);
+  53              		.loc 1 17 0
+  54 0018 2046     		mov	r0, r4
+  55 001a FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+  56              	.LVL4:
+  18:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+  57              		.loc 1 18 0
+  58 001e FFF7FEFF 		bl	Camera_I2C_MasterSendStop
+  59              	.LVL5:
+  60 0022 38BD     		pop	{r3, r4, r5, pc}
+  61              		.cfi_endproc
+  62              	.LFE63:
+  63              		.size	Camera_WriteReg, .-Camera_WriteReg
+  64              		.section	.text.Camera_ReadReg,"ax",%progbits
+  65              		.align	2
+  66              		.global	Camera_ReadReg
+  67              		.thumb
+  68              		.thumb_func
+  69              		.type	Camera_ReadReg, %function
+  70              	Camera_ReadReg:
+  71              	.LFB64:
+  19:.\Generated_Source\PSoC5/Camera.c **** }
+  20:.\Generated_Source\PSoC5/Camera.c **** 
+  21:.\Generated_Source\PSoC5/Camera.c **** uint8 Camera_ReadReg(const uint8 reg)
+  22:.\Generated_Source\PSoC5/Camera.c **** {
+  72              		.loc 1 22 0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              	.LVL6:
+  77 0000 10B5     		push	{r4, lr}
+  78              		.cfi_def_cfa_offset 8
+  79              		.cfi_offset 4, -8
+  80              		.cfi_offset 14, -4
+  81 0002 0446     		mov	r4, r0
+  82              	.LVL7:
+  83              	.L5:
+  23:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,0)!=Camera_I2C_MSTR_NO_ERROR);
+  84              		.loc 1 23 0 discriminator 1
+  85 0004 3020     		movs	r0, #48
+  86 0006 0021     		movs	r1, #0
+  87 0008 FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+  88              	.LVL8:
+  89 000c 0028     		cmp	r0, #0
+  90 000e F9D1     		bne	.L5
+  24:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(reg);
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 3
+
+
+  91              		.loc 1 24 0
+  92 0010 2046     		mov	r0, r4
+  93 0012 FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+  94              	.LVL9:
+  25:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+  95              		.loc 1 25 0
+  96 0016 FFF7FEFF 		bl	Camera_I2C_MasterSendStop
+  97              	.LVL10:
+  98              	.L6:
+  26:.\Generated_Source\PSoC5/Camera.c **** 	
+  27:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,1)!=Camera_I2C_MSTR_NO_ERROR);
+  99              		.loc 1 27 0 discriminator 1
+ 100 001a 3020     		movs	r0, #48
+ 101 001c 0121     		movs	r1, #1
+ 102 001e FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+ 103              	.LVL11:
+ 104 0022 0028     		cmp	r0, #0
+ 105 0024 F9D1     		bne	.L6
+  28:.\Generated_Source\PSoC5/Camera.c ****     uint8 value=Camera_I2C_MasterReadByte(Camera_I2C_NAK_DATA);
+ 106              		.loc 1 28 0
+ 107 0026 FFF7FEFF 		bl	Camera_I2C_MasterReadByte
+ 108              	.LVL12:
+ 109 002a 0446     		mov	r4, r0
+ 110              	.LVL13:
+  29:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+ 111              		.loc 1 29 0
+ 112 002c FFF7FEFF 		bl	Camera_I2C_MasterSendStop
+ 113              	.LVL14:
+  30:.\Generated_Source\PSoC5/Camera.c **** 	return value;
+  31:.\Generated_Source\PSoC5/Camera.c **** }
+ 114              		.loc 1 31 0
+ 115 0030 2046     		mov	r0, r4
+ 116 0032 10BD     		pop	{r4, pc}
+ 117              		.cfi_endproc
+ 118              	.LFE64:
+ 119              		.size	Camera_ReadReg, .-Camera_ReadReg
+ 120              		.section	.text.Camera_SyncFrame,"ax",%progbits
+ 121              		.align	2
+ 122              		.global	Camera_SyncFrame
+ 123              		.thumb
+ 124              		.thumb_func
+ 125              		.type	Camera_SyncFrame, %function
+ 126              	Camera_SyncFrame:
+ 127              	.LFB65:
+  32:.\Generated_Source\PSoC5/Camera.c **** 
+  33:.\Generated_Source\PSoC5/Camera.c **** void Camera_SyncFrame()
+  34:.\Generated_Source\PSoC5/Camera.c **** {
+ 128              		.loc 1 34 0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 08B5     		push	{r3, lr}
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 3, -8
+ 135              		.cfi_offset 14, -4
+ 136              	.L9:
+  35:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_VSYNC_Read());
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 4
+
+
+ 137              		.loc 1 35 0 discriminator 1
+ 138 0002 FFF7FEFF 		bl	Camera_VSYNC_Read
+ 139              	.LVL15:
+ 140 0006 0028     		cmp	r0, #0
+ 141 0008 FBD1     		bne	.L9
+ 142              	.L10:
+  36:.\Generated_Source\PSoC5/Camera.c **** 	while(!Camera_VSYNC_Read());
+ 143              		.loc 1 36 0 discriminator 1
+ 144 000a FFF7FEFF 		bl	Camera_VSYNC_Read
+ 145              	.LVL16:
+ 146 000e 0028     		cmp	r0, #0
+ 147 0010 FBD0     		beq	.L10
+  37:.\Generated_Source\PSoC5/Camera.c **** }
+ 148              		.loc 1 37 0
+ 149 0012 08BD     		pop	{r3, pc}
+ 150              		.cfi_endproc
+ 151              	.LFE65:
+ 152              		.size	Camera_SyncFrame, .-Camera_SyncFrame
+ 153              		.section	.text.Camera_Start,"ax",%progbits
+ 154              		.align	2
+ 155              		.global	Camera_Start
+ 156              		.thumb
+ 157              		.thumb_func
+ 158              		.type	Camera_Start, %function
+ 159              	Camera_Start:
+ 160              	.LFB66:
+  38:.\Generated_Source\PSoC5/Camera.c **** 
+  39:.\Generated_Source\PSoC5/Camera.c **** void Camera_Start()
+  40:.\Generated_Source\PSoC5/Camera.c **** {
+ 161              		.loc 1 40 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165 0000 10B5     		push	{r4, lr}
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 4, -8
+ 168              		.cfi_offset 14, -4
+  41:.\Generated_Source\PSoC5/Camera.c **** 	//Camera_SIOD_SetDriveMode(Camera_SIOD_DM_RES_UP); //turn on pull-up resistors on I2C pins
+  42:.\Generated_Source\PSoC5/Camera.c **** 	//Camera_SIOC_SetDriveMode(Camera_SIOC_DM_RES_UP);
+  43:.\Generated_Source\PSoC5/Camera.c **** 	Camera_I2C_Start();
+ 169              		.loc 1 43 0
+ 170 0002 FFF7FEFF 		bl	Camera_I2C_Start
+ 171              	.LVL17:
+  44:.\Generated_Source\PSoC5/Camera.c **** 	
+  45:.\Generated_Source\PSoC5/Camera.c **** 	Camera_WriteReg(0x12,0x80); //reset
+ 172              		.loc 1 45 0
+ 173 0006 1220     		movs	r0, #18
+ 174 0008 8021     		movs	r1, #128
+ 175 000a FFF7FEFF 		bl	Camera_WriteReg
+ 176              	.LVL18:
+  46:.\Generated_Source\PSoC5/Camera.c **** 	CyDelay(1);
+ 177              		.loc 1 46 0
+ 178 000e 0120     		movs	r0, #1
+ 179 0010 FFF7FEFF 		bl	CyDelay
+ 180              	.LVL19:
+  47:.\Generated_Source\PSoC5/Camera.c **** 	uint16 i;
+  48:.\Generated_Source\PSoC5/Camera.c **** 	for(i=0;Camera_settings[i][0]!=0xff;i++) Camera_WriteReg(Camera_settings[i][0],Camera_settings[i][
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 5
+
+
+ 181              		.loc 1 48 0
+ 182 0014 0024     		movs	r4, #0
+ 183 0016 07E0     		b	.L13
+ 184              	.LVL20:
+ 185              	.L14:
+ 186              		.loc 1 48 0 is_stmt 0 discriminator 3
+ 187 0018 254B     		ldr	r3, .L18
+ 188 001a 03EB4403 		add	r3, r3, r4, lsl #1
+ 189 001e 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+ 190 0020 FFF7FEFF 		bl	Camera_WriteReg
+ 191              	.LVL21:
+ 192 0024 0134     		adds	r4, r4, #1
+ 193              	.LVL22:
+ 194 0026 A4B2     		uxth	r4, r4
+ 195              	.LVL23:
+ 196              	.L13:
+ 197              		.loc 1 48 0 discriminator 1
+ 198 0028 214B     		ldr	r3, .L18
+ 199 002a 13F81400 		ldrb	r0, [r3, r4, lsl #1]	@ zero_extendqisi2
+ 200 002e FF28     		cmp	r0, #255
+ 201 0030 F2D1     		bne	.L14
+ 202 0032 0024     		movs	r4, #0
+ 203              	.LVL24:
+ 204 0034 05E0     		b	.L15
+ 205              	.LVL25:
+ 206              	.L16:
+  49:.\Generated_Source\PSoC5/Camera.c **** 	for(i=0;Camera_format[i]!=0xff;i++) Camera_WriteReg(Camera_format[i],Camera_qvga[i]); //qvga forma
+ 207              		.loc 1 49 0 is_stmt 1 discriminator 3
+ 208 0036 1F4B     		ldr	r3, .L18+4
+ 209 0038 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
+ 210 003a FFF7FEFF 		bl	Camera_WriteReg
+ 211              	.LVL26:
+ 212 003e 0134     		adds	r4, r4, #1
+ 213              	.LVL27:
+ 214 0040 A4B2     		uxth	r4, r4
+ 215              	.LVL28:
+ 216              	.L15:
+ 217              		.loc 1 49 0 is_stmt 0 discriminator 1
+ 218 0042 1D4B     		ldr	r3, .L18+8
+ 219 0044 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 220 0046 FF28     		cmp	r0, #255
+ 221 0048 F5D1     		bne	.L16
+  50:.\Generated_Source\PSoC5/Camera.c **** 	
+  51:.\Generated_Source\PSoC5/Camera.c **** 	DMA_channel=Camera_DMA_DmaInitialize(1,1,HI16(CYDEV_PERIPH_BASE),HI16(CYDEV_SRAM_BASE)); //periphe
+ 222              		.loc 1 51 0 is_stmt 1
+ 223 004a 0120     		movs	r0, #1
+ 224 004c 0146     		mov	r1, r0
+ 225 004e 4FF48042 		mov	r2, #16384
+ 226 0052 41F6FF73 		movw	r3, #8191
+ 227 0056 FFF7FEFF 		bl	Camera_DMA_DmaInitialize
+ 228              	.LVL29:
+ 229 005a 184C     		ldr	r4, .L18+12
+ 230              	.LVL30:
+ 231 005c 2070     		strb	r0, [r4]
+  52:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 232              		.loc 1 52 0
+ 233 005e FFF7FEFF 		bl	CyDmaTdAllocate
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 6
+
+
+ 234              	.LVL31:
+ 235 0062 6070     		strb	r0, [r4, #1]
+  53:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetAddress(DMA_TD,LO16(Camera_FIFO_dp__F0_REG),LO16((uint32)Camera_linebuffer));
+ 236              		.loc 1 53 0
+ 237 0064 46F24D41 		movw	r1, #25677
+ 238 0068 154A     		ldr	r2, .L18+16
+ 239 006a 92B2     		uxth	r2, r2
+ 240 006c FFF7FEFF 		bl	CyDmaTdSetAddress
+ 241              	.LVL32:
+  54:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetConfiguration(DMA_TD,sizeof(Camera_linebuffer),DMA_TD,TD_INC_DST_ADR|Camera_DMA__TD_T
+ 242              		.loc 1 54 0
+ 243 0070 6278     		ldrb	r2, [r4, #1]	@ zero_extendqisi2
+ 244 0072 1046     		mov	r0, r2
+ 245 0074 4FF42071 		mov	r1, #640
+ 246 0078 0623     		movs	r3, #6
+ 247 007a FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 248              	.LVL33:
+  55:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChPriority(DMA_channel,0); //ensure highest priority for DMA channel
+ 249              		.loc 1 55 0
+ 250 007e 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 251 0080 0021     		movs	r1, #0
+ 252 0082 FFF7FEFF 		bl	CyDmaChPriority
+ 253              	.LVL34:
+  56:.\Generated_Source\PSoC5/Camera.c **** 
+  57:.\Generated_Source\PSoC5/Camera.c ****     Camera_end_line_StartEx(Camera_end_line);
+ 254              		.loc 1 57 0
+ 255 0086 0F48     		ldr	r0, .L18+20
+ 256 0088 FFF7FEFF 		bl	Camera_end_line_StartEx
+ 257              	.LVL35:
+  58:.\Generated_Source\PSoC5/Camera.c ****     
+  59:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 258              		.loc 1 59 0
+ 259 008c 0E4B     		ldr	r3, .L18+24
+ 260 008e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  60:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 261              		.loc 1 60 0
+ 262 0090 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  61:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 263              		.loc 1 61 0
+ 264 0092 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  62:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG; //clear fifo
+ 265              		.loc 1 62 0
+ 266 0094 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  63:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+ 267              		.loc 1 63 0
+ 268 0096 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 269 0098 FFF7FEFF 		bl	CyDmaClearPendingDrq
+ 270              	.LVL36:
+  64:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
+ 271              		.loc 1 64 0
+ 272 009c 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 273 009e 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
+ 274 00a0 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 275              	.LVL37:
+  65:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+ 276              		.loc 1 65 0
+ 277 00a4 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 7
+
+
+ 278 00a6 0121     		movs	r1, #1
+ 279 00a8 FFF7FEFF 		bl	CyDmaChEnable
+ 280              	.LVL38:
+ 281 00ac 10BD     		pop	{r4, pc}
+ 282              	.L19:
+ 283 00ae 00BF     		.align	2
+ 284              	.L18:
+ 285 00b0 00000000 		.word	Camera_settings
+ 286 00b4 00000000 		.word	Camera_qvga
+ 287 00b8 00000000 		.word	Camera_format
+ 288 00bc 00000000 		.word	.LANCHOR0
+ 289 00c0 00000000 		.word	Camera_linebuffer
+ 290 00c4 00000000 		.word	Camera_end_line
+ 291 00c8 4D640040 		.word	1073767501
+ 292              		.cfi_endproc
+ 293              	.LFE66:
+ 294              		.size	Camera_Start, .-Camera_Start
+ 295              		.comm	Camera_linebuffer,640,4
+ 296              		.bss
+ 297              		.set	.LANCHOR0,. + 0
+ 298              		.type	DMA_channel, %object
+ 299              		.size	DMA_channel, 1
+ 300              	DMA_channel:
+ 301 0000 00       		.space	1
+ 302              		.type	DMA_TD, %object
+ 303              		.size	DMA_TD, 1
+ 304              	DMA_TD:
+ 305 0001 00       		.space	1
+ 306              		.text
+ 307              	.Letext0:
+ 308              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 309              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 310              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 311              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 312              		.file 6 ".\\Generated_Source\\PSoC5\\Camera.h"
+ 313              		.file 7 "Generated_Source\\PSoC5/Camera_I2C.h"
+ 314              		.file 8 "Generated_Source\\PSoC5/Camera_VSYNC.h"
+ 315              		.file 9 "Generated_Source\\PSoC5/Camera_DMA_dma.h"
+ 316              		.file 10 "Generated_Source\\PSoC5/CYDMAC.H"
+ 317              		.file 11 "Generated_Source\\PSoC5/CyLib.h"
+ 318              		.file 12 "Generated_Source\\PSoC5/Camera_end_line.h"
+ 319              		.section	.debug_info,"",%progbits
+ 320              	.Ldebug_info0:
+ 321 0000 32050000 		.4byte	0x532
+ 322 0004 0400     		.2byte	0x4
+ 323 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 324 000a 04       		.byte	0x4
+ 325 000b 01       		.uleb128 0x1
+ 326 000c 2A020000 		.4byte	.LASF46
+ 327 0010 01       		.byte	0x1
+ 328 0011 75000000 		.4byte	.LASF47
+ 329 0015 06010000 		.4byte	.LASF48
+ 330 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 331 001d 00000000 		.4byte	0
+ 332 0021 00000000 		.4byte	.Ldebug_line0
+ 333 0025 02       		.uleb128 0x2
+ 334 0026 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 8
+
+
+ 335 0027 06       		.byte	0x6
+ 336 0028 C3030000 		.4byte	.LASF0
+ 337 002c 02       		.uleb128 0x2
+ 338 002d 01       		.byte	0x1
+ 339 002e 08       		.byte	0x8
+ 340 002f F8000000 		.4byte	.LASF1
+ 341 0033 02       		.uleb128 0x2
+ 342 0034 02       		.byte	0x2
+ 343 0035 05       		.byte	0x5
+ 344 0036 78030000 		.4byte	.LASF2
+ 345 003a 02       		.uleb128 0x2
+ 346 003b 02       		.byte	0x2
+ 347 003c 07       		.byte	0x7
+ 348 003d 96010000 		.4byte	.LASF3
+ 349 0041 03       		.uleb128 0x3
+ 350 0042 4D000000 		.4byte	.LASF9
+ 351 0046 02       		.byte	0x2
+ 352 0047 3F       		.byte	0x3f
+ 353 0048 4C000000 		.4byte	0x4c
+ 354 004c 02       		.uleb128 0x2
+ 355 004d 04       		.byte	0x4
+ 356 004e 05       		.byte	0x5
+ 357 004f B3030000 		.4byte	.LASF4
+ 358 0053 02       		.uleb128 0x2
+ 359 0054 04       		.byte	0x4
+ 360 0055 07       		.byte	0x7
+ 361 0056 84010000 		.4byte	.LASF5
+ 362 005a 02       		.uleb128 0x2
+ 363 005b 08       		.byte	0x8
+ 364 005c 05       		.byte	0x5
+ 365 005d 4B030000 		.4byte	.LASF6
+ 366 0061 02       		.uleb128 0x2
+ 367 0062 08       		.byte	0x8
+ 368 0063 07       		.byte	0x7
+ 369 0064 DE020000 		.4byte	.LASF7
+ 370 0068 04       		.uleb128 0x4
+ 371 0069 04       		.byte	0x4
+ 372 006a 05       		.byte	0x5
+ 373 006b 696E7400 		.ascii	"int\000"
+ 374 006f 02       		.uleb128 0x2
+ 375 0070 04       		.byte	0x4
+ 376 0071 07       		.byte	0x7
+ 377 0072 B8020000 		.4byte	.LASF8
+ 378 0076 03       		.uleb128 0x3
+ 379 0077 2E030000 		.4byte	.LASF10
+ 380 007b 03       		.byte	0x3
+ 381 007c 2C       		.byte	0x2c
+ 382 007d 41000000 		.4byte	0x41
+ 383 0081 05       		.uleb128 0x5
+ 384 0082 92030000 		.4byte	.LASF11
+ 385 0086 04       		.byte	0x4
+ 386 0087 9201     		.2byte	0x192
+ 387 0089 2C000000 		.4byte	0x2c
+ 388 008d 05       		.uleb128 0x5
+ 389 008e 1C020000 		.4byte	.LASF12
+ 390 0092 04       		.byte	0x4
+ 391 0093 9301     		.2byte	0x193
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 9
+
+
+ 392 0095 3A000000 		.4byte	0x3a
+ 393 0099 05       		.uleb128 0x5
+ 394 009a 23020000 		.4byte	.LASF13
+ 395 009e 04       		.byte	0x4
+ 396 009f 9401     		.2byte	0x194
+ 397 00a1 53000000 		.4byte	0x53
+ 398 00a5 02       		.uleb128 0x2
+ 399 00a6 04       		.byte	0x4
+ 400 00a7 04       		.byte	0x4
+ 401 00a8 F2000000 		.4byte	.LASF14
+ 402 00ac 02       		.uleb128 0x2
+ 403 00ad 08       		.byte	0x8
+ 404 00ae 04       		.byte	0x4
+ 405 00af D8010000 		.4byte	.LASF15
+ 406 00b3 02       		.uleb128 0x2
+ 407 00b4 01       		.byte	0x1
+ 408 00b5 08       		.byte	0x8
+ 409 00b6 73030000 		.4byte	.LASF16
+ 410 00ba 05       		.uleb128 0x5
+ 411 00bb 1B000000 		.4byte	.LASF17
+ 412 00bf 04       		.byte	0x4
+ 413 00c0 3402     		.2byte	0x234
+ 414 00c2 53000000 		.4byte	0x53
+ 415 00c6 05       		.uleb128 0x5
+ 416 00c7 67010000 		.4byte	.LASF18
+ 417 00cb 04       		.byte	0x4
+ 418 00cc 3C02     		.2byte	0x23c
+ 419 00ce D2000000 		.4byte	0xd2
+ 420 00d2 06       		.uleb128 0x6
+ 421 00d3 81000000 		.4byte	0x81
+ 422 00d7 05       		.uleb128 0x5
+ 423 00d8 10030000 		.4byte	.LASF19
+ 424 00dc 04       		.byte	0x4
+ 425 00dd 4E02     		.2byte	0x24e
+ 426 00df E3000000 		.4byte	0xe3
+ 427 00e3 07       		.uleb128 0x7
+ 428 00e4 04       		.byte	0x4
+ 429 00e5 E9000000 		.4byte	0xe9
+ 430 00e9 08       		.uleb128 0x8
+ 431 00ea 02       		.uleb128 0x2
+ 432 00eb 04       		.byte	0x4
+ 433 00ec 07       		.byte	0x7
+ 434 00ed 36030000 		.4byte	.LASF20
+ 435 00f1 09       		.uleb128 0x9
+ 436 00f2 82030000 		.4byte	.LASF49
+ 437 00f6 01       		.byte	0x1
+ 438 00f7 0D       		.byte	0xd
+ 439 00f8 00000000 		.4byte	.LFB63
+ 440 00fc 24000000 		.4byte	.LFE63-.LFB63
+ 441 0100 01       		.uleb128 0x1
+ 442 0101 9C       		.byte	0x9c
+ 443 0102 6F010000 		.4byte	0x16f
+ 444 0106 0A       		.uleb128 0xa
+ 445 0107 72656700 		.ascii	"reg\000"
+ 446 010b 01       		.byte	0x1
+ 447 010c 0D       		.byte	0xd
+ 448 010d 6F010000 		.4byte	0x16f
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 10
+
+
+ 449 0111 00000000 		.4byte	.LLST0
+ 450 0115 0B       		.uleb128 0xb
+ 451 0116 47000000 		.4byte	.LASF21
+ 452 011a 01       		.byte	0x1
+ 453 011b 0D       		.byte	0xd
+ 454 011c 6F010000 		.4byte	0x16f
+ 455 0120 21000000 		.4byte	.LLST1
+ 456 0124 0C       		.uleb128 0xc
+ 457 0125 0E000000 		.4byte	.LVL2
+ 458 0129 E1030000 		.4byte	0x3e1
+ 459 012d 3D010000 		.4byte	0x13d
+ 460 0131 0D       		.uleb128 0xd
+ 461 0132 01       		.uleb128 0x1
+ 462 0133 51       		.byte	0x51
+ 463 0134 01       		.uleb128 0x1
+ 464 0135 30       		.byte	0x30
+ 465 0136 0D       		.uleb128 0xd
+ 466 0137 01       		.uleb128 0x1
+ 467 0138 50       		.byte	0x50
+ 468 0139 02       		.uleb128 0x2
+ 469 013a 08       		.byte	0x8
+ 470 013b 30       		.byte	0x30
+ 471 013c 00       		.byte	0
+ 472 013d 0C       		.uleb128 0xc
+ 473 013e 18000000 		.4byte	.LVL3
+ 474 0142 FB030000 		.4byte	0x3fb
+ 475 0146 51010000 		.4byte	0x151
+ 476 014a 0D       		.uleb128 0xd
+ 477 014b 01       		.uleb128 0x1
+ 478 014c 50       		.byte	0x50
+ 479 014d 02       		.uleb128 0x2
+ 480 014e 75       		.byte	0x75
+ 481 014f 00       		.sleb128 0
+ 482 0150 00       		.byte	0
+ 483 0151 0C       		.uleb128 0xc
+ 484 0152 1E000000 		.4byte	.LVL4
+ 485 0156 FB030000 		.4byte	0x3fb
+ 486 015a 65010000 		.4byte	0x165
+ 487 015e 0D       		.uleb128 0xd
+ 488 015f 01       		.uleb128 0x1
+ 489 0160 50       		.byte	0x50
+ 490 0161 02       		.uleb128 0x2
+ 491 0162 74       		.byte	0x74
+ 492 0163 00       		.sleb128 0
+ 493 0164 00       		.byte	0
+ 494 0165 0E       		.uleb128 0xe
+ 495 0166 22000000 		.4byte	.LVL5
+ 496 016a 10040000 		.4byte	0x410
+ 497 016e 00       		.byte	0
+ 498 016f 0F       		.uleb128 0xf
+ 499 0170 81000000 		.4byte	0x81
+ 500 0174 10       		.uleb128 0x10
+ 501 0175 BB000000 		.4byte	.LASF50
+ 502 0179 01       		.byte	0x1
+ 503 017a 15       		.byte	0x15
+ 504 017b 81000000 		.4byte	0x81
+ 505 017f 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 11
+
+
+ 506 0183 34000000 		.4byte	.LFE64-.LFB64
+ 507 0187 01       		.uleb128 0x1
+ 508 0188 9C       		.byte	0x9c
+ 509 0189 0B020000 		.4byte	0x20b
+ 510 018d 0A       		.uleb128 0xa
+ 511 018e 72656700 		.ascii	"reg\000"
+ 512 0192 01       		.byte	0x1
+ 513 0193 15       		.byte	0x15
+ 514 0194 6F010000 		.4byte	0x16f
+ 515 0198 42000000 		.4byte	.LLST2
+ 516 019c 11       		.uleb128 0x11
+ 517 019d 47000000 		.4byte	.LASF21
+ 518 01a1 01       		.byte	0x1
+ 519 01a2 1C       		.byte	0x1c
+ 520 01a3 81000000 		.4byte	0x81
+ 521 01a7 01       		.uleb128 0x1
+ 522 01a8 54       		.byte	0x54
+ 523 01a9 0C       		.uleb128 0xc
+ 524 01aa 0C000000 		.4byte	.LVL8
+ 525 01ae E1030000 		.4byte	0x3e1
+ 526 01b2 C2010000 		.4byte	0x1c2
+ 527 01b6 0D       		.uleb128 0xd
+ 528 01b7 01       		.uleb128 0x1
+ 529 01b8 51       		.byte	0x51
+ 530 01b9 01       		.uleb128 0x1
+ 531 01ba 30       		.byte	0x30
+ 532 01bb 0D       		.uleb128 0xd
+ 533 01bc 01       		.uleb128 0x1
+ 534 01bd 50       		.byte	0x50
+ 535 01be 02       		.uleb128 0x2
+ 536 01bf 08       		.byte	0x8
+ 537 01c0 30       		.byte	0x30
+ 538 01c1 00       		.byte	0
+ 539 01c2 0C       		.uleb128 0xc
+ 540 01c3 16000000 		.4byte	.LVL9
+ 541 01c7 FB030000 		.4byte	0x3fb
+ 542 01cb D6010000 		.4byte	0x1d6
+ 543 01cf 0D       		.uleb128 0xd
+ 544 01d0 01       		.uleb128 0x1
+ 545 01d1 50       		.byte	0x50
+ 546 01d2 02       		.uleb128 0x2
+ 547 01d3 74       		.byte	0x74
+ 548 01d4 00       		.sleb128 0
+ 549 01d5 00       		.byte	0
+ 550 01d6 0E       		.uleb128 0xe
+ 551 01d7 1A000000 		.4byte	.LVL10
+ 552 01db 10040000 		.4byte	0x410
+ 553 01df 0C       		.uleb128 0xc
+ 554 01e0 22000000 		.4byte	.LVL11
+ 555 01e4 E1030000 		.4byte	0x3e1
+ 556 01e8 F8010000 		.4byte	0x1f8
+ 557 01ec 0D       		.uleb128 0xd
+ 558 01ed 01       		.uleb128 0x1
+ 559 01ee 51       		.byte	0x51
+ 560 01ef 01       		.uleb128 0x1
+ 561 01f0 31       		.byte	0x31
+ 562 01f1 0D       		.uleb128 0xd
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 12
+
+
+ 563 01f2 01       		.uleb128 0x1
+ 564 01f3 50       		.byte	0x50
+ 565 01f4 02       		.uleb128 0x2
+ 566 01f5 08       		.byte	0x8
+ 567 01f6 30       		.byte	0x30
+ 568 01f7 00       		.byte	0
+ 569 01f8 0E       		.uleb128 0xe
+ 570 01f9 2A000000 		.4byte	.LVL12
+ 571 01fd 1B040000 		.4byte	0x41b
+ 572 0201 0E       		.uleb128 0xe
+ 573 0202 30000000 		.4byte	.LVL14
+ 574 0206 10040000 		.4byte	0x410
+ 575 020a 00       		.byte	0
+ 576 020b 12       		.uleb128 0x12
+ 577 020c 24000000 		.4byte	.LASF22
+ 578 0210 01       		.byte	0x1
+ 579 0211 21       		.byte	0x21
+ 580 0212 00000000 		.4byte	.LFB65
+ 581 0216 14000000 		.4byte	.LFE65-.LFB65
+ 582 021a 01       		.uleb128 0x1
+ 583 021b 9C       		.byte	0x9c
+ 584 021c 33020000 		.4byte	0x233
+ 585 0220 0E       		.uleb128 0xe
+ 586 0221 06000000 		.4byte	.LVL15
+ 587 0225 30040000 		.4byte	0x430
+ 588 0229 0E       		.uleb128 0xe
+ 589 022a 0E000000 		.4byte	.LVL16
+ 590 022e 30040000 		.4byte	0x430
+ 591 0232 00       		.byte	0
+ 592 0233 12       		.uleb128 0x12
+ 593 0234 98030000 		.4byte	.LASF23
+ 594 0238 01       		.byte	0x1
+ 595 0239 27       		.byte	0x27
+ 596 023a 00000000 		.4byte	.LFB66
+ 597 023e CC000000 		.4byte	.LFE66-.LFB66
+ 598 0242 01       		.uleb128 0x1
+ 599 0243 9C       		.byte	0x9c
+ 600 0244 41030000 		.4byte	0x341
+ 601 0248 13       		.uleb128 0x13
+ 602 0249 6900     		.ascii	"i\000"
+ 603 024b 01       		.byte	0x1
+ 604 024c 2F       		.byte	0x2f
+ 605 024d 8D000000 		.4byte	0x8d
+ 606 0251 63000000 		.4byte	.LLST3
+ 607 0255 0E       		.uleb128 0xe
+ 608 0256 06000000 		.4byte	.LVL17
+ 609 025a 3B040000 		.4byte	0x43b
+ 610 025e 0C       		.uleb128 0xc
+ 611 025f 0E000000 		.4byte	.LVL18
+ 612 0263 F1000000 		.4byte	0xf1
+ 613 0267 77020000 		.4byte	0x277
+ 614 026b 0D       		.uleb128 0xd
+ 615 026c 01       		.uleb128 0x1
+ 616 026d 51       		.byte	0x51
+ 617 026e 02       		.uleb128 0x2
+ 618 026f 09       		.byte	0x9
+ 619 0270 80       		.byte	0x80
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 13
+
+
+ 620 0271 0D       		.uleb128 0xd
+ 621 0272 01       		.uleb128 0x1
+ 622 0273 50       		.byte	0x50
+ 623 0274 01       		.uleb128 0x1
+ 624 0275 42       		.byte	0x42
+ 625 0276 00       		.byte	0
+ 626 0277 0C       		.uleb128 0xc
+ 627 0278 14000000 		.4byte	.LVL19
+ 628 027c 42040000 		.4byte	0x442
+ 629 0280 8A020000 		.4byte	0x28a
+ 630 0284 0D       		.uleb128 0xd
+ 631 0285 01       		.uleb128 0x1
+ 632 0286 50       		.byte	0x50
+ 633 0287 01       		.uleb128 0x1
+ 634 0288 31       		.byte	0x31
+ 635 0289 00       		.byte	0
+ 636 028a 0E       		.uleb128 0xe
+ 637 028b 24000000 		.4byte	.LVL21
+ 638 028f F1000000 		.4byte	0xf1
+ 639 0293 0E       		.uleb128 0xe
+ 640 0294 3E000000 		.4byte	.LVL26
+ 641 0298 F1000000 		.4byte	0xf1
+ 642 029c 0C       		.uleb128 0xc
+ 643 029d 5A000000 		.4byte	.LVL29
+ 644 02a1 53040000 		.4byte	0x453
+ 645 02a5 C2020000 		.4byte	0x2c2
+ 646 02a9 0D       		.uleb128 0xd
+ 647 02aa 01       		.uleb128 0x1
+ 648 02ab 53       		.byte	0x53
+ 649 02ac 03       		.uleb128 0x3
+ 650 02ad 0A       		.byte	0xa
+ 651 02ae FF1F     		.2byte	0x1fff
+ 652 02b0 0D       		.uleb128 0xd
+ 653 02b1 01       		.uleb128 0x1
+ 654 02b2 52       		.byte	0x52
+ 655 02b3 03       		.uleb128 0x3
+ 656 02b4 0A       		.byte	0xa
+ 657 02b5 0040     		.2byte	0x4000
+ 658 02b7 0D       		.uleb128 0xd
+ 659 02b8 01       		.uleb128 0x1
+ 660 02b9 51       		.byte	0x51
+ 661 02ba 01       		.uleb128 0x1
+ 662 02bb 31       		.byte	0x31
+ 663 02bc 0D       		.uleb128 0xd
+ 664 02bd 01       		.uleb128 0x1
+ 665 02be 50       		.byte	0x50
+ 666 02bf 01       		.uleb128 0x1
+ 667 02c0 31       		.byte	0x31
+ 668 02c1 00       		.byte	0
+ 669 02c2 0E       		.uleb128 0xe
+ 670 02c3 62000000 		.4byte	.LVL31
+ 671 02c7 77040000 		.4byte	0x477
+ 672 02cb 0C       		.uleb128 0xc
+ 673 02cc 70000000 		.4byte	.LVL32
+ 674 02d0 82040000 		.4byte	0x482
+ 675 02d4 E9020000 		.4byte	0x2e9
+ 676 02d8 0D       		.uleb128 0xd
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 14
+
+
+ 677 02d9 01       		.uleb128 0x1
+ 678 02da 52       		.byte	0x52
+ 679 02db 05       		.uleb128 0x5
+ 680 02dc 03       		.byte	0x3
+ 681 02dd 00000000 		.4byte	Camera_linebuffer
+ 682 02e1 0D       		.uleb128 0xd
+ 683 02e2 01       		.uleb128 0x1
+ 684 02e3 51       		.byte	0x51
+ 685 02e4 03       		.uleb128 0x3
+ 686 02e5 0A       		.byte	0xa
+ 687 02e6 4D64     		.2byte	0x644d
+ 688 02e8 00       		.byte	0
+ 689 02e9 0C       		.uleb128 0xc
+ 690 02ea 7E000000 		.4byte	.LVL33
+ 691 02ee A1040000 		.4byte	0x4a1
+ 692 02f2 03030000 		.4byte	0x303
+ 693 02f6 0D       		.uleb128 0xd
+ 694 02f7 01       		.uleb128 0x1
+ 695 02f8 53       		.byte	0x53
+ 696 02f9 01       		.uleb128 0x1
+ 697 02fa 36       		.byte	0x36
+ 698 02fb 0D       		.uleb128 0xd
+ 699 02fc 01       		.uleb128 0x1
+ 700 02fd 51       		.byte	0x51
+ 701 02fe 03       		.uleb128 0x3
+ 702 02ff 0A       		.byte	0xa
+ 703 0300 8002     		.2byte	0x280
+ 704 0302 00       		.byte	0
+ 705 0303 0C       		.uleb128 0xc
+ 706 0304 86000000 		.4byte	.LVL34
+ 707 0308 C5040000 		.4byte	0x4c5
+ 708 030c 16030000 		.4byte	0x316
+ 709 0310 0D       		.uleb128 0xd
+ 710 0311 01       		.uleb128 0x1
+ 711 0312 51       		.byte	0x51
+ 712 0313 01       		.uleb128 0x1
+ 713 0314 30       		.byte	0x30
+ 714 0315 00       		.byte	0
+ 715 0316 0E       		.uleb128 0xe
+ 716 0317 8C000000 		.4byte	.LVL35
+ 717 031b DF040000 		.4byte	0x4df
+ 718 031f 0E       		.uleb128 0xe
+ 719 0320 9C000000 		.4byte	.LVL36
+ 720 0324 F0040000 		.4byte	0x4f0
+ 721 0328 0E       		.uleb128 0xe
+ 722 0329 A4000000 		.4byte	.LVL37
+ 723 032d 05050000 		.4byte	0x505
+ 724 0331 14       		.uleb128 0x14
+ 725 0332 AC000000 		.4byte	.LVL38
+ 726 0336 1F050000 		.4byte	0x51f
+ 727 033a 0D       		.uleb128 0xd
+ 728 033b 01       		.uleb128 0x1
+ 729 033c 51       		.byte	0x51
+ 730 033d 01       		.uleb128 0x1
+ 731 033e 31       		.byte	0x31
+ 732 033f 00       		.byte	0
+ 733 0340 00       		.byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 15
+
+
+ 734 0341 11       		.uleb128 0x11
+ 735 0342 3F030000 		.4byte	.LASF24
+ 736 0346 01       		.byte	0x1
+ 737 0347 0B       		.byte	0xb
+ 738 0348 81000000 		.4byte	0x81
+ 739 034c 05       		.uleb128 0x5
+ 740 034d 03       		.byte	0x3
+ 741 034e 00000000 		.4byte	DMA_channel
+ 742 0352 11       		.uleb128 0x11
+ 743 0353 BC030000 		.4byte	.LASF25
+ 744 0357 01       		.byte	0x1
+ 745 0358 0B       		.byte	0xb
+ 746 0359 81000000 		.4byte	0x81
+ 747 035d 05       		.uleb128 0x5
+ 748 035e 03       		.byte	0x3
+ 749 035f 01000000 		.4byte	DMA_TD
+ 750 0363 15       		.uleb128 0x15
+ 751 0364 B9010000 		.4byte	.LASF26
+ 752 0368 05       		.byte	0x5
+ 753 0369 9606     		.2byte	0x696
+ 754 036b 6F030000 		.4byte	0x36f
+ 755 036f 06       		.uleb128 0x6
+ 756 0370 76000000 		.4byte	0x76
+ 757 0374 16       		.uleb128 0x16
+ 758 0375 99000000 		.4byte	0x99
+ 759 0379 84030000 		.4byte	0x384
+ 760 037d 17       		.uleb128 0x17
+ 761 037e EA000000 		.4byte	0xea
+ 762 0382 9F       		.byte	0x9f
+ 763 0383 00       		.byte	0
+ 764 0384 18       		.uleb128 0x18
+ 765 0385 C6010000 		.4byte	.LASF27
+ 766 0389 06       		.byte	0x6
+ 767 038a 13       		.byte	0x13
+ 768 038b 74030000 		.4byte	0x374
+ 769 038f 05       		.uleb128 0x5
+ 770 0390 03       		.byte	0x3
+ 771 0391 00000000 		.4byte	Camera_linebuffer
+ 772 0395 16       		.uleb128 0x16
+ 773 0396 81000000 		.4byte	0x81
+ 774 039a A6030000 		.4byte	0x3a6
+ 775 039e 19       		.uleb128 0x19
+ 776 039f 17       		.uleb128 0x17
+ 777 03a0 EA000000 		.4byte	0xea
+ 778 03a4 01       		.byte	0x1
+ 779 03a5 00       		.byte	0
+ 780 03a6 1A       		.uleb128 0x1a
+ 781 03a7 AB000000 		.4byte	.LASF28
+ 782 03ab 01       		.byte	0x1
+ 783 03ac 03       		.byte	0x3
+ 784 03ad B1030000 		.4byte	0x3b1
+ 785 03b1 0F       		.uleb128 0xf
+ 786 03b2 95030000 		.4byte	0x395
+ 787 03b6 16       		.uleb128 0x16
+ 788 03b7 81000000 		.4byte	0x81
+ 789 03bb C1030000 		.4byte	0x3c1
+ 790 03bf 19       		.uleb128 0x19
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 16
+
+
+ 791 03c0 00       		.byte	0
+ 792 03c1 1A       		.uleb128 0x1a
+ 793 03c2 A5030000 		.4byte	.LASF29
+ 794 03c6 01       		.byte	0x1
+ 795 03c7 04       		.byte	0x4
+ 796 03c8 CC030000 		.4byte	0x3cc
+ 797 03cc 0F       		.uleb128 0xf
+ 798 03cd B6030000 		.4byte	0x3b6
+ 799 03d1 1A       		.uleb128 0x1a
+ 800 03d2 69000000 		.4byte	.LASF30
+ 801 03d6 01       		.byte	0x1
+ 802 03d7 07       		.byte	0x7
+ 803 03d8 DC030000 		.4byte	0x3dc
+ 804 03dc 0F       		.uleb128 0xf
+ 805 03dd B6030000 		.4byte	0x3b6
+ 806 03e1 1B       		.uleb128 0x1b
+ 807 03e2 00000000 		.4byte	.LASF31
+ 808 03e6 07       		.byte	0x7
+ 809 03e7 B1       		.byte	0xb1
+ 810 03e8 81000000 		.4byte	0x81
+ 811 03ec FB030000 		.4byte	0x3fb
+ 812 03f0 1C       		.uleb128 0x1c
+ 813 03f1 81000000 		.4byte	0x81
+ 814 03f5 1C       		.uleb128 0x1c
+ 815 03f6 81000000 		.4byte	0x81
+ 816 03fa 00       		.byte	0
+ 817 03fb 1B       		.uleb128 0x1b
+ 818 03fc F5020000 		.4byte	.LASF32
+ 819 0400 07       		.byte	0x7
+ 820 0401 B6       		.byte	0xb6
+ 821 0402 81000000 		.4byte	0x81
+ 822 0406 10040000 		.4byte	0x410
+ 823 040a 1C       		.uleb128 0x1c
+ 824 040b 81000000 		.4byte	0x81
+ 825 040f 00       		.byte	0
+ 826 0410 1D       		.uleb128 0x1d
+ 827 0411 59030000 		.4byte	.LASF34
+ 828 0415 07       		.byte	0x7
+ 829 0416 B5       		.byte	0xb5
+ 830 0417 81000000 		.4byte	0x81
+ 831 041b 1B       		.uleb128 0x1b
+ 832 041c DF010000 		.4byte	.LASF33
+ 833 0420 07       		.byte	0x7
+ 834 0421 B7       		.byte	0xb7
+ 835 0422 81000000 		.4byte	0x81
+ 836 0426 30040000 		.4byte	0x430
+ 837 042a 1C       		.uleb128 0x1c
+ 838 042b 81000000 		.4byte	0x81
+ 839 042f 00       		.byte	0
+ 840 0430 1D       		.uleb128 0x1d
+ 841 0431 35000000 		.4byte	.LASF35
+ 842 0435 08       		.byte	0x8
+ 843 0436 2B       		.byte	0x2b
+ 844 0437 81000000 		.4byte	0x81
+ 845 043b 1E       		.uleb128 0x1e
+ 846 043c 1D030000 		.4byte	.LASF51
+ 847 0440 07       		.byte	0x7
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 17
+
+
+ 848 0441 93       		.byte	0x93
+ 849 0442 1F       		.uleb128 0x1f
+ 850 0443 CF030000 		.4byte	.LASF41
+ 851 0447 0B       		.byte	0xb
+ 852 0448 76       		.byte	0x76
+ 853 0449 53040000 		.4byte	0x453
+ 854 044d 1C       		.uleb128 0x1c
+ 855 044e 99000000 		.4byte	0x99
+ 856 0452 00       		.byte	0
+ 857 0453 1B       		.uleb128 0x1b
+ 858 0454 C5020000 		.4byte	.LASF36
+ 859 0458 09       		.byte	0x9
+ 860 0459 1E       		.byte	0x1e
+ 861 045a 81000000 		.4byte	0x81
+ 862 045e 77040000 		.4byte	0x477
+ 863 0462 1C       		.uleb128 0x1c
+ 864 0463 81000000 		.4byte	0x81
+ 865 0467 1C       		.uleb128 0x1c
+ 866 0468 81000000 		.4byte	0x81
+ 867 046c 1C       		.uleb128 0x1c
+ 868 046d 8D000000 		.4byte	0x8d
+ 869 0471 1C       		.uleb128 0x1c
+ 870 0472 8D000000 		.4byte	0x8d
+ 871 0476 00       		.byte	0
+ 872 0477 1D       		.uleb128 0x1d
+ 873 0478 CA000000 		.4byte	.LASF37
+ 874 047c 0A       		.byte	0xa
+ 875 047d 38       		.byte	0x38
+ 876 047e 81000000 		.4byte	0x81
+ 877 0482 1B       		.uleb128 0x1b
+ 878 0483 57000000 		.4byte	.LASF38
+ 879 0487 0A       		.byte	0xa
+ 880 0488 3F       		.byte	0x3f
+ 881 0489 BA000000 		.4byte	0xba
+ 882 048d A1040000 		.4byte	0x4a1
+ 883 0491 1C       		.uleb128 0x1c
+ 884 0492 81000000 		.4byte	0x81
+ 885 0496 1C       		.uleb128 0x1c
+ 886 0497 8D000000 		.4byte	0x8d
+ 887 049b 1C       		.uleb128 0x1c
+ 888 049c 8D000000 		.4byte	0x8d
+ 889 04a0 00       		.byte	0
+ 890 04a1 1B       		.uleb128 0x1b
+ 891 04a2 6C010000 		.4byte	.LASF39
+ 892 04a6 0A       		.byte	0xa
+ 893 04a7 3B       		.byte	0x3b
+ 894 04a8 BA000000 		.4byte	0xba
+ 895 04ac C5040000 		.4byte	0x4c5
+ 896 04b0 1C       		.uleb128 0x1c
+ 897 04b1 81000000 		.4byte	0x81
+ 898 04b5 1C       		.uleb128 0x1c
+ 899 04b6 8D000000 		.4byte	0x8d
+ 900 04ba 1C       		.uleb128 0x1c
+ 901 04bb 81000000 		.4byte	0x81
+ 902 04bf 1C       		.uleb128 0x1c
+ 903 04c0 81000000 		.4byte	0x81
+ 904 04c4 00       		.byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 18
+
+
+ 905 04c5 1B       		.uleb128 0x1b
+ 906 04c6 A9010000 		.4byte	.LASF40
+ 907 04ca 0A       		.byte	0xa
+ 908 04cb 2C       		.byte	0x2c
+ 909 04cc BA000000 		.4byte	0xba
+ 910 04d0 DF040000 		.4byte	0x4df
+ 911 04d4 1C       		.uleb128 0x1c
+ 912 04d5 81000000 		.4byte	0x81
+ 913 04d9 1C       		.uleb128 0x1c
+ 914 04da 81000000 		.4byte	0x81
+ 915 04de 00       		.byte	0
+ 916 04df 1F       		.uleb128 0x1f
+ 917 04e0 DA000000 		.4byte	.LASF42
+ 918 04e4 0C       		.byte	0xc
+ 919 04e5 18       		.byte	0x18
+ 920 04e6 F0040000 		.4byte	0x4f0
+ 921 04ea 1C       		.uleb128 0x1c
+ 922 04eb D7000000 		.4byte	0xd7
+ 923 04ef 00       		.byte	0
+ 924 04f0 1B       		.uleb128 0x1b
+ 925 04f1 F9010000 		.4byte	.LASF43
+ 926 04f5 0A       		.byte	0xa
+ 927 04f6 2B       		.byte	0x2b
+ 928 04f7 BA000000 		.4byte	0xba
+ 929 04fb 05050000 		.4byte	0x505
+ 930 04ff 1C       		.uleb128 0x1c
+ 931 0500 81000000 		.4byte	0x81
+ 932 0504 00       		.byte	0
+ 933 0505 1B       		.uleb128 0x1b
+ 934 0506 97000000 		.4byte	.LASF44
+ 935 050a 0A       		.byte	0xa
+ 936 050b 2F       		.byte	0x2f
+ 937 050c BA000000 		.4byte	0xba
+ 938 0510 1F050000 		.4byte	0x51f
+ 939 0514 1C       		.uleb128 0x1c
+ 940 0515 81000000 		.4byte	0x81
+ 941 0519 1C       		.uleb128 0x1c
+ 942 051a 81000000 		.4byte	0x81
+ 943 051e 00       		.byte	0
+ 944 051f 20       		.uleb128 0x20
+ 945 0520 0E020000 		.4byte	.LASF45
+ 946 0524 0A       		.byte	0xa
+ 947 0525 29       		.byte	0x29
+ 948 0526 BA000000 		.4byte	0xba
+ 949 052a 1C       		.uleb128 0x1c
+ 950 052b 81000000 		.4byte	0x81
+ 951 052f 1C       		.uleb128 0x1c
+ 952 0530 81000000 		.4byte	0x81
+ 953 0534 00       		.byte	0
+ 954 0535 00       		.byte	0
+ 955              		.section	.debug_abbrev,"",%progbits
+ 956              	.Ldebug_abbrev0:
+ 957 0000 01       		.uleb128 0x1
+ 958 0001 11       		.uleb128 0x11
+ 959 0002 01       		.byte	0x1
+ 960 0003 25       		.uleb128 0x25
+ 961 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 19
+
+
+ 962 0005 13       		.uleb128 0x13
+ 963 0006 0B       		.uleb128 0xb
+ 964 0007 03       		.uleb128 0x3
+ 965 0008 0E       		.uleb128 0xe
+ 966 0009 1B       		.uleb128 0x1b
+ 967 000a 0E       		.uleb128 0xe
+ 968 000b 55       		.uleb128 0x55
+ 969 000c 17       		.uleb128 0x17
+ 970 000d 11       		.uleb128 0x11
+ 971 000e 01       		.uleb128 0x1
+ 972 000f 10       		.uleb128 0x10
+ 973 0010 17       		.uleb128 0x17
+ 974 0011 00       		.byte	0
+ 975 0012 00       		.byte	0
+ 976 0013 02       		.uleb128 0x2
+ 977 0014 24       		.uleb128 0x24
+ 978 0015 00       		.byte	0
+ 979 0016 0B       		.uleb128 0xb
+ 980 0017 0B       		.uleb128 0xb
+ 981 0018 3E       		.uleb128 0x3e
+ 982 0019 0B       		.uleb128 0xb
+ 983 001a 03       		.uleb128 0x3
+ 984 001b 0E       		.uleb128 0xe
+ 985 001c 00       		.byte	0
+ 986 001d 00       		.byte	0
+ 987 001e 03       		.uleb128 0x3
+ 988 001f 16       		.uleb128 0x16
+ 989 0020 00       		.byte	0
+ 990 0021 03       		.uleb128 0x3
+ 991 0022 0E       		.uleb128 0xe
+ 992 0023 3A       		.uleb128 0x3a
+ 993 0024 0B       		.uleb128 0xb
+ 994 0025 3B       		.uleb128 0x3b
+ 995 0026 0B       		.uleb128 0xb
+ 996 0027 49       		.uleb128 0x49
+ 997 0028 13       		.uleb128 0x13
+ 998 0029 00       		.byte	0
+ 999 002a 00       		.byte	0
+ 1000 002b 04       		.uleb128 0x4
+ 1001 002c 24       		.uleb128 0x24
+ 1002 002d 00       		.byte	0
+ 1003 002e 0B       		.uleb128 0xb
+ 1004 002f 0B       		.uleb128 0xb
+ 1005 0030 3E       		.uleb128 0x3e
+ 1006 0031 0B       		.uleb128 0xb
+ 1007 0032 03       		.uleb128 0x3
+ 1008 0033 08       		.uleb128 0x8
+ 1009 0034 00       		.byte	0
+ 1010 0035 00       		.byte	0
+ 1011 0036 05       		.uleb128 0x5
+ 1012 0037 16       		.uleb128 0x16
+ 1013 0038 00       		.byte	0
+ 1014 0039 03       		.uleb128 0x3
+ 1015 003a 0E       		.uleb128 0xe
+ 1016 003b 3A       		.uleb128 0x3a
+ 1017 003c 0B       		.uleb128 0xb
+ 1018 003d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 20
+
+
+ 1019 003e 05       		.uleb128 0x5
+ 1020 003f 49       		.uleb128 0x49
+ 1021 0040 13       		.uleb128 0x13
+ 1022 0041 00       		.byte	0
+ 1023 0042 00       		.byte	0
+ 1024 0043 06       		.uleb128 0x6
+ 1025 0044 35       		.uleb128 0x35
+ 1026 0045 00       		.byte	0
+ 1027 0046 49       		.uleb128 0x49
+ 1028 0047 13       		.uleb128 0x13
+ 1029 0048 00       		.byte	0
+ 1030 0049 00       		.byte	0
+ 1031 004a 07       		.uleb128 0x7
+ 1032 004b 0F       		.uleb128 0xf
+ 1033 004c 00       		.byte	0
+ 1034 004d 0B       		.uleb128 0xb
+ 1035 004e 0B       		.uleb128 0xb
+ 1036 004f 49       		.uleb128 0x49
+ 1037 0050 13       		.uleb128 0x13
+ 1038 0051 00       		.byte	0
+ 1039 0052 00       		.byte	0
+ 1040 0053 08       		.uleb128 0x8
+ 1041 0054 15       		.uleb128 0x15
+ 1042 0055 00       		.byte	0
+ 1043 0056 27       		.uleb128 0x27
+ 1044 0057 19       		.uleb128 0x19
+ 1045 0058 00       		.byte	0
+ 1046 0059 00       		.byte	0
+ 1047 005a 09       		.uleb128 0x9
+ 1048 005b 2E       		.uleb128 0x2e
+ 1049 005c 01       		.byte	0x1
+ 1050 005d 3F       		.uleb128 0x3f
+ 1051 005e 19       		.uleb128 0x19
+ 1052 005f 03       		.uleb128 0x3
+ 1053 0060 0E       		.uleb128 0xe
+ 1054 0061 3A       		.uleb128 0x3a
+ 1055 0062 0B       		.uleb128 0xb
+ 1056 0063 3B       		.uleb128 0x3b
+ 1057 0064 0B       		.uleb128 0xb
+ 1058 0065 27       		.uleb128 0x27
+ 1059 0066 19       		.uleb128 0x19
+ 1060 0067 11       		.uleb128 0x11
+ 1061 0068 01       		.uleb128 0x1
+ 1062 0069 12       		.uleb128 0x12
+ 1063 006a 06       		.uleb128 0x6
+ 1064 006b 40       		.uleb128 0x40
+ 1065 006c 18       		.uleb128 0x18
+ 1066 006d 9742     		.uleb128 0x2117
+ 1067 006f 19       		.uleb128 0x19
+ 1068 0070 01       		.uleb128 0x1
+ 1069 0071 13       		.uleb128 0x13
+ 1070 0072 00       		.byte	0
+ 1071 0073 00       		.byte	0
+ 1072 0074 0A       		.uleb128 0xa
+ 1073 0075 05       		.uleb128 0x5
+ 1074 0076 00       		.byte	0
+ 1075 0077 03       		.uleb128 0x3
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 21
+
+
+ 1076 0078 08       		.uleb128 0x8
+ 1077 0079 3A       		.uleb128 0x3a
+ 1078 007a 0B       		.uleb128 0xb
+ 1079 007b 3B       		.uleb128 0x3b
+ 1080 007c 0B       		.uleb128 0xb
+ 1081 007d 49       		.uleb128 0x49
+ 1082 007e 13       		.uleb128 0x13
+ 1083 007f 02       		.uleb128 0x2
+ 1084 0080 17       		.uleb128 0x17
+ 1085 0081 00       		.byte	0
+ 1086 0082 00       		.byte	0
+ 1087 0083 0B       		.uleb128 0xb
+ 1088 0084 05       		.uleb128 0x5
+ 1089 0085 00       		.byte	0
+ 1090 0086 03       		.uleb128 0x3
+ 1091 0087 0E       		.uleb128 0xe
+ 1092 0088 3A       		.uleb128 0x3a
+ 1093 0089 0B       		.uleb128 0xb
+ 1094 008a 3B       		.uleb128 0x3b
+ 1095 008b 0B       		.uleb128 0xb
+ 1096 008c 49       		.uleb128 0x49
+ 1097 008d 13       		.uleb128 0x13
+ 1098 008e 02       		.uleb128 0x2
+ 1099 008f 17       		.uleb128 0x17
+ 1100 0090 00       		.byte	0
+ 1101 0091 00       		.byte	0
+ 1102 0092 0C       		.uleb128 0xc
+ 1103 0093 898201   		.uleb128 0x4109
+ 1104 0096 01       		.byte	0x1
+ 1105 0097 11       		.uleb128 0x11
+ 1106 0098 01       		.uleb128 0x1
+ 1107 0099 31       		.uleb128 0x31
+ 1108 009a 13       		.uleb128 0x13
+ 1109 009b 01       		.uleb128 0x1
+ 1110 009c 13       		.uleb128 0x13
+ 1111 009d 00       		.byte	0
+ 1112 009e 00       		.byte	0
+ 1113 009f 0D       		.uleb128 0xd
+ 1114 00a0 8A8201   		.uleb128 0x410a
+ 1115 00a3 00       		.byte	0
+ 1116 00a4 02       		.uleb128 0x2
+ 1117 00a5 18       		.uleb128 0x18
+ 1118 00a6 9142     		.uleb128 0x2111
+ 1119 00a8 18       		.uleb128 0x18
+ 1120 00a9 00       		.byte	0
+ 1121 00aa 00       		.byte	0
+ 1122 00ab 0E       		.uleb128 0xe
+ 1123 00ac 898201   		.uleb128 0x4109
+ 1124 00af 00       		.byte	0
+ 1125 00b0 11       		.uleb128 0x11
+ 1126 00b1 01       		.uleb128 0x1
+ 1127 00b2 31       		.uleb128 0x31
+ 1128 00b3 13       		.uleb128 0x13
+ 1129 00b4 00       		.byte	0
+ 1130 00b5 00       		.byte	0
+ 1131 00b6 0F       		.uleb128 0xf
+ 1132 00b7 26       		.uleb128 0x26
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 22
+
+
+ 1133 00b8 00       		.byte	0
+ 1134 00b9 49       		.uleb128 0x49
+ 1135 00ba 13       		.uleb128 0x13
+ 1136 00bb 00       		.byte	0
+ 1137 00bc 00       		.byte	0
+ 1138 00bd 10       		.uleb128 0x10
+ 1139 00be 2E       		.uleb128 0x2e
+ 1140 00bf 01       		.byte	0x1
+ 1141 00c0 3F       		.uleb128 0x3f
+ 1142 00c1 19       		.uleb128 0x19
+ 1143 00c2 03       		.uleb128 0x3
+ 1144 00c3 0E       		.uleb128 0xe
+ 1145 00c4 3A       		.uleb128 0x3a
+ 1146 00c5 0B       		.uleb128 0xb
+ 1147 00c6 3B       		.uleb128 0x3b
+ 1148 00c7 0B       		.uleb128 0xb
+ 1149 00c8 27       		.uleb128 0x27
+ 1150 00c9 19       		.uleb128 0x19
+ 1151 00ca 49       		.uleb128 0x49
+ 1152 00cb 13       		.uleb128 0x13
+ 1153 00cc 11       		.uleb128 0x11
+ 1154 00cd 01       		.uleb128 0x1
+ 1155 00ce 12       		.uleb128 0x12
+ 1156 00cf 06       		.uleb128 0x6
+ 1157 00d0 40       		.uleb128 0x40
+ 1158 00d1 18       		.uleb128 0x18
+ 1159 00d2 9742     		.uleb128 0x2117
+ 1160 00d4 19       		.uleb128 0x19
+ 1161 00d5 01       		.uleb128 0x1
+ 1162 00d6 13       		.uleb128 0x13
+ 1163 00d7 00       		.byte	0
+ 1164 00d8 00       		.byte	0
+ 1165 00d9 11       		.uleb128 0x11
+ 1166 00da 34       		.uleb128 0x34
+ 1167 00db 00       		.byte	0
+ 1168 00dc 03       		.uleb128 0x3
+ 1169 00dd 0E       		.uleb128 0xe
+ 1170 00de 3A       		.uleb128 0x3a
+ 1171 00df 0B       		.uleb128 0xb
+ 1172 00e0 3B       		.uleb128 0x3b
+ 1173 00e1 0B       		.uleb128 0xb
+ 1174 00e2 49       		.uleb128 0x49
+ 1175 00e3 13       		.uleb128 0x13
+ 1176 00e4 02       		.uleb128 0x2
+ 1177 00e5 18       		.uleb128 0x18
+ 1178 00e6 00       		.byte	0
+ 1179 00e7 00       		.byte	0
+ 1180 00e8 12       		.uleb128 0x12
+ 1181 00e9 2E       		.uleb128 0x2e
+ 1182 00ea 01       		.byte	0x1
+ 1183 00eb 3F       		.uleb128 0x3f
+ 1184 00ec 19       		.uleb128 0x19
+ 1185 00ed 03       		.uleb128 0x3
+ 1186 00ee 0E       		.uleb128 0xe
+ 1187 00ef 3A       		.uleb128 0x3a
+ 1188 00f0 0B       		.uleb128 0xb
+ 1189 00f1 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 23
+
+
+ 1190 00f2 0B       		.uleb128 0xb
+ 1191 00f3 11       		.uleb128 0x11
+ 1192 00f4 01       		.uleb128 0x1
+ 1193 00f5 12       		.uleb128 0x12
+ 1194 00f6 06       		.uleb128 0x6
+ 1195 00f7 40       		.uleb128 0x40
+ 1196 00f8 18       		.uleb128 0x18
+ 1197 00f9 9742     		.uleb128 0x2117
+ 1198 00fb 19       		.uleb128 0x19
+ 1199 00fc 01       		.uleb128 0x1
+ 1200 00fd 13       		.uleb128 0x13
+ 1201 00fe 00       		.byte	0
+ 1202 00ff 00       		.byte	0
+ 1203 0100 13       		.uleb128 0x13
+ 1204 0101 34       		.uleb128 0x34
+ 1205 0102 00       		.byte	0
+ 1206 0103 03       		.uleb128 0x3
+ 1207 0104 08       		.uleb128 0x8
+ 1208 0105 3A       		.uleb128 0x3a
+ 1209 0106 0B       		.uleb128 0xb
+ 1210 0107 3B       		.uleb128 0x3b
+ 1211 0108 0B       		.uleb128 0xb
+ 1212 0109 49       		.uleb128 0x49
+ 1213 010a 13       		.uleb128 0x13
+ 1214 010b 02       		.uleb128 0x2
+ 1215 010c 17       		.uleb128 0x17
+ 1216 010d 00       		.byte	0
+ 1217 010e 00       		.byte	0
+ 1218 010f 14       		.uleb128 0x14
+ 1219 0110 898201   		.uleb128 0x4109
+ 1220 0113 01       		.byte	0x1
+ 1221 0114 11       		.uleb128 0x11
+ 1222 0115 01       		.uleb128 0x1
+ 1223 0116 31       		.uleb128 0x31
+ 1224 0117 13       		.uleb128 0x13
+ 1225 0118 00       		.byte	0
+ 1226 0119 00       		.byte	0
+ 1227 011a 15       		.uleb128 0x15
+ 1228 011b 34       		.uleb128 0x34
+ 1229 011c 00       		.byte	0
+ 1230 011d 03       		.uleb128 0x3
+ 1231 011e 0E       		.uleb128 0xe
+ 1232 011f 3A       		.uleb128 0x3a
+ 1233 0120 0B       		.uleb128 0xb
+ 1234 0121 3B       		.uleb128 0x3b
+ 1235 0122 05       		.uleb128 0x5
+ 1236 0123 49       		.uleb128 0x49
+ 1237 0124 13       		.uleb128 0x13
+ 1238 0125 3F       		.uleb128 0x3f
+ 1239 0126 19       		.uleb128 0x19
+ 1240 0127 3C       		.uleb128 0x3c
+ 1241 0128 19       		.uleb128 0x19
+ 1242 0129 00       		.byte	0
+ 1243 012a 00       		.byte	0
+ 1244 012b 16       		.uleb128 0x16
+ 1245 012c 01       		.uleb128 0x1
+ 1246 012d 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 24
+
+
+ 1247 012e 49       		.uleb128 0x49
+ 1248 012f 13       		.uleb128 0x13
+ 1249 0130 01       		.uleb128 0x1
+ 1250 0131 13       		.uleb128 0x13
+ 1251 0132 00       		.byte	0
+ 1252 0133 00       		.byte	0
+ 1253 0134 17       		.uleb128 0x17
+ 1254 0135 21       		.uleb128 0x21
+ 1255 0136 00       		.byte	0
+ 1256 0137 49       		.uleb128 0x49
+ 1257 0138 13       		.uleb128 0x13
+ 1258 0139 2F       		.uleb128 0x2f
+ 1259 013a 0B       		.uleb128 0xb
+ 1260 013b 00       		.byte	0
+ 1261 013c 00       		.byte	0
+ 1262 013d 18       		.uleb128 0x18
+ 1263 013e 34       		.uleb128 0x34
+ 1264 013f 00       		.byte	0
+ 1265 0140 03       		.uleb128 0x3
+ 1266 0141 0E       		.uleb128 0xe
+ 1267 0142 3A       		.uleb128 0x3a
+ 1268 0143 0B       		.uleb128 0xb
+ 1269 0144 3B       		.uleb128 0x3b
+ 1270 0145 0B       		.uleb128 0xb
+ 1271 0146 49       		.uleb128 0x49
+ 1272 0147 13       		.uleb128 0x13
+ 1273 0148 3F       		.uleb128 0x3f
+ 1274 0149 19       		.uleb128 0x19
+ 1275 014a 02       		.uleb128 0x2
+ 1276 014b 18       		.uleb128 0x18
+ 1277 014c 00       		.byte	0
+ 1278 014d 00       		.byte	0
+ 1279 014e 19       		.uleb128 0x19
+ 1280 014f 21       		.uleb128 0x21
+ 1281 0150 00       		.byte	0
+ 1282 0151 00       		.byte	0
+ 1283 0152 00       		.byte	0
+ 1284 0153 1A       		.uleb128 0x1a
+ 1285 0154 34       		.uleb128 0x34
+ 1286 0155 00       		.byte	0
+ 1287 0156 03       		.uleb128 0x3
+ 1288 0157 0E       		.uleb128 0xe
+ 1289 0158 3A       		.uleb128 0x3a
+ 1290 0159 0B       		.uleb128 0xb
+ 1291 015a 3B       		.uleb128 0x3b
+ 1292 015b 0B       		.uleb128 0xb
+ 1293 015c 49       		.uleb128 0x49
+ 1294 015d 13       		.uleb128 0x13
+ 1295 015e 3F       		.uleb128 0x3f
+ 1296 015f 19       		.uleb128 0x19
+ 1297 0160 3C       		.uleb128 0x3c
+ 1298 0161 19       		.uleb128 0x19
+ 1299 0162 00       		.byte	0
+ 1300 0163 00       		.byte	0
+ 1301 0164 1B       		.uleb128 0x1b
+ 1302 0165 2E       		.uleb128 0x2e
+ 1303 0166 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 25
+
+
+ 1304 0167 3F       		.uleb128 0x3f
+ 1305 0168 19       		.uleb128 0x19
+ 1306 0169 03       		.uleb128 0x3
+ 1307 016a 0E       		.uleb128 0xe
+ 1308 016b 3A       		.uleb128 0x3a
+ 1309 016c 0B       		.uleb128 0xb
+ 1310 016d 3B       		.uleb128 0x3b
+ 1311 016e 0B       		.uleb128 0xb
+ 1312 016f 27       		.uleb128 0x27
+ 1313 0170 19       		.uleb128 0x19
+ 1314 0171 49       		.uleb128 0x49
+ 1315 0172 13       		.uleb128 0x13
+ 1316 0173 3C       		.uleb128 0x3c
+ 1317 0174 19       		.uleb128 0x19
+ 1318 0175 01       		.uleb128 0x1
+ 1319 0176 13       		.uleb128 0x13
+ 1320 0177 00       		.byte	0
+ 1321 0178 00       		.byte	0
+ 1322 0179 1C       		.uleb128 0x1c
+ 1323 017a 05       		.uleb128 0x5
+ 1324 017b 00       		.byte	0
+ 1325 017c 49       		.uleb128 0x49
+ 1326 017d 13       		.uleb128 0x13
+ 1327 017e 00       		.byte	0
+ 1328 017f 00       		.byte	0
+ 1329 0180 1D       		.uleb128 0x1d
+ 1330 0181 2E       		.uleb128 0x2e
+ 1331 0182 00       		.byte	0
+ 1332 0183 3F       		.uleb128 0x3f
+ 1333 0184 19       		.uleb128 0x19
+ 1334 0185 03       		.uleb128 0x3
+ 1335 0186 0E       		.uleb128 0xe
+ 1336 0187 3A       		.uleb128 0x3a
+ 1337 0188 0B       		.uleb128 0xb
+ 1338 0189 3B       		.uleb128 0x3b
+ 1339 018a 0B       		.uleb128 0xb
+ 1340 018b 27       		.uleb128 0x27
+ 1341 018c 19       		.uleb128 0x19
+ 1342 018d 49       		.uleb128 0x49
+ 1343 018e 13       		.uleb128 0x13
+ 1344 018f 3C       		.uleb128 0x3c
+ 1345 0190 19       		.uleb128 0x19
+ 1346 0191 00       		.byte	0
+ 1347 0192 00       		.byte	0
+ 1348 0193 1E       		.uleb128 0x1e
+ 1349 0194 2E       		.uleb128 0x2e
+ 1350 0195 00       		.byte	0
+ 1351 0196 3F       		.uleb128 0x3f
+ 1352 0197 19       		.uleb128 0x19
+ 1353 0198 03       		.uleb128 0x3
+ 1354 0199 0E       		.uleb128 0xe
+ 1355 019a 3A       		.uleb128 0x3a
+ 1356 019b 0B       		.uleb128 0xb
+ 1357 019c 3B       		.uleb128 0x3b
+ 1358 019d 0B       		.uleb128 0xb
+ 1359 019e 27       		.uleb128 0x27
+ 1360 019f 19       		.uleb128 0x19
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 26
+
+
+ 1361 01a0 3C       		.uleb128 0x3c
+ 1362 01a1 19       		.uleb128 0x19
+ 1363 01a2 00       		.byte	0
+ 1364 01a3 00       		.byte	0
+ 1365 01a4 1F       		.uleb128 0x1f
+ 1366 01a5 2E       		.uleb128 0x2e
+ 1367 01a6 01       		.byte	0x1
+ 1368 01a7 3F       		.uleb128 0x3f
+ 1369 01a8 19       		.uleb128 0x19
+ 1370 01a9 03       		.uleb128 0x3
+ 1371 01aa 0E       		.uleb128 0xe
+ 1372 01ab 3A       		.uleb128 0x3a
+ 1373 01ac 0B       		.uleb128 0xb
+ 1374 01ad 3B       		.uleb128 0x3b
+ 1375 01ae 0B       		.uleb128 0xb
+ 1376 01af 27       		.uleb128 0x27
+ 1377 01b0 19       		.uleb128 0x19
+ 1378 01b1 3C       		.uleb128 0x3c
+ 1379 01b2 19       		.uleb128 0x19
+ 1380 01b3 01       		.uleb128 0x1
+ 1381 01b4 13       		.uleb128 0x13
+ 1382 01b5 00       		.byte	0
+ 1383 01b6 00       		.byte	0
+ 1384 01b7 20       		.uleb128 0x20
+ 1385 01b8 2E       		.uleb128 0x2e
+ 1386 01b9 01       		.byte	0x1
+ 1387 01ba 3F       		.uleb128 0x3f
+ 1388 01bb 19       		.uleb128 0x19
+ 1389 01bc 03       		.uleb128 0x3
+ 1390 01bd 0E       		.uleb128 0xe
+ 1391 01be 3A       		.uleb128 0x3a
+ 1392 01bf 0B       		.uleb128 0xb
+ 1393 01c0 3B       		.uleb128 0x3b
+ 1394 01c1 0B       		.uleb128 0xb
+ 1395 01c2 27       		.uleb128 0x27
+ 1396 01c3 19       		.uleb128 0x19
+ 1397 01c4 49       		.uleb128 0x49
+ 1398 01c5 13       		.uleb128 0x13
+ 1399 01c6 3C       		.uleb128 0x3c
+ 1400 01c7 19       		.uleb128 0x19
+ 1401 01c8 00       		.byte	0
+ 1402 01c9 00       		.byte	0
+ 1403 01ca 00       		.byte	0
+ 1404              		.section	.debug_loc,"",%progbits
+ 1405              	.Ldebug_loc0:
+ 1406              	.LLST0:
+ 1407 0000 00000000 		.4byte	.LVL0
+ 1408 0004 06000000 		.4byte	.LVL1
+ 1409 0008 0100     		.2byte	0x1
+ 1410 000a 50       		.byte	0x50
+ 1411 000b 06000000 		.4byte	.LVL1
+ 1412 000f 24000000 		.4byte	.LFE63
+ 1413 0013 0400     		.2byte	0x4
+ 1414 0015 F3       		.byte	0xf3
+ 1415 0016 01       		.uleb128 0x1
+ 1416 0017 50       		.byte	0x50
+ 1417 0018 9F       		.byte	0x9f
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 27
+
+
+ 1418 0019 00000000 		.4byte	0
+ 1419 001d 00000000 		.4byte	0
+ 1420              	.LLST1:
+ 1421 0021 00000000 		.4byte	.LVL0
+ 1422 0025 06000000 		.4byte	.LVL1
+ 1423 0029 0100     		.2byte	0x1
+ 1424 002b 51       		.byte	0x51
+ 1425 002c 06000000 		.4byte	.LVL1
+ 1426 0030 24000000 		.4byte	.LFE63
+ 1427 0034 0400     		.2byte	0x4
+ 1428 0036 F3       		.byte	0xf3
+ 1429 0037 01       		.uleb128 0x1
+ 1430 0038 51       		.byte	0x51
+ 1431 0039 9F       		.byte	0x9f
+ 1432 003a 00000000 		.4byte	0
+ 1433 003e 00000000 		.4byte	0
+ 1434              	.LLST2:
+ 1435 0042 00000000 		.4byte	.LVL6
+ 1436 0046 04000000 		.4byte	.LVL7
+ 1437 004a 0100     		.2byte	0x1
+ 1438 004c 50       		.byte	0x50
+ 1439 004d 04000000 		.4byte	.LVL7
+ 1440 0051 34000000 		.4byte	.LFE64
+ 1441 0055 0400     		.2byte	0x4
+ 1442 0057 F3       		.byte	0xf3
+ 1443 0058 01       		.uleb128 0x1
+ 1444 0059 50       		.byte	0x50
+ 1445 005a 9F       		.byte	0x9f
+ 1446 005b 00000000 		.4byte	0
+ 1447 005f 00000000 		.4byte	0
+ 1448              	.LLST3:
+ 1449 0063 14000000 		.4byte	.LVL19
+ 1450 0067 18000000 		.4byte	.LVL20
+ 1451 006b 0200     		.2byte	0x2
+ 1452 006d 30       		.byte	0x30
+ 1453 006e 9F       		.byte	0x9f
+ 1454 006f 18000000 		.4byte	.LVL20
+ 1455 0073 26000000 		.4byte	.LVL22
+ 1456 0077 0100     		.2byte	0x1
+ 1457 0079 54       		.byte	0x54
+ 1458 007a 28000000 		.4byte	.LVL23
+ 1459 007e 34000000 		.4byte	.LVL24
+ 1460 0082 0100     		.2byte	0x1
+ 1461 0084 54       		.byte	0x54
+ 1462 0085 36000000 		.4byte	.LVL25
+ 1463 0089 40000000 		.4byte	.LVL27
+ 1464 008d 0100     		.2byte	0x1
+ 1465 008f 54       		.byte	0x54
+ 1466 0090 42000000 		.4byte	.LVL28
+ 1467 0094 5C000000 		.4byte	.LVL30
+ 1468 0098 0100     		.2byte	0x1
+ 1469 009a 54       		.byte	0x54
+ 1470 009b 00000000 		.4byte	0
+ 1471 009f 00000000 		.4byte	0
+ 1472              		.section	.debug_aranges,"",%progbits
+ 1473 0000 34000000 		.4byte	0x34
+ 1474 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 28
+
+
+ 1475 0006 00000000 		.4byte	.Ldebug_info0
+ 1476 000a 04       		.byte	0x4
+ 1477 000b 00       		.byte	0
+ 1478 000c 0000     		.2byte	0
+ 1479 000e 0000     		.2byte	0
+ 1480 0010 00000000 		.4byte	.LFB63
+ 1481 0014 24000000 		.4byte	.LFE63-.LFB63
+ 1482 0018 00000000 		.4byte	.LFB64
+ 1483 001c 34000000 		.4byte	.LFE64-.LFB64
+ 1484 0020 00000000 		.4byte	.LFB65
+ 1485 0024 14000000 		.4byte	.LFE65-.LFB65
+ 1486 0028 00000000 		.4byte	.LFB66
+ 1487 002c CC000000 		.4byte	.LFE66-.LFB66
+ 1488 0030 00000000 		.4byte	0
+ 1489 0034 00000000 		.4byte	0
+ 1490              		.section	.debug_ranges,"",%progbits
+ 1491              	.Ldebug_ranges0:
+ 1492 0000 00000000 		.4byte	.LFB63
+ 1493 0004 24000000 		.4byte	.LFE63
+ 1494 0008 00000000 		.4byte	.LFB64
+ 1495 000c 34000000 		.4byte	.LFE64
+ 1496 0010 00000000 		.4byte	.LFB65
+ 1497 0014 14000000 		.4byte	.LFE65
+ 1498 0018 00000000 		.4byte	.LFB66
+ 1499 001c CC000000 		.4byte	.LFE66
+ 1500 0020 00000000 		.4byte	0
+ 1501 0024 00000000 		.4byte	0
+ 1502              		.section	.debug_line,"",%progbits
+ 1503              	.Ldebug_line0:
+ 1504 0000 5D020000 		.section	.debug_str,"MS",%progbits,1
+ 1504      0200D001 
+ 1504      00000201 
+ 1504      FB0E0D00 
+ 1504      01010101 
+ 1505              	.LASF31:
+ 1506 0000 43616D65 		.ascii	"Camera_I2C_MasterSendStart\000"
+ 1506      72615F49 
+ 1506      32435F4D 
+ 1506      61737465 
+ 1506      7253656E 
+ 1507              	.LASF17:
+ 1508 001b 63797374 		.ascii	"cystatus\000"
+ 1508      61747573 
+ 1508      00
+ 1509              	.LASF22:
+ 1510 0024 43616D65 		.ascii	"Camera_SyncFrame\000"
+ 1510      72615F53 
+ 1510      796E6346 
+ 1510      72616D65 
+ 1510      00
+ 1511              	.LASF35:
+ 1512 0035 43616D65 		.ascii	"Camera_VSYNC_Read\000"
+ 1512      72615F56 
+ 1512      53594E43 
+ 1512      5F526561 
+ 1512      6400
+ 1513              	.LASF21:
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 29
+
+
+ 1514 0047 76616C75 		.ascii	"value\000"
+ 1514      6500
+ 1515              	.LASF9:
+ 1516 004d 5F5F696E 		.ascii	"__int32_t\000"
+ 1516      7433325F 
+ 1516      7400
+ 1517              	.LASF38:
+ 1518 0057 4379446D 		.ascii	"CyDmaTdSetAddress\000"
+ 1518      61546453 
+ 1518      65744164 
+ 1518      64726573 
+ 1518      7300
+ 1519              	.LASF30:
+ 1520 0069 43616D65 		.ascii	"Camera_qvga\000"
+ 1520      72615F71 
+ 1520      76676100 
+ 1521              	.LASF47:
+ 1522 0075 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Camera.c\000"
+ 1522      6E657261 
+ 1522      7465645F 
+ 1522      536F7572 
+ 1522      63655C50 
+ 1523              	.LASF44:
+ 1524 0097 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
+ 1524      61436853 
+ 1524      6574496E 
+ 1524      69746961 
+ 1524      6C546400 
+ 1525              	.LASF28:
+ 1526 00ab 43616D65 		.ascii	"Camera_settings\000"
+ 1526      72615F73 
+ 1526      65747469 
+ 1526      6E677300 
+ 1527              	.LASF50:
+ 1528 00bb 43616D65 		.ascii	"Camera_ReadReg\000"
+ 1528      72615F52 
+ 1528      65616452 
+ 1528      656700
+ 1529              	.LASF37:
+ 1530 00ca 4379446D 		.ascii	"CyDmaTdAllocate\000"
+ 1530      61546441 
+ 1530      6C6C6F63 
+ 1530      61746500 
+ 1531              	.LASF42:
+ 1532 00da 43616D65 		.ascii	"Camera_end_line_StartEx\000"
+ 1532      72615F65 
+ 1532      6E645F6C 
+ 1532      696E655F 
+ 1532      53746172 
+ 1533              	.LASF14:
+ 1534 00f2 666C6F61 		.ascii	"float\000"
+ 1534      7400
+ 1535              	.LASF1:
+ 1536 00f8 756E7369 		.ascii	"unsigned char\000"
+ 1536      676E6564 
+ 1536      20636861 
+ 1536      7200
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 30
+
+
+ 1537              	.LASF48:
+ 1538 0106 433A5C55 		.ascii	"C:\\Users\\mzenere\\Personal\\PSOC\\Current\\ECE309"
+ 1538      73657273 
+ 1538      5C6D7A65 
+ 1538      6E657265 
+ 1538      5C506572 
+ 1539 0133 312E6379 		.ascii	"1.cywrk.Archive04\\ECE3091TestSoftware\\Display.cyd"
+ 1539      77726B2E 
+ 1539      41726368 
+ 1539      69766530 
+ 1539      345C4543 
+ 1540 0164 736E00   		.ascii	"sn\000"
+ 1541              	.LASF18:
+ 1542 0167 72656738 		.ascii	"reg8\000"
+ 1542      00
+ 1543              	.LASF39:
+ 1544 016c 4379446D 		.ascii	"CyDmaTdSetConfiguration\000"
+ 1544      61546453 
+ 1544      6574436F 
+ 1544      6E666967 
+ 1544      75726174 
+ 1545              	.LASF5:
+ 1546 0184 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1546      20756E73 
+ 1546      69676E65 
+ 1546      6420696E 
+ 1546      7400
+ 1547              	.LASF3:
+ 1548 0196 73686F72 		.ascii	"short unsigned int\000"
+ 1548      7420756E 
+ 1548      7369676E 
+ 1548      65642069 
+ 1548      6E7400
+ 1549              	.LASF40:
+ 1550 01a9 4379446D 		.ascii	"CyDmaChPriority\000"
+ 1550      61436850 
+ 1550      72696F72 
+ 1550      69747900 
+ 1551              	.LASF26:
+ 1552 01b9 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1552      52784275 
+ 1552      66666572 
+ 1552      00
+ 1553              	.LASF27:
+ 1554 01c6 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1554      72615F6C 
+ 1554      696E6562 
+ 1554      75666665 
+ 1554      7200
+ 1555              	.LASF15:
+ 1556 01d8 646F7562 		.ascii	"double\000"
+ 1556      6C6500
+ 1557              	.LASF33:
+ 1558 01df 43616D65 		.ascii	"Camera_I2C_MasterReadByte\000"
+ 1558      72615F49 
+ 1558      32435F4D 
+ 1558      61737465 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 31
+
+
+ 1558      72526561 
+ 1559              	.LASF43:
+ 1560 01f9 4379446D 		.ascii	"CyDmaClearPendingDrq\000"
+ 1560      61436C65 
+ 1560      61725065 
+ 1560      6E64696E 
+ 1560      67447271 
+ 1561              	.LASF45:
+ 1562 020e 4379446D 		.ascii	"CyDmaChEnable\000"
+ 1562      61436845 
+ 1562      6E61626C 
+ 1562      6500
+ 1563              	.LASF12:
+ 1564 021c 75696E74 		.ascii	"uint16\000"
+ 1564      313600
+ 1565              	.LASF13:
+ 1566 0223 75696E74 		.ascii	"uint32\000"
+ 1566      333200
+ 1567              	.LASF46:
+ 1568 022a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1568      4320342E 
+ 1568      392E3320 
+ 1568      32303135 
+ 1568      30333033 
+ 1569 025d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1569      20726576 
+ 1569      6973696F 
+ 1569      6E203232 
+ 1569      31323230 
+ 1570 0290 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1570      66756E63 
+ 1570      74696F6E 
+ 1570      2D736563 
+ 1570      74696F6E 
+ 1571              	.LASF8:
+ 1572 02b8 756E7369 		.ascii	"unsigned int\000"
+ 1572      676E6564 
+ 1572      20696E74 
+ 1572      00
+ 1573              	.LASF36:
+ 1574 02c5 43616D65 		.ascii	"Camera_DMA_DmaInitialize\000"
+ 1574      72615F44 
+ 1574      4D415F44 
+ 1574      6D61496E 
+ 1574      69746961 
+ 1575              	.LASF7:
+ 1576 02de 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1576      206C6F6E 
+ 1576      6720756E 
+ 1576      7369676E 
+ 1576      65642069 
+ 1577              	.LASF32:
+ 1578 02f5 43616D65 		.ascii	"Camera_I2C_MasterWriteByte\000"
+ 1578      72615F49 
+ 1578      32435F4D 
+ 1578      61737465 
+ 1578      72577269 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 32
+
+
+ 1579              	.LASF19:
+ 1580 0310 63796973 		.ascii	"cyisraddress\000"
+ 1580      72616464 
+ 1580      72657373 
+ 1580      00
+ 1581              	.LASF51:
+ 1582 031d 43616D65 		.ascii	"Camera_I2C_Start\000"
+ 1582      72615F49 
+ 1582      32435F53 
+ 1582      74617274 
+ 1582      00
+ 1583              	.LASF10:
+ 1584 032e 696E7433 		.ascii	"int32_t\000"
+ 1584      325F7400 
+ 1585              	.LASF20:
+ 1586 0336 73697A65 		.ascii	"sizetype\000"
+ 1586      74797065 
+ 1586      00
+ 1587              	.LASF24:
+ 1588 033f 444D415F 		.ascii	"DMA_channel\000"
+ 1588      6368616E 
+ 1588      6E656C00 
+ 1589              	.LASF6:
+ 1590 034b 6C6F6E67 		.ascii	"long long int\000"
+ 1590      206C6F6E 
+ 1590      6720696E 
+ 1590      7400
+ 1591              	.LASF34:
+ 1592 0359 43616D65 		.ascii	"Camera_I2C_MasterSendStop\000"
+ 1592      72615F49 
+ 1592      32435F4D 
+ 1592      61737465 
+ 1592      7253656E 
+ 1593              	.LASF16:
+ 1594 0373 63686172 		.ascii	"char\000"
+ 1594      00
+ 1595              	.LASF2:
+ 1596 0378 73686F72 		.ascii	"short int\000"
+ 1596      7420696E 
+ 1596      7400
+ 1597              	.LASF49:
+ 1598 0382 43616D65 		.ascii	"Camera_WriteReg\000"
+ 1598      72615F57 
+ 1598      72697465 
+ 1598      52656700 
+ 1599              	.LASF11:
+ 1600 0392 75696E74 		.ascii	"uint8\000"
+ 1600      3800
+ 1601              	.LASF23:
+ 1602 0398 43616D65 		.ascii	"Camera_Start\000"
+ 1602      72615F53 
+ 1602      74617274 
+ 1602      00
+ 1603              	.LASF29:
+ 1604 03a5 43616D65 		.ascii	"Camera_format\000"
+ 1604      72615F66 
+ 1604      6F726D61 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccE7DvzX.s 			page 33
+
+
+ 1604      7400
+ 1605              	.LASF4:
+ 1606 03b3 6C6F6E67 		.ascii	"long int\000"
+ 1606      20696E74 
+ 1606      00
+ 1607              	.LASF25:
+ 1608 03bc 444D415F 		.ascii	"DMA_TD\000"
+ 1608      544400
+ 1609              	.LASF0:
+ 1610 03c3 7369676E 		.ascii	"signed char\000"
+ 1610      65642063 
+ 1610      68617200 
+ 1611              	.LASF41:
+ 1612 03cf 43794465 		.ascii	"CyDelay\000"
+ 1612      6C617900 
+ 1613              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,5 @@
+C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\Display.cyprj|c8502f14-e886-46cf-9c32-c2f9412dfe99
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|37586092-937d-44f7-9180-3fe15775340b
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|4aa2a6fd-0f72-45e3-aa6b-73a654121fa2
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ced4447e-03ae-416d-8104-360b281ebe47
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ffc7e148-e1ff-4858-81d2-8716f1a8c8ac

@@ -1,0 +1,33 @@
+# Display
+# 2016-08-23 02:09:04Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+set_io "D(0)" iocell 2 0
+set_io "D(1)" iocell 2 1
+set_io "D(2)" iocell 2 2
+set_io "D(3)" iocell 2 3
+set_io "D(4)" iocell 2 4
+set_io "D(5)" iocell 2 5
+set_io "D(6)" iocell 2 6
+set_io "D(7)" iocell 2 7
+set_io "CS(0)" iocell 15 0
+set_io "CS(1)" iocell 15 1
+set_io "CS(2)" iocell 15 2
+set_io "CS(3)" iocell 15 3
+set_io "LCD_WR(0)" iocell 3 5
+set_io "LCD_RD(0)" iocell 3 6
+set_io "LCD_RS(0)" iocell 3 7
+set_io "RST(0)" iocell 3 2
+set_io "\Camera:XCLK(0)\" iocell 0 5
+set_io "\Camera:PCLK(0)\" iocell 15 4
+set_io "\Camera:VSYNC(0)\" iocell 0 0
+set_io "\Camera:SIOD(0)\" iocell 0 7
+set_io "\Camera:SIOC(0)\" iocell 0 6
+set_io "HREF(0)" iocell 15 5
+set_io "SW3(0)" iocell 0 2
+set_io "Pin_1(0)" iocell 12 5
+set_io "Pin_2(0)" iocell 12 4
+set_io "SW1(0)" iocell 0 4
