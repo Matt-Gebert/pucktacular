@@ -1,0 +1,833 @@
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"D.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.D_Write,"ax",%progbits
+  19              		.align	2
+  20              		.global	D_Write
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	D_Write, %function
+  24              	D_Write:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\D.c"
+   1:.\Generated_Source\PSoC5/D.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/D.c **** * File Name: D.c  
+   3:.\Generated_Source\PSoC5/D.c **** * Version 2.20
+   4:.\Generated_Source\PSoC5/D.c **** *
+   5:.\Generated_Source\PSoC5/D.c **** * Description:
+   6:.\Generated_Source\PSoC5/D.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC5/D.c **** *
+   8:.\Generated_Source\PSoC5/D.c **** * Note:
+   9:.\Generated_Source\PSoC5/D.c **** *
+  10:.\Generated_Source\PSoC5/D.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/D.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/D.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/D.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/D.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/D.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/D.c **** 
+  17:.\Generated_Source\PSoC5/D.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC5/D.c **** #include "D.h"
+  19:.\Generated_Source\PSoC5/D.c **** 
+  20:.\Generated_Source\PSoC5/D.c **** /* APIs are not generated for P15[7:6] on PSoC 5 */
+  21:.\Generated_Source\PSoC5/D.c **** #if !(CY_PSOC5A &&\
+  22:.\Generated_Source\PSoC5/D.c **** 	 D__PORT == 15 && ((D__MASK & 0xC0) != 0))
+  23:.\Generated_Source\PSoC5/D.c **** 
+  24:.\Generated_Source\PSoC5/D.c **** 
+  25:.\Generated_Source\PSoC5/D.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC5/D.c **** * Function Name: D_Write
+  27:.\Generated_Source\PSoC5/D.c **** ****************************************************************************//**
+  28:.\Generated_Source\PSoC5/D.c **** *
+  29:.\Generated_Source\PSoC5/D.c **** * \brief Writes the value to the physical port (data output register), masking
+  30:.\Generated_Source\PSoC5/D.c **** *  and shifting the bits appropriately. 
+  31:.\Generated_Source\PSoC5/D.c **** *
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/D.c **** * The data output register controls the signal applied to the physical pin in 
+  33:.\Generated_Source\PSoC5/D.c **** * conjunction with the drive mode parameter. This function avoids changing 
+  34:.\Generated_Source\PSoC5/D.c **** * other bits in the port by using the appropriate method (read-modify-write or
+  35:.\Generated_Source\PSoC5/D.c **** * bit banding).
+  36:.\Generated_Source\PSoC5/D.c **** *
+  37:.\Generated_Source\PSoC5/D.c **** * <b>Note</b> This function should not be used on a hardware digital output pin 
+  38:.\Generated_Source\PSoC5/D.c **** * as it is driven by the hardware signal attached to it.
+  39:.\Generated_Source\PSoC5/D.c **** *
+  40:.\Generated_Source\PSoC5/D.c **** * \param value
+  41:.\Generated_Source\PSoC5/D.c **** *  Value to write to the component instance.
+  42:.\Generated_Source\PSoC5/D.c **** *
+  43:.\Generated_Source\PSoC5/D.c **** * \return 
+  44:.\Generated_Source\PSoC5/D.c **** *  None 
+  45:.\Generated_Source\PSoC5/D.c **** *
+  46:.\Generated_Source\PSoC5/D.c **** * \sideeffect
+  47:.\Generated_Source\PSoC5/D.c **** *  If you use read-modify-write operations that are not atomic; the Interrupt 
+  48:.\Generated_Source\PSoC5/D.c **** *  Service Routines (ISR) can cause corruption of this function. An ISR that 
+  49:.\Generated_Source\PSoC5/D.c **** *  interrupts this function and performs writes to the Pins component data 
+  50:.\Generated_Source\PSoC5/D.c **** *  register can cause corrupted port data. To avoid this issue, you should 
+  51:.\Generated_Source\PSoC5/D.c **** *  either use the Per-Pin APIs (primary method) or disable interrupts around 
+  52:.\Generated_Source\PSoC5/D.c **** *  this function.
+  53:.\Generated_Source\PSoC5/D.c **** *
+  54:.\Generated_Source\PSoC5/D.c **** * \funcusage
+  55:.\Generated_Source\PSoC5/D.c **** *  \snippet D_SUT.c usage_D_Write
+  56:.\Generated_Source\PSoC5/D.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC5/D.c **** void D_Write(uint8 value)
+  58:.\Generated_Source\PSoC5/D.c **** {
+  27              		.loc 1 58 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  59:.\Generated_Source\PSoC5/D.c ****     uint8 staticBits = (D_DR & (uint8)(~D_MASK));
+  33              		.loc 1 59 0
+  34 0000 014B     		ldr	r3, .L2
+  35 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  36              	.LVL1:
+  60:.\Generated_Source\PSoC5/D.c ****     D_DR = staticBits | ((uint8)(value << D_SHIFT) & D_MASK);
+  37              		.loc 1 60 0
+  38 0004 1870     		strb	r0, [r3]
+  39 0006 7047     		bx	lr
+  40              	.L3:
+  41              		.align	2
+  42              	.L2:
+  43 0008 20510040 		.word	1073762592
+  44              		.cfi_endproc
+  45              	.LFE0:
+  46              		.size	D_Write, .-D_Write
+  47              		.section	.text.D_SetDriveMode,"ax",%progbits
+  48              		.align	2
+  49              		.global	D_SetDriveMode
+  50              		.thumb
+  51              		.thumb_func
+  52              		.type	D_SetDriveMode, %function
+  53              	D_SetDriveMode:
+  54              	.LFB1:
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 3
+
+
+  61:.\Generated_Source\PSoC5/D.c **** }
+  62:.\Generated_Source\PSoC5/D.c **** 
+  63:.\Generated_Source\PSoC5/D.c **** 
+  64:.\Generated_Source\PSoC5/D.c **** /*******************************************************************************
+  65:.\Generated_Source\PSoC5/D.c **** * Function Name: D_SetDriveMode
+  66:.\Generated_Source\PSoC5/D.c **** ****************************************************************************//**
+  67:.\Generated_Source\PSoC5/D.c **** *
+  68:.\Generated_Source\PSoC5/D.c **** * \brief Sets the drive mode for each of the Pins component's pins.
+  69:.\Generated_Source\PSoC5/D.c **** * 
+  70:.\Generated_Source\PSoC5/D.c **** * <b>Note</b> This affects all pins in the Pins component instance. Use the
+  71:.\Generated_Source\PSoC5/D.c **** * Per-Pin APIs if you wish to control individual pin's drive modes.
+  72:.\Generated_Source\PSoC5/D.c **** *
+  73:.\Generated_Source\PSoC5/D.c **** * \param mode
+  74:.\Generated_Source\PSoC5/D.c **** *  Mode for the selected signals. Valid options are documented in 
+  75:.\Generated_Source\PSoC5/D.c **** *  \ref driveMode.
+  76:.\Generated_Source\PSoC5/D.c **** *
+  77:.\Generated_Source\PSoC5/D.c **** * \return
+  78:.\Generated_Source\PSoC5/D.c **** *  None
+  79:.\Generated_Source\PSoC5/D.c **** *
+  80:.\Generated_Source\PSoC5/D.c **** * \sideeffect
+  81:.\Generated_Source\PSoC5/D.c **** *  If you use read-modify-write operations that are not atomic, the ISR can
+  82:.\Generated_Source\PSoC5/D.c **** *  cause corruption of this function. An ISR that interrupts this function 
+  83:.\Generated_Source\PSoC5/D.c **** *  and performs writes to the Pins component Drive Mode registers can cause 
+  84:.\Generated_Source\PSoC5/D.c **** *  corrupted port data. To avoid this issue, you should either use the Per-Pin
+  85:.\Generated_Source\PSoC5/D.c **** *  APIs (primary method) or disable interrupts around this function.
+  86:.\Generated_Source\PSoC5/D.c **** *
+  87:.\Generated_Source\PSoC5/D.c **** * \funcusage
+  88:.\Generated_Source\PSoC5/D.c **** *  \snippet D_SUT.c usage_D_SetDriveMode
+  89:.\Generated_Source\PSoC5/D.c **** *******************************************************************************/
+  90:.\Generated_Source\PSoC5/D.c **** void D_SetDriveMode(uint8 mode)
+  91:.\Generated_Source\PSoC5/D.c **** {
+  55              		.loc 1 91 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+  60              	.LVL2:
+  92:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_0, mode);
+  61              		.loc 1 92 0
+  62 0000 194A     		ldr	r2, .L5
+  63 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  64 0004 00F00E00 		and	r0, r0, #14
+  65              	.LVL3:
+  66 0008 03F0F103 		and	r3, r3, #241
+  67 000c 0343     		orrs	r3, r3, r0
+  68 000e 1370     		strb	r3, [r2]
+  93:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_1, mode);
+  69              		.loc 1 93 0
+  70 0010 0132     		adds	r2, r2, #1
+  71 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  72 0014 03F0F103 		and	r3, r3, #241
+  73 0018 0343     		orrs	r3, r3, r0
+  74 001a 1370     		strb	r3, [r2]
+  94:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_2, mode);
+  75              		.loc 1 94 0
+  76 001c 0132     		adds	r2, r2, #1
+  77 001e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 4
+
+
+  78 0020 03F0F103 		and	r3, r3, #241
+  79 0024 0343     		orrs	r3, r3, r0
+  80 0026 1370     		strb	r3, [r2]
+  95:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_3, mode);
+  81              		.loc 1 95 0
+  82 0028 0132     		adds	r2, r2, #1
+  83 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  84 002c 03F0F103 		and	r3, r3, #241
+  85 0030 0343     		orrs	r3, r3, r0
+  86 0032 1370     		strb	r3, [r2]
+  96:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_4, mode);
+  87              		.loc 1 96 0
+  88 0034 0132     		adds	r2, r2, #1
+  89 0036 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  90 0038 03F0F103 		and	r3, r3, #241
+  91 003c 0343     		orrs	r3, r3, r0
+  92 003e 1370     		strb	r3, [r2]
+  97:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_5, mode);
+  93              		.loc 1 97 0
+  94 0040 0132     		adds	r2, r2, #1
+  95 0042 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  96 0044 03F0F103 		and	r3, r3, #241
+  97 0048 0343     		orrs	r3, r3, r0
+  98 004a 1370     		strb	r3, [r2]
+  98:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_6, mode);
+  99              		.loc 1 98 0
+ 100 004c 0132     		adds	r2, r2, #1
+ 101 004e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 102 0050 03F0F103 		and	r3, r3, #241
+ 103 0054 0343     		orrs	r3, r3, r0
+ 104 0056 1370     		strb	r3, [r2]
+  99:.\Generated_Source\PSoC5/D.c **** 	CyPins_SetPinDriveMode(D_7, mode);
+ 105              		.loc 1 99 0
+ 106 0058 0132     		adds	r2, r2, #1
+ 107 005a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 108 005c 03F0F103 		and	r3, r3, #241
+ 109 0060 1843     		orrs	r0, r0, r3
+ 110 0062 1070     		strb	r0, [r2]
+ 111 0064 7047     		bx	lr
+ 112              	.L6:
+ 113 0066 00BF     		.align	2
+ 114              	.L5:
+ 115 0068 10500040 		.word	1073762320
+ 116              		.cfi_endproc
+ 117              	.LFE1:
+ 118              		.size	D_SetDriveMode, .-D_SetDriveMode
+ 119              		.section	.text.D_Read,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	D_Read
+ 122              		.thumb
+ 123              		.thumb_func
+ 124              		.type	D_Read, %function
+ 125              	D_Read:
+ 126              	.LFB2:
+ 100:.\Generated_Source\PSoC5/D.c **** }
+ 101:.\Generated_Source\PSoC5/D.c **** 
+ 102:.\Generated_Source\PSoC5/D.c **** 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 5
+
+
+ 103:.\Generated_Source\PSoC5/D.c **** /*******************************************************************************
+ 104:.\Generated_Source\PSoC5/D.c **** * Function Name: D_Read
+ 105:.\Generated_Source\PSoC5/D.c **** ****************************************************************************//**
+ 106:.\Generated_Source\PSoC5/D.c **** *
+ 107:.\Generated_Source\PSoC5/D.c **** * \brief Reads the associated physical port (pin status register) and masks 
+ 108:.\Generated_Source\PSoC5/D.c **** *  the required bits according to the width and bit position of the component
+ 109:.\Generated_Source\PSoC5/D.c **** *  instance. 
+ 110:.\Generated_Source\PSoC5/D.c **** *
+ 111:.\Generated_Source\PSoC5/D.c **** * The pin's status register returns the current logic level present on the 
+ 112:.\Generated_Source\PSoC5/D.c **** * physical pin.
+ 113:.\Generated_Source\PSoC5/D.c **** *
+ 114:.\Generated_Source\PSoC5/D.c **** * \return 
+ 115:.\Generated_Source\PSoC5/D.c **** *  The current value for the pins in the component as a right justified number.
+ 116:.\Generated_Source\PSoC5/D.c **** *
+ 117:.\Generated_Source\PSoC5/D.c **** * \funcusage
+ 118:.\Generated_Source\PSoC5/D.c **** *  \snippet D_SUT.c usage_D_Read  
+ 119:.\Generated_Source\PSoC5/D.c **** *******************************************************************************/
+ 120:.\Generated_Source\PSoC5/D.c **** uint8 D_Read(void)
+ 121:.\Generated_Source\PSoC5/D.c **** {
+ 127              		.loc 1 121 0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 122:.\Generated_Source\PSoC5/D.c ****     return (D_PS & D_MASK) >> D_SHIFT;
+ 132              		.loc 1 122 0
+ 133 0000 014B     		ldr	r3, .L8
+ 134 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 123:.\Generated_Source\PSoC5/D.c **** }
+ 135              		.loc 1 123 0
+ 136 0004 7047     		bx	lr
+ 137              	.L9:
+ 138 0006 00BF     		.align	2
+ 139              	.L8:
+ 140 0008 21510040 		.word	1073762593
+ 141              		.cfi_endproc
+ 142              	.LFE2:
+ 143              		.size	D_Read, .-D_Read
+ 144              		.section	.text.D_ReadDataReg,"ax",%progbits
+ 145              		.align	2
+ 146              		.global	D_ReadDataReg
+ 147              		.thumb
+ 148              		.thumb_func
+ 149              		.type	D_ReadDataReg, %function
+ 150              	D_ReadDataReg:
+ 151              	.LFB3:
+ 124:.\Generated_Source\PSoC5/D.c **** 
+ 125:.\Generated_Source\PSoC5/D.c **** 
+ 126:.\Generated_Source\PSoC5/D.c **** /*******************************************************************************
+ 127:.\Generated_Source\PSoC5/D.c **** * Function Name: D_ReadDataReg
+ 128:.\Generated_Source\PSoC5/D.c **** ****************************************************************************//**
+ 129:.\Generated_Source\PSoC5/D.c **** *
+ 130:.\Generated_Source\PSoC5/D.c **** * \brief Reads the associated physical port's data output register and masks 
+ 131:.\Generated_Source\PSoC5/D.c **** *  the correct bits according to the width and bit position of the component 
+ 132:.\Generated_Source\PSoC5/D.c **** *  instance. 
+ 133:.\Generated_Source\PSoC5/D.c **** *
+ 134:.\Generated_Source\PSoC5/D.c **** * The data output register controls the signal applied to the physical pin in 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 6
+
+
+ 135:.\Generated_Source\PSoC5/D.c **** * conjunction with the drive mode parameter. This is not the same as the 
+ 136:.\Generated_Source\PSoC5/D.c **** * preferred D_Read() API because the 
+ 137:.\Generated_Source\PSoC5/D.c **** * D_ReadDataReg() reads the data register instead of the status 
+ 138:.\Generated_Source\PSoC5/D.c **** * register. For output pins this is a useful function to determine the value 
+ 139:.\Generated_Source\PSoC5/D.c **** * just written to the pin.
+ 140:.\Generated_Source\PSoC5/D.c **** *
+ 141:.\Generated_Source\PSoC5/D.c **** * \return 
+ 142:.\Generated_Source\PSoC5/D.c **** *  The current value of the data register masked and shifted into a right 
+ 143:.\Generated_Source\PSoC5/D.c **** *  justified number for the component instance.
+ 144:.\Generated_Source\PSoC5/D.c **** *
+ 145:.\Generated_Source\PSoC5/D.c **** * \funcusage
+ 146:.\Generated_Source\PSoC5/D.c **** *  \snippet D_SUT.c usage_D_ReadDataReg 
+ 147:.\Generated_Source\PSoC5/D.c **** *******************************************************************************/
+ 148:.\Generated_Source\PSoC5/D.c **** uint8 D_ReadDataReg(void)
+ 149:.\Generated_Source\PSoC5/D.c **** {
+ 152              		.loc 1 149 0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+ 150:.\Generated_Source\PSoC5/D.c ****     return (D_DR & D_MASK) >> D_SHIFT;
+ 157              		.loc 1 150 0
+ 158 0000 014B     		ldr	r3, .L11
+ 159 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 151:.\Generated_Source\PSoC5/D.c **** }
+ 160              		.loc 1 151 0
+ 161 0004 7047     		bx	lr
+ 162              	.L12:
+ 163 0006 00BF     		.align	2
+ 164              	.L11:
+ 165 0008 20510040 		.word	1073762592
+ 166              		.cfi_endproc
+ 167              	.LFE3:
+ 168              		.size	D_ReadDataReg, .-D_ReadDataReg
+ 169              		.text
+ 170              	.Letext0:
+ 171              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 18010000 		.4byte	0x118
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c F1000000 		.4byte	.LASF20
+ 180 0010 01       		.byte	0x1
+ 181 0011 CD000000 		.4byte	.LASF21
+ 182 0015 42000000 		.4byte	.LASF22
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 E3010000 		.4byte	.LASF0
+ 190 002c 02       		.uleb128 0x2
+ 191 002d 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 7
+
+
+ 192 002e 08       		.byte	0x8
+ 193 002f 34000000 		.4byte	.LASF1
+ 194 0033 02       		.uleb128 0x2
+ 195 0034 02       		.byte	0x2
+ 196 0035 05       		.byte	0x5
+ 197 0036 CA010000 		.4byte	.LASF2
+ 198 003a 02       		.uleb128 0x2
+ 199 003b 02       		.byte	0x2
+ 200 003c 07       		.byte	0x7
+ 201 003d BA000000 		.4byte	.LASF3
+ 202 0041 02       		.uleb128 0x2
+ 203 0042 04       		.byte	0x4
+ 204 0043 05       		.byte	0x5
+ 205 0044 DA010000 		.4byte	.LASF4
+ 206 0048 02       		.uleb128 0x2
+ 207 0049 04       		.byte	0x4
+ 208 004a 07       		.byte	0x7
+ 209 004b A8000000 		.4byte	.LASF5
+ 210 004f 02       		.uleb128 0x2
+ 211 0050 08       		.byte	0x8
+ 212 0051 05       		.byte	0x5
+ 213 0052 B7010000 		.4byte	.LASF6
+ 214 0056 02       		.uleb128 0x2
+ 215 0057 08       		.byte	0x8
+ 216 0058 07       		.byte	0x7
+ 217 0059 8C010000 		.4byte	.LASF7
+ 218 005d 03       		.uleb128 0x3
+ 219 005e 04       		.byte	0x4
+ 220 005f 05       		.byte	0x5
+ 221 0060 696E7400 		.ascii	"int\000"
+ 222 0064 02       		.uleb128 0x2
+ 223 0065 04       		.byte	0x4
+ 224 0066 07       		.byte	0x7
+ 225 0067 7F010000 		.4byte	.LASF8
+ 226 006b 04       		.uleb128 0x4
+ 227 006c D4010000 		.4byte	.LASF12
+ 228 0070 02       		.byte	0x2
+ 229 0071 9201     		.2byte	0x192
+ 230 0073 2C000000 		.4byte	0x2c
+ 231 0077 02       		.uleb128 0x2
+ 232 0078 04       		.byte	0x4
+ 233 0079 04       		.byte	0x4
+ 234 007a 2E000000 		.4byte	.LASF9
+ 235 007e 02       		.uleb128 0x2
+ 236 007f 08       		.byte	0x8
+ 237 0080 04       		.byte	0x4
+ 238 0081 EA000000 		.4byte	.LASF10
+ 239 0085 02       		.uleb128 0x2
+ 240 0086 01       		.byte	0x1
+ 241 0087 08       		.byte	0x8
+ 242 0088 C5010000 		.4byte	.LASF11
+ 243 008c 04       		.uleb128 0x4
+ 244 008d A3000000 		.4byte	.LASF13
+ 245 0091 02       		.byte	0x2
+ 246 0092 3C02     		.2byte	0x23c
+ 247 0094 98000000 		.4byte	0x98
+ 248 0098 05       		.uleb128 0x5
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 8
+
+
+ 249 0099 6B000000 		.4byte	0x6b
+ 250 009d 06       		.uleb128 0x6
+ 251 009e 00000000 		.4byte	.LASF14
+ 252 00a2 01       		.byte	0x1
+ 253 00a3 39       		.byte	0x39
+ 254 00a4 00000000 		.4byte	.LFB0
+ 255 00a8 0C000000 		.4byte	.LFE0-.LFB0
+ 256 00ac 01       		.uleb128 0x1
+ 257 00ad 9C       		.byte	0x9c
+ 258 00ae CC000000 		.4byte	0xcc
+ 259 00b2 07       		.uleb128 0x7
+ 260 00b3 08000000 		.4byte	.LASF16
+ 261 00b7 01       		.byte	0x1
+ 262 00b8 39       		.byte	0x39
+ 263 00b9 6B000000 		.4byte	0x6b
+ 264 00bd 01       		.uleb128 0x1
+ 265 00be 50       		.byte	0x50
+ 266 00bf 08       		.uleb128 0x8
+ 267 00c0 0E000000 		.4byte	.LASF23
+ 268 00c4 01       		.byte	0x1
+ 269 00c5 3B       		.byte	0x3b
+ 270 00c6 6B000000 		.4byte	0x6b
+ 271 00ca 00       		.byte	0
+ 272 00cb 00       		.byte	0
+ 273 00cc 06       		.uleb128 0x6
+ 274 00cd A8010000 		.4byte	.LASF15
+ 275 00d1 01       		.byte	0x1
+ 276 00d2 5A       		.byte	0x5a
+ 277 00d3 00000000 		.4byte	.LFB1
+ 278 00d7 6C000000 		.4byte	.LFE1-.LFB1
+ 279 00db 01       		.uleb128 0x1
+ 280 00dc 9C       		.byte	0x9c
+ 281 00dd F1000000 		.4byte	0xf1
+ 282 00e1 09       		.uleb128 0x9
+ 283 00e2 A3010000 		.4byte	.LASF17
+ 284 00e6 01       		.byte	0x1
+ 285 00e7 5A       		.byte	0x5a
+ 286 00e8 6B000000 		.4byte	0x6b
+ 287 00ec 00000000 		.4byte	.LLST0
+ 288 00f0 00       		.byte	0
+ 289 00f1 0A       		.uleb128 0xa
+ 290 00f2 27000000 		.4byte	.LASF18
+ 291 00f6 01       		.byte	0x1
+ 292 00f7 78       		.byte	0x78
+ 293 00f8 6B000000 		.4byte	0x6b
+ 294 00fc 00000000 		.4byte	.LFB2
+ 295 0100 0C000000 		.4byte	.LFE2-.LFB2
+ 296 0104 01       		.uleb128 0x1
+ 297 0105 9C       		.byte	0x9c
+ 298 0106 0A       		.uleb128 0xa
+ 299 0107 19000000 		.4byte	.LASF19
+ 300 010b 01       		.byte	0x1
+ 301 010c 94       		.byte	0x94
+ 302 010d 6B000000 		.4byte	0x6b
+ 303 0111 00000000 		.4byte	.LFB3
+ 304 0115 0C000000 		.4byte	.LFE3-.LFB3
+ 305 0119 01       		.uleb128 0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 9
+
+
+ 306 011a 9C       		.byte	0x9c
+ 307 011b 00       		.byte	0
+ 308              		.section	.debug_abbrev,"",%progbits
+ 309              	.Ldebug_abbrev0:
+ 310 0000 01       		.uleb128 0x1
+ 311 0001 11       		.uleb128 0x11
+ 312 0002 01       		.byte	0x1
+ 313 0003 25       		.uleb128 0x25
+ 314 0004 0E       		.uleb128 0xe
+ 315 0005 13       		.uleb128 0x13
+ 316 0006 0B       		.uleb128 0xb
+ 317 0007 03       		.uleb128 0x3
+ 318 0008 0E       		.uleb128 0xe
+ 319 0009 1B       		.uleb128 0x1b
+ 320 000a 0E       		.uleb128 0xe
+ 321 000b 55       		.uleb128 0x55
+ 322 000c 17       		.uleb128 0x17
+ 323 000d 11       		.uleb128 0x11
+ 324 000e 01       		.uleb128 0x1
+ 325 000f 10       		.uleb128 0x10
+ 326 0010 17       		.uleb128 0x17
+ 327 0011 00       		.byte	0
+ 328 0012 00       		.byte	0
+ 329 0013 02       		.uleb128 0x2
+ 330 0014 24       		.uleb128 0x24
+ 331 0015 00       		.byte	0
+ 332 0016 0B       		.uleb128 0xb
+ 333 0017 0B       		.uleb128 0xb
+ 334 0018 3E       		.uleb128 0x3e
+ 335 0019 0B       		.uleb128 0xb
+ 336 001a 03       		.uleb128 0x3
+ 337 001b 0E       		.uleb128 0xe
+ 338 001c 00       		.byte	0
+ 339 001d 00       		.byte	0
+ 340 001e 03       		.uleb128 0x3
+ 341 001f 24       		.uleb128 0x24
+ 342 0020 00       		.byte	0
+ 343 0021 0B       		.uleb128 0xb
+ 344 0022 0B       		.uleb128 0xb
+ 345 0023 3E       		.uleb128 0x3e
+ 346 0024 0B       		.uleb128 0xb
+ 347 0025 03       		.uleb128 0x3
+ 348 0026 08       		.uleb128 0x8
+ 349 0027 00       		.byte	0
+ 350 0028 00       		.byte	0
+ 351 0029 04       		.uleb128 0x4
+ 352 002a 16       		.uleb128 0x16
+ 353 002b 00       		.byte	0
+ 354 002c 03       		.uleb128 0x3
+ 355 002d 0E       		.uleb128 0xe
+ 356 002e 3A       		.uleb128 0x3a
+ 357 002f 0B       		.uleb128 0xb
+ 358 0030 3B       		.uleb128 0x3b
+ 359 0031 05       		.uleb128 0x5
+ 360 0032 49       		.uleb128 0x49
+ 361 0033 13       		.uleb128 0x13
+ 362 0034 00       		.byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 10
+
+
+ 363 0035 00       		.byte	0
+ 364 0036 05       		.uleb128 0x5
+ 365 0037 35       		.uleb128 0x35
+ 366 0038 00       		.byte	0
+ 367 0039 49       		.uleb128 0x49
+ 368 003a 13       		.uleb128 0x13
+ 369 003b 00       		.byte	0
+ 370 003c 00       		.byte	0
+ 371 003d 06       		.uleb128 0x6
+ 372 003e 2E       		.uleb128 0x2e
+ 373 003f 01       		.byte	0x1
+ 374 0040 3F       		.uleb128 0x3f
+ 375 0041 19       		.uleb128 0x19
+ 376 0042 03       		.uleb128 0x3
+ 377 0043 0E       		.uleb128 0xe
+ 378 0044 3A       		.uleb128 0x3a
+ 379 0045 0B       		.uleb128 0xb
+ 380 0046 3B       		.uleb128 0x3b
+ 381 0047 0B       		.uleb128 0xb
+ 382 0048 27       		.uleb128 0x27
+ 383 0049 19       		.uleb128 0x19
+ 384 004a 11       		.uleb128 0x11
+ 385 004b 01       		.uleb128 0x1
+ 386 004c 12       		.uleb128 0x12
+ 387 004d 06       		.uleb128 0x6
+ 388 004e 40       		.uleb128 0x40
+ 389 004f 18       		.uleb128 0x18
+ 390 0050 9742     		.uleb128 0x2117
+ 391 0052 19       		.uleb128 0x19
+ 392 0053 01       		.uleb128 0x1
+ 393 0054 13       		.uleb128 0x13
+ 394 0055 00       		.byte	0
+ 395 0056 00       		.byte	0
+ 396 0057 07       		.uleb128 0x7
+ 397 0058 05       		.uleb128 0x5
+ 398 0059 00       		.byte	0
+ 399 005a 03       		.uleb128 0x3
+ 400 005b 0E       		.uleb128 0xe
+ 401 005c 3A       		.uleb128 0x3a
+ 402 005d 0B       		.uleb128 0xb
+ 403 005e 3B       		.uleb128 0x3b
+ 404 005f 0B       		.uleb128 0xb
+ 405 0060 49       		.uleb128 0x49
+ 406 0061 13       		.uleb128 0x13
+ 407 0062 02       		.uleb128 0x2
+ 408 0063 18       		.uleb128 0x18
+ 409 0064 00       		.byte	0
+ 410 0065 00       		.byte	0
+ 411 0066 08       		.uleb128 0x8
+ 412 0067 34       		.uleb128 0x34
+ 413 0068 00       		.byte	0
+ 414 0069 03       		.uleb128 0x3
+ 415 006a 0E       		.uleb128 0xe
+ 416 006b 3A       		.uleb128 0x3a
+ 417 006c 0B       		.uleb128 0xb
+ 418 006d 3B       		.uleb128 0x3b
+ 419 006e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 11
+
+
+ 420 006f 49       		.uleb128 0x49
+ 421 0070 13       		.uleb128 0x13
+ 422 0071 1C       		.uleb128 0x1c
+ 423 0072 0B       		.uleb128 0xb
+ 424 0073 00       		.byte	0
+ 425 0074 00       		.byte	0
+ 426 0075 09       		.uleb128 0x9
+ 427 0076 05       		.uleb128 0x5
+ 428 0077 00       		.byte	0
+ 429 0078 03       		.uleb128 0x3
+ 430 0079 0E       		.uleb128 0xe
+ 431 007a 3A       		.uleb128 0x3a
+ 432 007b 0B       		.uleb128 0xb
+ 433 007c 3B       		.uleb128 0x3b
+ 434 007d 0B       		.uleb128 0xb
+ 435 007e 49       		.uleb128 0x49
+ 436 007f 13       		.uleb128 0x13
+ 437 0080 02       		.uleb128 0x2
+ 438 0081 17       		.uleb128 0x17
+ 439 0082 00       		.byte	0
+ 440 0083 00       		.byte	0
+ 441 0084 0A       		.uleb128 0xa
+ 442 0085 2E       		.uleb128 0x2e
+ 443 0086 00       		.byte	0
+ 444 0087 3F       		.uleb128 0x3f
+ 445 0088 19       		.uleb128 0x19
+ 446 0089 03       		.uleb128 0x3
+ 447 008a 0E       		.uleb128 0xe
+ 448 008b 3A       		.uleb128 0x3a
+ 449 008c 0B       		.uleb128 0xb
+ 450 008d 3B       		.uleb128 0x3b
+ 451 008e 0B       		.uleb128 0xb
+ 452 008f 27       		.uleb128 0x27
+ 453 0090 19       		.uleb128 0x19
+ 454 0091 49       		.uleb128 0x49
+ 455 0092 13       		.uleb128 0x13
+ 456 0093 11       		.uleb128 0x11
+ 457 0094 01       		.uleb128 0x1
+ 458 0095 12       		.uleb128 0x12
+ 459 0096 06       		.uleb128 0x6
+ 460 0097 40       		.uleb128 0x40
+ 461 0098 18       		.uleb128 0x18
+ 462 0099 9742     		.uleb128 0x2117
+ 463 009b 19       		.uleb128 0x19
+ 464 009c 00       		.byte	0
+ 465 009d 00       		.byte	0
+ 466 009e 00       		.byte	0
+ 467              		.section	.debug_loc,"",%progbits
+ 468              	.Ldebug_loc0:
+ 469              	.LLST0:
+ 470 0000 00000000 		.4byte	.LVL2
+ 471 0004 08000000 		.4byte	.LVL3
+ 472 0008 0100     		.2byte	0x1
+ 473 000a 50       		.byte	0x50
+ 474 000b 08000000 		.4byte	.LVL3
+ 475 000f 6C000000 		.4byte	.LFE1
+ 476 0013 0400     		.2byte	0x4
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 12
+
+
+ 477 0015 F3       		.byte	0xf3
+ 478 0016 01       		.uleb128 0x1
+ 479 0017 50       		.byte	0x50
+ 480 0018 9F       		.byte	0x9f
+ 481 0019 00000000 		.4byte	0
+ 482 001d 00000000 		.4byte	0
+ 483              		.section	.debug_aranges,"",%progbits
+ 484 0000 34000000 		.4byte	0x34
+ 485 0004 0200     		.2byte	0x2
+ 486 0006 00000000 		.4byte	.Ldebug_info0
+ 487 000a 04       		.byte	0x4
+ 488 000b 00       		.byte	0
+ 489 000c 0000     		.2byte	0
+ 490 000e 0000     		.2byte	0
+ 491 0010 00000000 		.4byte	.LFB0
+ 492 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 493 0018 00000000 		.4byte	.LFB1
+ 494 001c 6C000000 		.4byte	.LFE1-.LFB1
+ 495 0020 00000000 		.4byte	.LFB2
+ 496 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 497 0028 00000000 		.4byte	.LFB3
+ 498 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 499 0030 00000000 		.4byte	0
+ 500 0034 00000000 		.4byte	0
+ 501              		.section	.debug_ranges,"",%progbits
+ 502              	.Ldebug_ranges0:
+ 503 0000 00000000 		.4byte	.LFB0
+ 504 0004 0C000000 		.4byte	.LFE0
+ 505 0008 00000000 		.4byte	.LFB1
+ 506 000c 6C000000 		.4byte	.LFE1
+ 507 0010 00000000 		.4byte	.LFB2
+ 508 0014 0C000000 		.4byte	.LFE2
+ 509 0018 00000000 		.4byte	.LFB3
+ 510 001c 0C000000 		.4byte	.LFE3
+ 511 0020 00000000 		.4byte	0
+ 512 0024 00000000 		.4byte	0
+ 513              		.section	.debug_line,"",%progbits
+ 514              	.Ldebug_line0:
+ 515 0000 93000000 		.section	.debug_str,"MS",%progbits,1
+ 515      02004000 
+ 515      00000201 
+ 515      FB0E0D00 
+ 515      01010101 
+ 516              	.LASF14:
+ 517 0000 445F5772 		.ascii	"D_Write\000"
+ 517      69746500 
+ 518              	.LASF16:
+ 519 0008 76616C75 		.ascii	"value\000"
+ 519      6500
+ 520              	.LASF23:
+ 521 000e 73746174 		.ascii	"staticBits\000"
+ 521      69634269 
+ 521      747300
+ 522              	.LASF19:
+ 523 0019 445F5265 		.ascii	"D_ReadDataReg\000"
+ 523      61644461 
+ 523      74615265 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 13
+
+
+ 523      6700
+ 524              	.LASF18:
+ 525 0027 445F5265 		.ascii	"D_Read\000"
+ 525      616400
+ 526              	.LASF9:
+ 527 002e 666C6F61 		.ascii	"float\000"
+ 527      7400
+ 528              	.LASF1:
+ 529 0034 756E7369 		.ascii	"unsigned char\000"
+ 529      676E6564 
+ 529      20636861 
+ 529      7200
+ 530              	.LASF22:
+ 531 0042 433A5C55 		.ascii	"C:\\Users\\mzenere\\Personal\\PSOC\\Current\\ECE309"
+ 531      73657273 
+ 531      5C6D7A65 
+ 531      6E657265 
+ 531      5C506572 
+ 532 006f 312E6379 		.ascii	"1.cywrk.Archive04\\ECE3091TestSoftware\\Display.cyd"
+ 532      77726B2E 
+ 532      41726368 
+ 532      69766530 
+ 532      345C4543 
+ 533 00a0 736E00   		.ascii	"sn\000"
+ 534              	.LASF13:
+ 535 00a3 72656738 		.ascii	"reg8\000"
+ 535      00
+ 536              	.LASF5:
+ 537 00a8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 537      20756E73 
+ 537      69676E65 
+ 537      6420696E 
+ 537      7400
+ 538              	.LASF3:
+ 539 00ba 73686F72 		.ascii	"short unsigned int\000"
+ 539      7420756E 
+ 539      7369676E 
+ 539      65642069 
+ 539      6E7400
+ 540              	.LASF21:
+ 541 00cd 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\D.c\000"
+ 541      6E657261 
+ 541      7465645F 
+ 541      536F7572 
+ 541      63655C50 
+ 542              	.LASF10:
+ 543 00ea 646F7562 		.ascii	"double\000"
+ 543      6C6500
+ 544              	.LASF20:
+ 545 00f1 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 545      4320342E 
+ 545      392E3320 
+ 545      32303135 
+ 545      30333033 
+ 546 0124 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 546      20726576 
+ 546      6973696F 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\cciRjM4i.s 			page 14
+
+
+ 546      6E203232 
+ 546      31323230 
+ 547 0157 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 547      66756E63 
+ 547      74696F6E 
+ 547      2D736563 
+ 547      74696F6E 
+ 548              	.LASF8:
+ 549 017f 756E7369 		.ascii	"unsigned int\000"
+ 549      676E6564 
+ 549      20696E74 
+ 549      00
+ 550              	.LASF7:
+ 551 018c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 551      206C6F6E 
+ 551      6720756E 
+ 551      7369676E 
+ 551      65642069 
+ 552              	.LASF17:
+ 553 01a3 6D6F6465 		.ascii	"mode\000"
+ 553      00
+ 554              	.LASF15:
+ 555 01a8 445F5365 		.ascii	"D_SetDriveMode\000"
+ 555      74447269 
+ 555      76654D6F 
+ 555      646500
+ 556              	.LASF6:
+ 557 01b7 6C6F6E67 		.ascii	"long long int\000"
+ 557      206C6F6E 
+ 557      6720696E 
+ 557      7400
+ 558              	.LASF11:
+ 559 01c5 63686172 		.ascii	"char\000"
+ 559      00
+ 560              	.LASF2:
+ 561 01ca 73686F72 		.ascii	"short int\000"
+ 561      7420696E 
+ 561      7400
+ 562              	.LASF12:
+ 563 01d4 75696E74 		.ascii	"uint8\000"
+ 563      3800
+ 564              	.LASF4:
+ 565 01da 6C6F6E67 		.ascii	"long int\000"
+ 565      20696E74 
+ 565      00
+ 566              	.LASF0:
+ 567 01e3 7369676E 		.ascii	"signed char\000"
+ 567      65642063 
+ 567      68617200 
+ 568              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

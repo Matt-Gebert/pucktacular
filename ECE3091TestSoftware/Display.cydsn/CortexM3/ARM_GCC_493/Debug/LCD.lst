@@ -1,0 +1,2997 @@
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LCD.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.LCD_WriteReg,"ax",%progbits
+  19              		.align	2
+  20              		.global	LCD_WriteReg
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	LCD_WriteReg, %function
+  24              	LCD_WriteReg:
+  25              	.LFB64:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\LCD.c"
+   1:.\Generated_Source\PSoC5/LCD.c **** #include<project.h>
+   2:.\Generated_Source\PSoC5/LCD.c **** 
+   3:.\Generated_Source\PSoC5/LCD.c **** #define LCD_CS_Write     CS ## _Write
+   4:.\Generated_Source\PSoC5/LCD.c **** #define LCD_CS_Read      CS ## _Read
+   5:.\Generated_Source\PSoC5/LCD.c **** #define LCD_OE      OE ## _Control
+   6:.\Generated_Source\PSoC5/LCD.c **** #define LCD_D_PS       D ## _PS
+   7:.\Generated_Source\PSoC5/LCD.c **** #define LCD_LCD_RD_Write LCD_RD ## _Write
+   8:.\Generated_Source\PSoC5/LCD.c **** 
+   9:.\Generated_Source\PSoC5/LCD.c **** void LCD_Start()
+  10:.\Generated_Source\PSoC5/LCD.c **** {
+  11:.\Generated_Source\PSoC5/LCD.c ****     uint8 cs=LCD_CS_Read(); //read intial state to restore afterwards
+  12:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+  13:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+  14:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+  15:.\Generated_Source\PSoC5/LCD.c ****     
+  16:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x01); //software reset
+  17:.\Generated_Source\PSoC5/LCD.c ****     CyDelay(5);
+  18:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x11); //take out of sleep
+  19:.\Generated_Source\PSoC5/LCD.c ****     CyDelay(100);
+  20:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x29); //turn display on
+  21:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteReg(0x36,0xe8); //flip image horizontally and vertically; swap rows/columns; set to BG
+  22:.\Generated_Source\PSoC5/LCD.c ****     
+  23:.\Generated_Source\PSoC5/LCD.c ****     //gamma correction settings
+  24:.\Generated_Source\PSoC5/LCD.c ****     uint8 gamma_p[]={0x0F,0x31,0x2B,0x0C,0x0E,0x08,0x4E,0xF1,0x37,0x07,0x10,0x03,0x0E,0x09,0x00};
+  25:.\Generated_Source\PSoC5/LCD.c ****     uint8 gamma_n[]={0x00,0x0E,0x14,0x03,0x11,0x07,0x31,0xC1,0x48,0x08,0x0F,0x0C,0x31,0x36,0x0F};
+  26:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0xe0,gamma_p,sizeof gamma_p);
+  27:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0xe1,gamma_n,sizeof gamma_n);
+  28:.\Generated_Source\PSoC5/LCD.c ****     
+  29:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
+  30:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
+  31:.\Generated_Source\PSoC5/LCD.c **** }
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/LCD.c **** 
+  33:.\Generated_Source\PSoC5/LCD.c **** void LCD_WriteReg(uint8 reg,uint8 value)
+  34:.\Generated_Source\PSoC5/LCD.c **** {
+  27              		.loc 1 34 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  33              		.cfi_def_cfa_offset 24
+  34              		.cfi_offset 4, -24
+  35              		.cfi_offset 5, -20
+  36              		.cfi_offset 6, -16
+  37              		.cfi_offset 7, -12
+  38              		.cfi_offset 8, -8
+  39              		.cfi_offset 14, -4
+  40 0004 0746     		mov	r7, r0
+  41 0006 0E46     		mov	r6, r1
+  35:.\Generated_Source\PSoC5/LCD.c ****     uint8 cs=LCD_CS_Read(); //read intial state to restore afterwards
+  42              		.loc 1 35 0
+  43 0008 FFF7FEFF 		bl	CS_Read
+  44              	.LVL1:
+  45 000c 0546     		mov	r5, r0
+  46              	.LVL2:
+  36:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+  47              		.loc 1 36 0
+  48 000e DFF85880 		ldr	r8, .L6+8
+  49 0012 98F80040 		ldrb	r4, [r8]	@ zero_extendqisi2
+  50 0016 E4B2     		uxtb	r4, r4
+  51              	.LVL3:
+  37:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+  52              		.loc 1 37 0
+  53 0018 0320     		movs	r0, #3
+  54 001a FFF7FEFF 		bl	CS_Write
+  55              	.LVL4:
+  38:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+  56              		.loc 1 38 0
+  57 001e 0123     		movs	r3, #1
+  58 0020 88F80030 		strb	r3, [r8]
+  59              	.L2:
+  39:.\Generated_Source\PSoC5/LCD.c ****     
+  40:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
+  60              		.loc 1 40 0 discriminator 1
+  61 0024 0E4B     		ldr	r3, .L6
+  62 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  63 0028 13F0010F 		tst	r3, #1
+  64 002c FAD0     		beq	.L2
+  41:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(reg);
+  65              		.loc 1 41 0
+  66 002e 47F48077 		orr	r7, r7, #256
+  67 0032 0C4B     		ldr	r3, .L6+4
+  68 0034 1F80     		strh	r7, [r3]	@ movhi
+  69              	.L3:
+  42:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
+  70              		.loc 1 42 0 discriminator 1
+  71 0036 0A4B     		ldr	r3, .L6
+  72 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 3
+
+
+  73 003a 13F0010F 		tst	r3, #1
+  74 003e FAD0     		beq	.L3
+  43:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(value);
+  75              		.loc 1 43 0
+  76 0040 B6B2     		uxth	r6, r6
+  77 0042 084B     		ldr	r3, .L6+4
+  78 0044 1E80     		strh	r6, [r3]	@ movhi
+  79              	.L4:
+  44:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
+  80              		.loc 1 44 0 discriminator 1
+  81 0046 064B     		ldr	r3, .L6
+  82 0048 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  83 004a 13F0020F 		tst	r3, #2
+  84 004e FAD0     		beq	.L4
+  45:.\Generated_Source\PSoC5/LCD.c ****     
+  46:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
+  85              		.loc 1 46 0
+  86 0050 054B     		ldr	r3, .L6+8
+  87 0052 1C70     		strb	r4, [r3]
+  47:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
+  88              		.loc 1 47 0
+  89 0054 2846     		mov	r0, r5
+  90 0056 FFF7FEFF 		bl	CS_Write
+  91              	.LVL5:
+  92 005a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+  93              	.LVL6:
+  94              	.L7:
+  95 005e 00BF     		.align	2
+  96              	.L6:
+  97 0060 68640040 		.word	1073767528
+  98 0064 90680040 		.word	1073768592
+  99 0068 7D640040 		.word	1073767549
+ 100              		.cfi_endproc
+ 101              	.LFE64:
+ 102              		.size	LCD_WriteReg, .-LCD_WriteReg
+ 103              		.section	.text.LCD_WriteArray,"ax",%progbits
+ 104              		.align	2
+ 105              		.global	LCD_WriteArray
+ 106              		.thumb
+ 107              		.thumb_func
+ 108              		.type	LCD_WriteArray, %function
+ 109              	LCD_WriteArray:
+ 110              	.LFB65:
+  48:.\Generated_Source\PSoC5/LCD.c **** }
+  49:.\Generated_Source\PSoC5/LCD.c **** 
+  50:.\Generated_Source\PSoC5/LCD.c **** void LCD_WriteArray(uint8 reg,uint8 *values,uint8 n)
+  51:.\Generated_Source\PSoC5/LCD.c **** {
+ 111              		.loc 1 51 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115              	.LVL7:
+ 116 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 117              		.cfi_def_cfa_offset 32
+ 118              		.cfi_offset 3, -32
+ 119              		.cfi_offset 4, -28
+ 120              		.cfi_offset 5, -24
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 4
+
+
+ 121              		.cfi_offset 6, -20
+ 122              		.cfi_offset 7, -16
+ 123              		.cfi_offset 8, -12
+ 124              		.cfi_offset 9, -8
+ 125              		.cfi_offset 14, -4
+ 126 0004 8046     		mov	r8, r0
+ 127 0006 0F46     		mov	r7, r1
+ 128 0008 1646     		mov	r6, r2
+  52:.\Generated_Source\PSoC5/LCD.c ****     uint8 cs=LCD_CS_Read(); //read intial state to restore afterwards
+ 129              		.loc 1 52 0
+ 130 000a FFF7FEFF 		bl	CS_Read
+ 131              	.LVL8:
+ 132 000e 0546     		mov	r5, r0
+ 133              	.LVL9:
+  53:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+ 134              		.loc 1 53 0
+ 135 0010 DFF86090 		ldr	r9, .L14+8
+ 136 0014 99F80040 		ldrb	r4, [r9]	@ zero_extendqisi2
+ 137 0018 E4B2     		uxtb	r4, r4
+ 138              	.LVL10:
+  54:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 139              		.loc 1 54 0
+ 140 001a 0320     		movs	r0, #3
+ 141 001c FFF7FEFF 		bl	CS_Write
+ 142              	.LVL11:
+  55:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 143              		.loc 1 55 0
+ 144 0020 0123     		movs	r3, #1
+ 145 0022 89F80030 		strb	r3, [r9]
+ 146              	.L9:
+  56:.\Generated_Source\PSoC5/LCD.c ****     
+  57:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
+ 147              		.loc 1 57 0 discriminator 1
+ 148 0026 114B     		ldr	r3, .L14
+ 149 0028 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 150 002a 13F0010F 		tst	r3, #1
+ 151 002e FAD0     		beq	.L9
+  58:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(reg);
+ 152              		.loc 1 58 0
+ 153 0030 48F48078 		orr	r8, r8, #256
+ 154 0034 0E4B     		ldr	r3, .L14+4
+ 155 0036 A3F80080 		strh	r8, [r3]	@ movhi
+ 156              	.LVL12:
+  59:.\Generated_Source\PSoC5/LCD.c ****     int i;
+  60:.\Generated_Source\PSoC5/LCD.c ****     for(i=0;i<n;i++)
+ 157              		.loc 1 60 0
+ 158 003a 0022     		movs	r2, #0
+ 159 003c 08E0     		b	.L10
+ 160              	.LVL13:
+ 161              	.L11:
+  61:.\Generated_Source\PSoC5/LCD.c ****     {
+  62:.\Generated_Source\PSoC5/LCD.c ****         while(!LCD_Ready);
+ 162              		.loc 1 62 0 discriminator 1
+ 163 003e 0B4B     		ldr	r3, .L14
+ 164 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 165 0042 13F0010F 		tst	r3, #1
+ 166 0046 FAD0     		beq	.L11
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 5
+
+
+  63:.\Generated_Source\PSoC5/LCD.c ****         LCD_Data(values[i]);
+ 167              		.loc 1 63 0 discriminator 2
+ 168 0048 B95C     		ldrb	r1, [r7, r2]	@ zero_extendqisi2
+ 169 004a 094B     		ldr	r3, .L14+4
+ 170 004c 1980     		strh	r1, [r3]	@ movhi
+  60:.\Generated_Source\PSoC5/LCD.c ****     {
+ 171              		.loc 1 60 0 discriminator 2
+ 172 004e 0132     		adds	r2, r2, #1
+ 173              	.LVL14:
+ 174              	.L10:
+  60:.\Generated_Source\PSoC5/LCD.c ****     {
+ 175              		.loc 1 60 0 is_stmt 0 discriminator 1
+ 176 0050 9642     		cmp	r6, r2
+ 177 0052 F4DC     		bgt	.L11
+ 178              	.L12:
+  64:.\Generated_Source\PSoC5/LCD.c ****        
+  65:.\Generated_Source\PSoC5/LCD.c ****     }
+  66:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
+ 179              		.loc 1 66 0 is_stmt 1 discriminator 1
+ 180 0054 054B     		ldr	r3, .L14
+ 181 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 182 0058 13F0020F 		tst	r3, #2
+ 183 005c FAD0     		beq	.L12
+  67:.\Generated_Source\PSoC5/LCD.c ****     
+  68:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
+ 184              		.loc 1 68 0
+ 185 005e 054B     		ldr	r3, .L14+8
+ 186 0060 1C70     		strb	r4, [r3]
+  69:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
+ 187              		.loc 1 69 0
+ 188 0062 2846     		mov	r0, r5
+ 189 0064 FFF7FEFF 		bl	CS_Write
+ 190              	.LVL15:
+ 191 0068 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 192              	.LVL16:
+ 193              	.L15:
+ 194              		.align	2
+ 195              	.L14:
+ 196 006c 68640040 		.word	1073767528
+ 197 0070 90680040 		.word	1073768592
+ 198 0074 7D640040 		.word	1073767549
+ 199              		.cfi_endproc
+ 200              	.LFE65:
+ 201              		.size	LCD_WriteArray, .-LCD_WriteArray
+ 202              		.section	.text.LCD_Start,"ax",%progbits
+ 203              		.align	2
+ 204              		.global	LCD_Start
+ 205              		.thumb
+ 206              		.thumb_func
+ 207              		.type	LCD_Start, %function
+ 208              	LCD_Start:
+ 209              	.LFB63:
+  10:.\Generated_Source\PSoC5/LCD.c ****     uint8 cs=LCD_CS_Read(); //read intial state to restore afterwards
+ 210              		.loc 1 10 0
+ 211              		.cfi_startproc
+ 212              		@ args = 0, pretend = 0, frame = 32
+ 213              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 6
+
+
+ 214 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 215              		.cfi_def_cfa_offset 20
+ 216              		.cfi_offset 4, -20
+ 217              		.cfi_offset 5, -16
+ 218              		.cfi_offset 6, -12
+ 219              		.cfi_offset 7, -8
+ 220              		.cfi_offset 14, -4
+ 221 0002 89B0     		sub	sp, sp, #36
+ 222              		.cfi_def_cfa_offset 56
+  11:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+ 223              		.loc 1 11 0
+ 224 0004 FFF7FEFF 		bl	CS_Read
+ 225              	.LVL17:
+ 226 0008 0746     		mov	r7, r0
+ 227              	.LVL18:
+  12:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 228              		.loc 1 12 0
+ 229 000a 204D     		ldr	r5, .L18
+ 230 000c 2E78     		ldrb	r6, [r5]	@ zero_extendqisi2
+ 231 000e F6B2     		uxtb	r6, r6
+ 232              	.LVL19:
+  13:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 233              		.loc 1 13 0
+ 234 0010 0320     		movs	r0, #3
+ 235 0012 FFF7FEFF 		bl	CS_Write
+ 236              	.LVL20:
+  14:.\Generated_Source\PSoC5/LCD.c ****     
+ 237              		.loc 1 14 0
+ 238 0016 0123     		movs	r3, #1
+ 239 0018 2B70     		strb	r3, [r5]
+  16:.\Generated_Source\PSoC5/LCD.c ****     CyDelay(5);
+ 240              		.loc 1 16 0
+ 241 001a 1D4C     		ldr	r4, .L18+4
+ 242 001c 40F20113 		movw	r3, #257
+ 243 0020 2380     		strh	r3, [r4]	@ movhi
+  17:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x11); //take out of sleep
+ 244              		.loc 1 17 0
+ 245 0022 0520     		movs	r0, #5
+ 246 0024 FFF7FEFF 		bl	CyDelay
+ 247              	.LVL21:
+  18:.\Generated_Source\PSoC5/LCD.c ****     CyDelay(100);
+ 248              		.loc 1 18 0
+ 249 0028 40F21113 		movw	r3, #273
+ 250 002c 2380     		strh	r3, [r4]	@ movhi
+  19:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x29); //turn display on
+ 251              		.loc 1 19 0
+ 252 002e 6420     		movs	r0, #100
+ 253 0030 FFF7FEFF 		bl	CyDelay
+ 254              	.LVL22:
+  20:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteReg(0x36,0xe8); //flip image horizontally and vertically; swap rows/columns; set to BG
+ 255              		.loc 1 20 0
+ 256 0034 40F22913 		movw	r3, #297
+ 257 0038 2380     		strh	r3, [r4]	@ movhi
+  21:.\Generated_Source\PSoC5/LCD.c ****     
+ 258              		.loc 1 21 0
+ 259 003a 3620     		movs	r0, #54
+ 260 003c E821     		movs	r1, #232
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 7
+
+
+ 261 003e FFF7FEFF 		bl	LCD_WriteReg
+ 262              	.LVL23:
+  24:.\Generated_Source\PSoC5/LCD.c ****     uint8 gamma_n[]={0x00,0x0E,0x14,0x03,0x11,0x07,0x31,0xC1,0x48,0x08,0x0F,0x0C,0x31,0x36,0x0F};
+ 263              		.loc 1 24 0
+ 264 0042 144B     		ldr	r3, .L18+8
+ 265 0044 04AC     		add	r4, sp, #16
+ 266 0046 1868     		ldr	r0, [r3]	@ unaligned
+ 267 0048 5968     		ldr	r1, [r3, #4]	@ unaligned
+ 268 004a 9A68     		ldr	r2, [r3, #8]	@ unaligned
+ 269 004c 07C4     		stmia	r4!, {r0, r1, r2}
+ 270 004e 9989     		ldrh	r1, [r3, #12]	@ unaligned
+ 271 0050 9A7B     		ldrb	r2, [r3, #14]	@ zero_extendqisi2
+ 272 0052 2180     		strh	r1, [r4]	@ unaligned
+ 273 0054 A270     		strb	r2, [r4, #2]
+  25:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0xe0,gamma_p,sizeof gamma_p);
+ 274              		.loc 1 25 0
+ 275 0056 6C46     		mov	r4, sp
+ 276 0058 53F8100F 		ldr	r0, [r3, #16]!	@ unaligned
+ 277 005c 5968     		ldr	r1, [r3, #4]	@ unaligned
+ 278 005e 9A68     		ldr	r2, [r3, #8]	@ unaligned
+ 279 0060 07C4     		stmia	r4!, {r0, r1, r2}
+ 280 0062 9A89     		ldrh	r2, [r3, #12]	@ unaligned
+ 281 0064 9B7B     		ldrb	r3, [r3, #14]	@ zero_extendqisi2
+ 282 0066 2280     		strh	r2, [r4]	@ unaligned
+ 283 0068 A370     		strb	r3, [r4, #2]
+  26:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0xe1,gamma_n,sizeof gamma_n);
+ 284              		.loc 1 26 0
+ 285 006a E020     		movs	r0, #224
+ 286 006c 04A9     		add	r1, sp, #16
+ 287 006e 0F22     		movs	r2, #15
+ 288 0070 FFF7FEFF 		bl	LCD_WriteArray
+ 289              	.LVL24:
+  27:.\Generated_Source\PSoC5/LCD.c ****     
+ 290              		.loc 1 27 0
+ 291 0074 E120     		movs	r0, #225
+ 292 0076 6946     		mov	r1, sp
+ 293 0078 0F22     		movs	r2, #15
+ 294 007a FFF7FEFF 		bl	LCD_WriteArray
+ 295              	.LVL25:
+  29:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
+ 296              		.loc 1 29 0
+ 297 007e 2E70     		strb	r6, [r5]
+  30:.\Generated_Source\PSoC5/LCD.c **** }
+ 298              		.loc 1 30 0
+ 299 0080 3846     		mov	r0, r7
+ 300 0082 FFF7FEFF 		bl	CS_Write
+ 301              	.LVL26:
+  31:.\Generated_Source\PSoC5/LCD.c **** 
+ 302              		.loc 1 31 0
+ 303 0086 09B0     		add	sp, sp, #36
+ 304              		.cfi_def_cfa_offset 20
+ 305              		@ sp needed
+ 306 0088 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 307              	.LVL27:
+ 308              	.L19:
+ 309 008a 00BF     		.align	2
+ 310              	.L18:
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 8
+
+
+ 311 008c 7D640040 		.word	1073767549
+ 312 0090 90680040 		.word	1073768592
+ 313 0094 00000000 		.word	.LANCHOR0
+ 314              		.cfi_endproc
+ 315              	.LFE63:
+ 316              		.size	LCD_Start, .-LCD_Start
+ 317              		.section	.text.LCD_SetWindow,"ax",%progbits
+ 318              		.align	2
+ 319              		.global	LCD_SetWindow
+ 320              		.thumb
+ 321              		.thumb_func
+ 322              		.type	LCD_SetWindow, %function
+ 323              	LCD_SetWindow:
+ 324              	.LFB66:
+  70:.\Generated_Source\PSoC5/LCD.c **** }
+  71:.\Generated_Source\PSoC5/LCD.c **** 
+  72:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindow(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  73:.\Generated_Source\PSoC5/LCD.c **** {
+ 325              		.loc 1 73 0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 8
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329              	.LVL28:
+ 330 0000 10B5     		push	{r4, lr}
+ 331              		.cfi_def_cfa_offset 8
+ 332              		.cfi_offset 4, -8
+ 333              		.cfi_offset 14, -4
+ 334 0002 82B0     		sub	sp, sp, #8
+ 335              		.cfi_def_cfa_offset 16
+  74:.\Generated_Source\PSoC5/LCD.c ****     uint8 cols[]={col_start>>8,col_start,col_end>>8,col_end}; //LCD uses big endian words
+ 336              		.loc 1 74 0
+ 337 0004 040A     		lsrs	r4, r0, #8
+ 338 0006 8DF80440 		strb	r4, [sp, #4]
+ 339 000a 8DF80500 		strb	r0, [sp, #5]
+ 340 000e 100A     		lsrs	r0, r2, #8
+ 341              	.LVL29:
+ 342 0010 8DF80600 		strb	r0, [sp, #6]
+ 343 0014 8DF80720 		strb	r2, [sp, #7]
+  75:.\Generated_Source\PSoC5/LCD.c ****     uint8 rows[]={row_start>>8,row_start,row_end>>8,row_end};
+ 344              		.loc 1 75 0
+ 345 0018 0A0A     		lsrs	r2, r1, #8
+ 346              	.LVL30:
+ 347 001a 8DF80020 		strb	r2, [sp]
+ 348 001e 8DF80110 		strb	r1, [sp, #1]
+ 349 0022 1A0A     		lsrs	r2, r3, #8
+ 350 0024 8DF80220 		strb	r2, [sp, #2]
+ 351 0028 8DF80330 		strb	r3, [sp, #3]
+  76:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2a,cols,4);
+ 352              		.loc 1 76 0
+ 353 002c 2A20     		movs	r0, #42
+ 354 002e 01A9     		add	r1, sp, #4
+ 355              	.LVL31:
+ 356 0030 0422     		movs	r2, #4
+ 357 0032 FFF7FEFF 		bl	LCD_WriteArray
+ 358              	.LVL32:
+  77:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2b,rows,4);
+ 359              		.loc 1 77 0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 9
+
+
+ 360 0036 2B20     		movs	r0, #43
+ 361 0038 6946     		mov	r1, sp
+ 362 003a 0422     		movs	r2, #4
+ 363 003c FFF7FEFF 		bl	LCD_WriteArray
+ 364              	.LVL33:
+  78:.\Generated_Source\PSoC5/LCD.c **** }
+ 365              		.loc 1 78 0
+ 366 0040 02B0     		add	sp, sp, #8
+ 367              		.cfi_def_cfa_offset 8
+ 368              		@ sp needed
+ 369 0042 10BD     		pop	{r4, pc}
+ 370              		.cfi_endproc
+ 371              	.LFE66:
+ 372              		.size	LCD_SetWindow, .-LCD_SetWindow
+ 373              		.section	.text.LCD_SetWindowRead,"ax",%progbits
+ 374              		.align	2
+ 375              		.global	LCD_SetWindowRead
+ 376              		.thumb
+ 377              		.thumb_func
+ 378              		.type	LCD_SetWindowRead, %function
+ 379              	LCD_SetWindowRead:
+ 380              	.LFB67:
+  79:.\Generated_Source\PSoC5/LCD.c **** 
+  80:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowRead(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  81:.\Generated_Source\PSoC5/LCD.c **** {
+ 381              		.loc 1 81 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 0
+ 384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385              	.LVL34:
+ 386 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 387              		.cfi_def_cfa_offset 24
+ 388              		.cfi_offset 3, -24
+ 389              		.cfi_offset 4, -20
+ 390              		.cfi_offset 5, -16
+ 391              		.cfi_offset 6, -12
+ 392              		.cfi_offset 7, -8
+ 393              		.cfi_offset 14, -4
+ 394 0002 0746     		mov	r7, r0
+ 395 0004 0E46     		mov	r6, r1
+ 396 0006 1546     		mov	r5, r2
+ 397 0008 1C46     		mov	r4, r3
+  82:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 398              		.loc 1 82 0
+ 399 000a 0320     		movs	r0, #3
+ 400              	.LVL35:
+ 401 000c FFF7FEFF 		bl	CS_Write
+ 402              	.LVL36:
+  83:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 403              		.loc 1 83 0
+ 404 0010 0122     		movs	r2, #1
+ 405 0012 104B     		ldr	r3, .L25
+ 406 0014 1A70     		strb	r2, [r3]
+  84:.\Generated_Source\PSoC5/LCD.c ****     
+  85:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
+ 407              		.loc 1 85 0
+ 408 0016 3846     		mov	r0, r7
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 10
+
+
+ 409 0018 3146     		mov	r1, r6
+ 410 001a 2A46     		mov	r2, r5
+ 411 001c 2346     		mov	r3, r4
+ 412 001e FFF7FEFF 		bl	LCD_SetWindow
+ 413              	.LVL37:
+  86:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2e);
+ 414              		.loc 1 86 0
+ 415 0022 4FF49772 		mov	r2, #302
+ 416 0026 0C4B     		ldr	r3, .L25+4
+ 417 0028 1A80     		strh	r2, [r3]	@ movhi
+ 418              	.L23:
+  87:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty); //wait for buffer to empty before turning off output
+ 419              		.loc 1 87 0 discriminator 1
+ 420 002a 0C4B     		ldr	r3, .L25+8
+ 421 002c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 422 002e 13F0020F 		tst	r3, #2
+ 423 0032 FAD0     		beq	.L23
+  88:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=0; //disable drivers on output bus
+ 424              		.loc 1 88 0
+ 425 0034 0020     		movs	r0, #0
+ 426 0036 074B     		ldr	r3, .L25
+ 427 0038 1870     		strb	r0, [r3]
+  89:.\Generated_Source\PSoC5/LCD.c ****     
+  90:.\Generated_Source\PSoC5/LCD.c ****     //dummy read
+  91:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 428              		.loc 1 91 0
+ 429 003a FFF7FEFF 		bl	LCD_RD_Write
+ 430              	.LVL38:
+  92:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 431              		.loc 1 92 0
+ 432 003e 1820     		movs	r0, #24
+ 433 0040 FFF7FEFF 		bl	CyDelayCycles
+ 434              	.LVL39:
+  93:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 435              		.loc 1 93 0
+ 436 0044 0120     		movs	r0, #1
+ 437 0046 FFF7FEFF 		bl	LCD_RD_Write
+ 438              	.LVL40:
+  94:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 439              		.loc 1 94 0
+ 440 004a 0620     		movs	r0, #6
+ 441 004c FFF7FEFF 		bl	CyDelayCycles
+ 442              	.LVL41:
+ 443 0050 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 444              	.L26:
+ 445 0052 00BF     		.align	2
+ 446              	.L25:
+ 447 0054 7D640040 		.word	1073767549
+ 448 0058 90680040 		.word	1073768592
+ 449 005c 68640040 		.word	1073767528
+ 450              		.cfi_endproc
+ 451              	.LFE67:
+ 452              		.size	LCD_SetWindowRead, .-LCD_SetWindowRead
+ 453              		.section	.text.LCD_SetWindowWrite,"ax",%progbits
+ 454              		.align	2
+ 455              		.global	LCD_SetWindowWrite
+ 456              		.thumb
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 11
+
+
+ 457              		.thumb_func
+ 458              		.type	LCD_SetWindowWrite, %function
+ 459              	LCD_SetWindowWrite:
+ 460              	.LFB68:
+  95:.\Generated_Source\PSoC5/LCD.c **** }
+  96:.\Generated_Source\PSoC5/LCD.c **** 
+  97:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowWrite(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  98:.\Generated_Source\PSoC5/LCD.c **** {
+ 461              		.loc 1 98 0
+ 462              		.cfi_startproc
+ 463              		@ args = 0, pretend = 0, frame = 0
+ 464              		@ frame_needed = 0, uses_anonymous_args = 0
+ 465              	.LVL42:
+ 466 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 467              		.cfi_def_cfa_offset 24
+ 468              		.cfi_offset 3, -24
+ 469              		.cfi_offset 4, -20
+ 470              		.cfi_offset 5, -16
+ 471              		.cfi_offset 6, -12
+ 472              		.cfi_offset 7, -8
+ 473              		.cfi_offset 14, -4
+ 474 0002 0746     		mov	r7, r0
+ 475 0004 0E46     		mov	r6, r1
+ 476 0006 1546     		mov	r5, r2
+ 477 0008 1C46     		mov	r4, r3
+  99:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 478              		.loc 1 99 0
+ 479 000a 0320     		movs	r0, #3
+ 480              	.LVL43:
+ 481 000c FFF7FEFF 		bl	CS_Write
+ 482              	.LVL44:
+ 100:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 483              		.loc 1 100 0
+ 484 0010 0122     		movs	r2, #1
+ 485 0012 064B     		ldr	r3, .L29
+ 486 0014 1A70     		strb	r2, [r3]
+ 101:.\Generated_Source\PSoC5/LCD.c **** 
+ 102:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
+ 487              		.loc 1 102 0
+ 488 0016 3846     		mov	r0, r7
+ 489 0018 3146     		mov	r1, r6
+ 490 001a 2A46     		mov	r2, r5
+ 491 001c 2346     		mov	r3, r4
+ 492 001e FFF7FEFF 		bl	LCD_SetWindow
+ 493              	.LVL45:
+ 103:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2c);
+ 494              		.loc 1 103 0
+ 495 0022 4FF49672 		mov	r2, #300
+ 496 0026 024B     		ldr	r3, .L29+4
+ 497 0028 1A80     		strh	r2, [r3]	@ movhi
+ 498 002a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 499              	.L30:
+ 500              		.align	2
+ 501              	.L29:
+ 502 002c 7D640040 		.word	1073767549
+ 503 0030 90680040 		.word	1073768592
+ 504              		.cfi_endproc
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 12
+
+
+ 505              	.LFE68:
+ 506              		.size	LCD_SetWindowWrite, .-LCD_SetWindowWrite
+ 507              		.section	.text.LCD_ReadPixel,"ax",%progbits
+ 508              		.align	2
+ 509              		.global	LCD_ReadPixel
+ 510              		.thumb
+ 511              		.thumb_func
+ 512              		.type	LCD_ReadPixel, %function
+ 513              	LCD_ReadPixel:
+ 514              	.LFB69:
+ 104:.\Generated_Source\PSoC5/LCD.c **** }
+ 105:.\Generated_Source\PSoC5/LCD.c **** 
+ 106:.\Generated_Source\PSoC5/LCD.c **** pixel LCD_ReadPixel()
+ 107:.\Generated_Source\PSoC5/LCD.c **** {
+ 515              		.loc 1 107 0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 8
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519 0000 10B5     		push	{r4, lr}
+ 520              		.cfi_def_cfa_offset 8
+ 521              		.cfi_offset 4, -8
+ 522              		.cfi_offset 14, -4
+ 523 0002 82B0     		sub	sp, sp, #8
+ 524              		.cfi_def_cfa_offset 16
+ 108:.\Generated_Source\PSoC5/LCD.c ****     pixel p;
+ 109:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 525              		.loc 1 109 0
+ 526 0004 0020     		movs	r0, #0
+ 527 0006 FFF7FEFF 		bl	LCD_RD_Write
+ 528              	.LVL46:
+ 110:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 529              		.loc 1 110 0
+ 530 000a 1820     		movs	r0, #24
+ 531 000c FFF7FEFF 		bl	CyDelayCycles
+ 532              	.LVL47:
+ 111:.\Generated_Source\PSoC5/LCD.c ****     p.R=LCD_D_PS;
+ 533              		.loc 1 111 0
+ 534 0010 1B4C     		ldr	r4, .L33
+ 535 0012 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 536 0014 8DF80030 		strb	r3, [sp]
+ 112:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 537              		.loc 1 112 0
+ 538 0018 0120     		movs	r0, #1
+ 539 001a FFF7FEFF 		bl	LCD_RD_Write
+ 540              	.LVL48:
+ 113:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 541              		.loc 1 113 0
+ 542 001e 0620     		movs	r0, #6
+ 543 0020 FFF7FEFF 		bl	CyDelayCycles
+ 544              	.LVL49:
+ 114:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 545              		.loc 1 114 0
+ 546 0024 0020     		movs	r0, #0
+ 547 0026 FFF7FEFF 		bl	LCD_RD_Write
+ 548              	.LVL50:
+ 115:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 549              		.loc 1 115 0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 13
+
+
+ 550 002a 1820     		movs	r0, #24
+ 551 002c FFF7FEFF 		bl	CyDelayCycles
+ 552              	.LVL51:
+ 116:.\Generated_Source\PSoC5/LCD.c ****     p.G=LCD_D_PS;
+ 553              		.loc 1 116 0
+ 554 0030 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 555 0032 8DF80130 		strb	r3, [sp, #1]
+ 117:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 556              		.loc 1 117 0
+ 557 0036 0120     		movs	r0, #1
+ 558 0038 FFF7FEFF 		bl	LCD_RD_Write
+ 559              	.LVL52:
+ 118:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 560              		.loc 1 118 0
+ 561 003c 0620     		movs	r0, #6
+ 562 003e FFF7FEFF 		bl	CyDelayCycles
+ 563              	.LVL53:
+ 119:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 564              		.loc 1 119 0
+ 565 0042 0020     		movs	r0, #0
+ 566 0044 FFF7FEFF 		bl	LCD_RD_Write
+ 567              	.LVL54:
+ 120:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 568              		.loc 1 120 0
+ 569 0048 1820     		movs	r0, #24
+ 570 004a FFF7FEFF 		bl	CyDelayCycles
+ 571              	.LVL55:
+ 121:.\Generated_Source\PSoC5/LCD.c ****     p.B=LCD_D_PS;
+ 572              		.loc 1 121 0
+ 573 004e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 574 0050 8DF80230 		strb	r3, [sp, #2]
+ 122:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 575              		.loc 1 122 0
+ 576 0054 0120     		movs	r0, #1
+ 577 0056 FFF7FEFF 		bl	LCD_RD_Write
+ 578              	.LVL56:
+ 123:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 579              		.loc 1 123 0
+ 580 005a 0620     		movs	r0, #6
+ 581 005c FFF7FEFF 		bl	CyDelayCycles
+ 582              	.LVL57:
+ 124:.\Generated_Source\PSoC5/LCD.c ****     return p;
+ 583              		.loc 1 124 0
+ 584 0060 009B     		ldr	r3, [sp]
+ 585 0062 0020     		movs	r0, #0
+ 586 0064 DAB2     		uxtb	r2, r3
+ 587 0066 62F30700 		bfi	r0, r2, #0, #8
+ 588 006a C3F30722 		ubfx	r2, r3, #8, #8
+ 589 006e 62F30F20 		bfi	r0, r2, #8, #8
+ 590 0072 C3F30743 		ubfx	r3, r3, #16, #8
+ 591 0076 63F31740 		bfi	r0, r3, #16, #8
+ 125:.\Generated_Source\PSoC5/LCD.c **** }
+ 592              		.loc 1 125 0
+ 593 007a 02B0     		add	sp, sp, #8
+ 594              		.cfi_def_cfa_offset 8
+ 595              		@ sp needed
+ 596 007c 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 14
+
+
+ 597              	.L34:
+ 598 007e 00BF     		.align	2
+ 599              	.L33:
+ 600 0080 21510040 		.word	1073762593
+ 601              		.cfi_endproc
+ 602              	.LFE69:
+ 603              		.size	LCD_ReadPixel, .-LCD_ReadPixel
+ 604              		.section	.text.LCD_WritePixel,"ax",%progbits
+ 605              		.align	2
+ 606              		.global	LCD_WritePixel
+ 607              		.thumb
+ 608              		.thumb_func
+ 609              		.type	LCD_WritePixel, %function
+ 610              	LCD_WritePixel:
+ 611              	.LFB70:
+ 126:.\Generated_Source\PSoC5/LCD.c **** 
+ 127:.\Generated_Source\PSoC5/LCD.c **** void LCD_WritePixel(pixel p)
+ 128:.\Generated_Source\PSoC5/LCD.c **** {
+ 612              		.loc 1 128 0
+ 613              		.cfi_startproc
+ 614              		@ args = 0, pretend = 0, frame = 8
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              		@ link register save eliminated.
+ 617 0000 82B0     		sub	sp, sp, #8
+ 618              		.cfi_def_cfa_offset 8
+ 619 0002 0190     		str	r0, [sp, #4]
+ 620              	.L36:
+ 129:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
+ 621              		.loc 1 129 0 discriminator 1
+ 622 0004 084B     		ldr	r3, .L38
+ 623 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 624 0008 13F0020F 		tst	r3, #2
+ 625 000c FAD0     		beq	.L36
+ 130:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.R);
+ 626              		.loc 1 130 0
+ 627 000e 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
+ 628 0012 064B     		ldr	r3, .L38+4
+ 629 0014 1A80     		strh	r2, [r3]	@ movhi
+ 131:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.G);
+ 630              		.loc 1 131 0
+ 631 0016 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 632 001a 1A80     		strh	r2, [r3]	@ movhi
+ 132:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.B);
+ 633              		.loc 1 132 0
+ 634 001c 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
+ 635 0020 1A80     		strh	r2, [r3]	@ movhi
+ 133:.\Generated_Source\PSoC5/LCD.c **** }
+ 636              		.loc 1 133 0
+ 637 0022 02B0     		add	sp, sp, #8
+ 638              		.cfi_def_cfa_offset 0
+ 639              		@ sp needed
+ 640 0024 7047     		bx	lr
+ 641              	.L39:
+ 642 0026 00BF     		.align	2
+ 643              	.L38:
+ 644 0028 68640040 		.word	1073767528
+ 645 002c 90680040 		.word	1073768592
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 15
+
+
+ 646              		.cfi_endproc
+ 647              	.LFE70:
+ 648              		.size	LCD_WritePixel, .-LCD_WritePixel
+ 649              		.section	.text.LCD_StopReadWrite,"ax",%progbits
+ 650              		.align	2
+ 651              		.global	LCD_StopReadWrite
+ 652              		.thumb
+ 653              		.thumb_func
+ 654              		.type	LCD_StopReadWrite, %function
+ 655              	LCD_StopReadWrite:
+ 656              	.LFB71:
+ 134:.\Generated_Source\PSoC5/LCD.c **** 
+ 135:.\Generated_Source\PSoC5/LCD.c **** void LCD_StopReadWrite()
+ 136:.\Generated_Source\PSoC5/LCD.c **** {
+ 657              		.loc 1 136 0
+ 658              		.cfi_startproc
+ 659              		@ args = 0, pretend = 0, frame = 0
+ 660              		@ frame_needed = 0, uses_anonymous_args = 0
+ 661              		@ link register save eliminated.
+ 137:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+ 662              		.loc 1 137 0
+ 663 0000 084B     		ldr	r3, .L42
+ 664 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 665 0004 D2B2     		uxtb	r2, r2
+ 666              	.LVL58:
+ 138:.\Generated_Source\PSoC5/LCD.c ****     
+ 139:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1;
+ 667              		.loc 1 139 0
+ 668 0006 0121     		movs	r1, #1
+ 669 0008 1970     		strb	r1, [r3]
+ 140:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0);
+ 670              		.loc 1 140 0
+ 671 000a 4FF48071 		mov	r1, #256
+ 672 000e 03F21343 		addw	r3, r3, #1043
+ 673 0012 1980     		strh	r1, [r3]	@ movhi
+ 674              	.L41:
+ 141:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
+ 675              		.loc 1 141 0 discriminator 1
+ 676 0014 044B     		ldr	r3, .L42+4
+ 677 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 678 0018 13F0010F 		tst	r3, #1
+ 679 001c FAD0     		beq	.L41
+ 142:.\Generated_Source\PSoC5/LCD.c ****     
+ 143:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe;
+ 680              		.loc 1 143 0
+ 681 001e 014B     		ldr	r3, .L42
+ 682 0020 1A70     		strb	r2, [r3]
+ 683 0022 7047     		bx	lr
+ 684              	.L43:
+ 685              		.align	2
+ 686              	.L42:
+ 687 0024 7D640040 		.word	1073767549
+ 688 0028 68640040 		.word	1073767528
+ 689              		.cfi_endproc
+ 690              	.LFE71:
+ 691              		.size	LCD_StopReadWrite, .-LCD_StopReadWrite
+ 692              		.comm	Camera_linebuffer,640,4
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 16
+
+
+ 693              		.section	.rodata
+ 694              		.align	2
+ 695              		.set	.LANCHOR0,. + 0
+ 696              	.LC0:
+ 697 0000 0F       		.byte	15
+ 698 0001 31       		.byte	49
+ 699 0002 2B       		.byte	43
+ 700 0003 0C       		.byte	12
+ 701 0004 0E       		.byte	14
+ 702 0005 08       		.byte	8
+ 703 0006 4E       		.byte	78
+ 704 0007 F1       		.byte	-15
+ 705 0008 37       		.byte	55
+ 706 0009 07       		.byte	7
+ 707 000a 10       		.byte	16
+ 708 000b 03       		.byte	3
+ 709 000c 0E       		.byte	14
+ 710 000d 09       		.byte	9
+ 711 000e 00       		.byte	0
+ 712 000f 00       		.space	1
+ 713              	.LC1:
+ 714 0010 00       		.byte	0
+ 715 0011 0E       		.byte	14
+ 716 0012 14       		.byte	20
+ 717 0013 03       		.byte	3
+ 718 0014 11       		.byte	17
+ 719 0015 07       		.byte	7
+ 720 0016 31       		.byte	49
+ 721 0017 C1       		.byte	-63
+ 722 0018 48       		.byte	72
+ 723 0019 08       		.byte	8
+ 724 001a 0F       		.byte	15
+ 725 001b 0C       		.byte	12
+ 726 001c 31       		.byte	49
+ 727 001d 36       		.byte	54
+ 728 001e 0F       		.byte	15
+ 729 001f 00       		.text
+ 730              	.Letext0:
+ 731              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 732              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 733              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 734              		.file 5 "Generated_Source\\PSoC5/LCD.h"
+ 735              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 736              		.file 7 "Generated_Source\\PSoC5/Camera.h"
+ 737              		.file 8 "Generated_Source\\PSoC5/CS.h"
+ 738              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 739              		.file 10 "Generated_Source\\PSoC5/LCD_RD.h"
+ 740              		.section	.debug_info,"",%progbits
+ 741              	.Ldebug_info0:
+ 742 0000 0C070000 		.4byte	0x70c
+ 743 0004 0400     		.2byte	0x4
+ 744 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 745 000a 04       		.byte	0x4
+ 746 000b 01       		.uleb128 0x1
+ 747 000c 46010000 		.4byte	.LASF45
+ 748 0010 01       		.byte	0x1
+ 749 0011 0B020000 		.4byte	.LASF46
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 17
+
+
+ 750 0015 66000000 		.4byte	.LASF47
+ 751 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 752 001d 00000000 		.4byte	0
+ 753 0021 00000000 		.4byte	.Ldebug_line0
+ 754 0025 02       		.uleb128 0x2
+ 755 0026 01       		.byte	0x1
+ 756 0027 06       		.byte	0x6
+ 757 0028 D1020000 		.4byte	.LASF0
+ 758 002c 02       		.uleb128 0x2
+ 759 002d 01       		.byte	0x1
+ 760 002e 08       		.byte	0x8
+ 761 002f 58000000 		.4byte	.LASF1
+ 762 0033 02       		.uleb128 0x2
+ 763 0034 02       		.byte	0x2
+ 764 0035 05       		.byte	0x5
+ 765 0036 7F020000 		.4byte	.LASF2
+ 766 003a 02       		.uleb128 0x2
+ 767 003b 02       		.byte	0x2
+ 768 003c 07       		.byte	0x7
+ 769 003d DE000000 		.4byte	.LASF3
+ 770 0041 03       		.uleb128 0x3
+ 771 0042 16000000 		.4byte	.LASF9
+ 772 0046 02       		.byte	0x2
+ 773 0047 3F       		.byte	0x3f
+ 774 0048 4C000000 		.4byte	0x4c
+ 775 004c 02       		.uleb128 0x2
+ 776 004d 04       		.byte	0x4
+ 777 004e 05       		.byte	0x5
+ 778 004f C1020000 		.4byte	.LASF4
+ 779 0053 02       		.uleb128 0x2
+ 780 0054 04       		.byte	0x4
+ 781 0055 07       		.byte	0x7
+ 782 0056 CC000000 		.4byte	.LASF5
+ 783 005a 02       		.uleb128 0x2
+ 784 005b 08       		.byte	0x8
+ 785 005c 05       		.byte	0x5
+ 786 005d 4D020000 		.4byte	.LASF6
+ 787 0061 02       		.uleb128 0x2
+ 788 0062 08       		.byte	0x8
+ 789 0063 07       		.byte	0x7
+ 790 0064 EE010000 		.4byte	.LASF7
+ 791 0068 04       		.uleb128 0x4
+ 792 0069 04       		.byte	0x4
+ 793 006a 05       		.byte	0x5
+ 794 006b 696E7400 		.ascii	"int\000"
+ 795 006f 02       		.uleb128 0x2
+ 796 0070 04       		.byte	0x4
+ 797 0071 07       		.byte	0x7
+ 798 0072 D4010000 		.4byte	.LASF8
+ 799 0076 03       		.uleb128 0x3
+ 800 0077 37020000 		.4byte	.LASF10
+ 801 007b 03       		.byte	0x3
+ 802 007c 2C       		.byte	0x2c
+ 803 007d 41000000 		.4byte	0x41
+ 804 0081 05       		.uleb128 0x5
+ 805 0082 9C020000 		.4byte	.LASF11
+ 806 0086 04       		.byte	0x4
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 18
+
+
+ 807 0087 9201     		.2byte	0x192
+ 808 0089 2C000000 		.4byte	0x2c
+ 809 008d 05       		.uleb128 0x5
+ 810 008e 38010000 		.4byte	.LASF12
+ 811 0092 04       		.byte	0x4
+ 812 0093 9301     		.2byte	0x193
+ 813 0095 3A000000 		.4byte	0x3a
+ 814 0099 05       		.uleb128 0x5
+ 815 009a 3F010000 		.4byte	.LASF13
+ 816 009e 04       		.byte	0x4
+ 817 009f 9401     		.2byte	0x194
+ 818 00a1 53000000 		.4byte	0x53
+ 819 00a5 02       		.uleb128 0x2
+ 820 00a6 04       		.byte	0x4
+ 821 00a7 04       		.byte	0x4
+ 822 00a8 48000000 		.4byte	.LASF14
+ 823 00ac 02       		.uleb128 0x2
+ 824 00ad 08       		.byte	0x8
+ 825 00ae 04       		.byte	0x4
+ 826 00af 23010000 		.4byte	.LASF15
+ 827 00b3 02       		.uleb128 0x2
+ 828 00b4 01       		.byte	0x1
+ 829 00b5 08       		.byte	0x8
+ 830 00b6 5B020000 		.4byte	.LASF16
+ 831 00ba 05       		.uleb128 0x5
+ 832 00bb C7000000 		.4byte	.LASF17
+ 833 00bf 04       		.byte	0x4
+ 834 00c0 3C02     		.2byte	0x23c
+ 835 00c2 C6000000 		.4byte	0xc6
+ 836 00c6 06       		.uleb128 0x6
+ 837 00c7 81000000 		.4byte	0x81
+ 838 00cb 05       		.uleb128 0x5
+ 839 00cc 05020000 		.4byte	.LASF18
+ 840 00d0 04       		.byte	0x4
+ 841 00d1 3D02     		.2byte	0x23d
+ 842 00d3 D7000000 		.4byte	0xd7
+ 843 00d7 06       		.uleb128 0x6
+ 844 00d8 8D000000 		.4byte	0x8d
+ 845 00dc 02       		.uleb128 0x2
+ 846 00dd 04       		.byte	0x4
+ 847 00de 07       		.byte	0x7
+ 848 00df 3F020000 		.4byte	.LASF19
+ 849 00e3 07       		.uleb128 0x7
+ 850 00e4 81000000 		.4byte	0x81
+ 851 00e8 F3000000 		.4byte	0xf3
+ 852 00ec 08       		.uleb128 0x8
+ 853 00ed DC000000 		.4byte	0xdc
+ 854 00f1 03       		.byte	0x3
+ 855 00f2 00       		.byte	0
+ 856 00f3 09       		.uleb128 0x9
+ 857 00f4 03       		.byte	0x3
+ 858 00f5 05       		.byte	0x5
+ 859 00f6 12       		.byte	0x12
+ 860 00f7 1A010000 		.4byte	0x11a
+ 861 00fb 0A       		.uleb128 0xa
+ 862 00fc 5200     		.ascii	"R\000"
+ 863 00fe 05       		.byte	0x5
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 19
+
+
+ 864 00ff 14       		.byte	0x14
+ 865 0100 81000000 		.4byte	0x81
+ 866 0104 00       		.byte	0
+ 867 0105 0A       		.uleb128 0xa
+ 868 0106 4700     		.ascii	"G\000"
+ 869 0108 05       		.byte	0x5
+ 870 0109 14       		.byte	0x14
+ 871 010a 81000000 		.4byte	0x81
+ 872 010e 01       		.byte	0x1
+ 873 010f 0A       		.uleb128 0xa
+ 874 0110 4200     		.ascii	"B\000"
+ 875 0112 05       		.byte	0x5
+ 876 0113 14       		.byte	0x14
+ 877 0114 81000000 		.4byte	0x81
+ 878 0118 02       		.byte	0x2
+ 879 0119 00       		.byte	0
+ 880 011a 03       		.uleb128 0x3
+ 881 011b 32000000 		.4byte	.LASF20
+ 882 011f 05       		.byte	0x5
+ 883 0120 15       		.byte	0x15
+ 884 0121 F3000000 		.4byte	0xf3
+ 885 0125 0B       		.uleb128 0xb
+ 886 0126 E1010000 		.4byte	.LASF22
+ 887 012a 01       		.byte	0x1
+ 888 012b 21       		.byte	0x21
+ 889 012c 00000000 		.4byte	.LFB64
+ 890 0130 6C000000 		.4byte	.LFE64-.LFB64
+ 891 0134 01       		.uleb128 0x1
+ 892 0135 9C       		.byte	0x9c
+ 893 0136 A1010000 		.4byte	0x1a1
+ 894 013a 0C       		.uleb128 0xc
+ 895 013b 72656700 		.ascii	"reg\000"
+ 896 013f 01       		.byte	0x1
+ 897 0140 21       		.byte	0x21
+ 898 0141 81000000 		.4byte	0x81
+ 899 0145 00000000 		.4byte	.LLST0
+ 900 0149 0D       		.uleb128 0xd
+ 901 014a 6A020000 		.4byte	.LASF21
+ 902 014e 01       		.byte	0x1
+ 903 014f 21       		.byte	0x21
+ 904 0150 81000000 		.4byte	0x81
+ 905 0154 21000000 		.4byte	.LLST1
+ 906 0158 0E       		.uleb128 0xe
+ 907 0159 637300   		.ascii	"cs\000"
+ 908 015c 01       		.byte	0x1
+ 909 015d 23       		.byte	0x23
+ 910 015e 81000000 		.4byte	0x81
+ 911 0162 42000000 		.4byte	.LLST2
+ 912 0166 0E       		.uleb128 0xe
+ 913 0167 6F6500   		.ascii	"oe\000"
+ 914 016a 01       		.byte	0x1
+ 915 016b 24       		.byte	0x24
+ 916 016c 81000000 		.4byte	0x81
+ 917 0170 55000000 		.4byte	.LLST3
+ 918 0174 0F       		.uleb128 0xf
+ 919 0175 0C000000 		.4byte	.LVL1
+ 920 0179 C4060000 		.4byte	0x6c4
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 20
+
+
+ 921 017d 10       		.uleb128 0x10
+ 922 017e 1E000000 		.4byte	.LVL4
+ 923 0182 CF060000 		.4byte	0x6cf
+ 924 0186 90010000 		.4byte	0x190
+ 925 018a 11       		.uleb128 0x11
+ 926 018b 01       		.uleb128 0x1
+ 927 018c 50       		.byte	0x50
+ 928 018d 01       		.uleb128 0x1
+ 929 018e 33       		.byte	0x33
+ 930 018f 00       		.byte	0
+ 931 0190 12       		.uleb128 0x12
+ 932 0191 5A000000 		.4byte	.LVL5
+ 933 0195 CF060000 		.4byte	0x6cf
+ 934 0199 11       		.uleb128 0x11
+ 935 019a 01       		.uleb128 0x1
+ 936 019b 50       		.byte	0x50
+ 937 019c 02       		.uleb128 0x2
+ 938 019d 75       		.byte	0x75
+ 939 019e 00       		.sleb128 0
+ 940 019f 00       		.byte	0
+ 941 01a0 00       		.byte	0
+ 942 01a1 0B       		.uleb128 0xb
+ 943 01a2 EB020000 		.4byte	.LASF23
+ 944 01a6 01       		.byte	0x1
+ 945 01a7 32       		.byte	0x32
+ 946 01a8 00000000 		.4byte	.LFB65
+ 947 01ac 78000000 		.4byte	.LFE65-.LFB65
+ 948 01b0 01       		.uleb128 0x1
+ 949 01b1 9C       		.byte	0x9c
+ 950 01b2 37020000 		.4byte	0x237
+ 951 01b6 0C       		.uleb128 0xc
+ 952 01b7 72656700 		.ascii	"reg\000"
+ 953 01bb 01       		.byte	0x1
+ 954 01bc 32       		.byte	0x32
+ 955 01bd 81000000 		.4byte	0x81
+ 956 01c1 68000000 		.4byte	.LLST4
+ 957 01c5 0D       		.uleb128 0xd
+ 958 01c6 CA020000 		.4byte	.LASF24
+ 959 01ca 01       		.byte	0x1
+ 960 01cb 32       		.byte	0x32
+ 961 01cc 37020000 		.4byte	0x237
+ 962 01d0 89000000 		.4byte	.LLST5
+ 963 01d4 0C       		.uleb128 0xc
+ 964 01d5 6E00     		.ascii	"n\000"
+ 965 01d7 01       		.byte	0x1
+ 966 01d8 32       		.byte	0x32
+ 967 01d9 81000000 		.4byte	0x81
+ 968 01dd B5000000 		.4byte	.LLST6
+ 969 01e1 0E       		.uleb128 0xe
+ 970 01e2 637300   		.ascii	"cs\000"
+ 971 01e5 01       		.byte	0x1
+ 972 01e6 34       		.byte	0x34
+ 973 01e7 81000000 		.4byte	0x81
+ 974 01eb D6000000 		.4byte	.LLST7
+ 975 01ef 0E       		.uleb128 0xe
+ 976 01f0 6F6500   		.ascii	"oe\000"
+ 977 01f3 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 21
+
+
+ 978 01f4 35       		.byte	0x35
+ 979 01f5 81000000 		.4byte	0x81
+ 980 01f9 E9000000 		.4byte	.LLST8
+ 981 01fd 0E       		.uleb128 0xe
+ 982 01fe 6900     		.ascii	"i\000"
+ 983 0200 01       		.byte	0x1
+ 984 0201 3B       		.byte	0x3b
+ 985 0202 68000000 		.4byte	0x68
+ 986 0206 FC000000 		.4byte	.LLST9
+ 987 020a 0F       		.uleb128 0xf
+ 988 020b 0E000000 		.4byte	.LVL8
+ 989 020f C4060000 		.4byte	0x6c4
+ 990 0213 10       		.uleb128 0x10
+ 991 0214 20000000 		.4byte	.LVL11
+ 992 0218 CF060000 		.4byte	0x6cf
+ 993 021c 26020000 		.4byte	0x226
+ 994 0220 11       		.uleb128 0x11
+ 995 0221 01       		.uleb128 0x1
+ 996 0222 50       		.byte	0x50
+ 997 0223 01       		.uleb128 0x1
+ 998 0224 33       		.byte	0x33
+ 999 0225 00       		.byte	0
+ 1000 0226 12       		.uleb128 0x12
+ 1001 0227 68000000 		.4byte	.LVL15
+ 1002 022b CF060000 		.4byte	0x6cf
+ 1003 022f 11       		.uleb128 0x11
+ 1004 0230 01       		.uleb128 0x1
+ 1005 0231 50       		.byte	0x50
+ 1006 0232 02       		.uleb128 0x2
+ 1007 0233 75       		.byte	0x75
+ 1008 0234 00       		.sleb128 0
+ 1009 0235 00       		.byte	0
+ 1010 0236 00       		.byte	0
+ 1011 0237 13       		.uleb128 0x13
+ 1012 0238 04       		.byte	0x4
+ 1013 0239 81000000 		.4byte	0x81
+ 1014 023d 14       		.uleb128 0x14
+ 1015 023e 4E000000 		.4byte	.LASF38
+ 1016 0242 01       		.byte	0x1
+ 1017 0243 09       		.byte	0x9
+ 1018 0244 00000000 		.4byte	.LFB63
+ 1019 0248 98000000 		.4byte	.LFE63-.LFB63
+ 1020 024c 01       		.uleb128 0x1
+ 1021 024d 9C       		.byte	0x9c
+ 1022 024e 36030000 		.4byte	0x336
+ 1023 0252 0E       		.uleb128 0xe
+ 1024 0253 637300   		.ascii	"cs\000"
+ 1025 0256 01       		.byte	0x1
+ 1026 0257 0B       		.byte	0xb
+ 1027 0258 81000000 		.4byte	0x81
+ 1028 025c 1B010000 		.4byte	.LLST10
+ 1029 0260 0E       		.uleb128 0xe
+ 1030 0261 6F6500   		.ascii	"oe\000"
+ 1031 0264 01       		.byte	0x1
+ 1032 0265 0C       		.byte	0xc
+ 1033 0266 81000000 		.4byte	0x81
+ 1034 026a 2E010000 		.4byte	.LLST11
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 22
+
+
+ 1035 026e 15       		.uleb128 0x15
+ 1036 026f 00000000 		.4byte	.LASF25
+ 1037 0273 01       		.byte	0x1
+ 1038 0274 18       		.byte	0x18
+ 1039 0275 36030000 		.4byte	0x336
+ 1040 0279 02       		.uleb128 0x2
+ 1041 027a 91       		.byte	0x91
+ 1042 027b 58       		.sleb128 -40
+ 1043 027c 15       		.uleb128 0x15
+ 1044 027d 40000000 		.4byte	.LASF26
+ 1045 0281 01       		.byte	0x1
+ 1046 0282 19       		.byte	0x19
+ 1047 0283 36030000 		.4byte	0x336
+ 1048 0287 02       		.uleb128 0x2
+ 1049 0288 91       		.byte	0x91
+ 1050 0289 48       		.sleb128 -56
+ 1051 028a 0F       		.uleb128 0xf
+ 1052 028b 08000000 		.4byte	.LVL17
+ 1053 028f C4060000 		.4byte	0x6c4
+ 1054 0293 10       		.uleb128 0x10
+ 1055 0294 16000000 		.4byte	.LVL20
+ 1056 0298 CF060000 		.4byte	0x6cf
+ 1057 029c A6020000 		.4byte	0x2a6
+ 1058 02a0 11       		.uleb128 0x11
+ 1059 02a1 01       		.uleb128 0x1
+ 1060 02a2 50       		.byte	0x50
+ 1061 02a3 01       		.uleb128 0x1
+ 1062 02a4 33       		.byte	0x33
+ 1063 02a5 00       		.byte	0
+ 1064 02a6 10       		.uleb128 0x10
+ 1065 02a7 28000000 		.4byte	.LVL21
+ 1066 02ab E0060000 		.4byte	0x6e0
+ 1067 02af B9020000 		.4byte	0x2b9
+ 1068 02b3 11       		.uleb128 0x11
+ 1069 02b4 01       		.uleb128 0x1
+ 1070 02b5 50       		.byte	0x50
+ 1071 02b6 01       		.uleb128 0x1
+ 1072 02b7 35       		.byte	0x35
+ 1073 02b8 00       		.byte	0
+ 1074 02b9 10       		.uleb128 0x10
+ 1075 02ba 34000000 		.4byte	.LVL22
+ 1076 02be E0060000 		.4byte	0x6e0
+ 1077 02c2 CD020000 		.4byte	0x2cd
+ 1078 02c6 11       		.uleb128 0x11
+ 1079 02c7 01       		.uleb128 0x1
+ 1080 02c8 50       		.byte	0x50
+ 1081 02c9 02       		.uleb128 0x2
+ 1082 02ca 08       		.byte	0x8
+ 1083 02cb 64       		.byte	0x64
+ 1084 02cc 00       		.byte	0
+ 1085 02cd 10       		.uleb128 0x10
+ 1086 02ce 42000000 		.4byte	.LVL23
+ 1087 02d2 25010000 		.4byte	0x125
+ 1088 02d6 E7020000 		.4byte	0x2e7
+ 1089 02da 11       		.uleb128 0x11
+ 1090 02db 01       		.uleb128 0x1
+ 1091 02dc 51       		.byte	0x51
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 23
+
+
+ 1092 02dd 02       		.uleb128 0x2
+ 1093 02de 09       		.byte	0x9
+ 1094 02df E8       		.byte	0xe8
+ 1095 02e0 11       		.uleb128 0x11
+ 1096 02e1 01       		.uleb128 0x1
+ 1097 02e2 50       		.byte	0x50
+ 1098 02e3 02       		.uleb128 0x2
+ 1099 02e4 08       		.byte	0x8
+ 1100 02e5 36       		.byte	0x36
+ 1101 02e6 00       		.byte	0
+ 1102 02e7 10       		.uleb128 0x10
+ 1103 02e8 74000000 		.4byte	.LVL24
+ 1104 02ec A1010000 		.4byte	0x1a1
+ 1105 02f0 06030000 		.4byte	0x306
+ 1106 02f4 11       		.uleb128 0x11
+ 1107 02f5 01       		.uleb128 0x1
+ 1108 02f6 52       		.byte	0x52
+ 1109 02f7 01       		.uleb128 0x1
+ 1110 02f8 3F       		.byte	0x3f
+ 1111 02f9 11       		.uleb128 0x11
+ 1112 02fa 01       		.uleb128 0x1
+ 1113 02fb 51       		.byte	0x51
+ 1114 02fc 02       		.uleb128 0x2
+ 1115 02fd 91       		.byte	0x91
+ 1116 02fe 58       		.sleb128 -40
+ 1117 02ff 11       		.uleb128 0x11
+ 1118 0300 01       		.uleb128 0x1
+ 1119 0301 50       		.byte	0x50
+ 1120 0302 02       		.uleb128 0x2
+ 1121 0303 09       		.byte	0x9
+ 1122 0304 E0       		.byte	0xe0
+ 1123 0305 00       		.byte	0
+ 1124 0306 10       		.uleb128 0x10
+ 1125 0307 7E000000 		.4byte	.LVL25
+ 1126 030b A1010000 		.4byte	0x1a1
+ 1127 030f 25030000 		.4byte	0x325
+ 1128 0313 11       		.uleb128 0x11
+ 1129 0314 01       		.uleb128 0x1
+ 1130 0315 52       		.byte	0x52
+ 1131 0316 01       		.uleb128 0x1
+ 1132 0317 3F       		.byte	0x3f
+ 1133 0318 11       		.uleb128 0x11
+ 1134 0319 01       		.uleb128 0x1
+ 1135 031a 51       		.byte	0x51
+ 1136 031b 02       		.uleb128 0x2
+ 1137 031c 7D       		.byte	0x7d
+ 1138 031d 00       		.sleb128 0
+ 1139 031e 11       		.uleb128 0x11
+ 1140 031f 01       		.uleb128 0x1
+ 1141 0320 50       		.byte	0x50
+ 1142 0321 02       		.uleb128 0x2
+ 1143 0322 09       		.byte	0x9
+ 1144 0323 E1       		.byte	0xe1
+ 1145 0324 00       		.byte	0
+ 1146 0325 12       		.uleb128 0x12
+ 1147 0326 86000000 		.4byte	.LVL26
+ 1148 032a CF060000 		.4byte	0x6cf
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 24
+
+
+ 1149 032e 11       		.uleb128 0x11
+ 1150 032f 01       		.uleb128 0x1
+ 1151 0330 50       		.byte	0x50
+ 1152 0331 02       		.uleb128 0x2
+ 1153 0332 77       		.byte	0x77
+ 1154 0333 00       		.sleb128 0
+ 1155 0334 00       		.byte	0
+ 1156 0335 00       		.byte	0
+ 1157 0336 07       		.uleb128 0x7
+ 1158 0337 81000000 		.4byte	0x81
+ 1159 033b 46030000 		.4byte	0x346
+ 1160 033f 08       		.uleb128 0x8
+ 1161 0340 DC000000 		.4byte	0xdc
+ 1162 0344 0E       		.byte	0xe
+ 1163 0345 00       		.byte	0
+ 1164 0346 0B       		.uleb128 0xb
+ 1165 0347 2A010000 		.4byte	.LASF27
+ 1166 034b 01       		.byte	0x1
+ 1167 034c 48       		.byte	0x48
+ 1168 034d 00000000 		.4byte	.LFB66
+ 1169 0351 44000000 		.4byte	.LFE66-.LFB66
+ 1170 0355 01       		.uleb128 0x1
+ 1171 0356 9C       		.byte	0x9c
+ 1172 0357 EE030000 		.4byte	0x3ee
+ 1173 035b 0D       		.uleb128 0xd
+ 1174 035c 60020000 		.4byte	.LASF28
+ 1175 0360 01       		.byte	0x1
+ 1176 0361 48       		.byte	0x48
+ 1177 0362 8D000000 		.4byte	0x8d
+ 1178 0366 41010000 		.4byte	.LLST12
+ 1179 036a 0D       		.uleb128 0xd
+ 1180 036b 89020000 		.4byte	.LASF29
+ 1181 036f 01       		.byte	0x1
+ 1182 0370 48       		.byte	0x48
+ 1183 0371 8D000000 		.4byte	0x8d
+ 1184 0375 62010000 		.4byte	.LLST13
+ 1185 0379 0D       		.uleb128 0xd
+ 1186 037a 38000000 		.4byte	.LASF30
+ 1187 037e 01       		.byte	0x1
+ 1188 037f 48       		.byte	0x48
+ 1189 0380 8D000000 		.4byte	0x8d
+ 1190 0384 83010000 		.4byte	.LLST14
+ 1191 0388 0D       		.uleb128 0xd
+ 1192 0389 B9020000 		.4byte	.LASF31
+ 1193 038d 01       		.byte	0x1
+ 1194 038e 48       		.byte	0x48
+ 1195 038f 8D000000 		.4byte	0x8d
+ 1196 0393 A4010000 		.4byte	.LLST15
+ 1197 0397 15       		.uleb128 0x15
+ 1198 0398 A2020000 		.4byte	.LASF32
+ 1199 039c 01       		.byte	0x1
+ 1200 039d 4A       		.byte	0x4a
+ 1201 039e E3000000 		.4byte	0xe3
+ 1202 03a2 02       		.uleb128 0x2
+ 1203 03a3 91       		.byte	0x91
+ 1204 03a4 74       		.sleb128 -12
+ 1205 03a5 15       		.uleb128 0x15
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 25
+
+
+ 1206 03a6 48020000 		.4byte	.LASF33
+ 1207 03aa 01       		.byte	0x1
+ 1208 03ab 4B       		.byte	0x4b
+ 1209 03ac E3000000 		.4byte	0xe3
+ 1210 03b0 02       		.uleb128 0x2
+ 1211 03b1 91       		.byte	0x91
+ 1212 03b2 70       		.sleb128 -16
+ 1213 03b3 10       		.uleb128 0x10
+ 1214 03b4 36000000 		.4byte	.LVL32
+ 1215 03b8 A1010000 		.4byte	0x1a1
+ 1216 03bc D2030000 		.4byte	0x3d2
+ 1217 03c0 11       		.uleb128 0x11
+ 1218 03c1 01       		.uleb128 0x1
+ 1219 03c2 52       		.byte	0x52
+ 1220 03c3 01       		.uleb128 0x1
+ 1221 03c4 34       		.byte	0x34
+ 1222 03c5 11       		.uleb128 0x11
+ 1223 03c6 01       		.uleb128 0x1
+ 1224 03c7 51       		.byte	0x51
+ 1225 03c8 02       		.uleb128 0x2
+ 1226 03c9 91       		.byte	0x91
+ 1227 03ca 74       		.sleb128 -12
+ 1228 03cb 11       		.uleb128 0x11
+ 1229 03cc 01       		.uleb128 0x1
+ 1230 03cd 50       		.byte	0x50
+ 1231 03ce 02       		.uleb128 0x2
+ 1232 03cf 08       		.byte	0x8
+ 1233 03d0 2A       		.byte	0x2a
+ 1234 03d1 00       		.byte	0
+ 1235 03d2 12       		.uleb128 0x12
+ 1236 03d3 40000000 		.4byte	.LVL33
+ 1237 03d7 A1010000 		.4byte	0x1a1
+ 1238 03db 11       		.uleb128 0x11
+ 1239 03dc 01       		.uleb128 0x1
+ 1240 03dd 52       		.byte	0x52
+ 1241 03de 01       		.uleb128 0x1
+ 1242 03df 34       		.byte	0x34
+ 1243 03e0 11       		.uleb128 0x11
+ 1244 03e1 01       		.uleb128 0x1
+ 1245 03e2 51       		.byte	0x51
+ 1246 03e3 02       		.uleb128 0x2
+ 1247 03e4 7D       		.byte	0x7d
+ 1248 03e5 00       		.sleb128 0
+ 1249 03e6 11       		.uleb128 0x11
+ 1250 03e7 01       		.uleb128 0x1
+ 1251 03e8 50       		.byte	0x50
+ 1252 03e9 02       		.uleb128 0x2
+ 1253 03ea 08       		.byte	0x8
+ 1254 03eb 2B       		.byte	0x2b
+ 1255 03ec 00       		.byte	0
+ 1256 03ed 00       		.byte	0
+ 1257 03ee 0B       		.uleb128 0xb
+ 1258 03ef A7020000 		.4byte	.LASF34
+ 1259 03f3 01       		.byte	0x1
+ 1260 03f4 50       		.byte	0x50
+ 1261 03f5 00000000 		.4byte	.LFB67
+ 1262 03f9 60000000 		.4byte	.LFE67-.LFB67
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 26
+
+
+ 1263 03fd 01       		.uleb128 0x1
+ 1264 03fe 9C       		.byte	0x9c
+ 1265 03ff C1040000 		.4byte	0x4c1
+ 1266 0403 0D       		.uleb128 0xd
+ 1267 0404 60020000 		.4byte	.LASF28
+ 1268 0408 01       		.byte	0x1
+ 1269 0409 50       		.byte	0x50
+ 1270 040a 8D000000 		.4byte	0x8d
+ 1271 040e C5010000 		.4byte	.LLST16
+ 1272 0412 0D       		.uleb128 0xd
+ 1273 0413 89020000 		.4byte	.LASF29
+ 1274 0417 01       		.byte	0x1
+ 1275 0418 50       		.byte	0x50
+ 1276 0419 8D000000 		.4byte	0x8d
+ 1277 041d E6010000 		.4byte	.LLST17
+ 1278 0421 0D       		.uleb128 0xd
+ 1279 0422 38000000 		.4byte	.LASF30
+ 1280 0426 01       		.byte	0x1
+ 1281 0427 50       		.byte	0x50
+ 1282 0428 8D000000 		.4byte	0x8d
+ 1283 042c 07020000 		.4byte	.LLST18
+ 1284 0430 0D       		.uleb128 0xd
+ 1285 0431 B9020000 		.4byte	.LASF31
+ 1286 0435 01       		.byte	0x1
+ 1287 0436 50       		.byte	0x50
+ 1288 0437 8D000000 		.4byte	0x8d
+ 1289 043b 28020000 		.4byte	.LLST19
+ 1290 043f 10       		.uleb128 0x10
+ 1291 0440 10000000 		.4byte	.LVL36
+ 1292 0444 CF060000 		.4byte	0x6cf
+ 1293 0448 52040000 		.4byte	0x452
+ 1294 044c 11       		.uleb128 0x11
+ 1295 044d 01       		.uleb128 0x1
+ 1296 044e 50       		.byte	0x50
+ 1297 044f 01       		.uleb128 0x1
+ 1298 0450 33       		.byte	0x33
+ 1299 0451 00       		.byte	0
+ 1300 0452 10       		.uleb128 0x10
+ 1301 0453 22000000 		.4byte	.LVL37
+ 1302 0457 46030000 		.4byte	0x346
+ 1303 045b 78040000 		.4byte	0x478
+ 1304 045f 11       		.uleb128 0x11
+ 1305 0460 01       		.uleb128 0x1
+ 1306 0461 53       		.byte	0x53
+ 1307 0462 02       		.uleb128 0x2
+ 1308 0463 74       		.byte	0x74
+ 1309 0464 00       		.sleb128 0
+ 1310 0465 11       		.uleb128 0x11
+ 1311 0466 01       		.uleb128 0x1
+ 1312 0467 52       		.byte	0x52
+ 1313 0468 02       		.uleb128 0x2
+ 1314 0469 75       		.byte	0x75
+ 1315 046a 00       		.sleb128 0
+ 1316 046b 11       		.uleb128 0x11
+ 1317 046c 01       		.uleb128 0x1
+ 1318 046d 51       		.byte	0x51
+ 1319 046e 02       		.uleb128 0x2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 27
+
+
+ 1320 046f 76       		.byte	0x76
+ 1321 0470 00       		.sleb128 0
+ 1322 0471 11       		.uleb128 0x11
+ 1323 0472 01       		.uleb128 0x1
+ 1324 0473 50       		.byte	0x50
+ 1325 0474 02       		.uleb128 0x2
+ 1326 0475 77       		.byte	0x77
+ 1327 0476 00       		.sleb128 0
+ 1328 0477 00       		.byte	0
+ 1329 0478 10       		.uleb128 0x10
+ 1330 0479 3E000000 		.4byte	.LVL38
+ 1331 047d F1060000 		.4byte	0x6f1
+ 1332 0481 8B040000 		.4byte	0x48b
+ 1333 0485 11       		.uleb128 0x11
+ 1334 0486 01       		.uleb128 0x1
+ 1335 0487 50       		.byte	0x50
+ 1336 0488 01       		.uleb128 0x1
+ 1337 0489 30       		.byte	0x30
+ 1338 048a 00       		.byte	0
+ 1339 048b 10       		.uleb128 0x10
+ 1340 048c 44000000 		.4byte	.LVL39
+ 1341 0490 02070000 		.4byte	0x702
+ 1342 0494 9E040000 		.4byte	0x49e
+ 1343 0498 11       		.uleb128 0x11
+ 1344 0499 01       		.uleb128 0x1
+ 1345 049a 50       		.byte	0x50
+ 1346 049b 01       		.uleb128 0x1
+ 1347 049c 48       		.byte	0x48
+ 1348 049d 00       		.byte	0
+ 1349 049e 10       		.uleb128 0x10
+ 1350 049f 4A000000 		.4byte	.LVL40
+ 1351 04a3 F1060000 		.4byte	0x6f1
+ 1352 04a7 B1040000 		.4byte	0x4b1
+ 1353 04ab 11       		.uleb128 0x11
+ 1354 04ac 01       		.uleb128 0x1
+ 1355 04ad 50       		.byte	0x50
+ 1356 04ae 01       		.uleb128 0x1
+ 1357 04af 31       		.byte	0x31
+ 1358 04b0 00       		.byte	0
+ 1359 04b1 12       		.uleb128 0x12
+ 1360 04b2 50000000 		.4byte	.LVL41
+ 1361 04b6 02070000 		.4byte	0x702
+ 1362 04ba 11       		.uleb128 0x11
+ 1363 04bb 01       		.uleb128 0x1
+ 1364 04bc 50       		.byte	0x50
+ 1365 04bd 01       		.uleb128 0x1
+ 1366 04be 36       		.byte	0x36
+ 1367 04bf 00       		.byte	0
+ 1368 04c0 00       		.byte	0
+ 1369 04c1 0B       		.uleb128 0xb
+ 1370 04c2 FE000000 		.4byte	.LASF35
+ 1371 04c6 01       		.byte	0x1
+ 1372 04c7 61       		.byte	0x61
+ 1373 04c8 00000000 		.4byte	.LFB68
+ 1374 04cc 34000000 		.4byte	.LFE68-.LFB68
+ 1375 04d0 01       		.uleb128 0x1
+ 1376 04d1 9C       		.byte	0x9c
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 28
+
+
+ 1377 04d2 48050000 		.4byte	0x548
+ 1378 04d6 0D       		.uleb128 0xd
+ 1379 04d7 60020000 		.4byte	.LASF28
+ 1380 04db 01       		.byte	0x1
+ 1381 04dc 61       		.byte	0x61
+ 1382 04dd 8D000000 		.4byte	0x8d
+ 1383 04e1 49020000 		.4byte	.LLST20
+ 1384 04e5 0D       		.uleb128 0xd
+ 1385 04e6 89020000 		.4byte	.LASF29
+ 1386 04ea 01       		.byte	0x1
+ 1387 04eb 61       		.byte	0x61
+ 1388 04ec 8D000000 		.4byte	0x8d
+ 1389 04f0 6A020000 		.4byte	.LLST21
+ 1390 04f4 0D       		.uleb128 0xd
+ 1391 04f5 38000000 		.4byte	.LASF30
+ 1392 04f9 01       		.byte	0x1
+ 1393 04fa 61       		.byte	0x61
+ 1394 04fb 8D000000 		.4byte	0x8d
+ 1395 04ff 8B020000 		.4byte	.LLST22
+ 1396 0503 0D       		.uleb128 0xd
+ 1397 0504 B9020000 		.4byte	.LASF31
+ 1398 0508 01       		.byte	0x1
+ 1399 0509 61       		.byte	0x61
+ 1400 050a 8D000000 		.4byte	0x8d
+ 1401 050e AC020000 		.4byte	.LLST23
+ 1402 0512 10       		.uleb128 0x10
+ 1403 0513 10000000 		.4byte	.LVL44
+ 1404 0517 CF060000 		.4byte	0x6cf
+ 1405 051b 25050000 		.4byte	0x525
+ 1406 051f 11       		.uleb128 0x11
+ 1407 0520 01       		.uleb128 0x1
+ 1408 0521 50       		.byte	0x50
+ 1409 0522 01       		.uleb128 0x1
+ 1410 0523 33       		.byte	0x33
+ 1411 0524 00       		.byte	0
+ 1412 0525 12       		.uleb128 0x12
+ 1413 0526 22000000 		.4byte	.LVL45
+ 1414 052a 46030000 		.4byte	0x346
+ 1415 052e 11       		.uleb128 0x11
+ 1416 052f 01       		.uleb128 0x1
+ 1417 0530 53       		.byte	0x53
+ 1418 0531 02       		.uleb128 0x2
+ 1419 0532 74       		.byte	0x74
+ 1420 0533 00       		.sleb128 0
+ 1421 0534 11       		.uleb128 0x11
+ 1422 0535 01       		.uleb128 0x1
+ 1423 0536 52       		.byte	0x52
+ 1424 0537 02       		.uleb128 0x2
+ 1425 0538 75       		.byte	0x75
+ 1426 0539 00       		.sleb128 0
+ 1427 053a 11       		.uleb128 0x11
+ 1428 053b 01       		.uleb128 0x1
+ 1429 053c 51       		.byte	0x51
+ 1430 053d 02       		.uleb128 0x2
+ 1431 053e 76       		.byte	0x76
+ 1432 053f 00       		.sleb128 0
+ 1433 0540 11       		.uleb128 0x11
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 29
+
+
+ 1434 0541 01       		.uleb128 0x1
+ 1435 0542 50       		.byte	0x50
+ 1436 0543 02       		.uleb128 0x2
+ 1437 0544 77       		.byte	0x77
+ 1438 0545 00       		.sleb128 0
+ 1439 0546 00       		.byte	0
+ 1440 0547 00       		.byte	0
+ 1441 0548 16       		.uleb128 0x16
+ 1442 0549 DD020000 		.4byte	.LASF36
+ 1443 054d 01       		.byte	0x1
+ 1444 054e 6A       		.byte	0x6a
+ 1445 054f 1A010000 		.4byte	0x11a
+ 1446 0553 00000000 		.4byte	.LFB69
+ 1447 0557 84000000 		.4byte	.LFE69-.LFB69
+ 1448 055b 01       		.uleb128 0x1
+ 1449 055c 9C       		.byte	0x9c
+ 1450 055d 4E060000 		.4byte	0x64e
+ 1451 0561 17       		.uleb128 0x17
+ 1452 0562 7000     		.ascii	"p\000"
+ 1453 0564 01       		.byte	0x1
+ 1454 0565 6C       		.byte	0x6c
+ 1455 0566 1A010000 		.4byte	0x11a
+ 1456 056a 02       		.uleb128 0x2
+ 1457 056b 91       		.byte	0x91
+ 1458 056c 70       		.sleb128 -16
+ 1459 056d 10       		.uleb128 0x10
+ 1460 056e 0A000000 		.4byte	.LVL46
+ 1461 0572 F1060000 		.4byte	0x6f1
+ 1462 0576 80050000 		.4byte	0x580
+ 1463 057a 11       		.uleb128 0x11
+ 1464 057b 01       		.uleb128 0x1
+ 1465 057c 50       		.byte	0x50
+ 1466 057d 01       		.uleb128 0x1
+ 1467 057e 30       		.byte	0x30
+ 1468 057f 00       		.byte	0
+ 1469 0580 10       		.uleb128 0x10
+ 1470 0581 10000000 		.4byte	.LVL47
+ 1471 0585 02070000 		.4byte	0x702
+ 1472 0589 93050000 		.4byte	0x593
+ 1473 058d 11       		.uleb128 0x11
+ 1474 058e 01       		.uleb128 0x1
+ 1475 058f 50       		.byte	0x50
+ 1476 0590 01       		.uleb128 0x1
+ 1477 0591 48       		.byte	0x48
+ 1478 0592 00       		.byte	0
+ 1479 0593 10       		.uleb128 0x10
+ 1480 0594 1E000000 		.4byte	.LVL48
+ 1481 0598 F1060000 		.4byte	0x6f1
+ 1482 059c A6050000 		.4byte	0x5a6
+ 1483 05a0 11       		.uleb128 0x11
+ 1484 05a1 01       		.uleb128 0x1
+ 1485 05a2 50       		.byte	0x50
+ 1486 05a3 01       		.uleb128 0x1
+ 1487 05a4 31       		.byte	0x31
+ 1488 05a5 00       		.byte	0
+ 1489 05a6 10       		.uleb128 0x10
+ 1490 05a7 24000000 		.4byte	.LVL49
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 30
+
+
+ 1491 05ab 02070000 		.4byte	0x702
+ 1492 05af B9050000 		.4byte	0x5b9
+ 1493 05b3 11       		.uleb128 0x11
+ 1494 05b4 01       		.uleb128 0x1
+ 1495 05b5 50       		.byte	0x50
+ 1496 05b6 01       		.uleb128 0x1
+ 1497 05b7 36       		.byte	0x36
+ 1498 05b8 00       		.byte	0
+ 1499 05b9 10       		.uleb128 0x10
+ 1500 05ba 2A000000 		.4byte	.LVL50
+ 1501 05be F1060000 		.4byte	0x6f1
+ 1502 05c2 CC050000 		.4byte	0x5cc
+ 1503 05c6 11       		.uleb128 0x11
+ 1504 05c7 01       		.uleb128 0x1
+ 1505 05c8 50       		.byte	0x50
+ 1506 05c9 01       		.uleb128 0x1
+ 1507 05ca 30       		.byte	0x30
+ 1508 05cb 00       		.byte	0
+ 1509 05cc 10       		.uleb128 0x10
+ 1510 05cd 30000000 		.4byte	.LVL51
+ 1511 05d1 02070000 		.4byte	0x702
+ 1512 05d5 DF050000 		.4byte	0x5df
+ 1513 05d9 11       		.uleb128 0x11
+ 1514 05da 01       		.uleb128 0x1
+ 1515 05db 50       		.byte	0x50
+ 1516 05dc 01       		.uleb128 0x1
+ 1517 05dd 48       		.byte	0x48
+ 1518 05de 00       		.byte	0
+ 1519 05df 10       		.uleb128 0x10
+ 1520 05e0 3C000000 		.4byte	.LVL52
+ 1521 05e4 F1060000 		.4byte	0x6f1
+ 1522 05e8 F2050000 		.4byte	0x5f2
+ 1523 05ec 11       		.uleb128 0x11
+ 1524 05ed 01       		.uleb128 0x1
+ 1525 05ee 50       		.byte	0x50
+ 1526 05ef 01       		.uleb128 0x1
+ 1527 05f0 31       		.byte	0x31
+ 1528 05f1 00       		.byte	0
+ 1529 05f2 10       		.uleb128 0x10
+ 1530 05f3 42000000 		.4byte	.LVL53
+ 1531 05f7 02070000 		.4byte	0x702
+ 1532 05fb 05060000 		.4byte	0x605
+ 1533 05ff 11       		.uleb128 0x11
+ 1534 0600 01       		.uleb128 0x1
+ 1535 0601 50       		.byte	0x50
+ 1536 0602 01       		.uleb128 0x1
+ 1537 0603 36       		.byte	0x36
+ 1538 0604 00       		.byte	0
+ 1539 0605 10       		.uleb128 0x10
+ 1540 0606 48000000 		.4byte	.LVL54
+ 1541 060a F1060000 		.4byte	0x6f1
+ 1542 060e 18060000 		.4byte	0x618
+ 1543 0612 11       		.uleb128 0x11
+ 1544 0613 01       		.uleb128 0x1
+ 1545 0614 50       		.byte	0x50
+ 1546 0615 01       		.uleb128 0x1
+ 1547 0616 30       		.byte	0x30
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 31
+
+
+ 1548 0617 00       		.byte	0
+ 1549 0618 10       		.uleb128 0x10
+ 1550 0619 4E000000 		.4byte	.LVL55
+ 1551 061d 02070000 		.4byte	0x702
+ 1552 0621 2B060000 		.4byte	0x62b
+ 1553 0625 11       		.uleb128 0x11
+ 1554 0626 01       		.uleb128 0x1
+ 1555 0627 50       		.byte	0x50
+ 1556 0628 01       		.uleb128 0x1
+ 1557 0629 48       		.byte	0x48
+ 1558 062a 00       		.byte	0
+ 1559 062b 10       		.uleb128 0x10
+ 1560 062c 5A000000 		.4byte	.LVL56
+ 1561 0630 F1060000 		.4byte	0x6f1
+ 1562 0634 3E060000 		.4byte	0x63e
+ 1563 0638 11       		.uleb128 0x11
+ 1564 0639 01       		.uleb128 0x1
+ 1565 063a 50       		.byte	0x50
+ 1566 063b 01       		.uleb128 0x1
+ 1567 063c 31       		.byte	0x31
+ 1568 063d 00       		.byte	0
+ 1569 063e 12       		.uleb128 0x12
+ 1570 063f 60000000 		.4byte	.LVL57
+ 1571 0643 02070000 		.4byte	0x702
+ 1572 0647 11       		.uleb128 0x11
+ 1573 0648 01       		.uleb128 0x1
+ 1574 0649 50       		.byte	0x50
+ 1575 064a 01       		.uleb128 0x1
+ 1576 064b 36       		.byte	0x36
+ 1577 064c 00       		.byte	0
+ 1578 064d 00       		.byte	0
+ 1579 064e 0B       		.uleb128 0xb
+ 1580 064f 70020000 		.4byte	.LASF37
+ 1581 0653 01       		.byte	0x1
+ 1582 0654 7F       		.byte	0x7f
+ 1583 0655 00000000 		.4byte	.LFB70
+ 1584 0659 30000000 		.4byte	.LFE70-.LFB70
+ 1585 065d 01       		.uleb128 0x1
+ 1586 065e 9C       		.byte	0x9c
+ 1587 065f 70060000 		.4byte	0x670
+ 1588 0663 18       		.uleb128 0x18
+ 1589 0664 7000     		.ascii	"p\000"
+ 1590 0666 01       		.byte	0x1
+ 1591 0667 7F       		.byte	0x7f
+ 1592 0668 1A010000 		.4byte	0x11a
+ 1593 066c 02       		.uleb128 0x2
+ 1594 066d 91       		.byte	0x91
+ 1595 066e 7C       		.sleb128 -4
+ 1596 066f 00       		.byte	0
+ 1597 0670 14       		.uleb128 0x14
+ 1598 0671 20000000 		.4byte	.LASF39
+ 1599 0675 01       		.byte	0x1
+ 1600 0676 87       		.byte	0x87
+ 1601 0677 00000000 		.4byte	.LFB71
+ 1602 067b 2C000000 		.4byte	.LFE71-.LFB71
+ 1603 067f 01       		.uleb128 0x1
+ 1604 0680 9C       		.byte	0x9c
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 32
+
+
+ 1605 0681 92060000 		.4byte	0x692
+ 1606 0685 17       		.uleb128 0x17
+ 1607 0686 6F6500   		.ascii	"oe\000"
+ 1608 0689 01       		.byte	0x1
+ 1609 068a 89       		.byte	0x89
+ 1610 068b 81000000 		.4byte	0x81
+ 1611 068f 01       		.uleb128 0x1
+ 1612 0690 52       		.byte	0x52
+ 1613 0691 00       		.byte	0
+ 1614 0692 19       		.uleb128 0x19
+ 1615 0693 F1000000 		.4byte	.LASF40
+ 1616 0697 06       		.byte	0x6
+ 1617 0698 9606     		.2byte	0x696
+ 1618 069a 9E060000 		.4byte	0x69e
+ 1619 069e 06       		.uleb128 0x6
+ 1620 069f 76000000 		.4byte	0x76
+ 1621 06a3 07       		.uleb128 0x7
+ 1622 06a4 99000000 		.4byte	0x99
+ 1623 06a8 B3060000 		.4byte	0x6b3
+ 1624 06ac 08       		.uleb128 0x8
+ 1625 06ad DC000000 		.4byte	0xdc
+ 1626 06b1 9F       		.byte	0x9f
+ 1627 06b2 00       		.byte	0
+ 1628 06b3 1A       		.uleb128 0x1a
+ 1629 06b4 11010000 		.4byte	.LASF41
+ 1630 06b8 07       		.byte	0x7
+ 1631 06b9 13       		.byte	0x13
+ 1632 06ba A3060000 		.4byte	0x6a3
+ 1633 06be 05       		.uleb128 0x5
+ 1634 06bf 03       		.byte	0x3
+ 1635 06c0 00000000 		.4byte	Camera_linebuffer
+ 1636 06c4 1B       		.uleb128 0x1b
+ 1637 06c5 02030000 		.4byte	.LASF48
+ 1638 06c9 08       		.byte	0x8
+ 1639 06ca 29       		.byte	0x29
+ 1640 06cb 81000000 		.4byte	0x81
+ 1641 06cf 1C       		.uleb128 0x1c
+ 1642 06d0 93020000 		.4byte	.LASF42
+ 1643 06d4 08       		.byte	0x8
+ 1644 06d5 26       		.byte	0x26
+ 1645 06d6 E0060000 		.4byte	0x6e0
+ 1646 06da 1D       		.uleb128 0x1d
+ 1647 06db 81000000 		.4byte	0x81
+ 1648 06df 00       		.byte	0
+ 1649 06e0 1C       		.uleb128 0x1c
+ 1650 06e1 FA020000 		.4byte	.LASF43
+ 1651 06e5 09       		.byte	0x9
+ 1652 06e6 76       		.byte	0x76
+ 1653 06e7 F1060000 		.4byte	0x6f1
+ 1654 06eb 1D       		.uleb128 0x1d
+ 1655 06ec 99000000 		.4byte	0x99
+ 1656 06f0 00       		.byte	0
+ 1657 06f1 1C       		.uleb128 0x1c
+ 1658 06f2 2A020000 		.4byte	.LASF44
+ 1659 06f6 0A       		.byte	0xa
+ 1660 06f7 26       		.byte	0x26
+ 1661 06f8 02070000 		.4byte	0x702
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 33
+
+
+ 1662 06fc 1D       		.uleb128 0x1d
+ 1663 06fd 81000000 		.4byte	0x81
+ 1664 0701 00       		.byte	0
+ 1665 0702 1E       		.uleb128 0x1e
+ 1666 0703 08000000 		.4byte	.LASF49
+ 1667 0707 09       		.byte	0x9
+ 1668 0708 79       		.byte	0x79
+ 1669 0709 1D       		.uleb128 0x1d
+ 1670 070a 99000000 		.4byte	0x99
+ 1671 070e 00       		.byte	0
+ 1672 070f 00       		.byte	0
+ 1673              		.section	.debug_abbrev,"",%progbits
+ 1674              	.Ldebug_abbrev0:
+ 1675 0000 01       		.uleb128 0x1
+ 1676 0001 11       		.uleb128 0x11
+ 1677 0002 01       		.byte	0x1
+ 1678 0003 25       		.uleb128 0x25
+ 1679 0004 0E       		.uleb128 0xe
+ 1680 0005 13       		.uleb128 0x13
+ 1681 0006 0B       		.uleb128 0xb
+ 1682 0007 03       		.uleb128 0x3
+ 1683 0008 0E       		.uleb128 0xe
+ 1684 0009 1B       		.uleb128 0x1b
+ 1685 000a 0E       		.uleb128 0xe
+ 1686 000b 55       		.uleb128 0x55
+ 1687 000c 17       		.uleb128 0x17
+ 1688 000d 11       		.uleb128 0x11
+ 1689 000e 01       		.uleb128 0x1
+ 1690 000f 10       		.uleb128 0x10
+ 1691 0010 17       		.uleb128 0x17
+ 1692 0011 00       		.byte	0
+ 1693 0012 00       		.byte	0
+ 1694 0013 02       		.uleb128 0x2
+ 1695 0014 24       		.uleb128 0x24
+ 1696 0015 00       		.byte	0
+ 1697 0016 0B       		.uleb128 0xb
+ 1698 0017 0B       		.uleb128 0xb
+ 1699 0018 3E       		.uleb128 0x3e
+ 1700 0019 0B       		.uleb128 0xb
+ 1701 001a 03       		.uleb128 0x3
+ 1702 001b 0E       		.uleb128 0xe
+ 1703 001c 00       		.byte	0
+ 1704 001d 00       		.byte	0
+ 1705 001e 03       		.uleb128 0x3
+ 1706 001f 16       		.uleb128 0x16
+ 1707 0020 00       		.byte	0
+ 1708 0021 03       		.uleb128 0x3
+ 1709 0022 0E       		.uleb128 0xe
+ 1710 0023 3A       		.uleb128 0x3a
+ 1711 0024 0B       		.uleb128 0xb
+ 1712 0025 3B       		.uleb128 0x3b
+ 1713 0026 0B       		.uleb128 0xb
+ 1714 0027 49       		.uleb128 0x49
+ 1715 0028 13       		.uleb128 0x13
+ 1716 0029 00       		.byte	0
+ 1717 002a 00       		.byte	0
+ 1718 002b 04       		.uleb128 0x4
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 34
+
+
+ 1719 002c 24       		.uleb128 0x24
+ 1720 002d 00       		.byte	0
+ 1721 002e 0B       		.uleb128 0xb
+ 1722 002f 0B       		.uleb128 0xb
+ 1723 0030 3E       		.uleb128 0x3e
+ 1724 0031 0B       		.uleb128 0xb
+ 1725 0032 03       		.uleb128 0x3
+ 1726 0033 08       		.uleb128 0x8
+ 1727 0034 00       		.byte	0
+ 1728 0035 00       		.byte	0
+ 1729 0036 05       		.uleb128 0x5
+ 1730 0037 16       		.uleb128 0x16
+ 1731 0038 00       		.byte	0
+ 1732 0039 03       		.uleb128 0x3
+ 1733 003a 0E       		.uleb128 0xe
+ 1734 003b 3A       		.uleb128 0x3a
+ 1735 003c 0B       		.uleb128 0xb
+ 1736 003d 3B       		.uleb128 0x3b
+ 1737 003e 05       		.uleb128 0x5
+ 1738 003f 49       		.uleb128 0x49
+ 1739 0040 13       		.uleb128 0x13
+ 1740 0041 00       		.byte	0
+ 1741 0042 00       		.byte	0
+ 1742 0043 06       		.uleb128 0x6
+ 1743 0044 35       		.uleb128 0x35
+ 1744 0045 00       		.byte	0
+ 1745 0046 49       		.uleb128 0x49
+ 1746 0047 13       		.uleb128 0x13
+ 1747 0048 00       		.byte	0
+ 1748 0049 00       		.byte	0
+ 1749 004a 07       		.uleb128 0x7
+ 1750 004b 01       		.uleb128 0x1
+ 1751 004c 01       		.byte	0x1
+ 1752 004d 49       		.uleb128 0x49
+ 1753 004e 13       		.uleb128 0x13
+ 1754 004f 01       		.uleb128 0x1
+ 1755 0050 13       		.uleb128 0x13
+ 1756 0051 00       		.byte	0
+ 1757 0052 00       		.byte	0
+ 1758 0053 08       		.uleb128 0x8
+ 1759 0054 21       		.uleb128 0x21
+ 1760 0055 00       		.byte	0
+ 1761 0056 49       		.uleb128 0x49
+ 1762 0057 13       		.uleb128 0x13
+ 1763 0058 2F       		.uleb128 0x2f
+ 1764 0059 0B       		.uleb128 0xb
+ 1765 005a 00       		.byte	0
+ 1766 005b 00       		.byte	0
+ 1767 005c 09       		.uleb128 0x9
+ 1768 005d 13       		.uleb128 0x13
+ 1769 005e 01       		.byte	0x1
+ 1770 005f 0B       		.uleb128 0xb
+ 1771 0060 0B       		.uleb128 0xb
+ 1772 0061 3A       		.uleb128 0x3a
+ 1773 0062 0B       		.uleb128 0xb
+ 1774 0063 3B       		.uleb128 0x3b
+ 1775 0064 0B       		.uleb128 0xb
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 35
+
+
+ 1776 0065 01       		.uleb128 0x1
+ 1777 0066 13       		.uleb128 0x13
+ 1778 0067 00       		.byte	0
+ 1779 0068 00       		.byte	0
+ 1780 0069 0A       		.uleb128 0xa
+ 1781 006a 0D       		.uleb128 0xd
+ 1782 006b 00       		.byte	0
+ 1783 006c 03       		.uleb128 0x3
+ 1784 006d 08       		.uleb128 0x8
+ 1785 006e 3A       		.uleb128 0x3a
+ 1786 006f 0B       		.uleb128 0xb
+ 1787 0070 3B       		.uleb128 0x3b
+ 1788 0071 0B       		.uleb128 0xb
+ 1789 0072 49       		.uleb128 0x49
+ 1790 0073 13       		.uleb128 0x13
+ 1791 0074 38       		.uleb128 0x38
+ 1792 0075 0B       		.uleb128 0xb
+ 1793 0076 00       		.byte	0
+ 1794 0077 00       		.byte	0
+ 1795 0078 0B       		.uleb128 0xb
+ 1796 0079 2E       		.uleb128 0x2e
+ 1797 007a 01       		.byte	0x1
+ 1798 007b 3F       		.uleb128 0x3f
+ 1799 007c 19       		.uleb128 0x19
+ 1800 007d 03       		.uleb128 0x3
+ 1801 007e 0E       		.uleb128 0xe
+ 1802 007f 3A       		.uleb128 0x3a
+ 1803 0080 0B       		.uleb128 0xb
+ 1804 0081 3B       		.uleb128 0x3b
+ 1805 0082 0B       		.uleb128 0xb
+ 1806 0083 27       		.uleb128 0x27
+ 1807 0084 19       		.uleb128 0x19
+ 1808 0085 11       		.uleb128 0x11
+ 1809 0086 01       		.uleb128 0x1
+ 1810 0087 12       		.uleb128 0x12
+ 1811 0088 06       		.uleb128 0x6
+ 1812 0089 40       		.uleb128 0x40
+ 1813 008a 18       		.uleb128 0x18
+ 1814 008b 9742     		.uleb128 0x2117
+ 1815 008d 19       		.uleb128 0x19
+ 1816 008e 01       		.uleb128 0x1
+ 1817 008f 13       		.uleb128 0x13
+ 1818 0090 00       		.byte	0
+ 1819 0091 00       		.byte	0
+ 1820 0092 0C       		.uleb128 0xc
+ 1821 0093 05       		.uleb128 0x5
+ 1822 0094 00       		.byte	0
+ 1823 0095 03       		.uleb128 0x3
+ 1824 0096 08       		.uleb128 0x8
+ 1825 0097 3A       		.uleb128 0x3a
+ 1826 0098 0B       		.uleb128 0xb
+ 1827 0099 3B       		.uleb128 0x3b
+ 1828 009a 0B       		.uleb128 0xb
+ 1829 009b 49       		.uleb128 0x49
+ 1830 009c 13       		.uleb128 0x13
+ 1831 009d 02       		.uleb128 0x2
+ 1832 009e 17       		.uleb128 0x17
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 36
+
+
+ 1833 009f 00       		.byte	0
+ 1834 00a0 00       		.byte	0
+ 1835 00a1 0D       		.uleb128 0xd
+ 1836 00a2 05       		.uleb128 0x5
+ 1837 00a3 00       		.byte	0
+ 1838 00a4 03       		.uleb128 0x3
+ 1839 00a5 0E       		.uleb128 0xe
+ 1840 00a6 3A       		.uleb128 0x3a
+ 1841 00a7 0B       		.uleb128 0xb
+ 1842 00a8 3B       		.uleb128 0x3b
+ 1843 00a9 0B       		.uleb128 0xb
+ 1844 00aa 49       		.uleb128 0x49
+ 1845 00ab 13       		.uleb128 0x13
+ 1846 00ac 02       		.uleb128 0x2
+ 1847 00ad 17       		.uleb128 0x17
+ 1848 00ae 00       		.byte	0
+ 1849 00af 00       		.byte	0
+ 1850 00b0 0E       		.uleb128 0xe
+ 1851 00b1 34       		.uleb128 0x34
+ 1852 00b2 00       		.byte	0
+ 1853 00b3 03       		.uleb128 0x3
+ 1854 00b4 08       		.uleb128 0x8
+ 1855 00b5 3A       		.uleb128 0x3a
+ 1856 00b6 0B       		.uleb128 0xb
+ 1857 00b7 3B       		.uleb128 0x3b
+ 1858 00b8 0B       		.uleb128 0xb
+ 1859 00b9 49       		.uleb128 0x49
+ 1860 00ba 13       		.uleb128 0x13
+ 1861 00bb 02       		.uleb128 0x2
+ 1862 00bc 17       		.uleb128 0x17
+ 1863 00bd 00       		.byte	0
+ 1864 00be 00       		.byte	0
+ 1865 00bf 0F       		.uleb128 0xf
+ 1866 00c0 898201   		.uleb128 0x4109
+ 1867 00c3 00       		.byte	0
+ 1868 00c4 11       		.uleb128 0x11
+ 1869 00c5 01       		.uleb128 0x1
+ 1870 00c6 31       		.uleb128 0x31
+ 1871 00c7 13       		.uleb128 0x13
+ 1872 00c8 00       		.byte	0
+ 1873 00c9 00       		.byte	0
+ 1874 00ca 10       		.uleb128 0x10
+ 1875 00cb 898201   		.uleb128 0x4109
+ 1876 00ce 01       		.byte	0x1
+ 1877 00cf 11       		.uleb128 0x11
+ 1878 00d0 01       		.uleb128 0x1
+ 1879 00d1 31       		.uleb128 0x31
+ 1880 00d2 13       		.uleb128 0x13
+ 1881 00d3 01       		.uleb128 0x1
+ 1882 00d4 13       		.uleb128 0x13
+ 1883 00d5 00       		.byte	0
+ 1884 00d6 00       		.byte	0
+ 1885 00d7 11       		.uleb128 0x11
+ 1886 00d8 8A8201   		.uleb128 0x410a
+ 1887 00db 00       		.byte	0
+ 1888 00dc 02       		.uleb128 0x2
+ 1889 00dd 18       		.uleb128 0x18
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 37
+
+
+ 1890 00de 9142     		.uleb128 0x2111
+ 1891 00e0 18       		.uleb128 0x18
+ 1892 00e1 00       		.byte	0
+ 1893 00e2 00       		.byte	0
+ 1894 00e3 12       		.uleb128 0x12
+ 1895 00e4 898201   		.uleb128 0x4109
+ 1896 00e7 01       		.byte	0x1
+ 1897 00e8 11       		.uleb128 0x11
+ 1898 00e9 01       		.uleb128 0x1
+ 1899 00ea 31       		.uleb128 0x31
+ 1900 00eb 13       		.uleb128 0x13
+ 1901 00ec 00       		.byte	0
+ 1902 00ed 00       		.byte	0
+ 1903 00ee 13       		.uleb128 0x13
+ 1904 00ef 0F       		.uleb128 0xf
+ 1905 00f0 00       		.byte	0
+ 1906 00f1 0B       		.uleb128 0xb
+ 1907 00f2 0B       		.uleb128 0xb
+ 1908 00f3 49       		.uleb128 0x49
+ 1909 00f4 13       		.uleb128 0x13
+ 1910 00f5 00       		.byte	0
+ 1911 00f6 00       		.byte	0
+ 1912 00f7 14       		.uleb128 0x14
+ 1913 00f8 2E       		.uleb128 0x2e
+ 1914 00f9 01       		.byte	0x1
+ 1915 00fa 3F       		.uleb128 0x3f
+ 1916 00fb 19       		.uleb128 0x19
+ 1917 00fc 03       		.uleb128 0x3
+ 1918 00fd 0E       		.uleb128 0xe
+ 1919 00fe 3A       		.uleb128 0x3a
+ 1920 00ff 0B       		.uleb128 0xb
+ 1921 0100 3B       		.uleb128 0x3b
+ 1922 0101 0B       		.uleb128 0xb
+ 1923 0102 11       		.uleb128 0x11
+ 1924 0103 01       		.uleb128 0x1
+ 1925 0104 12       		.uleb128 0x12
+ 1926 0105 06       		.uleb128 0x6
+ 1927 0106 40       		.uleb128 0x40
+ 1928 0107 18       		.uleb128 0x18
+ 1929 0108 9742     		.uleb128 0x2117
+ 1930 010a 19       		.uleb128 0x19
+ 1931 010b 01       		.uleb128 0x1
+ 1932 010c 13       		.uleb128 0x13
+ 1933 010d 00       		.byte	0
+ 1934 010e 00       		.byte	0
+ 1935 010f 15       		.uleb128 0x15
+ 1936 0110 34       		.uleb128 0x34
+ 1937 0111 00       		.byte	0
+ 1938 0112 03       		.uleb128 0x3
+ 1939 0113 0E       		.uleb128 0xe
+ 1940 0114 3A       		.uleb128 0x3a
+ 1941 0115 0B       		.uleb128 0xb
+ 1942 0116 3B       		.uleb128 0x3b
+ 1943 0117 0B       		.uleb128 0xb
+ 1944 0118 49       		.uleb128 0x49
+ 1945 0119 13       		.uleb128 0x13
+ 1946 011a 02       		.uleb128 0x2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 38
+
+
+ 1947 011b 18       		.uleb128 0x18
+ 1948 011c 00       		.byte	0
+ 1949 011d 00       		.byte	0
+ 1950 011e 16       		.uleb128 0x16
+ 1951 011f 2E       		.uleb128 0x2e
+ 1952 0120 01       		.byte	0x1
+ 1953 0121 3F       		.uleb128 0x3f
+ 1954 0122 19       		.uleb128 0x19
+ 1955 0123 03       		.uleb128 0x3
+ 1956 0124 0E       		.uleb128 0xe
+ 1957 0125 3A       		.uleb128 0x3a
+ 1958 0126 0B       		.uleb128 0xb
+ 1959 0127 3B       		.uleb128 0x3b
+ 1960 0128 0B       		.uleb128 0xb
+ 1961 0129 49       		.uleb128 0x49
+ 1962 012a 13       		.uleb128 0x13
+ 1963 012b 11       		.uleb128 0x11
+ 1964 012c 01       		.uleb128 0x1
+ 1965 012d 12       		.uleb128 0x12
+ 1966 012e 06       		.uleb128 0x6
+ 1967 012f 40       		.uleb128 0x40
+ 1968 0130 18       		.uleb128 0x18
+ 1969 0131 9742     		.uleb128 0x2117
+ 1970 0133 19       		.uleb128 0x19
+ 1971 0134 01       		.uleb128 0x1
+ 1972 0135 13       		.uleb128 0x13
+ 1973 0136 00       		.byte	0
+ 1974 0137 00       		.byte	0
+ 1975 0138 17       		.uleb128 0x17
+ 1976 0139 34       		.uleb128 0x34
+ 1977 013a 00       		.byte	0
+ 1978 013b 03       		.uleb128 0x3
+ 1979 013c 08       		.uleb128 0x8
+ 1980 013d 3A       		.uleb128 0x3a
+ 1981 013e 0B       		.uleb128 0xb
+ 1982 013f 3B       		.uleb128 0x3b
+ 1983 0140 0B       		.uleb128 0xb
+ 1984 0141 49       		.uleb128 0x49
+ 1985 0142 13       		.uleb128 0x13
+ 1986 0143 02       		.uleb128 0x2
+ 1987 0144 18       		.uleb128 0x18
+ 1988 0145 00       		.byte	0
+ 1989 0146 00       		.byte	0
+ 1990 0147 18       		.uleb128 0x18
+ 1991 0148 05       		.uleb128 0x5
+ 1992 0149 00       		.byte	0
+ 1993 014a 03       		.uleb128 0x3
+ 1994 014b 08       		.uleb128 0x8
+ 1995 014c 3A       		.uleb128 0x3a
+ 1996 014d 0B       		.uleb128 0xb
+ 1997 014e 3B       		.uleb128 0x3b
+ 1998 014f 0B       		.uleb128 0xb
+ 1999 0150 49       		.uleb128 0x49
+ 2000 0151 13       		.uleb128 0x13
+ 2001 0152 02       		.uleb128 0x2
+ 2002 0153 18       		.uleb128 0x18
+ 2003 0154 00       		.byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 39
+
+
+ 2004 0155 00       		.byte	0
+ 2005 0156 19       		.uleb128 0x19
+ 2006 0157 34       		.uleb128 0x34
+ 2007 0158 00       		.byte	0
+ 2008 0159 03       		.uleb128 0x3
+ 2009 015a 0E       		.uleb128 0xe
+ 2010 015b 3A       		.uleb128 0x3a
+ 2011 015c 0B       		.uleb128 0xb
+ 2012 015d 3B       		.uleb128 0x3b
+ 2013 015e 05       		.uleb128 0x5
+ 2014 015f 49       		.uleb128 0x49
+ 2015 0160 13       		.uleb128 0x13
+ 2016 0161 3F       		.uleb128 0x3f
+ 2017 0162 19       		.uleb128 0x19
+ 2018 0163 3C       		.uleb128 0x3c
+ 2019 0164 19       		.uleb128 0x19
+ 2020 0165 00       		.byte	0
+ 2021 0166 00       		.byte	0
+ 2022 0167 1A       		.uleb128 0x1a
+ 2023 0168 34       		.uleb128 0x34
+ 2024 0169 00       		.byte	0
+ 2025 016a 03       		.uleb128 0x3
+ 2026 016b 0E       		.uleb128 0xe
+ 2027 016c 3A       		.uleb128 0x3a
+ 2028 016d 0B       		.uleb128 0xb
+ 2029 016e 3B       		.uleb128 0x3b
+ 2030 016f 0B       		.uleb128 0xb
+ 2031 0170 49       		.uleb128 0x49
+ 2032 0171 13       		.uleb128 0x13
+ 2033 0172 3F       		.uleb128 0x3f
+ 2034 0173 19       		.uleb128 0x19
+ 2035 0174 02       		.uleb128 0x2
+ 2036 0175 18       		.uleb128 0x18
+ 2037 0176 00       		.byte	0
+ 2038 0177 00       		.byte	0
+ 2039 0178 1B       		.uleb128 0x1b
+ 2040 0179 2E       		.uleb128 0x2e
+ 2041 017a 00       		.byte	0
+ 2042 017b 3F       		.uleb128 0x3f
+ 2043 017c 19       		.uleb128 0x19
+ 2044 017d 03       		.uleb128 0x3
+ 2045 017e 0E       		.uleb128 0xe
+ 2046 017f 3A       		.uleb128 0x3a
+ 2047 0180 0B       		.uleb128 0xb
+ 2048 0181 3B       		.uleb128 0x3b
+ 2049 0182 0B       		.uleb128 0xb
+ 2050 0183 27       		.uleb128 0x27
+ 2051 0184 19       		.uleb128 0x19
+ 2052 0185 49       		.uleb128 0x49
+ 2053 0186 13       		.uleb128 0x13
+ 2054 0187 3C       		.uleb128 0x3c
+ 2055 0188 19       		.uleb128 0x19
+ 2056 0189 00       		.byte	0
+ 2057 018a 00       		.byte	0
+ 2058 018b 1C       		.uleb128 0x1c
+ 2059 018c 2E       		.uleb128 0x2e
+ 2060 018d 01       		.byte	0x1
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 40
+
+
+ 2061 018e 3F       		.uleb128 0x3f
+ 2062 018f 19       		.uleb128 0x19
+ 2063 0190 03       		.uleb128 0x3
+ 2064 0191 0E       		.uleb128 0xe
+ 2065 0192 3A       		.uleb128 0x3a
+ 2066 0193 0B       		.uleb128 0xb
+ 2067 0194 3B       		.uleb128 0x3b
+ 2068 0195 0B       		.uleb128 0xb
+ 2069 0196 27       		.uleb128 0x27
+ 2070 0197 19       		.uleb128 0x19
+ 2071 0198 3C       		.uleb128 0x3c
+ 2072 0199 19       		.uleb128 0x19
+ 2073 019a 01       		.uleb128 0x1
+ 2074 019b 13       		.uleb128 0x13
+ 2075 019c 00       		.byte	0
+ 2076 019d 00       		.byte	0
+ 2077 019e 1D       		.uleb128 0x1d
+ 2078 019f 05       		.uleb128 0x5
+ 2079 01a0 00       		.byte	0
+ 2080 01a1 49       		.uleb128 0x49
+ 2081 01a2 13       		.uleb128 0x13
+ 2082 01a3 00       		.byte	0
+ 2083 01a4 00       		.byte	0
+ 2084 01a5 1E       		.uleb128 0x1e
+ 2085 01a6 2E       		.uleb128 0x2e
+ 2086 01a7 01       		.byte	0x1
+ 2087 01a8 3F       		.uleb128 0x3f
+ 2088 01a9 19       		.uleb128 0x19
+ 2089 01aa 03       		.uleb128 0x3
+ 2090 01ab 0E       		.uleb128 0xe
+ 2091 01ac 3A       		.uleb128 0x3a
+ 2092 01ad 0B       		.uleb128 0xb
+ 2093 01ae 3B       		.uleb128 0x3b
+ 2094 01af 0B       		.uleb128 0xb
+ 2095 01b0 27       		.uleb128 0x27
+ 2096 01b1 19       		.uleb128 0x19
+ 2097 01b2 3C       		.uleb128 0x3c
+ 2098 01b3 19       		.uleb128 0x19
+ 2099 01b4 00       		.byte	0
+ 2100 01b5 00       		.byte	0
+ 2101 01b6 00       		.byte	0
+ 2102              		.section	.debug_loc,"",%progbits
+ 2103              	.Ldebug_loc0:
+ 2104              	.LLST0:
+ 2105 0000 00000000 		.4byte	.LVL0
+ 2106 0004 0B000000 		.4byte	.LVL1-1
+ 2107 0008 0100     		.2byte	0x1
+ 2108 000a 50       		.byte	0x50
+ 2109 000b 0B000000 		.4byte	.LVL1-1
+ 2110 000f 6C000000 		.4byte	.LFE64
+ 2111 0013 0400     		.2byte	0x4
+ 2112 0015 F3       		.byte	0xf3
+ 2113 0016 01       		.uleb128 0x1
+ 2114 0017 50       		.byte	0x50
+ 2115 0018 9F       		.byte	0x9f
+ 2116 0019 00000000 		.4byte	0
+ 2117 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 41
+
+
+ 2118              	.LLST1:
+ 2119 0021 00000000 		.4byte	.LVL0
+ 2120 0025 0B000000 		.4byte	.LVL1-1
+ 2121 0029 0100     		.2byte	0x1
+ 2122 002b 51       		.byte	0x51
+ 2123 002c 0B000000 		.4byte	.LVL1-1
+ 2124 0030 6C000000 		.4byte	.LFE64
+ 2125 0034 0400     		.2byte	0x4
+ 2126 0036 F3       		.byte	0xf3
+ 2127 0037 01       		.uleb128 0x1
+ 2128 0038 51       		.byte	0x51
+ 2129 0039 9F       		.byte	0x9f
+ 2130 003a 00000000 		.4byte	0
+ 2131 003e 00000000 		.4byte	0
+ 2132              	.LLST2:
+ 2133 0042 0E000000 		.4byte	.LVL2
+ 2134 0046 5E000000 		.4byte	.LVL6
+ 2135 004a 0100     		.2byte	0x1
+ 2136 004c 55       		.byte	0x55
+ 2137 004d 00000000 		.4byte	0
+ 2138 0051 00000000 		.4byte	0
+ 2139              	.LLST3:
+ 2140 0055 18000000 		.4byte	.LVL3
+ 2141 0059 5E000000 		.4byte	.LVL6
+ 2142 005d 0100     		.2byte	0x1
+ 2143 005f 54       		.byte	0x54
+ 2144 0060 00000000 		.4byte	0
+ 2145 0064 00000000 		.4byte	0
+ 2146              	.LLST4:
+ 2147 0068 00000000 		.4byte	.LVL7
+ 2148 006c 0D000000 		.4byte	.LVL8-1
+ 2149 0070 0100     		.2byte	0x1
+ 2150 0072 50       		.byte	0x50
+ 2151 0073 0D000000 		.4byte	.LVL8-1
+ 2152 0077 78000000 		.4byte	.LFE65
+ 2153 007b 0400     		.2byte	0x4
+ 2154 007d F3       		.byte	0xf3
+ 2155 007e 01       		.uleb128 0x1
+ 2156 007f 50       		.byte	0x50
+ 2157 0080 9F       		.byte	0x9f
+ 2158 0081 00000000 		.4byte	0
+ 2159 0085 00000000 		.4byte	0
+ 2160              	.LLST5:
+ 2161 0089 00000000 		.4byte	.LVL7
+ 2162 008d 0D000000 		.4byte	.LVL8-1
+ 2163 0091 0100     		.2byte	0x1
+ 2164 0093 51       		.byte	0x51
+ 2165 0094 0D000000 		.4byte	.LVL8-1
+ 2166 0098 6C000000 		.4byte	.LVL16
+ 2167 009c 0100     		.2byte	0x1
+ 2168 009e 57       		.byte	0x57
+ 2169 009f 6C000000 		.4byte	.LVL16
+ 2170 00a3 78000000 		.4byte	.LFE65
+ 2171 00a7 0400     		.2byte	0x4
+ 2172 00a9 F3       		.byte	0xf3
+ 2173 00aa 01       		.uleb128 0x1
+ 2174 00ab 51       		.byte	0x51
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 42
+
+
+ 2175 00ac 9F       		.byte	0x9f
+ 2176 00ad 00000000 		.4byte	0
+ 2177 00b1 00000000 		.4byte	0
+ 2178              	.LLST6:
+ 2179 00b5 00000000 		.4byte	.LVL7
+ 2180 00b9 0D000000 		.4byte	.LVL8-1
+ 2181 00bd 0100     		.2byte	0x1
+ 2182 00bf 52       		.byte	0x52
+ 2183 00c0 0D000000 		.4byte	.LVL8-1
+ 2184 00c4 78000000 		.4byte	.LFE65
+ 2185 00c8 0400     		.2byte	0x4
+ 2186 00ca F3       		.byte	0xf3
+ 2187 00cb 01       		.uleb128 0x1
+ 2188 00cc 52       		.byte	0x52
+ 2189 00cd 9F       		.byte	0x9f
+ 2190 00ce 00000000 		.4byte	0
+ 2191 00d2 00000000 		.4byte	0
+ 2192              	.LLST7:
+ 2193 00d6 10000000 		.4byte	.LVL9
+ 2194 00da 6C000000 		.4byte	.LVL16
+ 2195 00de 0100     		.2byte	0x1
+ 2196 00e0 55       		.byte	0x55
+ 2197 00e1 00000000 		.4byte	0
+ 2198 00e5 00000000 		.4byte	0
+ 2199              	.LLST8:
+ 2200 00e9 1A000000 		.4byte	.LVL10
+ 2201 00ed 6C000000 		.4byte	.LVL16
+ 2202 00f1 0100     		.2byte	0x1
+ 2203 00f3 54       		.byte	0x54
+ 2204 00f4 00000000 		.4byte	0
+ 2205 00f8 00000000 		.4byte	0
+ 2206              	.LLST9:
+ 2207 00fc 3A000000 		.4byte	.LVL12
+ 2208 0100 3E000000 		.4byte	.LVL13
+ 2209 0104 0200     		.2byte	0x2
+ 2210 0106 30       		.byte	0x30
+ 2211 0107 9F       		.byte	0x9f
+ 2212 0108 3E000000 		.4byte	.LVL13
+ 2213 010c 67000000 		.4byte	.LVL15-1
+ 2214 0110 0100     		.2byte	0x1
+ 2215 0112 52       		.byte	0x52
+ 2216 0113 00000000 		.4byte	0
+ 2217 0117 00000000 		.4byte	0
+ 2218              	.LLST10:
+ 2219 011b 0A000000 		.4byte	.LVL18
+ 2220 011f 8A000000 		.4byte	.LVL27
+ 2221 0123 0100     		.2byte	0x1
+ 2222 0125 57       		.byte	0x57
+ 2223 0126 00000000 		.4byte	0
+ 2224 012a 00000000 		.4byte	0
+ 2225              	.LLST11:
+ 2226 012e 10000000 		.4byte	.LVL19
+ 2227 0132 8A000000 		.4byte	.LVL27
+ 2228 0136 0100     		.2byte	0x1
+ 2229 0138 56       		.byte	0x56
+ 2230 0139 00000000 		.4byte	0
+ 2231 013d 00000000 		.4byte	0
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 43
+
+
+ 2232              	.LLST12:
+ 2233 0141 00000000 		.4byte	.LVL28
+ 2234 0145 10000000 		.4byte	.LVL29
+ 2235 0149 0100     		.2byte	0x1
+ 2236 014b 50       		.byte	0x50
+ 2237 014c 10000000 		.4byte	.LVL29
+ 2238 0150 44000000 		.4byte	.LFE66
+ 2239 0154 0400     		.2byte	0x4
+ 2240 0156 F3       		.byte	0xf3
+ 2241 0157 01       		.uleb128 0x1
+ 2242 0158 50       		.byte	0x50
+ 2243 0159 9F       		.byte	0x9f
+ 2244 015a 00000000 		.4byte	0
+ 2245 015e 00000000 		.4byte	0
+ 2246              	.LLST13:
+ 2247 0162 00000000 		.4byte	.LVL28
+ 2248 0166 30000000 		.4byte	.LVL31
+ 2249 016a 0100     		.2byte	0x1
+ 2250 016c 51       		.byte	0x51
+ 2251 016d 30000000 		.4byte	.LVL31
+ 2252 0171 44000000 		.4byte	.LFE66
+ 2253 0175 0400     		.2byte	0x4
+ 2254 0177 F3       		.byte	0xf3
+ 2255 0178 01       		.uleb128 0x1
+ 2256 0179 51       		.byte	0x51
+ 2257 017a 9F       		.byte	0x9f
+ 2258 017b 00000000 		.4byte	0
+ 2259 017f 00000000 		.4byte	0
+ 2260              	.LLST14:
+ 2261 0183 00000000 		.4byte	.LVL28
+ 2262 0187 1A000000 		.4byte	.LVL30
+ 2263 018b 0100     		.2byte	0x1
+ 2264 018d 52       		.byte	0x52
+ 2265 018e 1A000000 		.4byte	.LVL30
+ 2266 0192 44000000 		.4byte	.LFE66
+ 2267 0196 0400     		.2byte	0x4
+ 2268 0198 F3       		.byte	0xf3
+ 2269 0199 01       		.uleb128 0x1
+ 2270 019a 52       		.byte	0x52
+ 2271 019b 9F       		.byte	0x9f
+ 2272 019c 00000000 		.4byte	0
+ 2273 01a0 00000000 		.4byte	0
+ 2274              	.LLST15:
+ 2275 01a4 00000000 		.4byte	.LVL28
+ 2276 01a8 35000000 		.4byte	.LVL32-1
+ 2277 01ac 0100     		.2byte	0x1
+ 2278 01ae 53       		.byte	0x53
+ 2279 01af 35000000 		.4byte	.LVL32-1
+ 2280 01b3 44000000 		.4byte	.LFE66
+ 2281 01b7 0400     		.2byte	0x4
+ 2282 01b9 F3       		.byte	0xf3
+ 2283 01ba 01       		.uleb128 0x1
+ 2284 01bb 53       		.byte	0x53
+ 2285 01bc 9F       		.byte	0x9f
+ 2286 01bd 00000000 		.4byte	0
+ 2287 01c1 00000000 		.4byte	0
+ 2288              	.LLST16:
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 44
+
+
+ 2289 01c5 00000000 		.4byte	.LVL34
+ 2290 01c9 0C000000 		.4byte	.LVL35
+ 2291 01cd 0100     		.2byte	0x1
+ 2292 01cf 50       		.byte	0x50
+ 2293 01d0 0C000000 		.4byte	.LVL35
+ 2294 01d4 60000000 		.4byte	.LFE67
+ 2295 01d8 0400     		.2byte	0x4
+ 2296 01da F3       		.byte	0xf3
+ 2297 01db 01       		.uleb128 0x1
+ 2298 01dc 50       		.byte	0x50
+ 2299 01dd 9F       		.byte	0x9f
+ 2300 01de 00000000 		.4byte	0
+ 2301 01e2 00000000 		.4byte	0
+ 2302              	.LLST17:
+ 2303 01e6 00000000 		.4byte	.LVL34
+ 2304 01ea 0F000000 		.4byte	.LVL36-1
+ 2305 01ee 0100     		.2byte	0x1
+ 2306 01f0 51       		.byte	0x51
+ 2307 01f1 0F000000 		.4byte	.LVL36-1
+ 2308 01f5 60000000 		.4byte	.LFE67
+ 2309 01f9 0400     		.2byte	0x4
+ 2310 01fb F3       		.byte	0xf3
+ 2311 01fc 01       		.uleb128 0x1
+ 2312 01fd 51       		.byte	0x51
+ 2313 01fe 9F       		.byte	0x9f
+ 2314 01ff 00000000 		.4byte	0
+ 2315 0203 00000000 		.4byte	0
+ 2316              	.LLST18:
+ 2317 0207 00000000 		.4byte	.LVL34
+ 2318 020b 0F000000 		.4byte	.LVL36-1
+ 2319 020f 0100     		.2byte	0x1
+ 2320 0211 52       		.byte	0x52
+ 2321 0212 0F000000 		.4byte	.LVL36-1
+ 2322 0216 60000000 		.4byte	.LFE67
+ 2323 021a 0400     		.2byte	0x4
+ 2324 021c F3       		.byte	0xf3
+ 2325 021d 01       		.uleb128 0x1
+ 2326 021e 52       		.byte	0x52
+ 2327 021f 9F       		.byte	0x9f
+ 2328 0220 00000000 		.4byte	0
+ 2329 0224 00000000 		.4byte	0
+ 2330              	.LLST19:
+ 2331 0228 00000000 		.4byte	.LVL34
+ 2332 022c 0F000000 		.4byte	.LVL36-1
+ 2333 0230 0100     		.2byte	0x1
+ 2334 0232 53       		.byte	0x53
+ 2335 0233 0F000000 		.4byte	.LVL36-1
+ 2336 0237 60000000 		.4byte	.LFE67
+ 2337 023b 0400     		.2byte	0x4
+ 2338 023d F3       		.byte	0xf3
+ 2339 023e 01       		.uleb128 0x1
+ 2340 023f 53       		.byte	0x53
+ 2341 0240 9F       		.byte	0x9f
+ 2342 0241 00000000 		.4byte	0
+ 2343 0245 00000000 		.4byte	0
+ 2344              	.LLST20:
+ 2345 0249 00000000 		.4byte	.LVL42
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 45
+
+
+ 2346 024d 0C000000 		.4byte	.LVL43
+ 2347 0251 0100     		.2byte	0x1
+ 2348 0253 50       		.byte	0x50
+ 2349 0254 0C000000 		.4byte	.LVL43
+ 2350 0258 34000000 		.4byte	.LFE68
+ 2351 025c 0400     		.2byte	0x4
+ 2352 025e F3       		.byte	0xf3
+ 2353 025f 01       		.uleb128 0x1
+ 2354 0260 50       		.byte	0x50
+ 2355 0261 9F       		.byte	0x9f
+ 2356 0262 00000000 		.4byte	0
+ 2357 0266 00000000 		.4byte	0
+ 2358              	.LLST21:
+ 2359 026a 00000000 		.4byte	.LVL42
+ 2360 026e 0F000000 		.4byte	.LVL44-1
+ 2361 0272 0100     		.2byte	0x1
+ 2362 0274 51       		.byte	0x51
+ 2363 0275 0F000000 		.4byte	.LVL44-1
+ 2364 0279 34000000 		.4byte	.LFE68
+ 2365 027d 0400     		.2byte	0x4
+ 2366 027f F3       		.byte	0xf3
+ 2367 0280 01       		.uleb128 0x1
+ 2368 0281 51       		.byte	0x51
+ 2369 0282 9F       		.byte	0x9f
+ 2370 0283 00000000 		.4byte	0
+ 2371 0287 00000000 		.4byte	0
+ 2372              	.LLST22:
+ 2373 028b 00000000 		.4byte	.LVL42
+ 2374 028f 0F000000 		.4byte	.LVL44-1
+ 2375 0293 0100     		.2byte	0x1
+ 2376 0295 52       		.byte	0x52
+ 2377 0296 0F000000 		.4byte	.LVL44-1
+ 2378 029a 34000000 		.4byte	.LFE68
+ 2379 029e 0400     		.2byte	0x4
+ 2380 02a0 F3       		.byte	0xf3
+ 2381 02a1 01       		.uleb128 0x1
+ 2382 02a2 52       		.byte	0x52
+ 2383 02a3 9F       		.byte	0x9f
+ 2384 02a4 00000000 		.4byte	0
+ 2385 02a8 00000000 		.4byte	0
+ 2386              	.LLST23:
+ 2387 02ac 00000000 		.4byte	.LVL42
+ 2388 02b0 0F000000 		.4byte	.LVL44-1
+ 2389 02b4 0100     		.2byte	0x1
+ 2390 02b6 53       		.byte	0x53
+ 2391 02b7 0F000000 		.4byte	.LVL44-1
+ 2392 02bb 34000000 		.4byte	.LFE68
+ 2393 02bf 0400     		.2byte	0x4
+ 2394 02c1 F3       		.byte	0xf3
+ 2395 02c2 01       		.uleb128 0x1
+ 2396 02c3 53       		.byte	0x53
+ 2397 02c4 9F       		.byte	0x9f
+ 2398 02c5 00000000 		.4byte	0
+ 2399 02c9 00000000 		.4byte	0
+ 2400              		.section	.debug_aranges,"",%progbits
+ 2401 0000 5C000000 		.4byte	0x5c
+ 2402 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 46
+
+
+ 2403 0006 00000000 		.4byte	.Ldebug_info0
+ 2404 000a 04       		.byte	0x4
+ 2405 000b 00       		.byte	0
+ 2406 000c 0000     		.2byte	0
+ 2407 000e 0000     		.2byte	0
+ 2408 0010 00000000 		.4byte	.LFB64
+ 2409 0014 6C000000 		.4byte	.LFE64-.LFB64
+ 2410 0018 00000000 		.4byte	.LFB65
+ 2411 001c 78000000 		.4byte	.LFE65-.LFB65
+ 2412 0020 00000000 		.4byte	.LFB63
+ 2413 0024 98000000 		.4byte	.LFE63-.LFB63
+ 2414 0028 00000000 		.4byte	.LFB66
+ 2415 002c 44000000 		.4byte	.LFE66-.LFB66
+ 2416 0030 00000000 		.4byte	.LFB67
+ 2417 0034 60000000 		.4byte	.LFE67-.LFB67
+ 2418 0038 00000000 		.4byte	.LFB68
+ 2419 003c 34000000 		.4byte	.LFE68-.LFB68
+ 2420 0040 00000000 		.4byte	.LFB69
+ 2421 0044 84000000 		.4byte	.LFE69-.LFB69
+ 2422 0048 00000000 		.4byte	.LFB70
+ 2423 004c 30000000 		.4byte	.LFE70-.LFB70
+ 2424 0050 00000000 		.4byte	.LFB71
+ 2425 0054 2C000000 		.4byte	.LFE71-.LFB71
+ 2426 0058 00000000 		.4byte	0
+ 2427 005c 00000000 		.4byte	0
+ 2428              		.section	.debug_ranges,"",%progbits
+ 2429              	.Ldebug_ranges0:
+ 2430 0000 00000000 		.4byte	.LFB64
+ 2431 0004 6C000000 		.4byte	.LFE64
+ 2432 0008 00000000 		.4byte	.LFB65
+ 2433 000c 78000000 		.4byte	.LFE65
+ 2434 0010 00000000 		.4byte	.LFB63
+ 2435 0014 98000000 		.4byte	.LFE63
+ 2436 0018 00000000 		.4byte	.LFB66
+ 2437 001c 44000000 		.4byte	.LFE66
+ 2438 0020 00000000 		.4byte	.LFB67
+ 2439 0024 60000000 		.4byte	.LFE67
+ 2440 0028 00000000 		.4byte	.LFB68
+ 2441 002c 34000000 		.4byte	.LFE68
+ 2442 0030 00000000 		.4byte	.LFB69
+ 2443 0034 84000000 		.4byte	.LFE69
+ 2444 0038 00000000 		.4byte	.LFB70
+ 2445 003c 30000000 		.4byte	.LFE70
+ 2446 0040 00000000 		.4byte	.LFB71
+ 2447 0044 2C000000 		.4byte	.LFE71
+ 2448 0048 00000000 		.4byte	0
+ 2449 004c 00000000 		.4byte	0
+ 2450              		.section	.debug_line,"",%progbits
+ 2451              	.Ldebug_line0:
+ 2452 0000 B0020000 		.section	.debug_str,"MS",%progbits,1
+ 2452      02009301 
+ 2452      00000201 
+ 2452      FB0E0D00 
+ 2452      01010101 
+ 2453              	.LASF25:
+ 2454 0000 67616D6D 		.ascii	"gamma_p\000"
+ 2454      615F7000 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 47
+
+
+ 2455              	.LASF49:
+ 2456 0008 43794465 		.ascii	"CyDelayCycles\000"
+ 2456      6C617943 
+ 2456      79636C65 
+ 2456      7300
+ 2457              	.LASF9:
+ 2458 0016 5F5F696E 		.ascii	"__int32_t\000"
+ 2458      7433325F 
+ 2458      7400
+ 2459              	.LASF39:
+ 2460 0020 4C43445F 		.ascii	"LCD_StopReadWrite\000"
+ 2460      53746F70 
+ 2460      52656164 
+ 2460      57726974 
+ 2460      6500
+ 2461              	.LASF20:
+ 2462 0032 70697865 		.ascii	"pixel\000"
+ 2462      6C00
+ 2463              	.LASF30:
+ 2464 0038 636F6C5F 		.ascii	"col_end\000"
+ 2464      656E6400 
+ 2465              	.LASF26:
+ 2466 0040 67616D6D 		.ascii	"gamma_n\000"
+ 2466      615F6E00 
+ 2467              	.LASF14:
+ 2468 0048 666C6F61 		.ascii	"float\000"
+ 2468      7400
+ 2469              	.LASF38:
+ 2470 004e 4C43445F 		.ascii	"LCD_Start\000"
+ 2470      53746172 
+ 2470      7400
+ 2471              	.LASF1:
+ 2472 0058 756E7369 		.ascii	"unsigned char\000"
+ 2472      676E6564 
+ 2472      20636861 
+ 2472      7200
+ 2473              	.LASF47:
+ 2474 0066 433A5C55 		.ascii	"C:\\Users\\mzenere\\Personal\\PSOC\\Current\\ECE309"
+ 2474      73657273 
+ 2474      5C6D7A65 
+ 2474      6E657265 
+ 2474      5C506572 
+ 2475 0093 312E6379 		.ascii	"1.cywrk.Archive04\\ECE3091TestSoftware\\Display.cyd"
+ 2475      77726B2E 
+ 2475      41726368 
+ 2475      69766530 
+ 2475      345C4543 
+ 2476 00c4 736E00   		.ascii	"sn\000"
+ 2477              	.LASF17:
+ 2478 00c7 72656738 		.ascii	"reg8\000"
+ 2478      00
+ 2479              	.LASF5:
+ 2480 00cc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2480      20756E73 
+ 2480      69676E65 
+ 2480      6420696E 
+ 2480      7400
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 48
+
+
+ 2481              	.LASF3:
+ 2482 00de 73686F72 		.ascii	"short unsigned int\000"
+ 2482      7420756E 
+ 2482      7369676E 
+ 2482      65642069 
+ 2482      6E7400
+ 2483              	.LASF40:
+ 2484 00f1 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2484      52784275 
+ 2484      66666572 
+ 2484      00
+ 2485              	.LASF35:
+ 2486 00fe 4C43445F 		.ascii	"LCD_SetWindowWrite\000"
+ 2486      53657457 
+ 2486      696E646F 
+ 2486      77577269 
+ 2486      746500
+ 2487              	.LASF41:
+ 2488 0111 43616D65 		.ascii	"Camera_linebuffer\000"
+ 2488      72615F6C 
+ 2488      696E6562 
+ 2488      75666665 
+ 2488      7200
+ 2489              	.LASF15:
+ 2490 0123 646F7562 		.ascii	"double\000"
+ 2490      6C6500
+ 2491              	.LASF27:
+ 2492 012a 4C43445F 		.ascii	"LCD_SetWindow\000"
+ 2492      53657457 
+ 2492      696E646F 
+ 2492      7700
+ 2493              	.LASF12:
+ 2494 0138 75696E74 		.ascii	"uint16\000"
+ 2494      313600
+ 2495              	.LASF13:
+ 2496 013f 75696E74 		.ascii	"uint32\000"
+ 2496      333200
+ 2497              	.LASF45:
+ 2498 0146 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2498      4320342E 
+ 2498      392E3320 
+ 2498      32303135 
+ 2498      30333033 
+ 2499 0179 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2499      20726576 
+ 2499      6973696F 
+ 2499      6E203232 
+ 2499      31323230 
+ 2500 01ac 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2500      66756E63 
+ 2500      74696F6E 
+ 2500      2D736563 
+ 2500      74696F6E 
+ 2501              	.LASF8:
+ 2502 01d4 756E7369 		.ascii	"unsigned int\000"
+ 2502      676E6564 
+ 2502      20696E74 
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 49
+
+
+ 2502      00
+ 2503              	.LASF22:
+ 2504 01e1 4C43445F 		.ascii	"LCD_WriteReg\000"
+ 2504      57726974 
+ 2504      65526567 
+ 2504      00
+ 2505              	.LASF7:
+ 2506 01ee 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2506      206C6F6E 
+ 2506      6720756E 
+ 2506      7369676E 
+ 2506      65642069 
+ 2507              	.LASF18:
+ 2508 0205 72656731 		.ascii	"reg16\000"
+ 2508      3600
+ 2509              	.LASF46:
+ 2510 020b 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LCD.c\000"
+ 2510      6E657261 
+ 2510      7465645F 
+ 2510      536F7572 
+ 2510      63655C50 
+ 2511              	.LASF44:
+ 2512 022a 4C43445F 		.ascii	"LCD_RD_Write\000"
+ 2512      52445F57 
+ 2512      72697465 
+ 2512      00
+ 2513              	.LASF10:
+ 2514 0237 696E7433 		.ascii	"int32_t\000"
+ 2514      325F7400 
+ 2515              	.LASF19:
+ 2516 023f 73697A65 		.ascii	"sizetype\000"
+ 2516      74797065 
+ 2516      00
+ 2517              	.LASF33:
+ 2518 0248 726F7773 		.ascii	"rows\000"
+ 2518      00
+ 2519              	.LASF6:
+ 2520 024d 6C6F6E67 		.ascii	"long long int\000"
+ 2520      206C6F6E 
+ 2520      6720696E 
+ 2520      7400
+ 2521              	.LASF16:
+ 2522 025b 63686172 		.ascii	"char\000"
+ 2522      00
+ 2523              	.LASF28:
+ 2524 0260 636F6C5F 		.ascii	"col_start\000"
+ 2524      73746172 
+ 2524      7400
+ 2525              	.LASF21:
+ 2526 026a 76616C75 		.ascii	"value\000"
+ 2526      6500
+ 2527              	.LASF37:
+ 2528 0270 4C43445F 		.ascii	"LCD_WritePixel\000"
+ 2528      57726974 
+ 2528      65506978 
+ 2528      656C00
+ 2529              	.LASF2:
+ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccklC95t.s 			page 50
+
+
+ 2530 027f 73686F72 		.ascii	"short int\000"
+ 2530      7420696E 
+ 2530      7400
+ 2531              	.LASF29:
+ 2532 0289 726F775F 		.ascii	"row_start\000"
+ 2532      73746172 
+ 2532      7400
+ 2533              	.LASF42:
+ 2534 0293 43535F57 		.ascii	"CS_Write\000"
+ 2534      72697465 
+ 2534      00
+ 2535              	.LASF11:
+ 2536 029c 75696E74 		.ascii	"uint8\000"
+ 2536      3800
+ 2537              	.LASF32:
+ 2538 02a2 636F6C73 		.ascii	"cols\000"
+ 2538      00
+ 2539              	.LASF34:
+ 2540 02a7 4C43445F 		.ascii	"LCD_SetWindowRead\000"
+ 2540      53657457 
+ 2540      696E646F 
+ 2540      77526561 
+ 2540      6400
+ 2541              	.LASF31:
+ 2542 02b9 726F775F 		.ascii	"row_end\000"
+ 2542      656E6400 
+ 2543              	.LASF4:
+ 2544 02c1 6C6F6E67 		.ascii	"long int\000"
+ 2544      20696E74 
+ 2544      00
+ 2545              	.LASF24:
+ 2546 02ca 76616C75 		.ascii	"values\000"
+ 2546      657300
+ 2547              	.LASF0:
+ 2548 02d1 7369676E 		.ascii	"signed char\000"
+ 2548      65642063 
+ 2548      68617200 
+ 2549              	.LASF36:
+ 2550 02dd 4C43445F 		.ascii	"LCD_ReadPixel\000"
+ 2550      52656164 
+ 2550      50697865 
+ 2550      6C00
+ 2551              	.LASF23:
+ 2552 02eb 4C43445F 		.ascii	"LCD_WriteArray\000"
+ 2552      57726974 
+ 2552      65417272 
+ 2552      617900
+ 2553              	.LASF43:
+ 2554 02fa 43794465 		.ascii	"CyDelay\000"
+ 2554      6C617900 
+ 2555              	.LASF48:
+ 2556 0302 43535F52 		.ascii	"CS_Read\000"
+ 2556      65616400 
+ 2557              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
