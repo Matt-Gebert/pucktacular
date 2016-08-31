@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 1
 
 
    1              		.syntax unified
@@ -26,9 +26,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 1
   23              		.section	.cyconfigecc,"a",%progbits
   24              		.align	2
   25              		.type	cy_meta_configecc, %object
-  26              		.size	cy_meta_configecc, 1264
+  26              		.size	cy_meta_configecc, 1432
   27              	cy_meta_configecc:
-  28 0000 07       		.byte	7
+  28 0000 08       		.byte	8
   29 0001 52       		.byte	82
   30 0002 00       		.byte	0
   31 0003 40       		.byte	64
@@ -36,1809 +36,1986 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 1
   33 0005 64       		.byte	100
   34 0006 00       		.byte	0
   35 0007 40       		.byte	64
-  36 0008 02       		.byte	2
-  37 0009 03       		.byte	3
-  38 000a 01       		.byte	1
+  36 0008 01       		.byte	1
+  37 0009 65       		.byte	101
+  38 000a 00       		.byte	0
   39 000b 40       		.byte	64
-  40 000c 04       		.byte	4
-  41 000d 05       		.byte	5
+  40 000c 01       		.byte	1
+  41 000d 03       		.byte	3
   42 000e 01       		.byte	1
   43 000f 40       		.byte	64
-  44 0010 04       		.byte	4
-  45 0011 07       		.byte	7
+  44 0010 02       		.byte	2
+  45 0011 05       		.byte	5
   46 0012 01       		.byte	1
   47 0013 40       		.byte	64
-  48 0014 33       		.byte	51
-  49 0015 08       		.byte	8
+  48 0014 05       		.byte	5
+  49 0015 07       		.byte	7
   50 0016 01       		.byte	1
   51 0017 40       		.byte	64
-  52 0018 3D       		.byte	61
-  53 0019 09       		.byte	9
+  52 0018 35       		.byte	53
+  53 0019 08       		.byte	8
   54 001a 01       		.byte	1
   55 001b 40       		.byte	64
-  56 001c 45       		.byte	69
-  57 001d 0A       		.byte	10
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 2
+  56 001c 40       		.byte	64
+  57 001d 09       		.byte	9
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 2
 
 
   58 001e 01       		.byte	1
   59 001f 40       		.byte	64
-  60 0020 45       		.byte	69
-  61 0021 0B       		.byte	11
+  60 0020 27       		.byte	39
+  61 0021 0A       		.byte	10
   62 0022 01       		.byte	1
   63 0023 40       		.byte	64
-  64 0024 36       		.byte	54
-  65 0025 0C       		.byte	12
+  64 0024 30       		.byte	48
+  65 0025 0B       		.byte	11
   66 0026 01       		.byte	1
   67 0027 40       		.byte	64
-  68 0028 3F       		.byte	63
+  68 0028 04       		.byte	4
   69 0029 0D       		.byte	13
   70 002a 01       		.byte	1
   71 002b 40       		.byte	64
-  72 002c 03       		.byte	3
-  73 002d 17       		.byte	23
+  72 002c 38       		.byte	56
+  73 002d 0E       		.byte	14
   74 002e 01       		.byte	1
   75 002f 40       		.byte	64
-  76 0030 07       		.byte	7
-  77 0031 19       		.byte	25
+  76 0030 27       		.byte	39
+  77 0031 0F       		.byte	15
   78 0032 01       		.byte	1
   79 0033 40       		.byte	64
-  80 0034 05       		.byte	5
-  81 0035 40       		.byte	64
+  80 0034 02       		.byte	2
+  81 0035 15       		.byte	21
   82 0036 01       		.byte	1
   83 0037 40       		.byte	64
-  84 0038 0F       		.byte	15
-  85 0039 41       		.byte	65
+  84 0038 03       		.byte	3
+  85 0039 17       		.byte	23
   86 003a 01       		.byte	1
   87 003b 40       		.byte	64
-  88 003c 0E       		.byte	14
-  89 003d 42       		.byte	66
+  88 003c 40       		.byte	64
+  89 003d 18       		.byte	24
   90 003e 01       		.byte	1
   91 003f 40       		.byte	64
-  92 0040 0C       		.byte	12
-  93 0041 43       		.byte	67
+  92 0040 3B       		.byte	59
+  93 0041 19       		.byte	25
   94 0042 01       		.byte	1
   95 0043 40       		.byte	64
-  96 0044 04       		.byte	4
-  97 0045 44       		.byte	68
+  96 0044 05       		.byte	5
+  97 0045 1B       		.byte	27
   98 0046 01       		.byte	1
   99 0047 40       		.byte	64
- 100 0048 21       		.byte	33
- 101 0049 45       		.byte	69
+ 100 0048 05       		.byte	5
+ 101 0049 40       		.byte	64
  102 004a 01       		.byte	1
  103 004b 40       		.byte	64
- 104 004c 14       		.byte	20
- 105 004d 46       		.byte	70
+ 104 004c 0E       		.byte	14
+ 105 004d 41       		.byte	65
  106 004e 01       		.byte	1
  107 004f 40       		.byte	64
- 108 0050 0B       		.byte	11
- 109 0051 47       		.byte	71
+ 108 0050 0A       		.byte	10
+ 109 0051 42       		.byte	66
  110 0052 01       		.byte	1
  111 0053 40       		.byte	64
- 112 0054 10       		.byte	16
- 113 0055 48       		.byte	72
+ 112 0054 0B       		.byte	11
+ 113 0055 43       		.byte	67
  114 0056 01       		.byte	1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 3
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 3
 
 
  115 0057 40       		.byte	64
  116 0058 05       		.byte	5
- 117 0059 49       		.byte	73
+ 117 0059 44       		.byte	68
  118 005a 01       		.byte	1
  119 005b 40       		.byte	64
- 120 005c 0E       		.byte	14
- 121 005d 4C       		.byte	76
+ 120 005c 1B       		.byte	27
+ 121 005d 45       		.byte	69
  122 005e 01       		.byte	1
  123 005f 40       		.byte	64
- 124 0060 06       		.byte	6
- 125 0061 50       		.byte	80
+ 124 0060 10       		.byte	16
+ 125 0061 46       		.byte	70
  126 0062 01       		.byte	1
  127 0063 40       		.byte	64
- 128 0064 03       		.byte	3
- 129 0065 51       		.byte	81
+ 128 0064 12       		.byte	18
+ 129 0065 47       		.byte	71
  130 0066 01       		.byte	1
  131 0067 40       		.byte	64
- 132 0068 00       		.byte	0
- 133 0069 80       		.byte	-128
+ 132 0068 0F       		.byte	15
+ 133 0069 48       		.byte	72
  134 006a 01       		.byte	1
- 135 006b C0       		.byte	-64
- 136 006c 10       		.byte	16
- 137 006d 55       		.byte	85
- 138 006e 11       		.byte	17
- 139 006f 9C       		.byte	-100
- 140 0070 18       		.byte	24
- 141 0071 20       		.byte	32
- 142 0072 19       		.byte	25
- 143 0073 80       		.byte	-128
- 144 0074 60       		.byte	96
- 145 0075 10       		.byte	16
- 146 0076 8A       		.byte	-118
- 147 0077 0F       		.byte	15
- 148 0078 E2       		.byte	-30
- 149 0079 08       		.byte	8
- 150 007a E6       		.byte	-26
- 151 007b 02       		.byte	2
- 152 007c E0       		.byte	-32
- 153 007d 40       		.byte	64
- 154 007e E2       		.byte	-30
- 155 007f 01       		.byte	1
- 156 0080 E8       		.byte	-24
- 157 0081 04       		.byte	4
- 158 0082 EC       		.byte	-20
- 159 0083 04       		.byte	4
- 160 0084 E2       		.byte	-30
- 161 0085 02       		.byte	2
- 162 0086 E6       		.byte	-26
- 163 0087 01       		.byte	1
- 164 0088 E8       		.byte	-24
- 165 0089 02       		.byte	2
- 166 008a EC       		.byte	-20
- 167 008b 01       		.byte	1
- 168 008c 01       		.byte	1
- 169 008d 01       		.byte	1
- 170 008e 12       		.byte	18
- 171 008f 01       		.byte	1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 4
+ 135 006b 40       		.byte	64
+ 136 006c 0D       		.byte	13
+ 137 006d 49       		.byte	73
+ 138 006e 01       		.byte	1
+ 139 006f 40       		.byte	64
+ 140 0070 15       		.byte	21
+ 141 0071 4C       		.byte	76
+ 142 0072 01       		.byte	1
+ 143 0073 40       		.byte	64
+ 144 0074 05       		.byte	5
+ 145 0075 4D       		.byte	77
+ 146 0076 01       		.byte	1
+ 147 0077 40       		.byte	64
+ 148 0078 09       		.byte	9
+ 149 0079 50       		.byte	80
+ 150 007a 01       		.byte	1
+ 151 007b 40       		.byte	64
+ 152 007c 03       		.byte	3
+ 153 007d 51       		.byte	81
+ 154 007e 01       		.byte	1
+ 155 007f 40       		.byte	64
+ 156 0080 00       		.byte	0
+ 157 0081 80       		.byte	-128
+ 158 0082 01       		.byte	1
+ 159 0083 C0       		.byte	-64
+ 160 0084 10       		.byte	16
+ 161 0085 53       		.byte	83
+ 162 0086 11       		.byte	17
+ 163 0087 36       		.byte	54
+ 164 0088 12       		.byte	18
+ 165 0089 FF       		.byte	-1
+ 166 008a 18       		.byte	24
+ 167 008b A0       		.byte	-96
+ 168 008c 19       		.byte	25
+ 169 008d 80       		.byte	-128
+ 170 008e 60       		.byte	96
+ 171 008f 10       		.byte	16
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 4
 
 
- 172 0090 14       		.byte	20
- 173 0091 01       		.byte	1
- 174 0092 16       		.byte	22
- 175 0093 02       		.byte	2
- 176 0094 1E       		.byte	30
- 177 0095 02       		.byte	2
- 178 0096 1F       		.byte	31
- 179 0097 01       		.byte	1
- 180 0098 31       		.byte	49
+ 172 0090 8F       		.byte	-113
+ 173 0091 0F       		.byte	15
+ 174 0092 88       		.byte	-120
+ 175 0093 0D       		.byte	13
+ 176 0094 E6       		.byte	-26
+ 177 0095 10       		.byte	16
+ 178 0096 E2       		.byte	-30
+ 179 0097 04       		.byte	4
+ 180 0098 E6       		.byte	-26
  181 0099 01       		.byte	1
- 182 009a 36       		.byte	54
- 183 009b 03       		.byte	3
- 184 009c 39       		.byte	57
- 185 009d 02       		.byte	2
- 186 009e 3E       		.byte	62
- 187 009f 40       		.byte	64
- 188 00a0 40       		.byte	64
- 189 00a1 41       		.byte	65
- 190 00a2 41       		.byte	65
- 191 00a3 06       		.byte	6
- 192 00a4 45       		.byte	69
- 193 00a5 E4       		.byte	-28
- 194 00a6 46       		.byte	70
- 195 00a7 D0       		.byte	-48
- 196 00a8 47       		.byte	71
- 197 00a9 C0       		.byte	-64
- 198 00aa 48       		.byte	72
- 199 00ab 2B       		.byte	43
- 200 00ac 49       		.byte	73
- 201 00ad FF       		.byte	-1
- 202 00ae 4A       		.byte	74
- 203 00af FF       		.byte	-1
- 204 00b0 4B       		.byte	75
- 205 00b1 FF       		.byte	-1
- 206 00b2 50       		.byte	80
- 207 00b3 01       		.byte	1
- 208 00b4 56       		.byte	86
+ 182 009a E2       		.byte	-30
+ 183 009b 02       		.byte	2
+ 184 009c E6       		.byte	-26
+ 185 009d 04       		.byte	4
+ 186 009e E8       		.byte	-24
+ 187 009f 08       		.byte	8
+ 188 00a0 EA       		.byte	-22
+ 189 00a1 02       		.byte	2
+ 190 00a2 EC       		.byte	-20
+ 191 00a3 02       		.byte	2
+ 192 00a4 0B       		.byte	11
+ 193 00a5 01       		.byte	1
+ 194 00a6 16       		.byte	22
+ 195 00a7 01       		.byte	1
+ 196 00a8 21       		.byte	33
+ 197 00a9 01       		.byte	1
+ 198 00aa 36       		.byte	54
+ 199 00ab 01       		.byte	1
+ 200 00ac 37       		.byte	55
+ 201 00ad 01       		.byte	1
+ 202 00ae 58       		.byte	88
+ 203 00af 04       		.byte	4
+ 204 00b0 59       		.byte	89
+ 205 00b1 04       		.byte	4
+ 206 00b2 5C       		.byte	92
+ 207 00b3 33       		.byte	51
+ 208 00b4 5F       		.byte	95
  209 00b5 01       		.byte	1
- 210 00b6 58       		.byte	88
- 211 00b7 04       		.byte	4
- 212 00b8 59       		.byte	89
- 213 00b9 04       		.byte	4
- 214 00ba 5A       		.byte	90
- 215 00bb 04       		.byte	4
- 216 00bc 5B       		.byte	91
+ 210 00b6 88       		.byte	-120
+ 211 00b7 05       		.byte	5
+ 212 00b8 8A       		.byte	-118
+ 213 00b9 0A       		.byte	10
+ 214 00ba 8B       		.byte	-117
+ 215 00bb 02       		.byte	2
+ 216 00bc 8E       		.byte	-114
  217 00bd 04       		.byte	4
- 218 00be 5C       		.byte	92
- 219 00bf 10       		.byte	16
- 220 00c0 5D       		.byte	93
- 221 00c1 01       		.byte	1
- 222 00c2 5F       		.byte	95
- 223 00c3 01       		.byte	1
- 224 00c4 62       		.byte	98
- 225 00c5 F0       		.byte	-16
- 226 00c6 64       		.byte	100
- 227 00c7 20       		.byte	32
- 228 00c8 66       		.byte	102
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 5
+ 218 00be 93       		.byte	-109
+ 219 00bf 01       		.byte	1
+ 220 00c0 95       		.byte	-107
+ 221 00c1 02       		.byte	2
+ 222 00c2 97       		.byte	-105
+ 223 00c3 04       		.byte	4
+ 224 00c4 9A       		.byte	-102
+ 225 00c5 02       		.byte	2
+ 226 00c6 9B       		.byte	-101
+ 227 00c7 04       		.byte	4
+ 228 00c8 9E       		.byte	-98
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 5
 
 
- 229 00c9 20       		.byte	32
- 230 00ca 68       		.byte	104
- 231 00cb 20       		.byte	32
- 232 00cc 6A       		.byte	106
- 233 00cd E0       		.byte	-32
- 234 00ce 6C       		.byte	108
- 235 00cf 20       		.byte	32
- 236 00d0 6E       		.byte	110
- 237 00d1 20       		.byte	32
- 238 00d2 82       		.byte	-126
- 239 00d3 01       		.byte	1
- 240 00d4 8B       		.byte	-117
- 241 00d5 01       		.byte	1
- 242 00d6 92       		.byte	-110
+ 229 00c9 08       		.byte	8
+ 230 00ca A6       		.byte	-90
+ 231 00cb 01       		.byte	1
+ 232 00cc A9       		.byte	-87
+ 233 00cd 01       		.byte	1
+ 234 00ce B0       		.byte	-80
+ 235 00cf 0C       		.byte	12
+ 236 00d0 B1       		.byte	-79
+ 237 00d1 01       		.byte	1
+ 238 00d2 B3       		.byte	-77
+ 239 00d3 06       		.byte	6
+ 240 00d4 B4       		.byte	-76
+ 241 00d5 03       		.byte	3
+ 242 00d6 B9       		.byte	-71
  243 00d7 02       		.byte	2
- 244 00d8 95       		.byte	-107
- 245 00d9 01       		.byte	1
- 246 00da 97       		.byte	-105
- 247 00db 02       		.byte	2
- 248 00dc 9B       		.byte	-101
- 249 00dd 02       		.byte	2
- 250 00de A8       		.byte	-88
- 251 00df 01       		.byte	1
- 252 00e0 AA       		.byte	-86
- 253 00e1 02       		.byte	2
- 254 00e2 B5       		.byte	-75
- 255 00e3 03       		.byte	3
- 256 00e4 B6       		.byte	-74
- 257 00e5 03       		.byte	3
- 258 00e6 BE       		.byte	-66
- 259 00e7 40       		.byte	64
- 260 00e8 BF       		.byte	-65
- 261 00e9 10       		.byte	16
- 262 00ea D8       		.byte	-40
- 263 00eb 04       		.byte	4
- 264 00ec D9       		.byte	-39
- 265 00ed 04       		.byte	4
- 266 00ee DB       		.byte	-37
- 267 00ef 04       		.byte	4
- 268 00f0 DF       		.byte	-33
+ 244 00d8 BE       		.byte	-66
+ 245 00d9 11       		.byte	17
+ 246 00da BF       		.byte	-65
+ 247 00db 04       		.byte	4
+ 248 00dc C0       		.byte	-64
+ 249 00dd 25       		.byte	37
+ 250 00de C1       		.byte	-63
+ 251 00df 06       		.byte	6
+ 252 00e0 C5       		.byte	-59
+ 253 00e1 E0       		.byte	-32
+ 254 00e2 C6       		.byte	-58
+ 255 00e3 C4       		.byte	-60
+ 256 00e4 C7       		.byte	-57
+ 257 00e5 0D       		.byte	13
+ 258 00e6 C8       		.byte	-56
+ 259 00e7 1E       		.byte	30
+ 260 00e8 C9       		.byte	-55
+ 261 00e9 FF       		.byte	-1
+ 262 00ea CA       		.byte	-54
+ 263 00eb FF       		.byte	-1
+ 264 00ec CB       		.byte	-53
+ 265 00ed FF       		.byte	-1
+ 266 00ee D0       		.byte	-48
+ 267 00ef 01       		.byte	1
+ 268 00f0 D6       		.byte	-42
  269 00f1 01       		.byte	1
- 270 00f2 00       		.byte	0
- 271 00f3 02       		.byte	2
- 272 00f4 09       		.byte	9
- 273 00f5 02       		.byte	2
- 274 00f6 0C       		.byte	12
- 275 00f7 08       		.byte	8
- 276 00f8 0D       		.byte	13
- 277 00f9 40       		.byte	64
- 278 00fa 0E       		.byte	14
- 279 00fb 80       		.byte	-128
- 280 00fc 10       		.byte	16
- 281 00fd 08       		.byte	8
- 282 00fe 18       		.byte	24
+ 270 00f2 D8       		.byte	-40
+ 271 00f3 04       		.byte	4
+ 272 00f4 D9       		.byte	-39
+ 273 00f5 04       		.byte	4
+ 274 00f6 DA       		.byte	-38
+ 275 00f7 04       		.byte	4
+ 276 00f8 DB       		.byte	-37
+ 277 00f9 04       		.byte	4
+ 278 00fa DC       		.byte	-36
+ 279 00fb 10       		.byte	16
+ 280 00fc DD       		.byte	-35
+ 281 00fd 01       		.byte	1
+ 282 00fe DF       		.byte	-33
  283 00ff 01       		.byte	1
- 284 0100 1D       		.byte	29
- 285 0101 80       		.byte	-128
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 6
+ 284 0100 E2       		.byte	-30
+ 285 0101 F0       		.byte	-16
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 6
 
 
- 286 0102 20       		.byte	32
- 287 0103 04       		.byte	4
- 288 0104 27       		.byte	39
- 289 0105 40       		.byte	64
- 290 0106 30       		.byte	48
- 291 0107 08       		.byte	8
- 292 0108 33       		.byte	51
- 293 0109 10       		.byte	16
- 294 010a 37       		.byte	55
- 295 010b 40       		.byte	64
- 296 010c 38       		.byte	56
- 297 010d E0       		.byte	-32
- 298 010e 3D       		.byte	61
- 299 010f 02       		.byte	2
- 300 0110 45       		.byte	69
- 301 0111 01       		.byte	1
- 302 0112 47       		.byte	71
- 303 0113 40       		.byte	64
- 304 0114 4C       		.byte	76
- 305 0115 40       		.byte	64
- 306 0116 4F       		.byte	79
- 307 0117 24       		.byte	36
- 308 0118 55       		.byte	85
- 309 0119 01       		.byte	1
- 310 011a 56       		.byte	86
- 311 011b 02       		.byte	2
- 312 011c 57       		.byte	87
- 313 011d 10       		.byte	16
- 314 011e 5C       		.byte	92
- 315 011f 60       		.byte	96
- 316 0120 68       		.byte	104
- 317 0121 40       		.byte	64
- 318 0122 69       		.byte	105
- 319 0123 80       		.byte	-128
- 320 0124 6A       		.byte	106
- 321 0125 10       		.byte	16
- 322 0126 6B       		.byte	107
+ 286 0102 E4       		.byte	-28
+ 287 0103 20       		.byte	32
+ 288 0104 E6       		.byte	-26
+ 289 0105 20       		.byte	32
+ 290 0106 E8       		.byte	-24
+ 291 0107 20       		.byte	32
+ 292 0108 EA       		.byte	-22
+ 293 0109 E0       		.byte	-32
+ 294 010a EC       		.byte	-20
+ 295 010b 20       		.byte	32
+ 296 010c EE       		.byte	-18
+ 297 010d 20       		.byte	32
+ 298 010e 00       		.byte	0
+ 299 010f 80       		.byte	-128
+ 300 0110 03       		.byte	3
+ 301 0111 04       		.byte	4
+ 302 0112 0A       		.byte	10
+ 303 0113 01       		.byte	1
+ 304 0114 0B       		.byte	11
+ 305 0115 04       		.byte	4
+ 306 0116 0F       		.byte	15
+ 307 0117 20       		.byte	32
+ 308 0118 13       		.byte	19
+ 309 0119 08       		.byte	8
+ 310 011a 18       		.byte	24
+ 311 011b 04       		.byte	4
+ 312 011c 19       		.byte	25
+ 313 011d 02       		.byte	2
+ 314 011e 1F       		.byte	31
+ 315 011f 80       		.byte	-128
+ 316 0120 20       		.byte	32
+ 317 0121 10       		.byte	16
+ 318 0122 22       		.byte	34
+ 319 0123 02       		.byte	2
+ 320 0124 26       		.byte	38
+ 321 0125 40       		.byte	64
+ 322 0126 2A       		.byte	42
  323 0127 10       		.byte	16
- 324 0128 6C       		.byte	108
- 325 0129 10       		.byte	16
- 326 012a 6E       		.byte	110
- 327 012b 80       		.byte	-128
- 328 012c 6F       		.byte	111
- 329 012d 84       		.byte	-124
- 330 012e 70       		.byte	112
- 331 012f 80       		.byte	-128
- 332 0130 71       		.byte	113
- 333 0131 1A       		.byte	26
- 334 0132 74       		.byte	116
- 335 0133 01       		.byte	1
- 336 0134 75       		.byte	117
- 337 0135 08       		.byte	8
- 338 0136 76       		.byte	118
- 339 0137 09       		.byte	9
- 340 0138 83       		.byte	-125
- 341 0139 40       		.byte	64
- 342 013a 87       		.byte	-121
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 7
+ 324 0128 2F       		.byte	47
+ 325 0129 80       		.byte	-128
+ 326 012a 32       		.byte	50
+ 327 012b 12       		.byte	18
+ 328 012c 33       		.byte	51
+ 329 012d 04       		.byte	4
+ 330 012e 39       		.byte	57
+ 331 012f 20       		.byte	32
+ 332 0130 3F       		.byte	63
+ 333 0131 20       		.byte	32
+ 334 0132 41       		.byte	65
+ 335 0133 20       		.byte	32
+ 336 0134 43       		.byte	67
+ 337 0135 10       		.byte	16
+ 338 0136 4A       		.byte	74
+ 339 0137 0A       		.byte	10
+ 340 0138 4B       		.byte	75
+ 341 0139 01       		.byte	1
+ 342 013a 51       		.byte	81
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 7
 
 
- 343 013b 04       		.byte	4
- 344 013c 94       		.byte	-108
- 345 013d 80       		.byte	-128
- 346 013e 95       		.byte	-107
- 347 013f 01       		.byte	1
- 348 0140 96       		.byte	-106
+ 343 013b 20       		.byte	32
+ 344 013c 52       		.byte	82
+ 345 013d 98       		.byte	-104
+ 346 013e 59       		.byte	89
+ 347 013f 80       		.byte	-128
+ 348 0140 5B       		.byte	91
  349 0141 10       		.byte	16
- 350 0142 9D       		.byte	-99
- 351 0143 18       		.byte	24
- 352 0144 9E       		.byte	-98
- 353 0145 09       		.byte	9
- 354 0146 9F       		.byte	-97
- 355 0147 04       		.byte	4
- 356 0148 A0       		.byte	-96
- 357 0149 08       		.byte	8
- 358 014a A4       		.byte	-92
- 359 014b C0       		.byte	-64
- 360 014c A5       		.byte	-91
- 361 014d 08       		.byte	8
- 362 014e A7       		.byte	-89
- 363 014f 80       		.byte	-128
- 364 0150 A9       		.byte	-87
- 365 0151 04       		.byte	4
- 366 0152 AE       		.byte	-82
+ 350 0142 65       		.byte	101
+ 351 0143 80       		.byte	-128
+ 352 0144 67       		.byte	103
+ 353 0145 01       		.byte	1
+ 354 0146 68       		.byte	104
+ 355 0147 41       		.byte	65
+ 356 0148 69       		.byte	105
+ 357 0149 24       		.byte	36
+ 358 014a 71       		.byte	113
+ 359 014b 04       		.byte	4
+ 360 014c 72       		.byte	114
+ 361 014d 82       		.byte	-126
+ 362 014e 73       		.byte	115
+ 363 014f 08       		.byte	8
+ 364 0150 82       		.byte	-126
+ 365 0151 80       		.byte	-128
+ 366 0152 86       		.byte	-122
  367 0153 02       		.byte	2
- 368 0154 B0       		.byte	-80
- 369 0155 01       		.byte	1
- 370 0156 B3       		.byte	-77
- 371 0157 20       		.byte	32
- 372 0158 B4       		.byte	-76
+ 368 0154 90       		.byte	-112
+ 369 0155 02       		.byte	2
+ 370 0156 92       		.byte	-110
+ 371 0157 21       		.byte	33
+ 372 0158 93       		.byte	-109
  373 0159 04       		.byte	4
- 374 015a B5       		.byte	-75
- 375 015b 80       		.byte	-128
- 376 015c C0       		.byte	-64
- 377 015d 08       		.byte	8
- 378 015e C2       		.byte	-62
- 379 015f B8       		.byte	-72
- 380 0160 C4       		.byte	-60
- 381 0161 02       		.byte	2
- 382 0162 CC       		.byte	-52
- 383 0163 16       		.byte	22
- 384 0164 CE       		.byte	-50
- 385 0165 84       		.byte	-124
- 386 0166 D0       		.byte	-48
- 387 0167 90       		.byte	-112
- 388 0168 D2       		.byte	-46
- 389 0169 20       		.byte	32
- 390 016a D6       		.byte	-42
- 391 016b 30       		.byte	48
- 392 016c 03       		.byte	3
- 393 016d 02       		.byte	2
- 394 016e 06       		.byte	6
- 395 016f 02       		.byte	2
- 396 0170 07       		.byte	7
- 397 0171 08       		.byte	8
- 398 0172 08       		.byte	8
- 399 0173 01       		.byte	1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 8
+ 374 015a 95       		.byte	-107
+ 375 015b 04       		.byte	4
+ 376 015c 96       		.byte	-106
+ 377 015d 12       		.byte	18
+ 378 015e 97       		.byte	-105
+ 379 015f 01       		.byte	1
+ 380 0160 9D       		.byte	-99
+ 381 0161 04       		.byte	4
+ 382 0162 9E       		.byte	-98
+ 383 0163 02       		.byte	2
+ 384 0164 9F       		.byte	-97
+ 385 0165 04       		.byte	4
+ 386 0166 A3       		.byte	-93
+ 387 0167 20       		.byte	32
+ 388 0168 A4       		.byte	-92
+ 389 0169 01       		.byte	1
+ 390 016a AF       		.byte	-81
+ 391 016b 70       		.byte	112
+ 392 016c B0       		.byte	-80
+ 393 016d 10       		.byte	16
+ 394 016e B2       		.byte	-78
+ 395 016f 04       		.byte	4
+ 396 0170 B4       		.byte	-76
+ 397 0171 40       		.byte	64
+ 398 0172 B6       		.byte	-74
+ 399 0173 40       		.byte	64
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 8
 
 
- 400 0174 0F       		.byte	15
- 401 0175 10       		.byte	16
- 402 0176 13       		.byte	19
- 403 0177 08       		.byte	8
- 404 0178 15       		.byte	21
- 405 0179 02       		.byte	2
- 406 017a 16       		.byte	22
- 407 017b 04       		.byte	4
- 408 017c 17       		.byte	23
- 409 017d 04       		.byte	4
- 410 017e 1F       		.byte	31
- 411 017f 04       		.byte	4
- 412 0180 21       		.byte	33
- 413 0181 01       		.byte	1
- 414 0182 26       		.byte	38
- 415 0183 01       		.byte	1
- 416 0184 28       		.byte	40
- 417 0185 02       		.byte	2
- 418 0186 2A       		.byte	42
- 419 0187 04       		.byte	4
- 420 0188 2F       		.byte	47
- 421 0189 01       		.byte	1
- 422 018a 30       		.byte	48
- 423 018b 01       		.byte	1
- 424 018c 31       		.byte	49
- 425 018d 10       		.byte	16
- 426 018e 33       		.byte	51
- 427 018f 08       		.byte	8
- 428 0190 34       		.byte	52
- 429 0191 06       		.byte	6
- 430 0192 35       		.byte	53
- 431 0193 01       		.byte	1
- 432 0194 37       		.byte	55
- 433 0195 06       		.byte	6
- 434 0196 3E       		.byte	62
- 435 0197 10       		.byte	16
- 436 0198 3F       		.byte	63
- 437 0199 44       		.byte	68
- 438 019a 40       		.byte	64
- 439 019b 40       		.byte	64
- 440 019c 41       		.byte	65
- 441 019d 03       		.byte	3
- 442 019e 45       		.byte	69
- 443 019f D2       		.byte	-46
- 444 01a0 46       		.byte	70
- 445 01a1 15       		.byte	21
- 446 01a2 48       		.byte	72
- 447 01a3 0F       		.byte	15
- 448 01a4 49       		.byte	73
- 449 01a5 FF       		.byte	-1
- 450 01a6 4A       		.byte	74
- 451 01a7 FF       		.byte	-1
- 452 01a8 4B       		.byte	75
- 453 01a9 FF       		.byte	-1
- 454 01aa 4D       		.byte	77
- 455 01ab A0       		.byte	-96
- 456 01ac 4F       		.byte	79
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 9
+ 400 0174 C0       		.byte	-64
+ 401 0175 03       		.byte	3
+ 402 0176 C2       		.byte	-62
+ 403 0177 23       		.byte	35
+ 404 0178 C4       		.byte	-60
+ 405 0179 04       		.byte	4
+ 406 017a CA       		.byte	-54
+ 407 017b 84       		.byte	-124
+ 408 017c CC       		.byte	-52
+ 409 017d 07       		.byte	7
+ 410 017e CE       		.byte	-50
+ 411 017f 24       		.byte	36
+ 412 0180 D0       		.byte	-48
+ 413 0181 04       		.byte	4
+ 414 0182 D2       		.byte	-46
+ 415 0183 0C       		.byte	12
+ 416 0184 D6       		.byte	-42
+ 417 0185 0C       		.byte	12
+ 418 0186 E8       		.byte	-24
+ 419 0187 08       		.byte	8
+ 420 0188 EA       		.byte	-22
+ 421 0189 02       		.byte	2
+ 422 018a EC       		.byte	-20
+ 423 018b 02       		.byte	2
+ 424 018c EE       		.byte	-18
+ 425 018d 08       		.byte	8
+ 426 018e 01       		.byte	1
+ 427 018f 01       		.byte	1
+ 428 0190 02       		.byte	2
+ 429 0191 04       		.byte	4
+ 430 0192 03       		.byte	3
+ 431 0193 02       		.byte	2
+ 432 0194 07       		.byte	7
+ 433 0195 08       		.byte	8
+ 434 0196 08       		.byte	8
+ 435 0197 05       		.byte	5
+ 436 0198 0A       		.byte	10
+ 437 0199 0A       		.byte	10
+ 438 019a 11       		.byte	17
+ 439 019b 02       		.byte	2
+ 440 019c 13       		.byte	19
+ 441 019d 01       		.byte	1
+ 442 019e 15       		.byte	21
+ 443 019f 14       		.byte	20
+ 444 01a0 17       		.byte	23
+ 445 01a1 28       		.byte	40
+ 446 01a2 1A       		.byte	26
+ 447 01a3 02       		.byte	2
+ 448 01a4 1F       		.byte	31
+ 449 01a5 20       		.byte	32
+ 450 01a6 22       		.byte	34
+ 451 01a7 08       		.byte	8
+ 452 01a8 23       		.byte	35
+ 453 01a9 10       		.byte	16
+ 454 01aa 26       		.byte	38
+ 455 01ab 01       		.byte	1
+ 456 01ac 27       		.byte	39
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 9
 
 
  457 01ad 04       		.byte	4
- 458 01ae 50       		.byte	80
- 459 01af 18       		.byte	24
- 460 01b0 52       		.byte	82
- 461 01b1 80       		.byte	-128
- 462 01b2 54       		.byte	84
- 463 01b3 07       		.byte	7
- 464 01b4 58       		.byte	88
- 465 01b5 04       		.byte	4
- 466 01b6 59       		.byte	89
- 467 01b7 04       		.byte	4
- 468 01b8 5A       		.byte	90
- 469 01b9 04       		.byte	4
- 470 01ba 5B       		.byte	91
- 471 01bb 04       		.byte	4
- 472 01bc 5C       		.byte	92
- 473 01bd 22       		.byte	34
- 474 01be 5D       		.byte	93
- 475 01bf 22       		.byte	34
- 476 01c0 5F       		.byte	95
- 477 01c1 01       		.byte	1
- 478 01c2 60       		.byte	96
- 479 01c3 40       		.byte	64
- 480 01c4 62       		.byte	98
- 481 01c5 C0       		.byte	-64
- 482 01c6 64       		.byte	100
- 483 01c7 40       		.byte	64
- 484 01c8 65       		.byte	101
- 485 01c9 40       		.byte	64
- 486 01ca 66       		.byte	102
- 487 01cb C0       		.byte	-64
- 488 01cc 68       		.byte	104
- 489 01cd C0       		.byte	-64
- 490 01ce 6A       		.byte	106
- 491 01cf C0       		.byte	-64
- 492 01d0 6C       		.byte	108
- 493 01d1 C0       		.byte	-64
- 494 01d2 6E       		.byte	110
- 495 01d3 C0       		.byte	-64
- 496 01d4 81       		.byte	-127
- 497 01d5 01       		.byte	1
- 498 01d6 87       		.byte	-121
- 499 01d7 02       		.byte	2
- 500 01d8 89       		.byte	-119
- 501 01d9 01       		.byte	1
- 502 01da 8F       		.byte	-113
- 503 01db 01       		.byte	1
- 504 01dc 91       		.byte	-111
- 505 01dd 01       		.byte	1
- 506 01de 95       		.byte	-107
- 507 01df 01       		.byte	1
- 508 01e0 9B       		.byte	-101
- 509 01e1 04       		.byte	4
- 510 01e2 A9       		.byte	-87
- 511 01e3 02       		.byte	2
- 512 01e4 AB       		.byte	-85
- 513 01e5 04       		.byte	4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 10
+ 458 01ae 30       		.byte	48
+ 459 01af 0C       		.byte	12
+ 460 01b0 31       		.byte	49
+ 461 01b1 03       		.byte	3
+ 462 01b2 33       		.byte	51
+ 463 01b3 30       		.byte	48
+ 464 01b4 34       		.byte	52
+ 465 01b5 03       		.byte	3
+ 466 01b6 37       		.byte	55
+ 467 01b7 0C       		.byte	12
+ 468 01b8 3E       		.byte	62
+ 469 01b9 11       		.byte	17
+ 470 01ba 3F       		.byte	63
+ 471 01bb 45       		.byte	69
+ 472 01bc 42       		.byte	66
+ 473 01bd 03       		.byte	3
+ 474 01be 47       		.byte	71
+ 475 01bf E0       		.byte	-32
+ 476 01c0 48       		.byte	72
+ 477 01c1 20       		.byte	32
+ 478 01c2 49       		.byte	73
+ 479 01c3 FF       		.byte	-1
+ 480 01c4 4A       		.byte	74
+ 481 01c5 FF       		.byte	-1
+ 482 01c6 4B       		.byte	75
+ 483 01c7 FF       		.byte	-1
+ 484 01c8 4F       		.byte	79
+ 485 01c9 83       		.byte	-125
+ 486 01ca 58       		.byte	88
+ 487 01cb 04       		.byte	4
+ 488 01cc 59       		.byte	89
+ 489 01cd 04       		.byte	4
+ 490 01ce 5A       		.byte	90
+ 491 01cf 04       		.byte	4
+ 492 01d0 5B       		.byte	91
+ 493 01d1 04       		.byte	4
+ 494 01d2 5D       		.byte	93
+ 495 01d3 08       		.byte	8
+ 496 01d4 5F       		.byte	95
+ 497 01d5 21       		.byte	33
+ 498 01d6 D6       		.byte	-42
+ 499 01d7 08       		.byte	8
+ 500 01d8 DB       		.byte	-37
+ 501 01d9 04       		.byte	4
+ 502 01da DD       		.byte	-35
+ 503 01db 90       		.byte	-112
+ 504 01dc 00       		.byte	0
+ 505 01dd 02       		.byte	2
+ 506 01de 03       		.byte	3
+ 507 01df 04       		.byte	4
+ 508 01e0 0A       		.byte	10
+ 509 01e1 08       		.byte	8
+ 510 01e2 11       		.byte	17
+ 511 01e3 04       		.byte	4
+ 512 01e4 13       		.byte	19
+ 513 01e5 02       		.byte	2
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 10
 
 
- 514 01e6 AF       		.byte	-81
- 515 01e7 01       		.byte	1
- 516 01e8 B3       		.byte	-77
- 517 01e9 06       		.byte	6
- 518 01ea B7       		.byte	-73
- 519 01eb 01       		.byte	1
- 520 01ec B9       		.byte	-71
- 521 01ed 80       		.byte	-128
- 522 01ee BF       		.byte	-65
+ 514 01e6 18       		.byte	24
+ 515 01e7 80       		.byte	-128
+ 516 01e8 1A       		.byte	26
+ 517 01e9 04       		.byte	4
+ 518 01ea 20       		.byte	32
+ 519 01eb 60       		.byte	96
+ 520 01ec 22       		.byte	34
+ 521 01ed 40       		.byte	64
+ 522 01ee 29       		.byte	41
  523 01ef 04       		.byte	4
- 524 01f0 D9       		.byte	-39
- 525 01f1 04       		.byte	4
- 526 01f2 DC       		.byte	-36
+ 524 01f0 2A       		.byte	42
+ 525 01f1 02       		.byte	2
+ 526 01f2 30       		.byte	48
  527 01f3 80       		.byte	-128
- 528 01f4 DF       		.byte	-33
- 529 01f5 11       		.byte	17
- 530 01f6 01       		.byte	1
- 531 01f7 08       		.byte	8
- 532 01f8 03       		.byte	3
- 533 01f9 08       		.byte	8
- 534 01fa 09       		.byte	9
- 535 01fb 08       		.byte	8
- 536 01fc 10       		.byte	16
- 537 01fd 08       		.byte	8
- 538 01fe 12       		.byte	18
- 539 01ff 10       		.byte	16
- 540 0200 18       		.byte	24
- 541 0201 08       		.byte	8
- 542 0202 1A       		.byte	26
- 543 0203 40       		.byte	64
- 544 0204 20       		.byte	32
- 545 0205 02       		.byte	2
- 546 0206 21       		.byte	33
- 547 0207 02       		.byte	2
- 548 0208 22       		.byte	34
- 549 0209 15       		.byte	21
- 550 020a 23       		.byte	35
- 551 020b 40       		.byte	64
- 552 020c 25       		.byte	37
- 553 020d 40       		.byte	64
- 554 020e 27       		.byte	39
- 555 020f 21       		.byte	33
- 556 0210 2A       		.byte	42
- 557 0211 40       		.byte	64
- 558 0212 2B       		.byte	43
- 559 0213 40       		.byte	64
- 560 0214 2C       		.byte	44
- 561 0215 08       		.byte	8
- 562 0216 2D       		.byte	45
- 563 0217 80       		.byte	-128
- 564 0218 30       		.byte	48
- 565 0219 88       		.byte	-120
- 566 021a 32       		.byte	50
- 567 021b 01       		.byte	1
- 568 021c 35       		.byte	53
- 569 021d 14       		.byte	20
- 570 021e 36       		.byte	54
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 11
+ 528 01f4 32       		.byte	50
+ 529 01f5 01       		.byte	1
+ 530 01f6 33       		.byte	51
+ 531 01f7 04       		.byte	4
+ 532 01f8 38       		.byte	56
+ 533 01f9 09       		.byte	9
+ 534 01fa 42       		.byte	66
+ 535 01fb 10       		.byte	16
+ 536 01fc 52       		.byte	82
+ 537 01fd 01       		.byte	1
+ 538 01fe 58       		.byte	88
+ 539 01ff 85       		.byte	-123
+ 540 0200 59       		.byte	89
+ 541 0201 10       		.byte	16
+ 542 0202 5F       		.byte	95
+ 543 0203 50       		.byte	80
+ 544 0204 60       		.byte	96
+ 545 0205 54       		.byte	84
+ 546 0206 61       		.byte	97
+ 547 0207 80       		.byte	-128
+ 548 0208 6A       		.byte	106
+ 549 0209 29       		.byte	41
+ 550 020a 6B       		.byte	107
+ 551 020b 02       		.byte	2
+ 552 020c 70       		.byte	112
+ 553 020d 85       		.byte	-123
+ 554 020e 73       		.byte	115
+ 555 020f 04       		.byte	4
+ 556 0210 7B       		.byte	123
+ 557 0211 20       		.byte	32
+ 558 0212 82       		.byte	-126
+ 559 0213 01       		.byte	1
+ 560 0214 90       		.byte	-112
+ 561 0215 15       		.byte	21
+ 562 0216 97       		.byte	-105
+ 563 0217 01       		.byte	1
+ 564 0218 98       		.byte	-104
+ 565 0219 85       		.byte	-123
+ 566 021a 99       		.byte	-103
+ 567 021b 10       		.byte	16
+ 568 021c A1       		.byte	-95
+ 569 021d 80       		.byte	-128
+ 570 021e B0       		.byte	-80
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 11
 
 
- 571 021f 02       		.byte	2
- 572 0220 39       		.byte	57
- 573 0221 08       		.byte	8
- 574 0222 3A       		.byte	58
- 575 0223 81       		.byte	-127
- 576 0224 3B       		.byte	59
- 577 0225 04       		.byte	4
- 578 0226 3D       		.byte	61
- 579 0227 81       		.byte	-127
- 580 0228 3E       		.byte	62
- 581 0229 28       		.byte	40
- 582 022a 41       		.byte	65
- 583 022b 06       		.byte	6
- 584 022c 49       		.byte	73
- 585 022d 01       		.byte	1
- 586 022e 4A       		.byte	74
- 587 022f 04       		.byte	4
- 588 0230 4B       		.byte	75
- 589 0231 14       		.byte	20
- 590 0232 50       		.byte	80
- 591 0233 10       		.byte	16
- 592 0234 52       		.byte	82
- 593 0235 50       		.byte	80
- 594 0236 59       		.byte	89
- 595 0237 01       		.byte	1
- 596 0238 5A       		.byte	90
- 597 0239 68       		.byte	104
- 598 023a 72       		.byte	114
- 599 023b 80       		.byte	-128
- 600 023c 7C       		.byte	124
- 601 023d 20       		.byte	32
- 602 023e 80       		.byte	-128
- 603 023f 40       		.byte	64
- 604 0240 8E       		.byte	-114
+ 571 021f 05       		.byte	5
+ 572 0220 B1       		.byte	-79
+ 573 0221 80       		.byte	-128
+ 574 0222 B4       		.byte	-76
+ 575 0223 15       		.byte	21
+ 576 0224 B5       		.byte	-75
+ 577 0225 10       		.byte	16
+ 578 0226 C0       		.byte	-64
+ 579 0227 0A       		.byte	10
+ 580 0228 C2       		.byte	-62
+ 581 0229 02       		.byte	2
+ 582 022a C4       		.byte	-60
+ 583 022b 0C       		.byte	12
+ 584 022c CA       		.byte	-54
+ 585 022d 03       		.byte	3
+ 586 022e CC       		.byte	-52
+ 587 022f 0B       		.byte	11
+ 588 0230 CE       		.byte	-50
+ 589 0231 03       		.byte	3
+ 590 0232 D0       		.byte	-48
+ 591 0233 02       		.byte	2
+ 592 0234 D6       		.byte	-42
+ 593 0235 3F       		.byte	63
+ 594 0236 D8       		.byte	-40
+ 595 0237 0F       		.byte	15
+ 596 0238 DE       		.byte	-34
+ 597 0239 02       		.byte	2
+ 598 023a E6       		.byte	-26
+ 599 023b 01       		.byte	1
+ 600 023c 88       		.byte	-120
+ 601 023d 80       		.byte	-128
+ 602 023e 8F       		.byte	-113
+ 603 023f 01       		.byte	1
+ 604 0240 B2       		.byte	-78
  605 0241 04       		.byte	4
- 606 0242 94       		.byte	-108
- 607 0243 20       		.byte	32
- 608 0244 95       		.byte	-107
+ 606 0242 E6       		.byte	-26
+ 607 0243 10       		.byte	16
+ 608 0244 0E       		.byte	14
  609 0245 01       		.byte	1
- 610 0246 96       		.byte	-106
- 611 0247 10       		.byte	16
- 612 0248 97       		.byte	-105
- 613 0249 50       		.byte	80
- 614 024a 98       		.byte	-104
- 615 024b 20       		.byte	32
- 616 024c 9A       		.byte	-102
- 617 024d 20       		.byte	32
- 618 024e 9D       		.byte	-99
- 619 024f 84       		.byte	-124
- 620 0250 9E       		.byte	-98
- 621 0251 40       		.byte	64
- 622 0252 9F       		.byte	-97
- 623 0253 05       		.byte	5
- 624 0254 A0       		.byte	-96
- 625 0255 08       		.byte	8
- 626 0256 A3       		.byte	-93
- 627 0257 48       		.byte	72
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 12
+ 610 0246 12       		.byte	18
+ 611 0247 01       		.byte	1
+ 612 0248 13       		.byte	19
+ 613 0249 01       		.byte	1
+ 614 024a 27       		.byte	39
+ 615 024b 01       		.byte	1
+ 616 024c 33       		.byte	51
+ 617 024d 01       		.byte	1
+ 618 024e 34       		.byte	52
+ 619 024f 01       		.byte	1
+ 620 0250 58       		.byte	88
+ 621 0251 04       		.byte	4
+ 622 0252 59       		.byte	89
+ 623 0253 04       		.byte	4
+ 624 0254 5C       		.byte	92
+ 625 0255 22       		.byte	34
+ 626 0256 5F       		.byte	95
+ 627 0257 01       		.byte	1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 12
 
 
- 628 0258 A4       		.byte	-92
- 629 0259 40       		.byte	64
- 630 025a A6       		.byte	-90
- 631 025b 02       		.byte	2
- 632 025c A7       		.byte	-89
- 633 025d 80       		.byte	-128
- 634 025e A9       		.byte	-87
- 635 025f 40       		.byte	64
- 636 0260 AA       		.byte	-86
- 637 0261 20       		.byte	32
- 638 0262 B0       		.byte	-80
- 639 0263 05       		.byte	5
- 640 0264 B2       		.byte	-78
- 641 0265 20       		.byte	32
- 642 0266 B4       		.byte	-76
+ 628 0258 80       		.byte	-128
+ 629 0259 01       		.byte	1
+ 630 025a 83       		.byte	-125
+ 631 025b 04       		.byte	4
+ 632 025c 8B       		.byte	-117
+ 633 025d 02       		.byte	2
+ 634 025e 8E       		.byte	-114
+ 635 025f 02       		.byte	2
+ 636 0260 96       		.byte	-106
+ 637 0261 01       		.byte	1
+ 638 0262 A2       		.byte	-94
+ 639 0263 04       		.byte	4
+ 640 0264 A5       		.byte	-91
+ 641 0265 04       		.byte	4
+ 642 0266 AB       		.byte	-85
  643 0267 01       		.byte	1
- 644 0268 B5       		.byte	-75
- 645 0269 10       		.byte	16
- 646 026a C0       		.byte	-64
- 647 026b 06       		.byte	6
- 648 026c C2       		.byte	-62
+ 644 0268 AF       		.byte	-81
+ 645 0269 01       		.byte	1
+ 646 026a B0       		.byte	-80
+ 647 026b 04       		.byte	4
+ 648 026c B1       		.byte	-79
  649 026d 04       		.byte	4
- 650 026e C4       		.byte	-60
- 651 026f 06       		.byte	6
- 652 0270 CA       		.byte	-54
- 653 0271 39       		.byte	57
- 654 0272 CC       		.byte	-52
- 655 0273 EB       		.byte	-21
- 656 0274 CE       		.byte	-50
- 657 0275 FB       		.byte	-5
- 658 0276 D0       		.byte	-48
- 659 0277 03       		.byte	3
- 660 0278 D6       		.byte	-42
- 661 0279 0F       		.byte	15
- 662 027a DE       		.byte	-34
- 663 027b 20       		.byte	32
- 664 027c E0       		.byte	-32
- 665 027d 40       		.byte	64
- 666 027e EC       		.byte	-20
- 667 027f 04       		.byte	4
- 668 0280 01       		.byte	1
- 669 0281 04       		.byte	4
- 670 0282 09       		.byte	9
- 671 0283 04       		.byte	4
- 672 0284 0A       		.byte	10
- 673 0285 01       		.byte	1
- 674 0286 0F       		.byte	15
- 675 0287 02       		.byte	2
- 676 0288 11       		.byte	17
- 677 0289 04       		.byte	4
- 678 028a 12       		.byte	18
- 679 028b 01       		.byte	1
- 680 028c 15       		.byte	21
+ 650 026e B2       		.byte	-78
+ 651 026f 01       		.byte	1
+ 652 0270 B4       		.byte	-76
+ 653 0271 02       		.byte	2
+ 654 0272 B5       		.byte	-75
+ 655 0273 01       		.byte	1
+ 656 0274 B7       		.byte	-73
+ 657 0275 02       		.byte	2
+ 658 0276 BF       		.byte	-65
+ 659 0277 10       		.byte	16
+ 660 0278 C0       		.byte	-64
+ 661 0279 40       		.byte	64
+ 662 027a C1       		.byte	-63
+ 663 027b 02       		.byte	2
+ 664 027c C5       		.byte	-59
+ 665 027d D0       		.byte	-48
+ 666 027e C6       		.byte	-58
+ 667 027f 50       		.byte	80
+ 668 0280 C7       		.byte	-57
+ 669 0281 12       		.byte	18
+ 670 0282 C8       		.byte	-56
+ 671 0283 3A       		.byte	58
+ 672 0284 C9       		.byte	-55
+ 673 0285 FF       		.byte	-1
+ 674 0286 CA       		.byte	-54
+ 675 0287 FF       		.byte	-1
+ 676 0288 CB       		.byte	-53
+ 677 0289 FF       		.byte	-1
+ 678 028a CD       		.byte	-51
+ 679 028b A0       		.byte	-96
+ 680 028c CF       		.byte	-49
  681 028d 04       		.byte	4
- 682 028e 23       		.byte	35
- 683 028f 01       		.byte	1
- 684 0290 29       		.byte	41
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 13
+ 682 028e D0       		.byte	-48
+ 683 028f 18       		.byte	24
+ 684 0290 D2       		.byte	-46
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 13
 
 
- 685 0291 01       		.byte	1
- 686 0292 2B       		.byte	43
- 687 0293 02       		.byte	2
- 688 0294 2F       		.byte	47
+ 685 0291 80       		.byte	-128
+ 686 0292 D4       		.byte	-44
+ 687 0293 07       		.byte	7
+ 688 0294 D8       		.byte	-40
  689 0295 04       		.byte	4
- 690 0296 30       		.byte	48
- 691 0297 01       		.byte	1
- 692 0298 33       		.byte	51
+ 690 0296 D9       		.byte	-39
+ 691 0297 04       		.byte	4
+ 692 0298 DA       		.byte	-38
  693 0299 04       		.byte	4
- 694 029a 35       		.byte	53
- 695 029b 03       		.byte	3
- 696 029c 3F       		.byte	63
- 697 029d 14       		.byte	20
- 698 029e 56       		.byte	86
- 699 029f 08       		.byte	8
- 700 02a0 58       		.byte	88
- 701 02a1 04       		.byte	4
- 702 02a2 59       		.byte	89
- 703 02a3 04       		.byte	4
- 704 02a4 5B       		.byte	91
- 705 02a5 04       		.byte	4
- 706 02a6 5C       		.byte	92
- 707 02a7 02       		.byte	2
- 708 02a8 5D       		.byte	93
- 709 02a9 90       		.byte	-112
- 710 02aa 5F       		.byte	95
- 711 02ab 01       		.byte	1
- 712 02ac 80       		.byte	-128
- 713 02ad 02       		.byte	2
- 714 02ae 82       		.byte	-126
- 715 02af 04       		.byte	4
- 716 02b0 8A       		.byte	-118
- 717 02b1 10       		.byte	16
- 718 02b2 8C       		.byte	-116
- 719 02b3 04       		.byte	4
- 720 02b4 8E       		.byte	-114
- 721 02b5 02       		.byte	2
- 722 02b6 8F       		.byte	-113
- 723 02b7 01       		.byte	1
- 724 02b8 96       		.byte	-106
- 725 02b9 20       		.byte	32
- 726 02ba A2       		.byte	-94
- 727 02bb 08       		.byte	8
- 728 02bc A6       		.byte	-90
- 729 02bd 01       		.byte	1
- 730 02be A8       		.byte	-88
- 731 02bf 10       		.byte	16
- 732 02c0 AA       		.byte	-86
- 733 02c1 20       		.byte	32
- 734 02c2 AF       		.byte	-81
- 735 02c3 01       		.byte	1
- 736 02c4 B0       		.byte	-80
- 737 02c5 06       		.byte	6
- 738 02c6 B2       		.byte	-78
- 739 02c7 01       		.byte	1
- 740 02c8 B4       		.byte	-76
- 741 02c9 30       		.byte	48
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 14
+ 694 029a DB       		.byte	-37
+ 695 029b 04       		.byte	4
+ 696 029c DC       		.byte	-36
+ 697 029d 22       		.byte	34
+ 698 029e DD       		.byte	-35
+ 699 029f 22       		.byte	34
+ 700 02a0 DF       		.byte	-33
+ 701 02a1 01       		.byte	1
+ 702 02a2 E0       		.byte	-32
+ 703 02a3 40       		.byte	64
+ 704 02a4 E2       		.byte	-30
+ 705 02a5 C0       		.byte	-64
+ 706 02a6 E4       		.byte	-28
+ 707 02a7 40       		.byte	64
+ 708 02a8 E5       		.byte	-27
+ 709 02a9 40       		.byte	64
+ 710 02aa E6       		.byte	-26
+ 711 02ab C0       		.byte	-64
+ 712 02ac E8       		.byte	-24
+ 713 02ad C0       		.byte	-64
+ 714 02ae EA       		.byte	-22
+ 715 02af C0       		.byte	-64
+ 716 02b0 EC       		.byte	-20
+ 717 02b1 C0       		.byte	-64
+ 718 02b2 EE       		.byte	-18
+ 719 02b3 C0       		.byte	-64
+ 720 02b4 02       		.byte	2
+ 721 02b5 01       		.byte	1
+ 722 02b6 04       		.byte	4
+ 723 02b7 02       		.byte	2
+ 724 02b8 06       		.byte	6
+ 725 02b9 01       		.byte	1
+ 726 02ba 09       		.byte	9
+ 727 02bb 02       		.byte	2
+ 728 02bc 0F       		.byte	15
+ 729 02bd 20       		.byte	32
+ 730 02be 16       		.byte	22
+ 731 02bf 40       		.byte	64
+ 732 02c0 1A       		.byte	26
+ 733 02c1 04       		.byte	4
+ 734 02c2 1D       		.byte	29
+ 735 02c3 02       		.byte	2
+ 736 02c4 1E       		.byte	30
+ 737 02c5 20       		.byte	32
+ 738 02c6 1F       		.byte	31
+ 739 02c7 22       		.byte	34
+ 740 02c8 20       		.byte	32
+ 741 02c9 20       		.byte	32
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 14
 
 
- 742 02ca B5       		.byte	-75
- 743 02cb 01       		.byte	1
- 744 02cc B6       		.byte	-74
+ 742 02ca 24       		.byte	36
+ 743 02cb 42       		.byte	66
+ 744 02cc 27       		.byte	39
  745 02cd 08       		.byte	8
- 746 02ce BE       		.byte	-66
- 747 02cf 11       		.byte	17
- 748 02d0 C2       		.byte	-62
- 749 02d1 03       		.byte	3
- 750 02d2 C7       		.byte	-57
- 751 02d3 E0       		.byte	-32
- 752 02d4 C8       		.byte	-56
- 753 02d5 20       		.byte	32
- 754 02d6 C9       		.byte	-55
- 755 02d7 FF       		.byte	-1
- 756 02d8 CA       		.byte	-54
- 757 02d9 FF       		.byte	-1
- 758 02da CB       		.byte	-53
- 759 02db FF       		.byte	-1
- 760 02dc CF       		.byte	-49
- 761 02dd 83       		.byte	-125
- 762 02de D8       		.byte	-40
- 763 02df 04       		.byte	4
- 764 02e0 D9       		.byte	-39
- 765 02e1 04       		.byte	4
- 766 02e2 DA       		.byte	-38
- 767 02e3 04       		.byte	4
- 768 02e4 DB       		.byte	-37
- 769 02e5 04       		.byte	4
- 770 02e6 DC       		.byte	-36
- 771 02e7 22       		.byte	34
- 772 02e8 DD       		.byte	-35
- 773 02e9 08       		.byte	8
- 774 02ea DF       		.byte	-33
- 775 02eb 11       		.byte	17
- 776 02ec 00       		.byte	0
- 777 02ed 01       		.byte	1
- 778 02ee 03       		.byte	3
- 779 02ef 05       		.byte	5
- 780 02f0 04       		.byte	4
- 781 02f1 20       		.byte	32
- 782 02f2 07       		.byte	7
- 783 02f3 08       		.byte	8
- 784 02f4 0A       		.byte	10
+ 746 02ce 2B       		.byte	43
+ 747 02cf 10       		.byte	16
+ 748 02d0 2F       		.byte	47
+ 749 02d1 2A       		.byte	42
+ 750 02d2 33       		.byte	51
+ 751 02d3 02       		.byte	2
+ 752 02d4 3C       		.byte	60
+ 753 02d5 02       		.byte	2
+ 754 02d6 3F       		.byte	63
+ 755 02d7 20       		.byte	32
+ 756 02d8 45       		.byte	69
+ 757 02d9 02       		.byte	2
+ 758 02da 46       		.byte	70
+ 759 02db 04       		.byte	4
+ 760 02dc 4D       		.byte	77
+ 761 02dd 01       		.byte	1
+ 762 02de 54       		.byte	84
+ 763 02df 01       		.byte	1
+ 764 02e0 56       		.byte	86
+ 765 02e1 05       		.byte	5
+ 766 02e2 57       		.byte	87
+ 767 02e3 18       		.byte	24
+ 768 02e4 5C       		.byte	92
+ 769 02e5 40       		.byte	64
+ 770 02e6 5D       		.byte	93
+ 771 02e7 01       		.byte	1
+ 772 02e8 5E       		.byte	94
+ 773 02e9 20       		.byte	32
+ 774 02ea 5F       		.byte	95
+ 775 02eb 08       		.byte	8
+ 776 02ec 76       		.byte	118
+ 777 02ed 40       		.byte	64
+ 778 02ee 84       		.byte	-124
+ 779 02ef 10       		.byte	16
+ 780 02f0 C0       		.byte	-64
+ 781 02f1 91       		.byte	-111
+ 782 02f2 C2       		.byte	-62
+ 783 02f3 28       		.byte	40
+ 784 02f4 C4       		.byte	-60
  785 02f5 10       		.byte	16
- 786 02f6 0F       		.byte	15
- 787 02f7 40       		.byte	64
- 788 02f8 10       		.byte	16
- 789 02f9 08       		.byte	8
- 790 02fa 12       		.byte	18
- 791 02fb 40       		.byte	64
- 792 02fc 13       		.byte	19
- 793 02fd 08       		.byte	8
- 794 02fe 18       		.byte	24
- 795 02ff 40       		.byte	64
- 796 0300 1A       		.byte	26
- 797 0301 04       		.byte	4
- 798 0302 1B       		.byte	27
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 15
+ 786 02f6 CA       		.byte	-54
+ 787 02f7 72       		.byte	114
+ 788 02f8 CC       		.byte	-52
+ 789 02f9 01       		.byte	1
+ 790 02fa CE       		.byte	-50
+ 791 02fb A0       		.byte	-96
+ 792 02fc D0       		.byte	-48
+ 793 02fd A0       		.byte	-96
+ 794 02fe D6       		.byte	-42
+ 795 02ff F0       		.byte	-16
+ 796 0300 E0       		.byte	-32
+ 797 0301 08       		.byte	8
+ 798 0302 EA       		.byte	-22
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 15
 
 
- 799 0303 48       		.byte	72
- 800 0304 1F       		.byte	31
- 801 0305 01       		.byte	1
- 802 0306 23       		.byte	35
- 803 0307 04       		.byte	4
- 804 0308 25       		.byte	37
- 805 0309 18       		.byte	24
- 806 030a 2A       		.byte	42
- 807 030b 40       		.byte	64
- 808 030c 2C       		.byte	44
- 809 030d 08       		.byte	8
- 810 030e 2D       		.byte	45
- 811 030f 80       		.byte	-128
- 812 0310 2F       		.byte	47
- 813 0311 80       		.byte	-128
- 814 0312 35       		.byte	53
- 815 0313 04       		.byte	4
- 816 0314 36       		.byte	54
- 817 0315 02       		.byte	2
- 818 0316 3B       		.byte	59
- 819 0317 40       		.byte	64
- 820 0318 3C       		.byte	60
- 821 0319 80       		.byte	-128
- 822 031a 3D       		.byte	61
- 823 031b 01       		.byte	1
+ 799 0303 01       		.byte	1
+ 800 0304 EC       		.byte	-20
+ 801 0305 04       		.byte	4
+ 802 0306 E0       		.byte	-32
+ 803 0307 08       		.byte	8
+ 804 0308 E4       		.byte	-28
+ 805 0309 03       		.byte	3
+ 806 030a E6       		.byte	-26
+ 807 030b 80       		.byte	-128
+ 808 030c 03       		.byte	3
+ 809 030d 02       		.byte	2
+ 810 030e 0B       		.byte	11
+ 811 030f 01       		.byte	1
+ 812 0310 16       		.byte	22
+ 813 0311 01       		.byte	1
+ 814 0312 17       		.byte	23
+ 815 0313 01       		.byte	1
+ 816 0314 1A       		.byte	26
+ 817 0315 01       		.byte	1
+ 818 0316 33       		.byte	51
+ 819 0317 01       		.byte	1
+ 820 0318 34       		.byte	52
+ 821 0319 01       		.byte	1
+ 822 031a 35       		.byte	53
+ 823 031b 02       		.byte	2
  824 031c 3E       		.byte	62
- 825 031d 20       		.byte	32
- 826 031e 41       		.byte	65
- 827 031f 08       		.byte	8
- 828 0320 53       		.byte	83
+ 825 031d 10       		.byte	16
+ 826 031e 40       		.byte	64
+ 827 031f 30       		.byte	48
+ 828 0320 41       		.byte	65
  829 0321 02       		.byte	2
- 830 0322 58       		.byte	88
- 831 0323 85       		.byte	-123
- 832 0324 59       		.byte	89
+ 830 0322 45       		.byte	69
+ 831 0323 D2       		.byte	-46
+ 832 0324 46       		.byte	70
  833 0325 10       		.byte	16
- 834 0326 5D       		.byte	93
- 835 0327 40       		.byte	64
- 836 0328 5F       		.byte	95
- 837 0329 10       		.byte	16
- 838 032a 60       		.byte	96
- 839 032b 40       		.byte	64
- 840 032c 61       		.byte	97
- 841 032d 40       		.byte	64
- 842 032e 62       		.byte	98
- 843 032f 20       		.byte	32
- 844 0330 63       		.byte	99
- 845 0331 20       		.byte	32
- 846 0332 68       		.byte	104
- 847 0333 08       		.byte	8
- 848 0334 6A       		.byte	106
- 849 0335 40       		.byte	64
- 850 0336 78       		.byte	120
- 851 0337 20       		.byte	32
- 852 0338 82       		.byte	-126
- 853 0339 40       		.byte	64
- 854 033a 87       		.byte	-121
- 855 033b 02       		.byte	2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 16
+ 834 0326 48       		.byte	72
+ 835 0327 0B       		.byte	11
+ 836 0328 49       		.byte	73
+ 837 0329 FF       		.byte	-1
+ 838 032a 4A       		.byte	74
+ 839 032b FF       		.byte	-1
+ 840 032c 4B       		.byte	75
+ 841 032d FF       		.byte	-1
+ 842 032e 4D       		.byte	77
+ 843 032f A0       		.byte	-96
+ 844 0330 4F       		.byte	79
+ 845 0331 04       		.byte	4
+ 846 0332 50       		.byte	80
+ 847 0333 18       		.byte	24
+ 848 0334 52       		.byte	82
+ 849 0335 80       		.byte	-128
+ 850 0336 54       		.byte	84
+ 851 0337 05       		.byte	5
+ 852 0338 58       		.byte	88
+ 853 0339 04       		.byte	4
+ 854 033a 59       		.byte	89
+ 855 033b 04       		.byte	4
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 16
 
 
- 856 033c 88       		.byte	-120
- 857 033d 80       		.byte	-128
- 858 033e 89       		.byte	-119
- 859 033f 40       		.byte	64
- 860 0340 8A       		.byte	-118
- 861 0341 04       		.byte	4
- 862 0342 8C       		.byte	-116
- 863 0343 20       		.byte	32
- 864 0344 8D       		.byte	-115
- 865 0345 10       		.byte	16
- 866 0346 8F       		.byte	-113
- 867 0347 10       		.byte	16
- 868 0348 97       		.byte	-105
- 869 0349 06       		.byte	6
- 870 034a AB       		.byte	-85
- 871 034b 01       		.byte	1
- 872 034c AF       		.byte	-81
- 873 034d 04       		.byte	4
- 874 034e C0       		.byte	-64
- 875 034f 4B       		.byte	75
- 876 0350 C2       		.byte	-62
- 877 0351 14       		.byte	20
- 878 0352 C4       		.byte	-60
- 879 0353 0E       		.byte	14
- 880 0354 CA       		.byte	-54
- 881 0355 B8       		.byte	-72
- 882 0356 CC       		.byte	-52
+ 856 033c 5A       		.byte	90
+ 857 033d 04       		.byte	4
+ 858 033e 5B       		.byte	91
+ 859 033f 04       		.byte	4
+ 860 0340 5C       		.byte	92
+ 861 0341 30       		.byte	48
+ 862 0342 5D       		.byte	93
+ 863 0343 33       		.byte	51
+ 864 0344 5F       		.byte	95
+ 865 0345 01       		.byte	1
+ 866 0346 60       		.byte	96
+ 867 0347 40       		.byte	64
+ 868 0348 62       		.byte	98
+ 869 0349 C0       		.byte	-64
+ 870 034a 64       		.byte	100
+ 871 034b 40       		.byte	64
+ 872 034c 65       		.byte	101
+ 873 034d 40       		.byte	64
+ 874 034e 66       		.byte	102
+ 875 034f C0       		.byte	-64
+ 876 0350 68       		.byte	104
+ 877 0351 C0       		.byte	-64
+ 878 0352 6A       		.byte	106
+ 879 0353 C0       		.byte	-64
+ 880 0354 6C       		.byte	108
+ 881 0355 C0       		.byte	-64
+ 882 0356 6E       		.byte	110
  883 0357 C0       		.byte	-64
- 884 0358 CE       		.byte	-50
- 885 0359 B8       		.byte	-72
- 886 035a D0       		.byte	-48
+ 884 0358 80       		.byte	-128
+ 885 0359 01       		.byte	1
+ 886 035a 83       		.byte	-125
  887 035b 02       		.byte	2
- 888 035c D6       		.byte	-42
- 889 035d 3F       		.byte	63
- 890 035e D8       		.byte	-40
- 891 035f 0F       		.byte	15
- 892 0360 DE       		.byte	-34
- 893 0361 04       		.byte	4
- 894 0362 E0       		.byte	-32
- 895 0363 04       		.byte	4
- 896 0364 E6       		.byte	-26
- 897 0365 02       		.byte	2
- 898 0366 E8       		.byte	-24
- 899 0367 02       		.byte	2
- 900 0368 EC       		.byte	-20
+ 888 035c 85       		.byte	-123
+ 889 035d 04       		.byte	4
+ 890 035e 89       		.byte	-119
+ 891 035f 01       		.byte	1
+ 892 0360 8B       		.byte	-117
+ 893 0361 02       		.byte	2
+ 894 0362 8E       		.byte	-114
+ 895 0363 01       		.byte	1
+ 896 0364 8F       		.byte	-113
+ 897 0365 01       		.byte	1
+ 898 0366 90       		.byte	-112
+ 899 0367 01       		.byte	1
+ 900 0368 93       		.byte	-109
  901 0369 04       		.byte	4
- 902 036a E2       		.byte	-30
- 903 036b 08       		.byte	8
- 904 036c EA       		.byte	-22
- 905 036d 02       		.byte	2
- 906 036e EC       		.byte	-20
- 907 036f 80       		.byte	-128
- 908 0370 A8       		.byte	-88
- 909 0371 20       		.byte	32
- 910 0372 AA       		.byte	-86
- 911 0373 02       		.byte	2
- 912 0374 B1       		.byte	-79
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 17
+ 902 036a 94       		.byte	-108
+ 903 036b 01       		.byte	1
+ 904 036c 97       		.byte	-105
+ 905 036d 04       		.byte	4
+ 906 036e 9C       		.byte	-100
+ 907 036f 01       		.byte	1
+ 908 0370 9D       		.byte	-99
+ 909 0371 04       		.byte	4
+ 910 0372 A1       		.byte	-95
+ 911 0373 04       		.byte	4
+ 912 0374 A9       		.byte	-87
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 17
 
 
- 913 0375 81       		.byte	-127
- 914 0376 B4       		.byte	-76
- 915 0377 05       		.byte	5
- 916 0378 E2       		.byte	-30
- 917 0379 08       		.byte	8
- 918 037a EA       		.byte	-22
- 919 037b 02       		.byte	2
- 920 037c EC       		.byte	-20
- 921 037d 80       		.byte	-128
- 922 037e 35       		.byte	53
- 923 037f 80       		.byte	-128
- 924 0380 3B       		.byte	59
- 925 0381 01       		.byte	1
- 926 0382 3F       		.byte	63
- 927 0383 10       		.byte	16
- 928 0384 CC       		.byte	-52
- 929 0385 20       		.byte	32
- 930 0386 CE       		.byte	-50
- 931 0387 60       		.byte	96
- 932 0388 01       		.byte	1
+ 913 0375 04       		.byte	4
+ 914 0376 B1       		.byte	-79
+ 915 0377 04       		.byte	4
+ 916 0378 B2       		.byte	-78
+ 917 0379 01       		.byte	1
+ 918 037a B5       		.byte	-75
+ 919 037b 03       		.byte	3
+ 920 037c B9       		.byte	-71
+ 921 037d 02       		.byte	2
+ 922 037e BE       		.byte	-66
+ 923 037f 04       		.byte	4
+ 924 0380 BF       		.byte	-65
+ 925 0381 10       		.byte	16
+ 926 0382 D8       		.byte	-40
+ 927 0383 04       		.byte	4
+ 928 0384 D9       		.byte	-39
+ 929 0385 04       		.byte	4
+ 930 0386 DB       		.byte	-37
+ 931 0387 04       		.byte	4
+ 932 0388 DC       		.byte	-36
  933 0389 80       		.byte	-128
- 934 038a 0B       		.byte	11
- 935 038b 02       		.byte	2
- 936 038c 0F       		.byte	15
- 937 038d 08       		.byte	8
- 938 038e 5B       		.byte	91
- 939 038f 08       		.byte	8
- 940 0390 63       		.byte	99
+ 934 038a DF       		.byte	-33
+ 935 038b 21       		.byte	33
+ 936 038c 01       		.byte	1
+ 937 038d 02       		.byte	2
+ 938 038e 03       		.byte	3
+ 939 038f 01       		.byte	1
+ 940 0390 08       		.byte	8
  941 0391 40       		.byte	64
- 942 0392 66       		.byte	102
- 943 0393 20       		.byte	32
- 944 0394 87       		.byte	-121
- 945 0395 50       		.byte	80
- 946 0396 97       		.byte	-105
- 947 0397 11       		.byte	17
- 948 0398 9D       		.byte	-99
- 949 0399 80       		.byte	-128
- 950 039a C0       		.byte	-64
- 951 039b 40       		.byte	64
- 952 039c C2       		.byte	-62
- 953 039d C0       		.byte	-64
- 954 039e D6       		.byte	-42
- 955 039f 40       		.byte	64
- 956 03a0 D8       		.byte	-40
- 957 03a1 C0       		.byte	-64
- 958 03a2 E2       		.byte	-30
- 959 03a3 10       		.byte	16
- 960 03a4 E6       		.byte	-26
- 961 03a5 40       		.byte	64
- 962 03a6 3C       		.byte	60
- 963 03a7 80       		.byte	-128
- 964 03a8 83       		.byte	-125
- 965 03a9 01       		.byte	1
- 966 03aa 8F       		.byte	-113
- 967 03ab 01       		.byte	1
- 968 03ac 93       		.byte	-109
- 969 03ad 02       		.byte	2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 18
+ 942 0392 09       		.byte	9
+ 943 0393 01       		.byte	1
+ 944 0394 0A       		.byte	10
+ 945 0395 01       		.byte	1
+ 946 0396 0B       		.byte	11
+ 947 0397 20       		.byte	32
+ 948 0398 0D       		.byte	13
+ 949 0399 20       		.byte	32
+ 950 039a 0E       		.byte	14
+ 951 039b 20       		.byte	32
+ 952 039c 0F       		.byte	15
+ 953 039d 08       		.byte	8
+ 954 039e 1A       		.byte	26
+ 955 039f 10       		.byte	16
+ 956 03a0 1E       		.byte	30
+ 957 03a1 08       		.byte	8
+ 958 03a2 20       		.byte	32
+ 959 03a3 08       		.byte	8
+ 960 03a4 22       		.byte	34
+ 961 03a5 01       		.byte	1
+ 962 03a6 26       		.byte	38
+ 963 03a7 18       		.byte	24
+ 964 03a8 27       		.byte	39
+ 965 03a9 08       		.byte	8
+ 966 03aa 28       		.byte	40
+ 967 03ab 88       		.byte	-120
+ 968 03ac 30       		.byte	48
+ 969 03ad 48       		.byte	72
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 18
 
 
- 970 03ae 94       		.byte	-108
- 971 03af 20       		.byte	32
- 972 03b0 97       		.byte	-105
- 973 03b1 01       		.byte	1
- 974 03b2 9E       		.byte	-98
- 975 03b3 20       		.byte	32
- 976 03b4 9F       		.byte	-97
- 977 03b5 08       		.byte	8
- 978 03b6 A8       		.byte	-88
- 979 03b7 10       		.byte	16
- 980 03b8 AB       		.byte	-85
- 981 03b9 04       		.byte	4
- 982 03ba CE       		.byte	-50
+ 970 03ae 32       		.byte	50
+ 971 03af 01       		.byte	1
+ 972 03b0 37       		.byte	55
+ 973 03b1 08       		.byte	8
+ 974 03b2 38       		.byte	56
+ 975 03b3 0A       		.byte	10
+ 976 03b4 39       		.byte	57
+ 977 03b5 10       		.byte	16
+ 978 03b6 3A       		.byte	58
+ 979 03b7 80       		.byte	-128
+ 980 03b8 3C       		.byte	60
+ 981 03b9 02       		.byte	2
+ 982 03ba 3F       		.byte	63
  983 03bb 20       		.byte	32
- 984 03bc E2       		.byte	-30
- 985 03bd 80       		.byte	-128
- 986 03be E8       		.byte	-24
- 987 03bf 20       		.byte	32
- 988 03c0 EC       		.byte	-20
- 989 03c1 20       		.byte	32
- 990 03c2 82       		.byte	-126
- 991 03c3 01       		.byte	1
- 992 03c4 86       		.byte	-122
- 993 03c5 02       		.byte	2
- 994 03c6 94       		.byte	-108
- 995 03c7 20       		.byte	32
- 996 03c8 9E       		.byte	-98
- 997 03c9 20       		.byte	32
- 998 03ca 9F       		.byte	-97
- 999 03cb C8       		.byte	-56
- 1000 03cc A4       		.byte	-92
- 1001 03cd 40       		.byte	64
- 1002 03ce AB       		.byte	-85
- 1003 03cf 40       		.byte	64
- 1004 03d0 AF       		.byte	-81
- 1005 03d1 80       		.byte	-128
- 1006 03d2 E2       		.byte	-30
- 1007 03d3 40       		.byte	64
- 1008 03d4 E6       		.byte	-26
+ 984 03bc 45       		.byte	69
+ 985 03bd 20       		.byte	32
+ 986 03be 47       		.byte	71
+ 987 03bf 08       		.byte	8
+ 988 03c0 4F       		.byte	79
+ 989 03c1 09       		.byte	9
+ 990 03c2 57       		.byte	87
+ 991 03c3 10       		.byte	16
+ 992 03c4 5E       		.byte	94
+ 993 03c5 88       		.byte	-120
+ 994 03c6 5F       		.byte	95
+ 995 03c7 01       		.byte	1
+ 996 03c8 69       		.byte	105
+ 997 03c9 90       		.byte	-112
+ 998 03ca 6B       		.byte	107
+ 999 03cb 04       		.byte	4
+ 1000 03cc 74       		.byte	116
+ 1001 03cd 01       		.byte	1
+ 1002 03ce 7B       		.byte	123
+ 1003 03cf 20       		.byte	32
+ 1004 03d0 80       		.byte	-128
+ 1005 03d1 04       		.byte	4
+ 1006 03d2 81       		.byte	-127
+ 1007 03d3 01       		.byte	1
+ 1008 03d4 84       		.byte	-124
  1009 03d5 80       		.byte	-128
- 1010 03d6 E8       		.byte	-24
- 1011 03d7 40       		.byte	64
- 1012 03d8 EC       		.byte	-20
- 1013 03d9 80       		.byte	-128
- 1014 03da 70       		.byte	112
- 1015 03db 01       		.byte	1
- 1016 03dc 74       		.byte	116
- 1017 03dd 08       		.byte	8
- 1018 03de DC       		.byte	-36
- 1019 03df 01       		.byte	1
- 1020 03e0 DE       		.byte	-34
- 1021 03e1 04       		.byte	4
- 1022 03e2 00       		.byte	0
- 1023 03e3 20       		.byte	32
- 1024 03e4 01       		.byte	1
+ 1010 03d6 86       		.byte	-122
+ 1011 03d7 01       		.byte	1
+ 1012 03d8 87       		.byte	-121
+ 1013 03d9 10       		.byte	16
+ 1014 03da 8A       		.byte	-118
+ 1015 03db 08       		.byte	8
+ 1016 03dc 8D       		.byte	-115
+ 1017 03dd 40       		.byte	64
+ 1018 03de 90       		.byte	-112
+ 1019 03df 02       		.byte	2
+ 1020 03e0 96       		.byte	-106
+ 1021 03e1 12       		.byte	18
+ 1022 03e2 9A       		.byte	-102
+ 1023 03e3 80       		.byte	-128
+ 1024 03e4 9F       		.byte	-97
  1025 03e5 04       		.byte	4
- 1026 03e6 04       		.byte	4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 19
+ 1026 03e6 A2       		.byte	-94
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 19
 
 
- 1027 03e7 02       		.byte	2
- 1028 03e8 07       		.byte	7
- 1029 03e9 01       		.byte	1
- 1030 03ea 08       		.byte	8
- 1031 03eb 08       		.byte	8
- 1032 03ec 09       		.byte	9
- 1033 03ed 80       		.byte	-128
- 1034 03ee 0D       		.byte	13
- 1035 03ef 01       		.byte	1
- 1036 03f0 0F       		.byte	15
- 1037 03f1 01       		.byte	1
- 1038 03f2 50       		.byte	80
- 1039 03f3 20       		.byte	32
- 1040 03f4 52       		.byte	82
- 1041 03f5 02       		.byte	2
- 1042 03f6 54       		.byte	84
- 1043 03f7 04       		.byte	4
- 1044 03f8 58       		.byte	88
- 1045 03f9 01       		.byte	1
- 1046 03fa 5D       		.byte	93
- 1047 03fb 80       		.byte	-128
- 1048 03fc 5E       		.byte	94
- 1049 03fd 02       		.byte	2
- 1050 03fe 61       		.byte	97
+ 1027 03e7 40       		.byte	64
+ 1028 03e8 A3       		.byte	-93
+ 1029 03e9 20       		.byte	32
+ 1030 03ea A7       		.byte	-89
+ 1031 03eb 10       		.byte	16
+ 1032 03ec B1       		.byte	-79
+ 1033 03ed 02       		.byte	2
+ 1034 03ee B4       		.byte	-76
+ 1035 03ef 14       		.byte	20
+ 1036 03f0 C0       		.byte	-64
+ 1037 03f1 09       		.byte	9
+ 1038 03f2 C2       		.byte	-62
+ 1039 03f3 6D       		.byte	109
+ 1040 03f4 CA       		.byte	-54
+ 1041 03f5 05       		.byte	5
+ 1042 03f6 CC       		.byte	-52
+ 1043 03f7 4B       		.byte	75
+ 1044 03f8 CE       		.byte	-50
+ 1045 03f9 AF       		.byte	-81
+ 1046 03fa D0       		.byte	-48
+ 1047 03fb 60       		.byte	96
+ 1048 03fc D6       		.byte	-42
+ 1049 03fd D0       		.byte	-48
+ 1050 03fe DE       		.byte	-34
  1051 03ff 02       		.byte	2
- 1052 0400 64       		.byte	100
- 1053 0401 40       		.byte	64
- 1054 0402 6B       		.byte	107
+ 1052 0400 E6       		.byte	-26
+ 1053 0401 80       		.byte	-128
+ 1054 0402 A8       		.byte	-88
  1055 0403 08       		.byte	8
- 1056 0404 83       		.byte	-125
- 1057 0405 08       		.byte	8
- 1058 0406 87       		.byte	-121
- 1059 0407 02       		.byte	2
- 1060 0408 88       		.byte	-120
- 1061 0409 28       		.byte	40
- 1062 040a 89       		.byte	-119
- 1063 040b 04       		.byte	4
- 1064 040c 8D       		.byte	-115
- 1065 040d 82       		.byte	-126
- 1066 040e 8E       		.byte	-114
- 1067 040f 02       		.byte	2
- 1068 0410 A8       		.byte	-88
- 1069 0411 01       		.byte	1
- 1070 0412 AC       		.byte	-84
- 1071 0413 08       		.byte	8
- 1072 0414 C0       		.byte	-64
- 1073 0415 0F       		.byte	15
- 1074 0416 C2       		.byte	-62
- 1075 0417 0F       		.byte	15
- 1076 0418 D4       		.byte	-44
- 1077 0419 07       		.byte	7
- 1078 041a D6       		.byte	-42
- 1079 041b 07       		.byte	7
- 1080 041c D8       		.byte	-40
- 1081 041d 03       		.byte	3
- 1082 041e DA       		.byte	-38
- 1083 041f 02       		.byte	2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 20
+ 1056 0404 A9       		.byte	-87
+ 1057 0405 02       		.byte	2
+ 1058 0406 B0       		.byte	-80
+ 1059 0407 0C       		.byte	12
+ 1060 0408 B3       		.byte	-77
+ 1061 0409 01       		.byte	1
+ 1062 040a EA       		.byte	-22
+ 1063 040b 01       		.byte	1
+ 1064 040c 35       		.byte	53
+ 1065 040d 80       		.byte	-128
+ 1066 040e 3A       		.byte	58
+ 1067 040f 04       		.byte	4
+ 1068 0410 3F       		.byte	63
+ 1069 0411 80       		.byte	-128
+ 1070 0412 CC       		.byte	-52
+ 1071 0413 20       		.byte	32
+ 1072 0414 CE       		.byte	-50
+ 1073 0415 60       		.byte	96
+ 1074 0416 01       		.byte	1
+ 1075 0417 80       		.byte	-128
+ 1076 0418 08       		.byte	8
+ 1077 0419 10       		.byte	16
+ 1078 041a 0C       		.byte	12
+ 1079 041b 80       		.byte	-128
+ 1080 041c 5B       		.byte	91
+ 1081 041d 04       		.byte	4
+ 1082 041e 63       		.byte	99
+ 1083 041f 20       		.byte	32
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 20
 
 
- 1084 0420 E2       		.byte	-30
- 1085 0421 0F       		.byte	15
- 1086 0422 E4       		.byte	-28
- 1087 0423 0C       		.byte	12
- 1088 0424 01       		.byte	1
- 1089 0425 02       		.byte	2
- 1090 0426 04       		.byte	4
+ 1084 0420 66       		.byte	102
+ 1085 0421 10       		.byte	16
+ 1086 0422 8E       		.byte	-114
+ 1087 0423 04       		.byte	4
+ 1088 0424 9D       		.byte	-99
+ 1089 0425 80       		.byte	-128
+ 1090 0426 9E       		.byte	-98
  1091 0427 04       		.byte	4
- 1092 0428 8F       		.byte	-113
- 1093 0429 80       		.byte	-128
- 1094 042a 9C       		.byte	-100
- 1095 042b 41       		.byte	65
- 1096 042c 9D       		.byte	-99
- 1097 042d 82       		.byte	-126
- 1098 042e 9F       		.byte	-97
- 1099 042f 02       		.byte	2
- 1100 0430 A3       		.byte	-93
- 1101 0431 20       		.byte	32
- 1102 0432 A4       		.byte	-92
- 1103 0433 04       		.byte	4
- 1104 0434 A5       		.byte	-91
- 1105 0435 02       		.byte	2
- 1106 0436 A6       		.byte	-90
- 1107 0437 01       		.byte	1
- 1108 0438 AB       		.byte	-85
- 1109 0439 20       		.byte	32
- 1110 043a B0       		.byte	-80
- 1111 043b 10       		.byte	16
- 1112 043c B1       		.byte	-79
- 1113 043d 01       		.byte	1
- 1114 043e B3       		.byte	-77
- 1115 043f 01       		.byte	1
- 1116 0440 B4       		.byte	-76
- 1117 0441 01       		.byte	1
- 1118 0442 B7       		.byte	-73
- 1119 0443 01       		.byte	1
- 1120 0444 C0       		.byte	-64
- 1121 0445 0C       		.byte	12
- 1122 0446 E0       		.byte	-32
+ 1092 0428 A7       		.byte	-89
+ 1093 0429 40       		.byte	64
+ 1094 042a C0       		.byte	-64
+ 1095 042b 40       		.byte	64
+ 1096 042c C2       		.byte	-62
+ 1097 042d C0       		.byte	-64
+ 1098 042e D6       		.byte	-42
+ 1099 042f 40       		.byte	64
+ 1100 0430 D8       		.byte	-40
+ 1101 0431 C0       		.byte	-64
+ 1102 0432 3E       		.byte	62
+ 1103 0433 10       		.byte	16
+ 1104 0434 83       		.byte	-125
+ 1105 0435 50       		.byte	80
+ 1106 0436 98       		.byte	-104
+ 1107 0437 10       		.byte	16
+ 1108 0438 9E       		.byte	-98
+ 1109 0439 10       		.byte	16
+ 1110 043a 9F       		.byte	-97
+ 1111 043b 04       		.byte	4
+ 1112 043c A0       		.byte	-96
+ 1113 043d 80       		.byte	-128
+ 1114 043e A7       		.byte	-89
+ 1115 043f 50       		.byte	80
+ 1116 0440 CE       		.byte	-50
+ 1117 0441 20       		.byte	32
+ 1118 0442 E2       		.byte	-30
+ 1119 0443 20       		.byte	32
+ 1120 0444 E6       		.byte	-26
+ 1121 0445 80       		.byte	-128
+ 1122 0446 81       		.byte	-127
  1123 0447 02       		.byte	2
- 1124 0448 EA       		.byte	-22
- 1125 0449 06       		.byte	6
- 1126 044a EE       		.byte	-18
- 1127 044b 0D       		.byte	13
- 1128 044c 9D       		.byte	-99
- 1129 044d 80       		.byte	-128
- 1130 044e 9F       		.byte	-97
- 1131 044f 02       		.byte	2
- 1132 0450 A3       		.byte	-93
- 1133 0451 A0       		.byte	-96
- 1134 0452 A4       		.byte	-92
- 1135 0453 04       		.byte	4
- 1136 0454 A5       		.byte	-91
- 1137 0455 02       		.byte	2
- 1138 0456 B0       		.byte	-80
- 1139 0457 41       		.byte	65
- 1140 0458 B4       		.byte	-76
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 21
+ 1124 0448 84       		.byte	-124
+ 1125 0449 01       		.byte	1
+ 1126 044a 96       		.byte	-106
+ 1127 044b 10       		.byte	16
+ 1128 044c 9F       		.byte	-97
+ 1129 044d 04       		.byte	4
+ 1130 044e AC       		.byte	-84
+ 1131 044f 90       		.byte	-112
+ 1132 0450 AE       		.byte	-82
+ 1133 0451 10       		.byte	16
+ 1134 0452 E2       		.byte	-30
+ 1135 0453 40       		.byte	64
+ 1136 0454 E6       		.byte	-26
+ 1137 0455 20       		.byte	32
+ 1138 0456 E8       		.byte	-24
+ 1139 0457 10       		.byte	16
+ 1140 0458 EA       		.byte	-22
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 21
 
 
- 1141 0459 04       		.byte	4
- 1142 045a B6       		.byte	-74
- 1143 045b 01       		.byte	1
- 1144 045c E8       		.byte	-24
- 1145 045d 09       		.byte	9
- 1146 045e EC       		.byte	-20
- 1147 045f 04       		.byte	4
- 1148 0460 EE       		.byte	-18
+ 1141 0459 40       		.byte	64
+ 1142 045a EC       		.byte	-20
+ 1143 045b 40       		.byte	64
+ 1144 045c 73       		.byte	115
+ 1145 045d 80       		.byte	-128
+ 1146 045e 7F       		.byte	127
+ 1147 045f 02       		.byte	2
+ 1148 0460 87       		.byte	-121
  1149 0461 02       		.byte	2
- 1150 0462 03       		.byte	3
- 1151 0463 42       		.byte	66
- 1152 0464 04       		.byte	4
- 1153 0465 20       		.byte	32
- 1154 0466 07       		.byte	7
- 1155 0467 80       		.byte	-128
- 1156 0468 27       		.byte	39
- 1157 0469 08       		.byte	8
- 1158 046a 86       		.byte	-122
- 1159 046b 20       		.byte	32
- 1160 046c 94       		.byte	-108
- 1161 046d 20       		.byte	32
- 1162 046e 9E       		.byte	-98
- 1163 046f 20       		.byte	32
- 1164 0470 9F       		.byte	-97
- 1165 0471 C8       		.byte	-56
- 1166 0472 A2       		.byte	-94
- 1167 0473 03       		.byte	3
- 1168 0474 A7       		.byte	-89
- 1169 0475 02       		.byte	2
- 1170 0476 AC       		.byte	-84
- 1171 0477 40       		.byte	64
- 1172 0478 B3       		.byte	-77
- 1173 0479 02       		.byte	2
- 1174 047a C0       		.byte	-64
- 1175 047b F0       		.byte	-16
- 1176 047c C8       		.byte	-56
- 1177 047d 20       		.byte	32
- 1178 047e E2       		.byte	-30
- 1179 047f 10       		.byte	16
- 1180 0480 EA       		.byte	-22
- 1181 0481 40       		.byte	64
- 1182 0482 5E       		.byte	94
- 1183 0483 02       		.byte	2
- 1184 0484 62       		.byte	98
- 1185 0485 02       		.byte	2
- 1186 0486 A2       		.byte	-94
- 1187 0487 03       		.byte	3
- 1188 0488 D6       		.byte	-42
- 1189 0489 80       		.byte	-128
- 1190 048a D8       		.byte	-40
- 1191 048b 40       		.byte	64
- 1192 048c 13       		.byte	19
- 1193 048d 82       		.byte	-126
- 1194 048e 16       		.byte	22
- 1195 048f 40       		.byte	64
- 1196 0490 7B       		.byte	123
- 1197 0491 80       		.byte	-128
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 22
+ 1150 0462 DC       		.byte	-36
+ 1151 0463 01       		.byte	1
+ 1152 0464 DE       		.byte	-34
+ 1153 0465 04       		.byte	4
+ 1154 0466 00       		.byte	0
+ 1155 0467 20       		.byte	32
+ 1156 0468 01       		.byte	1
+ 1157 0469 04       		.byte	4
+ 1158 046a 04       		.byte	4
+ 1159 046b 02       		.byte	2
+ 1160 046c 07       		.byte	7
+ 1161 046d 01       		.byte	1
+ 1162 046e 08       		.byte	8
+ 1163 046f 80       		.byte	-128
+ 1164 0470 0B       		.byte	11
+ 1165 0471 20       		.byte	32
+ 1166 0472 0C       		.byte	12
+ 1167 0473 02       		.byte	2
+ 1168 0474 0F       		.byte	15
+ 1169 0475 01       		.byte	1
+ 1170 0476 52       		.byte	82
+ 1171 0477 02       		.byte	2
+ 1172 0478 53       		.byte	83
+ 1173 0479 04       		.byte	4
+ 1174 047a 54       		.byte	84
+ 1175 047b 20       		.byte	32
+ 1176 047c 55       		.byte	85
+ 1177 047d 01       		.byte	1
+ 1178 047e 58       		.byte	88
+ 1179 047f 02       		.byte	2
+ 1180 0480 5E       		.byte	94
+ 1181 0481 02       		.byte	2
+ 1182 0482 62       		.byte	98
+ 1183 0483 01       		.byte	1
+ 1184 0484 64       		.byte	100
+ 1185 0485 04       		.byte	4
+ 1186 0486 6C       		.byte	108
+ 1187 0487 08       		.byte	8
+ 1188 0488 89       		.byte	-119
+ 1189 0489 04       		.byte	4
+ 1190 048a B3       		.byte	-77
+ 1191 048b 80       		.byte	-128
+ 1192 048c C0       		.byte	-64
+ 1193 048d 0F       		.byte	15
+ 1194 048e C2       		.byte	-62
+ 1195 048f 0F       		.byte	15
+ 1196 0490 D4       		.byte	-44
+ 1197 0491 07       		.byte	7
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 22
 
 
- 1198 0492 7F       		.byte	127
- 1199 0493 20       		.byte	32
- 1200 0494 86       		.byte	-122
- 1201 0495 40       		.byte	64
- 1202 0496 9F       		.byte	-97
- 1203 0497 82       		.byte	-126
- 1204 0498 A3       		.byte	-93
- 1205 0499 A0       		.byte	-96
- 1206 049a AF       		.byte	-81
- 1207 049b 80       		.byte	-128
- 1208 049c B0       		.byte	-80
- 1209 049d 04       		.byte	4
- 1210 049e B5       		.byte	-75
- 1211 049f 82       		.byte	-126
- 1212 04a0 C4       		.byte	-60
- 1213 04a1 0E       		.byte	14
- 1214 04a2 DE       		.byte	-34
- 1215 04a3 03       		.byte	3
- 1216 04a4 E8       		.byte	-24
- 1217 04a5 04       		.byte	4
- 1218 04a6 EC       		.byte	-20
- 1219 04a7 0A       		.byte	10
- 1220 04a8 00       		.byte	0
- 1221 04a9 06       		.byte	6
- 1222 04aa 01       		.byte	1
+ 1198 0492 D6       		.byte	-42
+ 1199 0493 07       		.byte	7
+ 1200 0494 D8       		.byte	-40
+ 1201 0495 03       		.byte	3
+ 1202 0496 DA       		.byte	-38
+ 1203 0497 01       		.byte	1
+ 1204 0498 E2       		.byte	-30
+ 1205 0499 04       		.byte	4
+ 1206 049a EC       		.byte	-20
+ 1207 049b 04       		.byte	4
+ 1208 049c 03       		.byte	3
+ 1209 049d 80       		.byte	-128
+ 1210 049e 06       		.byte	6
+ 1211 049f 10       		.byte	16
+ 1212 04a0 82       		.byte	-126
+ 1213 04a1 20       		.byte	32
+ 1214 04a2 97       		.byte	-105
+ 1215 04a3 08       		.byte	8
+ 1216 04a4 9C       		.byte	-100
+ 1217 04a5 06       		.byte	6
+ 1218 04a6 9E       		.byte	-98
+ 1219 04a7 01       		.byte	1
+ 1220 04a8 A4       		.byte	-92
+ 1221 04a9 28       		.byte	40
+ 1222 04aa A5       		.byte	-91
  1223 04ab 01       		.byte	1
- 1224 04ac 02       		.byte	2
- 1225 04ad 14       		.byte	20
- 1226 04ae 0C       		.byte	12
- 1227 04af 06       		.byte	6
- 1228 04b0 0E       		.byte	14
- 1229 04b1 04       		.byte	4
- 1230 04b2 0F       		.byte	15
- 1231 04b3 01       		.byte	1
- 1232 04b4 00       		.byte	0
- 1233 04b5 0D       		.byte	13
- 1234 04b6 03       		.byte	3
- 1235 04b7 C0       		.byte	-64
- 1236 04b8 10       		.byte	16
- 1237 04b9 05       		.byte	5
- 1238 04ba 00       		.byte	0
- 1239 04bb 00       		.byte	0
- 1240 04bc D4       		.byte	-44
- 1241 04bd 00       		.byte	0
- 1242 04be 01       		.byte	1
- 1243 04bf 34       		.byte	52
- 1244 04c0 E0       		.byte	-32
- 1245 04c1 00       		.byte	0
- 1246 04c2 E0       		.byte	-32
- 1247 04c3 00       		.byte	0
- 1248 04c4 00       		.byte	0
+ 1224 04ac A6       		.byte	-90
+ 1225 04ad 03       		.byte	3
+ 1226 04ae B0       		.byte	-80
+ 1227 04af 10       		.byte	16
+ 1228 04b0 B3       		.byte	-77
+ 1229 04b1 11       		.byte	17
+ 1230 04b2 B4       		.byte	-76
+ 1231 04b3 83       		.byte	-125
+ 1232 04b4 B7       		.byte	-73
+ 1233 04b5 01       		.byte	1
+ 1234 04b6 C0       		.byte	-64
+ 1235 04b7 0C       		.byte	12
+ 1236 04b8 EA       		.byte	-22
+ 1237 04b9 0E       		.byte	14
+ 1238 04ba EE       		.byte	-18
+ 1239 04bb 0F       		.byte	15
+ 1240 04bc 93       		.byte	-109
+ 1241 04bd 80       		.byte	-128
+ 1242 04be 97       		.byte	-105
+ 1243 04bf 08       		.byte	8
+ 1244 04c0 9A       		.byte	-102
+ 1245 04c1 10       		.byte	16
+ 1246 04c2 9C       		.byte	-100
+ 1247 04c3 02       		.byte	2
+ 1248 04c4 9E       		.byte	-98
  1249 04c5 01       		.byte	1
- 1250 04c6 00       		.byte	0
- 1251 04c7 00       		.byte	0
- 1252 04c8 00       		.byte	0
- 1253 04c9 30       		.byte	48
- 1254 04ca 30       		.byte	48
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 23
+ 1250 04c6 9F       		.byte	-97
+ 1251 04c7 01       		.byte	1
+ 1252 04c8 A2       		.byte	-94
+ 1253 04c9 40       		.byte	64
+ 1254 04ca A4       		.byte	-92
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 23
 
 
- 1255 04cb 00       		.byte	0
- 1256 04cc 30       		.byte	48
- 1257 04cd 00       		.byte	0
- 1258 04ce 00       		.byte	0
- 1259 04cf 00       		.byte	0
- 1260 04d0 08       		.byte	8
- 1261 04d1 00       		.byte	0
- 1262 04d2 30       		.byte	48
- 1263 04d3 0F       		.byte	15
- 1264 04d4 0F       		.byte	15
- 1265 04d5 00       		.byte	0
- 1266 04d6 00       		.byte	0
- 1267 04d7 00       		.byte	0
- 1268 04d8 00       		.byte	0
- 1269 04d9 01       		.byte	1
- 1270 04da 00       		.byte	0
- 1271 04db 00       		.byte	0
- 1272 04dc 00       		.byte	0
- 1273 04dd FF       		.byte	-1
- 1274 04de FF       		.byte	-1
- 1275 04df 00       		.byte	0
- 1276 04e0 FF       		.byte	-1
- 1277 04e1 FF       		.byte	-1
- 1278 04e2 00       		.byte	0
- 1279 04e3 01       		.byte	1
- 1280 04e4 E4       		.byte	-28
- 1281 04e5 00       		.byte	0
- 1282 04e6 00       		.byte	0
- 1283 04e7 E4       		.byte	-28
- 1284 04e8 E4       		.byte	-28
- 1285 04e9 00       		.byte	0
- 1286 04ea A0       		.byte	-96
- 1287 04eb 00       		.byte	0
- 1288 04ec 00       		.byte	0
- 1289 04ed 00       		.byte	0
- 1290 04ee 00       		.byte	0
- 1291 04ef 00       		.byte	0
- 1292              		.section	.cywolatch,"a",%progbits
- 1293              		.align	2
- 1294              		.type	cy_meta_wonvl, %object
- 1295              		.size	cy_meta_wonvl, 4
- 1296              	cy_meta_wonvl:
- 1297 0000 BC       		.byte	-68
- 1298 0001 90       		.byte	-112
- 1299 0002 AC       		.byte	-84
- 1300 0003 AF       		.byte	-81
- 1301              		.section	.cycustnvl,"a",%progbits
- 1302              		.align	2
- 1303              		.type	cy_meta_custnvl, %object
- 1304              		.size	cy_meta_custnvl, 4
- 1305              	cy_meta_custnvl:
- 1306 0000 00       		.byte	0
- 1307 0001 00       		.byte	0
- 1308 0002 40       		.byte	64
- 1309 0003 05       		.byte	5
- 1310              		.section	.cymeta,"a",%progbits
- 1311              		.align	2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 24
+ 1255 04cb 08       		.byte	8
+ 1256 04cc A5       		.byte	-91
+ 1257 04cd 01       		.byte	1
+ 1258 04ce A6       		.byte	-90
+ 1259 04cf 20       		.byte	32
+ 1260 04d0 AE       		.byte	-82
+ 1261 04d1 40       		.byte	64
+ 1262 04d2 AF       		.byte	-81
+ 1263 04d3 C1       		.byte	-63
+ 1264 04d4 B0       		.byte	-80
+ 1265 04d5 04       		.byte	4
+ 1266 04d6 B2       		.byte	-78
+ 1267 04d7 02       		.byte	2
+ 1268 04d8 B4       		.byte	-76
+ 1269 04d9 20       		.byte	32
+ 1270 04da B6       		.byte	-74
+ 1271 04db 01       		.byte	1
+ 1272 04dc E8       		.byte	-24
+ 1273 04dd 08       		.byte	8
+ 1274 04de EC       		.byte	-20
+ 1275 04df 0D       		.byte	13
+ 1276 04e0 00       		.byte	0
+ 1277 04e1 28       		.byte	40
+ 1278 04e2 04       		.byte	4
+ 1279 04e3 08       		.byte	8
+ 1280 04e4 05       		.byte	5
+ 1281 04e5 10       		.byte	16
+ 1282 04e6 27       		.byte	39
+ 1283 04e7 04       		.byte	4
+ 1284 04e8 80       		.byte	-128
+ 1285 04e9 04       		.byte	4
+ 1286 04ea 84       		.byte	-124
+ 1287 04eb 14       		.byte	20
+ 1288 04ec 8B       		.byte	-117
+ 1289 04ed 10       		.byte	16
+ 1290 04ee 96       		.byte	-106
+ 1291 04ef 10       		.byte	16
+ 1292 04f0 98       		.byte	-104
+ 1293 04f1 01       		.byte	1
+ 1294 04f2 99       		.byte	-103
+ 1295 04f3 02       		.byte	2
+ 1296 04f4 9F       		.byte	-97
+ 1297 04f5 04       		.byte	4
+ 1298 04f6 C0       		.byte	-64
+ 1299 04f7 F0       		.byte	-16
+ 1300 04f8 C8       		.byte	-56
+ 1301 04f9 20       		.byte	32
+ 1302 04fa E0       		.byte	-32
+ 1303 04fb 10       		.byte	16
+ 1304 04fc E4       		.byte	-28
+ 1305 04fd C0       		.byte	-64
+ 1306 04fe 64       		.byte	100
+ 1307 04ff 01       		.byte	1
+ 1308 0500 65       		.byte	101
+ 1309 0501 02       		.byte	2
+ 1310 0502 73       		.byte	115
+ 1311 0503 10       		.byte	16
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 24
 
 
- 1312              		.type	cy_metadata, %object
- 1313              		.size	cy_metadata, 12
- 1314              	cy_metadata:
- 1315 0000 00       		.byte	0
- 1316 0001 01       		.byte	1
- 1317 0002 2E       		.byte	46
- 1318 0003 16       		.byte	22
- 1319 0004 10       		.byte	16
- 1320 0005 69       		.byte	105
- 1321 0006 00       		.byte	0
- 1322 0007 01       		.byte	1
- 1323 0008 00       		.byte	0
- 1324 0009 00       		.byte	0
- 1325 000a 00       		.byte	0
- 1326 000b 00       		.byte	0
- 1327              		.section	.cyflashprotect,"a",%progbits
- 1328              		.align	2
- 1329              		.type	cy_meta_flashprotect, %object
- 1330              		.size	cy_meta_flashprotect, 256
- 1331              	cy_meta_flashprotect:
- 1332 0000 00000000 		.space	256
- 1332      00000000 
- 1332      00000000 
- 1332      00000000 
- 1332      00000000 
- 1333              		.text
- 1334              	.Letext0:
- 1335              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
- 1336              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
- 1337              		.section	.debug_info,"",%progbits
- 1338              	.Ldebug_info0:
- 1339 0000 38010000 		.4byte	0x138
- 1340 0004 0400     		.2byte	0x4
- 1341 0006 00000000 		.4byte	.Ldebug_abbrev0
- 1342 000a 04       		.byte	0x4
- 1343 000b 01       		.uleb128 0x1
- 1344 000c AB000000 		.4byte	.LASF18
- 1345 0010 01       		.byte	0x1
- 1346 0011 00000000 		.4byte	.LASF19
- 1347 0015 46010000 		.4byte	.LASF20
- 1348 0019 00000000 		.4byte	.Ldebug_line0
- 1349 001d 02       		.uleb128 0x2
- 1350 001e 01       		.byte	0x1
- 1351 001f 06       		.byte	0x6
- 1352 0020 EA010000 		.4byte	.LASF0
- 1353 0024 02       		.uleb128 0x2
- 1354 0025 01       		.byte	0x1
- 1355 0026 08       		.byte	0x8
- 1356 0027 4F000000 		.4byte	.LASF1
- 1357 002b 02       		.uleb128 0x2
- 1358 002c 02       		.byte	0x2
- 1359 002d 05       		.byte	0x5
- 1360 002e D1010000 		.4byte	.LASF2
- 1361 0032 02       		.uleb128 0x2
- 1362 0033 02       		.byte	0x2
- 1363 0034 07       		.byte	0x7
- 1364 0035 6F000000 		.4byte	.LASF3
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 25
+ 1312 0504 93       		.byte	-109
+ 1313 0505 10       		.byte	16
+ 1314 0506 98       		.byte	-104
+ 1315 0507 01       		.byte	1
+ 1316 0508 99       		.byte	-103
+ 1317 0509 02       		.byte	2
+ 1318 050a A9       		.byte	-87
+ 1319 050b 10       		.byte	16
+ 1320 050c AA       		.byte	-86
+ 1321 050d 10       		.byte	16
+ 1322 050e D6       		.byte	-42
+ 1323 050f 80       		.byte	-128
+ 1324 0510 D8       		.byte	-40
+ 1325 0511 80       		.byte	-128
+ 1326 0512 DC       		.byte	-36
+ 1327 0513 80       		.byte	-128
+ 1328 0514 EA       		.byte	-22
+ 1329 0515 80       		.byte	-128
+ 1330 0516 EC       		.byte	-20
+ 1331 0517 20       		.byte	32
+ 1332 0518 12       		.byte	18
+ 1333 0519 20       		.byte	32
+ 1334 051a 13       		.byte	19
+ 1335 051b 20       		.byte	32
+ 1336 051c 17       		.byte	23
+ 1337 051d 01       		.byte	1
+ 1338 051e 7A       		.byte	122
+ 1339 051f 40       		.byte	64
+ 1340 0520 7F       		.byte	127
+ 1341 0521 40       		.byte	64
+ 1342 0522 8C       		.byte	-116
+ 1343 0523 08       		.byte	8
+ 1344 0524 93       		.byte	-109
+ 1345 0525 80       		.byte	-128
+ 1346 0526 9A       		.byte	-102
+ 1347 0527 10       		.byte	16
+ 1348 0528 9C       		.byte	-100
+ 1349 0529 02       		.byte	2
+ 1350 052a 9F       		.byte	-97
+ 1351 052b 01       		.byte	1
+ 1352 052c A2       		.byte	-94
+ 1353 052d 40       		.byte	64
+ 1354 052e A4       		.byte	-92
+ 1355 052f 08       		.byte	8
+ 1356 0530 A6       		.byte	-90
+ 1357 0531 20       		.byte	32
+ 1358 0532 B3       		.byte	-77
+ 1359 0533 04       		.byte	4
+ 1360 0534 B5       		.byte	-75
+ 1361 0535 01       		.byte	1
+ 1362 0536 B6       		.byte	-74
+ 1363 0537 01       		.byte	1
+ 1364 0538 C4       		.byte	-60
+ 1365 0539 0E       		.byte	14
+ 1366 053a DE       		.byte	-34
+ 1367 053b 03       		.byte	3
+ 1368 053c E4       		.byte	-28
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 25
 
 
- 1365 0039 02       		.uleb128 0x2
- 1366 003a 04       		.byte	0x4
- 1367 003b 05       		.byte	0x5
- 1368 003c E1010000 		.4byte	.LASF4
- 1369 0040 02       		.uleb128 0x2
- 1370 0041 04       		.byte	0x4
- 1371 0042 07       		.byte	0x7
- 1372 0043 5D000000 		.4byte	.LASF5
- 1373 0047 02       		.uleb128 0x2
- 1374 0048 08       		.byte	0x8
- 1375 0049 05       		.byte	0x5
- 1376 004a BE010000 		.4byte	.LASF6
- 1377 004e 02       		.uleb128 0x2
- 1378 004f 08       		.byte	0x8
- 1379 0050 07       		.byte	0x7
- 1380 0051 38000000 		.4byte	.LASF7
- 1381 0055 03       		.uleb128 0x3
- 1382 0056 04       		.byte	0x4
- 1383 0057 05       		.byte	0x5
- 1384 0058 696E7400 		.ascii	"int\000"
- 1385 005c 02       		.uleb128 0x2
- 1386 005d 04       		.byte	0x4
- 1387 005e 07       		.byte	0x7
- 1388 005f 39010000 		.4byte	.LASF8
- 1389 0063 04       		.uleb128 0x4
- 1390 0064 DB010000 		.4byte	.LASF21
- 1391 0068 02       		.byte	0x2
- 1392 0069 9201     		.2byte	0x192
- 1393 006b 24000000 		.4byte	0x24
- 1394 006f 02       		.uleb128 0x2
- 1395 0070 04       		.byte	0x4
- 1396 0071 04       		.byte	0x4
- 1397 0072 32000000 		.4byte	.LASF9
- 1398 0076 02       		.uleb128 0x2
- 1399 0077 08       		.byte	0x8
- 1400 0078 04       		.byte	0x4
- 1401 0079 82000000 		.4byte	.LASF10
- 1402 007d 02       		.uleb128 0x2
- 1403 007e 01       		.byte	0x1
- 1404 007f 08       		.byte	0x8
- 1405 0080 CC010000 		.4byte	.LASF11
- 1406 0084 05       		.uleb128 0x5
- 1407 0085 63000000 		.4byte	0x63
- 1408 0089 95000000 		.4byte	0x95
- 1409 008d 06       		.uleb128 0x6
- 1410 008e 95000000 		.4byte	0x95
- 1411 0092 EF04     		.2byte	0x4ef
- 1412 0094 00       		.byte	0
- 1413 0095 02       		.uleb128 0x2
- 1414 0096 04       		.byte	0x4
- 1415 0097 07       		.byte	0x7
- 1416 0098 B5010000 		.4byte	.LASF12
- 1417 009c 07       		.uleb128 0x7
- 1418 009d 99000000 		.4byte	.LASF13
- 1419 00a1 01       		.byte	0x1
- 1420 00a2 1F       		.byte	0x1f
- 1421 00a3 AD000000 		.4byte	0xad
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 26
+ 1369 053d 08       		.byte	8
+ 1370 053e E8       		.byte	-24
+ 1371 053f 09       		.byte	9
+ 1372 0540 EC       		.byte	-20
+ 1373 0541 02       		.byte	2
+ 1374 0542 AB       		.byte	-85
+ 1375 0543 20       		.byte	32
+ 1376 0544 B0       		.byte	-80
+ 1377 0545 02       		.byte	2
+ 1378 0546 B2       		.byte	-78
+ 1379 0547 10       		.byte	16
+ 1380 0548 E8       		.byte	-24
+ 1381 0549 04       		.byte	4
+ 1382 054a EE       		.byte	-18
+ 1383 054b 04       		.byte	4
+ 1384 054c 00       		.byte	0
+ 1385 054d 0E       		.byte	14
+ 1386 054e 01       		.byte	1
+ 1387 054f 01       		.byte	1
+ 1388 0550 02       		.byte	2
+ 1389 0551 14       		.byte	20
+ 1390 0552 0C       		.byte	12
+ 1391 0553 0A       		.byte	10
+ 1392 0554 0D       		.byte	13
+ 1393 0555 01       		.byte	1
+ 1394 0556 0E       		.byte	14
+ 1395 0557 04       		.byte	4
+ 1396 0558 10       		.byte	16
+ 1397 0559 08       		.byte	8
+ 1398 055a 12       		.byte	18
+ 1399 055b 14       		.byte	20
+ 1400 055c 1C       		.byte	28
+ 1401 055d 08       		.byte	8
+ 1402 055e 00       		.byte	0
+ 1403 055f 0D       		.byte	13
+ 1404 0560 03       		.byte	3
+ 1405 0561 C0       		.byte	-64
+ 1406 0562 10       		.byte	16
+ 1407 0563 05       		.byte	5
+ 1408 0564 D4       		.byte	-44
+ 1409 0565 00       		.byte	0
+ 1410 0566 01       		.byte	1
+ 1411 0567 34       		.byte	52
+ 1412 0568 E0       		.byte	-32
+ 1413 0569 00       		.byte	0
+ 1414 056a E0       		.byte	-32
+ 1415 056b 00       		.byte	0
+ 1416 056c 00       		.byte	0
+ 1417 056d 01       		.byte	1
+ 1418 056e 00       		.byte	0
+ 1419 056f 00       		.byte	0
+ 1420 0570 00       		.byte	0
+ 1421 0571 32       		.byte	50
+ 1422 0572 32       		.byte	50
+ 1423 0573 00       		.byte	0
+ 1424 0574 32       		.byte	50
+ 1425 0575 00       		.byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 26
 
 
- 1422 00a7 05       		.uleb128 0x5
- 1423 00a8 03       		.byte	0x3
- 1424 00a9 00000000 		.4byte	cy_meta_configecc
- 1425 00ad 08       		.uleb128 0x8
- 1426 00ae 84000000 		.4byte	0x84
- 1427 00b2 05       		.uleb128 0x5
- 1428 00b3 63000000 		.4byte	0x63
- 1429 00b7 C2000000 		.4byte	0xc2
- 1430 00bb 09       		.uleb128 0x9
- 1431 00bc 95000000 		.4byte	0x95
- 1432 00c0 03       		.byte	0x3
- 1433 00c1 00       		.byte	0
- 1434 00c2 07       		.uleb128 0x7
- 1435 00c3 89000000 		.4byte	.LASF14
- 1436 00c7 01       		.byte	0x1
- 1437 00c8 CA       		.byte	0xca
- 1438 00c9 D3000000 		.4byte	0xd3
- 1439 00cd 05       		.uleb128 0x5
- 1440 00ce 03       		.byte	0x3
- 1441 00cf 00000000 		.4byte	cy_meta_custnvl
- 1442 00d3 08       		.uleb128 0x8
- 1443 00d4 B2000000 		.4byte	0xb2
- 1444 00d8 07       		.uleb128 0x7
- 1445 00d9 A7010000 		.4byte	.LASF15
- 1446 00dd 01       		.byte	0x1
- 1447 00de D8       		.byte	0xd8
- 1448 00df E9000000 		.4byte	0xe9
- 1449 00e3 05       		.uleb128 0x5
- 1450 00e4 03       		.byte	0x3
- 1451 00e5 00000000 		.4byte	cy_meta_wonvl
- 1452 00e9 08       		.uleb128 0x8
- 1453 00ea B2000000 		.4byte	0xb2
- 1454 00ee 05       		.uleb128 0x5
- 1455 00ef 63000000 		.4byte	0x63
- 1456 00f3 FE000000 		.4byte	0xfe
- 1457 00f7 09       		.uleb128 0x9
- 1458 00f8 95000000 		.4byte	0x95
- 1459 00fc FF       		.byte	0xff
- 1460 00fd 00       		.byte	0
- 1461 00fe 07       		.uleb128 0x7
- 1462 00ff 92010000 		.4byte	.LASF16
- 1463 0103 01       		.byte	0x1
- 1464 0104 E6       		.byte	0xe6
- 1465 0105 0F010000 		.4byte	0x10f
- 1466 0109 05       		.uleb128 0x5
- 1467 010a 03       		.byte	0x3
- 1468 010b 00000000 		.4byte	cy_meta_flashprotect
- 1469 010f 08       		.uleb128 0x8
- 1470 0110 EE000000 		.4byte	0xee
- 1471 0114 05       		.uleb128 0x5
- 1472 0115 63000000 		.4byte	0x63
- 1473 0119 24010000 		.4byte	0x124
- 1474 011d 09       		.uleb128 0x9
- 1475 011e 95000000 		.4byte	0x95
- 1476 0122 0B       		.byte	0xb
- 1477 0123 00       		.byte	0
- 1478 0124 0A       		.uleb128 0xa
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 27
+ 1426 0576 00       		.byte	0
+ 1427 0577 00       		.byte	0
+ 1428 0578 08       		.byte	8
+ 1429 0579 00       		.byte	0
+ 1430 057a 30       		.byte	48
+ 1431 057b 0F       		.byte	15
+ 1432 057c 0F       		.byte	15
+ 1433 057d 00       		.byte	0
+ 1434 057e 00       		.byte	0
+ 1435 057f 00       		.byte	0
+ 1436 0580 00       		.byte	0
+ 1437 0581 01       		.byte	1
+ 1438 0582 00       		.byte	0
+ 1439 0583 00       		.byte	0
+ 1440 0584 00       		.byte	0
+ 1441 0585 FF       		.byte	-1
+ 1442 0586 FF       		.byte	-1
+ 1443 0587 00       		.byte	0
+ 1444 0588 FF       		.byte	-1
+ 1445 0589 FF       		.byte	-1
+ 1446 058a 00       		.byte	0
+ 1447 058b 01       		.byte	1
+ 1448 058c E4       		.byte	-28
+ 1449 058d 00       		.byte	0
+ 1450 058e 00       		.byte	0
+ 1451 058f E4       		.byte	-28
+ 1452 0590 E4       		.byte	-28
+ 1453 0591 00       		.byte	0
+ 1454 0592 A0       		.byte	-96
+ 1455 0593 00       		.byte	0
+ 1456 0594 00       		.byte	0
+ 1457 0595 00       		.byte	0
+ 1458 0596 00       		.byte	0
+ 1459 0597 00       		.byte	0
+ 1460              		.section	.cywolatch,"a",%progbits
+ 1461              		.align	2
+ 1462              		.type	cy_meta_wonvl, %object
+ 1463              		.size	cy_meta_wonvl, 4
+ 1464              	cy_meta_wonvl:
+ 1465 0000 BC       		.byte	-68
+ 1466 0001 90       		.byte	-112
+ 1467 0002 AC       		.byte	-84
+ 1468 0003 AF       		.byte	-81
+ 1469              		.section	.cycustnvl,"a",%progbits
+ 1470              		.align	2
+ 1471              		.type	cy_meta_custnvl, %object
+ 1472              		.size	cy_meta_custnvl, 4
+ 1473              	cy_meta_custnvl:
+ 1474 0000 00       		.byte	0
+ 1475 0001 00       		.byte	0
+ 1476 0002 40       		.byte	64
+ 1477 0003 05       		.byte	5
+ 1478              		.section	.cymeta,"a",%progbits
+ 1479              		.align	2
+ 1480              		.type	cy_metadata, %object
+ 1481              		.size	cy_metadata, 12
+ 1482              	cy_metadata:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 27
 
 
- 1479 0125 26000000 		.4byte	.LASF17
- 1480 0129 01       		.byte	0x1
- 1481 012a 1301     		.2byte	0x113
- 1482 012c 36010000 		.4byte	0x136
- 1483 0130 05       		.uleb128 0x5
- 1484 0131 03       		.byte	0x3
- 1485 0132 00000000 		.4byte	cy_metadata
- 1486 0136 08       		.uleb128 0x8
- 1487 0137 14010000 		.4byte	0x114
- 1488 013b 00       		.byte	0
- 1489              		.section	.debug_abbrev,"",%progbits
- 1490              	.Ldebug_abbrev0:
- 1491 0000 01       		.uleb128 0x1
- 1492 0001 11       		.uleb128 0x11
- 1493 0002 01       		.byte	0x1
- 1494 0003 25       		.uleb128 0x25
- 1495 0004 0E       		.uleb128 0xe
- 1496 0005 13       		.uleb128 0x13
- 1497 0006 0B       		.uleb128 0xb
- 1498 0007 03       		.uleb128 0x3
- 1499 0008 0E       		.uleb128 0xe
- 1500 0009 1B       		.uleb128 0x1b
- 1501 000a 0E       		.uleb128 0xe
- 1502 000b 10       		.uleb128 0x10
- 1503 000c 17       		.uleb128 0x17
- 1504 000d 00       		.byte	0
- 1505 000e 00       		.byte	0
- 1506 000f 02       		.uleb128 0x2
- 1507 0010 24       		.uleb128 0x24
- 1508 0011 00       		.byte	0
- 1509 0012 0B       		.uleb128 0xb
- 1510 0013 0B       		.uleb128 0xb
- 1511 0014 3E       		.uleb128 0x3e
- 1512 0015 0B       		.uleb128 0xb
- 1513 0016 03       		.uleb128 0x3
- 1514 0017 0E       		.uleb128 0xe
- 1515 0018 00       		.byte	0
- 1516 0019 00       		.byte	0
- 1517 001a 03       		.uleb128 0x3
- 1518 001b 24       		.uleb128 0x24
- 1519 001c 00       		.byte	0
- 1520 001d 0B       		.uleb128 0xb
- 1521 001e 0B       		.uleb128 0xb
- 1522 001f 3E       		.uleb128 0x3e
- 1523 0020 0B       		.uleb128 0xb
- 1524 0021 03       		.uleb128 0x3
- 1525 0022 08       		.uleb128 0x8
- 1526 0023 00       		.byte	0
- 1527 0024 00       		.byte	0
- 1528 0025 04       		.uleb128 0x4
- 1529 0026 16       		.uleb128 0x16
- 1530 0027 00       		.byte	0
- 1531 0028 03       		.uleb128 0x3
- 1532 0029 0E       		.uleb128 0xe
- 1533 002a 3A       		.uleb128 0x3a
- 1534 002b 0B       		.uleb128 0xb
- 1535 002c 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 28
+ 1483 0000 00       		.byte	0
+ 1484 0001 01       		.byte	1
+ 1485 0002 2E       		.byte	46
+ 1486 0003 16       		.byte	22
+ 1487 0004 10       		.byte	16
+ 1488 0005 69       		.byte	105
+ 1489 0006 00       		.byte	0
+ 1490 0007 01       		.byte	1
+ 1491 0008 00       		.byte	0
+ 1492 0009 00       		.byte	0
+ 1493 000a 00       		.byte	0
+ 1494 000b 00       		.byte	0
+ 1495              		.section	.cyflashprotect,"a",%progbits
+ 1496              		.align	2
+ 1497              		.type	cy_meta_flashprotect, %object
+ 1498              		.size	cy_meta_flashprotect, 256
+ 1499              	cy_meta_flashprotect:
+ 1500 0000 00000000 		.space	256
+ 1500      00000000 
+ 1500      00000000 
+ 1500      00000000 
+ 1500      00000000 
+ 1501              		.text
+ 1502              	.Letext0:
+ 1503              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
+ 1504              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 1505              		.section	.debug_info,"",%progbits
+ 1506              	.Ldebug_info0:
+ 1507 0000 38010000 		.4byte	0x138
+ 1508 0004 0400     		.2byte	0x4
+ 1509 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1510 000a 04       		.byte	0x4
+ 1511 000b 01       		.uleb128 0x1
+ 1512 000c AB000000 		.4byte	.LASF18
+ 1513 0010 01       		.byte	0x1
+ 1514 0011 00000000 		.4byte	.LASF19
+ 1515 0015 46010000 		.4byte	.LASF20
+ 1516 0019 00000000 		.4byte	.Ldebug_line0
+ 1517 001d 02       		.uleb128 0x2
+ 1518 001e 01       		.byte	0x1
+ 1519 001f 06       		.byte	0x6
+ 1520 0020 EA010000 		.4byte	.LASF0
+ 1521 0024 02       		.uleb128 0x2
+ 1522 0025 01       		.byte	0x1
+ 1523 0026 08       		.byte	0x8
+ 1524 0027 4F000000 		.4byte	.LASF1
+ 1525 002b 02       		.uleb128 0x2
+ 1526 002c 02       		.byte	0x2
+ 1527 002d 05       		.byte	0x5
+ 1528 002e D1010000 		.4byte	.LASF2
+ 1529 0032 02       		.uleb128 0x2
+ 1530 0033 02       		.byte	0x2
+ 1531 0034 07       		.byte	0x7
+ 1532 0035 6F000000 		.4byte	.LASF3
+ 1533 0039 02       		.uleb128 0x2
+ 1534 003a 04       		.byte	0x4
+ 1535 003b 05       		.byte	0x5
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 28
 
 
- 1536 002d 05       		.uleb128 0x5
- 1537 002e 49       		.uleb128 0x49
- 1538 002f 13       		.uleb128 0x13
- 1539 0030 00       		.byte	0
- 1540 0031 00       		.byte	0
- 1541 0032 05       		.uleb128 0x5
- 1542 0033 01       		.uleb128 0x1
- 1543 0034 01       		.byte	0x1
- 1544 0035 49       		.uleb128 0x49
- 1545 0036 13       		.uleb128 0x13
- 1546 0037 01       		.uleb128 0x1
- 1547 0038 13       		.uleb128 0x13
- 1548 0039 00       		.byte	0
- 1549 003a 00       		.byte	0
- 1550 003b 06       		.uleb128 0x6
- 1551 003c 21       		.uleb128 0x21
- 1552 003d 00       		.byte	0
- 1553 003e 49       		.uleb128 0x49
- 1554 003f 13       		.uleb128 0x13
- 1555 0040 2F       		.uleb128 0x2f
- 1556 0041 05       		.uleb128 0x5
- 1557 0042 00       		.byte	0
- 1558 0043 00       		.byte	0
- 1559 0044 07       		.uleb128 0x7
- 1560 0045 34       		.uleb128 0x34
- 1561 0046 00       		.byte	0
- 1562 0047 03       		.uleb128 0x3
- 1563 0048 0E       		.uleb128 0xe
- 1564 0049 3A       		.uleb128 0x3a
- 1565 004a 0B       		.uleb128 0xb
- 1566 004b 3B       		.uleb128 0x3b
- 1567 004c 0B       		.uleb128 0xb
- 1568 004d 49       		.uleb128 0x49
- 1569 004e 13       		.uleb128 0x13
- 1570 004f 3F       		.uleb128 0x3f
- 1571 0050 19       		.uleb128 0x19
- 1572 0051 02       		.uleb128 0x2
- 1573 0052 18       		.uleb128 0x18
- 1574 0053 00       		.byte	0
- 1575 0054 00       		.byte	0
- 1576 0055 08       		.uleb128 0x8
- 1577 0056 26       		.uleb128 0x26
- 1578 0057 00       		.byte	0
- 1579 0058 49       		.uleb128 0x49
- 1580 0059 13       		.uleb128 0x13
- 1581 005a 00       		.byte	0
- 1582 005b 00       		.byte	0
- 1583 005c 09       		.uleb128 0x9
- 1584 005d 21       		.uleb128 0x21
- 1585 005e 00       		.byte	0
- 1586 005f 49       		.uleb128 0x49
- 1587 0060 13       		.uleb128 0x13
- 1588 0061 2F       		.uleb128 0x2f
- 1589 0062 0B       		.uleb128 0xb
- 1590 0063 00       		.byte	0
- 1591 0064 00       		.byte	0
- 1592 0065 0A       		.uleb128 0xa
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 29
+ 1536 003c E1010000 		.4byte	.LASF4
+ 1537 0040 02       		.uleb128 0x2
+ 1538 0041 04       		.byte	0x4
+ 1539 0042 07       		.byte	0x7
+ 1540 0043 5D000000 		.4byte	.LASF5
+ 1541 0047 02       		.uleb128 0x2
+ 1542 0048 08       		.byte	0x8
+ 1543 0049 05       		.byte	0x5
+ 1544 004a BE010000 		.4byte	.LASF6
+ 1545 004e 02       		.uleb128 0x2
+ 1546 004f 08       		.byte	0x8
+ 1547 0050 07       		.byte	0x7
+ 1548 0051 38000000 		.4byte	.LASF7
+ 1549 0055 03       		.uleb128 0x3
+ 1550 0056 04       		.byte	0x4
+ 1551 0057 05       		.byte	0x5
+ 1552 0058 696E7400 		.ascii	"int\000"
+ 1553 005c 02       		.uleb128 0x2
+ 1554 005d 04       		.byte	0x4
+ 1555 005e 07       		.byte	0x7
+ 1556 005f 39010000 		.4byte	.LASF8
+ 1557 0063 04       		.uleb128 0x4
+ 1558 0064 DB010000 		.4byte	.LASF21
+ 1559 0068 02       		.byte	0x2
+ 1560 0069 9201     		.2byte	0x192
+ 1561 006b 24000000 		.4byte	0x24
+ 1562 006f 02       		.uleb128 0x2
+ 1563 0070 04       		.byte	0x4
+ 1564 0071 04       		.byte	0x4
+ 1565 0072 32000000 		.4byte	.LASF9
+ 1566 0076 02       		.uleb128 0x2
+ 1567 0077 08       		.byte	0x8
+ 1568 0078 04       		.byte	0x4
+ 1569 0079 82000000 		.4byte	.LASF10
+ 1570 007d 02       		.uleb128 0x2
+ 1571 007e 01       		.byte	0x1
+ 1572 007f 08       		.byte	0x8
+ 1573 0080 CC010000 		.4byte	.LASF11
+ 1574 0084 05       		.uleb128 0x5
+ 1575 0085 63000000 		.4byte	0x63
+ 1576 0089 95000000 		.4byte	0x95
+ 1577 008d 06       		.uleb128 0x6
+ 1578 008e 95000000 		.4byte	0x95
+ 1579 0092 9705     		.2byte	0x597
+ 1580 0094 00       		.byte	0
+ 1581 0095 02       		.uleb128 0x2
+ 1582 0096 04       		.byte	0x4
+ 1583 0097 07       		.byte	0x7
+ 1584 0098 B5010000 		.4byte	.LASF12
+ 1585 009c 07       		.uleb128 0x7
+ 1586 009d 99000000 		.4byte	.LASF13
+ 1587 00a1 01       		.byte	0x1
+ 1588 00a2 1F       		.byte	0x1f
+ 1589 00a3 AD000000 		.4byte	0xad
+ 1590 00a7 05       		.uleb128 0x5
+ 1591 00a8 03       		.byte	0x3
+ 1592 00a9 00000000 		.4byte	cy_meta_configecc
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 29
 
 
- 1593 0066 34       		.uleb128 0x34
- 1594 0067 00       		.byte	0
- 1595 0068 03       		.uleb128 0x3
- 1596 0069 0E       		.uleb128 0xe
- 1597 006a 3A       		.uleb128 0x3a
- 1598 006b 0B       		.uleb128 0xb
- 1599 006c 3B       		.uleb128 0x3b
- 1600 006d 05       		.uleb128 0x5
- 1601 006e 49       		.uleb128 0x49
- 1602 006f 13       		.uleb128 0x13
- 1603 0070 3F       		.uleb128 0x3f
- 1604 0071 19       		.uleb128 0x19
- 1605 0072 02       		.uleb128 0x2
- 1606 0073 18       		.uleb128 0x18
- 1607 0074 00       		.byte	0
- 1608 0075 00       		.byte	0
- 1609 0076 00       		.byte	0
- 1610              		.section	.debug_aranges,"",%progbits
- 1611 0000 14000000 		.4byte	0x14
- 1612 0004 0200     		.2byte	0x2
- 1613 0006 00000000 		.4byte	.Ldebug_info0
- 1614 000a 04       		.byte	0x4
- 1615 000b 00       		.byte	0
- 1616 000c 0000     		.2byte	0
- 1617 000e 0000     		.2byte	0
- 1618 0010 00000000 		.4byte	0
- 1619 0014 00000000 		.4byte	0
- 1620              		.section	.debug_line,"",%progbits
- 1621              	.Ldebug_line0:
- 1622 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
- 1622      02004900 
- 1622      00000201 
- 1622      FB0E0D00 
- 1622      01010101 
- 1623              	.LASF19:
- 1624 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
- 1624      6E657261 
- 1624      7465645F 
- 1624      536F7572 
- 1624      63655C50 
- 1625              	.LASF17:
- 1626 0026 63795F6D 		.ascii	"cy_metadata\000"
- 1626      65746164 
- 1626      61746100 
- 1627              	.LASF9:
- 1628 0032 666C6F61 		.ascii	"float\000"
- 1628      7400
- 1629              	.LASF7:
- 1630 0038 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1630      206C6F6E 
- 1630      6720756E 
- 1630      7369676E 
- 1630      65642069 
- 1631              	.LASF1:
- 1632 004f 756E7369 		.ascii	"unsigned char\000"
- 1632      676E6564 
- 1632      20636861 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 30
+ 1593 00ad 08       		.uleb128 0x8
+ 1594 00ae 84000000 		.4byte	0x84
+ 1595 00b2 05       		.uleb128 0x5
+ 1596 00b3 63000000 		.4byte	0x63
+ 1597 00b7 C2000000 		.4byte	0xc2
+ 1598 00bb 09       		.uleb128 0x9
+ 1599 00bc 95000000 		.4byte	0x95
+ 1600 00c0 03       		.byte	0x3
+ 1601 00c1 00       		.byte	0
+ 1602 00c2 07       		.uleb128 0x7
+ 1603 00c3 89000000 		.4byte	.LASF14
+ 1604 00c7 01       		.byte	0x1
+ 1605 00c8 DF       		.byte	0xdf
+ 1606 00c9 D3000000 		.4byte	0xd3
+ 1607 00cd 05       		.uleb128 0x5
+ 1608 00ce 03       		.byte	0x3
+ 1609 00cf 00000000 		.4byte	cy_meta_custnvl
+ 1610 00d3 08       		.uleb128 0x8
+ 1611 00d4 B2000000 		.4byte	0xb2
+ 1612 00d8 07       		.uleb128 0x7
+ 1613 00d9 A7010000 		.4byte	.LASF15
+ 1614 00dd 01       		.byte	0x1
+ 1615 00de ED       		.byte	0xed
+ 1616 00df E9000000 		.4byte	0xe9
+ 1617 00e3 05       		.uleb128 0x5
+ 1618 00e4 03       		.byte	0x3
+ 1619 00e5 00000000 		.4byte	cy_meta_wonvl
+ 1620 00e9 08       		.uleb128 0x8
+ 1621 00ea B2000000 		.4byte	0xb2
+ 1622 00ee 05       		.uleb128 0x5
+ 1623 00ef 63000000 		.4byte	0x63
+ 1624 00f3 FE000000 		.4byte	0xfe
+ 1625 00f7 09       		.uleb128 0x9
+ 1626 00f8 95000000 		.4byte	0x95
+ 1627 00fc FF       		.byte	0xff
+ 1628 00fd 00       		.byte	0
+ 1629 00fe 07       		.uleb128 0x7
+ 1630 00ff 92010000 		.4byte	.LASF16
+ 1631 0103 01       		.byte	0x1
+ 1632 0104 FB       		.byte	0xfb
+ 1633 0105 0F010000 		.4byte	0x10f
+ 1634 0109 05       		.uleb128 0x5
+ 1635 010a 03       		.byte	0x3
+ 1636 010b 00000000 		.4byte	cy_meta_flashprotect
+ 1637 010f 08       		.uleb128 0x8
+ 1638 0110 EE000000 		.4byte	0xee
+ 1639 0114 05       		.uleb128 0x5
+ 1640 0115 63000000 		.4byte	0x63
+ 1641 0119 24010000 		.4byte	0x124
+ 1642 011d 09       		.uleb128 0x9
+ 1643 011e 95000000 		.4byte	0x95
+ 1644 0122 0B       		.byte	0xb
+ 1645 0123 00       		.byte	0
+ 1646 0124 0A       		.uleb128 0xa
+ 1647 0125 26000000 		.4byte	.LASF17
+ 1648 0129 01       		.byte	0x1
+ 1649 012a 2801     		.2byte	0x128
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 30
 
 
- 1632      7200
- 1633              	.LASF5:
- 1634 005d 6C6F6E67 		.ascii	"long unsigned int\000"
- 1634      20756E73 
- 1634      69676E65 
- 1634      6420696E 
- 1634      7400
- 1635              	.LASF3:
- 1636 006f 73686F72 		.ascii	"short unsigned int\000"
- 1636      7420756E 
- 1636      7369676E 
- 1636      65642069 
- 1636      6E7400
- 1637              	.LASF10:
- 1638 0082 646F7562 		.ascii	"double\000"
- 1638      6C6500
- 1639              	.LASF14:
- 1640 0089 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 1640      6574615F 
- 1640      63757374 
- 1640      6E766C00 
- 1641              	.LASF13:
- 1642 0099 63795F6D 		.ascii	"cy_meta_configecc\000"
- 1642      6574615F 
- 1642      636F6E66 
- 1642      69676563 
- 1642      6300
- 1643              	.LASF18:
- 1644 00ab 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1644      4320342E 
- 1644      392E3320 
- 1644      32303135 
- 1644      30333033 
- 1645 00de 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1645      20726576 
- 1645      6973696F 
- 1645      6E203232 
- 1645      31323230 
- 1646 0111 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1646      66756E63 
- 1646      74696F6E 
- 1646      2D736563 
- 1646      74696F6E 
- 1647              	.LASF8:
- 1648 0139 756E7369 		.ascii	"unsigned int\000"
- 1648      676E6564 
- 1648      20696E74 
- 1648      00
- 1649              	.LASF20:
- 1650 0146 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\ECE"
- 1650      73657273 
- 1650      5C54696D 
- 1650      5C446F63 
- 1650      756D656E 
- 1651 0173 33303931 		.ascii	"3091TestSoftware\\Display.cydsn\000"
- 1651      54657374 
- 1651      536F6674 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccwHdXEM.s 			page 31
+ 1650 012c 36010000 		.4byte	0x136
+ 1651 0130 05       		.uleb128 0x5
+ 1652 0131 03       		.byte	0x3
+ 1653 0132 00000000 		.4byte	cy_metadata
+ 1654 0136 08       		.uleb128 0x8
+ 1655 0137 14010000 		.4byte	0x114
+ 1656 013b 00       		.byte	0
+ 1657              		.section	.debug_abbrev,"",%progbits
+ 1658              	.Ldebug_abbrev0:
+ 1659 0000 01       		.uleb128 0x1
+ 1660 0001 11       		.uleb128 0x11
+ 1661 0002 01       		.byte	0x1
+ 1662 0003 25       		.uleb128 0x25
+ 1663 0004 0E       		.uleb128 0xe
+ 1664 0005 13       		.uleb128 0x13
+ 1665 0006 0B       		.uleb128 0xb
+ 1666 0007 03       		.uleb128 0x3
+ 1667 0008 0E       		.uleb128 0xe
+ 1668 0009 1B       		.uleb128 0x1b
+ 1669 000a 0E       		.uleb128 0xe
+ 1670 000b 10       		.uleb128 0x10
+ 1671 000c 17       		.uleb128 0x17
+ 1672 000d 00       		.byte	0
+ 1673 000e 00       		.byte	0
+ 1674 000f 02       		.uleb128 0x2
+ 1675 0010 24       		.uleb128 0x24
+ 1676 0011 00       		.byte	0
+ 1677 0012 0B       		.uleb128 0xb
+ 1678 0013 0B       		.uleb128 0xb
+ 1679 0014 3E       		.uleb128 0x3e
+ 1680 0015 0B       		.uleb128 0xb
+ 1681 0016 03       		.uleb128 0x3
+ 1682 0017 0E       		.uleb128 0xe
+ 1683 0018 00       		.byte	0
+ 1684 0019 00       		.byte	0
+ 1685 001a 03       		.uleb128 0x3
+ 1686 001b 24       		.uleb128 0x24
+ 1687 001c 00       		.byte	0
+ 1688 001d 0B       		.uleb128 0xb
+ 1689 001e 0B       		.uleb128 0xb
+ 1690 001f 3E       		.uleb128 0x3e
+ 1691 0020 0B       		.uleb128 0xb
+ 1692 0021 03       		.uleb128 0x3
+ 1693 0022 08       		.uleb128 0x8
+ 1694 0023 00       		.byte	0
+ 1695 0024 00       		.byte	0
+ 1696 0025 04       		.uleb128 0x4
+ 1697 0026 16       		.uleb128 0x16
+ 1698 0027 00       		.byte	0
+ 1699 0028 03       		.uleb128 0x3
+ 1700 0029 0E       		.uleb128 0xe
+ 1701 002a 3A       		.uleb128 0x3a
+ 1702 002b 0B       		.uleb128 0xb
+ 1703 002c 3B       		.uleb128 0x3b
+ 1704 002d 05       		.uleb128 0x5
+ 1705 002e 49       		.uleb128 0x49
+ 1706 002f 13       		.uleb128 0x13
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 31
 
 
- 1651      77617265 
- 1651      5C446973 
- 1652              	.LASF16:
- 1653 0192 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 1653      6574615F 
- 1653      666C6173 
- 1653      6870726F 
- 1653      74656374 
- 1654              	.LASF15:
- 1655 01a7 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 1655      6574615F 
- 1655      776F6E76 
- 1655      6C00
- 1656              	.LASF12:
- 1657 01b5 73697A65 		.ascii	"sizetype\000"
- 1657      74797065 
- 1657      00
- 1658              	.LASF6:
- 1659 01be 6C6F6E67 		.ascii	"long long int\000"
- 1659      206C6F6E 
- 1659      6720696E 
- 1659      7400
- 1660              	.LASF11:
- 1661 01cc 63686172 		.ascii	"char\000"
- 1661      00
- 1662              	.LASF2:
- 1663 01d1 73686F72 		.ascii	"short int\000"
- 1663      7420696E 
- 1663      7400
- 1664              	.LASF21:
- 1665 01db 75696E74 		.ascii	"uint8\000"
- 1665      3800
- 1666              	.LASF4:
- 1667 01e1 6C6F6E67 		.ascii	"long int\000"
- 1667      20696E74 
- 1667      00
- 1668              	.LASF0:
- 1669 01ea 7369676E 		.ascii	"signed char\000"
- 1669      65642063 
- 1669      68617200 
- 1670              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1707 0030 00       		.byte	0
+ 1708 0031 00       		.byte	0
+ 1709 0032 05       		.uleb128 0x5
+ 1710 0033 01       		.uleb128 0x1
+ 1711 0034 01       		.byte	0x1
+ 1712 0035 49       		.uleb128 0x49
+ 1713 0036 13       		.uleb128 0x13
+ 1714 0037 01       		.uleb128 0x1
+ 1715 0038 13       		.uleb128 0x13
+ 1716 0039 00       		.byte	0
+ 1717 003a 00       		.byte	0
+ 1718 003b 06       		.uleb128 0x6
+ 1719 003c 21       		.uleb128 0x21
+ 1720 003d 00       		.byte	0
+ 1721 003e 49       		.uleb128 0x49
+ 1722 003f 13       		.uleb128 0x13
+ 1723 0040 2F       		.uleb128 0x2f
+ 1724 0041 05       		.uleb128 0x5
+ 1725 0042 00       		.byte	0
+ 1726 0043 00       		.byte	0
+ 1727 0044 07       		.uleb128 0x7
+ 1728 0045 34       		.uleb128 0x34
+ 1729 0046 00       		.byte	0
+ 1730 0047 03       		.uleb128 0x3
+ 1731 0048 0E       		.uleb128 0xe
+ 1732 0049 3A       		.uleb128 0x3a
+ 1733 004a 0B       		.uleb128 0xb
+ 1734 004b 3B       		.uleb128 0x3b
+ 1735 004c 0B       		.uleb128 0xb
+ 1736 004d 49       		.uleb128 0x49
+ 1737 004e 13       		.uleb128 0x13
+ 1738 004f 3F       		.uleb128 0x3f
+ 1739 0050 19       		.uleb128 0x19
+ 1740 0051 02       		.uleb128 0x2
+ 1741 0052 18       		.uleb128 0x18
+ 1742 0053 00       		.byte	0
+ 1743 0054 00       		.byte	0
+ 1744 0055 08       		.uleb128 0x8
+ 1745 0056 26       		.uleb128 0x26
+ 1746 0057 00       		.byte	0
+ 1747 0058 49       		.uleb128 0x49
+ 1748 0059 13       		.uleb128 0x13
+ 1749 005a 00       		.byte	0
+ 1750 005b 00       		.byte	0
+ 1751 005c 09       		.uleb128 0x9
+ 1752 005d 21       		.uleb128 0x21
+ 1753 005e 00       		.byte	0
+ 1754 005f 49       		.uleb128 0x49
+ 1755 0060 13       		.uleb128 0x13
+ 1756 0061 2F       		.uleb128 0x2f
+ 1757 0062 0B       		.uleb128 0xb
+ 1758 0063 00       		.byte	0
+ 1759 0064 00       		.byte	0
+ 1760 0065 0A       		.uleb128 0xa
+ 1761 0066 34       		.uleb128 0x34
+ 1762 0067 00       		.byte	0
+ 1763 0068 03       		.uleb128 0x3
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 32
+
+
+ 1764 0069 0E       		.uleb128 0xe
+ 1765 006a 3A       		.uleb128 0x3a
+ 1766 006b 0B       		.uleb128 0xb
+ 1767 006c 3B       		.uleb128 0x3b
+ 1768 006d 05       		.uleb128 0x5
+ 1769 006e 49       		.uleb128 0x49
+ 1770 006f 13       		.uleb128 0x13
+ 1771 0070 3F       		.uleb128 0x3f
+ 1772 0071 19       		.uleb128 0x19
+ 1773 0072 02       		.uleb128 0x2
+ 1774 0073 18       		.uleb128 0x18
+ 1775 0074 00       		.byte	0
+ 1776 0075 00       		.byte	0
+ 1777 0076 00       		.byte	0
+ 1778              		.section	.debug_aranges,"",%progbits
+ 1779 0000 14000000 		.4byte	0x14
+ 1780 0004 0200     		.2byte	0x2
+ 1781 0006 00000000 		.4byte	.Ldebug_info0
+ 1782 000a 04       		.byte	0x4
+ 1783 000b 00       		.byte	0
+ 1784 000c 0000     		.2byte	0
+ 1785 000e 0000     		.2byte	0
+ 1786 0010 00000000 		.4byte	0
+ 1787 0014 00000000 		.4byte	0
+ 1788              		.section	.debug_line,"",%progbits
+ 1789              	.Ldebug_line0:
+ 1790 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 1790      02004900 
+ 1790      00000201 
+ 1790      FB0E0D00 
+ 1790      01010101 
+ 1791              	.LASF19:
+ 1792 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1792      6E657261 
+ 1792      7465645F 
+ 1792      536F7572 
+ 1792      63655C50 
+ 1793              	.LASF17:
+ 1794 0026 63795F6D 		.ascii	"cy_metadata\000"
+ 1794      65746164 
+ 1794      61746100 
+ 1795              	.LASF9:
+ 1796 0032 666C6F61 		.ascii	"float\000"
+ 1796      7400
+ 1797              	.LASF7:
+ 1798 0038 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1798      206C6F6E 
+ 1798      6720756E 
+ 1798      7369676E 
+ 1798      65642069 
+ 1799              	.LASF1:
+ 1800 004f 756E7369 		.ascii	"unsigned char\000"
+ 1800      676E6564 
+ 1800      20636861 
+ 1800      7200
+ 1801              	.LASF5:
+ 1802 005d 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 33
+
+
+ 1802      20756E73 
+ 1802      69676E65 
+ 1802      6420696E 
+ 1802      7400
+ 1803              	.LASF3:
+ 1804 006f 73686F72 		.ascii	"short unsigned int\000"
+ 1804      7420756E 
+ 1804      7369676E 
+ 1804      65642069 
+ 1804      6E7400
+ 1805              	.LASF10:
+ 1806 0082 646F7562 		.ascii	"double\000"
+ 1806      6C6500
+ 1807              	.LASF14:
+ 1808 0089 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1808      6574615F 
+ 1808      63757374 
+ 1808      6E766C00 
+ 1809              	.LASF13:
+ 1810 0099 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1810      6574615F 
+ 1810      636F6E66 
+ 1810      69676563 
+ 1810      6300
+ 1811              	.LASF18:
+ 1812 00ab 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1812      4320342E 
+ 1812      392E3320 
+ 1812      32303135 
+ 1812      30333033 
+ 1813 00de 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1813      20726576 
+ 1813      6973696F 
+ 1813      6E203232 
+ 1813      31323230 
+ 1814 0111 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1814      66756E63 
+ 1814      74696F6E 
+ 1814      2D736563 
+ 1814      74696F6E 
+ 1815              	.LASF8:
+ 1816 0139 756E7369 		.ascii	"unsigned int\000"
+ 1816      676E6564 
+ 1816      20696E74 
+ 1816      00
+ 1817              	.LASF20:
+ 1818 0146 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\ECE"
+ 1818      73657273 
+ 1818      5C54696D 
+ 1818      5C446F63 
+ 1818      756D656E 
+ 1819 0173 33303931 		.ascii	"3091TestSoftware\\Display.cydsn\000"
+ 1819      54657374 
+ 1819      536F6674 
+ 1819      77617265 
+ 1819      5C446973 
+ 1820              	.LASF16:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccL6DwFj.s 			page 34
+
+
+ 1821 0192 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1821      6574615F 
+ 1821      666C6173 
+ 1821      6870726F 
+ 1821      74656374 
+ 1822              	.LASF15:
+ 1823 01a7 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1823      6574615F 
+ 1823      776F6E76 
+ 1823      6C00
+ 1824              	.LASF12:
+ 1825 01b5 73697A65 		.ascii	"sizetype\000"
+ 1825      74797065 
+ 1825      00
+ 1826              	.LASF6:
+ 1827 01be 6C6F6E67 		.ascii	"long long int\000"
+ 1827      206C6F6E 
+ 1827      6720696E 
+ 1827      7400
+ 1828              	.LASF11:
+ 1829 01cc 63686172 		.ascii	"char\000"
+ 1829      00
+ 1830              	.LASF2:
+ 1831 01d1 73686F72 		.ascii	"short int\000"
+ 1831      7420696E 
+ 1831      7400
+ 1832              	.LASF21:
+ 1833 01db 75696E74 		.ascii	"uint8\000"
+ 1833      3800
+ 1834              	.LASF4:
+ 1835 01e1 6C6F6E67 		.ascii	"long int\000"
+ 1835      20696E74 
+ 1835      00
+ 1836              	.LASF0:
+ 1837 01ea 7369676E 		.ascii	"signed char\000"
+ 1837      65642063 
+ 1837      68617200 
+ 1838              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
