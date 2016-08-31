@@ -2,7 +2,7 @@
 --	Conversion of Display.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue Aug 23 12:09:03 2016
+--	Wed Aug 31 16:20:50 2016
 --
 
 USE cypress.cypress.all;

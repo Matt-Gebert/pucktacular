@@ -904,7 +904,7 @@
 #define BCLK__BUS_CLK__KHZ 72000U
 #define BCLK__BUS_CLK__MHZ 72U
 #define CY_PROJECT_NAME "Display"
-#define CY_VERSION "PSoC Creator  3.3 SP2"
+#define CY_VERSION "PSoC Creator  3.3 CP3"
 #define CYDEV_CHIP_DIE_LEOPARD 1u
 #define CYDEV_CHIP_DIE_PANTHER 19u
 #define CYDEV_CHIP_DIE_PSOC4A 11u

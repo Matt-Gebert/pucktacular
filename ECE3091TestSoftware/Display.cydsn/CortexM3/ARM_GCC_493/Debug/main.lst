@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 1
 
 
    1              		.syntax unified
@@ -57,209 +57,224 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
   28:.\main.c      **** //*************************************************
   29:.\main.c      **** //
   30:.\main.c      **** //Main program starts here
-  31:.\main.c      **** //
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 2
+  31:.\main.c      **** //Added Line :)
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 2
 
 
-  32:.\main.c      **** //************************************************* 
-  33:.\main.c      **** int main()
-  34:.\main.c      **** {
-  35:.\main.c      ****     PSOCReset();                                    //Put PSOC in ready state
-  36:.\main.c      ****     VariablesInitialise();                          //Initialise all variables
-  37:.\main.c      ****     PWM_1_Start();                                  //Start PWM channel    
-  38:.\main.c      ****     ISRSetUp();                                     //Setup all interupts
-  39:.\main.c      ****     LCD_Start();
-  40:.\main.c      ****     LCD_DMA_Start();
-  41:.\main.c      ****     Camera_Start();
-  42:.\main.c      ****     Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
-  43:.\main.c      ****     Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted;
-  44:.\main.c      ****     
-  45:.\main.c      ****     LCD_CLK_SetDividerValue(5);
-  46:.\main.c      ****     CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
-  47:.\main.c      ****     
-  48:.\main.c      ****     Beep(1);
-  49:.\main.c      ****     CyDelay(200);
-  50:.\main.c      ****     Beep(1); 
-  51:.\main.c      ****     while(OnOff==0)
-  52:.\main.c      ****     {
-  53:.\main.c      ****     }
-  54:.\main.c      ****     InitialisationSequnce();
-  55:.\main.c      ****        
-  56:.\main.c      ****     uint8 n=0;
-  57:.\main.c      ****     for(;;n++)
-  58:.\main.c      ****     {
-  59:.\main.c      ****         CaptureFrame();                             //read frame into LCD
-  60:.\main.c      ****         CS_Write(2);                                //select output latch
-  61:.\main.c      ****         OE_Control=3;                               //enable output driver and switch to user outpu
-  62:.\main.c      ****         Data_Out_Control=n&1?4:0;                   //write to user output data bus
-  63:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
-  64:.\main.c      ****         OE_Control=0;                               //disable output driver
-  65:.\main.c      ****         pixel box[100][100];                        //read top 100x100 pixels into array
-  66:.\main.c      ****         LCD_SetWindowRead(0,0,99,99);
-  67:.\main.c      ****         uint8 i,j;
-  68:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++)
-  69:.\main.c      ****             box[i][j]=LCD_ReadPixel();
-  70:.\main.c      ****         LCD_StopReadWrite();
-  71:.\main.c      ****         LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
-  72:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
-  73:.\main.c      ****         LCD_StopReadWrite(); 
-  74:.\main.c      ****         PWMOperate();
-  75:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
-  76:.\main.c      ****         CS_Write(0x02);  
-  77:.\main.c      ****         CS_Write(0x08);
-  78:.\main.c      ****         CyDelay(300);
-  79:.\main.c      ****     }
-  80:.\main.c      **** }
-  81:.\main.c      **** //*************************************************
-  82:.\main.c      **** //
-  83:.\main.c      **** //Put 8 bit port in output mode
-  84:.\main.c      **** //
-  85:.\main.c      **** //*************************************************
-  86:.\main.c      **** void BiDirPortOutPut()
-  87:.\main.c      **** {
-  88:.\main.c      ****     OE_Control=3;                           //enable output driver and switch to user output
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 3
+  32:.\main.c      **** //
+  33:.\main.c      **** //************************************************* 
+  34:.\main.c      **** int main()
+  35:.\main.c      **** {
+  36:.\main.c      ****     PSOCReset();                                    //Put PSOC in ready state
+  37:.\main.c      ****     VariablesInitialise();                          //Initialise all variables
+  38:.\main.c      ****     PWM_1_Start();                                  //Start PWM channel    
+  39:.\main.c      ****     ISRSetUp();                                     //Setup all interupts
+  40:.\main.c      ****     LCD_Start();
+  41:.\main.c      ****     LCD_DMA_Start();
+  42:.\main.c      ****     Camera_Start();
+  43:.\main.c      ****     Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
+  44:.\main.c      ****     Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted;
+  45:.\main.c      ****     
+  46:.\main.c      ****     LCD_CLK_SetDividerValue(5);
+  47:.\main.c      ****     CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
+  48:.\main.c      ****     
+  49:.\main.c      ****     Beep(1);
+  50:.\main.c      ****     CyDelay(200);
+  51:.\main.c      ****     Beep(1); 
+  52:.\main.c      ****     while(OnOff==0)
+  53:.\main.c      ****     {
+  54:.\main.c      ****     }
+  55:.\main.c      ****     InitialisationSequnce();
+  56:.\main.c      ****        
+  57:.\main.c      ****     uint8 n=0;
+  58:.\main.c      ****     for(;;n++)
+  59:.\main.c      ****     {
+  60:.\main.c      ****         /*CS_Write(2);
+  61:.\main.c      ****         OE_Control=3;                               //LCD Control.
+  62:.\main.c      ****         Data_Out_Control=0xA0;
+  63:.\main.c      ****         CS_Write(8);
+  64:.\main.c      ****         OE_Control=0;
+  65:.\main.c      ****         CyDelay(1000);
+  66:.\main.c      ****         CS_Write(2);
+  67:.\main.c      ****         OE_Control=3;                               //LCD Control.
+  68:.\main.c      ****         Data_Out_Control=0x00;
+  69:.\main.c      ****         CS_Write(8);
+  70:.\main.c      ****         OE_Control=0;
+  71:.\main.c      ****         CyDelay(1000);
+  72:.\main.c      ****         */
+  73:.\main.c      ****         CaptureFrame();                             //read frame into LCD
+  74:.\main.c      ****         CS_Write(2);                                //select output latch
+  75:.\main.c      ****         OE_Control=3;                               //enable output driver and switch to user outpu
+  76:.\main.c      ****         Data_Out_Control=n&1?4:0;                   //write to user output data bus
+  77:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
+  78:.\main.c      ****         OE_Control=0;                               //disable output driver
+  79:.\main.c      ****         pixel box[100][100];                        //read top 100x100 pixels into array
+  80:.\main.c      ****         LCD_SetWindowRead(0,0,99,99);
+  81:.\main.c      ****         uint8 i,j;
+  82:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++)
+  83:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+  84:.\main.c      ****         LCD_StopReadWrite();
+  85:.\main.c      ****         LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
+  86:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
+  87:.\main.c      ****         LCD_StopReadWrite(); 
+  88:.\main.c      ****         
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 3
 
 
-  89:.\main.c      **** }
-  90:.\main.c      **** //************************************************
-  91:.\main.c      **** //
-  92:.\main.c      **** //Put 8 bit port in input mode
-  93:.\main.c      **** //
-  94:.\main.c      **** //*************************************************
-  95:.\main.c      **** void BiDirPortInPut()
-  96:.\main.c      **** {
-  97:.\main.c      ****    OE_Control=0;                            //disable output driver                    
-  98:.\main.c      **** }
-  99:.\main.c      **** //*************************************************
- 100:.\main.c      **** //
- 101:.\main.c      **** // Beep for 100mS minimum
- 102:.\main.c      **** // On entry X contains quantity of 100mS beeps
- 103:.\main.c      **** //
- 104:.\main.c      **** //*************************************************
- 105:.\main.c      **** void Beep(int x) 
- 106:.\main.c      **** {
- 107:.\main.c      ****     BiDirPortOutPut();
- 108:.\main.c      ****     for(;x>0;x--)
- 109:.\main.c      ****     {
- 110:.\main.c      ****         Data_Out_Write(0x03);      //Turn beeper on
- 111:.\main.c      ****         CS_Write(0x02);  
- 112:.\main.c      ****         CS_Write(0x08);
- 113:.\main.c      ****         CyDelay(100);
- 114:.\main.c      ****     }
- 115:.\main.c      ****      Data_Out_Write(0x01);      //Turn beeper off
- 116:.\main.c      ****      CS_Write(0x02);  
- 117:.\main.c      ****      CS_Write(0x08);   
- 118:.\main.c      **** }
- 119:.\main.c      **** //************************************************
- 120:.\main.c      **** //
- 121:.\main.c      **** // Do a few things to wake up robot
- 122:.\main.c      **** //
- 123:.\main.c      **** //*************************************************
- 124:.\main.c      **** void InitialisationSequnce()
- 125:.\main.c      **** {
- 126:.\main.c      ****     Beep(2);                         //Beep 4 times
- 127:.\main.c      ****     CyDelay(400);
- 128:.\main.c      ****     Beep(2);
- 129:.\main.c      ****     CyDelay(400);
- 130:.\main.c      ****     Beep(2);
- 131:.\main.c      ****     CyDelay(400);
- 132:.\main.c      ****     Beep(7);
- 133:.\main.c      ****     for(a=0;a<3;a++)                //Flash LED 5 times
- 134:.\main.c      ****     {
- 135:.\main.c      ****         LEDFlash();
- 136:.\main.c      ****     }
- 137:.\main.c      ****     for(a=0;a<3;a++)                //Flash headlights 3 times
- 138:.\main.c      ****     {
- 139:.\main.c      ****         BiDirPortOutPut();
- 140:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
- 141:.\main.c      ****         CS_Write(0x02);  
- 142:.\main.c      ****         CS_Write(0x08);
- 143:.\main.c      ****         CyDelay(100);
- 144:.\main.c      ****         Data_Out_Write(0x01);      //Headlights off
- 145:.\main.c      ****         CS_Write(0x02);  
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 4
+  89:.\main.c      ****         PWMOperate();
+  90:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
+  91:.\main.c      ****         CS_Write(0x02);  
+  92:.\main.c      ****         CS_Write(0x08);
+  93:.\main.c      ****         CyDelay(300);
+  94:.\main.c      ****     }
+  95:.\main.c      **** }
+  96:.\main.c      **** //*************************************************
+  97:.\main.c      **** //
+  98:.\main.c      **** //Put 8 bit port in output mode
+  99:.\main.c      **** //
+ 100:.\main.c      **** //*************************************************
+ 101:.\main.c      **** void BiDirPortOutPut()
+ 102:.\main.c      **** {
+ 103:.\main.c      ****     OE_Control=3;                           //enable output driver and switch to user output
+ 104:.\main.c      **** }
+ 105:.\main.c      **** //************************************************
+ 106:.\main.c      **** //
+ 107:.\main.c      **** //Put 8 bit port in input mode
+ 108:.\main.c      **** //
+ 109:.\main.c      **** //*************************************************
+ 110:.\main.c      **** void BiDirPortInPut()
+ 111:.\main.c      **** {
+ 112:.\main.c      ****    OE_Control=0;                            //disable output driver                    
+ 113:.\main.c      **** }
+ 114:.\main.c      **** //*************************************************
+ 115:.\main.c      **** //
+ 116:.\main.c      **** // Beep for 100mS minimum
+ 117:.\main.c      **** // On entry X contains quantity of 100mS beeps
+ 118:.\main.c      **** //
+ 119:.\main.c      **** //*************************************************
+ 120:.\main.c      **** void Beep(int x) 
+ 121:.\main.c      **** {
+ 122:.\main.c      ****     BiDirPortOutPut();
+ 123:.\main.c      ****     for(;x>0;x--)
+ 124:.\main.c      ****     {
+ 125:.\main.c      ****         Data_Out_Write(0x03);      //Turn beeper on
+ 126:.\main.c      ****         CS_Write(0x02);  
+ 127:.\main.c      ****         CS_Write(0x08);
+ 128:.\main.c      ****         CyDelay(100);
+ 129:.\main.c      ****     }
+ 130:.\main.c      ****      Data_Out_Write(0x01);      //Turn beeper off
+ 131:.\main.c      ****      CS_Write(0x02);  
+ 132:.\main.c      ****      CS_Write(0x08);   
+ 133:.\main.c      **** }
+ 134:.\main.c      **** //************************************************
+ 135:.\main.c      **** //
+ 136:.\main.c      **** // Do a few things to wake up robot
+ 137:.\main.c      **** //
+ 138:.\main.c      **** //*************************************************
+ 139:.\main.c      **** void InitialisationSequnce()
+ 140:.\main.c      **** {
+ 141:.\main.c      ****     Beep(2);                         //Beep 4 times
+ 142:.\main.c      ****     CyDelay(400);
+ 143:.\main.c      ****     Beep(2);
+ 144:.\main.c      ****     CyDelay(400);
+ 145:.\main.c      ****     Beep(2);
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 4
 
 
- 146:.\main.c      ****         CS_Write(0x08);
- 147:.\main.c      ****         CyDelay(100);
- 148:.\main.c      ****     }
- 149:.\main.c      **** }
- 150:.\main.c      **** //************************************************************
- 151:.\main.c      **** //
- 152:.\main.c      **** // Turn LED on for 100mS 
- 153:.\main.c      **** // 
- 154:.\main.c      **** //************************************************************
- 155:.\main.c      **** void LEDFlash() 
- 156:.\main.c      **** {
- 157:.\main.c      **** 	BiDirPortOutPut();
- 158:.\main.c      ****     Data_Out_Write(0x09);      //Set bit 2 high
- 159:.\main.c      ****     CS_Write(0x02);  
- 160:.\main.c      ****     CS_Write(0x08);
- 161:.\main.c      ****     CyDelay(100);
- 162:.\main.c      ****     Data_Out_Write(0x01);      //Set bit 2 low
- 163:.\main.c      ****     CS_Write(0x02);  
- 164:.\main.c      ****     CS_Write(0x08); 
- 165:.\main.c      **** }
- 166:.\main.c      **** //************************************************
- 167:.\main.c      **** //
- 168:.\main.c      **** //Set up PSOC in the correct state
- 169:.\main.c      **** //
- 170:.\main.c      **** //*************************************************
- 171:.\main.c      **** void PSOCReset()
- 172:.\main.c      **** {
- 173:.\main.c      ****     CS_Write(0x08); 
- 174:.\main.c      ****     RST_Write(0);
- 175:.\main.c      ****     CyDelay(700);
- 176:.\main.c      ****     RST_Write(1);
- 177:.\main.c      ****     CyDelay(700);
- 178:.\main.c      ****     RST_Write(0);
- 179:.\main.c      ****     CyDelay(700);
- 180:.\main.c      ****     RST_Write(1);
- 181:.\main.c      **** } 
- 182:.\main.c      **** //*************************************************
- 183:.\main.c      **** //
- 184:.\main.c      **** // ISR Set Up all interupts as required
- 185:.\main.c      **** //
- 186:.\main.c      **** //*************************************************
- 187:.\main.c      **** void ISRSetUp()  
- 188:.\main.c      **** {
- 189:.\main.c      ****     isr_1_ClearPending();                          
- 190:.\main.c      ****     isr_1_StartEx(ISR1Handler);                     //for switch 2
- 191:.\main.c      **** } 
- 192:.\main.c      **** //*************************************************
- 193:.\main.c      **** //
- 194:.\main.c      **** //ISR1 Handler for switch. Interupt comes here when switch is pushed
- 195:.\main.c      **** //
- 196:.\main.c      **** //*************************************************
- 197:.\main.c      **** void ISR1Handler()  
- 198:.\main.c      **** {
-  27              		.loc 1 198 0
+ 146:.\main.c      ****     CyDelay(400);
+ 147:.\main.c      ****     Beep(7);
+ 148:.\main.c      ****     for(a=0;a<3;a++)                //Flash LED 5 times
+ 149:.\main.c      ****     {
+ 150:.\main.c      ****         LEDFlash();
+ 151:.\main.c      ****     }
+ 152:.\main.c      ****     for(a=0;a<3;a++)                //Flash headlights 3 times
+ 153:.\main.c      ****     {
+ 154:.\main.c      ****         BiDirPortOutPut();
+ 155:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
+ 156:.\main.c      ****         CS_Write(0x02);  
+ 157:.\main.c      ****         CS_Write(0x08);
+ 158:.\main.c      ****         CyDelay(100);
+ 159:.\main.c      ****         Data_Out_Write(0x01);      //Headlights off
+ 160:.\main.c      ****         CS_Write(0x02);  
+ 161:.\main.c      ****         CS_Write(0x08);
+ 162:.\main.c      ****         CyDelay(100);
+ 163:.\main.c      ****     }
+ 164:.\main.c      **** }
+ 165:.\main.c      **** //************************************************************
+ 166:.\main.c      **** //
+ 167:.\main.c      **** // Turn LED on for 100mS 
+ 168:.\main.c      **** // 
+ 169:.\main.c      **** //************************************************************
+ 170:.\main.c      **** void LEDFlash() 
+ 171:.\main.c      **** {
+ 172:.\main.c      **** 	BiDirPortOutPut();
+ 173:.\main.c      ****     Data_Out_Write(0x09);      //Set bit 2 high
+ 174:.\main.c      ****     CS_Write(0x02);  
+ 175:.\main.c      ****     CS_Write(0x08);
+ 176:.\main.c      ****     CyDelay(100);
+ 177:.\main.c      ****     Data_Out_Write(0x01);      //Set bit 2 low
+ 178:.\main.c      ****     CS_Write(0x02);  
+ 179:.\main.c      ****     CS_Write(0x08); 
+ 180:.\main.c      **** }
+ 181:.\main.c      **** //************************************************
+ 182:.\main.c      **** //
+ 183:.\main.c      **** //Set up PSOC in the correct state
+ 184:.\main.c      **** //
+ 185:.\main.c      **** //*************************************************
+ 186:.\main.c      **** void PSOCReset()
+ 187:.\main.c      **** {
+ 188:.\main.c      ****     CS_Write(0x08); 
+ 189:.\main.c      ****     RST_Write(0);
+ 190:.\main.c      ****     CyDelay(700);
+ 191:.\main.c      ****     RST_Write(1);
+ 192:.\main.c      ****     CyDelay(700);
+ 193:.\main.c      ****     RST_Write(0);
+ 194:.\main.c      ****     CyDelay(700);
+ 195:.\main.c      ****     RST_Write(1);
+ 196:.\main.c      **** } 
+ 197:.\main.c      **** //*************************************************
+ 198:.\main.c      **** //
+ 199:.\main.c      **** // ISR Set Up all interupts as required
+ 200:.\main.c      **** //
+ 201:.\main.c      **** //*************************************************
+ 202:.\main.c      **** void ISRSetUp()  
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 5
+
+
+ 203:.\main.c      **** {
+ 204:.\main.c      ****     isr_1_ClearPending();                          
+ 205:.\main.c      ****     isr_1_StartEx(ISR1Handler);                     //for switch 2
+ 206:.\main.c      **** } 
+ 207:.\main.c      **** //*************************************************
+ 208:.\main.c      **** //
+ 209:.\main.c      **** //ISR1 Handler for switch. Interupt comes here when switch is pushed
+ 210:.\main.c      **** //
+ 211:.\main.c      **** //*************************************************
+ 212:.\main.c      **** void ISR1Handler()  
+ 213:.\main.c      **** {
+  27              		.loc 1 213 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 5
-
-
   31              		@ link register save eliminated.
- 199:.\main.c      ****     if(OnOff==0)
-  32              		.loc 1 199 0
+ 214:.\main.c      ****     if(OnOff==0)
+  32              		.loc 1 214 0
   33 0000 054B     		ldr	r3, .L4
   34 0002 1B68     		ldr	r3, [r3]
   35 0004 1BB9     		cbnz	r3, .L2
- 200:.\main.c      ****     {
- 201:.\main.c      ****         OnOff=1;
-  36              		.loc 1 201 0
+ 215:.\main.c      ****     {
+ 216:.\main.c      ****         OnOff=1;
+  36              		.loc 1 216 0
   37 0006 0122     		movs	r2, #1
   38 0008 034B     		ldr	r3, .L4
   39 000a 1A60     		str	r2, [r3]
   40 000c 7047     		bx	lr
   41              	.L2:
- 202:.\main.c      ****     }
- 203:.\main.c      ****     else
- 204:.\main.c      ****     {
- 205:.\main.c      ****         OnOff=0;
-  42              		.loc 1 205 0
+ 217:.\main.c      ****     }
+ 218:.\main.c      ****     else
+ 219:.\main.c      ****     {
+ 220:.\main.c      ****         OnOff=0;
+  42              		.loc 1 220 0
   43 000e 0022     		movs	r2, #0
   44 0010 014B     		ldr	r3, .L4
   45 0012 1A60     		str	r2, [r3]
@@ -279,14 +294,17 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
   59              		.type	BiDirPortOutPut, %function
   60              	BiDirPortOutPut:
   61              	.LFB64:
-  87:.\main.c      ****     OE_Control=3;                           //enable output driver and switch to user output
-  62              		.loc 1 87 0
+ 102:.\main.c      ****     OE_Control=3;                           //enable output driver and switch to user output
+  62              		.loc 1 102 0
   63              		.cfi_startproc
   64              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 6
+
+
   65              		@ frame_needed = 0, uses_anonymous_args = 0
   66              		@ link register save eliminated.
-  88:.\main.c      **** }
-  67              		.loc 1 88 0
+ 103:.\main.c      **** }
+  67              		.loc 1 103 0
   68 0000 0322     		movs	r2, #3
   69 0002 014B     		ldr	r3, .L7
   70 0004 1A70     		strb	r2, [r3]
@@ -298,9 +316,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
   76              		.cfi_endproc
   77              	.LFE64:
   78              		.size	BiDirPortOutPut, .-BiDirPortOutPut
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 6
-
-
   79              		.section	.text.BiDirPortInPut,"ax",%progbits
   80              		.align	2
   81              		.global	BiDirPortInPut
@@ -309,14 +324,14 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
   84              		.type	BiDirPortInPut, %function
   85              	BiDirPortInPut:
   86              	.LFB65:
-  96:.\main.c      ****    OE_Control=0;                            //disable output driver                    
-  87              		.loc 1 96 0
+ 111:.\main.c      ****    OE_Control=0;                            //disable output driver                    
+  87              		.loc 1 111 0
   88              		.cfi_startproc
   89              		@ args = 0, pretend = 0, frame = 0
   90              		@ frame_needed = 0, uses_anonymous_args = 0
   91              		@ link register save eliminated.
-  97:.\main.c      **** }
-  92              		.loc 1 97 0
+ 112:.\main.c      **** }
+  92              		.loc 1 112 0
   93 0000 0022     		movs	r2, #0
   94 0002 014B     		ldr	r3, .L10
   95 0004 1A70     		strb	r2, [r3]
@@ -336,73 +351,76 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  109              		.type	Beep, %function
  110              	Beep:
  111              	.LFB66:
- 106:.\main.c      ****     BiDirPortOutPut();
- 112              		.loc 1 106 0
+ 121:.\main.c      ****     BiDirPortOutPut();
+ 112              		.loc 1 121 0
  113              		.cfi_startproc
  114              		@ args = 0, pretend = 0, frame = 0
  115              		@ frame_needed = 0, uses_anonymous_args = 0
  116              	.LVL0:
  117 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 7
+
+
  118              		.cfi_def_cfa_offset 8
  119              		.cfi_offset 4, -8
  120              		.cfi_offset 14, -4
  121 0002 0446     		mov	r4, r0
- 107:.\main.c      ****     for(;x>0;x--)
- 122              		.loc 1 107 0
+ 122:.\main.c      ****     for(;x>0;x--)
+ 122              		.loc 1 122 0
  123 0004 FFF7FEFF 		bl	BiDirPortOutPut
  124              	.LVL1:
- 108:.\main.c      ****     {
- 125              		.loc 1 108 0
+ 123:.\main.c      ****     {
+ 125              		.loc 1 123 0
  126 0008 0CE0     		b	.L13
  127              	.L14:
- 110:.\main.c      ****         CS_Write(0x02);  
- 128              		.loc 1 110 0 discriminator 2
+ 125:.\main.c      ****         CS_Write(0x02);  
+ 128              		.loc 1 125 0 discriminator 2
  129 000a 0320     		movs	r0, #3
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 7
-
-
  130 000c FFF7FEFF 		bl	Data_Out_Write
  131              	.LVL2:
- 111:.\main.c      ****         CS_Write(0x08);
- 132              		.loc 1 111 0 discriminator 2
+ 126:.\main.c      ****         CS_Write(0x08);
+ 132              		.loc 1 126 0 discriminator 2
  133 0010 0220     		movs	r0, #2
  134 0012 FFF7FEFF 		bl	CS_Write
  135              	.LVL3:
- 112:.\main.c      ****         CyDelay(100);
- 136              		.loc 1 112 0 discriminator 2
+ 127:.\main.c      ****         CyDelay(100);
+ 136              		.loc 1 127 0 discriminator 2
  137 0016 0820     		movs	r0, #8
  138 0018 FFF7FEFF 		bl	CS_Write
  139              	.LVL4:
- 113:.\main.c      ****     }
- 140              		.loc 1 113 0 discriminator 2
+ 128:.\main.c      ****     }
+ 140              		.loc 1 128 0 discriminator 2
  141 001c 6420     		movs	r0, #100
  142 001e FFF7FEFF 		bl	CyDelay
  143              	.LVL5:
- 108:.\main.c      ****     {
- 144              		.loc 1 108 0 discriminator 2
+ 123:.\main.c      ****     {
+ 144              		.loc 1 123 0 discriminator 2
  145 0022 013C     		subs	r4, r4, #1
  146              	.LVL6:
  147              	.L13:
- 108:.\main.c      ****     {
- 148              		.loc 1 108 0 is_stmt 0 discriminator 1
+ 123:.\main.c      ****     {
+ 148              		.loc 1 123 0 is_stmt 0 discriminator 1
  149 0024 002C     		cmp	r4, #0
  150 0026 F0DC     		bgt	.L14
- 115:.\main.c      ****      CS_Write(0x02);  
- 151              		.loc 1 115 0 is_stmt 1
+ 130:.\main.c      ****      CS_Write(0x02);  
+ 151              		.loc 1 130 0 is_stmt 1
  152 0028 0120     		movs	r0, #1
  153 002a FFF7FEFF 		bl	Data_Out_Write
  154              	.LVL7:
- 116:.\main.c      ****      CS_Write(0x08);   
- 155              		.loc 1 116 0
+ 131:.\main.c      ****      CS_Write(0x08);   
+ 155              		.loc 1 131 0
  156 002e 0220     		movs	r0, #2
  157 0030 FFF7FEFF 		bl	CS_Write
  158              	.LVL8:
- 117:.\main.c      **** }
- 159              		.loc 1 117 0
+ 132:.\main.c      **** }
+ 159              		.loc 1 132 0
  160 0034 0820     		movs	r0, #8
  161 0036 FFF7FEFF 		bl	CS_Write
  162              	.LVL9:
  163 003a 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 8
+
+
  164              		.cfi_endproc
  165              	.LFE66:
  166              		.size	Beep, .-Beep
@@ -414,55 +432,55 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  172              		.type	LEDFlash, %function
  173              	LEDFlash:
  174              	.LFB68:
- 156:.\main.c      **** 	BiDirPortOutPut();
- 175              		.loc 1 156 0
+ 171:.\main.c      **** 	BiDirPortOutPut();
+ 175              		.loc 1 171 0
  176              		.cfi_startproc
  177              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 8
-
-
  178              		@ frame_needed = 0, uses_anonymous_args = 0
  179 0000 08B5     		push	{r3, lr}
  180              		.cfi_def_cfa_offset 8
  181              		.cfi_offset 3, -8
  182              		.cfi_offset 14, -4
- 157:.\main.c      ****     Data_Out_Write(0x09);      //Set bit 2 high
- 183              		.loc 1 157 0
+ 172:.\main.c      ****     Data_Out_Write(0x09);      //Set bit 2 high
+ 183              		.loc 1 172 0
  184 0002 FFF7FEFF 		bl	BiDirPortOutPut
  185              	.LVL10:
- 158:.\main.c      ****     CS_Write(0x02);  
- 186              		.loc 1 158 0
+ 173:.\main.c      ****     CS_Write(0x02);  
+ 186              		.loc 1 173 0
  187 0006 0920     		movs	r0, #9
  188 0008 FFF7FEFF 		bl	Data_Out_Write
  189              	.LVL11:
- 159:.\main.c      ****     CS_Write(0x08);
- 190              		.loc 1 159 0
+ 174:.\main.c      ****     CS_Write(0x08);
+ 190              		.loc 1 174 0
  191 000c 0220     		movs	r0, #2
  192 000e FFF7FEFF 		bl	CS_Write
  193              	.LVL12:
- 160:.\main.c      ****     CyDelay(100);
- 194              		.loc 1 160 0
+ 175:.\main.c      ****     CyDelay(100);
+ 194              		.loc 1 175 0
  195 0012 0820     		movs	r0, #8
  196 0014 FFF7FEFF 		bl	CS_Write
  197              	.LVL13:
- 161:.\main.c      ****     Data_Out_Write(0x01);      //Set bit 2 low
- 198              		.loc 1 161 0
+ 176:.\main.c      ****     Data_Out_Write(0x01);      //Set bit 2 low
+ 198              		.loc 1 176 0
  199 0018 6420     		movs	r0, #100
  200 001a FFF7FEFF 		bl	CyDelay
  201              	.LVL14:
- 162:.\main.c      ****     CS_Write(0x02);  
- 202              		.loc 1 162 0
+ 177:.\main.c      ****     CS_Write(0x02);  
+ 202              		.loc 1 177 0
  203 001e 0120     		movs	r0, #1
  204 0020 FFF7FEFF 		bl	Data_Out_Write
  205              	.LVL15:
- 163:.\main.c      ****     CS_Write(0x08); 
- 206              		.loc 1 163 0
+ 178:.\main.c      ****     CS_Write(0x08); 
+ 206              		.loc 1 178 0
  207 0024 0220     		movs	r0, #2
  208 0026 FFF7FEFF 		bl	CS_Write
  209              	.LVL16:
- 164:.\main.c      **** }
- 210              		.loc 1 164 0
+ 179:.\main.c      **** }
+ 210              		.loc 1 179 0
  211 002a 0820     		movs	r0, #8
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 9
+
+
  212 002c FFF7FEFF 		bl	CS_Write
  213              	.LVL17:
  214 0030 08BD     		pop	{r3, pc}
@@ -477,11 +495,8 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  223              		.type	InitialisationSequnce, %function
  224              	InitialisationSequnce:
  225              	.LFB67:
- 125:.\main.c      ****     Beep(2);                         //Beep 4 times
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 9
-
-
- 226              		.loc 1 125 0
+ 140:.\main.c      ****     Beep(2);                         //Beep 4 times
+ 226              		.loc 1 140 0
  227              		.cfi_startproc
  228              		@ args = 0, pretend = 0, frame = 0
  229              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -489,137 +504,137 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  231              		.cfi_def_cfa_offset 8
  232              		.cfi_offset 3, -8
  233              		.cfi_offset 14, -4
- 126:.\main.c      ****     CyDelay(400);
- 234              		.loc 1 126 0
+ 141:.\main.c      ****     CyDelay(400);
+ 234              		.loc 1 141 0
  235 0002 0220     		movs	r0, #2
  236 0004 FFF7FEFF 		bl	Beep
  237              	.LVL18:
- 127:.\main.c      ****     Beep(2);
- 238              		.loc 1 127 0
+ 142:.\main.c      ****     Beep(2);
+ 238              		.loc 1 142 0
  239 0008 4FF4C870 		mov	r0, #400
  240 000c FFF7FEFF 		bl	CyDelay
  241              	.LVL19:
- 128:.\main.c      ****     CyDelay(400);
- 242              		.loc 1 128 0
+ 143:.\main.c      ****     CyDelay(400);
+ 242              		.loc 1 143 0
  243 0010 0220     		movs	r0, #2
  244 0012 FFF7FEFF 		bl	Beep
  245              	.LVL20:
- 129:.\main.c      ****     Beep(2);
- 246              		.loc 1 129 0
+ 144:.\main.c      ****     Beep(2);
+ 246              		.loc 1 144 0
  247 0016 4FF4C870 		mov	r0, #400
  248 001a FFF7FEFF 		bl	CyDelay
  249              	.LVL21:
- 130:.\main.c      ****     CyDelay(400);
- 250              		.loc 1 130 0
+ 145:.\main.c      ****     CyDelay(400);
+ 250              		.loc 1 145 0
  251 001e 0220     		movs	r0, #2
  252 0020 FFF7FEFF 		bl	Beep
  253              	.LVL22:
- 131:.\main.c      ****     Beep(7);
- 254              		.loc 1 131 0
+ 146:.\main.c      ****     Beep(7);
+ 254              		.loc 1 146 0
  255 0024 4FF4C870 		mov	r0, #400
  256 0028 FFF7FEFF 		bl	CyDelay
  257              	.LVL23:
- 132:.\main.c      ****     for(a=0;a<3;a++)                //Flash LED 5 times
- 258              		.loc 1 132 0
+ 147:.\main.c      ****     for(a=0;a<3;a++)                //Flash LED 5 times
+ 258              		.loc 1 147 0
  259 002c 0720     		movs	r0, #7
  260 002e FFF7FEFF 		bl	Beep
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 10
+
+
  261              	.LVL24:
- 133:.\main.c      ****     {
- 262              		.loc 1 133 0
+ 148:.\main.c      ****     {
+ 262              		.loc 1 148 0
  263 0032 0022     		movs	r2, #0
  264 0034 194B     		ldr	r3, .L24
  265 0036 1A60     		str	r2, [r3]
  266 0038 05E0     		b	.L19
  267              	.L20:
- 135:.\main.c      ****     }
- 268              		.loc 1 135 0 discriminator 3
+ 150:.\main.c      ****     }
+ 268              		.loc 1 150 0 discriminator 3
  269 003a FFF7FEFF 		bl	LEDFlash
  270              	.LVL25:
- 133:.\main.c      ****     {
- 271              		.loc 1 133 0 discriminator 3
+ 148:.\main.c      ****     {
+ 271              		.loc 1 148 0 discriminator 3
  272 003e 174A     		ldr	r2, .L24
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 10
-
-
  273 0040 1368     		ldr	r3, [r2]
  274 0042 0133     		adds	r3, r3, #1
  275 0044 1360     		str	r3, [r2]
  276              	.L19:
- 133:.\main.c      ****     {
- 277              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 148:.\main.c      ****     {
+ 277              		.loc 1 148 0 is_stmt 0 discriminator 1
  278 0046 154B     		ldr	r3, .L24
  279 0048 1B68     		ldr	r3, [r3]
  280 004a 022B     		cmp	r3, #2
  281 004c F5DD     		ble	.L20
- 137:.\main.c      ****     {
- 282              		.loc 1 137 0 is_stmt 1
+ 152:.\main.c      ****     {
+ 282              		.loc 1 152 0 is_stmt 1
  283 004e 0022     		movs	r2, #0
  284 0050 124B     		ldr	r3, .L24
  285 0052 1A60     		str	r2, [r3]
  286 0054 1DE0     		b	.L21
  287              	.L22:
- 139:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
- 288              		.loc 1 139 0 discriminator 3
+ 154:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
+ 288              		.loc 1 154 0 discriminator 3
  289 0056 FFF7FEFF 		bl	BiDirPortOutPut
  290              	.LVL26:
- 140:.\main.c      ****         CS_Write(0x02);  
- 291              		.loc 1 140 0 discriminator 3
+ 155:.\main.c      ****         CS_Write(0x02);  
+ 291              		.loc 1 155 0 discriminator 3
  292 005a 0920     		movs	r0, #9
  293 005c FFF7FEFF 		bl	Data_Out_Write
  294              	.LVL27:
- 141:.\main.c      ****         CS_Write(0x08);
- 295              		.loc 1 141 0 discriminator 3
+ 156:.\main.c      ****         CS_Write(0x08);
+ 295              		.loc 1 156 0 discriminator 3
  296 0060 0220     		movs	r0, #2
  297 0062 FFF7FEFF 		bl	CS_Write
  298              	.LVL28:
- 142:.\main.c      ****         CyDelay(100);
- 299              		.loc 1 142 0 discriminator 3
+ 157:.\main.c      ****         CyDelay(100);
+ 299              		.loc 1 157 0 discriminator 3
  300 0066 0820     		movs	r0, #8
  301 0068 FFF7FEFF 		bl	CS_Write
  302              	.LVL29:
- 143:.\main.c      ****         Data_Out_Write(0x01);      //Headlights off
- 303              		.loc 1 143 0 discriminator 3
+ 158:.\main.c      ****         Data_Out_Write(0x01);      //Headlights off
+ 303              		.loc 1 158 0 discriminator 3
  304 006c 6420     		movs	r0, #100
  305 006e FFF7FEFF 		bl	CyDelay
  306              	.LVL30:
- 144:.\main.c      ****         CS_Write(0x02);  
- 307              		.loc 1 144 0 discriminator 3
+ 159:.\main.c      ****         CS_Write(0x02);  
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 11
+
+
+ 307              		.loc 1 159 0 discriminator 3
  308 0072 0120     		movs	r0, #1
  309 0074 FFF7FEFF 		bl	Data_Out_Write
  310              	.LVL31:
- 145:.\main.c      ****         CS_Write(0x08);
- 311              		.loc 1 145 0 discriminator 3
+ 160:.\main.c      ****         CS_Write(0x08);
+ 311              		.loc 1 160 0 discriminator 3
  312 0078 0220     		movs	r0, #2
  313 007a FFF7FEFF 		bl	CS_Write
  314              	.LVL32:
- 146:.\main.c      ****         CyDelay(100);
- 315              		.loc 1 146 0 discriminator 3
+ 161:.\main.c      ****         CyDelay(100);
+ 315              		.loc 1 161 0 discriminator 3
  316 007e 0820     		movs	r0, #8
  317 0080 FFF7FEFF 		bl	CS_Write
  318              	.LVL33:
- 147:.\main.c      ****     }
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 11
-
-
- 319              		.loc 1 147 0 discriminator 3
+ 162:.\main.c      ****     }
+ 319              		.loc 1 162 0 discriminator 3
  320 0084 6420     		movs	r0, #100
  321 0086 FFF7FEFF 		bl	CyDelay
  322              	.LVL34:
- 137:.\main.c      ****     {
- 323              		.loc 1 137 0 discriminator 3
+ 152:.\main.c      ****     {
+ 323              		.loc 1 152 0 discriminator 3
  324 008a 044A     		ldr	r2, .L24
  325 008c 1368     		ldr	r3, [r2]
  326 008e 0133     		adds	r3, r3, #1
  327 0090 1360     		str	r3, [r2]
  328              	.L21:
- 137:.\main.c      ****     {
- 329              		.loc 1 137 0 is_stmt 0 discriminator 1
+ 152:.\main.c      ****     {
+ 329              		.loc 1 152 0 is_stmt 0 discriminator 1
  330 0092 024B     		ldr	r3, .L24
  331 0094 1B68     		ldr	r3, [r3]
  332 0096 022B     		cmp	r3, #2
  333 0098 DDDD     		ble	.L22
- 149:.\main.c      **** //************************************************************
- 334              		.loc 1 149 0 is_stmt 1
+ 164:.\main.c      **** //************************************************************
+ 334              		.loc 1 164 0 is_stmt 1
  335 009a 08BD     		pop	{r3, pc}
  336              	.L25:
  337              		.align	2
@@ -636,55 +651,55 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  348              		.type	PSOCReset, %function
  349              	PSOCReset:
  350              	.LFB69:
- 172:.\main.c      ****     CS_Write(0x08); 
- 351              		.loc 1 172 0
+ 187:.\main.c      ****     CS_Write(0x08); 
+ 351              		.loc 1 187 0
  352              		.cfi_startproc
  353              		@ args = 0, pretend = 0, frame = 0
  354              		@ frame_needed = 0, uses_anonymous_args = 0
  355 0000 08B5     		push	{r3, lr}
  356              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 12
+
+
  357              		.cfi_offset 3, -8
  358              		.cfi_offset 14, -4
- 173:.\main.c      ****     RST_Write(0);
- 359              		.loc 1 173 0
+ 188:.\main.c      ****     RST_Write(0);
+ 359              		.loc 1 188 0
  360 0002 0820     		movs	r0, #8
  361 0004 FFF7FEFF 		bl	CS_Write
  362              	.LVL35:
- 174:.\main.c      ****     CyDelay(700);
- 363              		.loc 1 174 0
+ 189:.\main.c      ****     CyDelay(700);
+ 363              		.loc 1 189 0
  364 0008 0020     		movs	r0, #0
  365 000a FFF7FEFF 		bl	RST_Write
  366              	.LVL36:
- 175:.\main.c      ****     RST_Write(1);
- 367              		.loc 1 175 0
+ 190:.\main.c      ****     RST_Write(1);
+ 367              		.loc 1 190 0
  368 000e 4FF42F70 		mov	r0, #700
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 12
-
-
  369 0012 FFF7FEFF 		bl	CyDelay
  370              	.LVL37:
- 176:.\main.c      ****     CyDelay(700);
- 371              		.loc 1 176 0
+ 191:.\main.c      ****     CyDelay(700);
+ 371              		.loc 1 191 0
  372 0016 0120     		movs	r0, #1
  373 0018 FFF7FEFF 		bl	RST_Write
  374              	.LVL38:
- 177:.\main.c      ****     RST_Write(0);
- 375              		.loc 1 177 0
+ 192:.\main.c      ****     RST_Write(0);
+ 375              		.loc 1 192 0
  376 001c 4FF42F70 		mov	r0, #700
  377 0020 FFF7FEFF 		bl	CyDelay
  378              	.LVL39:
- 178:.\main.c      ****     CyDelay(700);
- 379              		.loc 1 178 0
+ 193:.\main.c      ****     CyDelay(700);
+ 379              		.loc 1 193 0
  380 0024 0020     		movs	r0, #0
  381 0026 FFF7FEFF 		bl	RST_Write
  382              	.LVL40:
- 179:.\main.c      ****     RST_Write(1);
- 383              		.loc 1 179 0
+ 194:.\main.c      ****     RST_Write(1);
+ 383              		.loc 1 194 0
  384 002a 4FF42F70 		mov	r0, #700
  385 002e FFF7FEFF 		bl	CyDelay
  386              	.LVL41:
- 180:.\main.c      **** } 
- 387              		.loc 1 180 0
+ 195:.\main.c      **** } 
+ 387              		.loc 1 195 0
  388 0032 0120     		movs	r0, #1
  389 0034 FFF7FEFF 		bl	RST_Write
  390              	.LVL42:
@@ -700,27 +715,27 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  400              		.type	ISRSetUp, %function
  401              	ISRSetUp:
  402              	.LFB70:
- 188:.\main.c      ****     isr_1_ClearPending();                          
- 403              		.loc 1 188 0
+ 203:.\main.c      ****     isr_1_ClearPending();                          
+ 403              		.loc 1 203 0
  404              		.cfi_startproc
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 13
+
+
  405              		@ args = 0, pretend = 0, frame = 0
  406              		@ frame_needed = 0, uses_anonymous_args = 0
  407 0000 08B5     		push	{r3, lr}
  408              		.cfi_def_cfa_offset 8
  409              		.cfi_offset 3, -8
  410              		.cfi_offset 14, -4
- 189:.\main.c      ****     isr_1_StartEx(ISR1Handler);                     //for switch 2
- 411              		.loc 1 189 0
+ 204:.\main.c      ****     isr_1_StartEx(ISR1Handler);                     //for switch 2
+ 411              		.loc 1 204 0
  412 0002 FFF7FEFF 		bl	isr_1_ClearPending
  413              	.LVL43:
- 190:.\main.c      **** } 
- 414              		.loc 1 190 0
+ 205:.\main.c      **** } 
+ 414              		.loc 1 205 0
  415 0006 0248     		ldr	r0, .L30
  416 0008 FFF7FEFF 		bl	isr_1_StartEx
  417              	.LVL44:
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 13
-
-
  418 000c 08BD     		pop	{r3, pc}
  419              	.L31:
  420 000e 00BF     		.align	2
@@ -737,17 +752,17 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  431              		.type	PWMOperate, %function
  432              	PWMOperate:
  433              	.LFB72:
- 206:.\main.c      ****     }
- 207:.\main.c      **** }
- 208:.\main.c      **** //*************************************************
- 209:.\main.c      **** //
- 210:.\main.c      **** // Change PWM pulse
- 211:.\main.c      **** // If middle switch is held down, pulse is extended
- 212:.\main.c      **** //
- 213:.\main.c      **** //*************************************************
- 214:.\main.c      **** void PWMOperate()
- 215:.\main.c      **** {
- 434              		.loc 1 215 0
+ 221:.\main.c      ****     }
+ 222:.\main.c      **** }
+ 223:.\main.c      **** //*************************************************
+ 224:.\main.c      **** //
+ 225:.\main.c      **** // Change PWM pulse
+ 226:.\main.c      **** // If middle switch is held down, pulse is extended
+ 227:.\main.c      **** //
+ 228:.\main.c      **** //*************************************************
+ 229:.\main.c      **** void PWMOperate()
+ 230:.\main.c      **** {
+ 434              		.loc 1 230 0
  435              		.cfi_startproc
  436              		@ args = 0, pretend = 0, frame = 0
  437              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -755,37 +770,37 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  439              		.cfi_def_cfa_offset 8
  440              		.cfi_offset 3, -8
  441              		.cfi_offset 14, -4
- 216:.\main.c      ****     if(SW1_Read())
- 442              		.loc 1 216 0
+ 231:.\main.c      ****     if(SW1_Read())
+ 442              		.loc 1 231 0
  443 0002 FFF7FEFF 		bl	SW1_Read
  444              	.LVL45:
  445 0006 30B1     		cbz	r0, .L33
- 217:.\main.c      ****     {
- 218:.\main.c      ****         PWM_1_WriteCompare1(15); 
- 446              		.loc 1 218 0
+ 232:.\main.c      ****     {
+ 233:.\main.c      ****         PWM_1_WriteCompare1(15); 
+ 446              		.loc 1 233 0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 14
+
+
  447 0008 0F20     		movs	r0, #15
  448 000a FFF7FEFF 		bl	PWM_1_WriteCompare1
  449              	.LVL46:
- 219:.\main.c      ****         PWM_1_WriteCompare2(15);
- 450              		.loc 1 219 0
+ 234:.\main.c      ****         PWM_1_WriteCompare2(15);
+ 450              		.loc 1 234 0
  451 000e 0F20     		movs	r0, #15
  452 0010 FFF7FEFF 		bl	PWM_1_WriteCompare2
  453              	.LVL47:
  454 0014 08BD     		pop	{r3, pc}
  455              	.L33:
- 220:.\main.c      ****     }
- 221:.\main.c      ****     else
- 222:.\main.c      ****     {
- 223:.\main.c      ****         PWM_1_WriteCompare1(35); 
- 456              		.loc 1 223 0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 14
-
-
+ 235:.\main.c      ****     }
+ 236:.\main.c      ****     else
+ 237:.\main.c      ****     {
+ 238:.\main.c      ****         PWM_1_WriteCompare1(35); 
+ 456              		.loc 1 238 0
  457 0016 2320     		movs	r0, #35
  458 0018 FFF7FEFF 		bl	PWM_1_WriteCompare1
  459              	.LVL48:
- 224:.\main.c      ****         PWM_1_WriteCompare2(35);
- 460              		.loc 1 224 0
+ 239:.\main.c      ****         PWM_1_WriteCompare2(35);
+ 460              		.loc 1 239 0
  461 001c 2320     		movs	r0, #35
  462 001e FFF7FEFF 		bl	PWM_1_WriteCompare2
  463              	.LVL49:
@@ -801,28 +816,31 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  473              		.type	VariablesInitialise, %function
  474              	VariablesInitialise:
  475              	.LFB73:
- 225:.\main.c      ****     }
- 226:.\main.c      **** }
- 227:.\main.c      **** //*************************************************
- 228:.\main.c      **** //
- 229:.\main.c      **** //Initialise all necessary variables
- 230:.\main.c      **** //
- 231:.\main.c      **** //*************************************************
- 232:.\main.c      ****  void VariablesInitialise()
- 233:.\main.c      **** {
- 476              		.loc 1 233 0
+ 240:.\main.c      ****     }
+ 241:.\main.c      **** }
+ 242:.\main.c      **** //*************************************************
+ 243:.\main.c      **** //
+ 244:.\main.c      **** //Initialise all necessary variables
+ 245:.\main.c      **** //
+ 246:.\main.c      **** //*************************************************
+ 247:.\main.c      ****  void VariablesInitialise()
+ 248:.\main.c      **** {
+ 476              		.loc 1 248 0
  477              		.cfi_startproc
  478              		@ args = 0, pretend = 0, frame = 0
  479              		@ frame_needed = 0, uses_anonymous_args = 0
  480              		@ link register save eliminated.
- 234:.\main.c      ****    OnOff=0;
- 481              		.loc 1 234 0
+ 249:.\main.c      ****    OnOff=0;
+ 481              		.loc 1 249 0
  482 0000 0022     		movs	r2, #0
  483 0002 014B     		ldr	r3, .L37
  484 0004 1A60     		str	r2, [r3]
  485 0006 7047     		bx	lr
  486              	.L38:
  487              		.align	2
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 15
+
+
  488              	.L37:
  489 0008 00000000 		.word	OnOff
  490              		.cfi_endproc
@@ -836,11 +854,8 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  498              		.type	main, %function
  499              	main:
  500              	.LFB63:
-  34:.\main.c      ****     PSOCReset();                                    //Put PSOC in ready state
- 501              		.loc 1 34 0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 15
-
-
+  35:.\main.c      ****     PSOCReset();                                    //Put PSOC in ready state
+ 501              		.loc 1 35 0
  502              		.cfi_startproc
  503              		@ args = 0, pretend = 0, frame = 30000
  504              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -856,111 +871,111 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  514              		.cfi_def_cfa_offset 29976
  515 0008 8CB0     		sub	sp, sp, #48
  516              		.cfi_def_cfa_offset 30024
-  35:.\main.c      ****     VariablesInitialise();                          //Initialise all variables
- 517              		.loc 1 35 0
+  36:.\main.c      ****     VariablesInitialise();                          //Initialise all variables
+ 517              		.loc 1 36 0
  518 000a FFF7FEFF 		bl	PSOCReset
  519              	.LVL50:
-  36:.\main.c      ****     PWM_1_Start();                                  //Start PWM channel    
- 520              		.loc 1 36 0
+  37:.\main.c      ****     PWM_1_Start();                                  //Start PWM channel    
+ 520              		.loc 1 37 0
  521 000e FFF7FEFF 		bl	VariablesInitialise
  522              	.LVL51:
-  37:.\main.c      ****     ISRSetUp();                                     //Setup all interupts
- 523              		.loc 1 37 0
+  38:.\main.c      ****     ISRSetUp();                                     //Setup all interupts
+ 523              		.loc 1 38 0
  524 0012 FFF7FEFF 		bl	PWM_1_Start
  525              	.LVL52:
-  38:.\main.c      ****     LCD_Start();
- 526              		.loc 1 38 0
+  39:.\main.c      ****     LCD_Start();
+ 526              		.loc 1 39 0
  527 0016 FFF7FEFF 		bl	ISRSetUp
  528              	.LVL53:
-  39:.\main.c      ****     LCD_DMA_Start();
- 529              		.loc 1 39 0
+  40:.\main.c      ****     LCD_DMA_Start();
+ 529              		.loc 1 40 0
  530 001a FFF7FEFF 		bl	LCD_Start
  531              	.LVL54:
-  40:.\main.c      ****     Camera_Start();
- 532              		.loc 1 40 0
+  41:.\main.c      ****     Camera_Start();
+ 532              		.loc 1 41 0
  533 001e FFF7FEFF 		bl	LCD_DMA_Start
  534              	.LVL55:
-  41:.\main.c      ****     Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
- 535              		.loc 1 41 0
+  42:.\main.c      ****     Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
+ 535              		.loc 1 42 0
  536 0022 FFF7FEFF 		bl	Camera_Start
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 16
+
+
  537              	.LVL56:
-  42:.\main.c      ****     Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted;
- 538              		.loc 1 42 0
+  43:.\main.c      ****     Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted;
+ 538              		.loc 1 43 0
  539 0026 4120     		movs	r0, #65
  540 0028 0221     		movs	r1, #2
  541 002a FFF7FEFF 		bl	Camera_WriteReg
  542              	.LVL57:
-  43:.\main.c      ****     
- 543              		.loc 1 43 0
+  44:.\main.c      ****     
+ 543              		.loc 1 44 0
  544 002e 4FF41670 		mov	r0, #600
  545 0032 FFF7FEFF 		bl	Camera_SetBlankTime
  546              	.LVL58:
-  45:.\main.c      ****     CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
- 547              		.loc 1 45 0
+  46:.\main.c      ****     CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
+ 547              		.loc 1 46 0
  548 0036 0420     		movs	r0, #4
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 16
-
-
  549 0038 0121     		movs	r1, #1
  550 003a FFF7FEFF 		bl	LCD_CLK_SetDividerRegister
  551              	.LVL59:
-  46:.\main.c      ****     
- 552              		.loc 1 46 0
- 553              	@ 46 ".\main.c" 1
+  47:.\main.c      ****     
+ 552              		.loc 1 47 0
+ 553              	@ 47 ".\main.c" 1
  554 003e 62B6     		CPSIE   i
  555              	@ 0 "" 2
-  48:.\main.c      ****     CyDelay(200);
- 556              		.loc 1 48 0
+  49:.\main.c      ****     CyDelay(200);
+ 556              		.loc 1 49 0
  557              		.thumb
  558 0040 0120     		movs	r0, #1
  559 0042 FFF7FEFF 		bl	Beep
  560              	.LVL60:
-  49:.\main.c      ****     Beep(1); 
- 561              		.loc 1 49 0
+  50:.\main.c      ****     Beep(1); 
+ 561              		.loc 1 50 0
  562 0046 C820     		movs	r0, #200
  563 0048 FFF7FEFF 		bl	CyDelay
  564              	.LVL61:
-  50:.\main.c      ****     while(OnOff==0)
- 565              		.loc 1 50 0
+  51:.\main.c      ****     while(OnOff==0)
+ 565              		.loc 1 51 0
  566 004c 0120     		movs	r0, #1
  567 004e FFF7FEFF 		bl	Beep
  568              	.LVL62:
  569              	.L40:
-  51:.\main.c      ****     {
- 570              		.loc 1 51 0 discriminator 1
+  52:.\main.c      ****     {
+ 570              		.loc 1 52 0 discriminator 1
  571 0052 404B     		ldr	r3, .L53
  572 0054 1B68     		ldr	r3, [r3]
  573 0056 002B     		cmp	r3, #0
  574 0058 FBD0     		beq	.L40
-  54:.\main.c      ****        
- 575              		.loc 1 54 0
+  55:.\main.c      ****        
+ 575              		.loc 1 55 0
  576 005a FFF7FEFF 		bl	InitialisationSequnce
  577              	.LVL63:
-  56:.\main.c      ****     for(;;n++)
- 578              		.loc 1 56 0
+  57:.\main.c      ****     for(;;n++)
+ 578              		.loc 1 57 0
  579 005e 0026     		movs	r6, #0
  580              	.LVL64:
  581              	.L48:
  582              	.LBB2:
-  59:.\main.c      ****         CS_Write(2);                                //select output latch
- 583              		.loc 1 59 0
+  73:.\main.c      ****         CS_Write(2);                                //select output latch
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 17
+
+
+ 583              		.loc 1 73 0
  584 0060 FFF7FEFF 		bl	CaptureFrame
  585              	.LVL65:
-  60:.\main.c      ****         OE_Control=3;                               //enable output driver and switch to user outpu
- 586              		.loc 1 60 0
+  74:.\main.c      ****         OE_Control=3;                               //enable output driver and switch to user outpu
+ 586              		.loc 1 74 0
  587 0064 0220     		movs	r0, #2
  588 0066 FFF7FEFF 		bl	CS_Write
  589              	.LVL66:
-  61:.\main.c      ****         Data_Out_Control=n&1?4:0;                   //write to user output data bus
- 590              		.loc 1 61 0
+  75:.\main.c      ****         Data_Out_Control=n&1?4:0;                   //write to user output data bus
+ 590              		.loc 1 75 0
  591 006a 0322     		movs	r2, #3
  592 006c 3A4B     		ldr	r3, .L53+4
  593 006e 1A70     		strb	r2, [r3]
-  62:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
- 594              		.loc 1 62 0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 17
-
-
+  76:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
+ 594              		.loc 1 76 0
  595 0070 16F0010F 		tst	r6, #1
  596 0074 01D0     		beq	.L49
  597 0076 0423     		movs	r3, #4
@@ -968,48 +983,51 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  599              	.L49:
  600 007a 0023     		movs	r3, #0
  601              	.L41:
-  62:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
- 602              		.loc 1 62 0 is_stmt 0 discriminator 4
+  76:.\main.c      ****         CS_Write(8);                                //deselect output latch to clock in data
+ 602              		.loc 1 76 0 is_stmt 0 discriminator 4
  603 007c 374A     		ldr	r2, .L53+8
  604 007e 1370     		strb	r3, [r2]
-  63:.\main.c      ****         OE_Control=0;                               //disable output driver
- 605              		.loc 1 63 0 is_stmt 1 discriminator 4
+  77:.\main.c      ****         OE_Control=0;                               //disable output driver
+ 605              		.loc 1 77 0 is_stmt 1 discriminator 4
  606 0080 0820     		movs	r0, #8
  607 0082 FFF7FEFF 		bl	CS_Write
  608              	.LVL67:
-  64:.\main.c      ****         pixel box[100][100];                        //read top 100x100 pixels into array
- 609              		.loc 1 64 0 discriminator 4
+  78:.\main.c      ****         pixel box[100][100];                        //read top 100x100 pixels into array
+ 609              		.loc 1 78 0 discriminator 4
  610 0086 4FF00008 		mov	r8, #0
  611 008a 334B     		ldr	r3, .L53+4
  612 008c 83F80080 		strb	r8, [r3]
-  66:.\main.c      ****         uint8 i,j;
- 613              		.loc 1 66 0 discriminator 4
+  80:.\main.c      ****         uint8 i,j;
+ 613              		.loc 1 80 0 discriminator 4
  614 0090 4046     		mov	r0, r8
  615 0092 4146     		mov	r1, r8
  616 0094 6322     		movs	r2, #99
  617 0096 1346     		mov	r3, r2
  618 0098 FFF7FEFF 		bl	LCD_SetWindowRead
  619              	.LVL68:
-  68:.\main.c      ****             box[i][j]=LCD_ReadPixel();
- 620              		.loc 1 68 0 discriminator 4
+  82:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+ 620              		.loc 1 82 0 discriminator 4
  621 009c 1BE0     		b	.L42
  622              	.LVL69:
  623              	.L43:
-  69:.\main.c      ****         LCD_StopReadWrite();
- 624              		.loc 1 69 0 discriminator 4
+  83:.\main.c      ****         LCD_StopReadWrite();
+ 624              		.loc 1 83 0 discriminator 4
  625 009e 04EB4405 		add	r5, r4, r4, lsl #1
  626 00a2 4FF49673 		mov	r3, #300
  627 00a6 03FB0855 		mla	r5, r3, r8, r5
  628 00aa 0DEB0507 		add	r7, sp, r5
  629 00ae FFF7FEFF 		bl	LCD_ReadPixel
  630              	.LVL70:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 18
+
+
  631 00b2 0DF80500 		strb	r0, [sp, r5]
  632 00b6 C0F30723 		ubfx	r3, r0, #8, #8
  633 00ba 7B70     		strb	r3, [r7, #1]
  634 00bc C0F30740 		ubfx	r0, r0, #16, #8
  635 00c0 B870     		strb	r0, [r7, #2]
-  68:.\main.c      ****             box[i][j]=LCD_ReadPixel();
- 636              		.loc 1 68 0 discriminator 4
+  82:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+ 636              		.loc 1 82 0 discriminator 4
  637 00c2 0134     		adds	r4, r4, #1
  638              	.LVL71:
  639 00c4 E4B2     		uxtb	r4, r4
@@ -1018,51 +1036,51 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  642              	.LVL73:
  643              	.L50:
  644 00c8 0024     		movs	r4, #0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 18
-
-
  645              	.L44:
  646              	.LVL74:
-  68:.\main.c      ****             box[i][j]=LCD_ReadPixel();
- 647              		.loc 1 68 0 is_stmt 0 discriminator 2
+  82:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+ 647              		.loc 1 82 0 is_stmt 0 discriminator 2
  648 00ca 632C     		cmp	r4, #99
  649 00cc E7D9     		bls	.L43
-  68:.\main.c      ****             box[i][j]=LCD_ReadPixel();
- 650              		.loc 1 68 0 discriminator 5
+  82:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+ 650              		.loc 1 82 0 discriminator 5
  651 00ce 08F10108 		add	r8, r8, #1
  652              	.LVL75:
  653 00d2 5FFA88F8 		uxtb	r8, r8
  654              	.LVL76:
  655              	.L42:
-  68:.\main.c      ****             box[i][j]=LCD_ReadPixel();
- 656              		.loc 1 68 0 discriminator 6
+  82:.\main.c      ****             box[i][j]=LCD_ReadPixel();
+ 656              		.loc 1 82 0 discriminator 6
  657 00d6 B8F1630F 		cmp	r8, #99
  658 00da F5D9     		bls	.L50
-  70:.\main.c      ****         LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
- 659              		.loc 1 70 0 is_stmt 1
+  84:.\main.c      ****         LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
+ 659              		.loc 1 84 0 is_stmt 1
  660 00dc FFF7FEFF 		bl	LCD_StopReadWrite
  661              	.LVL77:
-  71:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
- 662              		.loc 1 71 0
+  85:.\main.c      ****         for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
+ 662              		.loc 1 85 0
  663 00e0 DC20     		movs	r0, #220
  664 00e2 8C21     		movs	r1, #140
  665 00e4 40F23F12 		movw	r2, #319
  666 00e8 EF23     		movs	r3, #239
  667 00ea FFF7FEFF 		bl	LCD_SetWindowWrite
  668              	.LVL78:
-  72:.\main.c      ****         LCD_StopReadWrite(); 
- 669              		.loc 1 72 0
+  86:.\main.c      ****         LCD_StopReadWrite(); 
+ 669              		.loc 1 86 0
  670 00ee 0025     		movs	r5, #0
  671 00f0 19E0     		b	.L45
  672              	.LVL79:
  673              	.L46:
-  72:.\main.c      ****         LCD_StopReadWrite(); 
- 674              		.loc 1 72 0 is_stmt 0 discriminator 4
+  86:.\main.c      ****         LCD_StopReadWrite(); 
+ 674              		.loc 1 86 0 is_stmt 0 discriminator 4
  675 00f2 04EB4402 		add	r2, r4, r4, lsl #1
  676 00f6 4FF49673 		mov	r3, #300
  677 00fa 03FB0523 		mla	r3, r3, r5, r2
  678 00fe 0DEB0302 		add	r2, sp, r3
  679 0102 1DF80330 		ldrb	r3, [sp, r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 19
+
+
  680 0106 5078     		ldrb	r0, [r2, #1]	@ zero_extendqisi2
  681 0108 43EA0023 		orr	r3, r3, r0, lsl #8
  682 010c 9078     		ldrb	r0, [r2, #2]	@ zero_extendqisi2
@@ -1078,69 +1096,66 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  692              	.L51:
  693 011c 0024     		movs	r4, #0
  694              	.L47:
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 19
-
-
  695              	.LVL84:
-  72:.\main.c      ****         LCD_StopReadWrite(); 
- 696              		.loc 1 72 0 discriminator 2
+  86:.\main.c      ****         LCD_StopReadWrite(); 
+ 696              		.loc 1 86 0 discriminator 2
  697 011e 632C     		cmp	r4, #99
  698 0120 E7D9     		bls	.L46
-  72:.\main.c      ****         LCD_StopReadWrite(); 
- 699              		.loc 1 72 0 discriminator 5
+  86:.\main.c      ****         LCD_StopReadWrite(); 
+ 699              		.loc 1 86 0 discriminator 5
  700 0122 0135     		adds	r5, r5, #1
  701              	.LVL85:
  702 0124 EDB2     		uxtb	r5, r5
  703              	.LVL86:
  704              	.L45:
-  72:.\main.c      ****         LCD_StopReadWrite(); 
- 705              		.loc 1 72 0 discriminator 6
+  86:.\main.c      ****         LCD_StopReadWrite(); 
+ 705              		.loc 1 86 0 discriminator 6
  706 0126 632D     		cmp	r5, #99
  707 0128 F8D9     		bls	.L51
-  73:.\main.c      ****         PWMOperate();
- 708              		.loc 1 73 0 is_stmt 1
+  87:.\main.c      ****         
+ 708              		.loc 1 87 0 is_stmt 1
  709 012a FFF7FEFF 		bl	LCD_StopReadWrite
  710              	.LVL87:
-  74:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
- 711              		.loc 1 74 0
+  89:.\main.c      ****         Data_Out_Write(0x09);       //HeadLights on
+ 711              		.loc 1 89 0
  712 012e FFF7FEFF 		bl	PWMOperate
  713              	.LVL88:
-  75:.\main.c      ****         CS_Write(0x02);  
- 714              		.loc 1 75 0
+  90:.\main.c      ****         CS_Write(0x02);  
+ 714              		.loc 1 90 0
  715 0132 0920     		movs	r0, #9
  716 0134 FFF7FEFF 		bl	Data_Out_Write
  717              	.LVL89:
-  76:.\main.c      ****         CS_Write(0x08);
- 718              		.loc 1 76 0
+  91:.\main.c      ****         CS_Write(0x08);
+ 718              		.loc 1 91 0
  719 0138 0220     		movs	r0, #2
  720 013a FFF7FEFF 		bl	CS_Write
  721              	.LVL90:
-  77:.\main.c      ****         CyDelay(300);
- 722              		.loc 1 77 0
+  92:.\main.c      ****         CyDelay(300);
+ 722              		.loc 1 92 0
  723 013e 0820     		movs	r0, #8
  724 0140 FFF7FEFF 		bl	CS_Write
  725              	.LVL91:
-  78:.\main.c      ****     }
- 726              		.loc 1 78 0
+  93:.\main.c      ****     }
+ 726              		.loc 1 93 0
  727 0144 4FF49670 		mov	r0, #300
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 20
+
+
  728 0148 FFF7FEFF 		bl	CyDelay
  729              	.LVL92:
  730              	.LBE2:
-  57:.\main.c      ****     {
- 731              		.loc 1 57 0
+  58:.\main.c      ****     {
+ 731              		.loc 1 58 0
  732 014c 0136     		adds	r6, r6, #1
  733              	.LVL93:
  734 014e F6B2     		uxtb	r6, r6
  735              	.LVL94:
-  79:.\main.c      **** }
- 736              		.loc 1 79 0
+  94:.\main.c      **** }
+ 736              		.loc 1 94 0
  737 0150 86E7     		b	.L48
  738              	.L54:
  739 0152 00BF     		.align	2
  740              	.L53:
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 20
-
-
  741 0154 00000000 		.word	OnOff
  742 0158 7D640040 		.word	1073767549
  743 015c 79640040 		.word	1073767545
@@ -1177,53 +1192,53 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  774 0006 00000000 		.4byte	.Ldebug_abbrev0
  775 000a 04       		.byte	0x4
  776 000b 01       		.uleb128 0x1
- 777 000c 0D030000 		.4byte	.LASF57
+ 777 000c F8020000 		.4byte	.LASF57
  778 0010 01       		.byte	0x1
- 779 0011 FA020000 		.4byte	.LASF58
- 780 0015 EE000000 		.4byte	.LASF59
+ 779 0011 E5020000 		.4byte	.LASF58
+ 780 0015 DA000000 		.4byte	.LASF59
  781 0019 00000000 		.4byte	.Ldebug_ranges0+0
  782 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 21
+
+
  783 0021 00000000 		.4byte	.Ldebug_line0
  784 0025 02       		.uleb128 0x2
  785 0026 01       		.byte	0x1
  786 0027 06       		.byte	0x6
- 787 0028 F5010000 		.4byte	.LASF0
+ 787 0028 E0010000 		.4byte	.LASF0
  788 002c 02       		.uleb128 0x2
  789 002d 01       		.byte	0x1
  790 002e 08       		.byte	0x8
- 791 002f B7010000 		.4byte	.LASF1
+ 791 002f A2010000 		.4byte	.LASF1
  792 0033 02       		.uleb128 0x2
  793 0034 02       		.byte	0x2
  794 0035 05       		.byte	0x5
  795 0036 3C000000 		.4byte	.LASF2
  796 003a 02       		.uleb128 0x2
  797 003b 02       		.byte	0x2
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 21
-
-
  798 003c 07       		.byte	0x7
- 799 003d 37020000 		.4byte	.LASF3
+ 799 003d 22020000 		.4byte	.LASF3
  800 0041 03       		.uleb128 0x3
- 801 0042 03030000 		.4byte	.LASF9
+ 801 0042 EE020000 		.4byte	.LASF9
  802 0046 02       		.byte	0x2
  803 0047 3F       		.byte	0x3f
  804 0048 4C000000 		.4byte	0x4c
  805 004c 02       		.uleb128 0x2
  806 004d 04       		.byte	0x4
  807 004e 05       		.byte	0x5
- 808 004f 4F020000 		.4byte	.LASF4
+ 808 004f 3A020000 		.4byte	.LASF4
  809 0053 02       		.uleb128 0x2
  810 0054 04       		.byte	0x4
  811 0055 07       		.byte	0x7
- 812 0056 B1020000 		.4byte	.LASF5
+ 812 0056 9C020000 		.4byte	.LASF5
  813 005a 02       		.uleb128 0x2
  814 005b 08       		.byte	0x8
  815 005c 05       		.byte	0x5
- 816 005d 74000000 		.4byte	.LASF6
+ 816 005d 2C010000 		.4byte	.LASF6
  817 0061 02       		.uleb128 0x2
  818 0062 08       		.byte	0x8
  819 0063 07       		.byte	0x7
- 820 0064 01020000 		.4byte	.LASF7
+ 820 0064 EC010000 		.4byte	.LASF7
  821 0068 04       		.uleb128 0x4
  822 0069 04       		.byte	0x4
  823 006a 05       		.byte	0x5
@@ -1231,51 +1246,51 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  825 006f 02       		.uleb128 0x2
  826 0070 04       		.byte	0x4
  827 0071 07       		.byte	0x7
- 828 0072 18020000 		.4byte	.LASF8
+ 828 0072 03020000 		.4byte	.LASF8
  829 0076 03       		.uleb128 0x3
- 830 0077 5D020000 		.4byte	.LASF10
+ 830 0077 48020000 		.4byte	.LASF10
  831 007b 03       		.byte	0x3
  832 007c 2C       		.byte	0x2c
  833 007d 41000000 		.4byte	0x41
  834 0081 05       		.uleb128 0x5
- 835 0082 E2000000 		.4byte	.LASF11
+ 835 0082 D4000000 		.4byte	.LASF11
  836 0086 04       		.byte	0x4
  837 0087 9201     		.2byte	0x192
  838 0089 2C000000 		.4byte	0x2c
  839 008d 05       		.uleb128 0x5
- 840 008e C9000000 		.4byte	.LASF12
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 22
+
+
+ 840 008e BB000000 		.4byte	.LASF12
  841 0092 04       		.byte	0x4
  842 0093 9301     		.2byte	0x193
  843 0095 3A000000 		.4byte	0x3a
  844 0099 05       		.uleb128 0x5
- 845 009a D3020000 		.4byte	.LASF13
+ 845 009a BE020000 		.4byte	.LASF13
  846 009e 04       		.byte	0x4
  847 009f 9401     		.2byte	0x194
  848 00a1 53000000 		.4byte	0x53
  849 00a5 02       		.uleb128 0x2
  850 00a6 04       		.byte	0x4
  851 00a7 04       		.byte	0x4
- 852 00a8 E8000000 		.4byte	.LASF14
+ 852 00a8 26010000 		.4byte	.LASF14
  853 00ac 02       		.uleb128 0x2
  854 00ad 08       		.byte	0x8
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 22
-
-
  855 00ae 04       		.byte	0x4
  856 00af 06000000 		.4byte	.LASF15
  857 00b3 02       		.uleb128 0x2
  858 00b4 01       		.byte	0x1
  859 00b5 08       		.byte	0x8
- 860 00b6 4A020000 		.4byte	.LASF16
+ 860 00b6 35020000 		.4byte	.LASF16
  861 00ba 05       		.uleb128 0x5
- 862 00bb AC020000 		.4byte	.LASF17
+ 862 00bb 97020000 		.4byte	.LASF17
  863 00bf 04       		.byte	0x4
  864 00c0 3C02     		.2byte	0x23c
  865 00c2 C6000000 		.4byte	0xc6
  866 00c6 06       		.uleb128 0x6
  867 00c7 81000000 		.4byte	0x81
  868 00cb 05       		.uleb128 0x5
- 869 00cc C5010000 		.4byte	.LASF18
+ 869 00cc B0010000 		.4byte	.LASF18
  870 00d0 04       		.byte	0x4
  871 00d1 4E02     		.2byte	0x24e
  872 00d3 D7000000 		.4byte	0xd7
@@ -1303,6 +1318,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  894 00fa 05       		.byte	0x5
  895 00fb 14       		.byte	0x14
  896 00fc 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 23
+
+
  897 0100 01       		.byte	0x1
  898 0101 0A       		.uleb128 0xa
  899 0102 4200     		.ascii	"B\000"
@@ -1317,20 +1335,17 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  908 0112 15       		.byte	0x15
  909 0113 E5000000 		.4byte	0xe5
  910 0117 0B       		.uleb128 0xb
- 911 0118 E9010000 		.4byte	.LASF21
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 23
-
-
+ 911 0118 D4010000 		.4byte	.LASF21
  912 011c 01       		.byte	0x1
- 913 011d C5       		.byte	0xc5
+ 913 011d D4       		.byte	0xd4
  914 011e 00000000 		.4byte	.LFB71
  915 0122 1C000000 		.4byte	.LFE71-.LFB71
  916 0126 01       		.uleb128 0x1
  917 0127 9C       		.byte	0x9c
  918 0128 0B       		.uleb128 0xb
- 919 0129 C3020000 		.4byte	.LASF22
+ 919 0129 AE020000 		.4byte	.LASF22
  920 012d 01       		.byte	0x1
- 921 012e 56       		.byte	0x56
+ 921 012e 65       		.byte	0x65
  922 012f 00000000 		.4byte	.LFB64
  923 0133 0C000000 		.4byte	.LFE64-.LFB64
  924 0137 01       		.uleb128 0x1
@@ -1338,15 +1353,15 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  926 0139 0B       		.uleb128 0xb
  927 013a 2D000000 		.4byte	.LASF23
  928 013e 01       		.byte	0x1
- 929 013f 5F       		.byte	0x5f
+ 929 013f 6E       		.byte	0x6e
  930 0140 00000000 		.4byte	.LFB65
  931 0144 0C000000 		.4byte	.LFE65-.LFB65
  932 0148 01       		.uleb128 0x1
  933 0149 9C       		.byte	0x9c
  934 014a 0C       		.uleb128 0xc
- 935 014b D2010000 		.4byte	.LASF30
+ 935 014b BD010000 		.4byte	.LASF30
  936 014f 01       		.byte	0x1
- 937 0150 69       		.byte	0x69
+ 937 0150 78       		.byte	0x78
  938 0151 00000000 		.4byte	.LFB66
  939 0155 3C000000 		.4byte	.LFE66-.LFB66
  940 0159 01       		.uleb128 0x1
@@ -1355,7 +1370,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  943 015f 0D       		.uleb128 0xd
  944 0160 7800     		.ascii	"x\000"
  945 0162 01       		.byte	0x1
- 946 0163 69       		.byte	0x69
+ 946 0163 78       		.byte	0x78
  947 0164 68000000 		.4byte	0x68
  948 0168 00000000 		.4byte	.LLST0
  949 016c 0E       		.uleb128 0xe
@@ -1363,6 +1378,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  951 0171 28010000 		.4byte	0x128
  952 0175 0F       		.uleb128 0xf
  953 0176 10000000 		.4byte	.LVL2
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 24
+
+
  954 017a EF070000 		.4byte	0x7ef
  955 017e 88010000 		.4byte	0x188
  956 0182 10       		.uleb128 0x10
@@ -1378,9 +1396,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  966 0195 10       		.uleb128 0x10
  967 0196 01       		.uleb128 0x1
  968 0197 50       		.byte	0x50
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 24
-
-
  969 0198 01       		.uleb128 0x1
  970 0199 32       		.byte	0x32
  971 019a 00       		.byte	0
@@ -1423,6 +1438,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1008 01e3 01       		.uleb128 0x1
  1009 01e4 50       		.byte	0x50
  1010 01e5 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 25
+
+
  1011 01e6 32       		.byte	0x32
  1012 01e7 00       		.byte	0
  1013 01e8 11       		.uleb128 0x11
@@ -1436,12 +1454,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1021 01f6 00       		.byte	0
  1022 01f7 00       		.byte	0
  1023 01f8 12       		.uleb128 0x12
- 1024 01f9 90000000 		.4byte	.LASF24
+ 1024 01f9 82000000 		.4byte	.LASF24
  1025 01fd 01       		.byte	0x1
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 25
-
-
- 1026 01fe 9B       		.byte	0x9b
+ 1026 01fe AA       		.byte	0xaa
  1027 01ff 00000000 		.4byte	.LFB68
  1028 0203 32000000 		.4byte	.LFE68-.LFB68
  1029 0207 01       		.uleb128 0x1
@@ -1483,6 +1498,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1065 024f 0F       		.uleb128 0xf
  1066 0250 1E000000 		.4byte	.LVL14
  1067 0254 11080000 		.4byte	0x811
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 26
+
+
  1068 0258 63020000 		.4byte	0x263
  1069 025c 10       		.uleb128 0x10
  1070 025d 01       		.uleb128 0x1
@@ -1498,9 +1516,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1080 0270 10       		.uleb128 0x10
  1081 0271 01       		.uleb128 0x1
  1082 0272 50       		.byte	0x50
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 26
-
-
  1083 0273 01       		.uleb128 0x1
  1084 0274 31       		.byte	0x31
  1085 0275 00       		.byte	0
@@ -1525,9 +1540,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1104 0297 00       		.byte	0
  1105 0298 00       		.byte	0
  1106 0299 12       		.uleb128 0x12
- 1107 029a E4020000 		.4byte	.LASF25
+ 1107 029a CF020000 		.4byte	.LASF25
  1108 029e 01       		.byte	0x1
- 1109 029f 7C       		.byte	0x7c
+ 1109 029f 8B       		.byte	0x8b
  1110 02a0 00000000 		.4byte	.LFB67
  1111 02a4 A0000000 		.4byte	.LFE67-.LFB67
  1112 02a8 01       		.uleb128 0x1
@@ -1543,6 +1558,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1122 02be 01       		.uleb128 0x1
  1123 02bf 32       		.byte	0x32
  1124 02c0 00       		.byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 27
+
+
  1125 02c1 0F       		.uleb128 0xf
  1126 02c2 10000000 		.4byte	.LVL19
  1127 02c6 11080000 		.4byte	0x811
@@ -1558,9 +1576,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1137 02d7 16000000 		.4byte	.LVL20
  1138 02db 4A010000 		.4byte	0x14a
  1139 02df E9020000 		.4byte	0x2e9
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 27
-
-
  1140 02e3 10       		.uleb128 0x10
  1141 02e4 01       		.uleb128 0x1
  1142 02e5 50       		.byte	0x50
@@ -1603,6 +1618,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1179 0327 32000000 		.4byte	.LVL24
  1180 032b 4A010000 		.4byte	0x14a
  1181 032f 39030000 		.4byte	0x339
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 28
+
+
  1182 0333 10       		.uleb128 0x10
  1183 0334 01       		.uleb128 0x1
  1184 0335 50       		.byte	0x50
@@ -1618,9 +1636,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1194 034b 0F       		.uleb128 0xf
  1195 034c 60000000 		.4byte	.LVL27
  1196 0350 EF070000 		.4byte	0x7ef
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 28
-
-
  1197 0354 5E030000 		.4byte	0x35e
  1198 0358 10       		.uleb128 0x10
  1199 0359 01       		.uleb128 0x1
@@ -1663,6 +1678,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1236 0399 78000000 		.4byte	.LVL31
  1237 039d EF070000 		.4byte	0x7ef
  1238 03a1 AB030000 		.4byte	0x3ab
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 29
+
+
  1239 03a5 10       		.uleb128 0x10
  1240 03a6 01       		.uleb128 0x1
  1241 03a7 50       		.byte	0x50
@@ -1678,9 +1696,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1251 03ba 50       		.byte	0x50
  1252 03bb 01       		.uleb128 0x1
  1253 03bc 32       		.byte	0x32
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 29
-
-
  1254 03bd 00       		.byte	0
  1255 03be 0F       		.uleb128 0xf
  1256 03bf 84000000 		.4byte	.LVL33
@@ -1704,9 +1719,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1274 03e0 00       		.byte	0
  1275 03e1 00       		.byte	0
  1276 03e2 12       		.uleb128 0x12
- 1277 03e3 B6030000 		.4byte	.LASF26
+ 1277 03e3 A1030000 		.4byte	.LASF26
  1278 03e7 01       		.byte	0x1
- 1279 03e8 AB       		.byte	0xab
+ 1279 03e8 BA       		.byte	0xba
  1280 03e9 00000000 		.4byte	.LFB69
  1281 03ed 3A000000 		.4byte	.LFE69-.LFB69
  1282 03f1 01       		.uleb128 0x1
@@ -1723,6 +1738,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1293 0408 38       		.byte	0x38
  1294 0409 00       		.byte	0
  1295 040a 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 30
+
+
  1296 040b 0E000000 		.4byte	.LVL36
  1297 040f 22080000 		.4byte	0x822
  1298 0413 1D040000 		.4byte	0x41d
@@ -1738,9 +1756,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1308 0426 32040000 		.4byte	0x432
  1309 042a 10       		.uleb128 0x10
  1310 042b 01       		.uleb128 0x1
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 30
-
-
  1311 042c 50       		.byte	0x50
  1312 042d 03       		.uleb128 0x3
  1313 042e 0A       		.byte	0xa
@@ -1783,6 +1798,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1350 0476 82040000 		.4byte	0x482
  1351 047a 10       		.uleb128 0x10
  1352 047b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 31
+
+
  1353 047c 50       		.byte	0x50
  1354 047d 03       		.uleb128 0x3
  1355 047e 0A       		.byte	0xa
@@ -1798,13 +1816,10 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1365 048f 31       		.byte	0x31
  1366 0490 00       		.byte	0
  1367 0491 00       		.byte	0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 31
-
-
  1368 0492 12       		.uleb128 0x12
- 1369 0493 94020000 		.4byte	.LASF27
+ 1369 0493 7F020000 		.4byte	.LASF27
  1370 0497 01       		.byte	0x1
- 1371 0498 BB       		.byte	0xbb
+ 1371 0498 CA       		.byte	0xca
  1372 0499 00000000 		.4byte	.LFB70
  1373 049d 14000000 		.4byte	.LFE70-.LFB70
  1374 04a1 01       		.uleb128 0x1
@@ -1825,9 +1840,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1389 04c2 00       		.byte	0
  1390 04c3 00       		.byte	0
  1391 04c4 12       		.uleb128 0x12
- 1392 04c5 5C000000 		.4byte	.LASF28
+ 1392 04c5 69000000 		.4byte	.LASF28
  1393 04c9 01       		.byte	0x1
- 1394 04ca D6       		.byte	0xd6
+ 1394 04ca E5       		.byte	0xe5
  1395 04cb 00000000 		.4byte	.LFB72
  1396 04cf 24000000 		.4byte	.LFE72-.LFB72
  1397 04d3 01       		.uleb128 0x1
@@ -1843,6 +1858,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1407 04ef 10       		.uleb128 0x10
  1408 04f0 01       		.uleb128 0x1
  1409 04f1 50       		.byte	0x50
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 32
+
+
  1410 04f2 01       		.uleb128 0x1
  1411 04f3 3F       		.byte	0x3f
  1412 04f4 00       		.byte	0
@@ -1858,9 +1876,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1422 0507 00       		.byte	0
  1423 0508 0F       		.uleb128 0xf
  1424 0509 1C000000 		.4byte	.LVL48
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 32
-
-
  1425 050d 56080000 		.4byte	0x856
  1426 0511 1C050000 		.4byte	0x51c
  1427 0515 10       		.uleb128 0x10
@@ -1884,15 +1899,15 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1445 052d 0B       		.uleb128 0xb
  1446 052e 19000000 		.4byte	.LASF29
  1447 0532 01       		.byte	0x1
- 1448 0533 E8       		.byte	0xe8
+ 1448 0533 F7       		.byte	0xf7
  1449 0534 00000000 		.4byte	.LFB73
  1450 0538 0C000000 		.4byte	.LFE73-.LFB73
  1451 053c 01       		.uleb128 0x1
  1452 053d 9C       		.byte	0x9c
  1453 053e 13       		.uleb128 0x13
- 1454 053f 58020000 		.4byte	.LASF31
+ 1454 053f 43020000 		.4byte	.LASF31
  1455 0543 01       		.byte	0x1
- 1456 0544 21       		.byte	0x21
+ 1456 0544 22       		.byte	0x22
  1457 0545 68000000 		.4byte	0x68
  1458 0549 00000000 		.4byte	.LFB63
  1459 054d 60010000 		.4byte	.LFE63-.LFB63
@@ -1902,7 +1917,10 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1463 0557 14       		.uleb128 0x14
  1464 0558 6E00     		.ascii	"n\000"
  1465 055a 01       		.byte	0x1
- 1466 055b 38       		.byte	0x38
+ 1466 055b 39       		.byte	0x39
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 33
+
+
  1467 055c 81000000 		.4byte	0x81
  1468 0560 1E000000 		.4byte	.LLST1
  1469 0564 15       		.uleb128 0x15
@@ -1912,24 +1930,21 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1473 0571 16       		.uleb128 0x16
  1474 0572 626F7800 		.ascii	"box\000"
  1475 0576 01       		.byte	0x1
- 1476 0577 41       		.byte	0x41
+ 1476 0577 4F       		.byte	0x4f
  1477 0578 58070000 		.4byte	0x758
  1478 057c 04       		.uleb128 0x4
  1479 057d 91       		.byte	0x91
  1480 057e B8957E   		.sleb128 -30024
  1481 0581 14       		.uleb128 0x14
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 33
-
-
  1482 0582 6900     		.ascii	"i\000"
  1483 0584 01       		.byte	0x1
- 1484 0585 43       		.byte	0x43
+ 1484 0585 51       		.byte	0x51
  1485 0586 81000000 		.4byte	0x81
  1486 058a 48000000 		.4byte	.LLST2
  1487 058e 14       		.uleb128 0x14
  1488 058f 6A00     		.ascii	"j\000"
  1489 0591 01       		.byte	0x1
- 1490 0592 43       		.byte	0x43
+ 1490 0592 51       		.byte	0x51
  1491 0593 81000000 		.4byte	0x81
  1492 0597 94000000 		.4byte	.LLST3
  1493 059b 0E       		.uleb128 0xe
@@ -1963,6 +1978,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1521 05d8 01       		.uleb128 0x1
  1522 05d9 53       		.byte	0x53
  1523 05da 02       		.uleb128 0x2
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 34
+
+
  1524 05db 08       		.byte	0x8
  1525 05dc 63       		.byte	0x63
  1526 05dd 10       		.uleb128 0x10
@@ -1978,9 +1996,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1536 05e7 78       		.byte	0x78
  1537 05e8 00       		.sleb128 0
  1538 05e9 10       		.uleb128 0x10
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 34
-
-
  1539 05ea 01       		.uleb128 0x1
  1540 05eb 50       		.byte	0x50
  1541 05ec 02       		.uleb128 0x2
@@ -2023,6 +2038,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1578 0627 DC       		.byte	0xdc
  1579 0628 00       		.byte	0
  1580 0629 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 35
+
+
  1581 062a 16010000 		.4byte	.LVL80
  1582 062e E3080000 		.4byte	0x8e3
  1583 0632 0E       		.uleb128 0xe
@@ -2038,9 +2056,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1593 0651 10       		.uleb128 0x10
  1594 0652 01       		.uleb128 0x1
  1595 0653 50       		.byte	0x50
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 35
-
-
  1596 0654 01       		.uleb128 0x1
  1597 0655 39       		.byte	0x39
  1598 0656 00       		.byte	0
@@ -2083,6 +2098,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1635 069d 2D050000 		.4byte	0x52d
  1636 06a1 0E       		.uleb128 0xe
  1637 06a2 16000000 		.4byte	.LVL52
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 36
+
+
  1638 06a6 F4080000 		.4byte	0x8f4
  1639 06aa 0E       		.uleb128 0xe
  1640 06ab 1A000000 		.4byte	.LVL53
@@ -2098,9 +2116,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1650 06ca 15090000 		.4byte	0x915
  1651 06ce 0F       		.uleb128 0xf
  1652 06cf 2E000000 		.4byte	.LVL57
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 36
-
-
  1653 06d3 22090000 		.4byte	0x922
  1654 06d7 E7060000 		.4byte	0x6e7
  1655 06db 10       		.uleb128 0x10
@@ -2143,6 +2158,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1692 0713 00       		.byte	0
  1693 0714 0F       		.uleb128 0xf
  1694 0715 46000000 		.4byte	.LVL60
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 37
+
+
  1695 0719 4A010000 		.4byte	0x14a
  1696 071d 27070000 		.4byte	0x727
  1697 0721 10       		.uleb128 0x10
@@ -2158,9 +2176,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1707 0734 10       		.uleb128 0x10
  1708 0735 01       		.uleb128 0x1
  1709 0736 50       		.byte	0x50
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 37
-
-
  1710 0737 02       		.uleb128 0x2
  1711 0738 08       		.byte	0x8
  1712 0739 C8       		.byte	0xc8
@@ -2190,7 +2205,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1736 076c 63       		.byte	0x63
  1737 076d 00       		.byte	0
  1738 076e 19       		.uleb128 0x19
- 1739 076f C0030000 		.4byte	.LASF32
+ 1739 076f AB030000 		.4byte	.LASF32
  1740 0773 06       		.byte	0x6
  1741 0774 9606     		.2byte	0x696
  1742 0776 7A070000 		.4byte	0x77a
@@ -2203,8 +2218,11 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1749 0789 DE000000 		.4byte	0xde
  1750 078d 9F       		.byte	0x9f
  1751 078e 00       		.byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 38
+
+
  1752 078f 1A       		.uleb128 0x1a
- 1753 0790 25020000 		.4byte	.LASF33
+ 1753 0790 10020000 		.4byte	.LASF33
  1754 0794 07       		.byte	0x7
  1755 0795 13       		.byte	0x13
  1756 0796 7F070000 		.4byte	0x77f
@@ -2218,9 +2236,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1764 07a5 68000000 		.4byte	0x68
  1765 07a9 05       		.uleb128 0x5
  1766 07aa 03       		.byte	0x3
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 38
-
-
  1767 07ab 00000000 		.4byte	a
  1768 07af 1B       		.uleb128 0x1b
  1769 07b0 6200     		.ascii	"b\000"
@@ -2239,7 +2254,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1782 07c8 03       		.byte	0x3
  1783 07c9 00000000 		.4byte	c
  1784 07cd 1A       		.uleb128 0x1a
- 1785 07ce AE030000 		.4byte	.LASF34
+ 1785 07ce 99030000 		.4byte	.LASF34
  1786 07d2 01       		.byte	0x1
  1787 07d3 1A       		.byte	0x1a
  1788 07d4 68000000 		.4byte	0x68
@@ -2247,7 +2262,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1790 07d9 03       		.byte	0x3
  1791 07da 00000000 		.4byte	AD0Data
  1792 07de 1A       		.uleb128 0x1a
- 1793 07df A6020000 		.4byte	.LASF35
+ 1793 07df 91020000 		.4byte	.LASF35
  1794 07e3 01       		.byte	0x1
  1795 07e4 1B       		.byte	0x1b
  1796 07e5 68000000 		.4byte	0x68
@@ -2255,7 +2270,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1798 07ea 03       		.byte	0x3
  1799 07eb 00000000 		.4byte	OnOff
  1800 07ef 1C       		.uleb128 0x1c
- 1801 07f0 80010000 		.4byte	.LASF36
+ 1801 07f0 6B010000 		.4byte	.LASF36
  1802 07f4 08       		.byte	0x8
  1803 07f5 27       		.byte	0x27
  1804 07f6 00080000 		.4byte	0x800
@@ -2263,7 +2278,10 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1806 07fb 81000000 		.4byte	0x81
  1807 07ff 00       		.byte	0
  1808 0800 1C       		.uleb128 0x1c
- 1809 0801 9B030000 		.4byte	.LASF37
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 39
+
+
+ 1809 0801 86030000 		.4byte	.LASF37
  1810 0805 09       		.byte	0x9
  1811 0806 26       		.byte	0x26
  1812 0807 11080000 		.4byte	0x811
@@ -2271,18 +2289,15 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1814 080c 81000000 		.4byte	0x81
  1815 0810 00       		.byte	0
  1816 0811 1C       		.uleb128 0x1c
- 1817 0812 CD030000 		.4byte	.LASF38
+ 1817 0812 B8030000 		.4byte	.LASF38
  1818 0816 0A       		.byte	0xa
  1819 0817 76       		.byte	0x76
  1820 0818 22080000 		.4byte	0x822
  1821 081c 1D       		.uleb128 0x1d
  1822 081d 99000000 		.4byte	0x99
  1823 0821 00       		.byte	0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 39
-
-
  1824 0822 1C       		.uleb128 0x1c
- 1825 0823 DA020000 		.4byte	.LASF39
+ 1825 0823 C5020000 		.4byte	.LASF39
  1826 0827 0B       		.byte	0xb
  1827 0828 26       		.byte	0x26
  1828 0829 33080000 		.4byte	0x833
@@ -2290,11 +2305,11 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1830 082e 81000000 		.4byte	0x81
  1831 0832 00       		.byte	0
  1832 0833 1E       		.uleb128 0x1e
- 1833 0834 B6000000 		.4byte	.LASF49
+ 1833 0834 A8000000 		.4byte	.LASF49
  1834 0838 0C       		.byte	0xc
  1835 0839 28       		.byte	0x28
  1836 083a 1C       		.uleb128 0x1c
- 1837 083b 72010000 		.4byte	.LASF40
+ 1837 083b 5D010000 		.4byte	.LASF40
  1838 083f 0C       		.byte	0xc
  1839 0840 18       		.byte	0x18
  1840 0841 4B080000 		.4byte	0x84b
@@ -2302,12 +2317,12 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1842 0846 CB000000 		.4byte	0xcb
  1843 084a 00       		.byte	0
  1844 084b 1F       		.uleb128 0x1f
- 1845 084c 9D020000 		.4byte	.LASF60
+ 1845 084c 88020000 		.4byte	.LASF60
  1846 0850 10       		.byte	0x10
  1847 0851 29       		.byte	0x29
  1848 0852 81000000 		.4byte	0x81
  1849 0856 1C       		.uleb128 0x1c
- 1850 0857 8F010000 		.4byte	.LASF41
+ 1850 0857 7A010000 		.4byte	.LASF41
  1851 085b 0D       		.byte	0xd
  1852 085c C7       		.byte	0xc7
  1853 085d 67080000 		.4byte	0x867
@@ -2315,7 +2330,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1855 0862 81000000 		.4byte	0x81
  1856 0866 00       		.byte	0
  1857 0867 1C       		.uleb128 0x1c
- 1858 0868 A3010000 		.4byte	.LASF42
+ 1858 0868 8E010000 		.4byte	.LASF42
  1859 086c 0D       		.byte	0xd
  1860 086d CA       		.byte	0xca
  1861 086e 78080000 		.4byte	0x878
@@ -2323,6 +2338,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1863 0873 81000000 		.4byte	0x81
  1864 0877 00       		.byte	0
  1865 0878 20       		.uleb128 0x20
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 40
+
+
  1866 0879 46000000 		.4byte	.LASF45
  1867 087d 0E       		.byte	0xe
  1868 087e 05       		.byte	0x5
@@ -2330,7 +2348,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1870 0883 21       		.uleb128 0x21
  1871 0884 00       		.byte	0
  1872 0885 1C       		.uleb128 0x1c
- 1873 0886 D7010000 		.4byte	.LASF43
+ 1873 0886 C2010000 		.4byte	.LASF43
  1874 088a 05       		.byte	0x5
  1875 088b 26       		.byte	0x26
  1876 088c A5080000 		.4byte	0x8a5
@@ -2338,16 +2356,13 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1878 0891 8D000000 		.4byte	0x8d
  1879 0895 1D       		.uleb128 0x1d
  1880 0896 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 40
-
-
  1881 089a 1D       		.uleb128 0x1d
  1882 089b 8D000000 		.4byte	0x8d
  1883 089f 1D       		.uleb128 0x1d
  1884 08a0 8D000000 		.4byte	0x8d
  1885 08a4 00       		.byte	0
  1886 08a5 22       		.uleb128 0x22
- 1887 08a6 99000000 		.4byte	.LASF44
+ 1887 08a6 8B000000 		.4byte	.LASF44
  1888 08aa 05       		.byte	0x5
  1889 08ab 2A       		.byte	0x2a
  1890 08ac 0C010000 		.4byte	0x10c
@@ -2355,14 +2370,14 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1892 08b4 21       		.uleb128 0x21
  1893 08b5 00       		.byte	0
  1894 08b6 20       		.uleb128 0x20
- 1895 08b7 D0000000 		.4byte	.LASF46
+ 1895 08b7 C2000000 		.4byte	.LASF46
  1896 08bb 05       		.byte	0x5
  1897 08bc 30       		.byte	0x30
  1898 08bd C3080000 		.4byte	0x8c3
  1899 08c1 21       		.uleb128 0x21
  1900 08c2 00       		.byte	0
  1901 08c3 1C       		.uleb128 0x1c
- 1902 08c4 4F010000 		.4byte	.LASF47
+ 1902 08c4 3A010000 		.4byte	.LASF47
  1903 08c8 05       		.byte	0x5
  1904 08c9 27       		.byte	0x27
  1905 08ca E3080000 		.4byte	0x8e3
@@ -2376,43 +2391,43 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1913 08de 8D000000 		.4byte	0x8d
  1914 08e2 00       		.byte	0
  1915 08e3 1C       		.uleb128 0x1c
- 1916 08e4 A7000000 		.4byte	.LASF48
+ 1916 08e4 99000000 		.4byte	.LASF48
  1917 08e8 05       		.byte	0x5
  1918 08e9 2D       		.byte	0x2d
  1919 08ea F4080000 		.4byte	0x8f4
  1920 08ee 1D       		.uleb128 0x1d
  1921 08ef 0C010000 		.4byte	0x10c
  1922 08f3 00       		.byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 41
+
+
  1923 08f4 1E       		.uleb128 0x1e
  1924 08f5 0D000000 		.4byte	.LASF50
  1925 08f9 0D       		.byte	0xd
  1926 08fa 92       		.byte	0x92
  1927 08fb 20       		.uleb128 0x20
- 1928 08fc A4030000 		.4byte	.LASF51
+ 1928 08fc 8F030000 		.4byte	.LASF51
  1929 0900 05       		.byte	0x5
  1930 0901 18       		.byte	0x18
  1931 0902 08090000 		.4byte	0x908
  1932 0906 21       		.uleb128 0x21
  1933 0907 00       		.byte	0
  1934 0908 20       		.uleb128 0x20
- 1935 0909 82000000 		.4byte	.LASF52
+ 1935 0909 74000000 		.4byte	.LASF52
  1936 090d 0E       		.byte	0xe
  1937 090e 0E       		.byte	0xe
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 41
-
-
  1938 090f 15090000 		.4byte	0x915
  1939 0913 21       		.uleb128 0x21
  1940 0914 00       		.byte	0
  1941 0915 20       		.uleb128 0x20
- 1942 0916 67000000 		.4byte	.LASF53
+ 1942 0916 5C000000 		.4byte	.LASF53
  1943 091a 07       		.byte	0x7
  1944 091b 11       		.byte	0x11
  1945 091c 22090000 		.4byte	0x922
  1946 0920 21       		.uleb128 0x21
  1947 0921 00       		.byte	0
  1948 0922 1C       		.uleb128 0x1c
- 1949 0923 62010000 		.4byte	.LASF54
+ 1949 0923 4D010000 		.4byte	.LASF54
  1950 0927 07       		.byte	0x7
  1951 0928 0B       		.byte	0xb
  1952 0929 38090000 		.4byte	0x938
@@ -2424,7 +2439,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1958 0938 23       		.uleb128 0x23
  1959 0939 81000000 		.4byte	0x81
  1960 093d 1C       		.uleb128 0x1c
- 1961 093e 80020000 		.4byte	.LASF55
+ 1961 093e 6B020000 		.4byte	.LASF55
  1962 0942 0E       		.byte	0xe
  1963 0943 0B       		.byte	0xb
  1964 0944 4E090000 		.4byte	0x94e
@@ -2432,7 +2447,7 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1966 0949 8D000000 		.4byte	0x8d
  1967 094d 00       		.byte	0
  1968 094e 24       		.uleb128 0x24
- 1969 094f 65020000 		.4byte	.LASF56
+ 1969 094f 50020000 		.4byte	.LASF56
  1970 0953 0F       		.byte	0xf
  1971 0954 2F       		.byte	0x2f
  1972 0955 1D       		.uleb128 0x1d
@@ -2443,6 +2458,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1977 0960 00       		.byte	0
  1978              		.section	.debug_abbrev,"",%progbits
  1979              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 42
+
+
  1980 0000 01       		.uleb128 0x1
  1981 0001 11       		.uleb128 0x11
  1982 0002 01       		.byte	0x1
@@ -2458,9 +2476,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  1992 000c 17       		.uleb128 0x17
  1993 000d 11       		.uleb128 0x11
  1994 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 42
-
-
  1995 000f 10       		.uleb128 0x10
  1996 0010 17       		.uleb128 0x17
  1997 0011 00       		.byte	0
@@ -2503,6 +2518,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2034 0036 05       		.uleb128 0x5
  2035 0037 16       		.uleb128 0x16
  2036 0038 00       		.byte	0
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 43
+
+
  2037 0039 03       		.uleb128 0x3
  2038 003a 0E       		.uleb128 0xe
  2039 003b 3A       		.uleb128 0x3a
@@ -2518,9 +2536,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2049 0045 00       		.byte	0
  2050 0046 49       		.uleb128 0x49
  2051 0047 13       		.uleb128 0x13
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 43
-
-
  2052 0048 00       		.byte	0
  2053 0049 00       		.byte	0
  2054 004a 07       		.uleb128 0x7
@@ -2563,6 +2578,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2091 006f 0B       		.uleb128 0xb
  2092 0070 49       		.uleb128 0x49
  2093 0071 13       		.uleb128 0x13
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 44
+
+
  2094 0072 38       		.uleb128 0x38
  2095 0073 0B       		.uleb128 0xb
  2096 0074 00       		.byte	0
@@ -2578,9 +2596,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2106 007e 0B       		.uleb128 0xb
  2107 007f 3B       		.uleb128 0x3b
  2108 0080 0B       		.uleb128 0xb
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 44
-
-
  2109 0081 11       		.uleb128 0x11
  2110 0082 01       		.uleb128 0x1
  2111 0083 12       		.uleb128 0x12
@@ -2623,6 +2638,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2148 00aa 08       		.uleb128 0x8
  2149 00ab 3A       		.uleb128 0x3a
  2150 00ac 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 45
+
+
  2151 00ad 3B       		.uleb128 0x3b
  2152 00ae 0B       		.uleb128 0xb
  2153 00af 49       		.uleb128 0x49
@@ -2638,9 +2656,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2163 00bb 01       		.uleb128 0x1
  2164 00bc 31       		.uleb128 0x31
  2165 00bd 13       		.uleb128 0x13
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 45
-
-
  2166 00be 00       		.byte	0
  2167 00bf 00       		.byte	0
  2168 00c0 0F       		.uleb128 0xf
@@ -2683,6 +2698,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2205 00ec 0B       		.uleb128 0xb
  2206 00ed 3B       		.uleb128 0x3b
  2207 00ee 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 46
+
+
  2208 00ef 11       		.uleb128 0x11
  2209 00f0 01       		.uleb128 0x1
  2210 00f1 12       		.uleb128 0x12
@@ -2698,9 +2716,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2220 00fc 13       		.uleb128 0x13
  2221 00fd 2E       		.uleb128 0x2e
  2222 00fe 01       		.byte	0x1
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 46
-
-
  2223 00ff 3F       		.uleb128 0x3f
  2224 0100 19       		.uleb128 0x19
  2225 0101 03       		.uleb128 0x3
@@ -2743,6 +2758,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2262 0127 01       		.byte	0x1
  2263 0128 11       		.uleb128 0x11
  2264 0129 01       		.uleb128 0x1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 47
+
+
  2265 012a 12       		.uleb128 0x12
  2266 012b 06       		.uleb128 0x6
  2267 012c 01       		.uleb128 0x1
@@ -2758,9 +2776,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2277 0136 0B       		.uleb128 0xb
  2278 0137 3B       		.uleb128 0x3b
  2279 0138 0B       		.uleb128 0xb
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 47
-
-
  2280 0139 49       		.uleb128 0x49
  2281 013a 13       		.uleb128 0x13
  2282 013b 02       		.uleb128 0x2
@@ -2803,6 +2818,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2319 0160 00       		.byte	0
  2320 0161 00       		.byte	0
  2321 0162 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 48
+
+
  2322 0163 34       		.uleb128 0x34
  2323 0164 00       		.byte	0
  2324 0165 03       		.uleb128 0x3
@@ -2818,9 +2836,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2334 016f 02       		.uleb128 0x2
  2335 0170 18       		.uleb128 0x18
  2336 0171 00       		.byte	0
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 48
-
-
  2337 0172 00       		.byte	0
  2338 0173 1B       		.uleb128 0x1b
  2339 0174 34       		.uleb128 0x34
@@ -2863,6 +2878,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2376 0199 00       		.byte	0
  2377 019a 49       		.uleb128 0x49
  2378 019b 13       		.uleb128 0x13
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 49
+
+
  2379 019c 00       		.byte	0
  2380 019d 00       		.byte	0
  2381 019e 1E       		.uleb128 0x1e
@@ -2878,9 +2896,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2391 01a8 0B       		.uleb128 0xb
  2392 01a9 27       		.uleb128 0x27
  2393 01aa 19       		.uleb128 0x19
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 49
-
-
  2394 01ab 3C       		.uleb128 0x3c
  2395 01ac 19       		.uleb128 0x19
  2396 01ad 00       		.byte	0
@@ -2923,6 +2938,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2433 01d2 00       		.byte	0
  2434 01d3 21       		.uleb128 0x21
  2435 01d4 18       		.uleb128 0x18
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 50
+
+
  2436 01d5 00       		.byte	0
  2437 01d6 00       		.byte	0
  2438 01d7 00       		.byte	0
@@ -2938,9 +2956,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2448 01e1 3B       		.uleb128 0x3b
  2449 01e2 0B       		.uleb128 0xb
  2450 01e3 49       		.uleb128 0x49
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 50
-
-
  2451 01e4 13       		.uleb128 0x13
  2452 01e5 3C       		.uleb128 0x3c
  2453 01e6 19       		.uleb128 0x19
@@ -2983,6 +2998,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2490 000b 07000000 		.4byte	.LVL1-1
  2491 000f 3C000000 		.4byte	.LFE66
  2492 0013 0100     		.2byte	0x1
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 51
+
+
  2493 0015 54       		.byte	0x54
  2494 0016 00000000 		.4byte	0
  2495 001a 00000000 		.4byte	0
@@ -2998,9 +3016,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2505 0034 56       		.byte	0x56
  2506 0035 50010000 		.4byte	.LVL94
  2507 0039 60010000 		.4byte	.LFE63
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 51
-
-
  2508 003d 0100     		.2byte	0x1
  2509 003f 56       		.byte	0x56
  2510 0040 00000000 		.4byte	0
@@ -3043,6 +3058,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2547 00a3 C8000000 		.4byte	.LVL73
  2548 00a7 0100     		.2byte	0x1
  2549 00a9 54       		.byte	0x54
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 52
+
+
  2550 00aa CA000000 		.4byte	.LVL74
  2551 00ae D6000000 		.4byte	.LVL76
  2552 00b2 0100     		.2byte	0x1
@@ -3058,9 +3076,6 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2562 00cb 1E010000 		.4byte	.LVL84
  2563 00cf 26010000 		.4byte	.LVL86
  2564 00d3 0100     		.2byte	0x1
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 52
-
-
  2565 00d5 54       		.byte	0x54
  2566 00d6 00000000 		.4byte	0
  2567 00da 00000000 		.4byte	0
@@ -3103,6 +3118,9 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2604 0008 00000000 		.4byte	.LFB64
  2605 000c 0C000000 		.4byte	.LFE64
  2606 0010 00000000 		.4byte	.LFB65
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 53
+
+
  2607 0014 0C000000 		.4byte	.LFE65
  2608 0018 00000000 		.4byte	.LFB66
  2609 001c 3C000000 		.4byte	.LFE66
@@ -3118,16 +3136,13 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2619 0044 24000000 		.4byte	.LFE72
  2620 0048 00000000 		.4byte	.LFB73
  2621 004c 0C000000 		.4byte	.LFE73
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 53
-
-
  2622 0050 00000000 		.4byte	.LFB63
  2623 0054 60010000 		.4byte	.LFE63
  2624 0058 00000000 		.4byte	0
  2625 005c 00000000 		.4byte	0
  2626              		.section	.debug_line,"",%progbits
  2627              	.Ldebug_line0:
- 2628 0000 8F030000 		.section	.debug_str,"MS",%progbits,1
+ 2628 0000 91030000 		.section	.debug_str,"MS",%progbits,1
  2628      0200CA01 
  2628      00000201 
  2628      FB0E0D00 
@@ -3163,281 +3178,280 @@ ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 1
  2642      72616D65 
  2642      00
  2643              	.LASF19:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 54
+
+
  2644 0053 73697A65 		.ascii	"sizetype\000"
  2644      74797065 
  2644      00
- 2645              	.LASF28:
- 2646 005c 50574D4F 		.ascii	"PWMOperate\000"
- 2646      70657261 
- 2646      746500
- 2647              	.LASF53:
- 2648 0067 43616D65 		.ascii	"Camera_Start\000"
- 2648      72615F53 
- 2648      74617274 
- 2648      00
- 2649              	.LASF6:
- 2650 0074 6C6F6E67 		.ascii	"long long int\000"
- 2650      206C6F6E 
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 54
-
-
- 2650      6720696E 
+ 2645              	.LASF53:
+ 2646 005c 43616D65 		.ascii	"Camera_Start\000"
+ 2646      72615F53 
+ 2646      74617274 
+ 2646      00
+ 2647              	.LASF28:
+ 2648 0069 50574D4F 		.ascii	"PWMOperate\000"
+ 2648      70657261 
+ 2648      746500
+ 2649              	.LASF52:
+ 2650 0074 4C43445F 		.ascii	"LCD_DMA_Start\000"
+ 2650      444D415F 
+ 2650      53746172 
  2650      7400
- 2651              	.LASF52:
- 2652 0082 4C43445F 		.ascii	"LCD_DMA_Start\000"
- 2652      444D415F 
- 2652      53746172 
- 2652      7400
- 2653              	.LASF24:
- 2654 0090 4C454446 		.ascii	"LEDFlash\000"
- 2654      6C617368 
- 2654      00
- 2655              	.LASF44:
- 2656 0099 4C43445F 		.ascii	"LCD_ReadPixel\000"
- 2656      52656164 
- 2656      50697865 
- 2656      6C00
- 2657              	.LASF48:
- 2658 00a7 4C43445F 		.ascii	"LCD_WritePixel\000"
- 2658      57726974 
- 2658      65506978 
- 2658      656C00
- 2659              	.LASF49:
- 2660 00b6 6973725F 		.ascii	"isr_1_ClearPending\000"
- 2660      315F436C 
- 2660      65617250 
- 2660      656E6469 
- 2660      6E6700
- 2661              	.LASF12:
- 2662 00c9 75696E74 		.ascii	"uint16\000"
- 2662      313600
- 2663              	.LASF46:
- 2664 00d0 4C43445F 		.ascii	"LCD_StopReadWrite\000"
- 2664      53746F70 
- 2664      52656164 
- 2664      57726974 
- 2664      6500
- 2665              	.LASF11:
- 2666 00e2 75696E74 		.ascii	"uint8\000"
- 2666      3800
- 2667              	.LASF14:
- 2668 00e8 666C6F61 		.ascii	"float\000"
- 2668      7400
- 2669              	.LASF59:
- 2670 00ee 433A5C55 		.ascii	"C:\\Users\\mzenere\\Personal\\PSOC\\Current\\ECE309"
- 2670      73657273 
- 2670      5C6D7A65 
- 2670      6E657265 
- 2670      5C506572 
- 2671 011b 312E6379 		.ascii	"1.cywrk.Archive04\\ECE3091TestSoftware\\Display.cyd"
- 2671      77726B2E 
- 2671      41726368 
- 2671      69766530 
- 2671      345C4543 
- 2672 014c 736E00   		.ascii	"sn\000"
- 2673              	.LASF47:
- 2674 014f 4C43445F 		.ascii	"LCD_SetWindowWrite\000"
- 2674      53657457 
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 55
+ 2651              	.LASF24:
+ 2652 0082 4C454446 		.ascii	"LEDFlash\000"
+ 2652      6C617368 
+ 2652      00
+ 2653              	.LASF44:
+ 2654 008b 4C43445F 		.ascii	"LCD_ReadPixel\000"
+ 2654      52656164 
+ 2654      50697865 
+ 2654      6C00
+ 2655              	.LASF48:
+ 2656 0099 4C43445F 		.ascii	"LCD_WritePixel\000"
+ 2656      57726974 
+ 2656      65506978 
+ 2656      656C00
+ 2657              	.LASF49:
+ 2658 00a8 6973725F 		.ascii	"isr_1_ClearPending\000"
+ 2658      315F436C 
+ 2658      65617250 
+ 2658      656E6469 
+ 2658      6E6700
+ 2659              	.LASF12:
+ 2660 00bb 75696E74 		.ascii	"uint16\000"
+ 2660      313600
+ 2661              	.LASF46:
+ 2662 00c2 4C43445F 		.ascii	"LCD_StopReadWrite\000"
+ 2662      53746F70 
+ 2662      52656164 
+ 2662      57726974 
+ 2662      6500
+ 2663              	.LASF11:
+ 2664 00d4 75696E74 		.ascii	"uint8\000"
+ 2664      3800
+ 2665              	.LASF59:
+ 2666 00da 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\ECE"
+ 2666      73657273 
+ 2666      5C54696D 
+ 2666      5C446F63 
+ 2666      756D656E 
+ 2667 0107 33303931 		.ascii	"3091TestSoftware\\Display.cydsn\000"
+ 2667      54657374 
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 55
 
 
- 2674      696E646F 
- 2674      77577269 
- 2674      746500
- 2675              	.LASF54:
- 2676 0162 43616D65 		.ascii	"Camera_WriteReg\000"
- 2676      72615F57 
- 2676      72697465 
- 2676      52656700 
- 2677              	.LASF40:
- 2678 0172 6973725F 		.ascii	"isr_1_StartEx\000"
- 2678      315F5374 
- 2678      61727445 
- 2678      7800
- 2679              	.LASF36:
- 2680 0180 44617461 		.ascii	"Data_Out_Write\000"
- 2680      5F4F7574 
- 2680      5F577269 
- 2680      746500
- 2681              	.LASF41:
- 2682 018f 50574D5F 		.ascii	"PWM_1_WriteCompare1\000"
- 2682      315F5772 
- 2682      69746543 
- 2682      6F6D7061 
- 2682      72653100 
- 2683              	.LASF42:
- 2684 01a3 50574D5F 		.ascii	"PWM_1_WriteCompare2\000"
- 2684      315F5772 
- 2684      69746543 
- 2684      6F6D7061 
- 2684      72653200 
- 2685              	.LASF1:
- 2686 01b7 756E7369 		.ascii	"unsigned char\000"
- 2686      676E6564 
- 2686      20636861 
- 2686      7200
- 2687              	.LASF18:
- 2688 01c5 63796973 		.ascii	"cyisraddress\000"
- 2688      72616464 
- 2688      72657373 
- 2688      00
- 2689              	.LASF30:
- 2690 01d2 42656570 		.ascii	"Beep\000"
- 2690      00
- 2691              	.LASF43:
- 2692 01d7 4C43445F 		.ascii	"LCD_SetWindowRead\000"
- 2692      53657457 
- 2692      696E646F 
- 2692      77526561 
- 2692      6400
- 2693              	.LASF21:
- 2694 01e9 49535231 		.ascii	"ISR1Handler\000"
- 2694      48616E64 
- 2694      6C657200 
- 2695              	.LASF0:
- 2696 01f5 7369676E 		.ascii	"signed char\000"
- 2696      65642063 
- 2696      68617200 
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 56
+ 2667      536F6674 
+ 2667      77617265 
+ 2667      5C446973 
+ 2668              	.LASF14:
+ 2669 0126 666C6F61 		.ascii	"float\000"
+ 2669      7400
+ 2670              	.LASF6:
+ 2671 012c 6C6F6E67 		.ascii	"long long int\000"
+ 2671      206C6F6E 
+ 2671      6720696E 
+ 2671      7400
+ 2672              	.LASF47:
+ 2673 013a 4C43445F 		.ascii	"LCD_SetWindowWrite\000"
+ 2673      53657457 
+ 2673      696E646F 
+ 2673      77577269 
+ 2673      746500
+ 2674              	.LASF54:
+ 2675 014d 43616D65 		.ascii	"Camera_WriteReg\000"
+ 2675      72615F57 
+ 2675      72697465 
+ 2675      52656700 
+ 2676              	.LASF40:
+ 2677 015d 6973725F 		.ascii	"isr_1_StartEx\000"
+ 2677      315F5374 
+ 2677      61727445 
+ 2677      7800
+ 2678              	.LASF36:
+ 2679 016b 44617461 		.ascii	"Data_Out_Write\000"
+ 2679      5F4F7574 
+ 2679      5F577269 
+ 2679      746500
+ 2680              	.LASF41:
+ 2681 017a 50574D5F 		.ascii	"PWM_1_WriteCompare1\000"
+ 2681      315F5772 
+ 2681      69746543 
+ 2681      6F6D7061 
+ 2681      72653100 
+ 2682              	.LASF42:
+ 2683 018e 50574D5F 		.ascii	"PWM_1_WriteCompare2\000"
+ 2683      315F5772 
+ 2683      69746543 
+ 2683      6F6D7061 
+ 2683      72653200 
+ 2684              	.LASF1:
+ 2685 01a2 756E7369 		.ascii	"unsigned char\000"
+ 2685      676E6564 
+ 2685      20636861 
+ 2685      7200
+ 2686              	.LASF18:
+ 2687 01b0 63796973 		.ascii	"cyisraddress\000"
+ 2687      72616464 
+ 2687      72657373 
+ 2687      00
+ 2688              	.LASF30:
+ 2689 01bd 42656570 		.ascii	"Beep\000"
+ 2689      00
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 56
 
 
- 2697              	.LASF7:
- 2698 0201 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2698      206C6F6E 
- 2698      6720756E 
- 2698      7369676E 
- 2698      65642069 
- 2699              	.LASF8:
- 2700 0218 756E7369 		.ascii	"unsigned int\000"
- 2700      676E6564 
- 2700      20696E74 
- 2700      00
- 2701              	.LASF33:
- 2702 0225 43616D65 		.ascii	"Camera_linebuffer\000"
- 2702      72615F6C 
- 2702      696E6562 
- 2702      75666665 
- 2702      7200
- 2703              	.LASF3:
- 2704 0237 73686F72 		.ascii	"short unsigned int\000"
- 2704      7420756E 
- 2704      7369676E 
- 2704      65642069 
- 2704      6E7400
- 2705              	.LASF16:
- 2706 024a 63686172 		.ascii	"char\000"
- 2706      00
- 2707              	.LASF4:
- 2708 024f 6C6F6E67 		.ascii	"long int\000"
- 2708      20696E74 
- 2708      00
- 2709              	.LASF31:
- 2710 0258 6D61696E 		.ascii	"main\000"
- 2710      00
- 2711              	.LASF10:
- 2712 025d 696E7433 		.ascii	"int32_t\000"
- 2712      325F7400 
- 2713              	.LASF56:
- 2714 0265 4C43445F 		.ascii	"LCD_CLK_SetDividerRegister\000"
- 2714      434C4B5F 
- 2714      53657444 
- 2714      69766964 
- 2714      65725265 
- 2715              	.LASF55:
- 2716 0280 43616D65 		.ascii	"Camera_SetBlankTime\000"
- 2716      72615F53 
- 2716      6574426C 
- 2716      616E6B54 
- 2716      696D6500 
- 2717              	.LASF27:
- 2718 0294 49535253 		.ascii	"ISRSetUp\000"
- 2718      65745570 
- 2718      00
- 2719              	.LASF60:
- 2720 029d 5357315F 		.ascii	"SW1_Read\000"
- 2720      52656164 
- 2720      00
- 2721              	.LASF35:
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 57
+ 2690              	.LASF43:
+ 2691 01c2 4C43445F 		.ascii	"LCD_SetWindowRead\000"
+ 2691      53657457 
+ 2691      696E646F 
+ 2691      77526561 
+ 2691      6400
+ 2692              	.LASF21:
+ 2693 01d4 49535231 		.ascii	"ISR1Handler\000"
+ 2693      48616E64 
+ 2693      6C657200 
+ 2694              	.LASF0:
+ 2695 01e0 7369676E 		.ascii	"signed char\000"
+ 2695      65642063 
+ 2695      68617200 
+ 2696              	.LASF7:
+ 2697 01ec 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2697      206C6F6E 
+ 2697      6720756E 
+ 2697      7369676E 
+ 2697      65642069 
+ 2698              	.LASF8:
+ 2699 0203 756E7369 		.ascii	"unsigned int\000"
+ 2699      676E6564 
+ 2699      20696E74 
+ 2699      00
+ 2700              	.LASF33:
+ 2701 0210 43616D65 		.ascii	"Camera_linebuffer\000"
+ 2701      72615F6C 
+ 2701      696E6562 
+ 2701      75666665 
+ 2701      7200
+ 2702              	.LASF3:
+ 2703 0222 73686F72 		.ascii	"short unsigned int\000"
+ 2703      7420756E 
+ 2703      7369676E 
+ 2703      65642069 
+ 2703      6E7400
+ 2704              	.LASF16:
+ 2705 0235 63686172 		.ascii	"char\000"
+ 2705      00
+ 2706              	.LASF4:
+ 2707 023a 6C6F6E67 		.ascii	"long int\000"
+ 2707      20696E74 
+ 2707      00
+ 2708              	.LASF31:
+ 2709 0243 6D61696E 		.ascii	"main\000"
+ 2709      00
+ 2710              	.LASF10:
+ 2711 0248 696E7433 		.ascii	"int32_t\000"
+ 2711      325F7400 
+ 2712              	.LASF56:
+ 2713 0250 4C43445F 		.ascii	"LCD_CLK_SetDividerRegister\000"
+ 2713      434C4B5F 
+ 2713      53657444 
+ 2713      69766964 
+ 2713      65725265 
+ 2714              	.LASF55:
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 57
 
 
- 2722 02a6 4F6E4F66 		.ascii	"OnOff\000"
- 2722      6600
- 2723              	.LASF17:
- 2724 02ac 72656738 		.ascii	"reg8\000"
- 2724      00
- 2725              	.LASF5:
- 2726 02b1 6C6F6E67 		.ascii	"long unsigned int\000"
- 2726      20756E73 
- 2726      69676E65 
- 2726      6420696E 
- 2726      7400
- 2727              	.LASF22:
- 2728 02c3 42694469 		.ascii	"BiDirPortOutPut\000"
- 2728      72506F72 
- 2728      744F7574 
- 2728      50757400 
- 2729              	.LASF13:
- 2730 02d3 75696E74 		.ascii	"uint32\000"
- 2730      333200
- 2731              	.LASF39:
- 2732 02da 5253545F 		.ascii	"RST_Write\000"
- 2732      57726974 
- 2732      6500
- 2733              	.LASF25:
- 2734 02e4 496E6974 		.ascii	"InitialisationSequnce\000"
- 2734      69616C69 
- 2734      73617469 
- 2734      6F6E5365 
- 2734      71756E63 
- 2735              	.LASF58:
- 2736 02fa 2E5C6D61 		.ascii	".\\main.c\000"
- 2736      696E2E63 
- 2736      00
- 2737              	.LASF9:
- 2738 0303 5F5F696E 		.ascii	"__int32_t\000"
- 2738      7433325F 
- 2738      7400
- 2739              	.LASF57:
- 2740 030d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 2740      4320342E 
- 2740      392E3320 
- 2740      32303135 
- 2740      30333033 
- 2741 0340 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 2741      20726576 
- 2741      6973696F 
- 2741      6E203232 
- 2741      31323230 
- 2742 0373 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2742      66756E63 
- 2742      74696F6E 
- 2742      2D736563 
- 2742      74696F6E 
- 2743              	.LASF37:
- 2744 039b 43535F57 		.ascii	"CS_Write\000"
- 2744      72697465 
- 2744      00
-ARM GAS  C:\Users\mzenere\AppData\Local\Temp\ccfTTx8P.s 			page 58
+ 2715 026b 43616D65 		.ascii	"Camera_SetBlankTime\000"
+ 2715      72615F53 
+ 2715      6574426C 
+ 2715      616E6B54 
+ 2715      696D6500 
+ 2716              	.LASF27:
+ 2717 027f 49535253 		.ascii	"ISRSetUp\000"
+ 2717      65745570 
+ 2717      00
+ 2718              	.LASF60:
+ 2719 0288 5357315F 		.ascii	"SW1_Read\000"
+ 2719      52656164 
+ 2719      00
+ 2720              	.LASF35:
+ 2721 0291 4F6E4F66 		.ascii	"OnOff\000"
+ 2721      6600
+ 2722              	.LASF17:
+ 2723 0297 72656738 		.ascii	"reg8\000"
+ 2723      00
+ 2724              	.LASF5:
+ 2725 029c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2725      20756E73 
+ 2725      69676E65 
+ 2725      6420696E 
+ 2725      7400
+ 2726              	.LASF22:
+ 2727 02ae 42694469 		.ascii	"BiDirPortOutPut\000"
+ 2727      72506F72 
+ 2727      744F7574 
+ 2727      50757400 
+ 2728              	.LASF13:
+ 2729 02be 75696E74 		.ascii	"uint32\000"
+ 2729      333200
+ 2730              	.LASF39:
+ 2731 02c5 5253545F 		.ascii	"RST_Write\000"
+ 2731      57726974 
+ 2731      6500
+ 2732              	.LASF25:
+ 2733 02cf 496E6974 		.ascii	"InitialisationSequnce\000"
+ 2733      69616C69 
+ 2733      73617469 
+ 2733      6F6E5365 
+ 2733      71756E63 
+ 2734              	.LASF58:
+ 2735 02e5 2E5C6D61 		.ascii	".\\main.c\000"
+ 2735      696E2E63 
+ 2735      00
+ 2736              	.LASF9:
+ 2737 02ee 5F5F696E 		.ascii	"__int32_t\000"
+ 2737      7433325F 
+ 2737      7400
+ 2738              	.LASF57:
+ 2739 02f8 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2739      4320342E 
+ 2739      392E3320 
+ 2739      32303135 
+ 2739      30333033 
+ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccv8Sw2I.s 			page 58
 
 
- 2745              	.LASF51:
- 2746 03a4 4C43445F 		.ascii	"LCD_Start\000"
- 2746      53746172 
- 2746      7400
- 2747              	.LASF34:
- 2748 03ae 41443044 		.ascii	"AD0Data\000"
- 2748      61746100 
- 2749              	.LASF26:
- 2750 03b6 50534F43 		.ascii	"PSOCReset\000"
- 2750      52657365 
- 2750      7400
- 2751              	.LASF32:
- 2752 03c0 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 2752      52784275 
- 2752      66666572 
- 2752      00
- 2753              	.LASF38:
- 2754 03cd 43794465 		.ascii	"CyDelay\000"
- 2754      6C617900 
- 2755              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 2740 032b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2740      20726576 
+ 2740      6973696F 
+ 2740      6E203232 
+ 2740      31323230 
+ 2741 035e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2741      66756E63 
+ 2741      74696F6E 
+ 2741      2D736563 
+ 2741      74696F6E 
+ 2742              	.LASF37:
+ 2743 0386 43535F57 		.ascii	"CS_Write\000"
+ 2743      72697465 
+ 2743      00
+ 2744              	.LASF51:
+ 2745 038f 4C43445F 		.ascii	"LCD_Start\000"
+ 2745      53746172 
+ 2745      7400
+ 2746              	.LASF34:
+ 2747 0399 41443044 		.ascii	"AD0Data\000"
+ 2747      61746100 
+ 2748              	.LASF26:
+ 2749 03a1 50534F43 		.ascii	"PSOCReset\000"
+ 2749      52657365 
+ 2749      7400
+ 2750              	.LASF32:
+ 2751 03ab 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2751      52784275 
+ 2751      66666572 
+ 2751      00
+ 2752              	.LASF38:
+ 2753 03b8 43794465 		.ascii	"CyDelay\000"
+ 2753      6C617900 
+ 2754              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

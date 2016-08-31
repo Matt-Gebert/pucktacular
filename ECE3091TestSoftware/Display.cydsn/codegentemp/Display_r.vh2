@@ -1,6 +1,6 @@
 -- Project:   Display
--- Generated: 08/23/2016 12:09:05
--- PSoC Creator  3.3 SP2
+-- Generated: 08/31/2016 16:21:00
+-- PSoC Creator  3.3 CP3
 
 ENTITY Display IS
     PORT(

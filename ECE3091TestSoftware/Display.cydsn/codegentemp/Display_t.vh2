@@ -1,6 +1,6 @@
--- Project:   C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\Display.cyprj
--- Generated: 08/23/2016 12:09:07
--- PSoC Creator  3.3 SP2
+-- Project:   C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\Display.cyprj
+-- Generated: 08/31/2016 16:21:09
+-- PSoC Creator  3.3 CP3
 
 ENTITY Display IS
     PORT(

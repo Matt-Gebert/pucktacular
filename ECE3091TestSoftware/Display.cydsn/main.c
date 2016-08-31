@@ -57,6 +57,19 @@ int main()
     uint8 n=0;
     for(;;n++)
     {
+        /*CS_Write(2);
+        OE_Control=3;                               //LCD Control.
+        Data_Out_Control=0xA0;
+        CS_Write(8);
+        OE_Control=0;
+        CyDelay(1000);
+        CS_Write(2);
+        OE_Control=3;                               //LCD Control.
+        Data_Out_Control=0x00;
+        CS_Write(8);
+        OE_Control=0;
+        CyDelay(1000);
+        */
         CaptureFrame();                             //read frame into LCD
         CS_Write(2);                                //select output latch
         OE_Control=3;                               //enable output driver and switch to user output
@@ -72,6 +85,7 @@ int main()
         LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
         for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
         LCD_StopReadWrite(); 
+        
         PWMOperate();
         Data_Out_Write(0x09);       //HeadLights on
         CS_Write(0x02);  
