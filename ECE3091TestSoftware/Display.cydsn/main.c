@@ -1,5 +1,6 @@
 #include <project.h>
 #include "movement_functions.h"
+#include "claw_functions.h"
 #include "camera_display.h"
 //*************************************************
 //
@@ -55,10 +56,20 @@ int main()
     }
     InitialisationSequnce();
        
+    //PWM_2_WriteCounter(5);
+    PWM_2_Start(); 
+   
     uint8 n=0;
     for(;;n++)
     {
-        movement_test();
+        MovementTest();
+        ClawClose();
+        CyDelay(500);
+        ClawOpen();
+        CyDelay(500);
+        //PWM_2_Sleep();
+        PWMOperate();
+        CyDelay(2000);
     }
 }
 //*************************************************

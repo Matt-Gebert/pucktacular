@@ -25,20 +25,26 @@
         0x10 -> Right wheel forward.
         0x20 -> Right wheel backward.
         0x40 -> Left wheel forward.
-        0x80 -> Left wheel backward.      
+        0x80 -> Left wheel backward.
+        0x90 -> Pivot Left
+        0x60 -> Pivot Right
 */
 
-void movement_test() {
+void MovementTest() {
     /*Purposes of testing movement functions*/
     
     CS_Write(2);                    //Bus address set to LatchDevices {Hbridge, LEDG, Buzzer etc.}
     Data_Out_Control=0x40;          //Writes 1010 to the four HBridge Pins, so both motors spin.
     CS_Write(8);                    //Bus address deactivated.
-    CyDelay(2000);                  //Tick Toc... for a second.
+    CyDelay(200);                  //Tick Toc... for a second.
     CS_Write(2);                    //Repeat.
     Data_Out_Control=0x80;          //Reverse motors.
     CS_Write(8);
-    CyDelay(2000);
+    CyDelay(200);
+    CS_Write(2);                    //Repeat.
+    Data_Out_Control=0x00;          //Stop Motors
+    CS_Write(8);
+    
 }
 
 /* [] END OF FILE */

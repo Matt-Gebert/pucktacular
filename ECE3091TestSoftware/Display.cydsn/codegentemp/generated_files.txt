@@ -77,6 +77,14 @@
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\SW1_aliases.h" value="NONE;SW1" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\SW1.c" value="ARM_C_FILE;SW1" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\SW1.h" value="NONE;SW1" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\PWM_2.c" value="ARM_C_FILE;PWM_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\PWM_2.h" value="NONE;PWM_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\PWM_2_PM.c" value="ARM_C_FILE;PWM_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Clock_2.c" value="ARM_C_FILE;Clock_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Clock_2.h" value="NONE;Clock_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Pin_3_aliases.h" value="NONE;Pin_3" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Pin_3.c" value="ARM_C_FILE;Pin_3" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Pin_3.h" value="NONE;Pin_3" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Camera_DMA_dma.c" value="ARM_C_FILE;Camera_DMA" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Camera_DMA_dma.h" value="NONE;Camera_DMA" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\ECE3091TestSoftware\Display.cydsn\codegentemp\Camera_VSYNC_aliases.h" value="NONE;Camera_VSYNC" />
