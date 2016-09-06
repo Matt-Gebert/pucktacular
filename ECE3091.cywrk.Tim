@@ -344,6 +344,37 @@
 <VisibleNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
+<v>ECE3091\Display\CortexM3</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_CLK.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\camera_display.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_DMA_dma.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_end_line.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_BOOT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_INT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_MASTER.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_SLAVE.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_settings.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOC.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOD.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_VSYNC.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CS.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyDmac.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

@@ -1,5 +1,7 @@
 #include <project.h>
 #include "camera_display.h"
+#include "claw_functions.h"
+#include "movement_functions_unofficial.h"
 //*************************************************
 //
 //Function prototypes
@@ -53,44 +55,16 @@ int main()
     {
     }
     InitialisationSequnce();
+    
+    //PWM_Claw_Start();
        
     uint8 n=0;
     for(;;n++)
     {
-        /*CS_Write(2);
-        OE_Control=3;                               //LCD Control.
-        Data_Out_Control=0xA0;
-        CS_Write(8);
-        OE_Control=0;
-        CyDelay(1000);
-        CS_Write(2);
-        OE_Control=3;                               //LCD Control.
-        Data_Out_Control=0x00;
-        CS_Write(8);
-        OE_Control=0;
-        CyDelay(1000);
-        */
-        CaptureFrame();                             //read frame into LCD
-        CS_Write(2);                                //select output latch
-        OE_Control=3;                               //enable output driver and switch to user output
-        Data_Out_Control=n&1?4:0;                   //write to user output data bus
-        CS_Write(8);                                //deselect output latch to clock in data
-        OE_Control=0;                               //disable output driver
-        pixel box[100][100];                        //read top 100x100 pixels into array
-        LCD_SetWindowRead(0,0,99,99);
-        uint8 i,j;
-        for(i=0;i<100;i++) for(j=0;j<100;j++)
-            box[i][j]=LCD_ReadPixel();
-        LCD_StopReadWrite();
-        LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
-        for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
-        LCD_StopReadWrite(); 
-        
         PWMOperate();
-        Data_Out_Write(0x09);       //HeadLights on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(300);
+        CyDelay(1000);
+        //LEDFlash();
+        //MovementTest();
     }
 }
 //*************************************************
@@ -140,11 +114,6 @@ void InitialisationSequnce()
 {
     Beep(2);                         //Beep 4 times
     CyDelay(400);
-    Beep(2);
-    CyDelay(400);
-    Beep(2);
-    CyDelay(400);
-    Beep(7);
     for(a=0;a<3;a++)                //Flash LED 5 times
     {
         LEDFlash();
@@ -230,13 +199,11 @@ void PWMOperate()
 {
     if(SW1_Read())
     {
-        PWM_1_WriteCompare1(15); 
-        PWM_1_WriteCompare2(15);
+        OpenClaw();
     }
     else
     {
-        PWM_1_WriteCompare1(35); 
-        PWM_1_WriteCompare2(35);
+        CloseClaw();
     }
 }
 //*************************************************
