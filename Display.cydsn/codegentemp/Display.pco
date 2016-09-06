@@ -1,5 +1,5 @@
 # Display
-# 2016-08-31 06:21:00Z
+# 2016-09-06 00:16:51Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -32,39 +32,48 @@ set_io "SW3(0)" iocell 0 2
 set_io "Pin_1(0)" iocell 12 5
 set_io "Pin_2(0)" iocell 12 4
 set_io "SW1(0)" iocell 0 4
-set_location "\Camera:FIFO:p_in_7\" 0 4 0 1
-set_location "Net_191" 1 4 1 3
-set_location "Net_361_7" 0 2 0 2
-set_location "Net_361_6" 0 3 0 3
-set_location "Net_361_5" 1 3 1 3
-set_location "Net_361_4" 0 3 1 1
-set_location "Net_361_3" 1 4 1 2
-set_location "Net_361_2" 0 2 1 3
-set_location "Net_361_1" 0 4 0 3
-set_location "Net_361_0" 1 2 0 1
-set_location "\Camera:SIOD(0)_SYNC\" 1 4 5 0
-set_location "\PWM_1:PWMUDB:status_2\" 0 3 1 2
-set_location "\OE:Sync:ctrl_reg\" 0 4 6
-set_location "\LCD:FIFO_Status\" 1 2 3
-set_location "\LCD:dp\" 1 2 2
+set_io "Pin_3(0)" iocell 12 0
+set_location "\Camera:FIFO:p_in_7\" 0 3 1 1
+set_location "Net_191" 0 1 0 0
+set_location "Net_361_7" 0 1 1 0
+set_location "Net_361_6" 0 3 1 2
+set_location "Net_361_5" 0 2 0 2
+set_location "Net_361_4" 0 3 1 3
+set_location "Net_361_3" 0 2 0 3
+set_location "Net_361_2" 0 3 0 2
+set_location "Net_361_1" 0 2 1 3
+set_location "Net_361_0" 0 3 0 3
+set_location "\Camera:SIOC(0)_SYNC\" 1 3 5 0
+set_location "\PWM_1:PWMUDB:status_2\" 1 5 1 0
+set_location "\Camera:SIOD(0)_SYNC\" 1 3 5 1
+set_location "\PWM_Claw:PWMUDB:status_2\" 1 1 0 0
+set_location "\OE:Sync:ctrl_reg\" 0 1 6
+set_location "\LCD:FIFO_Status\" 0 2 3
+set_location "\LCD:dp\" 0 2 2
 set_location "\Camera:DMA\" drqcell -1 -1 0
-set_location "\Camera:FIFO:dp\" 0 4 2
+set_location "\Camera:FIFO:dp\" 0 3 2
 set_location "\Camera:I2C:I2C_IRQ\" interrupt -1 -1 15
 set_location "\Camera:I2C:I2C_FF\" i2ccell -1 -1 0
 set_location "\Camera:end_line\" interrupt -1 -1 0
 set_location "LCD_DMA" drqcell -1 -1 1
-set_location "\Data_Out:Sync:ctrl_reg\" 0 2 6
+set_location "\Data_Out:Sync:ctrl_reg\" 0 3 6
 set_location "isr_1" interrupt -1 -1 1
-set_location "\PWM_1:PWMUDB:genblk1:ctrlreg\" 0 3 6
-set_location "\PWM_1:PWMUDB:genblk8:stsreg\" 0 3 4
-set_location "\PWM_1:PWMUDB:sP8:pwmdp:u0\" 0 3 2
-set_location "Net_392" 1 2 1 3
-set_location "\Camera:FIFO:parity\" 1 3 1 2
-set_location "\PWM_1:PWMUDB:runmode_enable\" 0 3 1 3
-set_location "\PWM_1:PWMUDB:prevCompare1\" 0 4 0 0
-set_location "\PWM_1:PWMUDB:prevCompare2\" 0 4 0 2
-set_location "\PWM_1:PWMUDB:status_0\" 0 3 0 2
-set_location "\PWM_1:PWMUDB:status_1\" 0 3 1 0
-set_location "Net_584" 1 4 0 0
-set_location "Net_598" 0 4 1 2
-set_location "\Camera:SIOC(0)_SYNC\" 1 4 5 1
+set_location "\PWM_1:PWMUDB:genblk1:ctrlreg\" 1 5 6
+set_location "\PWM_1:PWMUDB:genblk8:stsreg\" 1 5 4
+set_location "\PWM_1:PWMUDB:sP8:pwmdp:u0\" 1 5 2
+set_location "\PWM_Claw:PWMUDB:genblk1:ctrlreg\" 1 1 6
+set_location "\PWM_Claw:PWMUDB:genblk8:stsreg\" 1 1 4
+set_location "\PWM_Claw:PWMUDB:sP8:pwmdp:u0\" 1 1 2
+set_location "Net_392" 0 2 1 2
+set_location "\Camera:FIFO:parity\" 0 1 1 2
+set_location "\PWM_1:PWMUDB:runmode_enable\" 1 5 0 3
+set_location "\PWM_1:PWMUDB:prevCompare1\" 1 5 0 2
+set_location "\PWM_1:PWMUDB:prevCompare2\" 1 5 1 2
+set_location "\PWM_1:PWMUDB:status_0\" 1 5 1 3
+set_location "\PWM_1:PWMUDB:status_1\" 1 5 0 0
+set_location "Net_584" 0 5 0 3
+set_location "Net_598" 0 5 1 1
+set_location "\PWM_Claw:PWMUDB:runmode_enable\" 1 1 1 3
+set_location "\PWM_Claw:PWMUDB:prevCompare1\" 1 2 0 0
+set_location "\PWM_Claw:PWMUDB:status_0\" 1 2 1 2
+set_location "Net_979" 1 1 1 0
