@@ -184,10 +184,6 @@ C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/CortexM3/ARM_GCC_493/Deb
 
 C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Camera_end_line.c : 
 
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/CortexM3/ARM_GCC_493/Debug/Camera_settings.o : C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Camera_settings.c 
-
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Camera_settings.c : 
-
 C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/CortexM3/ARM_GCC_493/Debug/Clock_1.o : C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Clock_1.c C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Clock_1.h C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cytypes.h 
 
 C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/Clock_1.c : 

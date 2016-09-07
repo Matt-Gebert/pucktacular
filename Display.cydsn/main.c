@@ -55,14 +55,23 @@ int main()
     {
     }
     InitialisationSequnce();
-    
-    //PWM_Claw_Start();
+    PWM_Claw_Enable();
+    PWM_Claw_Start();
        
     uint8 n=0;
+    uint16 zerodegrees = 1749;
+    uint16 halfway = 1849;
+    uint16 max = 1930;
     for(;;n++)
     {
-        PWMOperate();
+        PWM_Claw_WriteCompare(1999-zerodegrees);
         CyDelay(1000);
+        PWM_Claw_WriteCompare(1999-halfway);
+        CyDelay(1000);
+        PWM_Claw_WriteCompare(1999-max);
+        CyDelay(1000);
+        //PWMOperate();
+        //CyDelay(500);
         //LEDFlash();
         //MovementTest();
     }
@@ -199,11 +208,16 @@ void PWMOperate()
 {
     if(SW1_Read())
     {
-        OpenClaw();
+        //OpenClaw();
+       PWM_1_WriteCompare1(15);
+       PWM_1_WriteCompare2(15);
+
     }
     else
     {
-        CloseClaw();
+        //CloseClaw();
+        PWM_1_WriteCompare1(35);
+        PWM_1_WriteCompare2(35);
     }
 }
 //*************************************************

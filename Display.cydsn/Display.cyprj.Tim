@@ -524,10 +524,6 @@
 <dep name=".\Generated_Source\PSoC5\cytypes.h" />
 </file>
 <file name=".\Generated_Source\PSoC5\Camera_end_line.c" />
-<file name=".\CortexM3\ARM_GCC_493\Debug\Camera_settings.o">
-<dep name=".\Generated_Source\PSoC5\Camera_settings.c" />
-</file>
-<file name=".\Generated_Source\PSoC5\Camera_settings.c" />
 <file name=".\CortexM3\ARM_GCC_493\Debug\Clock_1.o">
 <dep name=".\Generated_Source\PSoC5\Clock_1.c" />
 <dep name=".\Generated_Source\PSoC5\Clock_1.h" />
@@ -978,6 +974,10 @@
 <file name=".\Generated_Source\PSoC5\cydevicegnu.inc" />
 <file name=".\Generated_Source\PSoC5\cydevicegnu_trm.inc" />
 <file name=".\Generated_Source\PSoC5\cyfittergnu.inc" />
+<file name=".\CortexM3\ARM_GCC_493\Debug\Camera_settings.o">
+<dep name=".\Generated_Source\PSoC5\Camera_settings.c" />
+</file>
+<file name=".\Generated_Source\PSoC5\Camera_settings.c" />
 </CyGuid_1173175f-1b9b-4ad4-a065-754a48a27021>
 </dependency_info>
 </CyGuid_f44455c5-3770-4452-b988-0a7a7ff46256>
@@ -2294,14 +2294,14 @@
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\rtlpkg.vif</v>
 <v>C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\stdlogic\cy_psoc3.vif</v>
 </warp_dep>
-<deps_time v="131175946283132792" />
+<deps_time v="131176935383874408" />
 <top_block v="TopDesign" />
 <last_generation v="6" />
 </CyGuid_925cc1e1-309e-4e08-b0a1-09a83c35b157>
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="131175970150828859" />
+<deps_time v="131176943319151874" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 </userData>

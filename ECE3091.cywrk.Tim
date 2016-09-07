@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Header Files">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Source Files\main.c">
 <ExpandedNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
@@ -438,6 +438,7 @@
 <name v=".\Display.cydsn\Display.cydwr" />
 <name v=".\Display.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Display.cydsn\movement_functions_unofficial.h" />
+<name v=".\Display.cydsn\camera_display.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
