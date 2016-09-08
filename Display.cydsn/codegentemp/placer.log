@@ -6,7 +6,7 @@
 
 #Build Date:         Apr 25 2016 12:55:34
 
-#File Generated:     Aug 23 2016 12:09:04
+#File Generated:     Sep 8 2016 11:14:30
 
 #Purpose:            
 
@@ -44,18 +44,18 @@ Phase 2
 Phase 3
 
 Design Statistics after Packing
-    Number of Combinational MCs 	:	11
-    Number of Sequential MCs    	:	9
-    Number of DPs               	:	3
+    Number of Combinational MCs 	:	17
+    Number of Sequential MCs    	:	11
+    Number of DPs               	:	7
     Number of Controls          	:	3
     Number of Status            	:	2
-    Number of SyncCells         	:	2
+    Number of SyncCells         	:	0
     Number of count7cells       	:	0
 
 Device Utilization Summary after Packing
-    Macrocells                  :	20/192
-    UDBS                        :	4/24
-    IOs                         :	26/72
+    Macrocells                  :	28/192
+    UDBS                        :	8/24
+    IOs                         :	25/72
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -79,60 +79,62 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 12
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
 Clock: CyBUS_CLK            | Frequency:  83.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: LCD_CLK              | Frequency:  83.0 MHz | Target:   7.2 MHz
-Clock: \Camera:PCLK(0)_PAD\ | Frequency:  88.5 MHz | Target:   0.1 MHz
+Clock: LCD_CLK              | Frequency:  83.0 MHz | Target:   9.0 MHz
+Clock: SW_Clock             | Frequency: 115.5 MHz | Target:   1.0 MHz
+Clock: SW_Clock(routed)     | Frequency: N/A       | Target:   1.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency:  48.7 MHz | Target:   0.1 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
 
-D2088: Phase 6, elapsed time : 0.0 (sec)
+D2088: Phase 6, elapsed time : 0.1 (sec)
 
 Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 12
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
 Clock: CyBUS_CLK            | Frequency:   6.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: LCD_CLK              | Frequency:   6.0 MHz | Target:   7.2 MHz
-Clock: \Camera:PCLK(0)_PAD\ | Frequency:  88.5 MHz | Target:   0.1 MHz
+Clock: LCD_CLK              | Frequency:   6.0 MHz | Target:   9.0 MHz
+Clock: SW_Clock             | Frequency: 115.5 MHz | Target:   1.0 MHz
+Clock: SW_Clock(routed)     | Frequency: N/A       | Target:   1.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency:  51.4 MHz | Target:   0.1 MHz
 
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.2 (sec)
+D2088: Phase 7, elapsed time : 1.7 (sec)
 
 Final Design Statistics
-    Number of Combinational MCs 	:	11
-    Number of Sequential MCs    	:	9
-    Number of DPs               	:	3
+    Number of Combinational MCs 	:	17
+    Number of Sequential MCs    	:	11
+    Number of DPs               	:	7
     Number of Controls          	:	3
     Number of Status            	:	2
-    Number of SyncCells         	:	2
+    Number of SyncCells         	:	0
     Number of count7cells       	:	0
-    Number of IOs       	:	26
+    Number of IOs       	:	25
 
 Device Utilization Summary
-    Macrocells                  :	20/192
-    IOs                         :	26/72
+    Macrocells                  :	28/192
+    IOs                         :	25/72
 
 
 
@@ -148,18 +150,19 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 12
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
 Clock: CyBUS_CLK            | Frequency:   6.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  72.0 MHz
-Clock: LCD_CLK              | Frequency:   6.0 MHz | Target:   7.2 MHz
-Clock: \Camera:PCLK(0)_PAD\ | Frequency:  80.6 MHz | Target:   0.1 MHz
+Clock: LCD_CLK              | Frequency:   6.0 MHz | Target:   9.0 MHz
+Clock: SW_Clock             | Frequency:  71.8 MHz | Target:   1.0 MHz
+Clock: SW_Clock(routed)     | Frequency: N/A       | Target:   1.0 MHz
+Clock: \Camera:PCLK(0)_PAD\ | Frequency:  45.8 MHz | Target:   0.1 MHz
 
 ======================================================================
                      End of Clock Summary
@@ -170,5 +173,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 0.7 sec.
+I2076: Total run-time: 4.1 sec.
 

@@ -1,7 +1,7 @@
 /*******************************************************************************
 * File Name: project.h
 * 
-* PSoC Creator  3.3 SP2
+* PSoC Creator  3.3 CP3
 *
 * Description:
 * It contains references to all generated header files and should not be modified.
@@ -40,18 +40,12 @@
 #include "HREF.h"
 #include "LCD_DMA_dma.h"
 #include "Data_Out.h"
-#include "isr_1.h"
-#include "SW3_aliases.h"
-#include "SW3.h"
-#include "PWM_1.h"
-#include "Pin_1_aliases.h"
-#include "Pin_1.h"
-#include "Pin_2_aliases.h"
-#include "Pin_2.h"
-#include "Clock_1.h"
-#include "SW1_aliases.h"
-#include "SW1.h"
+#include "SW_Clock.h"
+#include "Buttons.h"
+#include "SW.h"
 #include "Camera_DMA_dma.h"
+#include "Camera_B.h"
+#include "Camera_G.h"
 #include "Camera_VSYNC_aliases.h"
 #include "Camera_VSYNC.h"
 #include "Camera_SIOD_aliases.h"
@@ -61,6 +55,19 @@
 #include "Camera_I2C.h"
 #include "Camera_I2C_PVT.h"
 #include "Camera_end_line.h"
+#include "Camera_R.h"
+#include "Camera_M.h"
+#include "Camera_DMA_Colours_dma.h"
+#include "Camera_Threshold.h"
+#include "Camera_end_line_colours.h"
+#include "SW_DAC.h"
+#include "SW_Comparator.h"
+#include "SW_SW_1_aliases.h"
+#include "SW_SW_1.h"
+#include "SW_SW_3_aliases.h"
+#include "SW_SW_3.h"
+#include "SW_SW_2_aliases.h"
+#include "SW_SW_2.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"
 #include "CyFlash.h"

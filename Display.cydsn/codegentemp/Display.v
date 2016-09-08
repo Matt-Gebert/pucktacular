@@ -1,6 +1,6 @@
 // ======================================================================
 // Display.v generated from TopDesign.cysch
-// 08/23/2016 at 12:09
+// 09/08/2016 at 11:14
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -106,11 +106,11 @@
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\LCD"
-`include "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\LCD\LCD.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD\LCD.v"
 `else
-`define CY_BLK_DIR "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\LCD"
-`include "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\LCD\LCD.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD\LCD.v"
 `endif
 
 // Component: FIFO
@@ -119,37 +119,24 @@
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\FIFO"
-`include "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\FIFO\FIFO.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\FIFO"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\FIFO\FIFO.v"
 `else
-`define CY_BLK_DIR "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\FIFO"
-`include "C:\Users\mzenere\Personal\PSOC\Current\ECE3091.cywrk.Archive04\ECE3091TestSoftware\Display.cydsn\FIFO\FIFO.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\FIFO"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\FIFO\FIFO.v"
 `endif
 
-// Component: cy_UDB_clockenable_v1_0
+// Component: ColourDetector
 `ifdef CY_BLK_DIR
 `undef CY_BLK_DIR
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_UDB_clockenable_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_UDB_clockenable_v1_0\cy_UDB_clockenable_v1_0.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\ColourDetector"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\ColourDetector\ColourDetector.v"
 `else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_UDB_clockenable_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_UDB_clockenable_v1_0\cy_UDB_clockenable_v1_0.v"
-`endif
-
-// Component: cy_constant_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\ColourDetector"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\ColourDetector\ColourDetector.v"
 `endif
 
 // Component: cy_virtualmux_v1_0
@@ -204,7 +191,7 @@
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v"
 `endif
 
-// I2C_v3_50(Address_Decode=1, BusSpeed_kHz=400, ClockInputVisibility=false, CtlModeReplacementString=SyncCtl, EnableWakeup=false, ExternalBuffer=false, Externi2cIntrHandler=false, ExternTmoutIntrHandler=false, FF=true, Hex=false, I2C_Mode=2, I2cBusPort=0, Implementation=1, InternalUdbClockToleranceMinus=25, InternalUdbClockTolerancePlus=5, NotSlaveClockMinusTolerance=25, NotSlaveClockPlusTolerance=5, PrescalerEnabled=false, PrescalerPeriod=3, Psoc3ffSelected=false, Psoc5AffSelected=false, Psoc5lpffSelected=true, RemoveI2cff=false, RemoveI2cUdb=true, RemoveIntClock=true, RemoveTimeoutTimer=true, SclTimeoutEnabled=false, SdaTimeoutEnabled=false, Slave_Address=8, SlaveClockMinusTolerance=5, SlaveClockPlusTolerance=50, TimeoutEnabled=false, TimeoutImplementation=0, TimeOutms=25, TimeoutPeriodff=39999, TimeoutPeriodUdb=39999, UDB_MSTR=false, UDB_MULTI_MASTER_SLAVE=false, UDB_SLV=false, UdbInternalClock=false, UdbRequiredClock=6400, UdbSlaveFixedPlacementEnable=false, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=I2C_v3_50, CY_CONTROL_FILE=I2C_Slave_DefaultPlacement.ctl, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Camera:I2C, CY_INSTANCE_SHORT_NAME=I2C, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=50, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 SP2, INSTANCE_NAME=Camera_I2C, )
+// I2C_v3_50(Address_Decode=1, BusSpeed_kHz=400, ClockInputVisibility=false, CtlModeReplacementString=SyncCtl, EnableWakeup=false, ExternalBuffer=false, Externi2cIntrHandler=false, ExternTmoutIntrHandler=false, FF=true, Hex=false, I2C_Mode=2, I2cBusPort=0, Implementation=1, InternalUdbClockToleranceMinus=25, InternalUdbClockTolerancePlus=5, NotSlaveClockMinusTolerance=25, NotSlaveClockPlusTolerance=5, PrescalerEnabled=false, PrescalerPeriod=3, Psoc3ffSelected=false, Psoc5AffSelected=false, Psoc5lpffSelected=true, RemoveI2cff=false, RemoveI2cUdb=true, RemoveIntClock=true, RemoveTimeoutTimer=true, SclTimeoutEnabled=false, SdaTimeoutEnabled=false, Slave_Address=8, SlaveClockMinusTolerance=5, SlaveClockPlusTolerance=50, TimeoutEnabled=false, TimeoutImplementation=0, TimeOutms=25, TimeoutPeriodff=39999, TimeoutPeriodUdb=39999, UDB_MSTR=false, UDB_MULTI_MASTER_SLAVE=false, UDB_SLV=false, UdbInternalClock=false, UdbRequiredClock=6400, UdbSlaveFixedPlacementEnable=false, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=I2C_v3_50, CY_CONTROL_FILE=I2C_Slave_DefaultPlacement.ctl, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Camera:I2C, CY_INSTANCE_SHORT_NAME=I2C, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=50, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 CP3, INSTANCE_NAME=Camera_I2C, )
 module I2C_v3_50_0 (
     sda_o,
     scl_o,
@@ -353,7 +340,59 @@ module I2C_v3_50_0 (
 
 endmodule
 
-// OV9650_QVGA(CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=OV9650_QVGA, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Camera, CY_INSTANCE_SHORT_NAME=Camera, CY_MAJOR_VERSION=0, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 SP2, INSTANCE_NAME=Camera, )
+// Component: RowSync
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\RowSync"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\RowSync\RowSync.v"
+`else
+`define CY_BLK_DIR "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\RowSync"
+`include "C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\RowSync\RowSync.v"
+`endif
+
+// Component: cy_constant_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
+`endif
+
+// Component: and_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0\and_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0\and_v1_0.v"
+`endif
+
+// Component: not_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v"
+`endif
+
+// OV9650_QVGA(CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=OV9650_QVGA, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Camera, CY_INSTANCE_SHORT_NAME=Camera, CY_MAJOR_VERSION=0, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 CP3, INSTANCE_NAME=Camera, )
 module OV9650_QVGA_1 (
     clk,
     sync,
@@ -365,23 +404,42 @@ module OV9650_QVGA_1 (
     input       HREF;
 
 
+          wire  Net_291;
+          wire  Net_290;
+          wire  Net_289;
+          wire  Net_288;
+          wire  Net_287;
+          wire  Net_286;
+          wire  Net_285;
+          wire  Net_284;
+          wire  Net_283;
+          wire  Net_326;
+          wire  Net_327;
+          wire  Net_323;
           wire  Net_108;
           wire  Net_107;
           wire  Net_106;
           wire  Net_105;
           wire  Net_104;
           wire  Net_103;
+          wire [1:0] phase;
           wire  Net_102;
           wire  Net_101;
           wire  Net_100;
           wire  Net_45;
+          wire [7:0] data;
           wire  Net_44;
-          wire  Net_43;
+          wire  PixCLK;
           wire  Net_42;
           wire  Net_41;
           wire  Net_40;
           wire  Net_115;
-          wire  Net_410;
+          wire  Net_202;
+          wire  Net_164;
+          wire  Net_197;
+          wire  Net_37;
+          wire [7:0] Net_154;
+          wire  sample;
 
 	wire [0:0] tmpOE__XCLK_net;
 	wire [0:0] tmpFB_0__XCLK_net;
@@ -466,10 +524,10 @@ module OV9650_QVGA_1 (
 
 
     FIFO FIFO (
-        .D(D[7:0]),
-        .clk(Net_410),
+        .D(data[7:0]),
+        .clk(PixCLK),
         .drq(Net_115),
-        .load(HREF));
+        .load(Net_37));
 
 	wire [0:0] tmpOE__PCLK_net;
 	wire [0:0] tmpIO_0__PCLK_net;
@@ -543,13 +601,25 @@ module OV9650_QVGA_1 (
 
 	assign tmpOE__PCLK_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    cy_UDB_clockenable_v1_0 Async (
-        .clock_in(Net_42),
-        .enable(Net_43),
-        .clock_out(Net_410));
-    defparam Async.ClockOutSync = 0;
+    ColourDetector B (
+        .data_UYVY(data[7:0]),
+        .phase(phase[1:0]),
+        .clk(PixCLK),
+        .det(Net_154[2]));
+    defparam B.U_compare = 1;
+    defparam B.U_threshold = 192;
+    defparam B.V_compare = 0;
+    defparam B.V_threshold = 64;
 
-    assign Net_43 = 1'h1;
+    ColourDetector G (
+        .data_UYVY(data[7:0]),
+        .phase(phase[1:0]),
+        .clk(PixCLK),
+        .det(Net_154[1]));
+    defparam G.U_compare = 0;
+    defparam G.U_threshold = 64;
+    defparam G.V_compare = 0;
+    defparam G.V_threshold = 64;
 
 	wire [0:0] tmpOE__VSYNC_net;
 	wire [0:0] tmpIO_0__VSYNC_net;
@@ -634,7 +704,7 @@ module OV9650_QVGA_1 (
 		  .ibuf_enabled(1'b1),
 		  .init_dr_st(1'b1),
 		  .input_clk_en(0),
-		  .input_sync(1'b1),
+		  .input_sync(1'b0),
 		  .input_sync_mode(1'b0),
 		  .intr_mode(2'b00),
 		  .invert_in_clock(0),
@@ -706,7 +776,7 @@ module OV9650_QVGA_1 (
 		  .ibuf_enabled(1'b1),
 		  .init_dr_st(1'b1),
 		  .input_clk_en(0),
-		  .input_sync(1'b1),
+		  .input_sync(1'b0),
 		  .input_sync_mode(1'b0),
 		  .intr_mode(2'b00),
 		  .invert_in_clock(0),
@@ -787,35 +857,95 @@ module OV9650_QVGA_1 (
 		 (.int_signal(Net_41));
 
 
+    ColourDetector R (
+        .data_UYVY(data[7:0]),
+        .phase(phase[1:0]),
+        .clk(PixCLK),
+        .det(Net_154[0]));
+    defparam R.U_compare = 0;
+    defparam R.U_threshold = 64;
+    defparam R.V_compare = 1;
+    defparam R.V_threshold = 192;
+
+    RowSync RowSync_1 (
+        .href(HREF),
+        .clk(Net_42),
+        .phase(phase[1:0]),
+        .clk_async(PixCLK),
+        .sample(Net_323));
+
+    ColourDetector M (
+        .data_UYVY(data[7:0]),
+        .phase(phase[1:0]),
+        .clk(PixCLK),
+        .det(Net_154[3]));
+    defparam M.U_compare = 1;
+    defparam M.U_threshold = 192;
+    defparam M.V_compare = 1;
+    defparam M.V_threshold = 192;
+
+    FIFO FIFO_Colours (
+        .D(Net_154[7:0]),
+        .clk(PixCLK),
+        .drq(Net_164),
+        .load(sample));
+
+    assign Net_154[7:4] = 4'h0;
+
+
+	cy_dma_v1_0
+		#(.drq_type(2'b01))
+		DMA_Colours
+		 (.drq(Net_164),
+		  .trq(1'b0),
+		  .nrq(Net_326));
+
+
+    CyControlReg_v1_80 Threshold (
+        .control_1(Net_283),
+        .control_2(Net_284),
+        .control_3(Net_285),
+        .control_0(Net_202),
+        .control_4(Net_286),
+        .control_5(Net_287),
+        .control_6(Net_288),
+        .control_7(Net_289),
+        .clock(1'b0),
+        .reset(1'b0));
+    defparam Threshold.Bit0Mode = 0;
+    defparam Threshold.Bit1Mode = 0;
+    defparam Threshold.Bit2Mode = 0;
+    defparam Threshold.Bit3Mode = 0;
+    defparam Threshold.Bit4Mode = 0;
+    defparam Threshold.Bit5Mode = 0;
+    defparam Threshold.Bit6Mode = 0;
+    defparam Threshold.Bit7Mode = 0;
+    defparam Threshold.BitValue = 0;
+    defparam Threshold.BusDisplay = 0;
+    defparam Threshold.ExtrReset = 0;
+    defparam Threshold.NumOutputs = 1;
+
+
+    assign Net_37 = HREF & Net_197;
+
+
+    assign Net_197 = ~Net_202;
+
+
+    assign sample = Net_202 & Net_323;
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		end_line_colours
+		 (.int_signal(Net_326));
+
+
+
+    assign data[7:0] = D;
 
 
 endmodule
-
-// Component: not_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\not_v1_0\not_v1_0.v"
-`endif
-
-// Component: and_v1_0
-`ifdef CY_BLK_DIR
-`undef CY_BLK_DIR
-`endif
-
-`ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0\and_v1_0.v"
-`else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\and_v1_0\and_v1_0.v"
-`endif
 
 // Component: mux_v1_10
 `ifdef CY_BLK_DIR
@@ -830,109 +960,511 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\mux_v1_10\mux_v1_10.v"
 `endif
 
-// Component: B_PWM_v3_30
+// Component: CyStatusReg_v1_90
 `ifdef CY_BLK_DIR
 `undef CY_BLK_DIR
 `endif
 
 `ifdef WARP
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\B_PWM_v3_30"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\B_PWM_v3_30\B_PWM_v3_30.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyStatusReg_v1_90"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyStatusReg_v1_90\CyStatusReg_v1_90.v"
 `else
-`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\B_PWM_v3_30"
-`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\B_PWM_v3_30\B_PWM_v3_30.v"
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyStatusReg_v1_90"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyStatusReg_v1_90\CyStatusReg_v1_90.v"
 `endif
 
-// PWM_v3_30(CaptureMode=0, Clock_CheckTolerance=true, Clock_desired_freq=12, Clock_desired_freq_unit=6, Clock_divisor=1, Clock_FractDividerDenominator=0, Clock_FractDividerNumerator=0, Clock_FractDividerUsed=false, Clock_is_direct=false, Clock_is_divider=false, Clock_is_freq=true, Clock_minus_tolerance=5, Clock_ph_align_clock_id=, Clock_ph_align_clock_name=, Clock_plus_tolerance=5, Clock_source_clock_id=, Clock_source_clock_name=, Compare1_16=false, Compare1_8=false, Compare2_16=false, Compare2_8=true, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=35, CompareValue2=35, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG8, CySetRegReplacementString=CY_SET_REG8, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=false, Period=255, PWMMode=1, PWMModeCenterAligned=0, RegDefReplacementString=reg8, RegSizeReplacementString=uint8, Resolution=8, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TermMode_capture=0, TermMode_clock=0, TermMode_cmp_sel=0, TermMode_enable=0, TermMode_interrupt=0, TermMode_kill=0, TermMode_ph1=0, TermMode_ph2=0, TermMode_pwm=0, TermMode_pwm1=0, TermMode_pwm2=0, TermMode_reset=0, TermMode_tc=0, TermMode_trigger=0, TermVisibility_capture=false, TermVisibility_clock=true, TermVisibility_cmp_sel=false, TermVisibility_enable=false, TermVisibility_interrupt=true, TermVisibility_kill=false, TermVisibility_ph1=false, TermVisibility_ph2=false, TermVisibility_pwm=false, TermVisibility_pwm1=true, TermVisibility_pwm2=true, TermVisibility_reset=true, TermVisibility_tc=true, TermVisibility_trigger=false, TriggerMode=0, UDB16=false, UDB8=true, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP8, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=PWM_v3_30, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=PWM_1, CY_INSTANCE_SHORT_NAME=PWM_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=30, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 SP2, INSTANCE_NAME=PWM_1, )
-module PWM_v3_30_2 (
-    pwm2,
-    tc,
-    clock,
-    reset,
-    pwm1,
-    interrupt,
-    capture,
-    kill,
-    enable,
-    trigger,
-    cmp_sel,
-    pwm,
-    ph1,
-    ph2);
-    output      pwm2;
-    output      tc;
-    input       clock;
-    input       reset;
-    output      pwm1;
-    output      interrupt;
-    input       capture;
-    input       kill;
-    input       enable;
-    input       trigger;
-    input       cmp_sel;
-    output      pwm;
-    output      ph1;
-    output      ph2;
+// VDAC8_v1_90(Data_Source=0, Initial_Value=75, Strobe_Mode=0, VDAC_Range=0, VDAC_Speed=2, Voltage=300, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=VDAC8_v1_90, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SW:DAC, CY_INSTANCE_SHORT_NAME=DAC, CY_MAJOR_VERSION=1, CY_MINOR_VERSION=90, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 CP3, INSTANCE_NAME=SW_DAC, )
+module VDAC8_v1_90_2 (
+    strobe,
+    data,
+    vOut);
+    input       strobe;
+    input      [7:0] data;
+    inout       vOut;
+    electrical  vOut;
 
-    parameter Resolution = 8;
+    parameter Data_Source = 0;
+    parameter Initial_Value = 75;
+    parameter Strobe_Mode = 0;
 
-          wire  Net_114;
-          wire  Net_113;
-          wire  Net_107;
-          wire  Net_96;
-          wire  Net_55;
-          wire  Net_57;
-          wire  Net_101;
-          wire  Net_54;
-          wire  Net_63;
+    electrical  Net_77;
+          wire  Net_83;
+          wire  Net_82;
+          wire  Net_81;
 
-    B_PWM_v3_30 PWMUDB (
-        .reset(reset),
-        .clock(clock),
-        .tc(Net_101),
-        .pwm1(pwm1),
-        .pwm2(pwm2),
-        .interrupt(Net_55),
-        .kill(kill),
-        .capture(capture),
-        .enable(enable),
-        .cmp_sel(cmp_sel),
-        .trigger(trigger),
-        .pwm(Net_96),
-        .ph1(ph1),
-        .ph2(ph2));
-    defparam PWMUDB.CaptureMode = 0;
-    defparam PWMUDB.CompareStatusEdgeSense = 1;
-    defparam PWMUDB.CompareType1 = 1;
-    defparam PWMUDB.CompareType2 = 1;
-    defparam PWMUDB.DeadBand = 0;
-    defparam PWMUDB.DitherOffset = 0;
-    defparam PWMUDB.EnableMode = 0;
-    defparam PWMUDB.KillMode = 0;
-    defparam PWMUDB.PWMMode = 1;
-    defparam PWMUDB.Resolution = 8;
-    defparam PWMUDB.RunMode = 0;
-    defparam PWMUDB.TriggerMode = 0;
-    defparam PWMUDB.UseStatus = 1;
-
-	// vmCompare (cy_virtualmux_v1_0)
-	assign pwm = Net_96;
-
-	// vmIRQ (cy_virtualmux_v1_0)
-	assign interrupt = Net_55;
-
-	// vmTC (cy_virtualmux_v1_0)
-	assign tc = Net_101;
-
-    OneTerminal OneTerminal_1 (
-        .o(Net_113));
-
-	// FFKillMux (cy_virtualmux_v1_0)
-	assign Net_107 = Net_114;
+    cy_psoc3_vidac8_v1_0 viDAC8 (
+        .reset(Net_83),
+        .idir(Net_81),
+        .data(data[7:0]),
+        .strobe(strobe),
+        .vout(vOut),
+        .iout(Net_77),
+        .ioff(Net_82),
+        .strobe_udb(strobe));
+    defparam viDAC8.is_all_if_any = 0;
+    defparam viDAC8.reg_data = 0;
 
     ZeroTerminal ZeroTerminal_1 (
-        .z(Net_114));
+        .z(Net_81));
 
+    ZeroTerminal ZeroTerminal_2 (
+        .z(Net_82));
+
+    ZeroTerminal ZeroTerminal_3 (
+        .z(Net_83));
+
+    cy_analog_noconnect_v1_0 cy_analog_noconnect_1 (
+        .noconnect(Net_77));
+
+
+
+endmodule
+
+// Comp_v2_0(Hysteresis=0, Pd_Override=0, Polarity=0, PSOC5A=false, Speed=1, Sync=0, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=Comp_v2_0, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SW:Comparator, CY_INSTANCE_SHORT_NAME=Comparator, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 CP3, INSTANCE_NAME=SW_Comparator, )
+module Comp_v2_0_3 (
+    Vplus,
+    CmpOut,
+    Vminus,
+    clock);
+    inout       Vplus;
+    electrical  Vplus;
+    output      CmpOut;
+    inout       Vminus;
+    electrical  Vminus;
+    input       clock;
+
+
+          wire  Net_9;
+          wire  Net_1;
+
+    cy_psoc3_ctcomp_v1_0 ctComp (
+        .vplus(Vplus),
+        .vminus(Vminus),
+        .cmpout(Net_1),
+        .clk_udb(clock),
+        .clock(clock));
+
+	// VirtualMux_1 (cy_virtualmux_v1_0)
+	assign CmpOut = Net_1;
+
+
+    assign Net_9 = ~Net_1;
+
+
+
+endmodule
+
+// Component: cy_vref_v1_70
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_vref_v1_70"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_vref_v1_70\cy_vref_v1_70.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_vref_v1_70"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_vref_v1_70\cy_vref_v1_70.v"
+`endif
+
+// Component: AMuxHw_v1_50
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMuxHw_v1_50"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMuxHw_v1_50\AMuxHw_v1_50.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMuxHw_v1_50"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\AMuxHw_v1_50\AMuxHw_v1_50.v"
+`endif
+
+// Component: cydff_v1_30
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cydff_v1_30"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cydff_v1_30\cydff_v1_30.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cydff_v1_30"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cydff_v1_30\cydff_v1_30.v"
+`endif
+
+// Component: cy_dffe_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_dffe_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_dffe_v1_0\cy_dffe_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_dffe_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_dffe_v1_0\cy_dffe_v1_0.v"
+`endif
+
+// Component: nor_v1_0
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\nor_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\nor_v1_0\nor_v1_0.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\nor_v1_0"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\nor_v1_0\nor_v1_0.v"
+`endif
+
+// Buttons(CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMPONENT_NAME=Buttons, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=SW, CY_INSTANCE_SHORT_NAME=SW, CY_MAJOR_VERSION=0, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  3.3 CP3, INSTANCE_NAME=SW, )
+module Buttons_4 (
+    clk,
+    SW1,
+    SW2,
+    SW3);
+    input       clk;
+    output      SW1;
+    output      SW2;
+    output      SW3;
+
+
+    electrical  Net_42;
+    electrical  Net_41;
+    electrical  Net_40;
+    electrical  Net_16;
+          wire  clock;
+          wire [7:0] Net_8;
+          wire  Net_7;
+          wire  Net_34;
+          wire [2:0] mux;
+    electrical  Net_14;
+
+    VDAC8_v1_90_2 DAC (
+        .strobe(1'b0),
+        .data(8'b00000000),
+        .vOut(Net_14));
+    defparam DAC.Data_Source = 0;
+    defparam DAC.Initial_Value = 75;
+    defparam DAC.Strobe_Mode = 0;
+
+    Comp_v2_0_3 Comparator (
+        .Vplus(Net_14),
+        .CmpOut(Net_34),
+        .Vminus(Net_16),
+        .clock(clock));
+
+
+	cy_vref_v1_0
+		#(.autoenable(1),
+		  .guid("4CD2DB22-E42B-4f83-A6F4-FD66E0253DE0"),
+		  .name("0.256V"))
+		vRef_1
+		 (.vout(Net_16));
+
+
+    // -- AMuxHw AMux start -- ***
+    
+    // -- AMuxHw Primitive A --
+    
+    cy_psoc3_amux_v1_0 #(
+        .muxin_width(3),
+        .hw_control(1),
+        .one_active(0),
+        .init_mux_sel(3'h0),
+        .api_type(2'b10))
+        AMux(
+        .muxin({
+            Net_42,
+            Net_41,
+            Net_40
+            }),
+        .hw_ctrl_en(mux[2:0]),
+        .vout(Net_14)
+        );
+    
+    // -- AMuxHw AMux end -- ***
+
+    // -- DFF Start --
+    reg  cydff_1;
+    always @(posedge clock)
+    begin
+        cydff_1 <= mux[0];
+    end
+    assign mux[1] = cydff_1;
+    // -- DFF End --
+
+    // -- DFFE Start --
+    reg  cy_dffe_1;
+    always @(posedge clock)
+    begin
+        cy_dffe_1 <= mux[2] ? Net_34 : cy_dffe_1;
+    end
+    assign SW1 = cy_dffe_1;
+    // -- DFFE End --
+
+    // -- DFF Start --
+    reg  cydff_2;
+    always @(posedge clock)
+    begin
+        cydff_2 <= mux[1];
+    end
+    assign mux[2] = cydff_2;
+    // -- DFF End --
+
+	wire [0:0] tmpOE__SW_1_net;
+	wire [0:0] tmpFB_0__SW_1_net;
+	wire [0:0] tmpIO_0__SW_1_net;
+	wire [0:0] tmpINTERRUPT_0__SW_1_net;
+	electrical [0:0] tmpSIOVREF__SW_1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("09418e87-c529-4a2d-99c4-2ebd33128f8a/77715107-f8d5-47e5-a629-0fb83101ac6b"),
+		  .drive_mode(3'b000),
+		  .ibuf_enabled(1'b0),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("A"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		SW_1
+		 (.oe(tmpOE__SW_1_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__SW_1_net[0:0]}),
+		  .analog({Net_40}),
+		  .io({tmpIO_0__SW_1_net[0:0]}),
+		  .siovref(tmpSIOVREF__SW_1_net),
+		  .interrupt({tmpINTERRUPT_0__SW_1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__SW_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__SW_3_net;
+	wire [0:0] tmpFB_0__SW_3_net;
+	wire [0:0] tmpIO_0__SW_3_net;
+	wire [0:0] tmpINTERRUPT_0__SW_3_net;
+	electrical [0:0] tmpSIOVREF__SW_3_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("09418e87-c529-4a2d-99c4-2ebd33128f8a/be3df60a-f0c7-4b2c-afb2-1294d0b47c28"),
+		  .drive_mode(3'b000),
+		  .ibuf_enabled(1'b0),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("A"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		SW_3
+		 (.oe(tmpOE__SW_3_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__SW_3_net[0:0]}),
+		  .analog({Net_42}),
+		  .io({tmpIO_0__SW_3_net[0:0]}),
+		  .siovref(tmpSIOVREF__SW_3_net),
+		  .interrupt({tmpINTERRUPT_0__SW_3_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__SW_3_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__SW_2_net;
+	wire [0:0] tmpFB_0__SW_2_net;
+	wire [0:0] tmpIO_0__SW_2_net;
+	wire [0:0] tmpINTERRUPT_0__SW_2_net;
+	electrical [0:0] tmpSIOVREF__SW_2_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("09418e87-c529-4a2d-99c4-2ebd33128f8a/37af2edb-d509-42db-811b-78a7252ecc42"),
+		  .drive_mode(3'b000),
+		  .ibuf_enabled(1'b0),
+		  .init_dr_st(1'b0),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("A"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b1),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .sio_hifreq(""),
+		  .sio_vohsel(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b10),
+		  .width(1),
+		  .ovt_hyst_trim(1'b0),
+		  .ovt_needed(1'b0),
+		  .ovt_slew_control(2'b00),
+		  .input_buffer_sel(2'b00))
+		SW_2
+		 (.oe(tmpOE__SW_2_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__SW_2_net[0:0]}),
+		  .analog({Net_41}),
+		  .io({tmpIO_0__SW_2_net[0:0]}),
+		  .siovref(tmpSIOVREF__SW_2_net),
+		  .interrupt({tmpINTERRUPT_0__SW_2_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__SW_2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+    // -- DFFE Start --
+    reg  cy_dffe_2;
+    always @(posedge clock)
+    begin
+        cy_dffe_2 <= mux[0] ? Net_34 : cy_dffe_2;
+    end
+    assign SW2 = cy_dffe_2;
+    // -- DFFE End --
+
+    // -- DFFE Start --
+    reg  cy_dffe_3;
+    always @(posedge clock)
+    begin
+        cy_dffe_3 <= mux[1] ? Net_34 : cy_dffe_3;
+    end
+    assign SW3 = cy_dffe_3;
+    // -- DFFE End --
+
+
+    assign mux[0] = ~(mux[2] | mux[1]);
+
+
+    assign clock = clk;
 
 
 endmodule
@@ -940,60 +1472,57 @@ endmodule
 // top
 module top ;
 
-          wire  Net_566;
-          wire  Net_789;
-          wire  Net_788;
-          wire  Net_787;
-          wire  Net_786;
-          wire  Net_785;
-          wire  Net_784;
-          wire  Net_783;
-          wire  Net_782;
-          wire  Net_781;
-          wire  Net_598;
-          wire  Net_584;
-          wire  Net_780;
-          wire  Net_554;
-          wire  Net_779;
-          wire  Net_404;
-          wire  Net_389;
-          wire  Net_388;
-          wire  Net_387;
-          wire  Net_386;
-          wire  Net_385;
-          wire  Net_384;
-          wire  Net_383;
-          wire  Net_382;
-          wire  Net_381;
-          wire  Net_380;
+          wire  Net_481;
+          wire [7:0] Net_456;
+          wire  Net_455;
+          wire  Net_454;
+          wire  Net_453;
+          wire  Net_452;
+          wire  Net_451;
+          wire  Net_450;
+          wire  Net_449;
+          wire  Net_491;
+          wire  Net_359;
+          wire  Net_358;
+          wire  Net_357;
+          wire  Net_356;
+          wire  Net_355;
+          wire  Net_354;
+          wire  Net_353;
+          wire  Net_352;
+          wire  Net_351;
+          wire  Net_350;
+          wire  Net_371;
+          wire  Net_370;
+          wire  Net_198;
           wire  Net_379;
+          wire  Net_260;
+          wire  Net_188;
           wire  Net_378;
-          wire  Net_391;
-          wire  Net_778;
-          wire  Net_390;
-          wire  Net_373;
-          wire  Net_777;
-          wire  Net_375;
-          wire  Net_401;
-          wire  Net_400;
-          wire  Net_399;
-          wire  Net_398;
-          wire  Net_397;
-          wire  Net_396;
-          wire  Net_395;
-          wire  Net_394;
-          wire  Net_393;
-          wire  Net_392;
-          wire [3:0] Net_322;
-          wire  Net_191;
+          wire  Net_428;
+          wire  Net_143;
+          wire  Net_142;
+          wire  Net_141;
+          wire  Net_140;
+          wire  Net_139;
+          wire  Net_138;
+          wire  Net_136;
+          wire  Net_135;
+          wire  Net_148;
+          wire  Net_303;
           wire [7:0] Net_190;
-          wire [7:0] Net_337;
-          wire  Net_325;
-          wire  Net_339;
-          wire [7:0] Net_361;
-          wire [7:0] Net_154;
-          wire [3:0] Net_323;
+          wire  Net_482;
+          wire  Net_430;
+          wire  Net_400;
           wire  Net_369;
+          wire [3:0] Net_323;
+          wire [7:0] Net_154;
+          wire [7:0] Net_361;
+          wire  Net_339;
+          wire  Net_325;
+          wire [7:0] Net_337;
+          wire  Net_191;
+          wire [3:0] Net_322;
 
 	wire [7:0] tmpOE__D_net;
 	wire [7:0] tmpIO_7__D_net;
@@ -1204,7 +1733,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		LCD_WR
 		 (.oe(tmpOE__LCD_WR_net),
-		  .y({Net_392}),
+		  .y({Net_303}),
 		  .fb({tmpFB_0__LCD_WR_net[0:0]}),
 		  .io({tmpIO_0__LCD_WR_net[0:0]}),
 		  .siovref(tmpSIOVREF__LCD_WR_net),
@@ -1354,7 +1883,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		LCD_RS
 		 (.oe(tmpOE__LCD_RS_net),
-		  .y({Net_393}),
+		  .y({Net_148}),
 		  .fb({tmpFB_0__LCD_RS_net[0:0]}),
 		  .io({tmpIO_0__LCD_RS_net[0:0]}),
 		  .siovref(tmpSIOVREF__LCD_RS_net),
@@ -1445,13 +1974,13 @@ module top ;
 
     CyControlReg_v1_80 OE (
         .control_1(Net_339),
-        .control_2(Net_394),
-        .control_3(Net_395),
+        .control_2(Net_135),
+        .control_3(Net_136),
         .control_0(Net_325),
-        .control_4(Net_396),
-        .control_5(Net_397),
-        .control_6(Net_398),
-        .control_7(Net_399),
+        .control_4(Net_138),
+        .control_5(Net_139),
+        .control_6(Net_140),
+        .control_7(Net_141),
         .clock(1'b0),
         .reset(1'b0));
     defparam OE.Bit0Mode = 0;
@@ -1468,27 +1997,27 @@ module top ;
     defparam OE.NumOutputs = 2;
 
     LCD LCD (
-        .clk(Net_375),
-        .WR(Net_392),
+        .clk(Net_428),
+        .WR(Net_303),
         .D(Net_154[7:0]),
         .ready(Net_369),
-        .RS(Net_393));
+        .RS(Net_148));
 
 
 	cy_clock_v1_0
 		#(.id("88a03940-8ac0-4757-a870-6f9f949f5566"),
 		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
 		  .divisor(0),
-		  .period("138888888.888889"),
+		  .period("111111111.111111"),
 		  .is_direct(0),
 		  .is_digital(1))
 		LCD_CLK
-		 (.clock_out(Net_375));
+		 (.clock_out(Net_428));
 
 
     OV9650_QVGA_1 Camera (
-        .clk(Net_373),
-        .sync(Net_390),
+        .clk(Net_188),
+        .sync(Net_260),
         .D(Net_190[7:0]),
         .HREF(Net_191));
 
@@ -1501,7 +2030,7 @@ module top ;
 		  .is_direct(0),
 		  .is_digital(1))
 		Camera_CLK
-		 (.clock_out(Net_373));
+		 (.clock_out(Net_188));
 
 
 	wire [0:0] tmpOE__HREF_net;
@@ -1565,7 +2094,7 @@ module top ;
 		HREF
 		 (.oe(tmpOE__HREF_net),
 		  .y({1'b0}),
-		  .fb({Net_391}),
+		  .fb({Net_198}),
 		  .io({tmpIO_0__HREF_net[0:0]}),
 		  .siovref(tmpSIOVREF__HREF_net),
 		  .interrupt({tmpINTERRUPT_0__HREF_net[0:0]}),
@@ -1582,7 +2111,7 @@ module top ;
     assign Net_322[3:0] = ~Net_323[3:0];
 
 
-    assign Net_191 = Net_322[2] & Net_322[1] & Net_322[0] & Net_322[3] & Net_391;
+    assign Net_191 = Net_322[2] & Net_322[1] & Net_322[0] & Net_322[3] & Net_198;
 
 
 	cy_dma_v1_0
@@ -1590,18 +2119,18 @@ module top ;
 		LCD_DMA
 		 (.drq(Net_369),
 		  .trq(1'b0),
-		  .nrq(Net_379));
+		  .nrq(Net_371));
 
 
     CyControlReg_v1_80 Data_Out (
-        .control_1(Net_380),
-        .control_2(Net_381),
-        .control_3(Net_382),
-        .control_0(Net_383),
-        .control_4(Net_384),
-        .control_5(Net_385),
-        .control_6(Net_386),
-        .control_7(Net_387),
+        .control_1(Net_350),
+        .control_2(Net_351),
+        .control_3(Net_352),
+        .control_0(Net_353),
+        .control_4(Net_354),
+        .control_5(Net_355),
+        .control_6(Net_356),
+        .control_7(Net_357),
         .clock(1'b0),
         .reset(1'b0),
         .control_bus(Net_337[7:0]));
@@ -1634,339 +2163,47 @@ module top ;
     // -- Mux end --
 
 
-	cy_isr_v1_0
-		#(.int_type(2'b00))
-		isr_1
-		 (.int_signal(Net_404));
-
-
-	wire [0:0] tmpOE__SW3_net;
-	wire [0:0] tmpIO_0__SW3_net;
-	wire [0:0] tmpINTERRUPT_0__SW3_net;
-	electrical [0:0] tmpSIOVREF__SW3_net;
-
-	cy_psoc3_pins_v1_10
-		#(.id("d51d319d-c3ea-4a20-a917-3724a40425b4"),
-		  .drive_mode(3'b010),
-		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b1),
-		  .input_clk_en(0),
-		  .input_sync(1'b0),
-		  .input_sync_mode(1'b0),
-		  .intr_mode(2'b00),
-		  .invert_in_clock(0),
-		  .invert_in_clock_en(0),
-		  .invert_in_reset(0),
-		  .invert_out_clock(0),
-		  .invert_out_clock_en(0),
-		  .invert_out_reset(0),
-		  .io_voltage(""),
-		  .layout_mode("CONTIGUOUS"),
-		  .oe_conn(1'b0),
-		  .oe_reset(0),
-		  .oe_sync(1'b0),
-		  .output_clk_en(0),
-		  .output_clock_mode(1'b0),
-		  .output_conn(1'b0),
-		  .output_mode(1'b0),
-		  .output_reset(0),
-		  .output_sync(1'b0),
-		  .pa_in_clock(-1),
-		  .pa_in_clock_en(-1),
-		  .pa_in_reset(-1),
-		  .pa_out_clock(-1),
-		  .pa_out_clock_en(-1),
-		  .pa_out_reset(-1),
-		  .pin_aliases(""),
-		  .pin_mode("I"),
-		  .por_state(4),
-		  .sio_group_cnt(0),
-		  .sio_hyst(1'b1),
-		  .sio_ibuf(""),
-		  .sio_info(2'b00),
-		  .sio_obuf(""),
-		  .sio_refsel(""),
-		  .sio_vtrip(""),
-		  .sio_hifreq(""),
-		  .sio_vohsel(""),
-		  .slew_rate(1'b0),
-		  .spanning(0),
-		  .use_annotation(1'b0),
-		  .vtrip(2'b10),
-		  .width(1),
-		  .ovt_hyst_trim(1'b0),
-		  .ovt_needed(1'b0),
-		  .ovt_slew_control(2'b00),
-		  .input_buffer_sel(2'b00))
-		SW3
-		 (.oe(tmpOE__SW3_net),
-		  .y({1'b0}),
-		  .fb({Net_404}),
-		  .io({tmpIO_0__SW3_net[0:0]}),
-		  .siovref(tmpSIOVREF__SW3_net),
-		  .interrupt({tmpINTERRUPT_0__SW3_net[0:0]}),
-		  .in_clock({1'b0}),
-		  .in_clock_en({1'b1}),
-		  .in_reset({1'b0}),
-		  .out_clock({1'b0}),
-		  .out_clock_en({1'b1}),
-		  .out_reset({1'b0}));
-
-	assign tmpOE__SW3_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
-
-    PWM_v3_30_2 PWM_1 (
-        .reset(1'b0),
-        .clock(Net_554),
-        .tc(Net_780),
-        .pwm1(Net_584),
-        .pwm2(Net_598),
-        .interrupt(Net_781),
-        .capture(1'b0),
-        .kill(1'b1),
-        .enable(1'b1),
-        .trigger(1'b0),
-        .cmp_sel(1'b0),
-        .pwm(Net_787),
-        .ph1(Net_788),
-        .ph2(Net_789));
-    defparam PWM_1.Resolution = 8;
-
-	wire [0:0] tmpOE__Pin_1_net;
-	wire [0:0] tmpFB_0__Pin_1_net;
-	wire [0:0] tmpIO_0__Pin_1_net;
-	wire [0:0] tmpINTERRUPT_0__Pin_1_net;
-	electrical [0:0] tmpSIOVREF__Pin_1_net;
-
-	cy_psoc3_pins_v1_10
-		#(.id("1a7fa9ad-fff9-49d6-95d7-d25ad6076f17"),
-		  .drive_mode(3'b110),
-		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b0),
-		  .input_clk_en(0),
-		  .input_sync(1'b1),
-		  .input_sync_mode(1'b0),
-		  .intr_mode(2'b00),
-		  .invert_in_clock(0),
-		  .invert_in_clock_en(0),
-		  .invert_in_reset(0),
-		  .invert_out_clock(0),
-		  .invert_out_clock_en(0),
-		  .invert_out_reset(0),
-		  .io_voltage(""),
-		  .layout_mode("CONTIGUOUS"),
-		  .oe_conn(1'b0),
-		  .oe_reset(0),
-		  .oe_sync(1'b0),
-		  .output_clk_en(0),
-		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
-		  .output_mode(1'b0),
-		  .output_reset(0),
-		  .output_sync(1'b0),
-		  .pa_in_clock(-1),
-		  .pa_in_clock_en(-1),
-		  .pa_in_reset(-1),
-		  .pa_out_clock(-1),
-		  .pa_out_clock_en(-1),
-		  .pa_out_reset(-1),
-		  .pin_aliases(""),
-		  .pin_mode("O"),
-		  .por_state(4),
-		  .sio_group_cnt(0),
-		  .sio_hyst(1'b1),
-		  .sio_ibuf(""),
-		  .sio_info(2'b00),
-		  .sio_obuf(""),
-		  .sio_refsel(""),
-		  .sio_vtrip(""),
-		  .sio_hifreq(""),
-		  .sio_vohsel(""),
-		  .slew_rate(1'b0),
-		  .spanning(0),
-		  .use_annotation(1'b0),
-		  .vtrip(2'b10),
-		  .width(1),
-		  .ovt_hyst_trim(1'b0),
-		  .ovt_needed(1'b0),
-		  .ovt_slew_control(2'b00),
-		  .input_buffer_sel(2'b00))
-		Pin_1
-		 (.oe(tmpOE__Pin_1_net),
-		  .y({Net_584}),
-		  .fb({tmpFB_0__Pin_1_net[0:0]}),
-		  .io({tmpIO_0__Pin_1_net[0:0]}),
-		  .siovref(tmpSIOVREF__Pin_1_net),
-		  .interrupt({tmpINTERRUPT_0__Pin_1_net[0:0]}),
-		  .in_clock({1'b0}),
-		  .in_clock_en({1'b1}),
-		  .in_reset({1'b0}),
-		  .out_clock({1'b0}),
-		  .out_clock_en({1'b1}),
-		  .out_reset({1'b0}));
-
-	assign tmpOE__Pin_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
-
-	wire [0:0] tmpOE__Pin_2_net;
-	wire [0:0] tmpFB_0__Pin_2_net;
-	wire [0:0] tmpIO_0__Pin_2_net;
-	wire [0:0] tmpINTERRUPT_0__Pin_2_net;
-	electrical [0:0] tmpSIOVREF__Pin_2_net;
-
-	cy_psoc3_pins_v1_10
-		#(.id("dbc54e60-d06a-43ba-af51-e2f5f86c3d59"),
-		  .drive_mode(3'b110),
-		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b0),
-		  .input_clk_en(0),
-		  .input_sync(1'b1),
-		  .input_sync_mode(1'b0),
-		  .intr_mode(2'b00),
-		  .invert_in_clock(0),
-		  .invert_in_clock_en(0),
-		  .invert_in_reset(0),
-		  .invert_out_clock(0),
-		  .invert_out_clock_en(0),
-		  .invert_out_reset(0),
-		  .io_voltage(""),
-		  .layout_mode("CONTIGUOUS"),
-		  .oe_conn(1'b0),
-		  .oe_reset(0),
-		  .oe_sync(1'b0),
-		  .output_clk_en(0),
-		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
-		  .output_mode(1'b0),
-		  .output_reset(0),
-		  .output_sync(1'b0),
-		  .pa_in_clock(-1),
-		  .pa_in_clock_en(-1),
-		  .pa_in_reset(-1),
-		  .pa_out_clock(-1),
-		  .pa_out_clock_en(-1),
-		  .pa_out_reset(-1),
-		  .pin_aliases(""),
-		  .pin_mode("O"),
-		  .por_state(4),
-		  .sio_group_cnt(0),
-		  .sio_hyst(1'b1),
-		  .sio_ibuf(""),
-		  .sio_info(2'b00),
-		  .sio_obuf(""),
-		  .sio_refsel(""),
-		  .sio_vtrip(""),
-		  .sio_hifreq(""),
-		  .sio_vohsel(""),
-		  .slew_rate(1'b0),
-		  .spanning(0),
-		  .use_annotation(1'b0),
-		  .vtrip(2'b10),
-		  .width(1),
-		  .ovt_hyst_trim(1'b0),
-		  .ovt_needed(1'b0),
-		  .ovt_slew_control(2'b00),
-		  .input_buffer_sel(2'b00))
-		Pin_2
-		 (.oe(tmpOE__Pin_2_net),
-		  .y({Net_598}),
-		  .fb({tmpFB_0__Pin_2_net[0:0]}),
-		  .io({tmpIO_0__Pin_2_net[0:0]}),
-		  .siovref(tmpSIOVREF__Pin_2_net),
-		  .interrupt({tmpINTERRUPT_0__Pin_2_net[0:0]}),
-		  .in_clock({1'b0}),
-		  .in_clock_en({1'b1}),
-		  .in_reset({1'b0}),
-		  .out_clock({1'b0}),
-		  .out_clock_en({1'b1}),
-		  .out_reset({1'b0}));
-
-	assign tmpOE__Pin_2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
-
-
 	cy_clock_v1_0
-		#(.id("4f2643a4-2ebd-4c3d-b9d5-08431ac5eb51"),
-		  .source_clock_id(""),
+		#(.id("f222cb65-2dc4-4cda-a964-6a31c35b9d7c"),
+		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
 		  .divisor(0),
-		  .period("66666666666.6667"),
+		  .period("1000000000"),
 		  .is_direct(0),
 		  .is_digital(1))
-		Clock_1
-		 (.clock_out(Net_554));
+		SW_Clock
+		 (.clock_out(Net_482));
 
 
-	wire [0:0] tmpOE__SW1_net;
-	wire [0:0] tmpFB_0__SW1_net;
-	wire [0:0] tmpIO_0__SW1_net;
-	wire [0:0] tmpINTERRUPT_0__SW1_net;
-	electrical [0:0] tmpSIOVREF__SW1_net;
+    CyStatusReg_v1_90 Buttons (
+        .status_0(Net_400),
+        .status_1(Net_430),
+        .status_2(1'b0),
+        .status_3(1'b0),
+        .clock(Net_482),
+        .status_4(1'b0),
+        .status_5(1'b0),
+        .status_6(1'b0),
+        .status_7(1'b0),
+        .intr(Net_455),
+        .status_bus(8'b0));
+    defparam Buttons.Bit0Mode = 0;
+    defparam Buttons.Bit1Mode = 0;
+    defparam Buttons.Bit2Mode = 0;
+    defparam Buttons.Bit3Mode = 0;
+    defparam Buttons.Bit4Mode = 0;
+    defparam Buttons.Bit5Mode = 0;
+    defparam Buttons.Bit6Mode = 0;
+    defparam Buttons.Bit7Mode = 0;
+    defparam Buttons.BusDisplay = 0;
+    defparam Buttons.Interrupt = 0;
+    defparam Buttons.MaskValue = 0;
+    defparam Buttons.NumInputs = 2;
 
-	cy_psoc3_pins_v1_10
-		#(.id("79f80d8d-b3e2-42ef-81a9-0c2a6b13f8ed"),
-		  .drive_mode(3'b010),
-		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b1),
-		  .input_clk_en(0),
-		  .input_sync(1'b0),
-		  .input_sync_mode(1'b0),
-		  .intr_mode(2'b00),
-		  .invert_in_clock(0),
-		  .invert_in_clock_en(0),
-		  .invert_in_reset(0),
-		  .invert_out_clock(0),
-		  .invert_out_clock_en(0),
-		  .invert_out_reset(0),
-		  .io_voltage(""),
-		  .layout_mode("CONTIGUOUS"),
-		  .oe_conn(1'b0),
-		  .oe_reset(0),
-		  .oe_sync(1'b0),
-		  .output_clk_en(0),
-		  .output_clock_mode(1'b0),
-		  .output_conn(1'b0),
-		  .output_mode(1'b0),
-		  .output_reset(0),
-		  .output_sync(1'b0),
-		  .pa_in_clock(-1),
-		  .pa_in_clock_en(-1),
-		  .pa_in_reset(-1),
-		  .pa_out_clock(-1),
-		  .pa_out_clock_en(-1),
-		  .pa_out_reset(-1),
-		  .pin_aliases(""),
-		  .pin_mode("I"),
-		  .por_state(4),
-		  .sio_group_cnt(0),
-		  .sio_hyst(1'b1),
-		  .sio_ibuf(""),
-		  .sio_info(2'b00),
-		  .sio_obuf(""),
-		  .sio_refsel(""),
-		  .sio_vtrip(""),
-		  .sio_hifreq(""),
-		  .sio_vohsel(""),
-		  .slew_rate(1'b0),
-		  .spanning(0),
-		  .use_annotation(1'b0),
-		  .vtrip(2'b10),
-		  .width(1),
-		  .ovt_hyst_trim(1'b0),
-		  .ovt_needed(1'b0),
-		  .ovt_slew_control(2'b00),
-		  .input_buffer_sel(2'b00))
-		SW1
-		 (.oe(tmpOE__SW1_net),
-		  .y({1'b0}),
-		  .fb({tmpFB_0__SW1_net[0:0]}),
-		  .io({tmpIO_0__SW1_net[0:0]}),
-		  .siovref(tmpSIOVREF__SW1_net),
-		  .interrupt({tmpINTERRUPT_0__SW1_net[0:0]}),
-		  .in_clock({1'b0}),
-		  .in_clock_en({1'b1}),
-		  .in_reset({1'b0}),
-		  .out_clock({1'b0}),
-		  .out_clock_en({1'b1}),
-		  .out_reset({1'b0}));
-
-	assign tmpOE__SW1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+    Buttons_4 SW (
+        .clk(Net_482),
+        .SW1(Net_481),
+        .SW2(Net_400),
+        .SW3(Net_430));
 
 
 
