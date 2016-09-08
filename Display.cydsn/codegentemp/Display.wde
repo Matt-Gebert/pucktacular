@@ -5,8 +5,8 @@ C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprim
 C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\cypress.v
 C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\warp\lib\common\cy_psoc3_inc.v
 Display.v
-C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD\LCD.v
-C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\FIFO\FIFO.v
+\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\LCD\LCD.v
+\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\FIFO\FIFO.v
 C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_UDB_clockenable_v1_0\cy_UDB_clockenable_v1_0.v
 C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v
 C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v

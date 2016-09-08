@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   29:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Summary:
   30:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 2
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   54:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  mode:  Change the pins to one of the following drive modes.
   55:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
   56:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_STRONG     Strong Drive 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 3
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 3
 
 
   57:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_OD_HI      Open Drain, Drives High 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   81:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  form.
   82:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
   83:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 4
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 4
 
 
   84:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  112:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
  113:.\Generated_Source\PSoC5/Camera_VSYNC.c **** uint8 Camera_VSYNC_ReadDataReg(void) 
  114:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 5
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 5
 
 
  115              		.loc 1 114 0
@@ -274,14 +274,14 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  143 000c 9B000000 		.4byte	.LASF20
  144 0010 01       		.byte	0x1
  145 0011 29010000 		.4byte	.LASF21
- 146 0015 C5010000 		.4byte	.LASF22
+ 146 0015 88010000 		.4byte	.LASF22
  147 0019 00000000 		.4byte	.Ldebug_ranges0+0
  148 001d 00000000 		.4byte	0
  149 0021 00000000 		.4byte	.Ldebug_line0
  150 0025 02       		.uleb128 0x2
  151 0026 01       		.byte	0x1
  152 0027 06       		.byte	0x6
- 153 0028 B9010000 		.4byte	.LASF0
+ 153 0028 15020000 		.4byte	.LASF0
  154 002c 02       		.uleb128 0x2
  155 002d 01       		.byte	0x1
  156 002e 08       		.byte	0x8
@@ -289,7 +289,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  158 0033 02       		.uleb128 0x2
  159 0034 02       		.byte	0x2
  160 0035 05       		.byte	0x5
- 161 0036 A0010000 		.4byte	.LASF2
+ 161 0036 FC010000 		.4byte	.LASF2
  162 003a 02       		.uleb128 0x2
  163 003b 02       		.byte	0x2
  164 003c 07       		.byte	0x7
@@ -297,8 +297,8 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  166 0041 02       		.uleb128 0x2
  167 0042 04       		.byte	0x4
  168 0043 05       		.byte	0x5
- 169 0044 B0010000 		.4byte	.LASF4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 6
+ 169 0044 0C020000 		.4byte	.LASF4
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 6
 
 
  170 0048 02       		.uleb128 0x2
@@ -308,7 +308,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  174 004f 02       		.uleb128 0x2
  175 0050 08       		.byte	0x8
  176 0051 05       		.byte	0x5
- 177 0052 8D010000 		.4byte	.LASF6
+ 177 0052 E9010000 		.4byte	.LASF6
  178 0056 02       		.uleb128 0x2
  179 0057 08       		.byte	0x8
  180 0058 07       		.byte	0x7
@@ -322,7 +322,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  188 0066 07       		.byte	0x7
  189 0067 51010000 		.4byte	.LASF8
  190 006b 04       		.uleb128 0x4
- 191 006c AA010000 		.4byte	.LASF12
+ 191 006c 06020000 		.4byte	.LASF12
  192 0070 02       		.byte	0x2
  193 0071 9201     		.2byte	0x192
  194 0073 2C000000 		.4byte	0x2c
@@ -337,7 +337,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  203 0085 02       		.uleb128 0x2
  204 0086 01       		.byte	0x1
  205 0087 08       		.byte	0x8
- 206 0088 9B010000 		.4byte	.LASF11
+ 206 0088 F7010000 		.4byte	.LASF11
  207 008c 04       		.uleb128 0x4
  208 008d 50000000 		.4byte	.LASF13
  209 0091 02       		.byte	0x2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  224 00b3 12000000 		.4byte	.LASF16
  225 00b7 01       		.byte	0x1
  226 00b8 27       		.byte	0x27
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 7
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 7
 
 
  227 00b9 6B000000 		.4byte	0x6b
@@ -381,7 +381,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  244 00df 9C       		.byte	0x9c
  245 00e0 F4000000 		.4byte	0xf4
  246 00e4 07       		.uleb128 0x7
- 247 00e5 88010000 		.4byte	.LASF17
+ 247 00e5 E4010000 		.4byte	.LASF17
  248 00e9 01       		.byte	0x1
  249 00ea 45       		.byte	0x45
  250 00eb 6B000000 		.4byte	0x6b
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  281 0007 03       		.uleb128 0x3
  282 0008 0E       		.uleb128 0xe
  283 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 8
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 8
 
 
  284 000a 0E       		.uleb128 0xe
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  338 0040 3F       		.uleb128 0x3f
  339 0041 19       		.uleb128 0x19
  340 0042 03       		.uleb128 0x3
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 9
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 9
 
 
  341 0043 0E       		.uleb128 0xe
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  395 007a 03       		.uleb128 0x3
  396 007b 0E       		.uleb128 0xe
  397 007c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 10
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 10
 
 
  398 007d 0B       		.uleb128 0xb
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  452 000c 0000     		.2byte	0
  453 000e 0000     		.2byte	0
  454 0010 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 11
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 11
 
 
  455 0014 18000000 		.4byte	.LFE0-.LFB0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  490      7200
  491              	.LASF13:
  492 0050 72656738 		.ascii	"reg8\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 12
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 12
 
 
  492      00
@@ -718,46 +718,48 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  510      746500
  511              	.LASF7:
  512 0171 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 13
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\ccOtSg78.s 			page 13
 
 
  512      206C6F6E 
  512      6720756E 
  512      7369676E 
  512      65642069 
- 513              	.LASF17:
- 514 0188 6D6F6465 		.ascii	"mode\000"
- 514      00
- 515              	.LASF6:
- 516 018d 6C6F6E67 		.ascii	"long long int\000"
- 516      206C6F6E 
- 516      6720696E 
- 516      7400
- 517              	.LASF11:
- 518 019b 63686172 		.ascii	"char\000"
- 518      00
- 519              	.LASF2:
- 520 01a0 73686F72 		.ascii	"short int\000"
- 520      7420696E 
- 520      7400
- 521              	.LASF12:
- 522 01aa 75696E74 		.ascii	"uint8\000"
- 522      3800
- 523              	.LASF4:
- 524 01b0 6C6F6E67 		.ascii	"long int\000"
- 524      20696E74 
- 524      00
- 525              	.LASF0:
- 526 01b9 7369676E 		.ascii	"signed char\000"
- 526      65642063 
- 526      68617200 
- 527              	.LASF22:
- 528 01c5 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 528      73657273 
- 528      5C54696D 
- 528      5C446F63 
- 528      756D656E 
- 529 01f2 706C6179 		.ascii	"play.cydsn\000"
- 529      2E637964 
- 529      736E00
+ 513              	.LASF22:
+ 514 0188 5C5C6164 		.ascii	"\\\\ad.monash.edu\\home\\User030\\kadux1\\Desktop\\"
+ 514      2E6D6F6E 
+ 514      6173682E 
+ 514      6564755C 
+ 514      686F6D65 
+ 515 01b4 45434533 		.ascii	"ECE3091\\pucktacular-ClawFunctions\\Display.cydsn\000"
+ 515      3039315C 
+ 515      7075636B 
+ 515      74616375 
+ 515      6C61722D 
+ 516              	.LASF17:
+ 517 01e4 6D6F6465 		.ascii	"mode\000"
+ 517      00
+ 518              	.LASF6:
+ 519 01e9 6C6F6E67 		.ascii	"long long int\000"
+ 519      206C6F6E 
+ 519      6720696E 
+ 519      7400
+ 520              	.LASF11:
+ 521 01f7 63686172 		.ascii	"char\000"
+ 521      00
+ 522              	.LASF2:
+ 523 01fc 73686F72 		.ascii	"short int\000"
+ 523      7420696E 
+ 523      7400
+ 524              	.LASF12:
+ 525 0206 75696E74 		.ascii	"uint8\000"
+ 525      3800
+ 526              	.LASF4:
+ 527 020c 6C6F6E67 		.ascii	"long int\000"
+ 527      20696E74 
+ 527      00
+ 528              	.LASF0:
+ 529 0215 7369676E 		.ascii	"signed char\000"
+ 529      65642063 
+ 529      68617200 
  530              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

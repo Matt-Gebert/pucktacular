@@ -1,10 +1,10 @@
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/CortexM3/ARM_GCC_493/Debug/CyBootAsmGnu.o : C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+//ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/CortexM3/ARM_GCC_493/Debug/CyBootAsmGnu.o : //ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s //ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cydevicegnu.inc //ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc //ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
 
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+//ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
 
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+//ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
 
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+//ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
 
-C:/Users/Tim/Documents/GitHub/pucktacular/Display.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+//ad.monash.edu/home/User030/kadux1/Desktop/ECE3091/pucktacular-ClawFunctions/Display.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
 

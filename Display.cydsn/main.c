@@ -36,8 +36,7 @@
 int main()
 {
     PSOCReset();                                    //Put PSOC in ready state
-    VariablesInitialise();                          //Initialise all variables
-    PWM_1_Start();                                  //Start PWM channel    
+    VariablesInitialise();                          //Initialise all variables    
     ISRSetUp();                                     //Setup all interupts
     LCD_Start();
     LCD_DMA_Start();
@@ -55,25 +54,37 @@ int main()
     {
     }
     InitialisationSequnce();
+    //Intialisation of PWM
+    PWM_Pan_Enable();
+    PWM_Pan_Start();
+    PWM_Tilt_Enable();
+    PWM_Tilt_Start();
     PWM_Claw_Enable();
     PWM_Claw_Start();
+    PWM_Lift_Enable();
+    PWM_Lift_Start();
        
     uint8 n=0;
-    uint16 zerodegrees = 1749;
-    uint16 halfway = 1849;
-    uint16 max = 1930;
     for(;;n++)
     {
-        PWM_Claw_WriteCompare(1999-zerodegrees);
-        CyDelay(1000);
-        PWM_Claw_WriteCompare(1999-halfway);
-        CyDelay(1000);
-        PWM_Claw_WriteCompare(1999-max);
-        CyDelay(1000);
-        //PWMOperate();
-        //CyDelay(500);
-        //LEDFlash();
-        //MovementTest();
+        PanRight();
+        CyDelay(200);
+        ClawOpen();
+        CyDelay(200);
+        ClawClose();
+        CyDelay(200);
+        LiftTop();
+        CyDelay(500);
+        LiftGround();
+        CyDelay(500);
+        PanMid();
+        CyDelay(200);
+        if (n%2) TiltStraight();
+        else TiltDown();
+        CyDelay(500);
+        TiltUp();
+        CyDelay(500);
+
     }
 }
 //*************************************************
@@ -196,28 +207,6 @@ void ISR1Handler()
     else
     {
         OnOff=0;
-    }
-}
-//*************************************************
-//
-// Change PWM pulse
-// If middle switch is held down, pulse is extended
-//
-//*************************************************
-void PWMOperate()
-{
-    if(SW1_Read())
-    {
-        //OpenClaw();
-       PWM_1_WriteCompare1(15);
-       PWM_1_WriteCompare2(15);
-
-    }
-    else
-    {
-        //CloseClaw();
-        PWM_1_WriteCompare1(35);
-        PWM_1_WriteCompare2(35);
     }
 }
 //*************************************************

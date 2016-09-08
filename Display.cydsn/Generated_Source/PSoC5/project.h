@@ -1,7 +1,7 @@
 /*******************************************************************************
 * File Name: project.h
 * 
-* PSoC Creator  3.3 CP3
+* PSoC Creator  3.3 SP1
 *
 * Description:
 * It contains references to all generated header files and should not be modified.
@@ -43,18 +43,24 @@
 #include "isr_1.h"
 #include "SW3_aliases.h"
 #include "SW3.h"
-#include "PWM_1.h"
-#include "Pin_1_aliases.h"
-#include "Pin_1.h"
+#include "PWM_Lift.h"
 #include "Pin_2_aliases.h"
 #include "Pin_2.h"
-#include "Clock_1.h"
+#include "Clock_2.h"
+#include "PWM_Tilt.h"
 #include "SW1_aliases.h"
 #include "SW1.h"
-#include "PWM_Claw.h"
-#include "Clock_2.h"
+#include "PWM_Pan.h"
+#include "Clock_1.h"
+#include "Pin_1_aliases.h"
+#include "Pin_1.h"
 #include "Pin_3_aliases.h"
 #include "Pin_3.h"
+#include "Clock_3.h"
+#include "PWM_Claw.h"
+#include "Pin_4_aliases.h"
+#include "Pin_4.h"
+#include "Clock_4.h"
 #include "Camera_DMA_dma.h"
 #include "Camera_VSYNC_aliases.h"
 #include "Camera_VSYNC.h"

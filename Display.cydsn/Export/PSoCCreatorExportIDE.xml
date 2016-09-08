@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="Display" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" Version="5.40" Type="Normal">
+  <Project Name="Display" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" Version="5.40" Type="Normal">
     <CMSIS_SVD_File>Display.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -34,8 +34,8 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\Cm3Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="BUILD" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="BUILD" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\camera_display.c</File>
           <File BuildType="BUILD" Toolchain="">.\camera_display.h</File>
@@ -43,8 +43,8 @@
           <File BuildType="BUILD" Toolchain="">.\movement_functions_unofficial.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Generated_Source\PSoC5">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="STRICT" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\Generated_Source\PSoC5">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cymetadata.c</File>
@@ -157,9 +157,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SW3_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SW3.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SW3.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1_PM.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_1.h</File>
@@ -177,71 +174,87 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_3_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_3.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_3.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Tilt.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Tilt.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Tilt_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Pan.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Pan.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Pan_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Lift.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Lift.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_Lift_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_3.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_3.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_4_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_4.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Pin_4.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_4.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_4.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="BUILD" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\LCD\API">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="BUILD" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\LCD\API">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="">.\LCD\API\LCD.h</File>
           <File BuildType="BUILD" Toolchain="">.\LCD\API\LCD.c</File>
         </Files>
       </Folder>
-      <Folder BuildType="BUILD" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\OV9650_QVGA\API">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="BUILD" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\OV9650_QVGA\API">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="">.\OV9650_QVGA\API\OV9650.h</File>
           <File BuildType="BUILD" Toolchain="">.\OV9650_QVGA\API\OV9650_settings.c</File>
           <File BuildType="BUILD" Toolchain="">.\OV9650_QVGA\API\OV9650.c</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="STRICT" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="STRICT" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn">
+      <Folder BuildType="STRICT" Path="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0p">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM4">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM7">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC3">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC4">
-        <Files Root="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn" />
+        <Files Root="\\ad.monash.edu\home\User030\kadux1\Desktop\ECE3091\pucktacular-ClawFunctions\Display.cydsn" />
       </Folder>
     </Folders>
   </Project>

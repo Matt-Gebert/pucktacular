@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
   29:.\Generated_Source\PSoC5/HREF.c **** * \brief Writes the value to the physical port (data output register), masking
   30:.\Generated_Source\PSoC5/HREF.c **** *  and shifting the bits appropriately. 
   31:.\Generated_Source\PSoC5/HREF.c **** *
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 2
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/HREF.c **** * The data output register controls the signal applied to the physical pin in 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
   52              		.section	.text.HREF_SetDriveMode,"ax",%progbits
   53              		.align	2
   54              		.global	HREF_SetDriveMode
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 3
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 3
 
 
   55              		.thumb
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
   77              	.L5:
   78 0014 7D500040 		.word	1073762429
   79              		.cfi_endproc
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 4
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 4
 
 
   80              	.LFE1:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  110              		.global	HREF_ReadDataReg
  111              		.thumb
  112              		.thumb_func
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 5
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 5
 
 
  113              		.type	HREF_ReadDataReg, %function
@@ -298,22 +298,22 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  139 0000 1B010000 		.4byte	0x11b
  140 0004 0400     		.2byte	0x4
  141 0006 00000000 		.4byte	.Ldebug_abbrev0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 6
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 6
 
 
  142 000a 04       		.byte	0x4
  143 000b 01       		.uleb128 0x1
  144 000c 8E000000 		.4byte	.LASF20
  145 0010 01       		.byte	0x1
- 146 0011 58010000 		.4byte	.LASF21
- 147 0015 93010000 		.4byte	.LASF22
+ 146 0011 B4010000 		.4byte	.LASF21
+ 147 0015 40010000 		.4byte	.LASF22
  148 0019 00000000 		.4byte	.Ldebug_ranges0+0
  149 001d 00000000 		.4byte	0
  150 0021 00000000 		.4byte	.Ldebug_line0
  151 0025 02       		.uleb128 0x2
  152 0026 01       		.byte	0x1
  153 0027 06       		.byte	0x6
- 154 0028 87010000 		.4byte	.LASF0
+ 154 0028 E3010000 		.4byte	.LASF0
  155 002c 02       		.uleb128 0x2
  156 002d 01       		.byte	0x1
  157 002e 08       		.byte	0x8
@@ -329,7 +329,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  167 0041 02       		.uleb128 0x2
  168 0042 04       		.byte	0x4
  169 0043 05       		.byte	0x5
- 170 0044 7E010000 		.4byte	.LASF4
+ 170 0044 DA010000 		.4byte	.LASF4
  171 0048 02       		.uleb128 0x2
  172 0049 04       		.byte	0x4
  173 004a 07       		.byte	0x7
@@ -337,7 +337,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  175 004f 02       		.uleb128 0x2
  176 0050 08       		.byte	0x8
  177 0051 05       		.byte	0x5
- 178 0052 45010000 		.4byte	.LASF6
+ 178 0052 A1010000 		.4byte	.LASF6
  179 0056 02       		.uleb128 0x2
  180 0057 08       		.byte	0x8
  181 0058 07       		.byte	0x7
@@ -351,14 +351,14 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  189 0066 07       		.byte	0x7
  190 0067 1C010000 		.4byte	.LASF8
  191 006b 04       		.uleb128 0x4
- 192 006c 78010000 		.4byte	.LASF12
+ 192 006c D4010000 		.4byte	.LASF12
  193 0070 02       		.byte	0x2
  194 0071 9201     		.2byte	0x192
  195 0073 2C000000 		.4byte	0x2c
  196 0077 02       		.uleb128 0x2
  197 0078 04       		.byte	0x4
  198 0079 04       		.byte	0x4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 7
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 7
 
 
  199 007a 23000000 		.4byte	.LASF9
@@ -369,7 +369,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  204 0085 02       		.uleb128 0x2
  205 0086 01       		.byte	0x1
  206 0087 08       		.byte	0x8
- 207 0088 53010000 		.4byte	.LASF11
+ 207 0088 AF010000 		.4byte	.LASF11
  208 008c 04       		.uleb128 0x4
  209 008d 53000000 		.4byte	.LASF13
  210 0091 02       		.byte	0x2
@@ -410,15 +410,15 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  245 00df 9C       		.byte	0x9c
  246 00e0 F4000000 		.4byte	0xf4
  247 00e4 07       		.uleb128 0x7
- 248 00e5 40010000 		.4byte	.LASF17
+ 248 00e5 9C010000 		.4byte	.LASF17
  249 00e9 01       		.byte	0x1
  250 00ea 5A       		.byte	0x5a
  251 00eb 6B000000 		.4byte	0x6b
  252 00ef 21000000 		.4byte	.LLST1
  253 00f3 00       		.byte	0
  254 00f4 09       		.uleb128 0x9
- 255 00f5 CB010000 		.4byte	.LASF18
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 8
+ 255 00f5 EF010000 		.4byte	.LASF18
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 8
 
 
  256 00f9 01       		.byte	0x1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  310 0023 3E       		.uleb128 0x3e
  311 0024 0B       		.uleb128 0xb
  312 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 9
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 9
 
 
  313 0026 08       		.uleb128 0x8
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  367 005d 0B       		.uleb128 0xb
  368 005e 3B       		.uleb128 0x3b
  369 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 10
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 10
 
 
  370 0060 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  424 000b 0A000000 		.4byte	.LVL2
  425 000f 18000000 		.4byte	.LFE0
  426 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 11
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 11
 
 
  427 0015 F3       		.byte	0xf3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  479      00000201 
  479      FB0E0D00 
  479      01010101 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 12
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 12
 
 
  480              	.LASF16:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  505 008e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  505      4320342E 
  505      392E3320 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 13
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 13
 
 
  505      32303135 
@@ -744,48 +744,50 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 1
  511      6720756E 
  511      7369676E 
  511      65642069 
- 512              	.LASF17:
- 513 0140 6D6F6465 		.ascii	"mode\000"
- 513      00
- 514              	.LASF6:
- 515 0145 6C6F6E67 		.ascii	"long long int\000"
- 515      206C6F6E 
- 515      6720696E 
- 515      7400
- 516              	.LASF11:
- 517 0153 63686172 		.ascii	"char\000"
- 517      00
- 518              	.LASF21:
- 519 0158 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\HREF.c\000"
- 519      6E657261 
- 519      7465645F 
- 519      536F7572 
- 519      63655C50 
- 520              	.LASF12:
- 521 0178 75696E74 		.ascii	"uint8\000"
- 521      3800
- 522              	.LASF4:
- 523 017e 6C6F6E67 		.ascii	"long int\000"
- 523      20696E74 
- 523      00
- 524              	.LASF0:
- 525 0187 7369676E 		.ascii	"signed char\000"
- 525      65642063 
- 525      68617200 
- 526              	.LASF22:
- 527 0193 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 527      73657273 
- 527      5C54696D 
- 527      5C446F63 
- 527      756D656E 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cce11nQt.s 			page 14
+ 512              	.LASF22:
+ 513 0140 5C5C6164 		.ascii	"\\\\ad.monash.edu\\home\\User030\\kadux1\\Desktop\\"
+ 513      2E6D6F6E 
+ 513      6173682E 
+ 513      6564755C 
+ 513      686F6D65 
+ 514 016c 45434533 		.ascii	"ECE3091\\pucktacular-ClawFunctions\\Display.cydsn\000"
+ 514      3039315C 
+ 514      7075636B 
+ 514      74616375 
+ 514      6C61722D 
+ 515              	.LASF17:
+ 516 019c 6D6F6465 		.ascii	"mode\000"
+ 516      00
+ 517              	.LASF6:
+ 518 01a1 6C6F6E67 		.ascii	"long long int\000"
+ 518      206C6F6E 
+ 518      6720696E 
+ 518      7400
+ 519              	.LASF11:
+ 520 01af 63686172 		.ascii	"char\000"
+ 520      00
+ 521              	.LASF21:
+ 522 01b4 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\HREF.c\000"
+ 522      6E657261 
+ 522      7465645F 
+ 522      536F7572 
+ 522      63655C50 
+ 523              	.LASF12:
+ 524 01d4 75696E74 		.ascii	"uint8\000"
+ 524      3800
+ 525              	.LASF4:
+ 526 01da 6C6F6E67 		.ascii	"long int\000"
+ 526      20696E74 
+ARM GAS  C:\Users\kadux1\AppData\Local\Temp\cccseFQL.s 			page 14
 
 
- 528 01c0 706C6179 		.ascii	"play.cydsn\000"
- 528      2E637964 
- 528      736E00
+ 526      00
+ 527              	.LASF0:
+ 528 01e3 7369676E 		.ascii	"signed char\000"
+ 528      65642063 
+ 528      68617200 
  529              	.LASF18:
- 530 01cb 48524546 		.ascii	"HREF_Read\000"
+ 530 01ef 48524546 		.ascii	"HREF_Read\000"
  530      5F526561 
  530      6400
  531              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

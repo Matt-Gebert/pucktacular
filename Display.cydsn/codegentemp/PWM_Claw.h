@@ -227,7 +227,7 @@ void PWM_Claw_RestoreConfig(void) ;
 *         Initialization Values
 **************************************/
 #define PWM_Claw_INIT_PERIOD_VALUE          (1999u)
-#define PWM_Claw_INIT_COMPARE_VALUE1        (20u)
+#define PWM_Claw_INIT_COMPARE_VALUE1        (50u)
 #define PWM_Claw_INIT_COMPARE_VALUE2        (63u)
 #define PWM_Claw_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_Claw_STATUS_TC_INT_EN_MASK_SHIFT)) | \

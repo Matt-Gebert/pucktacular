@@ -151,10 +151,6 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_1</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_1\PWM_1.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_1\PWM_1.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_1\PWM_1_PM.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw\PWM_Claw.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw\PWM_Claw.h</v>
@@ -299,6 +295,8 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_VSYNC.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_3.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_4.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CS.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -327,10 +325,15 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_2.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_3.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_1.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_4.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Claw.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Claw_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Lift.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Lift_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Pan.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Pan_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Tilt.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Tilt_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\RST.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW3.lst</v>
@@ -365,6 +368,8 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_VSYNC.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_3.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_4.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CS.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -373,8 +378,6 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CySpc.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -438,7 +441,6 @@
 <name v=".\Display.cydsn\Display.cydwr" />
 <name v=".\Display.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Display.cydsn\movement_functions_unofficial.h" />
-<name v=".\Display.cydsn\camera_display.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
