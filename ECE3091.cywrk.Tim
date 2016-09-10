@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Source Files\camera_display.c">
 <ExpandedNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
@@ -178,6 +178,15 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_BOOT.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_INT.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_PM.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock\UART_1_IntClock.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock\UART_1_IntClock.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareexport.ld</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareimport.ld</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareimport.scat</v>
@@ -368,6 +377,11 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_2.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_3.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_INT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.elf</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.hex</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.map</v>
@@ -435,6 +449,7 @@
 <v>ECE3091\Display\CyStatusReg_v1_90.pdf</v>
 <v>ECE3091\Display\mux_v1_10.pdf</v>
 <v>ECE3091\Display\not_v1_0.pdf</v>
+<v>ECE3091\Display\UART_v2_50.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>ECE3091</v>
@@ -454,6 +469,7 @@
 <v>ECE3091\Display\CyStatusReg_v1_90.pdf</v>
 <v>ECE3091\Display\mux_v1_10.pdf</v>
 <v>ECE3091\Display\not_v1_0.pdf</v>
+<v>ECE3091\Display\UART_v2_50.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -463,9 +479,12 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Display.cydsn\main.c" />
 <name v=".\Display.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Display.cydsn\Display.cydwr" />
+<name v=".\Display.cydsn\camera_display.h" />
+<name v=".\Display.cydsn\main.c" />
+<name v=".\Display.cydsn\camera_display.c" />
+<name v=".\Display.cydsn\Generated_Source\PSoC5\Camera.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

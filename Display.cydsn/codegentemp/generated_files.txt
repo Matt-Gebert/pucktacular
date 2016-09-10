@@ -63,6 +63,11 @@
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\Buttons.c" value="ARM_C_FILE;Buttons" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\Buttons.h" value="NONE;Buttons" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\SW.h" value="NONE;SW" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1.c" value="ARM_C_FILE;UART_1" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1.h" value="NONE;UART_1" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1_PM.c" value="ARM_C_FILE;UART_1" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1_INT.c" value="ARM_C_FILE;UART_1" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1_BOOT.c" value="ARM_C_FILE;UART_1" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\Camera_DMA_dma.c" value="ARM_C_FILE;Camera_DMA" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\Camera_DMA_dma.h" value="NONE;Camera_DMA" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\Camera_B.h" value="NONE;Camera_B" />
@@ -110,6 +115,8 @@
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\SW_SW_2_aliases.h" value="NONE;SW_SW_2" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\SW_SW_2.c" value="ARM_C_FILE;SW_SW_2" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\SW_SW_2.h" value="NONE;SW_SW_2" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1_IntClock.c" value="ARM_C_FILE;UART_1_IntClock" />
+  <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\UART_1_IntClock.h" value="NONE;UART_1_IntClock" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\cycodeshareimport.ld" value="NONE;" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\cycodeshareexport.ld" value="NONE;" />
   <file name="C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\codegentemp\cycodeshareimport.scat" value="NONE;" />

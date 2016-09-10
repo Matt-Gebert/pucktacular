@@ -1,6 +1,11 @@
 #include <project.h>
 #include "camera_display.h"
 
+
+/*char word[16];
+void UARTSend();
+extern int sprintf(char *str, const char *format, ...);
+*/
 int main()
 {
     CS_Write(2); //select output latch
@@ -14,6 +19,14 @@ int main()
     LCD_Start();
     LCD_DMA_Start();
 
+  /*  UART_1_Start();
+    
+    sprintf(word,"something");
+    UART_1_PutString(word);
+    UART_1_PutCRLF(0);
+    
+    */
+    
     Camera_Start();
     Camera_WriteReg(0x41,0x02); //double colour matrix (more saturation)
     Camera_SetBlankTime(1000); //increase blanking time if image is corrupted; range is 0-2047
@@ -29,6 +42,8 @@ int main()
     
     for(;;n++)
     {
+      /*  UARTSend(); */
+        
         uint8 buttons=Buttons_Status;
         if(buttons&~buttons_old&2) //right button switches between display modes (IMAGE, HISTROGRAM, THRESHOLDED)
         {
@@ -62,3 +77,10 @@ int main()
 //        CyDelay(300);
     }
 }
+/*
+void UARTSend() {
+        sprintf(word,"something");
+        UART_1_PutString(word);
+        UART_1_PutCRLF(0);
+}
+*/
