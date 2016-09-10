@@ -61,7 +61,6 @@ void LCD_WriteArray(uint8 reg,uint8 *values,uint8 n)
     {
         while(!LCD_Ready);
         LCD_Data(values[i]);
-       
     }
     while(!LCD_Empty);
     

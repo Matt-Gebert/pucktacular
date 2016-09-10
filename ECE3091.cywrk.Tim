@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="ECE3091\Display\Source Files\camera_display.c">
 <ExpandedNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
@@ -21,26 +21,37 @@
 <v>ECE3091\Display\Display.cydwr</v>
 <v>ECE3091\Display\Header Files</v>
 <v>ECE3091\Display\Header Files\camera_display.h</v>
-<v>ECE3091\Display\Header Files\claw_functions.h</v>
-<v>ECE3091\Display\Header Files\movement_functions_unofficial.h</v>
 <v>ECE3091\Display\Source Files</v>
 <v>ECE3091\Display\Source Files\camera_display.c</v>
 <v>ECE3091\Display\Source Files\main.c</v>
 <v>ECE3091\Display\Generated_Source</v>
 <v>ECE3091\Display\Generated_Source\PSoC5</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons\Buttons.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons\Buttons.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera_settings.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_B</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_B\Camera_B.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK\Camera_CLK.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK\Camera_CLK.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours\Camera_DMA_Colours_dma.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours\Camera_DMA_Colours_dma.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line\Camera_end_line.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line\Camera_end_line.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line_colours</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line_colours\Camera_end_line_colours.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line_colours\Camera_end_line_colours.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_G</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_G\Camera_G.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.h</v>
@@ -50,6 +61,10 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_PM.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_PVT.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_SLAVE.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_M</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_M\Camera_M.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_R</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_R\Camera_R.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOC</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOC\Camera_SIOC.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOC\Camera_SIOC.h</v>
@@ -58,16 +73,14 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_SIOD\Camera_SIOD_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_Threshold</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_Threshold\Camera_Threshold.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_Threshold\Camera_Threshold.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_Threshold\Camera_Threshold_PM.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_VSYNC</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_VSYNC\Camera_VSYNC_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_1</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_1\Clock_1.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_1\Clock_1.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_2</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_2\Clock_2.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Clock_2\Clock_2.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\CS</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\CS\CS.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\CS\CS.h</v>
@@ -111,9 +124,6 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\HREF\HREF.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\HREF\HREF.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\HREF\HREF_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\isr_1</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\isr_1\isr_1.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\isr_1\isr_1.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\LCD</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\LCD\LCD.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\LCD\LCD.h</v>
@@ -139,34 +149,44 @@
 <v>ECE3091\Display\Generated_Source\PSoC5\OE\OE.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\OE\OE.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\OE\OE_PM.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_1</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_1\Pin_1.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_1\Pin_1.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_1\Pin_1_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_2</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_2\Pin_2.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_2\Pin_2.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_2\Pin_2_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_3</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Pin_3\Pin_3_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw\PWM_Claw.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw\PWM_Claw.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\PWM_Claw\PWM_Claw_PM.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\RST</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\RST\RST.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\RST\RST.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\RST\RST_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW1</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW1\SW1.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW1\SW1.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW1\SW1_aliases.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW3</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW3\SW3.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW3\SW3.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\SW3\SW3_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW\SW.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Clock</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Clock\SW_Clock.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Clock\SW_Clock.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Comparator</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Comparator\SW_Comparator.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Comparator\SW_Comparator.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_Comparator\SW_Comparator_PM.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_DAC</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_DAC\SW_DAC.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_DAC\SW_DAC.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_DAC\SW_DAC_PM.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_1</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_1\SW_SW_1.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_1\SW_SW_1.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_1\SW_SW_1_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_2</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_2\SW_SW_2.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_2\SW_SW_2.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_2\SW_SW_2_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\SW_SW_3\SW_SW_3_aliases.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_BOOT.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_INT.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1\UART_1_PM.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock\UART_1_IntClock.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\UART_1_IntClock\UART_1_IntClock.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareexport.ld</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareimport.ld</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\cycodeshareimport.scat</v>
@@ -195,39 +215,49 @@
 <v>ECE3091\Display\Display.cydwr</v>
 <v>ECE3091\Display\Header Files</v>
 <v>ECE3091\Display\Header Files\camera_display.h</v>
-<v>ECE3091\Display\Header Files\claw_functions.h</v>
-<v>ECE3091\Display\Header Files\movement_functions_unofficial.h</v>
 <v>ECE3091\Display\Source Files</v>
 <v>ECE3091\Display\Source Files\camera_display.c</v>
 <v>ECE3091\Display\Source Files\main.c</v>
 <v>ECE3091\Display\Generated_Source</v>
 <v>ECE3091\Display\Generated_Source\PSoC5</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons\Buttons.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Buttons\Buttons.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera\Camera_settings.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_B</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_B\Camera_B.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK\Camera_CLK.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_CLK\Camera_CLK.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA\Camera_DMA_dma.h</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours\Camera_DMA_Colours_dma.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_DMA_Colours\Camera_DMA_Colours_dma.h</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line\Camera_end_line.c</v>
 <v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line\Camera_end_line.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C.h</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_BOOT.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_INT.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_MASTER.c</v>
-<v>ECE3091\Display\Generated_Source\PSoC5\Camera_I2C\Camera_I2C_PM.c</v>
+<v>ECE3091\Display\Generated_Source\PSoC5\Camera_end_line_colours</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
+<v>ECE3091\Display\Buttons</v>
+<v>ECE3091\Display\Buttons\API</v>
+<v>ECE3091\Display\Buttons\API\Buttons.h</v>
+<v>ECE3091\Display\Buttons\Buttons.cysch</v>
+<v>ECE3091\Display\Buttons\Buttons.cysym</v>
+<v>ECE3091\Display\ColourDetector</v>
+<v>ECE3091\Display\ColourDetector\API</v>
+<v>ECE3091\Display\ColourDetector\API\ColourDetector.h</v>
+<v>ECE3091\Display\ColourDetector\ColourDetector.cysym</v>
+<v>ECE3091\Display\ColourDetector\ColourDetector.v</v>
 <v>ECE3091\Display\FIFO</v>
 <v>ECE3091\Display\FIFO\FIFO.cysym</v>
 <v>ECE3091\Display\FIFO\FIFO.v</v>
@@ -244,12 +274,25 @@
 <v>ECE3091\Display\OV9650_QVGA\API\OV9650_settings.c</v>
 <v>ECE3091\Display\OV9650_QVGA\OV9650_QVGA.cysch</v>
 <v>ECE3091\Display\OV9650_QVGA\OV9650_QVGA.cysym</v>
+<v>ECE3091\Display\RowSync</v>
+<v>ECE3091\Display\RowSync\RowSync.cysym</v>
+<v>ECE3091\Display\RowSync\RowSync.v</v>
 <v>ECE3091\Display\TopDesign</v>
 <v>ECE3091\Display\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>ECE3091</v>
 <v>ECE3091\Display</v>
+<v>ECE3091\Display\Buttons</v>
+<v>ECE3091\Display\Buttons\API</v>
+<v>ECE3091\Display\Buttons\API\Buttons.h</v>
+<v>ECE3091\Display\Buttons\Buttons.cysch</v>
+<v>ECE3091\Display\Buttons\Buttons.cysym</v>
+<v>ECE3091\Display\ColourDetector</v>
+<v>ECE3091\Display\ColourDetector\API</v>
+<v>ECE3091\Display\ColourDetector\API\ColourDetector.h</v>
+<v>ECE3091\Display\ColourDetector\ColourDetector.cysym</v>
+<v>ECE3091\Display\ColourDetector\ColourDetector.v</v>
 <v>ECE3091\Display\FIFO</v>
 <v>ECE3091\Display\FIFO\FIFO.cysym</v>
 <v>ECE3091\Display\FIFO\FIFO.v</v>
@@ -266,6 +309,9 @@
 <v>ECE3091\Display\OV9650_QVGA\API\OV9650_settings.c</v>
 <v>ECE3091\Display\OV9650_QVGA\OV9650_QVGA.cysch</v>
 <v>ECE3091\Display\OV9650_QVGA\OV9650_QVGA.cysym</v>
+<v>ECE3091\Display\RowSync</v>
+<v>ECE3091\Display\RowSync\RowSync.cysym</v>
+<v>ECE3091\Display\RowSync\RowSync.v</v>
 <v>ECE3091\Display\TopDesign</v>
 <v>ECE3091\Display\TopDesign\TopDesign.cysch</v>
 </VisibleNodeIds>
@@ -278,11 +324,14 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Buttons.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_CLK.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\camera_display.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_DMA_Colours_dma.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_DMA_dma.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_end_line.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_end_line_colours.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_BOOT.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_INT.lst</v>
@@ -292,11 +341,9 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_settings.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOC.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOD.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_Threshold.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_Threshold_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_VSYNC.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_3.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_4.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CS.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -312,7 +359,6 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Data_Out.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Data_Out_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\HREF.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\isr_1.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_CLK.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\LCD_DMA_dma.lst</v>
@@ -322,21 +368,20 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\main.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\OE.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\OE_PM.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_1.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_2.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_3.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Pin_4.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Claw.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Claw_PM.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Lift.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Lift_PM.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Pan.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Pan_PM.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Tilt.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\PWM_Tilt_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\RST.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW1.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW3.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_Clock.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_Comparator.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_Comparator_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_DAC.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_DAC_PM.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_1.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_2.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\SW_SW_3.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_INT.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\UART_1_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.elf</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.hex</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Display.map</v>
@@ -351,11 +396,14 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Buttons.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_CLK.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\camera_display.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_DMA_Colours_dma.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_DMA_dma.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_end_line.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_end_line_colours.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_BOOT.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_I2C_INT.lst</v>
@@ -365,11 +413,9 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_settings.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOC.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_SIOD.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_Threshold.lst</v>
+<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_Threshold_PM.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Camera_VSYNC.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_1.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_2.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_3.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Clock_4.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\Cm3Start.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CS.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
@@ -377,7 +423,6 @@
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
 <v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
-<v>ECE3091\Display\CortexM3\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -397,15 +442,14 @@
 <v>ECE3091\Display\cy_clock_v2_20</v>
 <v>ECE3091\Display\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>ECE3091\Display\cy_dma_v1_70.pdf</v>
-<v>ECE3091\Display\cy_isr_v1_70.pdf</v>
 <v>ECE3091\Display\cy_pins_v2_20</v>
 <v>ECE3091\Display\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>ECE3091\Display\CyControlReg_v1_80</v>
 <v>ECE3091\Display\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
+<v>ECE3091\Display\CyStatusReg_v1_90.pdf</v>
 <v>ECE3091\Display\mux_v1_10.pdf</v>
 <v>ECE3091\Display\not_v1_0.pdf</v>
-<v>ECE3091\Display\PWM_v3_30</v>
-<v>ECE3091\Display\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>ECE3091\Display\UART_v2_50.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>ECE3091</v>
@@ -418,15 +462,14 @@
 <v>ECE3091\Display\cy_clock_v2_20</v>
 <v>ECE3091\Display\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>ECE3091\Display\cy_dma_v1_70.pdf</v>
-<v>ECE3091\Display\cy_isr_v1_70.pdf</v>
 <v>ECE3091\Display\cy_pins_v2_20</v>
 <v>ECE3091\Display\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 <v>ECE3091\Display\CyControlReg_v1_80</v>
 <v>ECE3091\Display\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
+<v>ECE3091\Display\CyStatusReg_v1_90.pdf</v>
 <v>ECE3091\Display\mux_v1_10.pdf</v>
 <v>ECE3091\Display\not_v1_0.pdf</v>
-<v>ECE3091\Display\PWM_v3_30</v>
-<v>ECE3091\Display\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>ECE3091\Display\UART_v2_50.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -436,11 +479,12 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Display.cydsn\claw_functions.h" />
-<name v=".\Display.cydsn\main.c" />
-<name v=".\Display.cydsn\Display.cydwr" />
 <name v=".\Display.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Display.cydsn\movement_functions_unofficial.h" />
+<name v=".\Display.cydsn\Display.cydwr" />
+<name v=".\Display.cydsn\camera_display.h" />
+<name v=".\Display.cydsn\main.c" />
+<name v=".\Display.cydsn\camera_display.c" />
+<name v=".\Display.cydsn\Generated_Source\PSoC5\Camera.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

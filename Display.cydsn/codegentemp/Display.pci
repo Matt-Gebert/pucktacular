@@ -1,5 +1,5 @@
 # Display
-# 2016-09-07 05:54:12Z
+# 2016-09-09 02:07:22Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -27,9 +27,8 @@ set_io "\Camera:VSYNC(0)\" iocell 0 0
 set_io "\Camera:SIOD(0)\" iocell 0 7
 set_io "\Camera:SIOC(0)\" iocell 0 6
 set_io "HREF(0)" iocell 15 5
-set_io "SW3(0)" iocell 0 2
-set_io "Pin_2(0)" iocell 12 1
-set_io "SW1(0)" iocell 0 4
-set_io "Pin_1(0)" iocell 12 0
-set_io "Pin_3(0)" iocell 12 2
-set_io "Pin_4(0)" iocell 12 3
+set_io "\SW:SW_1(0)\" iocell 0 4
+set_io "\SW:SW_3(0)\" iocell 0 2
+set_io "\SW:SW_2(0)\" iocell 0 3
+set_location "\SW:DAC:viDAC8\" vidaccell -1 -1 2
+set_location "\SW:Comparator:ctComp\" comparatorcell -1 -1 0

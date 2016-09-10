@@ -1,220 +1,86 @@
 #include <project.h>
 #include "camera_display.h"
-#include "claw_functions.h"
-#include "movement_functions_unofficial.h"
-//*************************************************
-//
-//Function prototypes
-//
-//*************************************************   
-    void PSOCReset();
-    void ISRSetUp(); 
-    void VariablesInitialise();
-    void InitialisationSequnce();
-    void LEDFlash();
-    void PWMOperate();
-    void Beep(int a);
-    void BiDirPortInPut();
-    void BiDirPortOutPut();
-    void ISR1Handler(); 
-//*************************************************
-//
-//RAM variables
-//
-//*************************************************    
-    int a;
-    int b;
-    int c;
-    int AD0Data;
-    int OnOff;
-//*************************************************
-//
-//Main program starts here
-//Added Line :)
-//
-//************************************************* 
+
+
+/*char word[16];
+void UARTSend();
+extern int sprintf(char *str, const char *format, ...);
+*/
 int main()
 {
-    PSOCReset();                                    //Put PSOC in ready state
-    VariablesInitialise();                          //Initialise all variables    
-    ISRSetUp();                                     //Setup all interupts
+    CS_Write(2); //select output latch
+    OE_Control=3; //enable output driver and switch to user output
+    Data_Out_Control=0; //write to user output data bus
+    CS_Write(8); //deselect output latch to clock in data
+    OE_Control=0; //disable output driver
+    
+    SW_Start();
+    
     LCD_Start();
     LCD_DMA_Start();
+
+  /*  UART_1_Start();
+    
+    sprintf(word,"something");
+    UART_1_PutString(word);
+    UART_1_PutCRLF(0);
+    
+    */
+    
     Camera_Start();
-    Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
-    Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted; range is 0-2047 (I used 600 for debug build and 500 for release build)
+    Camera_WriteReg(0x41,0x02); //double colour matrix (more saturation)
+    Camera_SetBlankTime(1000); //increase blanking time if image is corrupted; range is 0-2047
     
-    LCD_CLK_SetDividerValue(5);
-    CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
+    CyGlobalIntEnable; //interrupts must be enabled for camera to work
     
-    Beep(1);
-    CyDelay(200);
-    Beep(1); 
-    while(OnOff==0)
-    {
-    }
-    InitialisationSequnce();
-    //Intialisation of PWM
-    PWM_Pan_Enable();
-    PWM_Pan_Start();
-    PWM_Tilt_Enable();
-    PWM_Tilt_Start();
-    PWM_Claw_Enable();
-    PWM_Claw_Start();
-    PWM_Lift_Enable();
-    PWM_Lift_Start();
-       
     uint8 n=0;
+    display_mode=IMAGE; //start displaying image
+    uint8 buttons_old=0xff; //assume buttons have not been pressed
+    
+    Camera_SetEGWB(80,0,128,128); //set exposure, gain and white balance
+    Camera_SetThresholds(-32,64,0,-64,48,-32,-16,32); //set thresholds for the 4 colours
+    
     for(;;n++)
     {
-        PanRight();
-        CyDelay(200);
-        ClawOpen();
-        CyDelay(200);
-        ClawClose();
-        CyDelay(200);
-        LiftTop();
-        CyDelay(500);
-        LiftGround();
-        CyDelay(500);
-        PanMid();
-        CyDelay(200);
-        if (n%2) TiltStraight();
-        else TiltDown();
-        CyDelay(500);
-        TiltUp();
-        CyDelay(500);
-
+      /*  UARTSend(); */
+        
+        uint8 buttons=Buttons_Status;
+        if(buttons&~buttons_old&2) //right button switches between display modes (IMAGE, HISTROGRAM, THRESHOLDED)
+        {
+            display_mode++;
+            if(display_mode>THRESHOLDED) display_mode=IMAGE;
+        }
+        buttons_old=buttons;
+        
+        CaptureFrame(); //read frame into LCD
+        
+         //toggle light every frame
+        CS_Write(2); //select output latch
+        OE_Control=3; //enable output driver and switch to user output
+        Data_Out_Control=n&1?4:0; //write to user output data bus
+        CS_Write(8); //deselect output latch to clock in data
+        OE_Control=0; //disable output driver
+        
+//        //read top 100x100 pixels into array
+//        pixel box[100][100];
+//        LCD_SetWindowRead(0,0,99,99);
+//        uint8 i,j;
+//        for(i=0;i<100;i++) for(j=0;j<100;j++)
+//            box[i][j]=LCD_ReadPixel();
+//        LCD_StopReadWrite();
+//                
+//        //write array back into bottom corner
+//        LCD_SetWindowWrite(220,140,319,239);
+//        for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
+//        LCD_StopReadWrite();
+//        
+//        CyDelay(300);
     }
 }
-//*************************************************
-//
-//Put 8 bit port in output mode
-//
-//*************************************************
-void BiDirPortOutPut()
-{
-    OE_Control=3;                           //enable output driver and switch to user output
+/*
+void UARTSend() {
+        sprintf(word,"something");
+        UART_1_PutString(word);
+        UART_1_PutCRLF(0);
 }
-//************************************************
-//
-//Put 8 bit port in input mode
-//
-//*************************************************
-void BiDirPortInPut()
-{
-   OE_Control=0;                            //disable output driver                    
-}
-//*************************************************
-//
-// Beep for 100mS minimum
-// On entry X contains quantity of 100mS beeps
-//
-//*************************************************
-void Beep(int x) 
-{
-    BiDirPortOutPut();
-    for(;x>0;x--)
-    {
-        Data_Out_Write(0x03);      //Turn beeper on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-    }
-     Data_Out_Write(0x01);      //Turn beeper off
-     CS_Write(0x02);  
-     CS_Write(0x08);   
-}
-//************************************************
-//
-// Do a few things to wake up robot
-//
-//*************************************************
-void InitialisationSequnce()
-{
-    Beep(2);                         //Beep 4 times
-    CyDelay(400);
-    for(a=0;a<3;a++)                //Flash LED 5 times
-    {
-        LEDFlash();
-    }
-    for(a=0;a<3;a++)                //Flash headlights 3 times
-    {
-        BiDirPortOutPut();
-        Data_Out_Write(0x09);       //HeadLights on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-        Data_Out_Write(0x01);      //Headlights off
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-    }
-}
-//************************************************************
-//
-// Turn LED on for 100mS 
-// 
-//************************************************************
-void LEDFlash() 
-{
-	BiDirPortOutPut();
-    Data_Out_Write(0x09);      //Set bit 2 high
-    CS_Write(0x02);  
-    CS_Write(0x08);
-    CyDelay(100);
-    Data_Out_Write(0x01);      //Set bit 2 low
-    CS_Write(0x02);  
-    CS_Write(0x08); 
-}
-//************************************************
-//
-//Set up PSOC in the correct state
-//
-//*************************************************
-void PSOCReset()
-{
-    CS_Write(0x08); 
-    RST_Write(0);
-    CyDelay(700);
-    RST_Write(1);
-    CyDelay(700);
-    RST_Write(0);
-    CyDelay(700);
-    RST_Write(1);
-} 
-//*************************************************
-//
-// ISR Set Up all interupts as required
-//
-//*************************************************
-void ISRSetUp()  
-{
-    isr_1_ClearPending();                          
-    isr_1_StartEx(ISR1Handler);                     //for switch 2
-} 
-//*************************************************
-//
-//ISR1 Handler for switch. Interupt comes here when switch is pushed
-//
-//*************************************************
-void ISR1Handler()  
-{
-    if(OnOff==0)
-    {
-        OnOff=1;
-    }
-    else
-    {
-        OnOff=0;
-    }
-}
-//*************************************************
-//
-//Initialise all necessary variables
-//
-//*************************************************
- void VariablesInitialise()
-{
-   OnOff=0;
-}
+*/

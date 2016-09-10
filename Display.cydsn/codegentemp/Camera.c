@@ -63,4 +63,27 @@ void Camera_Start()
 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
 	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+    
+    
+    
+    Camera_R_Start();
+    Camera_G_Start();
+    Camera_B_Start();
+    Camera_M_Start();
+    
+    DMA_channel=Camera_DMA_Colours_DmaInitialize(1,1,HI16(CYDEV_PERIPH_BASE),HI16(CYDEV_SRAM_BASE)); //peripheral -> SRAM
+	DMA_TD=CyDmaTdAllocate();
+    CyDmaTdSetAddress(DMA_TD,LO16(Camera_FIFO_Colours_dp__F0_REG),LO16((uint32)Camera_linebuffer));
+    CyDmaTdSetConfiguration(DMA_TD,sizeof(Camera_linebuffer)/4,DMA_TD,TD_INC_DST_ADR|Camera_DMA__TD_TERMOUT_EN); //loop TDs
+	CyDmaChPriority(DMA_channel,0); //ensure highest priority for DMA channel
+
+    Camera_end_line_colours_StartEx(Camera_end_line);
+    
+	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+    *(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+    *(reg8*)Camera_FIFO_Colours_dp__F0_REG; //clear fifo
+	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
+	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
 }

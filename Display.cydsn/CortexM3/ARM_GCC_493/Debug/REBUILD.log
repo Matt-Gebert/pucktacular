@@ -1,4 +1,4 @@
---------------- Rebuild Started: 08/20/2016 09:35:32 Project: Display, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Rebuild Started: 09/09/2016 12:06:50 Project: Display, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\main.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\camera_display.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o"
@@ -39,8 +39,24 @@ Deleting file ".\CortexM3\ARM_GCC_493\Debug\Camera_end_line.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\Data_Out.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\Data_Out_PM.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\LCD_DMA_dma.o"
-Deleting file ".\CortexM3\ARM_GCC_493\Debug\isr_1.o"
-Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW3.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Buttons.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Camera_DMA_Colours_dma.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Camera_Threshold.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Camera_Threshold_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\Camera_end_line_colours.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_DAC.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_DAC_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_Comparator.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_Comparator_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_SW_1.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_SW_3.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_SW_2.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\SW_Clock.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_1.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_1_PM.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_1_INT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_1_BOOT.o"
+Deleting file ".\CortexM3\ARM_GCC_493\Debug\UART_1_IntClock.o"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\Display.hex"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\Display.elf"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\Display.map"
@@ -51,27 +67,37 @@ Deleting file ".\Display_timing.html"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\.deps\C_FILE.P"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\.deps\ARM_C_FILE.P"
 Deleting file ".\CortexM3\ARM_GCC_493\Debug\.deps\GNU_ARM_ASM_FILE.P"
-cydsfit.exe -.appdatapath "C:\Users\mzenere\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\Display.cyprj -d CY8C5888LTI-LP097 -s C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit.exe -.appdatapath "C:\Users\Tim\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Display.cyprj -d CY8C5888LTI-LP097 -s C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 Elaborating Design...
 HDL Generation ...
 Synthesis ...
 Place and Route ...
 Tech mapping ...
-ADD: pft.M0040: information: The following 1 pin(s) will be assigned a location by the fitter: SW3(0)
+ADD: pft.M0040: information: The following 2 pin(s) will be assigned a location by the fitter: Rx_1(0), Tx_1(0)
 Analog Placement ...
+Log: apr.M0058: The analog placement iterative improvement is 51% done. (App=cydsfit)
 Analog Routing ...
 Analog Code Generation ...
 Digital Placement ...
 Digital Routing ...
 Bitstream Generation ...
 Static timing analysis ...
-Warning: sta.M0021: Display_timing.html: Warning-1350: Asynchronous path(s) exist from "CyBUS_CLK" to "\Camera:PCLK(0)_PAD\". See the timing report for details. (File=C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\Display_timing.html)
-Warning: sta.M0021: Display_timing.html: Warning-1350: Asynchronous path(s) exist from "LCD_CLK" to "\Camera:PCLK(0)_PAD\". See the timing report for details. (File=C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\Display_timing.html)
-Warning: sta.M0019: Display_timing.html: Warning-1366: Setup time violation found in a path from clock ( CyBUS_CLK ) to clock ( CyBUS_CLK ). (File=C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\Display_timing.html)
+Warning: sta.M0021: Display_timing.html: Warning-1350: Asynchronous path(s) exist from "CyBUS_CLK" to "\Camera:PCLK(0)_PAD\". See the timing report for details. (File=C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Display_timing.html)
+Warning: sta.M0021: Display_timing.html: Warning-1350: Asynchronous path(s) exist from "LCD_CLK" to "\Camera:PCLK(0)_PAD\". See the timing report for details. (File=C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Display_timing.html)
+Warning: sta.M0019: Display_timing.html: Warning-1366: Setup time violation found in a path from clock ( CyBUS_CLK ) to clock ( CyBUS_CLK ). (File=C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\Display_timing.html)
 API Generation ...
 Dependency Generation ...
 Clean Temporary Files ...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
+.\main.c: In function 'main':
+.\main.c:22:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+     sprintf(word,"something");
+     ^
+.\main.c:22:5: warning: incompatible implicit declaration of built-in function 'sprintf'
+.\main.c: In function 'UARTSend':
+.\main.c:78:9: warning: incompatible implicit declaration of built-in function 'sprintf'
+         sprintf(word,"something");
+         ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/camera_display.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\camera_display.c -o .\CortexM3\ARM_GCC_493\Debug\camera_display.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/cyfitter_cfg.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\cyfitter_cfg.c -o .\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/cymetadata.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\cymetadata.c -o .\CortexM3\ARM_GCC_493\Debug\cymetadata.o
@@ -111,13 +137,29 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\P
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Data_Out.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Data_Out.c -o .\CortexM3\ARM_GCC_493\Debug\Data_Out.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Data_Out_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Data_Out_PM.c -o .\CortexM3\ARM_GCC_493\Debug\Data_Out_PM.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/LCD_DMA_dma.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\LCD_DMA_dma.c -o .\CortexM3\ARM_GCC_493\Debug\LCD_DMA_dma.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/isr_1.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\isr_1.c -o .\CortexM3\ARM_GCC_493\Debug\isr_1.o
-arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW3.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW3.c -o .\CortexM3\ARM_GCC_493\Debug\SW3.o
-arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_493\Debug\Display.a .\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_493\Debug\D.o .\CortexM3\ARM_GCC_493\Debug\CS.o .\CortexM3\ARM_GCC_493\Debug\LCD_WR.o .\CortexM3\ARM_GCC_493\Debug\LCD_RD.o .\CortexM3\ARM_GCC_493\Debug\LCD_RS.o .\CortexM3\ARM_GCC_493\Debug\RST.o .\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_493\Debug\CyDmac.o .\CortexM3\ARM_GCC_493\Debug\CyFlash.o .\CortexM3\ARM_GCC_493\Debug\CyLib.o .\CortexM3\ARM_GCC_493\Debug\cyPm.o .\CortexM3\ARM_GCC_493\Debug\CySpc.o .\CortexM3\ARM_GCC_493\Debug\cyutils.o .\CortexM3\ARM_GCC_493\Debug\LCD.o .\CortexM3\ARM_GCC_493\Debug\LCD_CLK.o .\CortexM3\ARM_GCC_493\Debug\OE.o .\CortexM3\ARM_GCC_493\Debug\OE_PM.o .\CortexM3\ARM_GCC_493\Debug\Camera_settings.o .\CortexM3\ARM_GCC_493\Debug\Camera.o .\CortexM3\ARM_GCC_493\Debug\Camera_CLK.o .\CortexM3\ARM_GCC_493\Debug\HREF.o .\CortexM3\ARM_GCC_493\Debug\Camera_DMA_dma.o .\CortexM3\ARM_GCC_493\Debug\Camera_VSYNC.o .\CortexM3\ARM_GCC_493\Debug\Camera_SIOD.o .\CortexM3\ARM_GCC_493\Debug\Camera_SIOC.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_BOOT.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_INT.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_PM.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_SLAVE.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_MASTER.o .\CortexM3\ARM_GCC_493\Debug\Camera_end_line.o .\CortexM3\ARM_GCC_493\Debug\Data_Out.o .\CortexM3\ARM_GCC_493\Debug\Data_Out_PM.o .\CortexM3\ARM_GCC_493\Debug\LCD_DMA_dma.o .\CortexM3\ARM_GCC_493\Debug\isr_1.o .\CortexM3\ARM_GCC_493\Debug\SW3.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Buttons.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Buttons.c -o .\CortexM3\ARM_GCC_493\Debug\Buttons.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Camera_DMA_Colours_dma.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Camera_DMA_Colours_dma.c -o .\CortexM3\ARM_GCC_493\Debug\Camera_DMA_Colours_dma.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Camera_Threshold.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Camera_Threshold.c -o .\CortexM3\ARM_GCC_493\Debug\Camera_Threshold.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Camera_Threshold_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Camera_Threshold_PM.c -o .\CortexM3\ARM_GCC_493\Debug\Camera_Threshold_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Camera_end_line_colours.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\Camera_end_line_colours.c -o .\CortexM3\ARM_GCC_493\Debug\Camera_end_line_colours.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_DAC.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_DAC.c -o .\CortexM3\ARM_GCC_493\Debug\SW_DAC.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_DAC_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_DAC_PM.c -o .\CortexM3\ARM_GCC_493\Debug\SW_DAC_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_Comparator.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_Comparator.c -o .\CortexM3\ARM_GCC_493\Debug\SW_Comparator.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_Comparator_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_Comparator_PM.c -o .\CortexM3\ARM_GCC_493\Debug\SW_Comparator_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_SW_1.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_SW_1.c -o .\CortexM3\ARM_GCC_493\Debug\SW_SW_1.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_SW_3.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_SW_3.c -o .\CortexM3\ARM_GCC_493\Debug\SW_SW_3.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_SW_2.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_SW_2.c -o .\CortexM3\ARM_GCC_493\Debug\SW_SW_2.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/SW_Clock.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\SW_Clock.c -o .\CortexM3\ARM_GCC_493\Debug\SW_Clock.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/UART_1.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\UART_1.c -o .\CortexM3\ARM_GCC_493\Debug\UART_1.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/UART_1_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\UART_1_PM.c -o .\CortexM3\ARM_GCC_493\Debug\UART_1_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/UART_1_INT.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\UART_1_INT.c -o .\CortexM3\ARM_GCC_493\Debug\UART_1_INT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/UART_1_BOOT.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\UART_1_BOOT.c -o .\CortexM3\ARM_GCC_493\Debug\UART_1_BOOT.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/UART_1_IntClock.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\UART_1_IntClock.c -o .\CortexM3\ARM_GCC_493\Debug\UART_1_IntClock.o
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_493\Debug\Display.a .\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_493\Debug\D.o .\CortexM3\ARM_GCC_493\Debug\CS.o .\CortexM3\ARM_GCC_493\Debug\LCD_WR.o .\CortexM3\ARM_GCC_493\Debug\LCD_RD.o .\CortexM3\ARM_GCC_493\Debug\LCD_RS.o .\CortexM3\ARM_GCC_493\Debug\RST.o .\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_493\Debug\CyDmac.o .\CortexM3\ARM_GCC_493\Debug\CyFlash.o .\CortexM3\ARM_GCC_493\Debug\CyLib.o .\CortexM3\ARM_GCC_493\Debug\cyPm.o .\CortexM3\ARM_GCC_493\Debug\CySpc.o .\CortexM3\ARM_GCC_493\Debug\cyutils.o .\CortexM3\ARM_GCC_493\Debug\LCD.o .\CortexM3\ARM_GCC_493\Debug\LCD_CLK.o .\CortexM3\ARM_GCC_493\Debug\OE.o .\CortexM3\ARM_GCC_493\Debug\OE_PM.o .\CortexM3\ARM_GCC_493\Debug\Camera_settings.o .\CortexM3\ARM_GCC_493\Debug\Camera.o .\CortexM3\ARM_GCC_493\Debug\Camera_CLK.o .\CortexM3\ARM_GCC_493\Debug\HREF.o .\CortexM3\ARM_GCC_493\Debug\Camera_DMA_dma.o .\CortexM3\ARM_GCC_493\Debug\Camera_VSYNC.o .\CortexM3\ARM_GCC_493\Debug\Camera_SIOD.o .\CortexM3\ARM_GCC_493\Debug\Camera_SIOC.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_BOOT.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_INT.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_PM.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_SLAVE.o .\CortexM3\ARM_GCC_493\Debug\Camera_I2C_MASTER.o .\CortexM3\ARM_GCC_493\Debug\Camera_end_line.o .\CortexM3\ARM_GCC_493\Debug\Data_Out.o .\CortexM3\ARM_GCC_493\Debug\Data_Out_PM.o .\CortexM3\ARM_GCC_493\Debug\LCD_DMA_dma.o .\CortexM3\ARM_GCC_493\Debug\Buttons.o .\CortexM3\ARM_GCC_493\Debug\Camera_DMA_Colours_dma.o .\CortexM3\ARM_GCC_493\Debug\Camera_Threshold.o .\CortexM3\ARM_GCC_493\Debug\Camera_Threshold_PM.o .\CortexM3\ARM_GCC_493\Debug\Camera_end_line_colours.o .\CortexM3\ARM_GCC_493\Debug\SW_DAC.o .\CortexM3\ARM_GCC_493\Debug\SW_DAC_PM.o .\CortexM3\ARM_GCC_493\Debug\SW_Comparator.o .\CortexM3\ARM_GCC_493\Debug\SW_Comparator_PM.o .\CortexM3\ARM_GCC_493\Debug\SW_SW_1.o .\CortexM3\ARM_GCC_493\Debug\SW_SW_3.o .\CortexM3\ARM_GCC_493\Debug\SW_SW_2.o .\CortexM3\ARM_GCC_493\Debug\SW_Clock.o .\CortexM3\ARM_GCC_493\Debug\UART_1.o .\CortexM3\ARM_GCC_493\Debug\UART_1_PM.o .\CortexM3\ARM_GCC_493\Debug\UART_1_INT.o .\CortexM3\ARM_GCC_493\Debug\UART_1_BOOT.o .\CortexM3\ARM_GCC_493\Debug\UART_1_IntClock.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_493\Debug\Display.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM3\ARM_GCC_493\Debug\Display.elf .\CortexM3\ARM_GCC_493\Debug\main.o .\CortexM3\ARM_GCC_493\Debug\camera_display.o .\CortexM3\ARM_GCC_493\Debug\cymetadata.o .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o .\CortexM3\ARM_GCC_493\Debug\Display.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_493\Debug/Display.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
-cyelftool.exe -C C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\CortexM3\ARM_GCC_493\Debug\Display.elf --flash_row_size 256 --flash_size 262144
-cyelftool.exe -S C:\Users\mzenere\Personal\PSOC\Tony198\ECE3091.cywrk.Archive04\ECE3091\Display.cydsn\CortexM3\ARM_GCC_493\Debug\Display.elf
-Flash used: 5888 of 262144 bytes (2.2 %).
-SRAM used: 4541 of 65536 bytes (6.9 %). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 08/20/2016 09:35:45 ---------------
+cyelftool.exe -C C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\CortexM3\ARM_GCC_493\Debug\Display.elf --flash_row_size 256 --flash_size 262144
+cyelftool.exe -S C:\Users\Tim\Documents\GitHub\pucktacular\Display.cydsn\CortexM3\ARM_GCC_493\Debug\Display.elf
+Flash used: 6912 of 262144 bytes (2.6 %).
+SRAM used: 6765 of 65536 bytes (10.3 %). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Rebuild Succeeded: 09/09/2016 12:08:21 ---------------
