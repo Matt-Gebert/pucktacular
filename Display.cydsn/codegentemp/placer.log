@@ -6,7 +6,7 @@
 
 #Build Date:         Apr 25 2016 12:55:34
 
-#File Generated:     Aug 23 2016 12:09:04
+#File Generated:     Sep 7 2016 15:54:12
 
 #Purpose:            
 
@@ -44,18 +44,18 @@ Phase 2
 Phase 3
 
 Design Statistics after Packing
-    Number of Combinational MCs 	:	11
-    Number of Sequential MCs    	:	9
-    Number of DPs               	:	3
-    Number of Controls          	:	3
-    Number of Status            	:	2
+    Number of Combinational MCs 	:	14
+    Number of Sequential MCs    	:	18
+    Number of DPs               	:	10
+    Number of Controls          	:	6
+    Number of Status            	:	5
     Number of SyncCells         	:	2
     Number of count7cells       	:	0
 
 Device Utilization Summary after Packing
-    Macrocells                  :	20/192
-    UDBS                        :	4/24
-    IOs                         :	26/72
+    Macrocells                  :	32/192
+    UDBS                        :	10/24
+    IOs                         :	28/72
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -79,10 +79,13 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 14
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
+Clock: Clock_1              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_2              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_3              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_4              | Frequency:  59.7 MHz | Target:   0.1 MHz
 Clock: CyBUS_CLK            | Frequency:  83.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
@@ -96,16 +99,19 @@ Clock: \Camera:PCLK(0)_PAD\ | Frequency:  88.5 MHz | Target:   0.1 MHz
                      End of Clock Summary
 ######################################################################
 
-D2088: Phase 6, elapsed time : 0.0 (sec)
+D2088: Phase 6, elapsed time : 0.1 (sec)
 
 Phase 7
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 14
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
+Clock: Clock_1              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_2              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_3              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_4              | Frequency:  59.7 MHz | Target:   0.1 MHz
 Clock: CyBUS_CLK            | Frequency:   6.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
@@ -118,21 +124,21 @@ Clock: \Camera:PCLK(0)_PAD\ | Frequency:  88.5 MHz | Target:   0.1 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.2 (sec)
+D2088: Phase 7, elapsed time : 0.3 (sec)
 
 Final Design Statistics
-    Number of Combinational MCs 	:	11
-    Number of Sequential MCs    	:	9
-    Number of DPs               	:	3
-    Number of Controls          	:	3
-    Number of Status            	:	2
+    Number of Combinational MCs 	:	14
+    Number of Sequential MCs    	:	18
+    Number of DPs               	:	10
+    Number of Controls          	:	6
+    Number of Status            	:	5
     Number of SyncCells         	:	2
     Number of count7cells       	:	0
-    Number of IOs       	:	26
+    Number of IOs       	:	28
 
 Device Utilization Summary
-    Macrocells                  :	20/192
-    IOs                         :	26/72
+    Macrocells                  :	32/192
+    IOs                         :	28/72
 
 
 
@@ -148,10 +154,13 @@ analysis after routing.
 ######################################################################
                      Clock Summary 
 ======================================================================
-Number of clocks: 11
+Number of clocks: 14
 Clock: Camera_CLK           | Frequency: N/A       | Target:  12.0 MHz
 Clock: Camera_CLK(routed)   | Frequency: N/A       | Target:  12.0 MHz
-Clock: Clock_1              | Frequency:  85.3 MHz | Target:   0.0 MHz
+Clock: Clock_1              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_2              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_3              | Frequency:  59.7 MHz | Target:   0.1 MHz
+Clock: Clock_4              | Frequency:  59.7 MHz | Target:   0.1 MHz
 Clock: CyBUS_CLK            | Frequency:   6.0 MHz | Target:  72.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  72.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
@@ -170,5 +179,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 0.7 sec.
+I2076: Total run-time: 1.1 sec.
 

@@ -1,5 +1,7 @@
 #include <project.h>
 #include "camera_display.h"
+#include "claw_functions.h"
+#include "movement_functions_unofficial.h"
 //*************************************************
 //
 //Function prototypes
@@ -28,13 +30,13 @@
 //*************************************************
 //
 //Main program starts here
+//Added Line :)
 //
 //************************************************* 
 int main()
 {
     PSOCReset();                                    //Put PSOC in ready state
-    VariablesInitialise();                          //Initialise all variables
-    PWM_1_Start();                                  //Start PWM channel    
+    VariablesInitialise();                          //Initialise all variables    
     ISRSetUp();                                     //Setup all interupts
     LCD_Start();
     LCD_DMA_Start();
@@ -52,30 +54,37 @@ int main()
     {
     }
     InitialisationSequnce();
+    //Intialisation of PWM
+    PWM_Pan_Enable();
+    PWM_Pan_Start();
+    PWM_Tilt_Enable();
+    PWM_Tilt_Start();
+    PWM_Claw_Enable();
+    PWM_Claw_Start();
+    PWM_Lift_Enable();
+    PWM_Lift_Start();
        
     uint8 n=0;
     for(;;n++)
     {
-        CaptureFrame();                             //read frame into LCD
-        CS_Write(2);                                //select output latch
-        OE_Control=3;                               //enable output driver and switch to user output
-        Data_Out_Control=n&1?4:0;                   //write to user output data bus
-        CS_Write(8);                                //deselect output latch to clock in data
-        OE_Control=0;                               //disable output driver
-        pixel box[100][100];                        //read top 100x100 pixels into array
-        LCD_SetWindowRead(0,0,99,99);
-        uint8 i,j;
-        for(i=0;i<100;i++) for(j=0;j<100;j++)
-            box[i][j]=LCD_ReadPixel();
-        LCD_StopReadWrite();
-        LCD_SetWindowWrite(220,140,319,239);        //write array back into bottom corner
-        for(i=0;i<100;i++) for(j=0;j<100;j++) LCD_WritePixel(box[i][j]);
-        LCD_StopReadWrite(); 
-        PWMOperate();
-        Data_Out_Write(0x09);       //HeadLights on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(300);
+        PanRight();
+        CyDelay(200);
+        ClawOpen();
+        CyDelay(200);
+        ClawClose();
+        CyDelay(200);
+        LiftTop();
+        CyDelay(500);
+        LiftGround();
+        CyDelay(500);
+        PanMid();
+        CyDelay(200);
+        if (n%2) TiltStraight();
+        else TiltDown();
+        CyDelay(500);
+        TiltUp();
+        CyDelay(500);
+
     }
 }
 //*************************************************
@@ -125,11 +134,6 @@ void InitialisationSequnce()
 {
     Beep(2);                         //Beep 4 times
     CyDelay(400);
-    Beep(2);
-    CyDelay(400);
-    Beep(2);
-    CyDelay(400);
-    Beep(7);
     for(a=0;a<3;a++)                //Flash LED 5 times
     {
         LEDFlash();
@@ -203,25 +207,6 @@ void ISR1Handler()
     else
     {
         OnOff=0;
-    }
-}
-//*************************************************
-//
-// Change PWM pulse
-// If middle switch is held down, pulse is extended
-//
-//*************************************************
-void PWMOperate()
-{
-    if(SW1_Read())
-    {
-        PWM_1_WriteCompare1(15); 
-        PWM_1_WriteCompare2(15);
-    }
-    else
-    {
-        PWM_1_WriteCompare1(35); 
-        PWM_1_WriteCompare2(35);
     }
 }
 //*************************************************
