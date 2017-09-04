@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
   29:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
   30:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
   31:.\Generated_Source\PSoC5/LCD.c **** }
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/LCD.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
   70              		.loc 1 42 0 discriminator 1
   71 0036 0A4B     		ldr	r3, .L6
   72 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 3
 
 
   73 003a 13F0010F 		tst	r3, #1
@@ -150,9 +150,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
   94              	.L7:
   95 005e 00BF     		.align	2
   96              	.L6:
-  97 0060 68640040 		.word	1073767528
-  98 0064 90680040 		.word	1073768592
-  99 0068 79640040 		.word	1073767545
+  97 0060 67640040 		.word	1073767527
+  98 0064 926A0040 		.word	1073769106
+  99 0068 7D640040 		.word	1073767549
  100              		.cfi_endproc
  101              	.LFE64:
  102              		.size	LCD_WriteReg, .-LCD_WriteReg
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  118              		.cfi_offset 3, -32
  119              		.cfi_offset 4, -28
  120              		.cfi_offset 5, -24
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 4
 
 
  121              		.cfi_offset 6, -20
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  164 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  165 0042 13F0010F 		tst	r3, #1
  166 0046 FAD0     		beq	.L11
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 5
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 5
 
 
   63:.\Generated_Source\PSoC5/LCD.c ****         LCD_Data(values[i]);
@@ -256,21 +256,20 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  176 0050 9642     		cmp	r6, r2
  177 0052 F4DC     		bgt	.L11
  178              	.L12:
-  64:.\Generated_Source\PSoC5/LCD.c ****        
-  65:.\Generated_Source\PSoC5/LCD.c ****     }
-  66:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
- 179              		.loc 1 66 0 is_stmt 1 discriminator 1
+  64:.\Generated_Source\PSoC5/LCD.c ****     }
+  65:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
+ 179              		.loc 1 65 0 is_stmt 1 discriminator 1
  180 0054 054B     		ldr	r3, .L14
  181 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  182 0058 13F0020F 		tst	r3, #2
  183 005c FAD0     		beq	.L12
-  67:.\Generated_Source\PSoC5/LCD.c ****     
-  68:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
- 184              		.loc 1 68 0
+  66:.\Generated_Source\PSoC5/LCD.c ****     
+  67:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe; //restore output enable
+ 184              		.loc 1 67 0
  185 005e 054B     		ldr	r3, .L14+8
  186 0060 1C70     		strb	r4, [r3]
-  69:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
- 187              		.loc 1 69 0
+  68:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(cs); //restore initial chip select
+ 187              		.loc 1 68 0
  188 0062 2846     		mov	r0, r5
  189 0064 FFF7FEFF 		bl	CS_Write
  190              	.LVL15:
@@ -279,9 +278,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  193              	.L15:
  194              		.align	2
  195              	.L14:
- 196 006c 68640040 		.word	1073767528
- 197 0070 90680040 		.word	1073768592
- 198 0074 79640040 		.word	1073767545
+ 196 006c 67640040 		.word	1073767527
+ 197 0070 926A0040 		.word	1073769106
+ 198 0074 7D640040 		.word	1073767549
  199              		.cfi_endproc
  200              	.LFE65:
  201              		.size	LCD_WriteArray, .-LCD_WriteArray
@@ -298,10 +297,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  211              		.cfi_startproc
  212              		@ args = 0, pretend = 0, frame = 32
  213              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 6
-
-
  214 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 6
+
+
  215              		.cfi_def_cfa_offset 20
  216              		.cfi_offset 4, -20
  217              		.cfi_offset 5, -16
@@ -358,10 +357,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  258              		.loc 1 21 0
  259 003a 3620     		movs	r0, #54
  260 003c E821     		movs	r1, #232
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 7
-
-
  261 003e FFF7FEFF 		bl	LCD_WriteReg
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 7
+
+
  262              	.LVL23:
   24:.\Generated_Source\PSoC5/LCD.c ****     uint8 gamma_n[]={0x00,0x0E,0x14,0x03,0x11,0x07,0x31,0xC1,0x48,0x08,0x0F,0x0C,0x31,0x36,0x0F};
  263              		.loc 1 24 0
@@ -418,11 +417,11 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  308              	.L19:
  309 008a 00BF     		.align	2
  310              	.L18:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 8
+ 311 008c 7D640040 		.word	1073767549
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 8
 
 
- 311 008c 79640040 		.word	1073767545
- 312 0090 90680040 		.word	1073768592
+ 312 0090 926A0040 		.word	1073769106
  313 0094 00000000 		.word	.LANCHOR0
  314              		.cfi_endproc
  315              	.LFE63:
@@ -435,11 +434,11 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  322              		.type	LCD_SetWindow, %function
  323              	LCD_SetWindow:
  324              	.LFB66:
-  70:.\Generated_Source\PSoC5/LCD.c **** }
-  71:.\Generated_Source\PSoC5/LCD.c **** 
-  72:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindow(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
-  73:.\Generated_Source\PSoC5/LCD.c **** {
- 325              		.loc 1 73 0
+  69:.\Generated_Source\PSoC5/LCD.c **** }
+  70:.\Generated_Source\PSoC5/LCD.c **** 
+  71:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindow(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  72:.\Generated_Source\PSoC5/LCD.c **** {
+ 325              		.loc 1 72 0
  326              		.cfi_startproc
  327              		@ args = 0, pretend = 0, frame = 8
  328              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -450,8 +449,8 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  333              		.cfi_offset 14, -4
  334 0002 82B0     		sub	sp, sp, #8
  335              		.cfi_def_cfa_offset 16
-  74:.\Generated_Source\PSoC5/LCD.c ****     uint8 cols[]={col_start>>8,col_start,col_end>>8,col_end}; //LCD uses big endian words
- 336              		.loc 1 74 0
+  73:.\Generated_Source\PSoC5/LCD.c ****     uint8 cols[]={col_start>>8,col_start,col_end>>8,col_end}; //LCD uses big endian words
+ 336              		.loc 1 73 0
  337 0004 040A     		lsrs	r4, r0, #8
  338 0006 8DF80440 		strb	r4, [sp, #4]
  339 000a 8DF80500 		strb	r0, [sp, #5]
@@ -459,8 +458,8 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  341              	.LVL29:
  342 0010 8DF80600 		strb	r0, [sp, #6]
  343 0014 8DF80720 		strb	r2, [sp, #7]
-  75:.\Generated_Source\PSoC5/LCD.c ****     uint8 rows[]={row_start>>8,row_start,row_end>>8,row_end};
- 344              		.loc 1 75 0
+  74:.\Generated_Source\PSoC5/LCD.c ****     uint8 rows[]={row_start>>8,row_start,row_end>>8,row_end};
+ 344              		.loc 1 74 0
  345 0018 0A0A     		lsrs	r2, r1, #8
  346              	.LVL30:
  347 001a 8DF80020 		strb	r2, [sp]
@@ -468,26 +467,26 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  349 0022 1A0A     		lsrs	r2, r3, #8
  350 0024 8DF80220 		strb	r2, [sp, #2]
  351 0028 8DF80330 		strb	r3, [sp, #3]
-  76:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2a,cols,4);
- 352              		.loc 1 76 0
+  75:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2a,cols,4);
+ 352              		.loc 1 75 0
  353 002c 2A20     		movs	r0, #42
  354 002e 01A9     		add	r1, sp, #4
  355              	.LVL31:
  356 0030 0422     		movs	r2, #4
  357 0032 FFF7FEFF 		bl	LCD_WriteArray
  358              	.LVL32:
-  77:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2b,rows,4);
- 359              		.loc 1 77 0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 9
-
-
+  76:.\Generated_Source\PSoC5/LCD.c ****     LCD_WriteArray(0x2b,rows,4);
+ 359              		.loc 1 76 0
  360 0036 2B20     		movs	r0, #43
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 9
+
+
  361 0038 6946     		mov	r1, sp
  362 003a 0422     		movs	r2, #4
  363 003c FFF7FEFF 		bl	LCD_WriteArray
  364              	.LVL33:
-  78:.\Generated_Source\PSoC5/LCD.c **** }
- 365              		.loc 1 78 0
+  77:.\Generated_Source\PSoC5/LCD.c **** }
+ 365              		.loc 1 77 0
  366 0040 02B0     		add	sp, sp, #8
  367              		.cfi_def_cfa_offset 8
  368              		@ sp needed
@@ -503,10 +502,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  378              		.type	LCD_SetWindowRead, %function
  379              	LCD_SetWindowRead:
  380              	.LFB67:
-  79:.\Generated_Source\PSoC5/LCD.c **** 
-  80:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowRead(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
-  81:.\Generated_Source\PSoC5/LCD.c **** {
- 381              		.loc 1 81 0
+  78:.\Generated_Source\PSoC5/LCD.c **** 
+  79:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowRead(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  80:.\Generated_Source\PSoC5/LCD.c **** {
+ 381              		.loc 1 80 0
  382              		.cfi_startproc
  383              		@ args = 0, pretend = 0, frame = 0
  384              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -523,64 +522,64 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  395 0004 0E46     		mov	r6, r1
  396 0006 1546     		mov	r5, r2
  397 0008 1C46     		mov	r4, r3
-  82:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
- 398              		.loc 1 82 0
+  81:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 398              		.loc 1 81 0
  399 000a 0320     		movs	r0, #3
  400              	.LVL35:
  401 000c FFF7FEFF 		bl	CS_Write
  402              	.LVL36:
-  83:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
- 403              		.loc 1 83 0
+  82:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 403              		.loc 1 82 0
  404 0010 0122     		movs	r2, #1
  405 0012 104B     		ldr	r3, .L25
  406 0014 1A70     		strb	r2, [r3]
-  84:.\Generated_Source\PSoC5/LCD.c ****     
-  85:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
- 407              		.loc 1 85 0
+  83:.\Generated_Source\PSoC5/LCD.c ****     
+  84:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
+ 407              		.loc 1 84 0
  408 0016 3846     		mov	r0, r7
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 10
-
-
  409 0018 3146     		mov	r1, r6
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 10
+
+
  410 001a 2A46     		mov	r2, r5
  411 001c 2346     		mov	r3, r4
  412 001e FFF7FEFF 		bl	LCD_SetWindow
  413              	.LVL37:
-  86:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2e);
- 414              		.loc 1 86 0
+  85:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2e);
+ 414              		.loc 1 85 0
  415 0022 4FF49772 		mov	r2, #302
  416 0026 0C4B     		ldr	r3, .L25+4
  417 0028 1A80     		strh	r2, [r3]	@ movhi
  418              	.L23:
-  87:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty); //wait for buffer to empty before turning off output
- 419              		.loc 1 87 0 discriminator 1
+  86:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty); //wait for buffer to empty before turning off output
+ 419              		.loc 1 86 0 discriminator 1
  420 002a 0C4B     		ldr	r3, .L25+8
  421 002c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  422 002e 13F0020F 		tst	r3, #2
  423 0032 FAD0     		beq	.L23
-  88:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=0; //disable drivers on output bus
- 424              		.loc 1 88 0
+  87:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=0; //disable drivers on output bus
+ 424              		.loc 1 87 0
  425 0034 0020     		movs	r0, #0
  426 0036 074B     		ldr	r3, .L25
  427 0038 1870     		strb	r0, [r3]
-  89:.\Generated_Source\PSoC5/LCD.c ****     
-  90:.\Generated_Source\PSoC5/LCD.c ****     //dummy read
-  91:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
- 428              		.loc 1 91 0
+  88:.\Generated_Source\PSoC5/LCD.c ****     
+  89:.\Generated_Source\PSoC5/LCD.c ****     //dummy read
+  90:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 428              		.loc 1 90 0
  429 003a FFF7FEFF 		bl	LCD_RD_Write
  430              	.LVL38:
-  92:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
- 431              		.loc 1 92 0
+  91:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 431              		.loc 1 91 0
  432 003e 1820     		movs	r0, #24
  433 0040 FFF7FEFF 		bl	CyDelayCycles
  434              	.LVL39:
-  93:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
- 435              		.loc 1 93 0
+  92:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 435              		.loc 1 92 0
  436 0044 0120     		movs	r0, #1
  437 0046 FFF7FEFF 		bl	LCD_RD_Write
  438              	.LVL40:
-  94:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
- 439              		.loc 1 94 0
+  93:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 439              		.loc 1 93 0
  440 004a 0620     		movs	r0, #6
  441 004c FFF7FEFF 		bl	CyDelayCycles
  442              	.LVL41:
@@ -588,9 +587,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  444              	.L26:
  445 0052 00BF     		.align	2
  446              	.L25:
- 447 0054 79640040 		.word	1073767545
- 448 0058 90680040 		.word	1073768592
- 449 005c 68640040 		.word	1073767528
+ 447 0054 7D640040 		.word	1073767549
+ 448 0058 926A0040 		.word	1073769106
+ 449 005c 67640040 		.word	1073767527
  450              		.cfi_endproc
  451              	.LFE67:
  452              		.size	LCD_SetWindowRead, .-LCD_SetWindowRead
@@ -598,18 +597,18 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  454              		.align	2
  455              		.global	LCD_SetWindowWrite
  456              		.thumb
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 11
-
-
  457              		.thumb_func
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 11
+
+
  458              		.type	LCD_SetWindowWrite, %function
  459              	LCD_SetWindowWrite:
  460              	.LFB68:
-  95:.\Generated_Source\PSoC5/LCD.c **** }
-  96:.\Generated_Source\PSoC5/LCD.c **** 
-  97:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowWrite(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
-  98:.\Generated_Source\PSoC5/LCD.c **** {
- 461              		.loc 1 98 0
+  94:.\Generated_Source\PSoC5/LCD.c **** }
+  95:.\Generated_Source\PSoC5/LCD.c **** 
+  96:.\Generated_Source\PSoC5/LCD.c **** void LCD_SetWindowWrite(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end)
+  97:.\Generated_Source\PSoC5/LCD.c **** {
+ 461              		.loc 1 97 0
  462              		.cfi_startproc
  463              		@ args = 0, pretend = 0, frame = 0
  464              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -626,28 +625,28 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  475 0004 0E46     		mov	r6, r1
  476 0006 1546     		mov	r5, r2
  477 0008 1C46     		mov	r4, r3
-  99:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
- 478              		.loc 1 99 0
+  98:.\Generated_Source\PSoC5/LCD.c ****     LCD_CS_Write(3); //select LCD
+ 478              		.loc 1 98 0
  479 000a 0320     		movs	r0, #3
  480              	.LVL43:
  481 000c FFF7FEFF 		bl	CS_Write
  482              	.LVL44:
- 100:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
- 483              		.loc 1 100 0
+  99:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1; //enable data bus output
+ 483              		.loc 1 99 0
  484 0010 0122     		movs	r2, #1
  485 0012 064B     		ldr	r3, .L29
  486 0014 1A70     		strb	r2, [r3]
- 101:.\Generated_Source\PSoC5/LCD.c **** 
- 102:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
- 487              		.loc 1 102 0
+ 100:.\Generated_Source\PSoC5/LCD.c **** 
+ 101:.\Generated_Source\PSoC5/LCD.c ****     LCD_SetWindow(col_start,row_start,col_end,row_end);
+ 487              		.loc 1 101 0
  488 0016 3846     		mov	r0, r7
  489 0018 3146     		mov	r1, r6
  490 001a 2A46     		mov	r2, r5
  491 001c 2346     		mov	r3, r4
  492 001e FFF7FEFF 		bl	LCD_SetWindow
  493              	.LVL45:
- 103:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2c);
- 494              		.loc 1 103 0
+ 102:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0x2c);
+ 494              		.loc 1 102 0
  495 0022 4FF49672 		mov	r2, #300
  496 0026 024B     		ldr	r3, .L29+4
  497 0028 1A80     		strh	r2, [r3]	@ movhi
@@ -655,13 +654,13 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  499              	.L30:
  500              		.align	2
  501              	.L29:
- 502 002c 79640040 		.word	1073767545
- 503 0030 90680040 		.word	1073768592
+ 502 002c 7D640040 		.word	1073767549
+ 503 0030 926A0040 		.word	1073769106
  504              		.cfi_endproc
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 12
-
-
  505              	.LFE68:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 12
+
+
  506              		.size	LCD_SetWindowWrite, .-LCD_SetWindowWrite
  507              		.section	.text.LCD_ReadPixel,"ax",%progbits
  508              		.align	2
@@ -671,11 +670,11 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  512              		.type	LCD_ReadPixel, %function
  513              	LCD_ReadPixel:
  514              	.LFB69:
- 104:.\Generated_Source\PSoC5/LCD.c **** }
- 105:.\Generated_Source\PSoC5/LCD.c **** 
- 106:.\Generated_Source\PSoC5/LCD.c **** pixel LCD_ReadPixel()
- 107:.\Generated_Source\PSoC5/LCD.c **** {
- 515              		.loc 1 107 0
+ 103:.\Generated_Source\PSoC5/LCD.c **** }
+ 104:.\Generated_Source\PSoC5/LCD.c **** 
+ 105:.\Generated_Source\PSoC5/LCD.c **** pixel LCD_ReadPixel()
+ 106:.\Generated_Source\PSoC5/LCD.c **** {
+ 515              		.loc 1 106 0
  516              		.cfi_startproc
  517              		@ args = 0, pretend = 0, frame = 8
  518              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -685,85 +684,85 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  522              		.cfi_offset 14, -4
  523 0002 82B0     		sub	sp, sp, #8
  524              		.cfi_def_cfa_offset 16
- 108:.\Generated_Source\PSoC5/LCD.c ****     pixel p;
- 109:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
- 525              		.loc 1 109 0
+ 107:.\Generated_Source\PSoC5/LCD.c ****     pixel p;
+ 108:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 525              		.loc 1 108 0
  526 0004 0020     		movs	r0, #0
  527 0006 FFF7FEFF 		bl	LCD_RD_Write
  528              	.LVL46:
- 110:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
- 529              		.loc 1 110 0
+ 109:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 529              		.loc 1 109 0
  530 000a 1820     		movs	r0, #24
  531 000c FFF7FEFF 		bl	CyDelayCycles
  532              	.LVL47:
- 111:.\Generated_Source\PSoC5/LCD.c ****     p.R=LCD_D_PS;
- 533              		.loc 1 111 0
+ 110:.\Generated_Source\PSoC5/LCD.c ****     p.R=LCD_D_PS;
+ 533              		.loc 1 110 0
  534 0010 1B4C     		ldr	r4, .L33
  535 0012 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
  536 0014 8DF80030 		strb	r3, [sp]
- 112:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
- 537              		.loc 1 112 0
+ 111:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 537              		.loc 1 111 0
  538 0018 0120     		movs	r0, #1
  539 001a FFF7FEFF 		bl	LCD_RD_Write
  540              	.LVL48:
- 113:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
- 541              		.loc 1 113 0
+ 112:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 541              		.loc 1 112 0
  542 001e 0620     		movs	r0, #6
  543 0020 FFF7FEFF 		bl	CyDelayCycles
  544              	.LVL49:
- 114:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
- 545              		.loc 1 114 0
+ 113:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 545              		.loc 1 113 0
  546 0024 0020     		movs	r0, #0
  547 0026 FFF7FEFF 		bl	LCD_RD_Write
  548              	.LVL50:
- 115:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
- 549              		.loc 1 115 0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 13
-
-
+ 114:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 549              		.loc 1 114 0
  550 002a 1820     		movs	r0, #24
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 13
+
+
  551 002c FFF7FEFF 		bl	CyDelayCycles
  552              	.LVL51:
- 116:.\Generated_Source\PSoC5/LCD.c ****     p.G=LCD_D_PS;
- 553              		.loc 1 116 0
+ 115:.\Generated_Source\PSoC5/LCD.c ****     p.G=LCD_D_PS;
+ 553              		.loc 1 115 0
  554 0030 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
  555 0032 8DF80130 		strb	r3, [sp, #1]
- 117:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
- 556              		.loc 1 117 0
+ 116:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 556              		.loc 1 116 0
  557 0036 0120     		movs	r0, #1
  558 0038 FFF7FEFF 		bl	LCD_RD_Write
  559              	.LVL52:
- 118:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
- 560              		.loc 1 118 0
+ 117:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 560              		.loc 1 117 0
  561 003c 0620     		movs	r0, #6
  562 003e FFF7FEFF 		bl	CyDelayCycles
  563              	.LVL53:
- 119:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
- 564              		.loc 1 119 0
+ 118:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(0);
+ 564              		.loc 1 118 0
  565 0042 0020     		movs	r0, #0
  566 0044 FFF7FEFF 		bl	LCD_RD_Write
  567              	.LVL54:
- 120:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
- 568              		.loc 1 120 0
+ 119:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/3); //delay for about 333ns (actually 355ns is required, but o
+ 568              		.loc 1 119 0
  569 0048 1820     		movs	r0, #24
  570 004a FFF7FEFF 		bl	CyDelayCycles
  571              	.LVL55:
- 121:.\Generated_Source\PSoC5/LCD.c ****     p.B=LCD_D_PS;
- 572              		.loc 1 121 0
+ 120:.\Generated_Source\PSoC5/LCD.c ****     p.B=LCD_D_PS;
+ 572              		.loc 1 120 0
  573 004e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
  574 0050 8DF80230 		strb	r3, [sp, #2]
- 122:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
- 575              		.loc 1 122 0
+ 121:.\Generated_Source\PSoC5/LCD.c ****     LCD_LCD_RD_Write(1);
+ 575              		.loc 1 121 0
  576 0054 0120     		movs	r0, #1
  577 0056 FFF7FEFF 		bl	LCD_RD_Write
  578              	.LVL56:
- 123:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
- 579              		.loc 1 123 0
+ 122:.\Generated_Source\PSoC5/LCD.c ****     CyDelayCycles(BCLK__BUS_CLK__MHZ/11); //delay for about 90ns
+ 579              		.loc 1 122 0
  580 005a 0620     		movs	r0, #6
  581 005c FFF7FEFF 		bl	CyDelayCycles
  582              	.LVL57:
- 124:.\Generated_Source\PSoC5/LCD.c ****     return p;
- 583              		.loc 1 124 0
+ 123:.\Generated_Source\PSoC5/LCD.c ****     return p;
+ 583              		.loc 1 123 0
  584 0060 009B     		ldr	r3, [sp]
  585 0062 0020     		movs	r0, #0
  586 0064 DAB2     		uxtb	r2, r3
@@ -772,16 +771,16 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  589 006e 62F30F20 		bfi	r0, r2, #8, #8
  590 0072 C3F30743 		ubfx	r3, r3, #16, #8
  591 0076 63F31740 		bfi	r0, r3, #16, #8
- 125:.\Generated_Source\PSoC5/LCD.c **** }
- 592              		.loc 1 125 0
+ 124:.\Generated_Source\PSoC5/LCD.c **** }
+ 592              		.loc 1 124 0
  593 007a 02B0     		add	sp, sp, #8
  594              		.cfi_def_cfa_offset 8
  595              		@ sp needed
  596 007c 10BD     		pop	{r4, pc}
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 14
-
-
  597              	.L34:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 14
+
+
  598 007e 00BF     		.align	2
  599              	.L33:
  600 0080 21510040 		.word	1073762593
@@ -796,10 +795,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  609              		.type	LCD_WritePixel, %function
  610              	LCD_WritePixel:
  611              	.LFB70:
- 126:.\Generated_Source\PSoC5/LCD.c **** 
- 127:.\Generated_Source\PSoC5/LCD.c **** void LCD_WritePixel(pixel p)
- 128:.\Generated_Source\PSoC5/LCD.c **** {
- 612              		.loc 1 128 0
+ 125:.\Generated_Source\PSoC5/LCD.c **** 
+ 126:.\Generated_Source\PSoC5/LCD.c **** void LCD_WritePixel(pixel p)
+ 127:.\Generated_Source\PSoC5/LCD.c **** {
+ 612              		.loc 1 127 0
  613              		.cfi_startproc
  614              		@ args = 0, pretend = 0, frame = 8
  615              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -808,27 +807,27 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  618              		.cfi_def_cfa_offset 8
  619 0002 0190     		str	r0, [sp, #4]
  620              	.L36:
- 129:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
- 621              		.loc 1 129 0 discriminator 1
+ 128:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Empty);
+ 621              		.loc 1 128 0 discriminator 1
  622 0004 084B     		ldr	r3, .L38
  623 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  624 0008 13F0020F 		tst	r3, #2
  625 000c FAD0     		beq	.L36
- 130:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.R);
- 626              		.loc 1 130 0
+ 129:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.R);
+ 626              		.loc 1 129 0
  627 000e 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
  628 0012 064B     		ldr	r3, .L38+4
  629 0014 1A80     		strh	r2, [r3]	@ movhi
- 131:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.G);
- 630              		.loc 1 131 0
+ 130:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.G);
+ 630              		.loc 1 130 0
  631 0016 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
  632 001a 1A80     		strh	r2, [r3]	@ movhi
- 132:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.B);
- 633              		.loc 1 132 0
+ 131:.\Generated_Source\PSoC5/LCD.c ****     LCD_Data(p.B);
+ 633              		.loc 1 131 0
  634 001c 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
  635 0020 1A80     		strh	r2, [r3]	@ movhi
- 133:.\Generated_Source\PSoC5/LCD.c **** }
- 636              		.loc 1 133 0
+ 132:.\Generated_Source\PSoC5/LCD.c **** }
+ 636              		.loc 1 132 0
  637 0022 02B0     		add	sp, sp, #8
  638              		.cfi_def_cfa_offset 0
  639              		@ sp needed
@@ -836,12 +835,12 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  641              	.L39:
  642 0026 00BF     		.align	2
  643              	.L38:
- 644 0028 68640040 		.word	1073767528
- 645 002c 90680040 		.word	1073768592
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 15
-
-
+ 644 0028 67640040 		.word	1073767527
+ 645 002c 926A0040 		.word	1073769106
  646              		.cfi_endproc
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 15
+
+
  647              	.LFE70:
  648              		.size	LCD_WritePixel, .-LCD_WritePixel
  649              		.section	.text.LCD_StopReadWrite,"ax",%progbits
@@ -852,56 +851,56 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  654              		.type	LCD_StopReadWrite, %function
  655              	LCD_StopReadWrite:
  656              	.LFB71:
- 134:.\Generated_Source\PSoC5/LCD.c **** 
- 135:.\Generated_Source\PSoC5/LCD.c **** void LCD_StopReadWrite()
- 136:.\Generated_Source\PSoC5/LCD.c **** {
- 657              		.loc 1 136 0
+ 133:.\Generated_Source\PSoC5/LCD.c **** 
+ 134:.\Generated_Source\PSoC5/LCD.c **** void LCD_StopReadWrite()
+ 135:.\Generated_Source\PSoC5/LCD.c **** {
+ 657              		.loc 1 135 0
  658              		.cfi_startproc
  659              		@ args = 0, pretend = 0, frame = 0
  660              		@ frame_needed = 0, uses_anonymous_args = 0
  661              		@ link register save eliminated.
- 137:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
- 662              		.loc 1 137 0
+ 136:.\Generated_Source\PSoC5/LCD.c ****     uint8 oe=LCD_OE;
+ 662              		.loc 1 136 0
  663 0000 084B     		ldr	r3, .L42
  664 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
  665 0004 D2B2     		uxtb	r2, r2
  666              	.LVL58:
- 138:.\Generated_Source\PSoC5/LCD.c ****     
- 139:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1;
- 667              		.loc 1 139 0
+ 137:.\Generated_Source\PSoC5/LCD.c ****     
+ 138:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=1;
+ 667              		.loc 1 138 0
  668 0006 0121     		movs	r1, #1
  669 0008 1970     		strb	r1, [r3]
- 140:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0);
- 670              		.loc 1 140 0
+ 139:.\Generated_Source\PSoC5/LCD.c ****     LCD_Command(0);
+ 670              		.loc 1 139 0
  671 000a 4FF48071 		mov	r1, #256
- 672 000e 03F21743 		addw	r3, r3, #1047
+ 672 000e 03F21563 		addw	r3, r3, #1557
  673 0012 1980     		strh	r1, [r3]	@ movhi
  674              	.L41:
- 141:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
- 675              		.loc 1 141 0 discriminator 1
+ 140:.\Generated_Source\PSoC5/LCD.c ****     while(!LCD_Ready);
+ 675              		.loc 1 140 0 discriminator 1
  676 0014 044B     		ldr	r3, .L42+4
  677 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  678 0018 13F0010F 		tst	r3, #1
  679 001c FAD0     		beq	.L41
- 142:.\Generated_Source\PSoC5/LCD.c ****     
- 143:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe;
- 680              		.loc 1 143 0
+ 141:.\Generated_Source\PSoC5/LCD.c ****     
+ 142:.\Generated_Source\PSoC5/LCD.c ****     LCD_OE=oe;
+ 680              		.loc 1 142 0
  681 001e 014B     		ldr	r3, .L42
  682 0020 1A70     		strb	r2, [r3]
  683 0022 7047     		bx	lr
  684              	.L43:
  685              		.align	2
  686              	.L42:
- 687 0024 79640040 		.word	1073767545
- 688 0028 68640040 		.word	1073767528
+ 687 0024 7D640040 		.word	1073767549
+ 688 0028 67640040 		.word	1073767527
  689              		.cfi_endproc
  690              	.LFE71:
  691              		.size	LCD_StopReadWrite, .-LCD_StopReadWrite
  692              		.comm	Camera_linebuffer,640,4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 16
-
-
  693              		.section	.rodata
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 16
+
+
  694              		.align	2
  695              		.set	.LANCHOR0,. + 0
  696              	.LC0:
@@ -958,17 +957,17 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  747 000c E5000000 		.4byte	.LASF45
  748 0010 01       		.byte	0x1
  749 0011 AA010000 		.4byte	.LASF46
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 17
+ 750 0015 0F020000 		.4byte	.LASF47
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 17
 
 
- 750 0015 7C020000 		.4byte	.LASF47
  751 0019 00000000 		.4byte	.Ldebug_ranges0+0
  752 001d 00000000 		.4byte	0
  753 0021 00000000 		.4byte	.Ldebug_line0
  754 0025 02       		.uleb128 0x2
  755 0026 01       		.byte	0x1
  756 0027 06       		.byte	0x6
- 757 0028 70020000 		.4byte	.LASF0
+ 757 0028 B7020000 		.4byte	.LASF0
  758 002c 02       		.uleb128 0x2
  759 002d 01       		.byte	0x1
  760 002e 08       		.byte	0x8
@@ -976,7 +975,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  762 0033 02       		.uleb128 0x2
  763 0034 02       		.byte	0x2
  764 0035 05       		.byte	0x5
- 765 0036 1E020000 		.4byte	.LASF2
+ 765 0036 65020000 		.4byte	.LASF2
  766 003a 02       		.uleb128 0x2
  767 003b 02       		.byte	0x2
  768 003c 07       		.byte	0x7
@@ -989,7 +988,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  775 004c 02       		.uleb128 0x2
  776 004d 04       		.byte	0x4
  777 004e 05       		.byte	0x5
- 778 004f 60020000 		.4byte	.LASF4
+ 778 004f A7020000 		.4byte	.LASF4
  779 0053 02       		.uleb128 0x2
  780 0054 04       		.byte	0x4
  781 0055 07       		.byte	0x7
@@ -1016,12 +1015,12 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  802 007c 2C       		.byte	0x2c
  803 007d 41000000 		.4byte	0x41
  804 0081 05       		.uleb128 0x5
- 805 0082 3B020000 		.4byte	.LASF11
+ 805 0082 82020000 		.4byte	.LASF11
  806 0086 04       		.byte	0x4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 18
-
-
  807 0087 9201     		.2byte	0x192
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 18
+
+
  808 0089 2C000000 		.4byte	0x2c
  809 008d 05       		.uleb128 0x5
  810 008e D7000000 		.4byte	.LASF12
@@ -1078,10 +1077,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  861 00fb 0A       		.uleb128 0xa
  862 00fc 5200     		.ascii	"R\000"
  863 00fe 05       		.byte	0x5
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 19
-
-
  864 00ff 14       		.byte	0x14
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 19
+
+
  865 0100 81000000 		.4byte	0x81
  866 0104 00       		.byte	0
  867 0105 0A       		.uleb128 0xa
@@ -1138,10 +1137,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  918 0174 0F       		.uleb128 0xf
  919 0175 0C000000 		.4byte	.LVL1
  920 0179 C4060000 		.4byte	0x6c4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 20
-
-
  921 017d 10       		.uleb128 0x10
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 20
+
+
  922 017e 1E000000 		.4byte	.LVL4
  923 0182 CF060000 		.4byte	0x6cf
  924 0186 90010000 		.4byte	0x190
@@ -1163,7 +1162,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  940 019f 00       		.byte	0
  941 01a0 00       		.byte	0
  942 01a1 0B       		.uleb128 0xb
- 943 01a2 C2020000 		.4byte	.LASF23
+ 943 01a2 D1020000 		.4byte	.LASF23
  944 01a6 01       		.byte	0x1
  945 01a7 32       		.byte	0x32
  946 01a8 00000000 		.4byte	.LFB65
@@ -1178,7 +1177,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  955 01bd 81000000 		.4byte	0x81
  956 01c1 68000000 		.4byte	.LLST4
  957 01c5 0D       		.uleb128 0xd
- 958 01c6 69020000 		.4byte	.LASF24
+ 958 01c6 B0020000 		.4byte	.LASF24
  959 01ca 01       		.byte	0x1
  960 01cb 32       		.byte	0x32
  961 01cc 37020000 		.4byte	0x237
@@ -1198,10 +1197,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  975 01ef 0E       		.uleb128 0xe
  976 01f0 6F6500   		.ascii	"oe\000"
  977 01f3 01       		.byte	0x1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 21
-
-
  978 01f4 35       		.byte	0x35
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 21
+
+
  979 01f5 81000000 		.4byte	0x81
  980 01f9 E9000000 		.4byte	.LLST8
  981 01fd 0E       		.uleb128 0xe
@@ -1258,10 +1257,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1032 0265 0C       		.byte	0xc
  1033 0266 81000000 		.4byte	0x81
  1034 026a 2E010000 		.4byte	.LLST11
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 22
-
-
  1035 026e 15       		.uleb128 0x15
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 22
+
+
  1036 026f 00000000 		.4byte	.LASF25
  1037 0273 01       		.byte	0x1
  1038 0274 18       		.byte	0x18
@@ -1318,10 +1317,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1089 02da 11       		.uleb128 0x11
  1090 02db 01       		.uleb128 0x1
  1091 02dc 51       		.byte	0x51
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 23
-
-
  1092 02dd 02       		.uleb128 0x2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 23
+
+
  1093 02de 09       		.byte	0x9
  1094 02df E8       		.byte	0xe8
  1095 02e0 11       		.uleb128 0x11
@@ -1378,10 +1377,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1146 0325 12       		.uleb128 0x12
  1147 0326 86000000 		.4byte	.LVL26
  1148 032a CF060000 		.4byte	0x6cf
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 24
-
-
  1149 032e 11       		.uleb128 0x11
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 24
+
+
  1150 032f 01       		.uleb128 0x1
  1151 0330 50       		.byte	0x50
  1152 0331 02       		.uleb128 0x2
@@ -1399,7 +1398,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1164 0346 0B       		.uleb128 0xb
  1165 0347 C9000000 		.4byte	.LASF27
  1166 034b 01       		.byte	0x1
- 1167 034c 48       		.byte	0x48
+ 1167 034c 47       		.byte	0x47
  1168 034d 00000000 		.4byte	.LFB66
  1169 0351 44000000 		.4byte	.LFE66-.LFB66
  1170 0355 01       		.uleb128 0x1
@@ -1408,42 +1407,42 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1173 035b 0D       		.uleb128 0xd
  1174 035c FF010000 		.4byte	.LASF28
  1175 0360 01       		.byte	0x1
- 1176 0361 48       		.byte	0x48
+ 1176 0361 47       		.byte	0x47
  1177 0362 8D000000 		.4byte	0x8d
  1178 0366 41010000 		.4byte	.LLST12
  1179 036a 0D       		.uleb128 0xd
- 1180 036b 28020000 		.4byte	.LASF29
+ 1180 036b 6F020000 		.4byte	.LASF29
  1181 036f 01       		.byte	0x1
- 1182 0370 48       		.byte	0x48
+ 1182 0370 47       		.byte	0x47
  1183 0371 8D000000 		.4byte	0x8d
  1184 0375 62010000 		.4byte	.LLST13
  1185 0379 0D       		.uleb128 0xd
  1186 037a 38000000 		.4byte	.LASF30
  1187 037e 01       		.byte	0x1
- 1188 037f 48       		.byte	0x48
+ 1188 037f 47       		.byte	0x47
  1189 0380 8D000000 		.4byte	0x8d
  1190 0384 83010000 		.4byte	.LLST14
  1191 0388 0D       		.uleb128 0xd
- 1192 0389 58020000 		.4byte	.LASF31
+ 1192 0389 9F020000 		.4byte	.LASF31
  1193 038d 01       		.byte	0x1
- 1194 038e 48       		.byte	0x48
+ 1194 038e 47       		.byte	0x47
  1195 038f 8D000000 		.4byte	0x8d
  1196 0393 A4010000 		.4byte	.LLST15
  1197 0397 15       		.uleb128 0x15
- 1198 0398 41020000 		.4byte	.LASF32
+ 1198 0398 88020000 		.4byte	.LASF32
  1199 039c 01       		.byte	0x1
- 1200 039d 4A       		.byte	0x4a
+ 1200 039d 49       		.byte	0x49
  1201 039e E3000000 		.4byte	0xe3
  1202 03a2 02       		.uleb128 0x2
  1203 03a3 91       		.byte	0x91
  1204 03a4 74       		.sleb128 -12
  1205 03a5 15       		.uleb128 0x15
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 25
-
-
  1206 03a6 E7010000 		.4byte	.LASF33
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 25
+
+
  1207 03aa 01       		.byte	0x1
- 1208 03ab 4B       		.byte	0x4b
+ 1208 03ab 4A       		.byte	0x4a
  1209 03ac E3000000 		.4byte	0xe3
  1210 03b0 02       		.uleb128 0x2
  1211 03b1 91       		.byte	0x91
@@ -1493,39 +1492,39 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1255 03ec 00       		.byte	0
  1256 03ed 00       		.byte	0
  1257 03ee 0B       		.uleb128 0xb
- 1258 03ef 46020000 		.4byte	.LASF34
+ 1258 03ef 8D020000 		.4byte	.LASF34
  1259 03f3 01       		.byte	0x1
- 1260 03f4 50       		.byte	0x50
+ 1260 03f4 4F       		.byte	0x4f
  1261 03f5 00000000 		.4byte	.LFB67
  1262 03f9 60000000 		.4byte	.LFE67-.LFB67
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 26
-
-
  1263 03fd 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 26
+
+
  1264 03fe 9C       		.byte	0x9c
  1265 03ff C1040000 		.4byte	0x4c1
  1266 0403 0D       		.uleb128 0xd
  1267 0404 FF010000 		.4byte	.LASF28
  1268 0408 01       		.byte	0x1
- 1269 0409 50       		.byte	0x50
+ 1269 0409 4F       		.byte	0x4f
  1270 040a 8D000000 		.4byte	0x8d
  1271 040e C5010000 		.4byte	.LLST16
  1272 0412 0D       		.uleb128 0xd
- 1273 0413 28020000 		.4byte	.LASF29
+ 1273 0413 6F020000 		.4byte	.LASF29
  1274 0417 01       		.byte	0x1
- 1275 0418 50       		.byte	0x50
+ 1275 0418 4F       		.byte	0x4f
  1276 0419 8D000000 		.4byte	0x8d
  1277 041d E6010000 		.4byte	.LLST17
  1278 0421 0D       		.uleb128 0xd
  1279 0422 38000000 		.4byte	.LASF30
  1280 0426 01       		.byte	0x1
- 1281 0427 50       		.byte	0x50
+ 1281 0427 4F       		.byte	0x4f
  1282 0428 8D000000 		.4byte	0x8d
  1283 042c 07020000 		.4byte	.LLST18
  1284 0430 0D       		.uleb128 0xd
- 1285 0431 58020000 		.4byte	.LASF31
+ 1285 0431 9F020000 		.4byte	.LASF31
  1286 0435 01       		.byte	0x1
- 1287 0436 50       		.byte	0x50
+ 1287 0436 4F       		.byte	0x4f
  1288 0437 8D000000 		.4byte	0x8d
  1289 043b 28020000 		.4byte	.LLST19
  1290 043f 10       		.uleb128 0x10
@@ -1558,10 +1557,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1317 046c 01       		.uleb128 0x1
  1318 046d 51       		.byte	0x51
  1319 046e 02       		.uleb128 0x2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 27
-
-
  1320 046f 76       		.byte	0x76
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 27
+
+
  1321 0470 00       		.sleb128 0
  1322 0471 11       		.uleb128 0x11
  1323 0472 01       		.uleb128 0x1
@@ -1613,37 +1612,37 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1369 04c1 0B       		.uleb128 0xb
  1370 04c2 9D000000 		.4byte	.LASF35
  1371 04c6 01       		.byte	0x1
- 1372 04c7 61       		.byte	0x61
+ 1372 04c7 60       		.byte	0x60
  1373 04c8 00000000 		.4byte	.LFB68
  1374 04cc 34000000 		.4byte	.LFE68-.LFB68
  1375 04d0 01       		.uleb128 0x1
  1376 04d1 9C       		.byte	0x9c
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 28
-
-
  1377 04d2 48050000 		.4byte	0x548
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 28
+
+
  1378 04d6 0D       		.uleb128 0xd
  1379 04d7 FF010000 		.4byte	.LASF28
  1380 04db 01       		.byte	0x1
- 1381 04dc 61       		.byte	0x61
+ 1381 04dc 60       		.byte	0x60
  1382 04dd 8D000000 		.4byte	0x8d
  1383 04e1 49020000 		.4byte	.LLST20
  1384 04e5 0D       		.uleb128 0xd
- 1385 04e6 28020000 		.4byte	.LASF29
+ 1385 04e6 6F020000 		.4byte	.LASF29
  1386 04ea 01       		.byte	0x1
- 1387 04eb 61       		.byte	0x61
+ 1387 04eb 60       		.byte	0x60
  1388 04ec 8D000000 		.4byte	0x8d
  1389 04f0 6A020000 		.4byte	.LLST21
  1390 04f4 0D       		.uleb128 0xd
  1391 04f5 38000000 		.4byte	.LASF30
  1392 04f9 01       		.byte	0x1
- 1393 04fa 61       		.byte	0x61
+ 1393 04fa 60       		.byte	0x60
  1394 04fb 8D000000 		.4byte	0x8d
  1395 04ff 8B020000 		.4byte	.LLST22
  1396 0503 0D       		.uleb128 0xd
- 1397 0504 58020000 		.4byte	.LASF31
+ 1397 0504 9F020000 		.4byte	.LASF31
  1398 0508 01       		.byte	0x1
- 1399 0509 61       		.byte	0x61
+ 1399 0509 60       		.byte	0x60
  1400 050a 8D000000 		.4byte	0x8d
  1401 050e AC020000 		.4byte	.LLST23
  1402 0512 10       		.uleb128 0x10
@@ -1678,10 +1677,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1431 053e 76       		.byte	0x76
  1432 053f 00       		.sleb128 0
  1433 0540 11       		.uleb128 0x11
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 29
-
-
  1434 0541 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 29
+
+
  1435 0542 50       		.byte	0x50
  1436 0543 02       		.uleb128 0x2
  1437 0544 77       		.byte	0x77
@@ -1689,9 +1688,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1439 0546 00       		.byte	0
  1440 0547 00       		.byte	0
  1441 0548 16       		.uleb128 0x16
- 1442 0549 B4020000 		.4byte	.LASF36
+ 1442 0549 C3020000 		.4byte	.LASF36
  1443 054d 01       		.byte	0x1
- 1444 054e 6A       		.byte	0x6a
+ 1444 054e 69       		.byte	0x69
  1445 054f 1A010000 		.4byte	0x11a
  1446 0553 00000000 		.4byte	.LFB69
  1447 0557 84000000 		.4byte	.LFE69-.LFB69
@@ -1701,7 +1700,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1451 0561 17       		.uleb128 0x17
  1452 0562 7000     		.ascii	"p\000"
  1453 0564 01       		.byte	0x1
- 1454 0565 6C       		.byte	0x6c
+ 1454 0565 6B       		.byte	0x6b
  1455 0566 1A010000 		.4byte	0x11a
  1456 056a 02       		.uleb128 0x2
  1457 056b 91       		.byte	0x91
@@ -1738,10 +1737,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1488 05a5 00       		.byte	0
  1489 05a6 10       		.uleb128 0x10
  1490 05a7 24000000 		.4byte	.LVL49
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 30
-
-
  1491 05ab 02070000 		.4byte	0x702
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 30
+
+
  1492 05af B9050000 		.4byte	0x5b9
  1493 05b3 11       		.uleb128 0x11
  1494 05b4 01       		.uleb128 0x1
@@ -1798,10 +1797,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1545 0614 50       		.byte	0x50
  1546 0615 01       		.uleb128 0x1
  1547 0616 30       		.byte	0x30
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 31
-
-
  1548 0617 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 31
+
+
  1549 0618 10       		.uleb128 0x10
  1550 0619 4E000000 		.4byte	.LVL55
  1551 061d 02070000 		.4byte	0x702
@@ -1833,9 +1832,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1577 064c 00       		.byte	0
  1578 064d 00       		.byte	0
  1579 064e 0B       		.uleb128 0xb
- 1580 064f 0F020000 		.4byte	.LASF37
+ 1580 064f 56020000 		.4byte	.LASF37
  1581 0653 01       		.byte	0x1
- 1582 0654 7F       		.byte	0x7f
+ 1582 0654 7E       		.byte	0x7e
  1583 0655 00000000 		.4byte	.LFB70
  1584 0659 30000000 		.4byte	.LFE70-.LFB70
  1585 065d 01       		.uleb128 0x1
@@ -1844,7 +1843,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1588 0663 18       		.uleb128 0x18
  1589 0664 7000     		.ascii	"p\000"
  1590 0666 01       		.byte	0x1
- 1591 0667 7F       		.byte	0x7f
+ 1591 0667 7E       		.byte	0x7e
  1592 0668 1A010000 		.4byte	0x11a
  1593 066c 02       		.uleb128 0x2
  1594 066d 91       		.byte	0x91
@@ -1853,19 +1852,19 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1597 0670 14       		.uleb128 0x14
  1598 0671 20000000 		.4byte	.LASF39
  1599 0675 01       		.byte	0x1
- 1600 0676 87       		.byte	0x87
+ 1600 0676 86       		.byte	0x86
  1601 0677 00000000 		.4byte	.LFB71
  1602 067b 2C000000 		.4byte	.LFE71-.LFB71
  1603 067f 01       		.uleb128 0x1
  1604 0680 9C       		.byte	0x9c
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 32
-
-
  1605 0681 92060000 		.4byte	0x692
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 32
+
+
  1606 0685 17       		.uleb128 0x17
  1607 0686 6F6500   		.ascii	"oe\000"
  1608 0689 01       		.byte	0x1
- 1609 068a 89       		.byte	0x89
+ 1609 068a 88       		.byte	0x88
  1610 068b 81000000 		.4byte	0x81
  1611 068f 01       		.uleb128 0x1
  1612 0690 52       		.byte	0x52
@@ -1893,12 +1892,12 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1634 06bf 03       		.byte	0x3
  1635 06c0 00000000 		.4byte	Camera_linebuffer
  1636 06c4 1B       		.uleb128 0x1b
- 1637 06c5 D9020000 		.4byte	.LASF48
+ 1637 06c5 E8020000 		.4byte	.LASF48
  1638 06c9 08       		.byte	0x8
  1639 06ca 29       		.byte	0x29
  1640 06cb 81000000 		.4byte	0x81
  1641 06cf 1C       		.uleb128 0x1c
- 1642 06d0 32020000 		.4byte	.LASF42
+ 1642 06d0 79020000 		.4byte	.LASF42
  1643 06d4 08       		.byte	0x8
  1644 06d5 26       		.byte	0x26
  1645 06d6 E0060000 		.4byte	0x6e0
@@ -1906,7 +1905,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1647 06db 81000000 		.4byte	0x81
  1648 06df 00       		.byte	0
  1649 06e0 1C       		.uleb128 0x1c
- 1650 06e1 D1020000 		.4byte	.LASF43
+ 1650 06e1 E0020000 		.4byte	.LASF43
  1651 06e5 09       		.byte	0x9
  1652 06e6 76       		.byte	0x76
  1653 06e7 F1060000 		.4byte	0x6f1
@@ -1918,10 +1917,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1659 06f6 0A       		.byte	0xa
  1660 06f7 26       		.byte	0x26
  1661 06f8 02070000 		.4byte	0x702
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 33
-
-
  1662 06fc 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 33
+
+
  1663 06fd 81000000 		.4byte	0x81
  1664 0701 00       		.byte	0
  1665 0702 1E       		.uleb128 0x1e
@@ -1978,10 +1977,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1716 0029 00       		.byte	0
  1717 002a 00       		.byte	0
  1718 002b 04       		.uleb128 0x4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 34
-
-
  1719 002c 24       		.uleb128 0x24
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 34
+
+
  1720 002d 00       		.byte	0
  1721 002e 0B       		.uleb128 0xb
  1722 002f 0B       		.uleb128 0xb
@@ -2038,10 +2037,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1773 0062 0B       		.uleb128 0xb
  1774 0063 3B       		.uleb128 0x3b
  1775 0064 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 35
-
-
  1776 0065 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 35
+
+
  1777 0066 13       		.uleb128 0x13
  1778 0067 00       		.byte	0
  1779 0068 00       		.byte	0
@@ -2098,10 +2097,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1830 009c 13       		.uleb128 0x13
  1831 009d 02       		.uleb128 0x2
  1832 009e 17       		.uleb128 0x17
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 36
-
-
  1833 009f 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 36
+
+
  1834 00a0 00       		.byte	0
  1835 00a1 0D       		.uleb128 0xd
  1836 00a2 05       		.uleb128 0x5
@@ -2158,10 +2157,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1887 00db 00       		.byte	0
  1888 00dc 02       		.uleb128 0x2
  1889 00dd 18       		.uleb128 0x18
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 37
-
-
  1890 00de 9142     		.uleb128 0x2111
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 37
+
+
  1891 00e0 18       		.uleb128 0x18
  1892 00e1 00       		.byte	0
  1893 00e2 00       		.byte	0
@@ -2218,10 +2217,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  1944 0118 49       		.uleb128 0x49
  1945 0119 13       		.uleb128 0x13
  1946 011a 02       		.uleb128 0x2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 38
-
-
  1947 011b 18       		.uleb128 0x18
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 38
+
+
  1948 011c 00       		.byte	0
  1949 011d 00       		.byte	0
  1950 011e 16       		.uleb128 0x16
@@ -2278,10 +2277,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2001 0152 02       		.uleb128 0x2
  2002 0153 18       		.uleb128 0x18
  2003 0154 00       		.byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 39
-
-
  2004 0155 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 39
+
+
  2005 0156 19       		.uleb128 0x19
  2006 0157 34       		.uleb128 0x34
  2007 0158 00       		.byte	0
@@ -2338,10 +2337,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2058 018b 1C       		.uleb128 0x1c
  2059 018c 2E       		.uleb128 0x2e
  2060 018d 01       		.byte	0x1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 40
-
-
  2061 018e 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 40
+
+
  2062 018f 19       		.uleb128 0x19
  2063 0190 03       		.uleb128 0x3
  2064 0191 0E       		.uleb128 0xe
@@ -2398,10 +2397,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2115 0018 9F       		.byte	0x9f
  2116 0019 00000000 		.4byte	0
  2117 001d 00000000 		.4byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 41
-
-
  2118              	.LLST1:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 41
+
+
  2119 0021 00000000 		.4byte	.LVL0
  2120 0025 0B000000 		.4byte	.LVL1-1
  2121 0029 0100     		.2byte	0x1
@@ -2458,10 +2457,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2172 00a9 F3       		.byte	0xf3
  2173 00aa 01       		.uleb128 0x1
  2174 00ab 51       		.byte	0x51
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 42
-
-
  2175 00ac 9F       		.byte	0x9f
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 42
+
+
  2176 00ad 00000000 		.4byte	0
  2177 00b1 00000000 		.4byte	0
  2178              	.LLST6:
@@ -2518,10 +2517,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2229 0138 56       		.byte	0x56
  2230 0139 00000000 		.4byte	0
  2231 013d 00000000 		.4byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 43
-
-
  2232              	.LLST12:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 43
+
+
  2233 0141 00000000 		.4byte	.LVL28
  2234 0145 10000000 		.4byte	.LVL29
  2235 0149 0100     		.2byte	0x1
@@ -2578,10 +2577,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2286 01bd 00000000 		.4byte	0
  2287 01c1 00000000 		.4byte	0
  2288              	.LLST16:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 44
-
-
  2289 01c5 00000000 		.4byte	.LVL34
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 44
+
+
  2290 01c9 0C000000 		.4byte	.LVL35
  2291 01cd 0100     		.2byte	0x1
  2292 01cf 50       		.byte	0x50
@@ -2638,10 +2637,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2343 0245 00000000 		.4byte	0
  2344              	.LLST20:
  2345 0249 00000000 		.4byte	.LVL42
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 45
-
-
  2346 024d 0C000000 		.4byte	.LVL43
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 45
+
+
  2347 0251 0100     		.2byte	0x1
  2348 0253 50       		.byte	0x50
  2349 0254 0C000000 		.4byte	.LVL43
@@ -2698,10 +2697,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2400              		.section	.debug_aranges,"",%progbits
  2401 0000 5C000000 		.4byte	0x5c
  2402 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 46
-
-
  2403 0006 00000000 		.4byte	.Ldebug_info0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 46
+
+
  2404 000a 04       		.byte	0x4
  2405 000b 00       		.byte	0
  2406 000c 0000     		.2byte	0
@@ -2758,10 +2757,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2453              	.LASF25:
  2454 0000 67616D6D 		.ascii	"gamma_p\000"
  2454      615F7000 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 47
-
-
  2455              	.LASF49:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 47
+
+
  2456 0008 43794465 		.ascii	"CyDelayCycles\000"
  2456      6C617943 
  2456      79636C65 
@@ -2818,10 +2817,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2480      66666572 
  2480      00
  2481              	.LASF35:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 48
-
-
  2482 009d 4C43445F 		.ascii	"LCD_SetWindowWrite\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 48
+
+
  2482      53657457 
  2482      696E646F 
  2482      77577269 
@@ -2878,10 +2877,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2502      6720756E 
  2502      7369676E 
  2502      65642069 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 49
-
-
  2503              	.LASF18:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 49
+
+
  2504 01a4 72656731 		.ascii	"reg16\000"
  2504      3600
  2505              	.LASF46:
@@ -2920,75 +2919,77 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 1
  2521              	.LASF21:
  2522 0209 76616C75 		.ascii	"value\000"
  2522      6500
- 2523              	.LASF37:
- 2524 020f 4C43445F 		.ascii	"LCD_WritePixel\000"
- 2524      57726974 
- 2524      65506978 
- 2524      656C00
- 2525              	.LASF2:
- 2526 021e 73686F72 		.ascii	"short int\000"
- 2526      7420696E 
- 2526      7400
- 2527              	.LASF29:
- 2528 0228 726F775F 		.ascii	"row_start\000"
- 2528      73746172 
- 2528      7400
- 2529              	.LASF42:
- 2530 0232 43535F57 		.ascii	"CS_Write\000"
- 2530      72697465 
- 2530      00
- 2531              	.LASF11:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc5vAtqh.s 			page 50
+ 2523              	.LASF47:
+ 2524 020f 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 2524      73657273 
+ 2524      5C44616E 
+ 2524      69656C5C 
+ 2524      446F6375 
+ 2525 023d 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 2525      74657220 
+ 2525      56335C44 
+ 2525      6973706C 
+ 2525      61792E63 
+ 2526              	.LASF37:
+ 2527 0256 4C43445F 		.ascii	"LCD_WritePixel\000"
+ 2527      57726974 
+ 2527      65506978 
+ 2527      656C00
+ 2528              	.LASF2:
+ 2529 0265 73686F72 		.ascii	"short int\000"
+ 2529      7420696E 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc8Cx2NK.s 			page 50
 
 
- 2532 023b 75696E74 		.ascii	"uint8\000"
- 2532      3800
- 2533              	.LASF32:
- 2534 0241 636F6C73 		.ascii	"cols\000"
- 2534      00
- 2535              	.LASF34:
- 2536 0246 4C43445F 		.ascii	"LCD_SetWindowRead\000"
- 2536      53657457 
- 2536      696E646F 
- 2536      77526561 
- 2536      6400
- 2537              	.LASF31:
- 2538 0258 726F775F 		.ascii	"row_end\000"
- 2538      656E6400 
- 2539              	.LASF4:
- 2540 0260 6C6F6E67 		.ascii	"long int\000"
- 2540      20696E74 
- 2540      00
- 2541              	.LASF24:
- 2542 0269 76616C75 		.ascii	"values\000"
- 2542      657300
- 2543              	.LASF0:
- 2544 0270 7369676E 		.ascii	"signed char\000"
- 2544      65642063 
- 2544      68617200 
- 2545              	.LASF47:
- 2546 027c 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 2546      73657273 
- 2546      5C54696D 
- 2546      5C446F63 
- 2546      756D656E 
- 2547 02a9 706C6179 		.ascii	"play.cydsn\000"
- 2547      2E637964 
- 2547      736E00
+ 2529      7400
+ 2530              	.LASF29:
+ 2531 026f 726F775F 		.ascii	"row_start\000"
+ 2531      73746172 
+ 2531      7400
+ 2532              	.LASF42:
+ 2533 0279 43535F57 		.ascii	"CS_Write\000"
+ 2533      72697465 
+ 2533      00
+ 2534              	.LASF11:
+ 2535 0282 75696E74 		.ascii	"uint8\000"
+ 2535      3800
+ 2536              	.LASF32:
+ 2537 0288 636F6C73 		.ascii	"cols\000"
+ 2537      00
+ 2538              	.LASF34:
+ 2539 028d 4C43445F 		.ascii	"LCD_SetWindowRead\000"
+ 2539      53657457 
+ 2539      696E646F 
+ 2539      77526561 
+ 2539      6400
+ 2540              	.LASF31:
+ 2541 029f 726F775F 		.ascii	"row_end\000"
+ 2541      656E6400 
+ 2542              	.LASF4:
+ 2543 02a7 6C6F6E67 		.ascii	"long int\000"
+ 2543      20696E74 
+ 2543      00
+ 2544              	.LASF24:
+ 2545 02b0 76616C75 		.ascii	"values\000"
+ 2545      657300
+ 2546              	.LASF0:
+ 2547 02b7 7369676E 		.ascii	"signed char\000"
+ 2547      65642063 
+ 2547      68617200 
  2548              	.LASF36:
- 2549 02b4 4C43445F 		.ascii	"LCD_ReadPixel\000"
+ 2549 02c3 4C43445F 		.ascii	"LCD_ReadPixel\000"
  2549      52656164 
  2549      50697865 
  2549      6C00
  2550              	.LASF23:
- 2551 02c2 4C43445F 		.ascii	"LCD_WriteArray\000"
+ 2551 02d1 4C43445F 		.ascii	"LCD_WriteArray\000"
  2551      57726974 
  2551      65417272 
  2551      617900
  2552              	.LASF43:
- 2553 02d1 43794465 		.ascii	"CyDelay\000"
+ 2553 02e0 43794465 		.ascii	"CyDelay\000"
  2553      6C617900 
  2554              	.LASF48:
- 2555 02d9 43535F52 		.ascii	"CS_Read\000"
+ 2555 02e8 43535F52 		.ascii	"CS_Read\000"
  2555      65616400 
  2556              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

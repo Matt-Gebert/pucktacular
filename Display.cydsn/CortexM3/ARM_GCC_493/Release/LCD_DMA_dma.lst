@@ -1,0 +1,1044 @@
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LCD_DMA_dma.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.LCD_DMA_DmaInitialize,"ax",%progbits
+  19              		.align	1
+  20              		.global	LCD_DMA_DmaInitialize
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	LCD_DMA_DmaInitialize, %function
+  24              	LCD_DMA_DmaInitialize:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\LCD_DMA_dma.c"
+   1:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** /***************************************************************************
+   2:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * File Name: LCD_DMA_dma.c  
+   3:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Version 1.70
+   4:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+   5:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *  Description:
+   6:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   Provides an API for the DMAC component. The API includes functions
+   7:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   for the DMA controller, DMA channels and Transfer Descriptors.
+   8:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+   9:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  10:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   Note:
+  11:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *     This module requires the developer to finish or fill in the auto
+  12:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *     generated funcions and setup the dma channel and TD's.
+  13:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  14:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** ********************************************************************************
+  15:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  16:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  17:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  18:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * the software package with which this file was provided.
+  19:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** ********************************************************************************/
+  20:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** #include <CYLIB.H>
+  21:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** #include <CYDMAC.H>
+  22:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** #include <LCD_DMA_dma.H>
+  23:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  24:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  25:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  26:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** /****************************************************************************
+  27:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  28:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * The following defines are available in Cyfitter.h
+  29:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  30:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  31:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__DRQ_CTL_REG
+  33:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  34:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  35:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__DRQ_NUMBER
+  36:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  37:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Number of TD's used by this channel.
+  38:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__NUMBEROF_TDS
+  39:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  40:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Priority of this channel.
+  41:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__PRIORITY
+  42:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  43:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * True if LCD_DMA_TERMIN_SEL is used.
+  44:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMIN_EN
+  45:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  46:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * TERMIN interrupt line to signal terminate.
+  47:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMIN_SEL
+  48:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  49:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  50:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * True if LCD_DMA_TERMOUT0_SEL is used.
+  51:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMOUT0_EN
+  52:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  53:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  54:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * TERMOUT0 interrupt line to signal completion.
+  55:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMOUT0_SEL
+  56:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  57:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  58:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * True if LCD_DMA_TERMOUT1_SEL is used.
+  59:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMOUT1_EN
+  60:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  61:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  62:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * TERMOUT1 interrupt line to signal completion.
+  63:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * LCD_DMA__TERMOUT1_SEL
+  64:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * 
+  65:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** ****************************************************************************/
+  66:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  67:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  68:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** /* Zero based index of LCD_DMA dma channel */
+  69:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** uint8 LCD_DMA_DmaHandle = DMA_INVALID_CHANNEL;
+  70:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  71:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** /*********************************************************************
+  72:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Function Name: uint8 LCD_DMA_DmaInitalize
+  73:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** **********************************************************************
+  74:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Summary:
+  75:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   Allocates and initialises a channel of the DMAC to be used by the
+  76:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   caller.
+  77:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  78:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Parameters:
+  79:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   BurstCount.
+  80:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  81:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  82:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   ReqestPerBurst.
+  83:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  84:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  85:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   UpperSrcAddress.
+  86:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  87:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  88:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   UpperDestAddress.
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *       
+  90:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  91:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Return:
+  92:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   The channel that can be used by the caller for DMA activity.
+  93:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   DMA_INVALID_CHANNEL (0xFF) if there are no channels left. 
+  94:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  95:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+  96:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *******************************************************************/
+  97:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** uint8 LCD_DMA_DmaInitialize(uint8 BurstCount, uint8 ReqestPerBurst, uint16 UpperSrcAddress, uint16 
+  98:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** {
+  27              		.loc 1 98 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 F7B5     		push	{r0, r1, r2, r4, r5, r6, r7, lr}
+  33              		.cfi_def_cfa_offset 32
+  34              		.cfi_offset 4, -20
+  35              		.cfi_offset 5, -16
+  36              		.cfi_offset 6, -12
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39              		.loc 1 98 0
+  40 0002 8446     		mov	ip, r0
+  41 0004 8E46     		mov	lr, r1
+  42 0006 1746     		mov	r7, r2
+  43 0008 1E46     		mov	r6, r3
+  99:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+ 100:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     /* Allocate a DMA channel. */
+ 101:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     LCD_DMA_DmaHandle = (uint8)LCD_DMA__DRQ_NUMBER;
+  44              		.loc 1 101 0
+  45 000a 0B4C     		ldr	r4, .L2
+ 102:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+ 103:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     /* Configure the channel. */
+ 104:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     (void)CyDmaChSetConfiguration(LCD_DMA_DmaHandle,
+  46              		.loc 1 104 0
+  47 000c 0023     		movs	r3, #0
+  48              	.LVL1:
+ 101:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  49              		.loc 1 101 0
+  50 000e 0225     		movs	r5, #2
+  51              		.loc 1 104 0
+  52 0010 6146     		mov	r1, ip
+  53              	.LVL2:
+  54 0012 7246     		mov	r2, lr
+  55              	.LVL3:
+  56 0014 0093     		str	r3, [sp]
+  57 0016 0193     		str	r3, [sp, #4]
+  58 0018 2846     		mov	r0, r5
+  59              	.LVL4:
+ 101:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+  60              		.loc 1 101 0
+  61 001a 2570     		strb	r5, [r4]
+  62              		.loc 1 104 0
+  63 001c FFF7FEFF 		bl	CyDmaChSetConfiguration
+  64              	.LVL5:
+ 105:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****                                   BurstCount,
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 4
+
+
+ 106:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****                                   ReqestPerBurst,
+ 107:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****                                   (uint8)LCD_DMA__TERMOUT0_SEL,
+ 108:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****                                   (uint8)LCD_DMA__TERMOUT1_SEL,
+ 109:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****                                   (uint8)LCD_DMA__TERMIN_SEL);
+ 110:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+ 111:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     /* Set the extended address for the transfers */
+ 112:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     (void)CyDmaChSetExtendedAddress(LCD_DMA_DmaHandle, UpperSrcAddress, UpperDestAddress);
+  65              		.loc 1 112 0
+  66 0020 3946     		mov	r1, r7
+  67 0022 3246     		mov	r2, r6
+  68 0024 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  69 0026 FFF7FEFF 		bl	CyDmaChSetExtendedAddress
+  70              	.LVL6:
+ 113:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+ 114:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     /* Set the priority for this channel */
+ 115:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     (void)CyDmaChPriority(LCD_DMA_DmaHandle, (uint8)LCD_DMA__PRIORITY);
+  71              		.loc 1 115 0
+  72 002a 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  73 002c 2946     		mov	r1, r5
+  74 002e FFF7FEFF 		bl	CyDmaChPriority
+  75              	.LVL7:
+ 116:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     
+ 117:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     return LCD_DMA_DmaHandle;
+ 118:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** }
+  76              		.loc 1 118 0
+  77 0032 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  78 0034 03B0     		add	sp, sp, #12
+  79              		.cfi_def_cfa_offset 20
+  80              		@ sp needed
+  81 0036 F0BD     		pop	{r4, r5, r6, r7, pc}
+  82              	.L3:
+  83              		.align	2
+  84              	.L2:
+  85 0038 00000000 		.word	.LANCHOR0
+  86              		.cfi_endproc
+  87              	.LFE0:
+  88              		.size	LCD_DMA_DmaInitialize, .-LCD_DMA_DmaInitialize
+  89              		.section	.text.LCD_DMA_DmaRelease,"ax",%progbits
+  90              		.align	1
+  91              		.global	LCD_DMA_DmaRelease
+  92              		.thumb
+  93              		.thumb_func
+  94              		.type	LCD_DMA_DmaRelease, %function
+  95              	LCD_DMA_DmaRelease:
+  96              	.LFB1:
+ 119:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** 
+ 120:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** /*********************************************************************
+ 121:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Function Name: void LCD_DMA_DmaRelease
+ 122:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** **********************************************************************
+ 123:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Summary:
+ 124:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   Frees the channel associated with LCD_DMA.
+ 125:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ 126:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ 127:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Parameters:
+ 128:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   void.
+ 129:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ 130:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 5
+
+
+ 131:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ 132:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** * Return:
+ 133:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *   void.
+ 134:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *
+ 135:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** *******************************************************************/
+ 136:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** void LCD_DMA_DmaRelease(void) 
+ 137:.\Generated_Source\PSoC5/LCD_DMA_dma.c **** {
+  97              		.loc 1 137 0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              		@ link register save eliminated.
+ 138:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     /* Disable the channel */
+ 139:.\Generated_Source\PSoC5/LCD_DMA_dma.c ****     (void)CyDmaChDisable(LCD_DMA_DmaHandle);
+ 102              		.loc 1 139 0
+ 103 0000 014B     		ldr	r3, .L5
+ 104 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 105 0004 FFF7FEBF 		b	CyDmaChDisable
+ 106              	.LVL8:
+ 107              	.L6:
+ 108              		.align	2
+ 109              	.L5:
+ 110 0008 00000000 		.word	.LANCHOR0
+ 111              		.cfi_endproc
+ 112              	.LFE1:
+ 113              		.size	LCD_DMA_DmaRelease, .-LCD_DMA_DmaRelease
+ 114              		.global	LCD_DMA_DmaHandle
+ 115              		.data
+ 116              		.set	.LANCHOR0,. + 0
+ 117              		.type	LCD_DMA_DmaHandle, %object
+ 118              		.size	LCD_DMA_DmaHandle, 1
+ 119              	LCD_DMA_DmaHandle:
+ 120 0000 FF       		.byte	-1
+ 121              		.text
+ 122              	.Letext0:
+ 123              		.file 2 "Generated_Source\\PSoC5/cytypes.h"
+ 124              		.file 3 "Generated_Source\\PSoC5/CYDMAC.H"
+ 125              		.section	.debug_info,"",%progbits
+ 126              	.Ldebug_info0:
+ 127 0000 F5010000 		.4byte	0x1f5
+ 128 0004 0400     		.2byte	0x4
+ 129 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 130 000a 04       		.byte	0x4
+ 131 000b 01       		.uleb128 0x1
+ 132 000c 99010000 		.4byte	.LASF23
+ 133 0010 01       		.byte	0x1
+ 134 0011 68010000 		.4byte	.LASF24
+ 135 0015 84000000 		.4byte	.LASF25
+ 136 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 137 001d 00000000 		.4byte	0
+ 138 0021 00000000 		.4byte	.Ldebug_line0
+ 139 0025 02       		.uleb128 0x2
+ 140 0026 04       		.byte	0x4
+ 141 0027 05       		.byte	0x5
+ 142 0028 696E7400 		.ascii	"int\000"
+ 143 002c 03       		.uleb128 0x3
+ 144 002d 04       		.byte	0x4
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 6
+
+
+ 145 002e 07       		.byte	0x7
+ 146 002f FD000000 		.4byte	.LASF0
+ 147 0033 03       		.uleb128 0x3
+ 148 0034 01       		.byte	0x1
+ 149 0035 06       		.byte	0x6
+ 150 0036 46020000 		.4byte	.LASF1
+ 151 003a 03       		.uleb128 0x3
+ 152 003b 01       		.byte	0x1
+ 153 003c 08       		.byte	0x8
+ 154 003d 76000000 		.4byte	.LASF2
+ 155 0041 03       		.uleb128 0x3
+ 156 0042 02       		.byte	0x2
+ 157 0043 05       		.byte	0x5
+ 158 0044 8F010000 		.4byte	.LASF3
+ 159 0048 03       		.uleb128 0x3
+ 160 0049 02       		.byte	0x2
+ 161 004a 07       		.byte	0x7
+ 162 004b 4A000000 		.4byte	.LASF4
+ 163 004f 03       		.uleb128 0x3
+ 164 0050 04       		.byte	0x4
+ 165 0051 05       		.byte	0x5
+ 166 0052 27020000 		.4byte	.LASF5
+ 167 0056 03       		.uleb128 0x3
+ 168 0057 04       		.byte	0x4
+ 169 0058 07       		.byte	0x7
+ 170 0059 D7000000 		.4byte	.LASF6
+ 171 005d 03       		.uleb128 0x3
+ 172 005e 08       		.byte	0x8
+ 173 005f 05       		.byte	0x5
+ 174 0060 3B010000 		.4byte	.LASF7
+ 175 0064 03       		.uleb128 0x3
+ 176 0065 08       		.byte	0x8
+ 177 0066 07       		.byte	0x7
+ 178 0067 0A010000 		.4byte	.LASF8
+ 179 006b 03       		.uleb128 0x3
+ 180 006c 04       		.byte	0x4
+ 181 006d 07       		.byte	0x7
+ 182 006e 32010000 		.4byte	.LASF9
+ 183 0072 03       		.uleb128 0x3
+ 184 0073 01       		.byte	0x1
+ 185 0074 08       		.byte	0x8
+ 186 0075 63010000 		.4byte	.LASF10
+ 187 0079 04       		.uleb128 0x4
+ 188 007a E9000000 		.4byte	.LASF11
+ 189 007e 02       		.byte	0x2
+ 190 007f 9201     		.2byte	0x192
+ 191 0081 3A000000 		.4byte	0x3a
+ 192 0085 04       		.uleb128 0x4
+ 193 0086 F6000000 		.4byte	.LASF12
+ 194 008a 02       		.byte	0x2
+ 195 008b 9301     		.2byte	0x193
+ 196 008d 48000000 		.4byte	0x48
+ 197 0091 03       		.uleb128 0x3
+ 198 0092 04       		.byte	0x4
+ 199 0093 04       		.byte	0x4
+ 200 0094 70000000 		.4byte	.LASF13
+ 201 0098 03       		.uleb128 0x3
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 7
+
+
+ 202 0099 08       		.byte	0x8
+ 203 009a 04       		.byte	0x4
+ 204 009b EF000000 		.4byte	.LASF14
+ 205 009f 04       		.uleb128 0x4
+ 206 00a0 00000000 		.4byte	.LASF15
+ 207 00a4 02       		.byte	0x2
+ 208 00a5 3402     		.2byte	0x234
+ 209 00a7 56000000 		.4byte	0x56
+ 210 00ab 05       		.uleb128 0x5
+ 211 00ac 30020000 		.4byte	.LASF26
+ 212 00b0 01       		.byte	0x1
+ 213 00b1 61       		.byte	0x61
+ 214 00b2 79000000 		.4byte	0x79
+ 215 00b6 00000000 		.4byte	.LFB0
+ 216 00ba 3C000000 		.4byte	.LFE0-.LFB0
+ 217 00be 01       		.uleb128 0x1
+ 218 00bf 9C       		.byte	0x9c
+ 219 00c0 50010000 		.4byte	0x150
+ 220 00c4 06       		.uleb128 0x6
+ 221 00c5 CC000000 		.4byte	.LASF16
+ 222 00c9 01       		.byte	0x1
+ 223 00ca 61       		.byte	0x61
+ 224 00cb 79000000 		.4byte	0x79
+ 225 00cf 00000000 		.4byte	.LLST0
+ 226 00d3 06       		.uleb128 0x6
+ 227 00d4 3B000000 		.4byte	.LASF17
+ 228 00d8 01       		.byte	0x1
+ 229 00d9 61       		.byte	0x61
+ 230 00da 79000000 		.4byte	0x79
+ 231 00de 21000000 		.4byte	.LLST1
+ 232 00e2 06       		.uleb128 0x6
+ 233 00e3 1B000000 		.4byte	.LASF18
+ 234 00e7 01       		.byte	0x1
+ 235 00e8 61       		.byte	0x61
+ 236 00e9 85000000 		.4byte	0x85
+ 237 00ed 42000000 		.4byte	.LLST2
+ 238 00f1 06       		.uleb128 0x6
+ 239 00f2 21010000 		.4byte	.LASF19
+ 240 00f6 01       		.byte	0x1
+ 241 00f7 61       		.byte	0x61
+ 242 00f8 85000000 		.4byte	0x85
+ 243 00fc 63000000 		.4byte	.LLST3
+ 244 0100 07       		.uleb128 0x7
+ 245 0101 20000000 		.4byte	.LVL5
+ 246 0105 80010000 		.4byte	0x180
+ 247 0109 25010000 		.4byte	0x125
+ 248 010d 08       		.uleb128 0x8
+ 249 010e 01       		.uleb128 0x1
+ 250 010f 53       		.byte	0x53
+ 251 0110 01       		.uleb128 0x1
+ 252 0111 30       		.byte	0x30
+ 253 0112 08       		.uleb128 0x8
+ 254 0113 01       		.uleb128 0x1
+ 255 0114 50       		.byte	0x50
+ 256 0115 02       		.uleb128 0x2
+ 257 0116 75       		.byte	0x75
+ 258 0117 00       		.sleb128 0
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 8
+
+
+ 259 0118 08       		.uleb128 0x8
+ 260 0119 02       		.uleb128 0x2
+ 261 011a 7D       		.byte	0x7d
+ 262 011b 04       		.sleb128 4
+ 263 011c 01       		.uleb128 0x1
+ 264 011d 30       		.byte	0x30
+ 265 011e 08       		.uleb128 0x8
+ 266 011f 02       		.uleb128 0x2
+ 267 0120 7D       		.byte	0x7d
+ 268 0121 00       		.sleb128 0
+ 269 0122 01       		.uleb128 0x1
+ 270 0123 30       		.byte	0x30
+ 271 0124 00       		.byte	0
+ 272 0125 07       		.uleb128 0x7
+ 273 0126 2A000000 		.4byte	.LVL6
+ 274 012a AE010000 		.4byte	0x1ae
+ 275 012e 3F010000 		.4byte	0x13f
+ 276 0132 08       		.uleb128 0x8
+ 277 0133 01       		.uleb128 0x1
+ 278 0134 52       		.byte	0x52
+ 279 0135 02       		.uleb128 0x2
+ 280 0136 76       		.byte	0x76
+ 281 0137 00       		.sleb128 0
+ 282 0138 08       		.uleb128 0x8
+ 283 0139 01       		.uleb128 0x1
+ 284 013a 51       		.byte	0x51
+ 285 013b 02       		.uleb128 0x2
+ 286 013c 77       		.byte	0x77
+ 287 013d 00       		.sleb128 0
+ 288 013e 00       		.byte	0
+ 289 013f 09       		.uleb128 0x9
+ 290 0140 32000000 		.4byte	.LVL7
+ 291 0144 CD010000 		.4byte	0x1cd
+ 292 0148 08       		.uleb128 0x8
+ 293 0149 01       		.uleb128 0x1
+ 294 014a 51       		.byte	0x51
+ 295 014b 02       		.uleb128 0x2
+ 296 014c 75       		.byte	0x75
+ 297 014d 00       		.sleb128 0
+ 298 014e 00       		.byte	0
+ 299 014f 00       		.byte	0
+ 300 0150 0A       		.uleb128 0xa
+ 301 0151 5D000000 		.4byte	.LASF27
+ 302 0155 01       		.byte	0x1
+ 303 0156 88       		.byte	0x88
+ 304 0157 00000000 		.4byte	.LFB1
+ 305 015b 0C000000 		.4byte	.LFE1-.LFB1
+ 306 015f 01       		.uleb128 0x1
+ 307 0160 9C       		.byte	0x9c
+ 308 0161 6F010000 		.4byte	0x16f
+ 309 0165 0B       		.uleb128 0xb
+ 310 0166 08000000 		.4byte	.LVL8
+ 311 016a E7010000 		.4byte	0x1e7
+ 312 016e 00       		.byte	0
+ 313 016f 0C       		.uleb128 0xc
+ 314 0170 09000000 		.4byte	.LASF28
+ 315 0174 01       		.byte	0x1
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 9
+
+
+ 316 0175 45       		.byte	0x45
+ 317 0176 79000000 		.4byte	0x79
+ 318 017a 05       		.uleb128 0x5
+ 319 017b 03       		.byte	0x3
+ 320 017c 00000000 		.4byte	LCD_DMA_DmaHandle
+ 321 0180 0D       		.uleb128 0xd
+ 322 0181 61020000 		.4byte	.LASF20
+ 323 0185 03       		.byte	0x3
+ 324 0186 33       		.byte	0x33
+ 325 0187 9F000000 		.4byte	0x9f
+ 326 018b AE010000 		.4byte	0x1ae
+ 327 018f 0E       		.uleb128 0xe
+ 328 0190 79000000 		.4byte	0x79
+ 329 0194 0E       		.uleb128 0xe
+ 330 0195 79000000 		.4byte	0x79
+ 331 0199 0E       		.uleb128 0xe
+ 332 019a 79000000 		.4byte	0x79
+ 333 019e 0E       		.uleb128 0xe
+ 334 019f 79000000 		.4byte	0x79
+ 335 01a3 0E       		.uleb128 0xe
+ 336 01a4 79000000 		.4byte	0x79
+ 337 01a8 0E       		.uleb128 0xe
+ 338 01a9 79000000 		.4byte	0x79
+ 339 01ad 00       		.byte	0
+ 340 01ae 0D       		.uleb128 0xd
+ 341 01af 49010000 		.4byte	.LASF21
+ 342 01b3 03       		.byte	0x3
+ 343 01b4 2D       		.byte	0x2d
+ 344 01b5 9F000000 		.4byte	0x9f
+ 345 01b9 CD010000 		.4byte	0x1cd
+ 346 01bd 0E       		.uleb128 0xe
+ 347 01be 79000000 		.4byte	0x79
+ 348 01c2 0E       		.uleb128 0xe
+ 349 01c3 85000000 		.4byte	0x85
+ 350 01c7 0E       		.uleb128 0xe
+ 351 01c8 85000000 		.4byte	0x85
+ 352 01cc 00       		.byte	0
+ 353 01cd 0D       		.uleb128 0xd
+ 354 01ce 2B000000 		.4byte	.LASF22
+ 355 01d2 03       		.byte	0x3
+ 356 01d3 2C       		.byte	0x2c
+ 357 01d4 9F000000 		.4byte	0x9f
+ 358 01d8 E7010000 		.4byte	0x1e7
+ 359 01dc 0E       		.uleb128 0xe
+ 360 01dd 79000000 		.4byte	0x79
+ 361 01e1 0E       		.uleb128 0xe
+ 362 01e2 79000000 		.4byte	0x79
+ 363 01e6 00       		.byte	0
+ 364 01e7 0F       		.uleb128 0xf
+ 365 01e8 52020000 		.4byte	.LASF29
+ 366 01ec 03       		.byte	0x3
+ 367 01ed 2A       		.byte	0x2a
+ 368 01ee 9F000000 		.4byte	0x9f
+ 369 01f2 0E       		.uleb128 0xe
+ 370 01f3 79000000 		.4byte	0x79
+ 371 01f7 00       		.byte	0
+ 372 01f8 00       		.byte	0
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 10
+
+
+ 373              		.section	.debug_abbrev,"",%progbits
+ 374              	.Ldebug_abbrev0:
+ 375 0000 01       		.uleb128 0x1
+ 376 0001 11       		.uleb128 0x11
+ 377 0002 01       		.byte	0x1
+ 378 0003 25       		.uleb128 0x25
+ 379 0004 0E       		.uleb128 0xe
+ 380 0005 13       		.uleb128 0x13
+ 381 0006 0B       		.uleb128 0xb
+ 382 0007 03       		.uleb128 0x3
+ 383 0008 0E       		.uleb128 0xe
+ 384 0009 1B       		.uleb128 0x1b
+ 385 000a 0E       		.uleb128 0xe
+ 386 000b 55       		.uleb128 0x55
+ 387 000c 17       		.uleb128 0x17
+ 388 000d 11       		.uleb128 0x11
+ 389 000e 01       		.uleb128 0x1
+ 390 000f 10       		.uleb128 0x10
+ 391 0010 17       		.uleb128 0x17
+ 392 0011 00       		.byte	0
+ 393 0012 00       		.byte	0
+ 394 0013 02       		.uleb128 0x2
+ 395 0014 24       		.uleb128 0x24
+ 396 0015 00       		.byte	0
+ 397 0016 0B       		.uleb128 0xb
+ 398 0017 0B       		.uleb128 0xb
+ 399 0018 3E       		.uleb128 0x3e
+ 400 0019 0B       		.uleb128 0xb
+ 401 001a 03       		.uleb128 0x3
+ 402 001b 08       		.uleb128 0x8
+ 403 001c 00       		.byte	0
+ 404 001d 00       		.byte	0
+ 405 001e 03       		.uleb128 0x3
+ 406 001f 24       		.uleb128 0x24
+ 407 0020 00       		.byte	0
+ 408 0021 0B       		.uleb128 0xb
+ 409 0022 0B       		.uleb128 0xb
+ 410 0023 3E       		.uleb128 0x3e
+ 411 0024 0B       		.uleb128 0xb
+ 412 0025 03       		.uleb128 0x3
+ 413 0026 0E       		.uleb128 0xe
+ 414 0027 00       		.byte	0
+ 415 0028 00       		.byte	0
+ 416 0029 04       		.uleb128 0x4
+ 417 002a 16       		.uleb128 0x16
+ 418 002b 00       		.byte	0
+ 419 002c 03       		.uleb128 0x3
+ 420 002d 0E       		.uleb128 0xe
+ 421 002e 3A       		.uleb128 0x3a
+ 422 002f 0B       		.uleb128 0xb
+ 423 0030 3B       		.uleb128 0x3b
+ 424 0031 05       		.uleb128 0x5
+ 425 0032 49       		.uleb128 0x49
+ 426 0033 13       		.uleb128 0x13
+ 427 0034 00       		.byte	0
+ 428 0035 00       		.byte	0
+ 429 0036 05       		.uleb128 0x5
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 11
+
+
+ 430 0037 2E       		.uleb128 0x2e
+ 431 0038 01       		.byte	0x1
+ 432 0039 3F       		.uleb128 0x3f
+ 433 003a 19       		.uleb128 0x19
+ 434 003b 03       		.uleb128 0x3
+ 435 003c 0E       		.uleb128 0xe
+ 436 003d 3A       		.uleb128 0x3a
+ 437 003e 0B       		.uleb128 0xb
+ 438 003f 3B       		.uleb128 0x3b
+ 439 0040 0B       		.uleb128 0xb
+ 440 0041 27       		.uleb128 0x27
+ 441 0042 19       		.uleb128 0x19
+ 442 0043 49       		.uleb128 0x49
+ 443 0044 13       		.uleb128 0x13
+ 444 0045 11       		.uleb128 0x11
+ 445 0046 01       		.uleb128 0x1
+ 446 0047 12       		.uleb128 0x12
+ 447 0048 06       		.uleb128 0x6
+ 448 0049 40       		.uleb128 0x40
+ 449 004a 18       		.uleb128 0x18
+ 450 004b 9742     		.uleb128 0x2117
+ 451 004d 19       		.uleb128 0x19
+ 452 004e 01       		.uleb128 0x1
+ 453 004f 13       		.uleb128 0x13
+ 454 0050 00       		.byte	0
+ 455 0051 00       		.byte	0
+ 456 0052 06       		.uleb128 0x6
+ 457 0053 05       		.uleb128 0x5
+ 458 0054 00       		.byte	0
+ 459 0055 03       		.uleb128 0x3
+ 460 0056 0E       		.uleb128 0xe
+ 461 0057 3A       		.uleb128 0x3a
+ 462 0058 0B       		.uleb128 0xb
+ 463 0059 3B       		.uleb128 0x3b
+ 464 005a 0B       		.uleb128 0xb
+ 465 005b 49       		.uleb128 0x49
+ 466 005c 13       		.uleb128 0x13
+ 467 005d 02       		.uleb128 0x2
+ 468 005e 17       		.uleb128 0x17
+ 469 005f 00       		.byte	0
+ 470 0060 00       		.byte	0
+ 471 0061 07       		.uleb128 0x7
+ 472 0062 898201   		.uleb128 0x4109
+ 473 0065 01       		.byte	0x1
+ 474 0066 11       		.uleb128 0x11
+ 475 0067 01       		.uleb128 0x1
+ 476 0068 31       		.uleb128 0x31
+ 477 0069 13       		.uleb128 0x13
+ 478 006a 01       		.uleb128 0x1
+ 479 006b 13       		.uleb128 0x13
+ 480 006c 00       		.byte	0
+ 481 006d 00       		.byte	0
+ 482 006e 08       		.uleb128 0x8
+ 483 006f 8A8201   		.uleb128 0x410a
+ 484 0072 00       		.byte	0
+ 485 0073 02       		.uleb128 0x2
+ 486 0074 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 12
+
+
+ 487 0075 9142     		.uleb128 0x2111
+ 488 0077 18       		.uleb128 0x18
+ 489 0078 00       		.byte	0
+ 490 0079 00       		.byte	0
+ 491 007a 09       		.uleb128 0x9
+ 492 007b 898201   		.uleb128 0x4109
+ 493 007e 01       		.byte	0x1
+ 494 007f 11       		.uleb128 0x11
+ 495 0080 01       		.uleb128 0x1
+ 496 0081 31       		.uleb128 0x31
+ 497 0082 13       		.uleb128 0x13
+ 498 0083 00       		.byte	0
+ 499 0084 00       		.byte	0
+ 500 0085 0A       		.uleb128 0xa
+ 501 0086 2E       		.uleb128 0x2e
+ 502 0087 01       		.byte	0x1
+ 503 0088 3F       		.uleb128 0x3f
+ 504 0089 19       		.uleb128 0x19
+ 505 008a 03       		.uleb128 0x3
+ 506 008b 0E       		.uleb128 0xe
+ 507 008c 3A       		.uleb128 0x3a
+ 508 008d 0B       		.uleb128 0xb
+ 509 008e 3B       		.uleb128 0x3b
+ 510 008f 0B       		.uleb128 0xb
+ 511 0090 27       		.uleb128 0x27
+ 512 0091 19       		.uleb128 0x19
+ 513 0092 11       		.uleb128 0x11
+ 514 0093 01       		.uleb128 0x1
+ 515 0094 12       		.uleb128 0x12
+ 516 0095 06       		.uleb128 0x6
+ 517 0096 40       		.uleb128 0x40
+ 518 0097 18       		.uleb128 0x18
+ 519 0098 9742     		.uleb128 0x2117
+ 520 009a 19       		.uleb128 0x19
+ 521 009b 01       		.uleb128 0x1
+ 522 009c 13       		.uleb128 0x13
+ 523 009d 00       		.byte	0
+ 524 009e 00       		.byte	0
+ 525 009f 0B       		.uleb128 0xb
+ 526 00a0 898201   		.uleb128 0x4109
+ 527 00a3 00       		.byte	0
+ 528 00a4 11       		.uleb128 0x11
+ 529 00a5 01       		.uleb128 0x1
+ 530 00a6 9542     		.uleb128 0x2115
+ 531 00a8 19       		.uleb128 0x19
+ 532 00a9 31       		.uleb128 0x31
+ 533 00aa 13       		.uleb128 0x13
+ 534 00ab 00       		.byte	0
+ 535 00ac 00       		.byte	0
+ 536 00ad 0C       		.uleb128 0xc
+ 537 00ae 34       		.uleb128 0x34
+ 538 00af 00       		.byte	0
+ 539 00b0 03       		.uleb128 0x3
+ 540 00b1 0E       		.uleb128 0xe
+ 541 00b2 3A       		.uleb128 0x3a
+ 542 00b3 0B       		.uleb128 0xb
+ 543 00b4 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 13
+
+
+ 544 00b5 0B       		.uleb128 0xb
+ 545 00b6 49       		.uleb128 0x49
+ 546 00b7 13       		.uleb128 0x13
+ 547 00b8 3F       		.uleb128 0x3f
+ 548 00b9 19       		.uleb128 0x19
+ 549 00ba 02       		.uleb128 0x2
+ 550 00bb 18       		.uleb128 0x18
+ 551 00bc 00       		.byte	0
+ 552 00bd 00       		.byte	0
+ 553 00be 0D       		.uleb128 0xd
+ 554 00bf 2E       		.uleb128 0x2e
+ 555 00c0 01       		.byte	0x1
+ 556 00c1 3F       		.uleb128 0x3f
+ 557 00c2 19       		.uleb128 0x19
+ 558 00c3 03       		.uleb128 0x3
+ 559 00c4 0E       		.uleb128 0xe
+ 560 00c5 3A       		.uleb128 0x3a
+ 561 00c6 0B       		.uleb128 0xb
+ 562 00c7 3B       		.uleb128 0x3b
+ 563 00c8 0B       		.uleb128 0xb
+ 564 00c9 27       		.uleb128 0x27
+ 565 00ca 19       		.uleb128 0x19
+ 566 00cb 49       		.uleb128 0x49
+ 567 00cc 13       		.uleb128 0x13
+ 568 00cd 3C       		.uleb128 0x3c
+ 569 00ce 19       		.uleb128 0x19
+ 570 00cf 01       		.uleb128 0x1
+ 571 00d0 13       		.uleb128 0x13
+ 572 00d1 00       		.byte	0
+ 573 00d2 00       		.byte	0
+ 574 00d3 0E       		.uleb128 0xe
+ 575 00d4 05       		.uleb128 0x5
+ 576 00d5 00       		.byte	0
+ 577 00d6 49       		.uleb128 0x49
+ 578 00d7 13       		.uleb128 0x13
+ 579 00d8 00       		.byte	0
+ 580 00d9 00       		.byte	0
+ 581 00da 0F       		.uleb128 0xf
+ 582 00db 2E       		.uleb128 0x2e
+ 583 00dc 01       		.byte	0x1
+ 584 00dd 3F       		.uleb128 0x3f
+ 585 00de 19       		.uleb128 0x19
+ 586 00df 03       		.uleb128 0x3
+ 587 00e0 0E       		.uleb128 0xe
+ 588 00e1 3A       		.uleb128 0x3a
+ 589 00e2 0B       		.uleb128 0xb
+ 590 00e3 3B       		.uleb128 0x3b
+ 591 00e4 0B       		.uleb128 0xb
+ 592 00e5 27       		.uleb128 0x27
+ 593 00e6 19       		.uleb128 0x19
+ 594 00e7 49       		.uleb128 0x49
+ 595 00e8 13       		.uleb128 0x13
+ 596 00e9 3C       		.uleb128 0x3c
+ 597 00ea 19       		.uleb128 0x19
+ 598 00eb 00       		.byte	0
+ 599 00ec 00       		.byte	0
+ 600 00ed 00       		.byte	0
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 14
+
+
+ 601              		.section	.debug_loc,"",%progbits
+ 602              	.Ldebug_loc0:
+ 603              	.LLST0:
+ 604 0000 00000000 		.4byte	.LVL0
+ 605 0004 1A000000 		.4byte	.LVL4
+ 606 0008 0100     		.2byte	0x1
+ 607 000a 50       		.byte	0x50
+ 608 000b 1A000000 		.4byte	.LVL4
+ 609 000f 3C000000 		.4byte	.LFE0
+ 610 0013 0400     		.2byte	0x4
+ 611 0015 F3       		.byte	0xf3
+ 612 0016 01       		.uleb128 0x1
+ 613 0017 50       		.byte	0x50
+ 614 0018 9F       		.byte	0x9f
+ 615 0019 00000000 		.4byte	0
+ 616 001d 00000000 		.4byte	0
+ 617              	.LLST1:
+ 618 0021 00000000 		.4byte	.LVL0
+ 619 0025 12000000 		.4byte	.LVL2
+ 620 0029 0100     		.2byte	0x1
+ 621 002b 51       		.byte	0x51
+ 622 002c 12000000 		.4byte	.LVL2
+ 623 0030 3C000000 		.4byte	.LFE0
+ 624 0034 0400     		.2byte	0x4
+ 625 0036 F3       		.byte	0xf3
+ 626 0037 01       		.uleb128 0x1
+ 627 0038 51       		.byte	0x51
+ 628 0039 9F       		.byte	0x9f
+ 629 003a 00000000 		.4byte	0
+ 630 003e 00000000 		.4byte	0
+ 631              	.LLST2:
+ 632 0042 00000000 		.4byte	.LVL0
+ 633 0046 14000000 		.4byte	.LVL3
+ 634 004a 0100     		.2byte	0x1
+ 635 004c 52       		.byte	0x52
+ 636 004d 14000000 		.4byte	.LVL3
+ 637 0051 3C000000 		.4byte	.LFE0
+ 638 0055 0400     		.2byte	0x4
+ 639 0057 F3       		.byte	0xf3
+ 640 0058 01       		.uleb128 0x1
+ 641 0059 52       		.byte	0x52
+ 642 005a 9F       		.byte	0x9f
+ 643 005b 00000000 		.4byte	0
+ 644 005f 00000000 		.4byte	0
+ 645              	.LLST3:
+ 646 0063 00000000 		.4byte	.LVL0
+ 647 0067 0E000000 		.4byte	.LVL1
+ 648 006b 0100     		.2byte	0x1
+ 649 006d 53       		.byte	0x53
+ 650 006e 0E000000 		.4byte	.LVL1
+ 651 0072 3C000000 		.4byte	.LFE0
+ 652 0076 0400     		.2byte	0x4
+ 653 0078 F3       		.byte	0xf3
+ 654 0079 01       		.uleb128 0x1
+ 655 007a 53       		.byte	0x53
+ 656 007b 9F       		.byte	0x9f
+ 657 007c 00000000 		.4byte	0
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 15
+
+
+ 658 0080 00000000 		.4byte	0
+ 659              		.section	.debug_aranges,"",%progbits
+ 660 0000 24000000 		.4byte	0x24
+ 661 0004 0200     		.2byte	0x2
+ 662 0006 00000000 		.4byte	.Ldebug_info0
+ 663 000a 04       		.byte	0x4
+ 664 000b 00       		.byte	0
+ 665 000c 0000     		.2byte	0
+ 666 000e 0000     		.2byte	0
+ 667 0010 00000000 		.4byte	.LFB0
+ 668 0014 3C000000 		.4byte	.LFE0-.LFB0
+ 669 0018 00000000 		.4byte	.LFB1
+ 670 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 671 0020 00000000 		.4byte	0
+ 672 0024 00000000 		.4byte	0
+ 673              		.section	.debug_ranges,"",%progbits
+ 674              	.Ldebug_ranges0:
+ 675 0000 00000000 		.4byte	.LFB0
+ 676 0004 3C000000 		.4byte	.LFE0
+ 677 0008 00000000 		.4byte	.LFB1
+ 678 000c 0C000000 		.4byte	.LFE1
+ 679 0010 00000000 		.4byte	0
+ 680 0014 00000000 		.4byte	0
+ 681              		.section	.debug_line,"",%progbits
+ 682              	.Ldebug_line0:
+ 683 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
+ 683      02006D00 
+ 683      00000201 
+ 683      FB0E0D00 
+ 683      01010101 
+ 684              	.LASF15:
+ 685 0000 63797374 		.ascii	"cystatus\000"
+ 685      61747573 
+ 685      00
+ 686              	.LASF28:
+ 687 0009 4C43445F 		.ascii	"LCD_DMA_DmaHandle\000"
+ 687      444D415F 
+ 687      446D6148 
+ 687      616E646C 
+ 687      6500
+ 688              	.LASF18:
+ 689 001b 55707065 		.ascii	"UpperSrcAddress\000"
+ 689      72537263 
+ 689      41646472 
+ 689      65737300 
+ 690              	.LASF22:
+ 691 002b 4379446D 		.ascii	"CyDmaChPriority\000"
+ 691      61436850 
+ 691      72696F72 
+ 691      69747900 
+ 692              	.LASF17:
+ 693 003b 52657165 		.ascii	"ReqestPerBurst\000"
+ 693      73745065 
+ 693      72427572 
+ 693      737400
+ 694              	.LASF4:
+ 695 004a 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 16
+
+
+ 695      7420756E 
+ 695      7369676E 
+ 695      65642069 
+ 695      6E7400
+ 696              	.LASF27:
+ 697 005d 4C43445F 		.ascii	"LCD_DMA_DmaRelease\000"
+ 697      444D415F 
+ 697      446D6152 
+ 697      656C6561 
+ 697      736500
+ 698              	.LASF13:
+ 699 0070 666C6F61 		.ascii	"float\000"
+ 699      7400
+ 700              	.LASF2:
+ 701 0076 756E7369 		.ascii	"unsigned char\000"
+ 701      676E6564 
+ 701      20636861 
+ 701      7200
+ 702              	.LASF25:
+ 703 0084 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 703      6F63756D 
+ 703      656E7473 
+ 703      5C436F6D 
+ 703      70757465 
+ 704 00b3 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 704      5069636B 
+ 704      75705C44 
+ 704      6973706C 
+ 704      61792E63 
+ 705              	.LASF16:
+ 706 00cc 42757273 		.ascii	"BurstCount\000"
+ 706      74436F75 
+ 706      6E7400
+ 707              	.LASF6:
+ 708 00d7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 708      20756E73 
+ 708      69676E65 
+ 708      6420696E 
+ 708      7400
+ 709              	.LASF11:
+ 710 00e9 75696E74 		.ascii	"uint8\000"
+ 710      3800
+ 711              	.LASF14:
+ 712 00ef 646F7562 		.ascii	"double\000"
+ 712      6C6500
+ 713              	.LASF12:
+ 714 00f6 75696E74 		.ascii	"uint16\000"
+ 714      313600
+ 715              	.LASF0:
+ 716 00fd 756E7369 		.ascii	"unsigned int\000"
+ 716      676E6564 
+ 716      20696E74 
+ 716      00
+ 717              	.LASF8:
+ 718 010a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 718      206C6F6E 
+ 718      6720756E 
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 17
+
+
+ 718      7369676E 
+ 718      65642069 
+ 719              	.LASF19:
+ 720 0121 55707065 		.ascii	"UpperDestAddress\000"
+ 720      72446573 
+ 720      74416464 
+ 720      72657373 
+ 720      00
+ 721              	.LASF9:
+ 722 0132 73697A65 		.ascii	"sizetype\000"
+ 722      74797065 
+ 722      00
+ 723              	.LASF7:
+ 724 013b 6C6F6E67 		.ascii	"long long int\000"
+ 724      206C6F6E 
+ 724      6720696E 
+ 724      7400
+ 725              	.LASF21:
+ 726 0149 4379446D 		.ascii	"CyDmaChSetExtendedAddress\000"
+ 726      61436853 
+ 726      65744578 
+ 726      74656E64 
+ 726      65644164 
+ 727              	.LASF10:
+ 728 0163 63686172 		.ascii	"char\000"
+ 728      00
+ 729              	.LASF24:
+ 730 0168 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LCD_DMA_dma.c\000"
+ 730      6E657261 
+ 730      7465645F 
+ 730      536F7572 
+ 730      63655C50 
+ 731              	.LASF3:
+ 732 018f 73686F72 		.ascii	"short int\000"
+ 732      7420696E 
+ 732      7400
+ 733              	.LASF23:
+ 734 0199 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 734      4320342E 
+ 734      392E3320 
+ 734      32303135 
+ 734      30333033 
+ 735 01cc 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 735      20726576 
+ 735      6973696F 
+ 735      6E203232 
+ 735      31323230 
+ 736 01ff 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 736      66756E63 
+ 736      74696F6E 
+ 736      2D736563 
+ 736      74696F6E 
+ 737              	.LASF5:
+ 738 0227 6C6F6E67 		.ascii	"long int\000"
+ 738      20696E74 
+ 738      00
+ 739              	.LASF26:
+ARM GAS  D:\TEMP\cchSMrg6.s 			page 18
+
+
+ 740 0230 4C43445F 		.ascii	"LCD_DMA_DmaInitialize\000"
+ 740      444D415F 
+ 740      446D6149 
+ 740      6E697469 
+ 740      616C697A 
+ 741              	.LASF1:
+ 742 0246 7369676E 		.ascii	"signed char\000"
+ 742      65642063 
+ 742      68617200 
+ 743              	.LASF29:
+ 744 0252 4379446D 		.ascii	"CyDmaChDisable\000"
+ 744      61436844 
+ 744      69736162 
+ 744      6C6500
+ 745              	.LASF20:
+ 746 0261 4379446D 		.ascii	"CyDmaChSetConfiguration\000"
+ 746      61436853 
+ 746      6574436F 
+ 746      6E666967 
+ 746      75726174 
+ 747              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

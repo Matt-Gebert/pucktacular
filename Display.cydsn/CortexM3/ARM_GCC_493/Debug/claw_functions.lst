@@ -1,0 +1,1368 @@
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"claw_functions.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ClawOpen,"ax",%progbits
+  19              		.align	2
+  20              		.global	ClawOpen
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ClawOpen, %function
+  24              	ClawOpen:
+  25              	.LFB63:
+  26              		.file 1 ".\\claw_functions.c"
+   1:.\claw_functions.c **** /* ========================================
+   2:.\claw_functions.c ****  *
+   3:.\claw_functions.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\claw_functions.c ****  * All Rights Reserved
+   5:.\claw_functions.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\claw_functions.c ****  *
+   7:.\claw_functions.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\claw_functions.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\claw_functions.c ****  *
+  10:.\claw_functions.c ****  * ========================================
+  11:.\claw_functions.c **** */
+  12:.\claw_functions.c **** #include <project.h>
+  13:.\claw_functions.c **** /*
+  14:.\claw_functions.c **** Important information
+  15:.\claw_functions.c ****     The PWM Channels to the Microservers run on a 20ms period.
+  16:.\claw_functions.c ****     To Achieve accuracy in the pwm duty width, we use a freq much higher than this.
+  17:.\claw_functions.c ****     Thereby we have 2000 counts at 100kHz.
+  18:.\claw_functions.c ****     Cycles:
+  19:.\claw_functions.c ****         max = 200;  eg cam left (bot perspective) or tilt face down
+  20:.\claw_functions.c ****         halfway = 125;
+  21:.\claw_functions.c ****         zerodegrees = 50;  eg cam right (bot perspective) or tilt face up
+  22:.\claw_functions.c **** */
+  23:.\claw_functions.c ****         
+  24:.\claw_functions.c **** uint8 max = 200;
+  25:.\claw_functions.c **** uint8 halfway = 125;
+  26:.\claw_functions.c **** uint8 zerodegrees = 50;
+  27:.\claw_functions.c **** 
+  28:.\claw_functions.c **** void ClawOpen() {
+  27              		.loc 1 28 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 2
+
+
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  29:.\claw_functions.c ****    PWM_Claw_WriteCompare(80);
+  35              		.loc 1 29 0
+  36 0002 5020     		movs	r0, #80
+  37 0004 FFF7FEFF 		bl	PWM_Claw_WriteCompare
+  38              	.LVL0:
+  39 0008 08BD     		pop	{r3, pc}
+  40              		.cfi_endproc
+  41              	.LFE63:
+  42              		.size	ClawOpen, .-ClawOpen
+  43 000a 00BF     		.section	.text.ClawClose,"ax",%progbits
+  44              		.align	2
+  45              		.global	ClawClose
+  46              		.thumb
+  47              		.thumb_func
+  48              		.type	ClawClose, %function
+  49              	ClawClose:
+  50              	.LFB64:
+  30:.\claw_functions.c **** }
+  31:.\claw_functions.c **** 
+  32:.\claw_functions.c **** void ClawClose() {
+  51              		.loc 1 32 0
+  52              		.cfi_startproc
+  53              		@ args = 0, pretend = 0, frame = 0
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55 0000 08B5     		push	{r3, lr}
+  56              		.cfi_def_cfa_offset 8
+  57              		.cfi_offset 3, -8
+  58              		.cfi_offset 14, -4
+  33:.\claw_functions.c ****    PWM_Claw_WriteCompare(50);
+  59              		.loc 1 33 0
+  60 0002 3220     		movs	r0, #50
+  61 0004 FFF7FEFF 		bl	PWM_Claw_WriteCompare
+  62              	.LVL1:
+  63 0008 08BD     		pop	{r3, pc}
+  64              		.cfi_endproc
+  65              	.LFE64:
+  66              		.size	ClawClose, .-ClawClose
+  67 000a 00BF     		.section	.text.TiltUp,"ax",%progbits
+  68              		.align	2
+  69              		.global	TiltUp
+  70              		.thumb
+  71              		.thumb_func
+  72              		.type	TiltUp, %function
+  73              	TiltUp:
+  74              	.LFB65:
+  34:.\claw_functions.c **** }
+  35:.\claw_functions.c **** 
+  36:.\claw_functions.c **** void TiltUp(){
+  75              		.loc 1 36 0
+  76              		.cfi_startproc
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 3
+
+
+  79 0000 08B5     		push	{r3, lr}
+  80              		.cfi_def_cfa_offset 8
+  81              		.cfi_offset 3, -8
+  82              		.cfi_offset 14, -4
+  37:.\claw_functions.c ****     PWM_Tilt_WriteCompare(zerodegrees);
+  83              		.loc 1 37 0
+  84 0002 024B     		ldr	r3, .L7
+  85 0004 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  86 0006 FFF7FEFF 		bl	PWM_Tilt_WriteCompare
+  87              	.LVL2:
+  88 000a 08BD     		pop	{r3, pc}
+  89              	.L8:
+  90              		.align	2
+  91              	.L7:
+  92 000c 00000000 		.word	.LANCHOR0
+  93              		.cfi_endproc
+  94              	.LFE65:
+  95              		.size	TiltUp, .-TiltUp
+  96              		.section	.text.TiltStraight,"ax",%progbits
+  97              		.align	2
+  98              		.global	TiltStraight
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	TiltStraight, %function
+ 102              	TiltStraight:
+ 103              	.LFB66:
+  38:.\claw_functions.c **** }
+  39:.\claw_functions.c **** void TiltStraight(){
+ 104              		.loc 1 39 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108 0000 08B5     		push	{r3, lr}
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+  40:.\claw_functions.c ****     PWM_Tilt_WriteCompare(halfway);
+ 112              		.loc 1 40 0
+ 113 0002 024B     		ldr	r3, .L11
+ 114 0004 5878     		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 115 0006 FFF7FEFF 		bl	PWM_Tilt_WriteCompare
+ 116              	.LVL3:
+ 117 000a 08BD     		pop	{r3, pc}
+ 118              	.L12:
+ 119              		.align	2
+ 120              	.L11:
+ 121 000c 00000000 		.word	.LANCHOR0
+ 122              		.cfi_endproc
+ 123              	.LFE66:
+ 124              		.size	TiltStraight, .-TiltStraight
+ 125              		.section	.text.TiltDown,"ax",%progbits
+ 126              		.align	2
+ 127              		.global	TiltDown
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.type	TiltDown, %function
+ 131              	TiltDown:
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 4
+
+
+ 132              	.LFB67:
+  41:.\claw_functions.c **** }
+  42:.\claw_functions.c **** void TiltDown(){
+ 133              		.loc 1 42 0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 08B5     		push	{r3, lr}
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 3, -8
+ 140              		.cfi_offset 14, -4
+  43:.\claw_functions.c ****     PWM_Tilt_WriteCompare(max);
+ 141              		.loc 1 43 0
+ 142 0002 024B     		ldr	r3, .L15
+ 143 0004 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 144 0006 FFF7FEFF 		bl	PWM_Tilt_WriteCompare
+ 145              	.LVL4:
+ 146 000a 08BD     		pop	{r3, pc}
+ 147              	.L16:
+ 148              		.align	2
+ 149              	.L15:
+ 150 000c 00000000 		.word	.LANCHOR0
+ 151              		.cfi_endproc
+ 152              	.LFE67:
+ 153              		.size	TiltDown, .-TiltDown
+ 154              		.section	.text.TiltDown45,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	TiltDown45
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	TiltDown45, %function
+ 160              	TiltDown45:
+ 161              	.LFB68:
+  44:.\claw_functions.c **** }
+  45:.\claw_functions.c **** void TiltDown45(){
+ 162              		.loc 1 45 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 08B5     		push	{r3, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 3, -8
+ 169              		.cfi_offset 14, -4
+  46:.\claw_functions.c ****     PWM_Tilt_WriteCompare(162);
+ 170              		.loc 1 46 0
+ 171 0002 A220     		movs	r0, #162
+ 172 0004 FFF7FEFF 		bl	PWM_Tilt_WriteCompare
+ 173              	.LVL5:
+ 174 0008 08BD     		pop	{r3, pc}
+ 175              		.cfi_endproc
+ 176              	.LFE68:
+ 177              		.size	TiltDown45, .-TiltDown45
+ 178 000a 00BF     		.section	.text.PanRight,"ax",%progbits
+ 179              		.align	2
+ 180              		.global	PanRight
+ 181              		.thumb
+ 182              		.thumb_func
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 5
+
+
+ 183              		.type	PanRight, %function
+ 184              	PanRight:
+ 185              	.LFB69:
+  47:.\claw_functions.c **** }
+  48:.\claw_functions.c **** 
+  49:.\claw_functions.c **** void PanRight(){
+ 186              		.loc 1 49 0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190 0000 08B5     		push	{r3, lr}
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 3, -8
+ 193              		.cfi_offset 14, -4
+  50:.\claw_functions.c ****     TiltUp();   // good logic Dan
+ 194              		.loc 1 50 0
+ 195 0002 FFF7FEFF 		bl	TiltUp
+ 196              	.LVL6:
+  51:.\claw_functions.c ****     CyDelay(100);
+ 197              		.loc 1 51 0
+ 198 0006 6420     		movs	r0, #100
+ 199 0008 FFF7FEFF 		bl	CyDelay
+ 200              	.LVL7:
+  52:.\claw_functions.c ****     PWM_Pan_WriteCompare(zerodegrees);
+ 201              		.loc 1 52 0
+ 202 000c 024B     		ldr	r3, .L21
+ 203 000e 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 204 0010 FFF7FEFF 		bl	PWM_Pan_WriteCompare
+ 205              	.LVL8:
+ 206 0014 08BD     		pop	{r3, pc}
+ 207              	.L22:
+ 208 0016 00BF     		.align	2
+ 209              	.L21:
+ 210 0018 00000000 		.word	.LANCHOR0
+ 211              		.cfi_endproc
+ 212              	.LFE69:
+ 213              		.size	PanRight, .-PanRight
+ 214              		.section	.text.PanMid,"ax",%progbits
+ 215              		.align	2
+ 216              		.global	PanMid
+ 217              		.thumb
+ 218              		.thumb_func
+ 219              		.type	PanMid, %function
+ 220              	PanMid:
+ 221              	.LFB70:
+  53:.\claw_functions.c **** }
+  54:.\claw_functions.c **** void PanMid(){
+ 222              		.loc 1 54 0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226 0000 08B5     		push	{r3, lr}
+ 227              		.cfi_def_cfa_offset 8
+ 228              		.cfi_offset 3, -8
+ 229              		.cfi_offset 14, -4
+  55:.\claw_functions.c ****     PWM_Pan_WriteCompare(halfway);
+ 230              		.loc 1 55 0
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 6
+
+
+ 231 0002 024B     		ldr	r3, .L25
+ 232 0004 5878     		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 233 0006 FFF7FEFF 		bl	PWM_Pan_WriteCompare
+ 234              	.LVL9:
+ 235 000a 08BD     		pop	{r3, pc}
+ 236              	.L26:
+ 237              		.align	2
+ 238              	.L25:
+ 239 000c 00000000 		.word	.LANCHOR0
+ 240              		.cfi_endproc
+ 241              	.LFE70:
+ 242              		.size	PanMid, .-PanMid
+ 243              		.section	.text.LiftGround,"ax",%progbits
+ 244              		.align	2
+ 245              		.global	LiftGround
+ 246              		.thumb
+ 247              		.thumb_func
+ 248              		.type	LiftGround, %function
+ 249              	LiftGround:
+ 250              	.LFB71:
+  56:.\claw_functions.c **** }
+  57:.\claw_functions.c **** 
+  58:.\claw_functions.c **** void LiftGround(){
+ 251              		.loc 1 58 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255 0000 08B5     		push	{r3, lr}
+ 256              		.cfi_def_cfa_offset 8
+ 257              		.cfi_offset 3, -8
+ 258              		.cfi_offset 14, -4
+  59:.\claw_functions.c ****      PWM_Lift_WriteCompare(65);
+ 259              		.loc 1 59 0
+ 260 0002 4120     		movs	r0, #65
+ 261 0004 FFF7FEFF 		bl	PWM_Lift_WriteCompare
+ 262              	.LVL10:
+ 263 0008 08BD     		pop	{r3, pc}
+ 264              		.cfi_endproc
+ 265              	.LFE71:
+ 266              		.size	LiftGround, .-LiftGround
+ 267 000a 00BF     		.section	.text.LiftHalf,"ax",%progbits
+ 268              		.align	2
+ 269              		.global	LiftHalf
+ 270              		.thumb
+ 271              		.thumb_func
+ 272              		.type	LiftHalf, %function
+ 273              	LiftHalf:
+ 274              	.LFB72:
+  60:.\claw_functions.c **** }
+  61:.\claw_functions.c **** 
+  62:.\claw_functions.c **** void LiftHalf(){
+ 275              		.loc 1 62 0
+ 276              		.cfi_startproc
+ 277              		@ args = 0, pretend = 0, frame = 0
+ 278              		@ frame_needed = 0, uses_anonymous_args = 0
+ 279 0000 08B5     		push	{r3, lr}
+ 280              		.cfi_def_cfa_offset 8
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 7
+
+
+ 281              		.cfi_offset 3, -8
+ 282              		.cfi_offset 14, -4
+  63:.\claw_functions.c ****     PWM_Lift_WriteCompare((max+65)/2);
+ 283              		.loc 1 63 0
+ 284 0002 044B     		ldr	r3, .L31
+ 285 0004 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 286 0006 4130     		adds	r0, r0, #65
+ 287 0008 C0F34F00 		ubfx	r0, r0, #1, #16
+ 288 000c FFF7FEFF 		bl	PWM_Lift_WriteCompare
+ 289              	.LVL11:
+ 290 0010 08BD     		pop	{r3, pc}
+ 291              	.L32:
+ 292 0012 00BF     		.align	2
+ 293              	.L31:
+ 294 0014 00000000 		.word	.LANCHOR0
+ 295              		.cfi_endproc
+ 296              	.LFE72:
+ 297              		.size	LiftHalf, .-LiftHalf
+ 298              		.section	.text.LiftTop,"ax",%progbits
+ 299              		.align	2
+ 300              		.global	LiftTop
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.type	LiftTop, %function
+ 304              	LiftTop:
+ 305              	.LFB73:
+  64:.\claw_functions.c **** }
+  65:.\claw_functions.c **** 
+  66:.\claw_functions.c **** void LiftTop(){
+ 306              		.loc 1 66 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310 0000 08B5     		push	{r3, lr}
+ 311              		.cfi_def_cfa_offset 8
+ 312              		.cfi_offset 3, -8
+ 313              		.cfi_offset 14, -4
+  67:.\claw_functions.c ****      PWM_Lift_WriteCompare(max);
+ 314              		.loc 1 67 0
+ 315 0002 024B     		ldr	r3, .L35
+ 316 0004 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 317 0006 FFF7FEFF 		bl	PWM_Lift_WriteCompare
+ 318              	.LVL12:
+ 319 000a 08BD     		pop	{r3, pc}
+ 320              	.L36:
+ 321              		.align	2
+ 322              	.L35:
+ 323 000c 00000000 		.word	.LANCHOR0
+ 324              		.cfi_endproc
+ 325              	.LFE73:
+ 326              		.size	LiftTop, .-LiftTop
+ 327              		.global	zerodegrees
+ 328              		.global	halfway
+ 329              		.global	max
+ 330              		.comm	Camera_linebuffer,640,4
+ 331              		.data
+ 332              		.set	.LANCHOR0,. + 0
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 8
+
+
+ 333              		.type	zerodegrees, %object
+ 334              		.size	zerodegrees, 1
+ 335              	zerodegrees:
+ 336 0000 32       		.byte	50
+ 337              		.type	halfway, %object
+ 338              		.size	halfway, 1
+ 339              	halfway:
+ 340 0001 7D       		.byte	125
+ 341              		.type	max, %object
+ 342              		.size	max, 1
+ 343              	max:
+ 344 0002 C8       		.byte	-56
+ 345              		.text
+ 346              	.Letext0:
+ 347              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 348              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 349              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 350              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 351              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 352              		.file 7 "Generated_Source\\PSoC5/PWM_Claw.h"
+ 353              		.file 8 "Generated_Source\\PSoC5/PWM_Tilt.h"
+ 354              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 355              		.file 10 "Generated_Source\\PSoC5/PWM_Pan.h"
+ 356              		.file 11 "Generated_Source\\PSoC5/PWM_Lift.h"
+ 357              		.section	.debug_info,"",%progbits
+ 358              	.Ldebug_info0:
+ 359 0000 02030000 		.4byte	0x302
+ 360 0004 0400     		.2byte	0x4
+ 361 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 362 000a 04       		.byte	0x4
+ 363 000b 01       		.uleb128 0x1
+ 364 000c 25010000 		.4byte	.LASF37
+ 365 0010 01       		.byte	0x1
+ 366 0011 04010000 		.4byte	.LASF38
+ 367 0015 B9000000 		.4byte	.LASF39
+ 368 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 369 001d 00000000 		.4byte	0
+ 370 0021 00000000 		.4byte	.Ldebug_line0
+ 371 0025 02       		.uleb128 0x2
+ 372 0026 01       		.byte	0x1
+ 373 0027 06       		.byte	0x6
+ 374 0028 82020000 		.4byte	.LASF0
+ 375 002c 02       		.uleb128 0x2
+ 376 002d 01       		.byte	0x1
+ 377 002e 08       		.byte	0x8
+ 378 002f 43000000 		.4byte	.LASF1
+ 379 0033 02       		.uleb128 0x2
+ 380 0034 02       		.byte	0x2
+ 381 0035 05       		.byte	0x5
+ 382 0036 34020000 		.4byte	.LASF2
+ 383 003a 02       		.uleb128 0x2
+ 384 003b 02       		.byte	0x2
+ 385 003c 07       		.byte	0x7
+ 386 003d 58000000 		.4byte	.LASF3
+ 387 0041 03       		.uleb128 0x3
+ 388 0042 00000000 		.4byte	.LASF9
+ 389 0046 02       		.byte	0x2
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 9
+
+
+ 390 0047 3F       		.byte	0x3f
+ 391 0048 4C000000 		.4byte	0x4c
+ 392 004c 02       		.uleb128 0x2
+ 393 004d 04       		.byte	0x4
+ 394 004e 05       		.byte	0x5
+ 395 004f 4D020000 		.4byte	.LASF4
+ 396 0053 02       		.uleb128 0x2
+ 397 0054 04       		.byte	0x4
+ 398 0055 07       		.byte	0x7
+ 399 0056 A7000000 		.4byte	.LASF5
+ 400 005a 02       		.uleb128 0x2
+ 401 005b 08       		.byte	0x8
+ 402 005c 05       		.byte	0x5
+ 403 005d 0D020000 		.4byte	.LASF6
+ 404 0061 02       		.uleb128 0x2
+ 405 0062 08       		.byte	0x8
+ 406 0063 07       		.byte	0x7
+ 407 0064 BC010000 		.4byte	.LASF7
+ 408 0068 04       		.uleb128 0x4
+ 409 0069 04       		.byte	0x4
+ 410 006a 05       		.byte	0x5
+ 411 006b 696E7400 		.ascii	"int\000"
+ 412 006f 02       		.uleb128 0x2
+ 413 0070 04       		.byte	0x4
+ 414 0071 07       		.byte	0x7
+ 415 0072 12000000 		.4byte	.LASF8
+ 416 0076 03       		.uleb128 0x3
+ 417 0077 F2010000 		.4byte	.LASF10
+ 418 007b 03       		.byte	0x3
+ 419 007c 2C       		.byte	0x2c
+ 420 007d 41000000 		.4byte	0x41
+ 421 0081 05       		.uleb128 0x5
+ 422 0082 3E020000 		.4byte	.LASF11
+ 423 0086 04       		.byte	0x4
+ 424 0087 9201     		.2byte	0x192
+ 425 0089 2C000000 		.4byte	0x2c
+ 426 008d 05       		.uleb128 0x5
+ 427 008e 17010000 		.4byte	.LASF12
+ 428 0092 04       		.byte	0x4
+ 429 0093 9301     		.2byte	0x193
+ 430 0095 3A000000 		.4byte	0x3a
+ 431 0099 05       		.uleb128 0x5
+ 432 009a 1E010000 		.4byte	.LASF13
+ 433 009e 04       		.byte	0x4
+ 434 009f 9401     		.2byte	0x194
+ 435 00a1 53000000 		.4byte	0x53
+ 436 00a5 02       		.uleb128 0x2
+ 437 00a6 04       		.byte	0x4
+ 438 00a7 04       		.byte	0x4
+ 439 00a8 3D000000 		.4byte	.LASF14
+ 440 00ac 02       		.uleb128 0x2
+ 441 00ad 08       		.byte	0x8
+ 442 00ae 04       		.byte	0x4
+ 443 00af 8E020000 		.4byte	.LASF15
+ 444 00b3 02       		.uleb128 0x2
+ 445 00b4 01       		.byte	0x1
+ 446 00b5 08       		.byte	0x8
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 10
+
+
+ 447 00b6 1B020000 		.4byte	.LASF16
+ 448 00ba 02       		.uleb128 0x2
+ 449 00bb 04       		.byte	0x4
+ 450 00bc 07       		.byte	0x7
+ 451 00bd FA010000 		.4byte	.LASF17
+ 452 00c1 06       		.uleb128 0x6
+ 453 00c2 20020000 		.4byte	.LASF18
+ 454 00c6 01       		.byte	0x1
+ 455 00c7 1C       		.byte	0x1c
+ 456 00c8 00000000 		.4byte	.LFB63
+ 457 00cc 0A000000 		.4byte	.LFE63-.LFB63
+ 458 00d0 01       		.uleb128 0x1
+ 459 00d1 9C       		.byte	0x9c
+ 460 00d2 E7000000 		.4byte	0xe7
+ 461 00d6 07       		.uleb128 0x7
+ 462 00d7 08000000 		.4byte	.LVL0
+ 463 00db B4020000 		.4byte	0x2b4
+ 464 00df 08       		.uleb128 0x8
+ 465 00e0 01       		.uleb128 0x1
+ 466 00e1 50       		.byte	0x50
+ 467 00e2 02       		.uleb128 0x2
+ 468 00e3 08       		.byte	0x8
+ 469 00e4 50       		.byte	0x50
+ 470 00e5 00       		.byte	0
+ 471 00e6 00       		.byte	0
+ 472 00e7 06       		.uleb128 0x6
+ 473 00e8 03020000 		.4byte	.LASF19
+ 474 00ec 01       		.byte	0x1
+ 475 00ed 20       		.byte	0x20
+ 476 00ee 00000000 		.4byte	.LFB64
+ 477 00f2 0A000000 		.4byte	.LFE64-.LFB64
+ 478 00f6 01       		.uleb128 0x1
+ 479 00f7 9C       		.byte	0x9c
+ 480 00f8 0D010000 		.4byte	0x10d
+ 481 00fc 07       		.uleb128 0x7
+ 482 00fd 08000000 		.4byte	.LVL1
+ 483 0101 B4020000 		.4byte	0x2b4
+ 484 0105 08       		.uleb128 0x8
+ 485 0106 01       		.uleb128 0x1
+ 486 0107 50       		.byte	0x50
+ 487 0108 02       		.uleb128 0x2
+ 488 0109 08       		.byte	0x8
+ 489 010a 32       		.byte	0x32
+ 490 010b 00       		.byte	0
+ 491 010c 00       		.byte	0
+ 492 010d 06       		.uleb128 0x6
+ 493 010e 2B000000 		.4byte	.LASF20
+ 494 0112 01       		.byte	0x1
+ 495 0113 24       		.byte	0x24
+ 496 0114 00000000 		.4byte	.LFB65
+ 497 0118 10000000 		.4byte	.LFE65-.LFB65
+ 498 011c 01       		.uleb128 0x1
+ 499 011d 9C       		.byte	0x9c
+ 500 011e 2C010000 		.4byte	0x12c
+ 501 0122 09       		.uleb128 0x9
+ 502 0123 0A000000 		.4byte	.LVL2
+ 503 0127 C5020000 		.4byte	0x2c5
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 11
+
+
+ 504 012b 00       		.byte	0
+ 505 012c 06       		.uleb128 0x6
+ 506 012d 9D020000 		.4byte	.LASF21
+ 507 0131 01       		.byte	0x1
+ 508 0132 27       		.byte	0x27
+ 509 0133 00000000 		.4byte	.LFB66
+ 510 0137 10000000 		.4byte	.LFE66-.LFB66
+ 511 013b 01       		.uleb128 0x1
+ 512 013c 9C       		.byte	0x9c
+ 513 013d 4B010000 		.4byte	0x14b
+ 514 0141 09       		.uleb128 0x9
+ 515 0142 0A000000 		.4byte	.LVL3
+ 516 0146 C5020000 		.4byte	0x2c5
+ 517 014a 00       		.byte	0
+ 518 014b 06       		.uleb128 0x6
+ 519 014c 44020000 		.4byte	.LASF22
+ 520 0150 01       		.byte	0x1
+ 521 0151 2A       		.byte	0x2a
+ 522 0152 00000000 		.4byte	.LFB67
+ 523 0156 10000000 		.4byte	.LFE67-.LFB67
+ 524 015a 01       		.uleb128 0x1
+ 525 015b 9C       		.byte	0x9c
+ 526 015c 6A010000 		.4byte	0x16a
+ 527 0160 09       		.uleb128 0x9
+ 528 0161 0A000000 		.4byte	.LVL4
+ 529 0165 C5020000 		.4byte	0x2c5
+ 530 0169 00       		.byte	0
+ 531 016a 06       		.uleb128 0x6
+ 532 016b 32000000 		.4byte	.LASF23
+ 533 016f 01       		.byte	0x1
+ 534 0170 2D       		.byte	0x2d
+ 535 0171 00000000 		.4byte	.LFB68
+ 536 0175 0A000000 		.4byte	.LFE68-.LFB68
+ 537 0179 01       		.uleb128 0x1
+ 538 017a 9C       		.byte	0x9c
+ 539 017b 90010000 		.4byte	0x190
+ 540 017f 07       		.uleb128 0x7
+ 541 0180 08000000 		.4byte	.LVL5
+ 542 0184 C5020000 		.4byte	0x2c5
+ 543 0188 08       		.uleb128 0x8
+ 544 0189 01       		.uleb128 0x1
+ 545 018a 50       		.byte	0x50
+ 546 018b 02       		.uleb128 0x2
+ 547 018c 08       		.byte	0x8
+ 548 018d A2       		.byte	0xa2
+ 549 018e 00       		.byte	0
+ 550 018f 00       		.byte	0
+ 551 0190 06       		.uleb128 0x6
+ 552 0191 B3010000 		.4byte	.LASF24
+ 553 0195 01       		.byte	0x1
+ 554 0196 31       		.byte	0x31
+ 555 0197 00000000 		.4byte	.LFB69
+ 556 019b 1C000000 		.4byte	.LFE69-.LFB69
+ 557 019f 01       		.uleb128 0x1
+ 558 01a0 9C       		.byte	0x9c
+ 559 01a1 CC010000 		.4byte	0x1cc
+ 560 01a5 09       		.uleb128 0x9
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 12
+
+
+ 561 01a6 06000000 		.4byte	.LVL6
+ 562 01aa 0D010000 		.4byte	0x10d
+ 563 01ae 0A       		.uleb128 0xa
+ 564 01af 0C000000 		.4byte	.LVL7
+ 565 01b3 D6020000 		.4byte	0x2d6
+ 566 01b7 C2010000 		.4byte	0x1c2
+ 567 01bb 08       		.uleb128 0x8
+ 568 01bc 01       		.uleb128 0x1
+ 569 01bd 50       		.byte	0x50
+ 570 01be 02       		.uleb128 0x2
+ 571 01bf 08       		.byte	0x8
+ 572 01c0 64       		.byte	0x64
+ 573 01c1 00       		.byte	0
+ 574 01c2 09       		.uleb128 0x9
+ 575 01c3 14000000 		.4byte	.LVL8
+ 576 01c7 E7020000 		.4byte	0x2e7
+ 577 01cb 00       		.byte	0
+ 578 01cc 06       		.uleb128 0x6
+ 579 01cd 51000000 		.4byte	.LASF25
+ 580 01d1 01       		.byte	0x1
+ 581 01d2 36       		.byte	0x36
+ 582 01d3 00000000 		.4byte	.LFB70
+ 583 01d7 10000000 		.4byte	.LFE70-.LFB70
+ 584 01db 01       		.uleb128 0x1
+ 585 01dc 9C       		.byte	0x9c
+ 586 01dd EB010000 		.4byte	0x1eb
+ 587 01e1 09       		.uleb128 0x9
+ 588 01e2 0A000000 		.4byte	.LVL9
+ 589 01e6 E7020000 		.4byte	0x2e7
+ 590 01ea 00       		.byte	0
+ 591 01eb 06       		.uleb128 0x6
+ 592 01ec 29020000 		.4byte	.LASF26
+ 593 01f0 01       		.byte	0x1
+ 594 01f1 3A       		.byte	0x3a
+ 595 01f2 00000000 		.4byte	.LFB71
+ 596 01f6 0A000000 		.4byte	.LFE71-.LFB71
+ 597 01fa 01       		.uleb128 0x1
+ 598 01fb 9C       		.byte	0x9c
+ 599 01fc 11020000 		.4byte	0x211
+ 600 0200 07       		.uleb128 0x7
+ 601 0201 08000000 		.4byte	.LVL10
+ 602 0205 F8020000 		.4byte	0x2f8
+ 603 0209 08       		.uleb128 0x8
+ 604 020a 01       		.uleb128 0x1
+ 605 020b 50       		.byte	0x50
+ 606 020c 02       		.uleb128 0x2
+ 607 020d 08       		.byte	0x8
+ 608 020e 41       		.byte	0x41
+ 609 020f 00       		.byte	0
+ 610 0210 00       		.byte	0
+ 611 0211 06       		.uleb128 0x6
+ 612 0212 D3010000 		.4byte	.LASF27
+ 613 0216 01       		.byte	0x1
+ 614 0217 3E       		.byte	0x3e
+ 615 0218 00000000 		.4byte	.LFB72
+ 616 021c 18000000 		.4byte	.LFE72-.LFB72
+ 617 0220 01       		.uleb128 0x1
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 13
+
+
+ 618 0221 9C       		.byte	0x9c
+ 619 0222 30020000 		.4byte	0x230
+ 620 0226 09       		.uleb128 0x9
+ 621 0227 10000000 		.4byte	.LVL11
+ 622 022b F8020000 		.4byte	0x2f8
+ 623 022f 00       		.byte	0
+ 624 0230 06       		.uleb128 0x6
+ 625 0231 0A000000 		.4byte	.LASF28
+ 626 0235 01       		.byte	0x1
+ 627 0236 42       		.byte	0x42
+ 628 0237 00000000 		.4byte	.LFB73
+ 629 023b 10000000 		.4byte	.LFE73-.LFB73
+ 630 023f 01       		.uleb128 0x1
+ 631 0240 9C       		.byte	0x9c
+ 632 0241 4F020000 		.4byte	0x24f
+ 633 0245 09       		.uleb128 0x9
+ 634 0246 0A000000 		.4byte	.LVL12
+ 635 024a F8020000 		.4byte	0x2f8
+ 636 024e 00       		.byte	0
+ 637 024f 0B       		.uleb128 0xb
+ 638 0250 88000000 		.4byte	.LASF29
+ 639 0254 05       		.byte	0x5
+ 640 0255 9606     		.2byte	0x696
+ 641 0257 5B020000 		.4byte	0x25b
+ 642 025b 0C       		.uleb128 0xc
+ 643 025c 76000000 		.4byte	0x76
+ 644 0260 0D       		.uleb128 0xd
+ 645 0261 99000000 		.4byte	0x99
+ 646 0265 70020000 		.4byte	0x270
+ 647 0269 0E       		.uleb128 0xe
+ 648 026a BA000000 		.4byte	0xba
+ 649 026e 9F       		.byte	0x9f
+ 650 026f 00       		.byte	0
+ 651 0270 0F       		.uleb128 0xf
+ 652 0271 95000000 		.4byte	.LASF30
+ 653 0275 06       		.byte	0x6
+ 654 0276 13       		.byte	0x13
+ 655 0277 60020000 		.4byte	0x260
+ 656 027b 05       		.uleb128 0x5
+ 657 027c 03       		.byte	0x3
+ 658 027d 00000000 		.4byte	Camera_linebuffer
+ 659 0281 10       		.uleb128 0x10
+ 660 0282 6D617800 		.ascii	"max\000"
+ 661 0286 01       		.byte	0x1
+ 662 0287 18       		.byte	0x18
+ 663 0288 81000000 		.4byte	0x81
+ 664 028c 05       		.uleb128 0x5
+ 665 028d 03       		.byte	0x3
+ 666 028e 00000000 		.4byte	max
+ 667 0292 0F       		.uleb128 0xf
+ 668 0293 6B000000 		.4byte	.LASF31
+ 669 0297 01       		.byte	0x1
+ 670 0298 19       		.byte	0x19
+ 671 0299 81000000 		.4byte	0x81
+ 672 029d 05       		.uleb128 0x5
+ 673 029e 03       		.byte	0x3
+ 674 029f 00000000 		.4byte	halfway
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 14
+
+
+ 675 02a3 0F       		.uleb128 0xf
+ 676 02a4 1F000000 		.4byte	.LASF32
+ 677 02a8 01       		.byte	0x1
+ 678 02a9 1A       		.byte	0x1a
+ 679 02aa 81000000 		.4byte	0x81
+ 680 02ae 05       		.uleb128 0x5
+ 681 02af 03       		.byte	0x3
+ 682 02b0 00000000 		.4byte	zerodegrees
+ 683 02b4 11       		.uleb128 0x11
+ 684 02b5 56020000 		.4byte	.LASF33
+ 685 02b9 07       		.byte	0x7
+ 686 02ba C3       		.byte	0xc3
+ 687 02bb C5020000 		.4byte	0x2c5
+ 688 02bf 12       		.uleb128 0x12
+ 689 02c0 8D000000 		.4byte	0x8d
+ 690 02c4 00       		.byte	0
+ 691 02c5 11       		.uleb128 0x11
+ 692 02c6 6C020000 		.4byte	.LASF34
+ 693 02ca 08       		.byte	0x8
+ 694 02cb C3       		.byte	0xc3
+ 695 02cc D6020000 		.4byte	0x2d6
+ 696 02d0 12       		.uleb128 0x12
+ 697 02d1 8D000000 		.4byte	0x8d
+ 698 02d5 00       		.byte	0
+ 699 02d6 11       		.uleb128 0x11
+ 700 02d7 95020000 		.4byte	.LASF35
+ 701 02db 09       		.byte	0x9
+ 702 02dc 76       		.byte	0x76
+ 703 02dd E7020000 		.4byte	0x2e7
+ 704 02e1 12       		.uleb128 0x12
+ 705 02e2 99000000 		.4byte	0x99
+ 706 02e6 00       		.byte	0
+ 707 02e7 11       		.uleb128 0x11
+ 708 02e8 73000000 		.4byte	.LASF36
+ 709 02ec 0A       		.byte	0xa
+ 710 02ed C3       		.byte	0xc3
+ 711 02ee F8020000 		.4byte	0x2f8
+ 712 02f2 12       		.uleb128 0x12
+ 713 02f3 8D000000 		.4byte	0x8d
+ 714 02f7 00       		.byte	0
+ 715 02f8 13       		.uleb128 0x13
+ 716 02f9 DC010000 		.4byte	.LASF40
+ 717 02fd 0B       		.byte	0xb
+ 718 02fe C3       		.byte	0xc3
+ 719 02ff 12       		.uleb128 0x12
+ 720 0300 8D000000 		.4byte	0x8d
+ 721 0304 00       		.byte	0
+ 722 0305 00       		.byte	0
+ 723              		.section	.debug_abbrev,"",%progbits
+ 724              	.Ldebug_abbrev0:
+ 725 0000 01       		.uleb128 0x1
+ 726 0001 11       		.uleb128 0x11
+ 727 0002 01       		.byte	0x1
+ 728 0003 25       		.uleb128 0x25
+ 729 0004 0E       		.uleb128 0xe
+ 730 0005 13       		.uleb128 0x13
+ 731 0006 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 15
+
+
+ 732 0007 03       		.uleb128 0x3
+ 733 0008 0E       		.uleb128 0xe
+ 734 0009 1B       		.uleb128 0x1b
+ 735 000a 0E       		.uleb128 0xe
+ 736 000b 55       		.uleb128 0x55
+ 737 000c 17       		.uleb128 0x17
+ 738 000d 11       		.uleb128 0x11
+ 739 000e 01       		.uleb128 0x1
+ 740 000f 10       		.uleb128 0x10
+ 741 0010 17       		.uleb128 0x17
+ 742 0011 00       		.byte	0
+ 743 0012 00       		.byte	0
+ 744 0013 02       		.uleb128 0x2
+ 745 0014 24       		.uleb128 0x24
+ 746 0015 00       		.byte	0
+ 747 0016 0B       		.uleb128 0xb
+ 748 0017 0B       		.uleb128 0xb
+ 749 0018 3E       		.uleb128 0x3e
+ 750 0019 0B       		.uleb128 0xb
+ 751 001a 03       		.uleb128 0x3
+ 752 001b 0E       		.uleb128 0xe
+ 753 001c 00       		.byte	0
+ 754 001d 00       		.byte	0
+ 755 001e 03       		.uleb128 0x3
+ 756 001f 16       		.uleb128 0x16
+ 757 0020 00       		.byte	0
+ 758 0021 03       		.uleb128 0x3
+ 759 0022 0E       		.uleb128 0xe
+ 760 0023 3A       		.uleb128 0x3a
+ 761 0024 0B       		.uleb128 0xb
+ 762 0025 3B       		.uleb128 0x3b
+ 763 0026 0B       		.uleb128 0xb
+ 764 0027 49       		.uleb128 0x49
+ 765 0028 13       		.uleb128 0x13
+ 766 0029 00       		.byte	0
+ 767 002a 00       		.byte	0
+ 768 002b 04       		.uleb128 0x4
+ 769 002c 24       		.uleb128 0x24
+ 770 002d 00       		.byte	0
+ 771 002e 0B       		.uleb128 0xb
+ 772 002f 0B       		.uleb128 0xb
+ 773 0030 3E       		.uleb128 0x3e
+ 774 0031 0B       		.uleb128 0xb
+ 775 0032 03       		.uleb128 0x3
+ 776 0033 08       		.uleb128 0x8
+ 777 0034 00       		.byte	0
+ 778 0035 00       		.byte	0
+ 779 0036 05       		.uleb128 0x5
+ 780 0037 16       		.uleb128 0x16
+ 781 0038 00       		.byte	0
+ 782 0039 03       		.uleb128 0x3
+ 783 003a 0E       		.uleb128 0xe
+ 784 003b 3A       		.uleb128 0x3a
+ 785 003c 0B       		.uleb128 0xb
+ 786 003d 3B       		.uleb128 0x3b
+ 787 003e 05       		.uleb128 0x5
+ 788 003f 49       		.uleb128 0x49
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 16
+
+
+ 789 0040 13       		.uleb128 0x13
+ 790 0041 00       		.byte	0
+ 791 0042 00       		.byte	0
+ 792 0043 06       		.uleb128 0x6
+ 793 0044 2E       		.uleb128 0x2e
+ 794 0045 01       		.byte	0x1
+ 795 0046 3F       		.uleb128 0x3f
+ 796 0047 19       		.uleb128 0x19
+ 797 0048 03       		.uleb128 0x3
+ 798 0049 0E       		.uleb128 0xe
+ 799 004a 3A       		.uleb128 0x3a
+ 800 004b 0B       		.uleb128 0xb
+ 801 004c 3B       		.uleb128 0x3b
+ 802 004d 0B       		.uleb128 0xb
+ 803 004e 11       		.uleb128 0x11
+ 804 004f 01       		.uleb128 0x1
+ 805 0050 12       		.uleb128 0x12
+ 806 0051 06       		.uleb128 0x6
+ 807 0052 40       		.uleb128 0x40
+ 808 0053 18       		.uleb128 0x18
+ 809 0054 9742     		.uleb128 0x2117
+ 810 0056 19       		.uleb128 0x19
+ 811 0057 01       		.uleb128 0x1
+ 812 0058 13       		.uleb128 0x13
+ 813 0059 00       		.byte	0
+ 814 005a 00       		.byte	0
+ 815 005b 07       		.uleb128 0x7
+ 816 005c 898201   		.uleb128 0x4109
+ 817 005f 01       		.byte	0x1
+ 818 0060 11       		.uleb128 0x11
+ 819 0061 01       		.uleb128 0x1
+ 820 0062 31       		.uleb128 0x31
+ 821 0063 13       		.uleb128 0x13
+ 822 0064 00       		.byte	0
+ 823 0065 00       		.byte	0
+ 824 0066 08       		.uleb128 0x8
+ 825 0067 8A8201   		.uleb128 0x410a
+ 826 006a 00       		.byte	0
+ 827 006b 02       		.uleb128 0x2
+ 828 006c 18       		.uleb128 0x18
+ 829 006d 9142     		.uleb128 0x2111
+ 830 006f 18       		.uleb128 0x18
+ 831 0070 00       		.byte	0
+ 832 0071 00       		.byte	0
+ 833 0072 09       		.uleb128 0x9
+ 834 0073 898201   		.uleb128 0x4109
+ 835 0076 00       		.byte	0
+ 836 0077 11       		.uleb128 0x11
+ 837 0078 01       		.uleb128 0x1
+ 838 0079 31       		.uleb128 0x31
+ 839 007a 13       		.uleb128 0x13
+ 840 007b 00       		.byte	0
+ 841 007c 00       		.byte	0
+ 842 007d 0A       		.uleb128 0xa
+ 843 007e 898201   		.uleb128 0x4109
+ 844 0081 01       		.byte	0x1
+ 845 0082 11       		.uleb128 0x11
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 17
+
+
+ 846 0083 01       		.uleb128 0x1
+ 847 0084 31       		.uleb128 0x31
+ 848 0085 13       		.uleb128 0x13
+ 849 0086 01       		.uleb128 0x1
+ 850 0087 13       		.uleb128 0x13
+ 851 0088 00       		.byte	0
+ 852 0089 00       		.byte	0
+ 853 008a 0B       		.uleb128 0xb
+ 854 008b 34       		.uleb128 0x34
+ 855 008c 00       		.byte	0
+ 856 008d 03       		.uleb128 0x3
+ 857 008e 0E       		.uleb128 0xe
+ 858 008f 3A       		.uleb128 0x3a
+ 859 0090 0B       		.uleb128 0xb
+ 860 0091 3B       		.uleb128 0x3b
+ 861 0092 05       		.uleb128 0x5
+ 862 0093 49       		.uleb128 0x49
+ 863 0094 13       		.uleb128 0x13
+ 864 0095 3F       		.uleb128 0x3f
+ 865 0096 19       		.uleb128 0x19
+ 866 0097 3C       		.uleb128 0x3c
+ 867 0098 19       		.uleb128 0x19
+ 868 0099 00       		.byte	0
+ 869 009a 00       		.byte	0
+ 870 009b 0C       		.uleb128 0xc
+ 871 009c 35       		.uleb128 0x35
+ 872 009d 00       		.byte	0
+ 873 009e 49       		.uleb128 0x49
+ 874 009f 13       		.uleb128 0x13
+ 875 00a0 00       		.byte	0
+ 876 00a1 00       		.byte	0
+ 877 00a2 0D       		.uleb128 0xd
+ 878 00a3 01       		.uleb128 0x1
+ 879 00a4 01       		.byte	0x1
+ 880 00a5 49       		.uleb128 0x49
+ 881 00a6 13       		.uleb128 0x13
+ 882 00a7 01       		.uleb128 0x1
+ 883 00a8 13       		.uleb128 0x13
+ 884 00a9 00       		.byte	0
+ 885 00aa 00       		.byte	0
+ 886 00ab 0E       		.uleb128 0xe
+ 887 00ac 21       		.uleb128 0x21
+ 888 00ad 00       		.byte	0
+ 889 00ae 49       		.uleb128 0x49
+ 890 00af 13       		.uleb128 0x13
+ 891 00b0 2F       		.uleb128 0x2f
+ 892 00b1 0B       		.uleb128 0xb
+ 893 00b2 00       		.byte	0
+ 894 00b3 00       		.byte	0
+ 895 00b4 0F       		.uleb128 0xf
+ 896 00b5 34       		.uleb128 0x34
+ 897 00b6 00       		.byte	0
+ 898 00b7 03       		.uleb128 0x3
+ 899 00b8 0E       		.uleb128 0xe
+ 900 00b9 3A       		.uleb128 0x3a
+ 901 00ba 0B       		.uleb128 0xb
+ 902 00bb 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 18
+
+
+ 903 00bc 0B       		.uleb128 0xb
+ 904 00bd 49       		.uleb128 0x49
+ 905 00be 13       		.uleb128 0x13
+ 906 00bf 3F       		.uleb128 0x3f
+ 907 00c0 19       		.uleb128 0x19
+ 908 00c1 02       		.uleb128 0x2
+ 909 00c2 18       		.uleb128 0x18
+ 910 00c3 00       		.byte	0
+ 911 00c4 00       		.byte	0
+ 912 00c5 10       		.uleb128 0x10
+ 913 00c6 34       		.uleb128 0x34
+ 914 00c7 00       		.byte	0
+ 915 00c8 03       		.uleb128 0x3
+ 916 00c9 08       		.uleb128 0x8
+ 917 00ca 3A       		.uleb128 0x3a
+ 918 00cb 0B       		.uleb128 0xb
+ 919 00cc 3B       		.uleb128 0x3b
+ 920 00cd 0B       		.uleb128 0xb
+ 921 00ce 49       		.uleb128 0x49
+ 922 00cf 13       		.uleb128 0x13
+ 923 00d0 3F       		.uleb128 0x3f
+ 924 00d1 19       		.uleb128 0x19
+ 925 00d2 02       		.uleb128 0x2
+ 926 00d3 18       		.uleb128 0x18
+ 927 00d4 00       		.byte	0
+ 928 00d5 00       		.byte	0
+ 929 00d6 11       		.uleb128 0x11
+ 930 00d7 2E       		.uleb128 0x2e
+ 931 00d8 01       		.byte	0x1
+ 932 00d9 3F       		.uleb128 0x3f
+ 933 00da 19       		.uleb128 0x19
+ 934 00db 03       		.uleb128 0x3
+ 935 00dc 0E       		.uleb128 0xe
+ 936 00dd 3A       		.uleb128 0x3a
+ 937 00de 0B       		.uleb128 0xb
+ 938 00df 3B       		.uleb128 0x3b
+ 939 00e0 0B       		.uleb128 0xb
+ 940 00e1 27       		.uleb128 0x27
+ 941 00e2 19       		.uleb128 0x19
+ 942 00e3 3C       		.uleb128 0x3c
+ 943 00e4 19       		.uleb128 0x19
+ 944 00e5 01       		.uleb128 0x1
+ 945 00e6 13       		.uleb128 0x13
+ 946 00e7 00       		.byte	0
+ 947 00e8 00       		.byte	0
+ 948 00e9 12       		.uleb128 0x12
+ 949 00ea 05       		.uleb128 0x5
+ 950 00eb 00       		.byte	0
+ 951 00ec 49       		.uleb128 0x49
+ 952 00ed 13       		.uleb128 0x13
+ 953 00ee 00       		.byte	0
+ 954 00ef 00       		.byte	0
+ 955 00f0 13       		.uleb128 0x13
+ 956 00f1 2E       		.uleb128 0x2e
+ 957 00f2 01       		.byte	0x1
+ 958 00f3 3F       		.uleb128 0x3f
+ 959 00f4 19       		.uleb128 0x19
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 19
+
+
+ 960 00f5 03       		.uleb128 0x3
+ 961 00f6 0E       		.uleb128 0xe
+ 962 00f7 3A       		.uleb128 0x3a
+ 963 00f8 0B       		.uleb128 0xb
+ 964 00f9 3B       		.uleb128 0x3b
+ 965 00fa 0B       		.uleb128 0xb
+ 966 00fb 27       		.uleb128 0x27
+ 967 00fc 19       		.uleb128 0x19
+ 968 00fd 3C       		.uleb128 0x3c
+ 969 00fe 19       		.uleb128 0x19
+ 970 00ff 00       		.byte	0
+ 971 0100 00       		.byte	0
+ 972 0101 00       		.byte	0
+ 973              		.section	.debug_aranges,"",%progbits
+ 974 0000 6C000000 		.4byte	0x6c
+ 975 0004 0200     		.2byte	0x2
+ 976 0006 00000000 		.4byte	.Ldebug_info0
+ 977 000a 04       		.byte	0x4
+ 978 000b 00       		.byte	0
+ 979 000c 0000     		.2byte	0
+ 980 000e 0000     		.2byte	0
+ 981 0010 00000000 		.4byte	.LFB63
+ 982 0014 0A000000 		.4byte	.LFE63-.LFB63
+ 983 0018 00000000 		.4byte	.LFB64
+ 984 001c 0A000000 		.4byte	.LFE64-.LFB64
+ 985 0020 00000000 		.4byte	.LFB65
+ 986 0024 10000000 		.4byte	.LFE65-.LFB65
+ 987 0028 00000000 		.4byte	.LFB66
+ 988 002c 10000000 		.4byte	.LFE66-.LFB66
+ 989 0030 00000000 		.4byte	.LFB67
+ 990 0034 10000000 		.4byte	.LFE67-.LFB67
+ 991 0038 00000000 		.4byte	.LFB68
+ 992 003c 0A000000 		.4byte	.LFE68-.LFB68
+ 993 0040 00000000 		.4byte	.LFB69
+ 994 0044 1C000000 		.4byte	.LFE69-.LFB69
+ 995 0048 00000000 		.4byte	.LFB70
+ 996 004c 10000000 		.4byte	.LFE70-.LFB70
+ 997 0050 00000000 		.4byte	.LFB71
+ 998 0054 0A000000 		.4byte	.LFE71-.LFB71
+ 999 0058 00000000 		.4byte	.LFB72
+ 1000 005c 18000000 		.4byte	.LFE72-.LFB72
+ 1001 0060 00000000 		.4byte	.LFB73
+ 1002 0064 10000000 		.4byte	.LFE73-.LFB73
+ 1003 0068 00000000 		.4byte	0
+ 1004 006c 00000000 		.4byte	0
+ 1005              		.section	.debug_ranges,"",%progbits
+ 1006              	.Ldebug_ranges0:
+ 1007 0000 00000000 		.4byte	.LFB63
+ 1008 0004 0A000000 		.4byte	.LFE63
+ 1009 0008 00000000 		.4byte	.LFB64
+ 1010 000c 0A000000 		.4byte	.LFE64
+ 1011 0010 00000000 		.4byte	.LFB65
+ 1012 0014 10000000 		.4byte	.LFE65
+ 1013 0018 00000000 		.4byte	.LFB66
+ 1014 001c 10000000 		.4byte	.LFE66
+ 1015 0020 00000000 		.4byte	.LFB67
+ 1016 0024 10000000 		.4byte	.LFE67
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 20
+
+
+ 1017 0028 00000000 		.4byte	.LFB68
+ 1018 002c 0A000000 		.4byte	.LFE68
+ 1019 0030 00000000 		.4byte	.LFB69
+ 1020 0034 1C000000 		.4byte	.LFE69
+ 1021 0038 00000000 		.4byte	.LFB70
+ 1022 003c 10000000 		.4byte	.LFE70
+ 1023 0040 00000000 		.4byte	.LFB71
+ 1024 0044 0A000000 		.4byte	.LFE71
+ 1025 0048 00000000 		.4byte	.LFB72
+ 1026 004c 18000000 		.4byte	.LFE72
+ 1027 0050 00000000 		.4byte	.LFB73
+ 1028 0054 10000000 		.4byte	.LFE73
+ 1029 0058 00000000 		.4byte	0
+ 1030 005c 00000000 		.4byte	0
+ 1031              		.section	.debug_line,"",%progbits
+ 1032              	.Ldebug_line0:
+ 1033 0000 5A020000 		.section	.debug_str,"MS",%progbits,1
+ 1033      0200A101 
+ 1033      00000201 
+ 1033      FB0E0D00 
+ 1033      01010101 
+ 1034              	.LASF9:
+ 1035 0000 5F5F696E 		.ascii	"__int32_t\000"
+ 1035      7433325F 
+ 1035      7400
+ 1036              	.LASF28:
+ 1037 000a 4C696674 		.ascii	"LiftTop\000"
+ 1037      546F7000 
+ 1038              	.LASF8:
+ 1039 0012 756E7369 		.ascii	"unsigned int\000"
+ 1039      676E6564 
+ 1039      20696E74 
+ 1039      00
+ 1040              	.LASF32:
+ 1041 001f 7A65726F 		.ascii	"zerodegrees\000"
+ 1041      64656772 
+ 1041      65657300 
+ 1042              	.LASF20:
+ 1043 002b 54696C74 		.ascii	"TiltUp\000"
+ 1043      557000
+ 1044              	.LASF23:
+ 1045 0032 54696C74 		.ascii	"TiltDown45\000"
+ 1045      446F776E 
+ 1045      343500
+ 1046              	.LASF14:
+ 1047 003d 666C6F61 		.ascii	"float\000"
+ 1047      7400
+ 1048              	.LASF1:
+ 1049 0043 756E7369 		.ascii	"unsigned char\000"
+ 1049      676E6564 
+ 1049      20636861 
+ 1049      7200
+ 1050              	.LASF25:
+ 1051 0051 50616E4D 		.ascii	"PanMid\000"
+ 1051      696400
+ 1052              	.LASF3:
+ 1053 0058 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 21
+
+
+ 1053      7420756E 
+ 1053      7369676E 
+ 1053      65642069 
+ 1053      6E7400
+ 1054              	.LASF31:
+ 1055 006b 68616C66 		.ascii	"halfway\000"
+ 1055      77617900 
+ 1056              	.LASF36:
+ 1057 0073 50574D5F 		.ascii	"PWM_Pan_WriteCompare\000"
+ 1057      50616E5F 
+ 1057      57726974 
+ 1057      65436F6D 
+ 1057      70617265 
+ 1058              	.LASF29:
+ 1059 0088 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1059      52784275 
+ 1059      66666572 
+ 1059      00
+ 1060              	.LASF30:
+ 1061 0095 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1061      72615F6C 
+ 1061      696E6562 
+ 1061      75666665 
+ 1061      7200
+ 1062              	.LASF5:
+ 1063 00a7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1063      20756E73 
+ 1063      69676E65 
+ 1063      6420696E 
+ 1063      7400
+ 1064              	.LASF39:
+ 1065 00b9 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Aint"
+ 1065      6F63756D 
+ 1065      656E7473 
+ 1065      5C436F6D 
+ 1065      70757465 
+ 1066 00e8 20676F74 		.ascii	" got no Pucks\\Display.cydsn\000"
+ 1066      206E6F20 
+ 1066      5075636B 
+ 1066      735C4469 
+ 1066      73706C61 
+ 1067              	.LASF38:
+ 1068 0104 2E5C636C 		.ascii	".\\claw_functions.c\000"
+ 1068      61775F66 
+ 1068      756E6374 
+ 1068      696F6E73 
+ 1068      2E6300
+ 1069              	.LASF12:
+ 1070 0117 75696E74 		.ascii	"uint16\000"
+ 1070      313600
+ 1071              	.LASF13:
+ 1072 011e 75696E74 		.ascii	"uint32\000"
+ 1072      333200
+ 1073              	.LASF37:
+ 1074 0125 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1074      4320342E 
+ 1074      392E3320 
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 22
+
+
+ 1074      32303135 
+ 1074      30333033 
+ 1075 0158 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1075      20726576 
+ 1075      6973696F 
+ 1075      6E203232 
+ 1075      31323230 
+ 1076 018b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1076      66756E63 
+ 1076      74696F6E 
+ 1076      2D736563 
+ 1076      74696F6E 
+ 1077              	.LASF24:
+ 1078 01b3 50616E52 		.ascii	"PanRight\000"
+ 1078      69676874 
+ 1078      00
+ 1079              	.LASF7:
+ 1080 01bc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1080      206C6F6E 
+ 1080      6720756E 
+ 1080      7369676E 
+ 1080      65642069 
+ 1081              	.LASF27:
+ 1082 01d3 4C696674 		.ascii	"LiftHalf\000"
+ 1082      48616C66 
+ 1082      00
+ 1083              	.LASF40:
+ 1084 01dc 50574D5F 		.ascii	"PWM_Lift_WriteCompare\000"
+ 1084      4C696674 
+ 1084      5F577269 
+ 1084      7465436F 
+ 1084      6D706172 
+ 1085              	.LASF10:
+ 1086 01f2 696E7433 		.ascii	"int32_t\000"
+ 1086      325F7400 
+ 1087              	.LASF17:
+ 1088 01fa 73697A65 		.ascii	"sizetype\000"
+ 1088      74797065 
+ 1088      00
+ 1089              	.LASF19:
+ 1090 0203 436C6177 		.ascii	"ClawClose\000"
+ 1090      436C6F73 
+ 1090      6500
+ 1091              	.LASF6:
+ 1092 020d 6C6F6E67 		.ascii	"long long int\000"
+ 1092      206C6F6E 
+ 1092      6720696E 
+ 1092      7400
+ 1093              	.LASF16:
+ 1094 021b 63686172 		.ascii	"char\000"
+ 1094      00
+ 1095              	.LASF18:
+ 1096 0220 436C6177 		.ascii	"ClawOpen\000"
+ 1096      4F70656E 
+ 1096      00
+ 1097              	.LASF26:
+ 1098 0229 4C696674 		.ascii	"LiftGround\000"
+ARM GAS  D:\TEMP\cc4lw5kW.s 			page 23
+
+
+ 1098      47726F75 
+ 1098      6E6400
+ 1099              	.LASF2:
+ 1100 0234 73686F72 		.ascii	"short int\000"
+ 1100      7420696E 
+ 1100      7400
+ 1101              	.LASF11:
+ 1102 023e 75696E74 		.ascii	"uint8\000"
+ 1102      3800
+ 1103              	.LASF22:
+ 1104 0244 54696C74 		.ascii	"TiltDown\000"
+ 1104      446F776E 
+ 1104      00
+ 1105              	.LASF4:
+ 1106 024d 6C6F6E67 		.ascii	"long int\000"
+ 1106      20696E74 
+ 1106      00
+ 1107              	.LASF33:
+ 1108 0256 50574D5F 		.ascii	"PWM_Claw_WriteCompare\000"
+ 1108      436C6177 
+ 1108      5F577269 
+ 1108      7465436F 
+ 1108      6D706172 
+ 1109              	.LASF34:
+ 1110 026c 50574D5F 		.ascii	"PWM_Tilt_WriteCompare\000"
+ 1110      54696C74 
+ 1110      5F577269 
+ 1110      7465436F 
+ 1110      6D706172 
+ 1111              	.LASF0:
+ 1112 0282 7369676E 		.ascii	"signed char\000"
+ 1112      65642063 
+ 1112      68617200 
+ 1113              	.LASF15:
+ 1114 028e 646F7562 		.ascii	"double\000"
+ 1114      6C6500
+ 1115              	.LASF35:
+ 1116 0295 43794465 		.ascii	"CyDelay\000"
+ 1116      6C617900 
+ 1117              	.LASF21:
+ 1118 029d 54696C74 		.ascii	"TiltStraight\000"
+ 1118      53747261 
+ 1118      69676874 
+ 1118      00
+ 1119              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

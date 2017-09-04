@@ -61,7 +61,6 @@ void `$INSTANCE_NAME`_WriteArray(uint8 reg,uint8 *values,uint8 n)
     {
         while(!`$INSTANCE_NAME`_Ready);
         `$INSTANCE_NAME`_Data(values[i]);
-       
     }
     while(!`$INSTANCE_NAME`_Empty);
     

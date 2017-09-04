@@ -63,4 +63,27 @@ void `$INSTANCE_NAME`_Start()
 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
 	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+    
+    
+    
+    `$INSTANCE_NAME`_R_Start();
+    `$INSTANCE_NAME`_G_Start();
+    `$INSTANCE_NAME`_B_Start();
+    `$INSTANCE_NAME`_M_Start();
+    
+    DMA_channel=`$INSTANCE_NAME`_DMA_Colours_DmaInitialize(1,1,HI16(CYDEV_PERIPH_BASE),HI16(CYDEV_SRAM_BASE)); //peripheral -> SRAM
+	DMA_TD=CyDmaTdAllocate();
+    CyDmaTdSetAddress(DMA_TD,LO16(`$INSTANCE_NAME`_FIFO_Colours_dp__F0_REG),LO16((uint32)`$INSTANCE_NAME`_linebuffer));
+    CyDmaTdSetConfiguration(DMA_TD,sizeof(`$INSTANCE_NAME`_linebuffer)/4,DMA_TD,TD_INC_DST_ADR|`$INSTANCE_NAME`_DMA__TD_TERMOUT_EN); //loop TDs
+	CyDmaChPriority(DMA_channel,0); //ensure highest priority for DMA channel
+
+    `$INSTANCE_NAME`_end_line_colours_StartEx(`$INSTANCE_NAME`_end_line);
+    
+	*(reg8*)`$INSTANCE_NAME`_FIFO_Colours_dp__F0_REG;
+	*(reg8*)`$INSTANCE_NAME`_FIFO_Colours_dp__F0_REG;
+    *(reg8*)`$INSTANCE_NAME`_FIFO_Colours_dp__F0_REG;
+    *(reg8*)`$INSTANCE_NAME`_FIFO_Colours_dp__F0_REG; //clear fifo
+	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
+	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
 }

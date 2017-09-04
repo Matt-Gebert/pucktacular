@@ -1,0 +1,1824 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"pathing.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PathForward,"ax",%progbits
+  19              		.align	2
+  20              		.global	PathForward
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PathForward, %function
+  24              	PathForward:
+  25              	.LFB63:
+  26              		.file 1 ".\\pathing.c"
+   1:.\pathing.c   **** /*
+   2:.\pathing.c   ****  * Copyright @Pucktacular, 2016
+   3:.\pathing.c   ****  * @Matt Gebert, Daniel Hranilovic & Kevin Duxbury
+   4:.\pathing.c   ****  * All Rights Reserved
+   5:.\pathing.c   ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\pathing.c   ****  *
+   7:.\pathing.c   ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\pathing.c   ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\pathing.c   ****  *
+  10:.\pathing.c   ****  * ========================================
+  11:.\pathing.c   **** */
+  12:.\pathing.c   **** #include <project.h>
+  13:.\pathing.c   **** #include <stdbool.h>
+  14:.\pathing.c   **** #include <math.h>
+  15:.\pathing.c   **** #include <stdlib.h>
+  16:.\pathing.c   **** #include "movement_functions.h"
+  17:.\pathing.c   **** #include "Ultrasonics.h"
+  18:.\pathing.c   **** #include "utils.h"
+  19:.\pathing.c   **** #include "pathing.h"
+  20:.\pathing.c   **** 
+  21:.\pathing.c   **** void PathForward(bool path){
+  27              		.loc 1 21 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 2
+
+
+  37              		.cfi_def_cfa_offset 16
+  22:.\pathing.c   ****  //This function assumes that the bot is positioned at 20 cm from back wall & 20cm from side wall
+  23:.\pathing.c   ****  //near the stacking zone,facing away from the stacking zone.
+  24:.\pathing.c   ****     
+  25:.\pathing.c   ****     //path determines which path must be taken to avoid the brick
+  26:.\pathing.c   ****     if(!path){  // path==0 -> using shorter path
+  38              		.loc 1 26 0
+  39 0004 10BB     		cbnz	r0, .L2
+  27:.\pathing.c   ****         //drive forward 5s
+  28:.\pathing.c   ****         MovementPivotLeft90();
+  40              		.loc 1 28 0
+  41 0006 FFF7FEFF 		bl	MovementPivotLeft90
+  42              	.LVL1:
+  29:.\pathing.c   ****         CyDelay(20);
+  43              		.loc 1 29 0
+  44 000a 1420     		movs	r0, #20
+  45 000c FFF7FEFF 		bl	CyDelay
+  46              	.LVL2:
+  30:.\pathing.c   ****         //MoveAlign(15,false,0,0.8);
+  31:.\pathing.c   ****         MoveAlign(15,false,0,0.8); //true to false..
+  47              		.loc 1 31 0
+  48 0010 1E4C     		ldr	r4, .L5
+  49 0012 0094     		str	r4, [sp]	@ float
+  50 0014 0020     		movs	r0, #0
+  51 0016 1E49     		ldr	r1, .L5+4
+  52 0018 0022     		movs	r2, #0
+  53 001a 1346     		mov	r3, r2
+  54 001c FFF7FEFF 		bl	MoveAlign
+  55              	.LVL3:
+  32:.\pathing.c   ****         CyDelay(20);
+  56              		.loc 1 32 0
+  57 0020 1420     		movs	r0, #20
+  58 0022 FFF7FEFF 		bl	CyDelay
+  59              	.LVL4:
+  33:.\pathing.c   ****         MovementPivotRight90();
+  60              		.loc 1 33 0
+  61 0026 FFF7FEFF 		bl	MovementPivotRight90
+  62              	.LVL5:
+  34:.\pathing.c   ****         CyDelay(20);
+  63              		.loc 1 34 0
+  64 002a 1420     		movs	r0, #20
+  65 002c FFF7FEFF 		bl	CyDelay
+  66              	.LVL6:
+  35:.\pathing.c   ****         MovementForward(10000);
+  67              		.loc 1 35 0
+  68 0030 42F21070 		movw	r0, #10000
+  69 0034 FFF7FEFF 		bl	MovementForward
+  70              	.LVL7:
+  36:.\pathing.c   ****         //use wall_align to get to 20 cm from far wall
+  37:.\pathing.c   ****         //MoveAlign(20,false,0,0.8);
+  38:.\pathing.c   ****         MoveAlign(12,false,0,0.8);//true to false..
+  71              		.loc 1 38 0
+  72 0038 0094     		str	r4, [sp]	@ float
+  73 003a 0020     		movs	r0, #0
+  74 003c 1549     		ldr	r1, .L5+8
+  75 003e 0022     		movs	r2, #0
+  76 0040 1346     		mov	r3, r2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 3
+
+
+  77 0042 FFF7FEFF 		bl	MoveAlign
+  78              	.LVL8:
+  39:.\pathing.c   ****         // pivot right 90
+  40:.\pathing.c   ****         MovementPivotRight90();
+  79              		.loc 1 40 0
+  80 0046 FFF7FEFF 		bl	MovementPivotRight90
+  81              	.LVL9:
+  82 004a 1CE0     		b	.L1
+  83              	.LVL10:
+  84              	.L2:
+  41:.\pathing.c   ****         
+  42:.\pathing.c   ****     }else{ // path==1 -> using longer path
+  43:.\pathing.c   ****         //pivot right 90 degrees
+  44:.\pathing.c   ****         MovementPivotRight90();
+  85              		.loc 1 44 0
+  86 004c FFF7FEFF 		bl	MovementPivotRight90
+  87              	.LVL11:
+  45:.\pathing.c   ****         //drive forward 7s
+  46:.\pathing.c   ****         MovementForward(8000);
+  88              		.loc 1 46 0
+  89 0050 4FF4FA50 		mov	r0, #8000
+  90 0054 FFF7FEFF 		bl	MovementForward
+  91              	.LVL12:
+  47:.\pathing.c   ****         //use wall_align to get to 20cm from side wall
+  48:.\pathing.c   ****         //MoveAlign(15,false,0,0.8);
+  49:.\pathing.c   ****         MoveAlign(10,false,0,0.8);//true to false..
+  92              		.loc 1 49 0
+  93 0058 0C4C     		ldr	r4, .L5
+  94 005a 0094     		str	r4, [sp]	@ float
+  95 005c 0020     		movs	r0, #0
+  96 005e 0E49     		ldr	r1, .L5+12
+  97 0060 0022     		movs	r2, #0
+  98 0062 1346     		mov	r3, r2
+  99 0064 FFF7FEFF 		bl	MoveAlign
+ 100              	.LVL13:
+  50:.\pathing.c   ****         //pivot left 90
+  51:.\pathing.c   ****         MovementPivotLeft90();
+ 101              		.loc 1 51 0
+ 102 0068 FFF7FEFF 		bl	MovementPivotLeft90
+ 103              	.LVL14:
+  52:.\pathing.c   ****         //drive forward 5s
+  53:.\pathing.c   ****         MovementForward(8000);
+ 104              		.loc 1 53 0
+ 105 006c 4FF4FA50 		mov	r0, #8000
+ 106 0070 FFF7FEFF 		bl	MovementForward
+ 107              	.LVL15:
+  54:.\pathing.c   ****         //use wall_align to get to 20 cm from far wall
+  55:.\pathing.c   ****        //MoveAlign(20,false,0,0.8);
+  56:.\pathing.c   ****         MoveAlign(12,false,0,0.8);//true to false..
+ 108              		.loc 1 56 0
+ 109 0074 0094     		str	r4, [sp]	@ float
+ 110 0076 0020     		movs	r0, #0
+ 111 0078 0649     		ldr	r1, .L5+8
+ 112 007a 0022     		movs	r2, #0
+ 113 007c 1346     		mov	r3, r2
+ 114 007e FFF7FEFF 		bl	MoveAlign
+ 115              	.LVL16:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 4
+
+
+  57:.\pathing.c   ****         // pivot left 90
+  58:.\pathing.c   ****         MovementPivotLeft90();
+ 116              		.loc 1 58 0
+ 117 0082 FFF7FEFF 		bl	MovementPivotLeft90
+ 118              	.LVL17:
+ 119              	.L1:
+  59:.\pathing.c   ****         
+  60:.\pathing.c   ****     }
+  61:.\pathing.c   ****     
+  62:.\pathing.c   **** }
+ 120              		.loc 1 62 0
+ 121 0086 02B0     		add	sp, sp, #8
+ 122              		.cfi_def_cfa_offset 8
+ 123              		@ sp needed
+ 124 0088 10BD     		pop	{r4, pc}
+ 125              	.L6:
+ 126 008a 00BF     		.align	2
+ 127              	.L5:
+ 128 008c CDCC4C3F 		.word	1061997773
+ 129 0090 00002E40 		.word	1076756480
+ 130 0094 00002840 		.word	1076363264
+ 131 0098 00002440 		.word	1076101120
+ 132              		.cfi_endproc
+ 133              	.LFE63:
+ 134              		.size	PathForward, .-PathForward
+ 135              		.section	.text.PathBackward,"ax",%progbits
+ 136              		.align	2
+ 137              		.global	PathBackward
+ 138              		.thumb
+ 139              		.thumb_func
+ 140              		.type	PathBackward, %function
+ 141              	PathBackward:
+ 142              	.LFB64:
+  63:.\pathing.c   **** 
+  64:.\pathing.c   **** 
+  65:.\pathing.c   **** void PathBackward(bool path){
+ 143              		.loc 1 65 0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              	.LVL18:
+ 148 0000 2DE9D043 		push	{r4, r6, r7, r8, r9, lr}
+ 149              		.cfi_def_cfa_offset 24
+ 150              		.cfi_offset 4, -24
+ 151              		.cfi_offset 6, -20
+ 152              		.cfi_offset 7, -16
+ 153              		.cfi_offset 8, -12
+ 154              		.cfi_offset 9, -8
+ 155              		.cfi_offset 14, -4
+ 156 0004 82B0     		sub	sp, sp, #8
+ 157              		.cfi_def_cfa_offset 32
+  66:.\pathing.c   ****     //path determines which path must be taken to avoid the brick
+  67:.\pathing.c   ****     if(!path){  // path==0 -> using shorter path
+ 158              		.loc 1 67 0
+ 159 0006 0028     		cmp	r0, #0
+ 160 0008 37D1     		bne	.L8
+  68:.\pathing.c   ****         //pivot 180
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 5
+
+
+  69:.\pathing.c   ****         MovementPivotRight90();
+ 161              		.loc 1 69 0
+ 162 000a FFF7FEFF 		bl	MovementPivotRight90
+ 163              	.LVL19:
+  70:.\pathing.c   ****         CyDelay(100);
+ 164              		.loc 1 70 0
+ 165 000e 6420     		movs	r0, #100
+ 166 0010 FFF7FEFF 		bl	CyDelay
+ 167              	.LVL20:
+  71:.\pathing.c   ****         MovementPivotRight(85);
+ 168              		.loc 1 71 0
+ 169 0014 0020     		movs	r0, #0
+ 170 0016 4249     		ldr	r1, .L11
+ 171 0018 FFF7FEFF 		bl	MovementPivotRight
+ 172              	.LVL21:
+  72:.\pathing.c   ****         CyDelay(20);
+ 173              		.loc 1 72 0
+ 174 001c 1420     		movs	r0, #20
+ 175 001e FFF7FEFF 		bl	CyDelay
+ 176              	.LVL22:
+  73:.\pathing.c   ****         //use wall_align to get 20 cm from side wall
+  74:.\pathing.c   ****         //MoveAlign(18,false,0,0.8);
+  75:.\pathing.c   ****         MoveAlign(10,false,0,0.8);
+ 177              		.loc 1 75 0
+ 178 0022 404C     		ldr	r4, .L11+4
+ 179 0024 0094     		str	r4, [sp]	@ float
+ 180 0026 0020     		movs	r0, #0
+ 181 0028 3F49     		ldr	r1, .L11+8
+ 182 002a 0022     		movs	r2, #0
+ 183 002c 1346     		mov	r3, r2
+ 184 002e FFF7FEFF 		bl	MoveAlign
+ 185              	.LVL23:
+  76:.\pathing.c   ****         CyDelay(20);
+ 186              		.loc 1 76 0
+ 187 0032 1420     		movs	r0, #20
+ 188 0034 FFF7FEFF 		bl	CyDelay
+ 189              	.LVL24:
+  77:.\pathing.c   ****         //pivot left 90
+  78:.\pathing.c   ****         MovementPivotLeft(88);
+ 190              		.loc 1 78 0
+ 191 0038 0020     		movs	r0, #0
+ 192 003a 3C49     		ldr	r1, .L11+12
+ 193 003c FFF7FEFF 		bl	MovementPivotLeft
+ 194              	.LVL25:
+  79:.\pathing.c   ****         CyDelay(20);
+ 195              		.loc 1 79 0
+ 196 0040 1420     		movs	r0, #20
+ 197 0042 FFF7FEFF 		bl	CyDelay
+ 198              	.LVL26:
+  80:.\pathing.c   ****         //drive forward for 4 sec (4 sec to be safer)
+  81:.\pathing.c   ****         MovementForward(10000); //
+ 199              		.loc 1 81 0
+ 200 0046 42F21070 		movw	r0, #10000
+ 201 004a FFF7FEFF 		bl	MovementForward
+ 202              	.LVL27:
+  82:.\pathing.c   ****         CyDelay(20);
+ 203              		.loc 1 82 0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 6
+
+
+ 204 004e 1420     		movs	r0, #20
+ 205 0050 FFF7FEFF 		bl	CyDelay
+ 206              	.LVL28:
+  83:.\pathing.c   ****         //Remove Extra Check: 
+  84:.\pathing.c   ****         /*MovementPivotRight90();
+  85:.\pathing.c   ****         CyDelay(20);
+  86:.\pathing.c   ****         MoveAlign(10,false,0,0.4);
+  87:.\pathing.c   ****         CyDelay(20);
+  88:.\pathing.c   ****         MovementPivotLeft90();
+  89:.\pathing.c   ****         CyDelay(20);
+  90:.\pathing.c   ****         */
+  91:.\pathing.c   ****         
+  92:.\pathing.c   ****         //use wall_align to get 20 cm from back wall
+  93:.\pathing.c   ****         //MoveAlign(23,false,1,0.8);
+  94:.\pathing.c   ****         MoveAlign(15,false,1,0.8);//true to false..
+ 207              		.loc 1 94 0
+ 208 0054 0094     		str	r4, [sp]	@ float
+ 209 0056 0020     		movs	r0, #0
+ 210 0058 3549     		ldr	r1, .L11+16
+ 211 005a 0022     		movs	r2, #0
+ 212 005c 0123     		movs	r3, #1
+ 213 005e FFF7FEFF 		bl	MoveAlign
+ 214              	.LVL29:
+  95:.\pathing.c   ****         //new
+  96:.\pathing.c   ****         MovementPivotRight90();
+ 215              		.loc 1 96 0
+ 216 0062 FFF7FEFF 		bl	MovementPivotRight90
+ 217              	.LVL30:
+  97:.\pathing.c   ****         MoveAlign(13,true,0,0.8);
+ 218              		.loc 1 97 0
+ 219 0066 0094     		str	r4, [sp]	@ float
+ 220 0068 0020     		movs	r0, #0
+ 221 006a 3249     		ldr	r1, .L11+20
+ 222 006c 0122     		movs	r2, #1
+ 223 006e 0023     		movs	r3, #0
+ 224 0070 FFF7FEFF 		bl	MoveAlign
+ 225              	.LVL31:
+  98:.\pathing.c   ****         MovementPivotLeft90();
+ 226              		.loc 1 98 0
+ 227 0074 FFF7FEFF 		bl	MovementPivotLeft90
+ 228              	.LVL32:
+ 229 0078 4FE0     		b	.L7
+ 230              	.LVL33:
+ 231              	.L8:
+  99:.\pathing.c   ****         /*MoveAlign(10,true,1); //Coded added to the main function. Depends on puck counter...
+ 100:.\pathing.c   ****         Beep(2);
+ 101:.\pathing.c   ****         CyDelay(100);
+ 102:.\pathing.c   ****         Beep(2);*/
+ 103:.\pathing.c   ****         
+ 104:.\pathing.c   ****     }else{      // path==1 -> using longer path
+ 105:.\pathing.c   ****         //pivot 180
+ 106:.\pathing.c   ****         MovementPivotLeft90();
+ 232              		.loc 1 106 0
+ 233 007a FFF7FEFF 		bl	MovementPivotLeft90
+ 234              	.LVL34:
+ 107:.\pathing.c   ****         CyDelay(50);
+ 235              		.loc 1 107 0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 7
+
+
+ 236 007e 3220     		movs	r0, #50
+ 237 0080 FFF7FEFF 		bl	CyDelay
+ 238              	.LVL35:
+ 108:.\pathing.c   ****         MovementPivotLeft(80);
+ 239              		.loc 1 108 0
+ 240 0084 0020     		movs	r0, #0
+ 241 0086 2C49     		ldr	r1, .L11+24
+ 242 0088 FFF7FEFF 		bl	MovementPivotLeft
+ 243              	.LVL36:
+ 109:.\pathing.c   ****         //use wall_align to get 20 cm from side wall 
+ 110:.\pathing.c   ****         CyDelay(20);
+ 244              		.loc 1 110 0
+ 245 008c 1420     		movs	r0, #20
+ 246 008e FFF7FEFF 		bl	CyDelay
+ 247              	.LVL37:
+ 111:.\pathing.c   ****         //MoveAlign(18,false,0,0.8);
+ 112:.\pathing.c   ****         MoveAlign(15,false,0,0.8);//true to false..
+ 248              		.loc 1 112 0
+ 249 0092 244C     		ldr	r4, .L11+4
+ 250 0094 0094     		str	r4, [sp]	@ float
+ 251 0096 0020     		movs	r0, #0
+ 252 0098 2549     		ldr	r1, .L11+16
+ 253 009a 0022     		movs	r2, #0
+ 254 009c 1346     		mov	r3, r2
+ 255 009e FFF7FEFF 		bl	MoveAlign
+ 256              	.LVL38:
+ 113:.\pathing.c   ****         CyDelay(20);
+ 257              		.loc 1 113 0
+ 258 00a2 1420     		movs	r0, #20
+ 259 00a4 FFF7FEFF 		bl	CyDelay
+ 260              	.LVL39:
+ 114:.\pathing.c   ****         //pivot right 90
+ 115:.\pathing.c   ****         MovementPivotRight(90);
+ 261              		.loc 1 115 0
+ 262 00a8 0026     		movs	r6, #0
+ 263 00aa 244F     		ldr	r7, .L11+28
+ 264 00ac 3046     		mov	r0, r6
+ 265 00ae 3946     		mov	r1, r7
+ 266 00b0 FFF7FEFF 		bl	MovementPivotRight
+ 267              	.LVL40:
+ 116:.\pathing.c   ****         CyDelay(20);
+ 268              		.loc 1 116 0
+ 269 00b4 1420     		movs	r0, #20
+ 270 00b6 FFF7FEFF 		bl	CyDelay
+ 271              	.LVL41:
+ 117:.\pathing.c   ****         //drive forward for 4 sec (4 sec to be safer)
+ 118:.\pathing.c   ****         MovementForward(7000);
+ 272              		.loc 1 118 0
+ 273 00ba 41F65830 		movw	r0, #7000
+ 274 00be FFF7FEFF 		bl	MovementForward
+ 275              	.LVL42:
+ 119:.\pathing.c   ****         //use wall_align to get 25 cm from back wall (once again on safe side)
+ 120:.\pathing.c   ****         //MoveAlign(23,false,0,0.8);
+ 121:.\pathing.c   ****         MoveAlign(25,false,0,0.8);//true to false..
+ 276              		.loc 1 121 0
+ 277 00c2 4FF00008 		mov	r8, #0
+ 278 00c6 DFF87890 		ldr	r9, .L11+32
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 8
+
+
+ 279 00ca 0094     		str	r4, [sp]	@ float
+ 280 00cc 4046     		mov	r0, r8
+ 281 00ce 4946     		mov	r1, r9
+ 282 00d0 0022     		movs	r2, #0
+ 283 00d2 1346     		mov	r3, r2
+ 284 00d4 FFF7FEFF 		bl	MoveAlign
+ 285              	.LVL43:
+ 122:.\pathing.c   ****         MoveAlign(25,true,0,0.8);
+ 286              		.loc 1 122 0
+ 287 00d8 0094     		str	r4, [sp]	@ float
+ 288 00da 4046     		mov	r0, r8
+ 289 00dc 4946     		mov	r1, r9
+ 290 00de 0122     		movs	r2, #1
+ 291 00e0 0023     		movs	r3, #0
+ 292 00e2 FFF7FEFF 		bl	MoveAlign
+ 293              	.LVL44:
+ 123:.\pathing.c   ****         //pivot right 90
+ 124:.\pathing.c   ****         MovementPivotRight(90);
+ 294              		.loc 1 124 0
+ 295 00e6 3046     		mov	r0, r6
+ 296 00e8 3946     		mov	r1, r7
+ 297 00ea FFF7FEFF 		bl	MovementPivotRight
+ 298              	.LVL45:
+ 125:.\pathing.c   ****         //drive forward for 7 sec
+ 126:.\pathing.c   ****         MovementForward(11000);
+ 299              		.loc 1 126 0
+ 300 00ee 42F6F820 		movw	r0, #11000
+ 301 00f2 FFF7FEFF 		bl	MovementForward
+ 302              	.LVL46:
+ 127:.\pathing.c   ****         //use wall_align to get 20 cm from side wall 
+ 128:.\pathing.c   ****         MoveAlign(13,false,0,0.8);
+ 303              		.loc 1 128 0
+ 304 00f6 0026     		movs	r6, #0
+ 305 00f8 0E4F     		ldr	r7, .L11+20
+ 306 00fa 0094     		str	r4, [sp]	@ float
+ 307 00fc 3046     		mov	r0, r6
+ 308 00fe 3946     		mov	r1, r7
+ 309 0100 0022     		movs	r2, #0
+ 310 0102 1346     		mov	r3, r2
+ 311 0104 FFF7FEFF 		bl	MoveAlign
+ 312              	.LVL47:
+ 129:.\pathing.c   ****         MoveAlign(13,true,0,0.8);
+ 313              		.loc 1 129 0
+ 314 0108 0094     		str	r4, [sp]	@ float
+ 315 010a 3046     		mov	r0, r6
+ 316 010c 3946     		mov	r1, r7
+ 317 010e 0122     		movs	r2, #1
+ 318 0110 0023     		movs	r3, #0
+ 319 0112 FFF7FEFF 		bl	MoveAlign
+ 320              	.LVL48:
+ 130:.\pathing.c   ****         //pivot left 90
+ 131:.\pathing.c   ****         MovementPivotLeft90();
+ 321              		.loc 1 131 0
+ 322 0116 FFF7FEFF 		bl	MovementPivotLeft90
+ 323              	.LVL49:
+ 324              	.L7:
+ 132:.\pathing.c   ****     }
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 9
+
+
+ 133:.\pathing.c   **** }
+ 325              		.loc 1 133 0
+ 326 011a 02B0     		add	sp, sp, #8
+ 327              		.cfi_def_cfa_offset 24
+ 328              		@ sp needed
+ 329 011c BDE8D083 		pop	{r4, r6, r7, r8, r9, pc}
+ 330              	.L12:
+ 331              		.align	2
+ 332              	.L11:
+ 333 0120 00405540 		.word	1079328768
+ 334 0124 CDCC4C3F 		.word	1061997773
+ 335 0128 00002440 		.word	1076101120
+ 336 012c 00005640 		.word	1079377920
+ 337 0130 00002E40 		.word	1076756480
+ 338 0134 00002A40 		.word	1076494336
+ 339 0138 00005440 		.word	1079246848
+ 340 013c 00805640 		.word	1079410688
+ 341 0140 00003940 		.word	1077477376
+ 342              		.cfi_endproc
+ 343              	.LFE64:
+ 344              		.size	PathBackward, .-PathBackward
+ 345              		.comm	Camera_linebuffer,640,4
+ 346              		.text
+ 347              	.Letext0:
+ 348              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 349              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 350              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 351              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 352              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 353              		.file 7 "Generated_Source\\PSoC5/CyLib.h"
+ 354              		.file 8 ".\\Ultrasonics.h"
+ 355              		.file 9 ".\\movement_functions.h"
+ 356              		.section	.debug_info,"",%progbits
+ 357              	.Ldebug_info0:
+ 358 0000 30050000 		.4byte	0x530
+ 359 0004 0400     		.2byte	0x4
+ 360 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 361 000a 04       		.byte	0x4
+ 362 000b 01       		.uleb128 0x1
+ 363 000c 43010000 		.4byte	.LASF31
+ 364 0010 01       		.byte	0x1
+ 365 0011 15000000 		.4byte	.LASF32
+ 366 0015 48000000 		.4byte	.LASF33
+ 367 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 368 001d 00000000 		.4byte	0
+ 369 0021 00000000 		.4byte	.Ldebug_line0
+ 370 0025 02       		.uleb128 0x2
+ 371 0026 04       		.byte	0x4
+ 372 0027 04       		.byte	0x4
+ 373 0028 A4000000 		.4byte	.LASF0
+ 374 002c 02       		.uleb128 0x2
+ 375 002d 01       		.byte	0x1
+ 376 002e 06       		.byte	0x6
+ 377 002f 47020000 		.4byte	.LASF1
+ 378 0033 02       		.uleb128 0x2
+ 379 0034 01       		.byte	0x1
+ 380 0035 08       		.byte	0x8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 10
+
+
+ 381 0036 AA000000 		.4byte	.LASF2
+ 382 003a 02       		.uleb128 0x2
+ 383 003b 02       		.byte	0x2
+ 384 003c 05       		.byte	0x5
+ 385 003d 19020000 		.4byte	.LASF3
+ 386 0041 02       		.uleb128 0x2
+ 387 0042 02       		.byte	0x2
+ 388 0043 07       		.byte	0x7
+ 389 0044 FC000000 		.4byte	.LASF4
+ 390 0048 03       		.uleb128 0x3
+ 391 0049 21000000 		.4byte	.LASF10
+ 392 004d 02       		.byte	0x2
+ 393 004e 3F       		.byte	0x3f
+ 394 004f 53000000 		.4byte	0x53
+ 395 0053 02       		.uleb128 0x2
+ 396 0054 04       		.byte	0x4
+ 397 0055 05       		.byte	0x5
+ 398 0056 2D020000 		.4byte	.LASF5
+ 399 005a 02       		.uleb128 0x2
+ 400 005b 04       		.byte	0x4
+ 401 005c 07       		.byte	0x7
+ 402 005d EA000000 		.4byte	.LASF6
+ 403 0061 02       		.uleb128 0x2
+ 404 0062 08       		.byte	0x8
+ 405 0063 05       		.byte	0x5
+ 406 0064 06020000 		.4byte	.LASF7
+ 407 0068 02       		.uleb128 0x2
+ 408 0069 08       		.byte	0x8
+ 409 006a 07       		.byte	0x7
+ 410 006b DE010000 		.4byte	.LASF8
+ 411 006f 04       		.uleb128 0x4
+ 412 0070 04       		.byte	0x4
+ 413 0071 05       		.byte	0x5
+ 414 0072 696E7400 		.ascii	"int\000"
+ 415 0076 02       		.uleb128 0x2
+ 416 0077 04       		.byte	0x4
+ 417 0078 07       		.byte	0x7
+ 418 0079 D1010000 		.4byte	.LASF9
+ 419 007d 03       		.uleb128 0x3
+ 420 007e F5010000 		.4byte	.LASF11
+ 421 0082 03       		.byte	0x3
+ 422 0083 2C       		.byte	0x2c
+ 423 0084 48000000 		.4byte	0x48
+ 424 0088 05       		.uleb128 0x5
+ 425 0089 35010000 		.4byte	.LASF12
+ 426 008d 04       		.byte	0x4
+ 427 008e 9301     		.2byte	0x193
+ 428 0090 41000000 		.4byte	0x41
+ 429 0094 05       		.uleb128 0x5
+ 430 0095 3C010000 		.4byte	.LASF13
+ 431 0099 04       		.byte	0x4
+ 432 009a 9401     		.2byte	0x194
+ 433 009c 5A000000 		.4byte	0x5a
+ 434 00a0 02       		.uleb128 0x2
+ 435 00a1 08       		.byte	0x8
+ 436 00a2 04       		.byte	0x4
+ 437 00a3 2E010000 		.4byte	.LASF14
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 11
+
+
+ 438 00a7 02       		.uleb128 0x2
+ 439 00a8 01       		.byte	0x1
+ 440 00a9 08       		.byte	0x8
+ 441 00aa 14020000 		.4byte	.LASF15
+ 442 00ae 02       		.uleb128 0x2
+ 443 00af 04       		.byte	0x4
+ 444 00b0 07       		.byte	0x7
+ 445 00b1 FD010000 		.4byte	.LASF16
+ 446 00b5 02       		.uleb128 0x2
+ 447 00b6 08       		.byte	0x8
+ 448 00b7 04       		.byte	0x4
+ 449 00b8 3B020000 		.4byte	.LASF17
+ 450 00bc 06       		.uleb128 0x6
+ 451 00bd CC000000 		.4byte	.LASF19
+ 452 00c1 01       		.byte	0x1
+ 453 00c2 15       		.byte	0x15
+ 454 00c3 00000000 		.4byte	.LFB63
+ 455 00c7 9C000000 		.4byte	.LFE63-.LFB63
+ 456 00cb 01       		.uleb128 0x1
+ 457 00cc 9C       		.byte	0x9c
+ 458 00cd 0F020000 		.4byte	0x20f
+ 459 00d1 07       		.uleb128 0x7
+ 460 00d2 36020000 		.4byte	.LASF21
+ 461 00d6 01       		.byte	0x1
+ 462 00d7 15       		.byte	0x15
+ 463 00d8 0F020000 		.4byte	0x20f
+ 464 00dc 00000000 		.4byte	.LLST0
+ 465 00e0 08       		.uleb128 0x8
+ 466 00e1 0A000000 		.4byte	.LVL1
+ 467 00e5 B9040000 		.4byte	0x4b9
+ 468 00e9 09       		.uleb128 0x9
+ 469 00ea 10000000 		.4byte	.LVL2
+ 470 00ee C6040000 		.4byte	0x4c6
+ 471 00f2 FC000000 		.4byte	0xfc
+ 472 00f6 0A       		.uleb128 0xa
+ 473 00f7 01       		.uleb128 0x1
+ 474 00f8 50       		.byte	0x50
+ 475 00f9 01       		.uleb128 0x1
+ 476 00fa 44       		.byte	0x44
+ 477 00fb 00       		.byte	0
+ 478 00fc 09       		.uleb128 0x9
+ 479 00fd 20000000 		.4byte	.LVL3
+ 480 0101 D7040000 		.4byte	0x4d7
+ 481 0105 1C010000 		.4byte	0x11c
+ 482 0109 0A       		.uleb128 0xa
+ 483 010a 01       		.uleb128 0x1
+ 484 010b 53       		.byte	0x53
+ 485 010c 01       		.uleb128 0x1
+ 486 010d 30       		.byte	0x30
+ 487 010e 0A       		.uleb128 0xa
+ 488 010f 01       		.uleb128 0x1
+ 489 0110 52       		.byte	0x52
+ 490 0111 01       		.uleb128 0x1
+ 491 0112 30       		.byte	0x30
+ 492 0113 0A       		.uleb128 0xa
+ 493 0114 02       		.uleb128 0x2
+ 494 0115 7D       		.byte	0x7d
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 12
+
+
+ 495 0116 00       		.sleb128 0
+ 496 0117 03       		.uleb128 0x3
+ 497 0118 F5       		.byte	0xf5
+ 498 0119 04       		.uleb128 0x4
+ 499 011a 25       		.uleb128 0x25
+ 500 011b 00       		.byte	0
+ 501 011c 09       		.uleb128 0x9
+ 502 011d 26000000 		.4byte	.LVL4
+ 503 0121 C6040000 		.4byte	0x4c6
+ 504 0125 2F010000 		.4byte	0x12f
+ 505 0129 0A       		.uleb128 0xa
+ 506 012a 01       		.uleb128 0x1
+ 507 012b 50       		.byte	0x50
+ 508 012c 01       		.uleb128 0x1
+ 509 012d 44       		.byte	0x44
+ 510 012e 00       		.byte	0
+ 511 012f 08       		.uleb128 0x8
+ 512 0130 2A000000 		.4byte	.LVL5
+ 513 0134 F7040000 		.4byte	0x4f7
+ 514 0138 09       		.uleb128 0x9
+ 515 0139 30000000 		.4byte	.LVL6
+ 516 013d C6040000 		.4byte	0x4c6
+ 517 0141 4B010000 		.4byte	0x14b
+ 518 0145 0A       		.uleb128 0xa
+ 519 0146 01       		.uleb128 0x1
+ 520 0147 50       		.byte	0x50
+ 521 0148 01       		.uleb128 0x1
+ 522 0149 44       		.byte	0x44
+ 523 014a 00       		.byte	0
+ 524 014b 09       		.uleb128 0x9
+ 525 014c 38000000 		.4byte	.LVL7
+ 526 0150 04050000 		.4byte	0x504
+ 527 0154 60010000 		.4byte	0x160
+ 528 0158 0A       		.uleb128 0xa
+ 529 0159 01       		.uleb128 0x1
+ 530 015a 50       		.byte	0x50
+ 531 015b 03       		.uleb128 0x3
+ 532 015c 0A       		.byte	0xa
+ 533 015d 1027     		.2byte	0x2710
+ 534 015f 00       		.byte	0
+ 535 0160 09       		.uleb128 0x9
+ 536 0161 46000000 		.4byte	.LVL8
+ 537 0165 D7040000 		.4byte	0x4d7
+ 538 0169 80010000 		.4byte	0x180
+ 539 016d 0A       		.uleb128 0xa
+ 540 016e 01       		.uleb128 0x1
+ 541 016f 53       		.byte	0x53
+ 542 0170 01       		.uleb128 0x1
+ 543 0171 30       		.byte	0x30
+ 544 0172 0A       		.uleb128 0xa
+ 545 0173 01       		.uleb128 0x1
+ 546 0174 52       		.byte	0x52
+ 547 0175 01       		.uleb128 0x1
+ 548 0176 30       		.byte	0x30
+ 549 0177 0A       		.uleb128 0xa
+ 550 0178 02       		.uleb128 0x2
+ 551 0179 7D       		.byte	0x7d
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 13
+
+
+ 552 017a 00       		.sleb128 0
+ 553 017b 03       		.uleb128 0x3
+ 554 017c F5       		.byte	0xf5
+ 555 017d 04       		.uleb128 0x4
+ 556 017e 25       		.uleb128 0x25
+ 557 017f 00       		.byte	0
+ 558 0180 08       		.uleb128 0x8
+ 559 0181 4A000000 		.4byte	.LVL9
+ 560 0185 F7040000 		.4byte	0x4f7
+ 561 0189 08       		.uleb128 0x8
+ 562 018a 50000000 		.4byte	.LVL11
+ 563 018e F7040000 		.4byte	0x4f7
+ 564 0192 09       		.uleb128 0x9
+ 565 0193 58000000 		.4byte	.LVL12
+ 566 0197 04050000 		.4byte	0x504
+ 567 019b A7010000 		.4byte	0x1a7
+ 568 019f 0A       		.uleb128 0xa
+ 569 01a0 01       		.uleb128 0x1
+ 570 01a1 50       		.byte	0x50
+ 571 01a2 03       		.uleb128 0x3
+ 572 01a3 0A       		.byte	0xa
+ 573 01a4 401F     		.2byte	0x1f40
+ 574 01a6 00       		.byte	0
+ 575 01a7 09       		.uleb128 0x9
+ 576 01a8 68000000 		.4byte	.LVL13
+ 577 01ac D7040000 		.4byte	0x4d7
+ 578 01b0 C7010000 		.4byte	0x1c7
+ 579 01b4 0A       		.uleb128 0xa
+ 580 01b5 01       		.uleb128 0x1
+ 581 01b6 53       		.byte	0x53
+ 582 01b7 01       		.uleb128 0x1
+ 583 01b8 30       		.byte	0x30
+ 584 01b9 0A       		.uleb128 0xa
+ 585 01ba 01       		.uleb128 0x1
+ 586 01bb 52       		.byte	0x52
+ 587 01bc 01       		.uleb128 0x1
+ 588 01bd 30       		.byte	0x30
+ 589 01be 0A       		.uleb128 0xa
+ 590 01bf 02       		.uleb128 0x2
+ 591 01c0 7D       		.byte	0x7d
+ 592 01c1 00       		.sleb128 0
+ 593 01c2 03       		.uleb128 0x3
+ 594 01c3 F5       		.byte	0xf5
+ 595 01c4 04       		.uleb128 0x4
+ 596 01c5 25       		.uleb128 0x25
+ 597 01c6 00       		.byte	0
+ 598 01c7 08       		.uleb128 0x8
+ 599 01c8 6C000000 		.4byte	.LVL14
+ 600 01cc B9040000 		.4byte	0x4b9
+ 601 01d0 09       		.uleb128 0x9
+ 602 01d1 74000000 		.4byte	.LVL15
+ 603 01d5 04050000 		.4byte	0x504
+ 604 01d9 E5010000 		.4byte	0x1e5
+ 605 01dd 0A       		.uleb128 0xa
+ 606 01de 01       		.uleb128 0x1
+ 607 01df 50       		.byte	0x50
+ 608 01e0 03       		.uleb128 0x3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 14
+
+
+ 609 01e1 0A       		.byte	0xa
+ 610 01e2 401F     		.2byte	0x1f40
+ 611 01e4 00       		.byte	0
+ 612 01e5 09       		.uleb128 0x9
+ 613 01e6 82000000 		.4byte	.LVL16
+ 614 01ea D7040000 		.4byte	0x4d7
+ 615 01ee 05020000 		.4byte	0x205
+ 616 01f2 0A       		.uleb128 0xa
+ 617 01f3 01       		.uleb128 0x1
+ 618 01f4 53       		.byte	0x53
+ 619 01f5 01       		.uleb128 0x1
+ 620 01f6 30       		.byte	0x30
+ 621 01f7 0A       		.uleb128 0xa
+ 622 01f8 01       		.uleb128 0x1
+ 623 01f9 52       		.byte	0x52
+ 624 01fa 01       		.uleb128 0x1
+ 625 01fb 30       		.byte	0x30
+ 626 01fc 0A       		.uleb128 0xa
+ 627 01fd 02       		.uleb128 0x2
+ 628 01fe 7D       		.byte	0x7d
+ 629 01ff 00       		.sleb128 0
+ 630 0200 03       		.uleb128 0x3
+ 631 0201 F5       		.byte	0xf5
+ 632 0202 04       		.uleb128 0x4
+ 633 0203 25       		.uleb128 0x25
+ 634 0204 00       		.byte	0
+ 635 0205 08       		.uleb128 0x8
+ 636 0206 86000000 		.4byte	.LVL17
+ 637 020a B9040000 		.4byte	0x4b9
+ 638 020e 00       		.byte	0
+ 639 020f 02       		.uleb128 0x2
+ 640 0210 01       		.byte	0x1
+ 641 0211 02       		.byte	0x2
+ 642 0212 53020000 		.4byte	.LASF18
+ 643 0216 06       		.uleb128 0x6
+ 644 0217 3B000000 		.4byte	.LASF20
+ 645 021b 01       		.byte	0x1
+ 646 021c 41       		.byte	0x41
+ 647 021d 00000000 		.4byte	.LFB64
+ 648 0221 44010000 		.4byte	.LFE64-.LFB64
+ 649 0225 01       		.uleb128 0x1
+ 650 0226 9C       		.byte	0x9c
+ 651 0227 87040000 		.4byte	0x487
+ 652 022b 07       		.uleb128 0x7
+ 653 022c 36020000 		.4byte	.LASF21
+ 654 0230 01       		.byte	0x1
+ 655 0231 41       		.byte	0x41
+ 656 0232 0F020000 		.4byte	0x20f
+ 657 0236 3A000000 		.4byte	.LLST1
+ 658 023a 08       		.uleb128 0x8
+ 659 023b 0E000000 		.4byte	.LVL19
+ 660 023f F7040000 		.4byte	0x4f7
+ 661 0243 09       		.uleb128 0x9
+ 662 0244 14000000 		.4byte	.LVL20
+ 663 0248 C6040000 		.4byte	0x4c6
+ 664 024c 57020000 		.4byte	0x257
+ 665 0250 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 15
+
+
+ 666 0251 01       		.uleb128 0x1
+ 667 0252 50       		.byte	0x50
+ 668 0253 02       		.uleb128 0x2
+ 669 0254 08       		.byte	0x8
+ 670 0255 64       		.byte	0x64
+ 671 0256 00       		.byte	0
+ 672 0257 08       		.uleb128 0x8
+ 673 0258 1C000000 		.4byte	.LVL21
+ 674 025c 15050000 		.4byte	0x515
+ 675 0260 09       		.uleb128 0x9
+ 676 0261 22000000 		.4byte	.LVL22
+ 677 0265 C6040000 		.4byte	0x4c6
+ 678 0269 73020000 		.4byte	0x273
+ 679 026d 0A       		.uleb128 0xa
+ 680 026e 01       		.uleb128 0x1
+ 681 026f 50       		.byte	0x50
+ 682 0270 01       		.uleb128 0x1
+ 683 0271 44       		.byte	0x44
+ 684 0272 00       		.byte	0
+ 685 0273 09       		.uleb128 0x9
+ 686 0274 32000000 		.4byte	.LVL23
+ 687 0278 D7040000 		.4byte	0x4d7
+ 688 027c 93020000 		.4byte	0x293
+ 689 0280 0A       		.uleb128 0xa
+ 690 0281 01       		.uleb128 0x1
+ 691 0282 53       		.byte	0x53
+ 692 0283 01       		.uleb128 0x1
+ 693 0284 30       		.byte	0x30
+ 694 0285 0A       		.uleb128 0xa
+ 695 0286 01       		.uleb128 0x1
+ 696 0287 52       		.byte	0x52
+ 697 0288 01       		.uleb128 0x1
+ 698 0289 30       		.byte	0x30
+ 699 028a 0A       		.uleb128 0xa
+ 700 028b 02       		.uleb128 0x2
+ 701 028c 7D       		.byte	0x7d
+ 702 028d 00       		.sleb128 0
+ 703 028e 03       		.uleb128 0x3
+ 704 028f F5       		.byte	0xf5
+ 705 0290 04       		.uleb128 0x4
+ 706 0291 25       		.uleb128 0x25
+ 707 0292 00       		.byte	0
+ 708 0293 09       		.uleb128 0x9
+ 709 0294 38000000 		.4byte	.LVL24
+ 710 0298 C6040000 		.4byte	0x4c6
+ 711 029c A6020000 		.4byte	0x2a6
+ 712 02a0 0A       		.uleb128 0xa
+ 713 02a1 01       		.uleb128 0x1
+ 714 02a2 50       		.byte	0x50
+ 715 02a3 01       		.uleb128 0x1
+ 716 02a4 44       		.byte	0x44
+ 717 02a5 00       		.byte	0
+ 718 02a6 08       		.uleb128 0x8
+ 719 02a7 40000000 		.4byte	.LVL25
+ 720 02ab 26050000 		.4byte	0x526
+ 721 02af 09       		.uleb128 0x9
+ 722 02b0 46000000 		.4byte	.LVL26
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 16
+
+
+ 723 02b4 C6040000 		.4byte	0x4c6
+ 724 02b8 C2020000 		.4byte	0x2c2
+ 725 02bc 0A       		.uleb128 0xa
+ 726 02bd 01       		.uleb128 0x1
+ 727 02be 50       		.byte	0x50
+ 728 02bf 01       		.uleb128 0x1
+ 729 02c0 44       		.byte	0x44
+ 730 02c1 00       		.byte	0
+ 731 02c2 09       		.uleb128 0x9
+ 732 02c3 4E000000 		.4byte	.LVL27
+ 733 02c7 04050000 		.4byte	0x504
+ 734 02cb D7020000 		.4byte	0x2d7
+ 735 02cf 0A       		.uleb128 0xa
+ 736 02d0 01       		.uleb128 0x1
+ 737 02d1 50       		.byte	0x50
+ 738 02d2 03       		.uleb128 0x3
+ 739 02d3 0A       		.byte	0xa
+ 740 02d4 1027     		.2byte	0x2710
+ 741 02d6 00       		.byte	0
+ 742 02d7 09       		.uleb128 0x9
+ 743 02d8 54000000 		.4byte	.LVL28
+ 744 02dc C6040000 		.4byte	0x4c6
+ 745 02e0 EA020000 		.4byte	0x2ea
+ 746 02e4 0A       		.uleb128 0xa
+ 747 02e5 01       		.uleb128 0x1
+ 748 02e6 50       		.byte	0x50
+ 749 02e7 01       		.uleb128 0x1
+ 750 02e8 44       		.byte	0x44
+ 751 02e9 00       		.byte	0
+ 752 02ea 09       		.uleb128 0x9
+ 753 02eb 62000000 		.4byte	.LVL29
+ 754 02ef D7040000 		.4byte	0x4d7
+ 755 02f3 0A030000 		.4byte	0x30a
+ 756 02f7 0A       		.uleb128 0xa
+ 757 02f8 01       		.uleb128 0x1
+ 758 02f9 53       		.byte	0x53
+ 759 02fa 01       		.uleb128 0x1
+ 760 02fb 31       		.byte	0x31
+ 761 02fc 0A       		.uleb128 0xa
+ 762 02fd 01       		.uleb128 0x1
+ 763 02fe 52       		.byte	0x52
+ 764 02ff 01       		.uleb128 0x1
+ 765 0300 30       		.byte	0x30
+ 766 0301 0A       		.uleb128 0xa
+ 767 0302 02       		.uleb128 0x2
+ 768 0303 7D       		.byte	0x7d
+ 769 0304 00       		.sleb128 0
+ 770 0305 03       		.uleb128 0x3
+ 771 0306 F5       		.byte	0xf5
+ 772 0307 04       		.uleb128 0x4
+ 773 0308 25       		.uleb128 0x25
+ 774 0309 00       		.byte	0
+ 775 030a 08       		.uleb128 0x8
+ 776 030b 66000000 		.4byte	.LVL30
+ 777 030f F7040000 		.4byte	0x4f7
+ 778 0313 09       		.uleb128 0x9
+ 779 0314 74000000 		.4byte	.LVL31
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 17
+
+
+ 780 0318 D7040000 		.4byte	0x4d7
+ 781 031c 33030000 		.4byte	0x333
+ 782 0320 0A       		.uleb128 0xa
+ 783 0321 01       		.uleb128 0x1
+ 784 0322 53       		.byte	0x53
+ 785 0323 01       		.uleb128 0x1
+ 786 0324 30       		.byte	0x30
+ 787 0325 0A       		.uleb128 0xa
+ 788 0326 01       		.uleb128 0x1
+ 789 0327 52       		.byte	0x52
+ 790 0328 01       		.uleb128 0x1
+ 791 0329 31       		.byte	0x31
+ 792 032a 0A       		.uleb128 0xa
+ 793 032b 02       		.uleb128 0x2
+ 794 032c 7D       		.byte	0x7d
+ 795 032d 00       		.sleb128 0
+ 796 032e 03       		.uleb128 0x3
+ 797 032f F5       		.byte	0xf5
+ 798 0330 04       		.uleb128 0x4
+ 799 0331 25       		.uleb128 0x25
+ 800 0332 00       		.byte	0
+ 801 0333 08       		.uleb128 0x8
+ 802 0334 78000000 		.4byte	.LVL32
+ 803 0338 B9040000 		.4byte	0x4b9
+ 804 033c 08       		.uleb128 0x8
+ 805 033d 7E000000 		.4byte	.LVL34
+ 806 0341 B9040000 		.4byte	0x4b9
+ 807 0345 09       		.uleb128 0x9
+ 808 0346 84000000 		.4byte	.LVL35
+ 809 034a C6040000 		.4byte	0x4c6
+ 810 034e 59030000 		.4byte	0x359
+ 811 0352 0A       		.uleb128 0xa
+ 812 0353 01       		.uleb128 0x1
+ 813 0354 50       		.byte	0x50
+ 814 0355 02       		.uleb128 0x2
+ 815 0356 08       		.byte	0x8
+ 816 0357 32       		.byte	0x32
+ 817 0358 00       		.byte	0
+ 818 0359 08       		.uleb128 0x8
+ 819 035a 8C000000 		.4byte	.LVL36
+ 820 035e 26050000 		.4byte	0x526
+ 821 0362 09       		.uleb128 0x9
+ 822 0363 92000000 		.4byte	.LVL37
+ 823 0367 C6040000 		.4byte	0x4c6
+ 824 036b 75030000 		.4byte	0x375
+ 825 036f 0A       		.uleb128 0xa
+ 826 0370 01       		.uleb128 0x1
+ 827 0371 50       		.byte	0x50
+ 828 0372 01       		.uleb128 0x1
+ 829 0373 44       		.byte	0x44
+ 830 0374 00       		.byte	0
+ 831 0375 09       		.uleb128 0x9
+ 832 0376 A2000000 		.4byte	.LVL38
+ 833 037a D7040000 		.4byte	0x4d7
+ 834 037e 95030000 		.4byte	0x395
+ 835 0382 0A       		.uleb128 0xa
+ 836 0383 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 18
+
+
+ 837 0384 53       		.byte	0x53
+ 838 0385 01       		.uleb128 0x1
+ 839 0386 30       		.byte	0x30
+ 840 0387 0A       		.uleb128 0xa
+ 841 0388 01       		.uleb128 0x1
+ 842 0389 52       		.byte	0x52
+ 843 038a 01       		.uleb128 0x1
+ 844 038b 30       		.byte	0x30
+ 845 038c 0A       		.uleb128 0xa
+ 846 038d 02       		.uleb128 0x2
+ 847 038e 7D       		.byte	0x7d
+ 848 038f 00       		.sleb128 0
+ 849 0390 03       		.uleb128 0x3
+ 850 0391 F5       		.byte	0xf5
+ 851 0392 04       		.uleb128 0x4
+ 852 0393 25       		.uleb128 0x25
+ 853 0394 00       		.byte	0
+ 854 0395 09       		.uleb128 0x9
+ 855 0396 A8000000 		.4byte	.LVL39
+ 856 039a C6040000 		.4byte	0x4c6
+ 857 039e A8030000 		.4byte	0x3a8
+ 858 03a2 0A       		.uleb128 0xa
+ 859 03a3 01       		.uleb128 0x1
+ 860 03a4 50       		.byte	0x50
+ 861 03a5 01       		.uleb128 0x1
+ 862 03a6 44       		.byte	0x44
+ 863 03a7 00       		.byte	0
+ 864 03a8 08       		.uleb128 0x8
+ 865 03a9 B4000000 		.4byte	.LVL40
+ 866 03ad 15050000 		.4byte	0x515
+ 867 03b1 09       		.uleb128 0x9
+ 868 03b2 BA000000 		.4byte	.LVL41
+ 869 03b6 C6040000 		.4byte	0x4c6
+ 870 03ba C4030000 		.4byte	0x3c4
+ 871 03be 0A       		.uleb128 0xa
+ 872 03bf 01       		.uleb128 0x1
+ 873 03c0 50       		.byte	0x50
+ 874 03c1 01       		.uleb128 0x1
+ 875 03c2 44       		.byte	0x44
+ 876 03c3 00       		.byte	0
+ 877 03c4 09       		.uleb128 0x9
+ 878 03c5 C2000000 		.4byte	.LVL42
+ 879 03c9 04050000 		.4byte	0x504
+ 880 03cd D9030000 		.4byte	0x3d9
+ 881 03d1 0A       		.uleb128 0xa
+ 882 03d2 01       		.uleb128 0x1
+ 883 03d3 50       		.byte	0x50
+ 884 03d4 03       		.uleb128 0x3
+ 885 03d5 0A       		.byte	0xa
+ 886 03d6 581B     		.2byte	0x1b58
+ 887 03d8 00       		.byte	0
+ 888 03d9 09       		.uleb128 0x9
+ 889 03da D8000000 		.4byte	.LVL43
+ 890 03de D7040000 		.4byte	0x4d7
+ 891 03e2 FB030000 		.4byte	0x3fb
+ 892 03e6 0A       		.uleb128 0xa
+ 893 03e7 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 19
+
+
+ 894 03e8 53       		.byte	0x53
+ 895 03e9 02       		.uleb128 0x2
+ 896 03ea 76       		.byte	0x76
+ 897 03eb 00       		.sleb128 0
+ 898 03ec 0A       		.uleb128 0xa
+ 899 03ed 01       		.uleb128 0x1
+ 900 03ee 52       		.byte	0x52
+ 901 03ef 02       		.uleb128 0x2
+ 902 03f0 76       		.byte	0x76
+ 903 03f1 00       		.sleb128 0
+ 904 03f2 0A       		.uleb128 0xa
+ 905 03f3 02       		.uleb128 0x2
+ 906 03f4 7D       		.byte	0x7d
+ 907 03f5 00       		.sleb128 0
+ 908 03f6 03       		.uleb128 0x3
+ 909 03f7 F5       		.byte	0xf5
+ 910 03f8 04       		.uleb128 0x4
+ 911 03f9 25       		.uleb128 0x25
+ 912 03fa 00       		.byte	0
+ 913 03fb 09       		.uleb128 0x9
+ 914 03fc E6000000 		.4byte	.LVL44
+ 915 0400 D7040000 		.4byte	0x4d7
+ 916 0404 1C040000 		.4byte	0x41c
+ 917 0408 0A       		.uleb128 0xa
+ 918 0409 01       		.uleb128 0x1
+ 919 040a 53       		.byte	0x53
+ 920 040b 02       		.uleb128 0x2
+ 921 040c 76       		.byte	0x76
+ 922 040d 00       		.sleb128 0
+ 923 040e 0A       		.uleb128 0xa
+ 924 040f 01       		.uleb128 0x1
+ 925 0410 52       		.byte	0x52
+ 926 0411 01       		.uleb128 0x1
+ 927 0412 31       		.byte	0x31
+ 928 0413 0A       		.uleb128 0xa
+ 929 0414 02       		.uleb128 0x2
+ 930 0415 7D       		.byte	0x7d
+ 931 0416 00       		.sleb128 0
+ 932 0417 03       		.uleb128 0x3
+ 933 0418 F5       		.byte	0xf5
+ 934 0419 04       		.uleb128 0x4
+ 935 041a 25       		.uleb128 0x25
+ 936 041b 00       		.byte	0
+ 937 041c 08       		.uleb128 0x8
+ 938 041d EE000000 		.4byte	.LVL45
+ 939 0421 15050000 		.4byte	0x515
+ 940 0425 09       		.uleb128 0x9
+ 941 0426 F6000000 		.4byte	.LVL46
+ 942 042a 04050000 		.4byte	0x504
+ 943 042e 3A040000 		.4byte	0x43a
+ 944 0432 0A       		.uleb128 0xa
+ 945 0433 01       		.uleb128 0x1
+ 946 0434 50       		.byte	0x50
+ 947 0435 03       		.uleb128 0x3
+ 948 0436 0A       		.byte	0xa
+ 949 0437 F82A     		.2byte	0x2af8
+ 950 0439 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 20
+
+
+ 951 043a 09       		.uleb128 0x9
+ 952 043b 08010000 		.4byte	.LVL47
+ 953 043f D7040000 		.4byte	0x4d7
+ 954 0443 5C040000 		.4byte	0x45c
+ 955 0447 0A       		.uleb128 0xa
+ 956 0448 01       		.uleb128 0x1
+ 957 0449 53       		.byte	0x53
+ 958 044a 02       		.uleb128 0x2
+ 959 044b 76       		.byte	0x76
+ 960 044c 00       		.sleb128 0
+ 961 044d 0A       		.uleb128 0xa
+ 962 044e 01       		.uleb128 0x1
+ 963 044f 52       		.byte	0x52
+ 964 0450 02       		.uleb128 0x2
+ 965 0451 76       		.byte	0x76
+ 966 0452 00       		.sleb128 0
+ 967 0453 0A       		.uleb128 0xa
+ 968 0454 02       		.uleb128 0x2
+ 969 0455 7D       		.byte	0x7d
+ 970 0456 00       		.sleb128 0
+ 971 0457 03       		.uleb128 0x3
+ 972 0458 F5       		.byte	0xf5
+ 973 0459 04       		.uleb128 0x4
+ 974 045a 25       		.uleb128 0x25
+ 975 045b 00       		.byte	0
+ 976 045c 09       		.uleb128 0x9
+ 977 045d 16010000 		.4byte	.LVL48
+ 978 0461 D7040000 		.4byte	0x4d7
+ 979 0465 7D040000 		.4byte	0x47d
+ 980 0469 0A       		.uleb128 0xa
+ 981 046a 01       		.uleb128 0x1
+ 982 046b 53       		.byte	0x53
+ 983 046c 02       		.uleb128 0x2
+ 984 046d 76       		.byte	0x76
+ 985 046e 00       		.sleb128 0
+ 986 046f 0A       		.uleb128 0xa
+ 987 0470 01       		.uleb128 0x1
+ 988 0471 52       		.byte	0x52
+ 989 0472 01       		.uleb128 0x1
+ 990 0473 31       		.byte	0x31
+ 991 0474 0A       		.uleb128 0xa
+ 992 0475 02       		.uleb128 0x2
+ 993 0476 7D       		.byte	0x7d
+ 994 0477 00       		.sleb128 0
+ 995 0478 03       		.uleb128 0x3
+ 996 0479 F5       		.byte	0xf5
+ 997 047a 04       		.uleb128 0x4
+ 998 047b 25       		.uleb128 0x25
+ 999 047c 00       		.byte	0
+ 1000 047d 08       		.uleb128 0x8
+ 1001 047e 1A010000 		.4byte	.LVL49
+ 1002 0482 B9040000 		.4byte	0x4b9
+ 1003 0486 00       		.byte	0
+ 1004 0487 0B       		.uleb128 0xb
+ 1005 0488 0F010000 		.4byte	.LASF22
+ 1006 048c 05       		.byte	0x5
+ 1007 048d 9606     		.2byte	0x696
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 21
+
+
+ 1008 048f 93040000 		.4byte	0x493
+ 1009 0493 0C       		.uleb128 0xc
+ 1010 0494 7D000000 		.4byte	0x7d
+ 1011 0498 0D       		.uleb128 0xd
+ 1012 0499 94000000 		.4byte	0x94
+ 1013 049d A8040000 		.4byte	0x4a8
+ 1014 04a1 0E       		.uleb128 0xe
+ 1015 04a2 AE000000 		.4byte	0xae
+ 1016 04a6 9F       		.byte	0x9f
+ 1017 04a7 00       		.byte	0
+ 1018 04a8 0F       		.uleb128 0xf
+ 1019 04a9 1C010000 		.4byte	.LASF23
+ 1020 04ad 06       		.byte	0x6
+ 1021 04ae 13       		.byte	0x13
+ 1022 04af 98040000 		.4byte	0x498
+ 1023 04b3 05       		.uleb128 0x5
+ 1024 04b4 03       		.byte	0x3
+ 1025 04b5 00000000 		.4byte	Camera_linebuffer
+ 1026 04b9 10       		.uleb128 0x10
+ 1027 04ba B8000000 		.4byte	.LASF26
+ 1028 04be 09       		.byte	0x9
+ 1029 04bf 22       		.byte	0x22
+ 1030 04c0 C6040000 		.4byte	0x4c6
+ 1031 04c4 11       		.uleb128 0x11
+ 1032 04c5 00       		.byte	0
+ 1033 04c6 12       		.uleb128 0x12
+ 1034 04c7 59020000 		.4byte	.LASF24
+ 1035 04cb 07       		.byte	0x7
+ 1036 04cc 76       		.byte	0x76
+ 1037 04cd D7040000 		.4byte	0x4d7
+ 1038 04d1 13       		.uleb128 0x13
+ 1039 04d2 94000000 		.4byte	0x94
+ 1040 04d6 00       		.byte	0
+ 1041 04d7 12       		.uleb128 0x12
+ 1042 04d8 23020000 		.4byte	.LASF25
+ 1043 04dc 08       		.byte	0x8
+ 1044 04dd 26       		.byte	0x26
+ 1045 04de F7040000 		.4byte	0x4f7
+ 1046 04e2 13       		.uleb128 0x13
+ 1047 04e3 A0000000 		.4byte	0xa0
+ 1048 04e7 13       		.uleb128 0x13
+ 1049 04e8 0F020000 		.4byte	0x20f
+ 1050 04ec 13       		.uleb128 0x13
+ 1051 04ed 0F020000 		.4byte	0x20f
+ 1052 04f1 13       		.uleb128 0x13
+ 1053 04f2 25000000 		.4byte	0x25
+ 1054 04f6 00       		.byte	0
+ 1055 04f7 10       		.uleb128 0x10
+ 1056 04f8 00000000 		.4byte	.LASF27
+ 1057 04fc 09       		.byte	0x9
+ 1058 04fd 21       		.byte	0x21
+ 1059 04fe 04050000 		.4byte	0x504
+ 1060 0502 11       		.uleb128 0x11
+ 1061 0503 00       		.byte	0
+ 1062 0504 12       		.uleb128 0x12
+ 1063 0505 2B000000 		.4byte	.LASF28
+ 1064 0509 09       		.byte	0x9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 22
+
+
+ 1065 050a 25       		.byte	0x25
+ 1066 050b 15050000 		.4byte	0x515
+ 1067 050f 13       		.uleb128 0x13
+ 1068 0510 88000000 		.4byte	0x88
+ 1069 0514 00       		.byte	0
+ 1070 0515 12       		.uleb128 0x12
+ 1071 0516 91000000 		.4byte	.LASF29
+ 1072 051a 09       		.byte	0x9
+ 1073 051b 23       		.byte	0x23
+ 1074 051c 26050000 		.4byte	0x526
+ 1075 0520 13       		.uleb128 0x13
+ 1076 0521 A0000000 		.4byte	0xa0
+ 1077 0525 00       		.byte	0
+ 1078 0526 14       		.uleb128 0x14
+ 1079 0527 D8000000 		.4byte	.LASF30
+ 1080 052b 09       		.byte	0x9
+ 1081 052c 24       		.byte	0x24
+ 1082 052d 13       		.uleb128 0x13
+ 1083 052e A0000000 		.4byte	0xa0
+ 1084 0532 00       		.byte	0
+ 1085 0533 00       		.byte	0
+ 1086              		.section	.debug_abbrev,"",%progbits
+ 1087              	.Ldebug_abbrev0:
+ 1088 0000 01       		.uleb128 0x1
+ 1089 0001 11       		.uleb128 0x11
+ 1090 0002 01       		.byte	0x1
+ 1091 0003 25       		.uleb128 0x25
+ 1092 0004 0E       		.uleb128 0xe
+ 1093 0005 13       		.uleb128 0x13
+ 1094 0006 0B       		.uleb128 0xb
+ 1095 0007 03       		.uleb128 0x3
+ 1096 0008 0E       		.uleb128 0xe
+ 1097 0009 1B       		.uleb128 0x1b
+ 1098 000a 0E       		.uleb128 0xe
+ 1099 000b 55       		.uleb128 0x55
+ 1100 000c 17       		.uleb128 0x17
+ 1101 000d 11       		.uleb128 0x11
+ 1102 000e 01       		.uleb128 0x1
+ 1103 000f 10       		.uleb128 0x10
+ 1104 0010 17       		.uleb128 0x17
+ 1105 0011 00       		.byte	0
+ 1106 0012 00       		.byte	0
+ 1107 0013 02       		.uleb128 0x2
+ 1108 0014 24       		.uleb128 0x24
+ 1109 0015 00       		.byte	0
+ 1110 0016 0B       		.uleb128 0xb
+ 1111 0017 0B       		.uleb128 0xb
+ 1112 0018 3E       		.uleb128 0x3e
+ 1113 0019 0B       		.uleb128 0xb
+ 1114 001a 03       		.uleb128 0x3
+ 1115 001b 0E       		.uleb128 0xe
+ 1116 001c 00       		.byte	0
+ 1117 001d 00       		.byte	0
+ 1118 001e 03       		.uleb128 0x3
+ 1119 001f 16       		.uleb128 0x16
+ 1120 0020 00       		.byte	0
+ 1121 0021 03       		.uleb128 0x3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 23
+
+
+ 1122 0022 0E       		.uleb128 0xe
+ 1123 0023 3A       		.uleb128 0x3a
+ 1124 0024 0B       		.uleb128 0xb
+ 1125 0025 3B       		.uleb128 0x3b
+ 1126 0026 0B       		.uleb128 0xb
+ 1127 0027 49       		.uleb128 0x49
+ 1128 0028 13       		.uleb128 0x13
+ 1129 0029 00       		.byte	0
+ 1130 002a 00       		.byte	0
+ 1131 002b 04       		.uleb128 0x4
+ 1132 002c 24       		.uleb128 0x24
+ 1133 002d 00       		.byte	0
+ 1134 002e 0B       		.uleb128 0xb
+ 1135 002f 0B       		.uleb128 0xb
+ 1136 0030 3E       		.uleb128 0x3e
+ 1137 0031 0B       		.uleb128 0xb
+ 1138 0032 03       		.uleb128 0x3
+ 1139 0033 08       		.uleb128 0x8
+ 1140 0034 00       		.byte	0
+ 1141 0035 00       		.byte	0
+ 1142 0036 05       		.uleb128 0x5
+ 1143 0037 16       		.uleb128 0x16
+ 1144 0038 00       		.byte	0
+ 1145 0039 03       		.uleb128 0x3
+ 1146 003a 0E       		.uleb128 0xe
+ 1147 003b 3A       		.uleb128 0x3a
+ 1148 003c 0B       		.uleb128 0xb
+ 1149 003d 3B       		.uleb128 0x3b
+ 1150 003e 05       		.uleb128 0x5
+ 1151 003f 49       		.uleb128 0x49
+ 1152 0040 13       		.uleb128 0x13
+ 1153 0041 00       		.byte	0
+ 1154 0042 00       		.byte	0
+ 1155 0043 06       		.uleb128 0x6
+ 1156 0044 2E       		.uleb128 0x2e
+ 1157 0045 01       		.byte	0x1
+ 1158 0046 3F       		.uleb128 0x3f
+ 1159 0047 19       		.uleb128 0x19
+ 1160 0048 03       		.uleb128 0x3
+ 1161 0049 0E       		.uleb128 0xe
+ 1162 004a 3A       		.uleb128 0x3a
+ 1163 004b 0B       		.uleb128 0xb
+ 1164 004c 3B       		.uleb128 0x3b
+ 1165 004d 0B       		.uleb128 0xb
+ 1166 004e 27       		.uleb128 0x27
+ 1167 004f 19       		.uleb128 0x19
+ 1168 0050 11       		.uleb128 0x11
+ 1169 0051 01       		.uleb128 0x1
+ 1170 0052 12       		.uleb128 0x12
+ 1171 0053 06       		.uleb128 0x6
+ 1172 0054 40       		.uleb128 0x40
+ 1173 0055 18       		.uleb128 0x18
+ 1174 0056 9742     		.uleb128 0x2117
+ 1175 0058 19       		.uleb128 0x19
+ 1176 0059 01       		.uleb128 0x1
+ 1177 005a 13       		.uleb128 0x13
+ 1178 005b 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 24
+
+
+ 1179 005c 00       		.byte	0
+ 1180 005d 07       		.uleb128 0x7
+ 1181 005e 05       		.uleb128 0x5
+ 1182 005f 00       		.byte	0
+ 1183 0060 03       		.uleb128 0x3
+ 1184 0061 0E       		.uleb128 0xe
+ 1185 0062 3A       		.uleb128 0x3a
+ 1186 0063 0B       		.uleb128 0xb
+ 1187 0064 3B       		.uleb128 0x3b
+ 1188 0065 0B       		.uleb128 0xb
+ 1189 0066 49       		.uleb128 0x49
+ 1190 0067 13       		.uleb128 0x13
+ 1191 0068 02       		.uleb128 0x2
+ 1192 0069 17       		.uleb128 0x17
+ 1193 006a 00       		.byte	0
+ 1194 006b 00       		.byte	0
+ 1195 006c 08       		.uleb128 0x8
+ 1196 006d 898201   		.uleb128 0x4109
+ 1197 0070 00       		.byte	0
+ 1198 0071 11       		.uleb128 0x11
+ 1199 0072 01       		.uleb128 0x1
+ 1200 0073 31       		.uleb128 0x31
+ 1201 0074 13       		.uleb128 0x13
+ 1202 0075 00       		.byte	0
+ 1203 0076 00       		.byte	0
+ 1204 0077 09       		.uleb128 0x9
+ 1205 0078 898201   		.uleb128 0x4109
+ 1206 007b 01       		.byte	0x1
+ 1207 007c 11       		.uleb128 0x11
+ 1208 007d 01       		.uleb128 0x1
+ 1209 007e 31       		.uleb128 0x31
+ 1210 007f 13       		.uleb128 0x13
+ 1211 0080 01       		.uleb128 0x1
+ 1212 0081 13       		.uleb128 0x13
+ 1213 0082 00       		.byte	0
+ 1214 0083 00       		.byte	0
+ 1215 0084 0A       		.uleb128 0xa
+ 1216 0085 8A8201   		.uleb128 0x410a
+ 1217 0088 00       		.byte	0
+ 1218 0089 02       		.uleb128 0x2
+ 1219 008a 18       		.uleb128 0x18
+ 1220 008b 9142     		.uleb128 0x2111
+ 1221 008d 18       		.uleb128 0x18
+ 1222 008e 00       		.byte	0
+ 1223 008f 00       		.byte	0
+ 1224 0090 0B       		.uleb128 0xb
+ 1225 0091 34       		.uleb128 0x34
+ 1226 0092 00       		.byte	0
+ 1227 0093 03       		.uleb128 0x3
+ 1228 0094 0E       		.uleb128 0xe
+ 1229 0095 3A       		.uleb128 0x3a
+ 1230 0096 0B       		.uleb128 0xb
+ 1231 0097 3B       		.uleb128 0x3b
+ 1232 0098 05       		.uleb128 0x5
+ 1233 0099 49       		.uleb128 0x49
+ 1234 009a 13       		.uleb128 0x13
+ 1235 009b 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 25
+
+
+ 1236 009c 19       		.uleb128 0x19
+ 1237 009d 3C       		.uleb128 0x3c
+ 1238 009e 19       		.uleb128 0x19
+ 1239 009f 00       		.byte	0
+ 1240 00a0 00       		.byte	0
+ 1241 00a1 0C       		.uleb128 0xc
+ 1242 00a2 35       		.uleb128 0x35
+ 1243 00a3 00       		.byte	0
+ 1244 00a4 49       		.uleb128 0x49
+ 1245 00a5 13       		.uleb128 0x13
+ 1246 00a6 00       		.byte	0
+ 1247 00a7 00       		.byte	0
+ 1248 00a8 0D       		.uleb128 0xd
+ 1249 00a9 01       		.uleb128 0x1
+ 1250 00aa 01       		.byte	0x1
+ 1251 00ab 49       		.uleb128 0x49
+ 1252 00ac 13       		.uleb128 0x13
+ 1253 00ad 01       		.uleb128 0x1
+ 1254 00ae 13       		.uleb128 0x13
+ 1255 00af 00       		.byte	0
+ 1256 00b0 00       		.byte	0
+ 1257 00b1 0E       		.uleb128 0xe
+ 1258 00b2 21       		.uleb128 0x21
+ 1259 00b3 00       		.byte	0
+ 1260 00b4 49       		.uleb128 0x49
+ 1261 00b5 13       		.uleb128 0x13
+ 1262 00b6 2F       		.uleb128 0x2f
+ 1263 00b7 0B       		.uleb128 0xb
+ 1264 00b8 00       		.byte	0
+ 1265 00b9 00       		.byte	0
+ 1266 00ba 0F       		.uleb128 0xf
+ 1267 00bb 34       		.uleb128 0x34
+ 1268 00bc 00       		.byte	0
+ 1269 00bd 03       		.uleb128 0x3
+ 1270 00be 0E       		.uleb128 0xe
+ 1271 00bf 3A       		.uleb128 0x3a
+ 1272 00c0 0B       		.uleb128 0xb
+ 1273 00c1 3B       		.uleb128 0x3b
+ 1274 00c2 0B       		.uleb128 0xb
+ 1275 00c3 49       		.uleb128 0x49
+ 1276 00c4 13       		.uleb128 0x13
+ 1277 00c5 3F       		.uleb128 0x3f
+ 1278 00c6 19       		.uleb128 0x19
+ 1279 00c7 02       		.uleb128 0x2
+ 1280 00c8 18       		.uleb128 0x18
+ 1281 00c9 00       		.byte	0
+ 1282 00ca 00       		.byte	0
+ 1283 00cb 10       		.uleb128 0x10
+ 1284 00cc 2E       		.uleb128 0x2e
+ 1285 00cd 01       		.byte	0x1
+ 1286 00ce 3F       		.uleb128 0x3f
+ 1287 00cf 19       		.uleb128 0x19
+ 1288 00d0 03       		.uleb128 0x3
+ 1289 00d1 0E       		.uleb128 0xe
+ 1290 00d2 3A       		.uleb128 0x3a
+ 1291 00d3 0B       		.uleb128 0xb
+ 1292 00d4 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 26
+
+
+ 1293 00d5 0B       		.uleb128 0xb
+ 1294 00d6 3C       		.uleb128 0x3c
+ 1295 00d7 19       		.uleb128 0x19
+ 1296 00d8 01       		.uleb128 0x1
+ 1297 00d9 13       		.uleb128 0x13
+ 1298 00da 00       		.byte	0
+ 1299 00db 00       		.byte	0
+ 1300 00dc 11       		.uleb128 0x11
+ 1301 00dd 18       		.uleb128 0x18
+ 1302 00de 00       		.byte	0
+ 1303 00df 00       		.byte	0
+ 1304 00e0 00       		.byte	0
+ 1305 00e1 12       		.uleb128 0x12
+ 1306 00e2 2E       		.uleb128 0x2e
+ 1307 00e3 01       		.byte	0x1
+ 1308 00e4 3F       		.uleb128 0x3f
+ 1309 00e5 19       		.uleb128 0x19
+ 1310 00e6 03       		.uleb128 0x3
+ 1311 00e7 0E       		.uleb128 0xe
+ 1312 00e8 3A       		.uleb128 0x3a
+ 1313 00e9 0B       		.uleb128 0xb
+ 1314 00ea 3B       		.uleb128 0x3b
+ 1315 00eb 0B       		.uleb128 0xb
+ 1316 00ec 27       		.uleb128 0x27
+ 1317 00ed 19       		.uleb128 0x19
+ 1318 00ee 3C       		.uleb128 0x3c
+ 1319 00ef 19       		.uleb128 0x19
+ 1320 00f0 01       		.uleb128 0x1
+ 1321 00f1 13       		.uleb128 0x13
+ 1322 00f2 00       		.byte	0
+ 1323 00f3 00       		.byte	0
+ 1324 00f4 13       		.uleb128 0x13
+ 1325 00f5 05       		.uleb128 0x5
+ 1326 00f6 00       		.byte	0
+ 1327 00f7 49       		.uleb128 0x49
+ 1328 00f8 13       		.uleb128 0x13
+ 1329 00f9 00       		.byte	0
+ 1330 00fa 00       		.byte	0
+ 1331 00fb 14       		.uleb128 0x14
+ 1332 00fc 2E       		.uleb128 0x2e
+ 1333 00fd 01       		.byte	0x1
+ 1334 00fe 3F       		.uleb128 0x3f
+ 1335 00ff 19       		.uleb128 0x19
+ 1336 0100 03       		.uleb128 0x3
+ 1337 0101 0E       		.uleb128 0xe
+ 1338 0102 3A       		.uleb128 0x3a
+ 1339 0103 0B       		.uleb128 0xb
+ 1340 0104 3B       		.uleb128 0x3b
+ 1341 0105 0B       		.uleb128 0xb
+ 1342 0106 27       		.uleb128 0x27
+ 1343 0107 19       		.uleb128 0x19
+ 1344 0108 3C       		.uleb128 0x3c
+ 1345 0109 19       		.uleb128 0x19
+ 1346 010a 00       		.byte	0
+ 1347 010b 00       		.byte	0
+ 1348 010c 00       		.byte	0
+ 1349              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 27
+
+
+ 1350              	.Ldebug_loc0:
+ 1351              	.LLST0:
+ 1352 0000 00000000 		.4byte	.LVL0
+ 1353 0004 09000000 		.4byte	.LVL1-1
+ 1354 0008 0100     		.2byte	0x1
+ 1355 000a 50       		.byte	0x50
+ 1356 000b 09000000 		.4byte	.LVL1-1
+ 1357 000f 4C000000 		.4byte	.LVL10
+ 1358 0013 0400     		.2byte	0x4
+ 1359 0015 F3       		.byte	0xf3
+ 1360 0016 01       		.uleb128 0x1
+ 1361 0017 50       		.byte	0x50
+ 1362 0018 9F       		.byte	0x9f
+ 1363 0019 4C000000 		.4byte	.LVL10
+ 1364 001d 4F000000 		.4byte	.LVL11-1
+ 1365 0021 0100     		.2byte	0x1
+ 1366 0023 50       		.byte	0x50
+ 1367 0024 4F000000 		.4byte	.LVL11-1
+ 1368 0028 9C000000 		.4byte	.LFE63
+ 1369 002c 0400     		.2byte	0x4
+ 1370 002e F3       		.byte	0xf3
+ 1371 002f 01       		.uleb128 0x1
+ 1372 0030 50       		.byte	0x50
+ 1373 0031 9F       		.byte	0x9f
+ 1374 0032 00000000 		.4byte	0
+ 1375 0036 00000000 		.4byte	0
+ 1376              	.LLST1:
+ 1377 003a 00000000 		.4byte	.LVL18
+ 1378 003e 0D000000 		.4byte	.LVL19-1
+ 1379 0042 0100     		.2byte	0x1
+ 1380 0044 50       		.byte	0x50
+ 1381 0045 0D000000 		.4byte	.LVL19-1
+ 1382 0049 7A000000 		.4byte	.LVL33
+ 1383 004d 0400     		.2byte	0x4
+ 1384 004f F3       		.byte	0xf3
+ 1385 0050 01       		.uleb128 0x1
+ 1386 0051 50       		.byte	0x50
+ 1387 0052 9F       		.byte	0x9f
+ 1388 0053 7A000000 		.4byte	.LVL33
+ 1389 0057 7D000000 		.4byte	.LVL34-1
+ 1390 005b 0100     		.2byte	0x1
+ 1391 005d 50       		.byte	0x50
+ 1392 005e 7D000000 		.4byte	.LVL34-1
+ 1393 0062 44010000 		.4byte	.LFE64
+ 1394 0066 0400     		.2byte	0x4
+ 1395 0068 F3       		.byte	0xf3
+ 1396 0069 01       		.uleb128 0x1
+ 1397 006a 50       		.byte	0x50
+ 1398 006b 9F       		.byte	0x9f
+ 1399 006c 00000000 		.4byte	0
+ 1400 0070 00000000 		.4byte	0
+ 1401              		.section	.debug_aranges,"",%progbits
+ 1402 0000 24000000 		.4byte	0x24
+ 1403 0004 0200     		.2byte	0x2
+ 1404 0006 00000000 		.4byte	.Ldebug_info0
+ 1405 000a 04       		.byte	0x4
+ 1406 000b 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 28
+
+
+ 1407 000c 0000     		.2byte	0
+ 1408 000e 0000     		.2byte	0
+ 1409 0010 00000000 		.4byte	.LFB63
+ 1410 0014 9C000000 		.4byte	.LFE63-.LFB63
+ 1411 0018 00000000 		.4byte	.LFB64
+ 1412 001c 44010000 		.4byte	.LFE64-.LFB64
+ 1413 0020 00000000 		.4byte	0
+ 1414 0024 00000000 		.4byte	0
+ 1415              		.section	.debug_ranges,"",%progbits
+ 1416              	.Ldebug_ranges0:
+ 1417 0000 00000000 		.4byte	.LFB63
+ 1418 0004 9C000000 		.4byte	.LFE63
+ 1419 0008 00000000 		.4byte	.LFB64
+ 1420 000c 44010000 		.4byte	.LFE64
+ 1421 0010 00000000 		.4byte	0
+ 1422 0014 00000000 		.4byte	0
+ 1423              		.section	.debug_line,"",%progbits
+ 1424              	.Ldebug_line0:
+ 1425 0000 E9010000 		.section	.debug_str,"MS",%progbits,1
+ 1425      02009001 
+ 1425      00000201 
+ 1425      FB0E0D00 
+ 1425      01010101 
+ 1426              	.LASF27:
+ 1427 0000 4D6F7665 		.ascii	"MovementPivotRight90\000"
+ 1427      6D656E74 
+ 1427      5069766F 
+ 1427      74526967 
+ 1427      68743930 
+ 1428              	.LASF32:
+ 1429 0015 2E5C7061 		.ascii	".\\pathing.c\000"
+ 1429      7468696E 
+ 1429      672E6300 
+ 1430              	.LASF10:
+ 1431 0021 5F5F696E 		.ascii	"__int32_t\000"
+ 1431      7433325F 
+ 1431      7400
+ 1432              	.LASF28:
+ 1433 002b 4D6F7665 		.ascii	"MovementForward\000"
+ 1433      6D656E74 
+ 1433      466F7277 
+ 1433      61726400 
+ 1434              	.LASF20:
+ 1435 003b 50617468 		.ascii	"PathBackward\000"
+ 1435      4261636B 
+ 1435      77617264 
+ 1435      00
+ 1436              	.LASF33:
+ 1437 0048 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 1437      73657273 
+ 1437      5C44616E 
+ 1437      69656C5C 
+ 1437      446F6375 
+ 1438 0076 20466173 		.ascii	" Faster V3.6\\Display.cydsn\000"
+ 1438      74657220 
+ 1438      56332E36 
+ 1438      5C446973 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 29
+
+
+ 1438      706C6179 
+ 1439              	.LASF29:
+ 1440 0091 4D6F7665 		.ascii	"MovementPivotRight\000"
+ 1440      6D656E74 
+ 1440      5069766F 
+ 1440      74526967 
+ 1440      687400
+ 1441              	.LASF0:
+ 1442 00a4 666C6F61 		.ascii	"float\000"
+ 1442      7400
+ 1443              	.LASF2:
+ 1444 00aa 756E7369 		.ascii	"unsigned char\000"
+ 1444      676E6564 
+ 1444      20636861 
+ 1444      7200
+ 1445              	.LASF26:
+ 1446 00b8 4D6F7665 		.ascii	"MovementPivotLeft90\000"
+ 1446      6D656E74 
+ 1446      5069766F 
+ 1446      744C6566 
+ 1446      74393000 
+ 1447              	.LASF19:
+ 1448 00cc 50617468 		.ascii	"PathForward\000"
+ 1448      466F7277 
+ 1448      61726400 
+ 1449              	.LASF30:
+ 1450 00d8 4D6F7665 		.ascii	"MovementPivotLeft\000"
+ 1450      6D656E74 
+ 1450      5069766F 
+ 1450      744C6566 
+ 1450      7400
+ 1451              	.LASF6:
+ 1452 00ea 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1452      20756E73 
+ 1452      69676E65 
+ 1452      6420696E 
+ 1452      7400
+ 1453              	.LASF4:
+ 1454 00fc 73686F72 		.ascii	"short unsigned int\000"
+ 1454      7420756E 
+ 1454      7369676E 
+ 1454      65642069 
+ 1454      6E7400
+ 1455              	.LASF22:
+ 1456 010f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1456      52784275 
+ 1456      66666572 
+ 1456      00
+ 1457              	.LASF23:
+ 1458 011c 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1458      72615F6C 
+ 1458      696E6562 
+ 1458      75666665 
+ 1458      7200
+ 1459              	.LASF14:
+ 1460 012e 646F7562 		.ascii	"double\000"
+ 1460      6C6500
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 30
+
+
+ 1461              	.LASF12:
+ 1462 0135 75696E74 		.ascii	"uint16\000"
+ 1462      313600
+ 1463              	.LASF13:
+ 1464 013c 75696E74 		.ascii	"uint32\000"
+ 1464      333200
+ 1465              	.LASF31:
+ 1466 0143 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1466      4320342E 
+ 1466      392E3320 
+ 1466      32303135 
+ 1466      30333033 
+ 1467 0176 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1467      20726576 
+ 1467      6973696F 
+ 1467      6E203232 
+ 1467      31323230 
+ 1468 01a9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1468      66756E63 
+ 1468      74696F6E 
+ 1468      2D736563 
+ 1468      74696F6E 
+ 1469              	.LASF9:
+ 1470 01d1 756E7369 		.ascii	"unsigned int\000"
+ 1470      676E6564 
+ 1470      20696E74 
+ 1470      00
+ 1471              	.LASF8:
+ 1472 01de 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1472      206C6F6E 
+ 1472      6720756E 
+ 1472      7369676E 
+ 1472      65642069 
+ 1473              	.LASF11:
+ 1474 01f5 696E7433 		.ascii	"int32_t\000"
+ 1474      325F7400 
+ 1475              	.LASF16:
+ 1476 01fd 73697A65 		.ascii	"sizetype\000"
+ 1476      74797065 
+ 1476      00
+ 1477              	.LASF7:
+ 1478 0206 6C6F6E67 		.ascii	"long long int\000"
+ 1478      206C6F6E 
+ 1478      6720696E 
+ 1478      7400
+ 1479              	.LASF15:
+ 1480 0214 63686172 		.ascii	"char\000"
+ 1480      00
+ 1481              	.LASF3:
+ 1482 0219 73686F72 		.ascii	"short int\000"
+ 1482      7420696E 
+ 1482      7400
+ 1483              	.LASF25:
+ 1484 0223 4D6F7665 		.ascii	"MoveAlign\000"
+ 1484      416C6967 
+ 1484      6E00
+ 1485              	.LASF5:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccnszUA7.s 			page 31
+
+
+ 1486 022d 6C6F6E67 		.ascii	"long int\000"
+ 1486      20696E74 
+ 1486      00
+ 1487              	.LASF21:
+ 1488 0236 70617468 		.ascii	"path\000"
+ 1488      00
+ 1489              	.LASF17:
+ 1490 023b 6C6F6E67 		.ascii	"long double\000"
+ 1490      20646F75 
+ 1490      626C6500 
+ 1491              	.LASF1:
+ 1492 0247 7369676E 		.ascii	"signed char\000"
+ 1492      65642063 
+ 1492      68617200 
+ 1493              	.LASF18:
+ 1494 0253 5F426F6F 		.ascii	"_Bool\000"
+ 1494      6C00
+ 1495              	.LASF24:
+ 1496 0259 43794465 		.ascii	"CyDelay\000"
+ 1496      6C617900 
+ 1497              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

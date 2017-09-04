@@ -1,0 +1,3984 @@
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"camera_functions.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.CamAnalyseFrame,"ax",%progbits
+  19              		.align	1
+  20              		.global	CamAnalyseFrame
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	CamAnalyseFrame, %function
+  24              	CamAnalyseFrame:
+  25              	.LFB64:
+  26              		.file 1 ".\\camera_functions.c"
+   1:.\camera_functions.c **** /*
+   2:.\camera_functions.c ****  * Copyright @Pucktacular, 2016
+   3:.\camera_functions.c ****  * @Matt Gebert, Daniel Hranilovic & Kevin Duxbury
+   4:.\camera_functions.c ****  * All Rights Reserved
+   5:.\camera_functions.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\camera_functions.c ****  *
+   7:.\camera_functions.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\camera_functions.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\camera_functions.c ****  *
+  10:.\camera_functions.c ****  * ========================================
+  11:.\camera_functions.c **** */
+  12:.\camera_functions.c **** 
+  13:.\camera_functions.c **** #include <project.h>
+  14:.\camera_functions.c **** #include <stdbool.h>
+  15:.\camera_functions.c **** #include "camera_functions.h"
+  16:.\camera_functions.c **** //IMPORTANT CAMERA CODE:
+  17:.\camera_functions.c ****     //LCD_SetWindowRead(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end); 
+  18:.\camera_functions.c ****     //LCD_SetWindowWrite(uint16 col_start,uint16 row_start,uint16 col_end,uint16 row_end);
+  19:.\camera_functions.c ****     //Display is 320 {0,319} by 240 {0,239}
+  20:.\camera_functions.c **** 
+  21:.\camera_functions.c **** //Functions:
+  22:.\camera_functions.c **** void CamAnalyseFrame();
+  23:.\camera_functions.c **** /*void CamGetSequence();
+  24:.\camera_functions.c **** void CamMarkBlobs();
+  25:.\camera_functions.c **** bool CamScanClosest(uint8 clr);
+  26:.\camera_functions.c **** void CamMarkClosest()*/
+  27:.\camera_functions.c **** 
+  28:.\camera_functions.c **** //Constants moved into header file.
+  29:.\camera_functions.c **** 
+  30:.\camera_functions.c **** //1 - General Purpose Registers
+  31:.\camera_functions.c **** pixel loadPix;
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 2
+
+
+  32:.\camera_functions.c **** uint8 i=0; //Rows Counter
+  33:.\camera_functions.c **** uint16 j=0; //Columns Counter
+  34:.\camera_functions.c **** uint16 k=0; //Backtrack Counter
+  35:.\camera_functions.c **** 
+  36:.\camera_functions.c **** //2 - For Many Blobs, Final Coords
+  37:.\camera_functions.c **** uint16 scaledX[50];
+  38:.\camera_functions.c **** uint16 scaledY[50];
+  39:.\camera_functions.c **** uint8 scaledClr[50];
+  40:.\camera_functions.c **** int scaledElements[50];
+  41:.\camera_functions.c **** uint16 blobCounter=0;
+  42:.\camera_functions.c **** 
+  43:.\camera_functions.c **** //3 - For Init Seq, Calculated Ordering:
+  44:.\camera_functions.c **** uint8 orderedScaledClr[5];
+  45:.\camera_functions.c **** 
+  46:.\camera_functions.c **** //4 - Closest of a Specific Colour:
+  47:.\camera_functions.c **** uint16 closestX;
+  48:.\camera_functions.c **** uint16 closestY;
+  49:.\camera_functions.c **** 
+  50:.\camera_functions.c **** /*******************************************************************************
+  51:.\camera_functions.c **** * Function Name: CamGetSequence
+  52:.\camera_functions.c **** ****************************************************************************//**
+  53:.\camera_functions.c **** *
+  54:.\camera_functions.c **** * This function gets the 5 largest Blobs using the CamAnalyseFrame
+  55:.\camera_functions.c **** * to get a frame, and detect all blobs on screen.
+  56:.\camera_functions.c **** *******************************************************************************/
+  57:.\camera_functions.c **** void CamGetSequence() {
+  58:.\camera_functions.c ****     uint16 orderedScaledX[5];
+  59:.\camera_functions.c ****     uint16 orderedScaledY[5];
+  60:.\camera_functions.c ****     uint16 lrgX[5];
+  61:.\camera_functions.c ****     uint16 lrgY[5];
+  62:.\camera_functions.c ****     uint8 lrgClr[5];
+  63:.\camera_functions.c ****     memset(lrgX,0,5*2);
+  64:.\camera_functions.c ****     memset(lrgY,0,5*2);
+  65:.\camera_functions.c ****     memset(lrgClr,0,5);
+  66:.\camera_functions.c ****     memset(orderedScaledX,0,5*2);
+  67:.\camera_functions.c ****     memset(orderedScaledY,0,5*2);
+  68:.\camera_functions.c ****     memset(orderedScaledClr,0,5);
+  69:.\camera_functions.c ****     
+  70:.\camera_functions.c ****     //Analyse the Frame, for data.
+  71:.\camera_functions.c ****     CamAnalyseFrame();
+  72:.\camera_functions.c ****     
+  73:.\camera_functions.c ****     //Find 5 largest blob values:
+  74:.\camera_functions.c ****     uint16 max=0;
+  75:.\camera_functions.c ****     for (j=0;j<5;j++){
+  76:.\camera_functions.c ****         max=0;
+  77:.\camera_functions.c ****         for(k=0;k<i;k++){ //i=amount of valid blobs above pixel weight.
+  78:.\camera_functions.c ****             if(scaledElements[k]>scaledElements[max])
+  79:.\camera_functions.c ****                 max=k;
+  80:.\camera_functions.c ****         }
+  81:.\camera_functions.c ****         lrgX[j]=scaledX[max];
+  82:.\camera_functions.c ****         lrgY[j]=scaledY[max];
+  83:.\camera_functions.c ****         lrgClr[j]=scaledClr[max];
+  84:.\camera_functions.c ****         scaledElements[max]=0; //Reset Value of Counter, as to not find it again.
+  85:.\camera_functions.c ****     }
+  86:.\camera_functions.c ****     
+  87:.\camera_functions.c ****     //Determine Order of Blobs {Find by first X Cooordinate.}
+  88:.\camera_functions.c ****     for (j=0;j<5;j++){
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 3
+
+
+  89:.\camera_functions.c ****         max=0;
+  90:.\camera_functions.c ****         for (k=0;k<5;k++){
+  91:.\camera_functions.c ****             //Find Largest
+  92:.\camera_functions.c ****             if (lrgX[k] > lrgX[max])
+  93:.\camera_functions.c ****                 max=k;
+  94:.\camera_functions.c ****         }
+  95:.\camera_functions.c ****         orderedScaledX[j]=lrgX[max];
+  96:.\camera_functions.c ****         orderedScaledY[j]=lrgY[max];
+  97:.\camera_functions.c ****         orderedScaledClr[j]=lrgClr[max];
+  98:.\camera_functions.c ****         lrgX[max]=0; //Reset Counter, to not find again.
+  99:.\camera_functions.c ****         lrgY[max]=0;
+ 100:.\camera_functions.c ****         lrgClr[max]=0;
+ 101:.\camera_functions.c ****     }    
+ 102:.\camera_functions.c ****     
+ 103:.\camera_functions.c ****     //Print out Sequence of 5 to Screen
+ 104:.\camera_functions.c ****     for (k=0;k<5;k++) {
+ 105:.\camera_functions.c ****         LCD_SetWindowWrite(offset+(k-1)*2+k*15,0,offset+k*15 + (k-1)*2+14,4);
+ 106:.\camera_functions.c ****         if(orderedScaledClr[k]==RED){ //R
+ 107:.\camera_functions.c ****             loadPix.R=255;
+ 108:.\camera_functions.c ****             loadPix.G=0;
+ 109:.\camera_functions.c ****             loadPix.B=0;
+ 110:.\camera_functions.c ****         } else if (orderedScaledClr[k]==GREEN){ //G
+ 111:.\camera_functions.c ****             loadPix.R=0;
+ 112:.\camera_functions.c ****             loadPix.G=255;
+ 113:.\camera_functions.c ****             loadPix.B=0;} 
+ 114:.\camera_functions.c ****         else if (orderedScaledClr[k]==BLUE){ //B
+ 115:.\camera_functions.c ****             loadPix.R=0;
+ 116:.\camera_functions.c ****             loadPix.G=0;
+ 117:.\camera_functions.c ****             loadPix.B=255;
+ 118:.\camera_functions.c ****         } else {
+ 119:.\camera_functions.c ****             loadPix.R=0;
+ 120:.\camera_functions.c ****             loadPix.G=0;
+ 121:.\camera_functions.c ****             loadPix.B=0;
+ 122:.\camera_functions.c ****         }   
+ 123:.\camera_functions.c ****         for (j=0;j<15*5;j++)
+ 124:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 125:.\camera_functions.c ****     }
+ 126:.\camera_functions.c **** }
+ 127:.\camera_functions.c **** 
+ 128:.\camera_functions.c **** /*******************************************************************************
+ 129:.\camera_functions.c **** * Function Name: CamAnalyseFrame
+ 130:.\camera_functions.c **** ****************************************************************************//**
+ 131:.\camera_functions.c **** *
+ 132:.\camera_functions.c **** * Cam Analyse Frame reads in one row of data at a time,
+ 133:.\camera_functions.c **** * and applies group statistics to the rows to determine and identify blobs.
+ 134:.\camera_functions.c **** * Final results are generated in the following lists:
+ 135:.\camera_functions.c **** *       scaledX     -   The averaged X(Cols=320) position of the blob.
+ 136:.\camera_functions.c **** *       scaledY     -   The averaged Y(Rows=240) position of the blob.
+ 137:.\camera_functions.c **** *       scaledClr   -   The colour of the blob. 0=Red, 1=Green, 2=Blue
+ 138:.\camera_functions.c **** *       i           -   The number of blobs over the threshold size.
+ 139:.\camera_functions.c **** *******************************************************************************/
+ 140:.\camera_functions.c **** 
+ 141:.\camera_functions.c **** void CamAnalyseFrame() {
+  27              		.loc 1 141 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 4
+
+
+  31 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  32              		.cfi_def_cfa_offset 36
+  33              		.cfi_offset 4, -36
+  34              		.cfi_offset 5, -32
+  35              		.cfi_offset 6, -28
+  36              		.cfi_offset 7, -24
+  37              		.cfi_offset 8, -20
+  38              		.cfi_offset 9, -16
+  39              		.cfi_offset 10, -12
+  40              		.cfi_offset 11, -8
+  41              		.cfi_offset 14, -4
+  42 0004 85B0     		sub	sp, sp, #20
+  43              		.cfi_def_cfa_offset 56
+  44 0006 00AF     		add	r7, sp, #0
+  45              		.cfi_def_cfa_register 7
+ 142:.\camera_functions.c ****     //Reset BlobCounter.
+ 143:.\camera_functions.c ****     blobCounter=0;
+ 144:.\camera_functions.c ****     //Hold Weighting Sums & Colours.
+ 145:.\camera_functions.c ****     int blobWeightsX[numCols];
+  46              		.loc 1 145 0
+  47 0008 ADF5A16D 		sub	sp, sp, #1288
+  48 000c 6D46     		mov	r5, sp
+ 146:.\camera_functions.c ****     int blobWeightsY[numCols];
+  49              		.loc 1 146 0
+  50 000e ADF5A16D 		sub	sp, sp, #1288
+  51 0012 6E46     		mov	r6, sp
+ 147:.\camera_functions.c ****     int blobElements[numCols];
+  52              		.loc 1 147 0
+  53 0014 ADF5A16D 		sub	sp, sp, #1288
+  54 0018 E846     		mov	r8, sp
+ 148:.\camera_functions.c ****     uint8 blobClr[numCols];
+  55              		.loc 1 148 0
+  56 001a D0B0     		sub	sp, sp, #320
+  57 001c C7F800D0 		str	sp, [r7]
+ 149:.\camera_functions.c ****     //Hold Rows of Pixels
+ 150:.\camera_functions.c ****     uint8 top[numCols];
+  58              		.loc 1 150 0
+  59 0020 D0B0     		sub	sp, sp, #320
+  60 0022 C7F808D0 		str	sp, [r7, #8]
+ 151:.\camera_functions.c ****     uint8 bottom[numCols];
+  61              		.loc 1 151 0
+  62 0026 D0B0     		sub	sp, sp, #320
+  63 0028 6C46     		mov	r4, sp
+ 143:.\camera_functions.c ****     //Hold Weighting Sums & Colours.
+  64              		.loc 1 143 0
+  65 002a 4FF00009 		mov	r9, #0
+  66 002e D74B     		ldr	r3, .L57
+ 152:.\camera_functions.c ****     
+ 153:.\camera_functions.c ****     
+ 154:.\camera_functions.c ****     //Initialize Vals.
+ 155:.\camera_functions.c ****     //NOTE: MEMSET only resets Btyes --> That's 8 Bits. An integer is 32 bits, 4x. A 16b is 2x.
+ 156:.\camera_functions.c ****     memset(scaledElements,0,50*4);
+  67              		.loc 1 156 0
+  68 0030 4946     		mov	r1, r9
+  69 0032 C822     		movs	r2, #200
+  70 0034 D648     		ldr	r0, .L57+4
+ 143:.\camera_functions.c ****     //Hold Weighting Sums & Colours.
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 5
+
+
+  71              		.loc 1 143 0
+  72 0036 A3F80090 		strh	r9, [r3]	@ movhi
+  73              	.LVL0:
+  74              		.loc 1 156 0
+  75 003a FFF7FEFF 		bl	memset
+  76              	.LVL1:
+ 157:.\camera_functions.c ****     memset(scaledX,0,50*2);
+  77              		.loc 1 157 0
+  78 003e 4946     		mov	r1, r9
+  79 0040 6422     		movs	r2, #100
+  80 0042 D448     		ldr	r0, .L57+8
+  81 0044 FFF7FEFF 		bl	memset
+  82              	.LVL2:
+ 158:.\camera_functions.c ****     memset(scaledY,0,50*2);
+  83              		.loc 1 158 0
+  84 0048 4946     		mov	r1, r9
+  85 004a 6422     		movs	r2, #100
+  86 004c D248     		ldr	r0, .L57+12
+  87 004e FFF7FEFF 		bl	memset
+  88              	.LVL3:
+ 159:.\camera_functions.c ****     memset(scaledClr,0,50);
+  89              		.loc 1 159 0
+  90 0052 4946     		mov	r1, r9
+  91 0054 3222     		movs	r2, #50
+  92 0056 D148     		ldr	r0, .L57+16
+  93 0058 FFF7FEFF 		bl	memset
+  94              	.LVL4:
+ 160:.\camera_functions.c ****     memset(blobWeightsX,0,numCols*4);
+  95              		.loc 1 160 0
+  96 005c 4946     		mov	r1, r9
+  97 005e 4FF4A062 		mov	r2, #1280
+  98 0062 2846     		mov	r0, r5
+  99 0064 FFF7FEFF 		bl	memset
+ 100              	.LVL5:
+ 161:.\camera_functions.c ****     memset(blobWeightsY,0,numCols*4);
+ 101              		.loc 1 161 0
+ 102 0068 4946     		mov	r1, r9
+ 103 006a 4FF4A062 		mov	r2, #1280
+ 104 006e 3046     		mov	r0, r6
+ 105 0070 FFF7FEFF 		bl	memset
+ 106              	.LVL6:
+ 162:.\camera_functions.c ****     memset(blobElements,0,numCols*4);
+ 107              		.loc 1 162 0
+ 108 0074 4946     		mov	r1, r9
+ 109 0076 4FF4A062 		mov	r2, #1280
+ 110 007a 4046     		mov	r0, r8
+ 111 007c FFF7FEFF 		bl	memset
+ 112              	.LVL7:
+ 163:.\camera_functions.c ****     memset(top,0,numCols);
+ 113              		.loc 1 163 0
+ 114 0080 4946     		mov	r1, r9
+ 115 0082 4FF4A072 		mov	r2, #320
+ 116 0086 B868     		ldr	r0, [r7, #8]
+ 117 0088 FFF7FEFF 		bl	memset
+ 118              	.LVL8:
+ 164:.\camera_functions.c ****     memset(bottom,0,numCols);
+ 119              		.loc 1 164 0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 6
+
+
+ 120 008c 4946     		mov	r1, r9
+ 121 008e 4FF4A072 		mov	r2, #320
+ 122 0092 6846     		mov	r0, sp
+ 123 0094 FFF7FEFF 		bl	memset
+ 124              	.LVL9:
+ 165:.\camera_functions.c ****     memset(blobClr,0,numCols);
+ 125              		.loc 1 165 0
+ 126 0098 3868     		ldr	r0, [r7]
+ 127 009a 4946     		mov	r1, r9
+ 128 009c 4FF4A072 		mov	r2, #320
+ 129 00a0 FFF7FEFF 		bl	memset
+ 130              	.LVL10:
+ 166:.\camera_functions.c ****     
+ 167:.\camera_functions.c ****     
+ 168:.\camera_functions.c ****     uint8 clr=0; //Colour --> R,G,B == 0,1,2.
+ 169:.\camera_functions.c ****     
+ 170:.\camera_functions.c ****     uint8 A,B,C,D;
+ 171:.\camera_functions.c ****     
+ 172:.\camera_functions.c ****     
+ 173:.\camera_functions.c ****     for (clr=0;clr<3;clr++) {
+ 131              		.loc 1 173 0
+ 132 00a4 C7F80C90 		str	r9, [r7, #12]
+ 133              	.LVL11:
+ 134              	.L24:
+ 174:.\camera_functions.c ****         for (i=0;i<numRows;i++) {
+ 135              		.loc 1 174 0
+ 136 00a8 B84B     		ldr	r3, .L57
+ 137 00aa 0022     		movs	r2, #0
+ 138              	.L49:
+ 139 00ac DFF8DCA2 		ldr	r10, .L57
+ 140 00b0 9A70     		strb	r2, [r3, #2]
+ 141 00b2 9AF80210 		ldrb	r1, [r10, #2]	@ zero_extendqisi2
+ 142 00b6 D146     		mov	r9, r10
+ 143 00b8 EF29     		cmp	r1, #239
+ 144 00ba 00F2C380 		bhi	.L51
+ 145 00be 0022     		movs	r2, #0
+ 146              	.L3:
+ 175:.\camera_functions.c ****             //Set Top Row to Bottom Row
+ 176:.\camera_functions.c ****             for (j=0;j<numCols;j++)
+ 177:.\camera_functions.c ****                 top[j]=bottom[j];
+ 147              		.loc 1 177 0 discriminator 3
+ 148 00c0 A35C     		ldrb	r3, [r4, r2]	@ zero_extendqisi2
+ 149 00c2 B868     		ldr	r0, [r7, #8]
+ 150 00c4 8354     		strb	r3, [r0, r2]
+ 176:.\camera_functions.c ****                 top[j]=bottom[j];
+ 151              		.loc 1 176 0 discriminator 3
+ 152 00c6 0132     		adds	r2, r2, #1
+ 153 00c8 92B2     		uxth	r2, r2
+ 154 00ca B2F5A07F 		cmp	r2, #320
+ 155 00ce F7D1     		bne	.L3
+ 178:.\camera_functions.c ****             //Read in the Row
+ 179:.\camera_functions.c ****             LCD_SetWindowRead(0,i,numCols,i);
+ 156              		.loc 1 179 0
+ 157 00d0 89B2     		uxth	r1, r1
+ 158 00d2 0B46     		mov	r3, r1
+ 159 00d4 0020     		movs	r0, #0
+ 160 00d6 AAF80420 		strh	r2, [r10, #4]	@ movhi
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 7
+
+
+ 161 00da FFF7FEFF 		bl	LCD_SetWindowRead
+ 162              	.LVL12:
+ 180:.\camera_functions.c ****             for(j=0;j<numCols;j++){
+ 163              		.loc 1 180 0
+ 164 00de 0023     		movs	r3, #0
+ 165 00e0 AAF80430 		strh	r3, [r10, #4]	@ movhi
+ 166              	.L4:
+ 167              		.loc 1 180 0 is_stmt 0 discriminator 1
+ 168 00e4 B9F80430 		ldrh	r3, [r9, #4]
+ 169 00e8 DFF8A0A2 		ldr	r10, .L57
+ 170 00ec B3F5A07F 		cmp	r3, #320
+ 171 00f0 1BD2     		bcs	.L52
+ 181:.\camera_functions.c ****                 loadPix = LCD_ReadPixel();
+ 172              		.loc 1 181 0 is_stmt 1
+ 173 00f2 FFF7FEFF 		bl	LCD_ReadPixel
+ 174              	.LVL13:
+ 175 00f6 AA4B     		ldr	r3, .L57+20
+ 182:.\camera_functions.c ****                 if (clr==RED) bottom[j]=loadPix.R;
+ 176              		.loc 1 182 0
+ 177 00f8 F968     		ldr	r1, [r7, #12]
+ 181:.\camera_functions.c ****                 loadPix = LCD_ReadPixel();
+ 178              		.loc 1 181 0
+ 179 00fa C0F30722 		ubfx	r2, r0, #8, #8
+ 180 00fe 1870     		strb	r0, [r3]
+ 181 0100 C0F30740 		ubfx	r0, r0, #16, #8
+ 182 0104 5A70     		strb	r2, [r3, #1]
+ 183 0106 9870     		strb	r0, [r3, #2]
+ 184 0108 BAF80420 		ldrh	r2, [r10, #4]
+ 185              		.loc 1 182 0
+ 186 010c 09B9     		cbnz	r1, .L5
+ 187              		.loc 1 182 0 is_stmt 0 discriminator 1
+ 188 010e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 189 0110 04E0     		b	.L47
+ 190              	.L5:
+ 183:.\camera_functions.c ****                 else if (clr==GREEN) bottom[j]=loadPix.G;
+ 191              		.loc 1 183 0 is_stmt 1
+ 192 0112 F968     		ldr	r1, [r7, #12]
+ 193 0114 0129     		cmp	r1, #1
+ 194 0116 0CBF     		ite	eq
+ 195 0118 5B78     		ldrbeq	r3, [r3, #1]	@ zero_extendqisi2
+ 184:.\camera_functions.c ****                 else  bottom[j]=loadPix.B;
+ 196              		.loc 1 184 0
+ 197 011a 9B78     		ldrbne	r3, [r3, #2]	@ zero_extendqisi2
+ 198              	.L47:
+ 199 011c A354     		strb	r3, [r4, r2]
+ 180:.\camera_functions.c ****                 loadPix = LCD_ReadPixel();
+ 200              		.loc 1 180 0
+ 201 011e B9F80430 		ldrh	r3, [r9, #4]
+ 202 0122 0133     		adds	r3, r3, #1
+ 203 0124 A9F80430 		strh	r3, [r9, #4]	@ movhi
+ 204 0128 DCE7     		b	.L4
+ 205              	.L52:
+ 185:.\camera_functions.c ****             }
+ 186:.\camera_functions.c ****             //Enter Cols
+ 187:.\camera_functions.c ****             for(j=0;j<numCols;j++) {
+ 206              		.loc 1 187 0
+ 207 012a 0023     		movs	r3, #0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 8
+
+
+ 188:.\camera_functions.c ****                 //Prep ABCD Vals 
+ 189:.\camera_functions.c ****                 A=bottom[j];
+ 190:.\camera_functions.c ****                 if(j==1){
+ 191:.\camera_functions.c ****                     D=0;C=0;
+ 192:.\camera_functions.c ****                 } else {
+ 193:.\camera_functions.c ****                     D=bottom[j-1];
+ 194:.\camera_functions.c ****                     if(i!=1) C=top[j-1];
+ 208              		.loc 1 194 0
+ 209 012c 9AF802C0 		ldrb	ip, [r10, #2]	@ zero_extendqisi2
+ 210 0130 BAF80610 		ldrh	r1, [r10, #6]
+ 211 0134 BAF800B0 		ldrh	fp, [r10]
+ 187:.\camera_functions.c ****                 //Prep ABCD Vals 
+ 212              		.loc 1 187 0
+ 213 0138 AAF80430 		strh	r3, [r10, #4]	@ movhi
+ 214              	.L9:
+ 187:.\camera_functions.c ****                 //Prep ABCD Vals 
+ 215              		.loc 1 187 0 is_stmt 0 discriminator 1
+ 216 013c B3F5A07F 		cmp	r3, #320
+ 217 0140 79D0     		beq	.L53
+ 190:.\camera_functions.c ****                     D=0;C=0;
+ 218              		.loc 1 190 0 is_stmt 1
+ 219 0142 012B     		cmp	r3, #1
+ 189:.\camera_functions.c ****                 if(j==1){
+ 220              		.loc 1 189 0
+ 221 0144 14F803A0 		ldrb	r10, [r4, r3]	@ zero_extendqisi2
+ 222              	.LVL14:
+ 190:.\camera_functions.c ****                     D=0;C=0;
+ 223              		.loc 1 190 0
+ 224 0148 09D0     		beq	.L10
+ 193:.\camera_functions.c ****                     if(i!=1) C=top[j-1];
+ 225              		.loc 1 193 0
+ 226 014a 5A1E     		subs	r2, r3, #1
+ 227              		.loc 1 194 0
+ 228 014c BCF1010F 		cmp	ip, #1
+ 193:.\camera_functions.c ****                     if(i!=1) C=top[j-1];
+ 229              		.loc 1 193 0
+ 230 0150 14F80290 		ldrb	r9, [r4, r2]	@ zero_extendqisi2
+ 231              	.LVL15:
+ 232              		.loc 1 194 0
+ 233 0154 00F0AC80 		beq	.L11
+ 234              		.loc 1 194 0 is_stmt 0 discriminator 1
+ 235 0158 B868     		ldr	r0, [r7, #8]
+ 236 015a 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ 237              	.LVL16:
+ 238 015c 06E0     		b	.L12
+ 239              	.LVL17:
+ 240              	.L10:
+ 195:.\camera_functions.c ****                 }
+ 196:.\camera_functions.c ****                 if(i==1){
+ 241              		.loc 1 196 0 is_stmt 1
+ 242 015e BCF1010F 		cmp	ip, #1
+ 243 0162 00F03881 		beq	.L13
+ 191:.\camera_functions.c ****                 } else {
+ 244              		.loc 1 191 0
+ 245 0166 4FF00009 		mov	r9, #0
+ 246 016a 4A46     		mov	r2, r9
+ 247              	.LVL18:
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 9
+
+
+ 248              	.L12:
+ 197:.\camera_functions.c ****                     C=0;B=0;
+ 198:.\camera_functions.c ****                 }else {
+ 199:.\camera_functions.c ****                     B=top[j];
+ 249              		.loc 1 199 0
+ 250 016c B868     		ldr	r0, [r7, #8]
+ 251 016e 10F803E0 		ldrb	lr, [r0, r3]	@ zero_extendqisi2
+ 252              	.LVL19:
+ 200:.\camera_functions.c ****                 }
+ 201:.\camera_functions.c ****                 
+ 202:.\camera_functions.c ****                 //Rules For Assigning A.
+ 203:.\camera_functions.c ****                 //Rule 1: If Background for A, do nothing.
+ 204:.\camera_functions.c ****                 if (A==0);
+ 253              		.loc 1 204 0
+ 254 0172 BAF1000F 		cmp	r10, #0
+ 255 0176 5BD0     		beq	.L14
+ 205:.\camera_functions.c ****                 //Rule 2: All blank but A, A is new blob type.
+ 206:.\camera_functions.c ****                 else if (B==0 && C==0 && D==0 && A!=0) {
+ 256              		.loc 1 206 0
+ 257 0178 BEF1000F 		cmp	lr, #0
+ 258 017c 40F09C80 		bne	.L15
+ 259              		.loc 1 206 0 is_stmt 0 discriminator 1
+ 260 0180 22BB     		cbnz	r2, .L16
+ 261              	.LVL20:
+ 262              	.L28:
+ 263              		.loc 1 206 0 discriminator 2
+ 264 0182 B9F1000F 		cmp	r9, #0
+ 265 0186 25D1     		bne	.L17
+ 266              	.LVL21:
+ 267              	.L31:
+ 207:.\camera_functions.c ****                     blobCounter=blobCounter+1;
+ 268              		.loc 1 207 0 is_stmt 1
+ 269 0188 0BF10102 		add	r2, fp, #1
+ 270 018c 1FFA82FB 		uxth	fp, r2
+ 208:.\camera_functions.c ****                     blobClr[blobCounter-1]=clr;
+ 271              		.loc 1 208 0
+ 272 0190 3A68     		ldr	r2, [r7]
+ 273 0192 387B     		ldrb	r0, [r7, #12]	@ zero_extendqisi2
+ 274 0194 5A44     		add	r2, r2, fp
+ 275 0196 02F8010C 		strb	r0, [r2, #-1]
+ 276 019a 4FEA8B00 		lsl	r0, fp, #2
+ 277 019e 05EB000E 		add	lr, r5, r0
+ 209:.\camera_functions.c ****                     blobWeightsX[blobCounter-1]=blobWeightsX[blobCounter-1]+j;
+ 278              		.loc 1 209 0
+ 279 01a2 5EF8042C 		ldr	r2, [lr, #-4]
+ 210:.\camera_functions.c ****                     blobWeightsY[blobCounter-1]=blobWeightsY[blobCounter-1]+i;
+ 211:.\camera_functions.c ****                     blobElements[blobCounter-1]=blobElements[blobCounter-1]+1;
+ 212:.\camera_functions.c ****                     bottom[j]=blobCounter;
+ 280              		.loc 1 212 0
+ 281 01a6 04F803B0 		strb	fp, [r4, r3]
+ 209:.\camera_functions.c ****                     blobWeightsX[blobCounter-1]=blobWeightsX[blobCounter-1]+j;
+ 282              		.loc 1 209 0
+ 283 01aa 1A44     		add	r2, r2, r3
+ 284 01ac 4EF8042C 		str	r2, [lr, #-4]
+ 285 01b0 06EB000E 		add	lr, r6, r0
+ 210:.\camera_functions.c ****                     blobWeightsY[blobCounter-1]=blobWeightsY[blobCounter-1]+i;
+ 286              		.loc 1 210 0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 10
+
+
+ 287 01b4 5EF8042C 		ldr	r2, [lr, #-4]
+ 288 01b8 4044     		add	r0, r0, r8
+ 289 01ba 6244     		add	r2, r2, ip
+ 290 01bc 4EF8042C 		str	r2, [lr, #-4]
+ 211:.\camera_functions.c ****                     bottom[j]=blobCounter;
+ 291              		.loc 1 211 0
+ 292 01c0 50F8042C 		ldr	r2, [r0, #-4]
+ 293 01c4 0132     		adds	r2, r2, #1
+ 294 01c6 40F8042C 		str	r2, [r0, #-4]
+ 295              		.loc 1 212 0
+ 296 01ca 31E0     		b	.L14
+ 297              	.LVL22:
+ 298              	.L16:
+ 213:.\camera_functions.c ****                 }
+ 214:.\camera_functions.c ****                 //Rule 3: If A == D ~= B, and B~=0, then A,D becomes B. Don't care about C.
+ 215:.\camera_functions.c ****                 else if (A!=0 && D!=0 && B!=0 && B!=D) {
+ 299              		.loc 1 215 0 discriminator 1
+ 300 01cc B9F1000F 		cmp	r9, #0
+ 301 01d0 00F0C080 		beq	.L54
+ 302              	.LVL23:
+ 303              	.L17:
+ 304 01d4 4FEA8909 		lsl	r9, r9, #2
+ 305              	.LVL24:
+ 306 01d8 05EB0900 		add	r0, r5, r9
+ 216:.\camera_functions.c ****                     blobWeightsX[B-1]=blobWeightsX[B-1]+blobWeightsX[D-1]+j;
+ 217:.\camera_functions.c ****                     blobWeightsX[D-1]=0;
+ 218:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+blobWeightsY[D-1]+i;
+ 219:.\camera_functions.c ****                     blobWeightsY[D-1]=0;
+ 220:.\camera_functions.c ****                     blobElements[B-1]=blobElements[B-1]+blobElements[D-1]+1;
+ 221:.\camera_functions.c ****                     blobElements[D-1]=0;
+ 222:.\camera_functions.c ****                     bottom[j]=top[j];
+ 223:.\camera_functions.c ****                     for (k = 0;k<j-1;k++)
+ 224:.\camera_functions.c ****                         if (bottom[k]==bottom[j-1])
+ 225:.\camera_functions.c ****                             bottom[k]=top[j];
+ 226:.\camera_functions.c ****                 }
+ 227:.\camera_functions.c ****                 //Rule 4: If B=0 and D~=0, then A is assigned to D. Don't care about C.
+ 228:.\camera_functions.c ****                 else if (A!=0 && D!= 0 && B==0) {
+ 229:.\camera_functions.c ****                     blobWeightsX[D-1]=blobWeightsX[D-1]+j;
+ 307              		.loc 1 229 0
+ 308 01dc 50F8042C 		ldr	r2, [r0, #-4]
+ 309 01e0 1A44     		add	r2, r2, r3
+ 310 01e2 40F8042C 		str	r2, [r0, #-4]
+ 311 01e6 06EB0900 		add	r0, r6, r9
+ 230:.\camera_functions.c ****                     blobWeightsY[D-1]=blobWeightsY[D-1]+i;
+ 312              		.loc 1 230 0
+ 313 01ea 50F8042C 		ldr	r2, [r0, #-4]
+ 314 01ee C144     		add	r9, r9, r8
+ 315 01f0 6244     		add	r2, r2, ip
+ 316 01f2 40F8042C 		str	r2, [r0, #-4]
+ 231:.\camera_functions.c ****                     blobElements[D-1]=blobElements[D-1]+1;
+ 317              		.loc 1 231 0
+ 318 01f6 59F8042C 		ldr	r2, [r9, #-4]
+ 319 01fa 0132     		adds	r2, r2, #1
+ 320 01fc 49F8042C 		str	r2, [r9, #-4]
+ 232:.\camera_functions.c ****                     bottom[j]=bottom[j-1];
+ 321              		.loc 1 232 0
+ 322 0200 E218     		adds	r2, r4, r3
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 11
+
+
+ 323 0202 BEE0     		b	.L48
+ 324              	.LVL25:
+ 325              	.L19:
+ 326 0204 05EB020E 		add	lr, r5, r2
+ 327              	.LVL26:
+ 233:.\camera_functions.c ****                 }
+ 234:.\camera_functions.c ****                 //Rule 5:  If B==D==0, C~=0, then A assigned to C.
+ 235:.\camera_functions.c ****                 else if (B==0 && D==0 && A!=0 && C!=0) {
+ 236:.\camera_functions.c ****                     blobWeightsX[C-1]=blobWeightsX[C-1]+j;
+ 237:.\camera_functions.c ****                     blobWeightsY[C-1]=blobWeightsY[C-1]+i;
+ 238:.\camera_functions.c ****                     blobElements[C-1]=blobElements[C-1]+1;
+ 239:.\camera_functions.c ****                     bottom[j]=top[j-1];
+ 240:.\camera_functions.c ****                 }
+ 241:.\camera_functions.c ****                 //Rule 6: When B==D and nonzero A.
+ 242:.\camera_functions.c ****                 else if (B!=0 && A!=0 && D==B) {
+ 243:.\camera_functions.c ****                     blobWeightsX[B-1]=blobWeightsX[B-1]+j;
+ 328              		.loc 1 243 0
+ 329 0208 5EF8040C 		ldr	r0, [lr, #-4]
+ 330              	.LVL27:
+ 244:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 245:.\camera_functions.c ****                     blobElements[B-1]=blobElements[B-1]+1;
+ 246:.\camera_functions.c ****                     bottom[j]=top[j];
+ 331              		.loc 1 246 0
+ 332 020c 04F80390 		strb	r9, [r4, r3]
+ 243:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 333              		.loc 1 243 0
+ 334 0210 1844     		add	r0, r0, r3
+ 335 0212 4EF8040C 		str	r0, [lr, #-4]
+ 336 0216 06EB020E 		add	lr, r6, r2
+ 244:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 337              		.loc 1 244 0
+ 338 021a 5EF8040C 		ldr	r0, [lr, #-4]
+ 339 021e 4244     		add	r2, r2, r8
+ 340 0220 6044     		add	r0, r0, ip
+ 341 0222 4EF8040C 		str	r0, [lr, #-4]
+ 245:.\camera_functions.c ****                     bottom[j]=top[j];
+ 342              		.loc 1 245 0
+ 343 0226 52F8040C 		ldr	r0, [r2, #-4]
+ 344 022a 0130     		adds	r0, r0, #1
+ 345 022c 42F8040C 		str	r0, [r2, #-4]
+ 346              	.LVL28:
+ 347              	.L14:
+ 348 0230 0133     		adds	r3, r3, #1
+ 349 0232 9BB2     		uxth	r3, r3
+ 350 0234 82E7     		b	.L9
+ 351              	.L53:
+ 352 0236 554B     		ldr	r3, .L57
+ 174:.\camera_functions.c ****             //Set Top Row to Bottom Row
+ 353              		.loc 1 174 0
+ 354 0238 9A78     		ldrb	r2, [r3, #2]	@ zero_extendqisi2
+ 355 023a D980     		strh	r1, [r3, #6]	@ movhi
+ 356 023c A3F800B0 		strh	fp, [r3]	@ movhi
+ 357 0240 0132     		adds	r2, r2, #1
+ 358 0242 33E7     		b	.L49
+ 359              	.L51:
+ 173:.\camera_functions.c ****         for (i=0;i<numRows;i++) {
+ 360              		.loc 1 173 0 discriminator 2
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 12
+
+
+ 361 0244 FB68     		ldr	r3, [r7, #12]
+ 362 0246 0133     		adds	r3, r3, #1
+ 363 0248 DBB2     		uxtb	r3, r3
+ 364 024a 032B     		cmp	r3, #3
+ 365 024c FB60     		str	r3, [r7, #12]
+ 366              	.LVL29:
+ 367 024e 7FF42BAF 		bne	.L24
+ 247:.\camera_functions.c ****                 }
+ 248:.\camera_functions.c ****                 //Rule 7: if B~=0, and A~=0, but D==0...
+ 249:.\camera_functions.c ****                 else if (B!=0 && D==0 && A!=0) {
+ 250:.\camera_functions.c ****                     blobWeightsX[B-1]=blobWeightsX[B-1]+j;
+ 251:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 252:.\camera_functions.c ****                     blobElements[B-1]=blobElements[B-1]+1;
+ 253:.\camera_functions.c ****                     bottom[j]=top[j];
+ 254:.\camera_functions.c ****                 }
+ 255:.\camera_functions.c ****             }   
+ 256:.\camera_functions.c ****         }
+ 257:.\camera_functions.c ****     }
+ 258:.\camera_functions.c ****     
+ 259:.\camera_functions.c ****     i=0;//Reset i=0 for counting valid blobs.
+ 368              		.loc 1 259 0
+ 369 0252 0023     		movs	r3, #0
+ 260:.\camera_functions.c ****     for (j=0;j<numCols;j++) { //Starts at 1, because the 0 index in blobWeights etc is not the firs
+ 370              		.loc 1 260 0
+ 371 0254 1846     		mov	r0, r3
+ 259:.\camera_functions.c ****     for (j=0;j<numCols;j++) { //Starts at 1, because the 0 index in blobWeights etc is not the firs
+ 372              		.loc 1 259 0
+ 373 0256 8AF80230 		strb	r3, [r10, #2]
+ 374              		.loc 1 260 0
+ 375 025a AAF80430 		strh	r3, [r10, #4]	@ movhi
+ 376              	.LVL30:
+ 377              	.L25:
+ 378              		.loc 1 260 0 is_stmt 0 discriminator 1
+ 379 025e B0F5A07F 		cmp	r0, #320
+ 380 0262 1DD0     		beq	.L55
+ 261:.\camera_functions.c ****         if(blobElements[j]>blobThresholdSize){
+ 381              		.loc 1 261 0 is_stmt 1
+ 382 0264 58F82020 		ldr	r2, [r8, r0, lsl #2]
+ 383 0268 502A     		cmp	r2, #80
+ 384 026a 16DD     		ble	.L26
+ 262:.\camera_functions.c ****             scaledX[i]=blobWeightsX[j]/blobElements[j];
+ 385              		.loc 1 262 0
+ 386 026c 55F82010 		ldr	r1, [r5, r0, lsl #2]
+ 387 0270 484C     		ldr	r4, .L57+8
+ 388 0272 91FBF2F1 		sdiv	r1, r1, r2
+ 389 0276 24F81310 		strh	r1, [r4, r3, lsl #1]	@ movhi
+ 263:.\camera_functions.c ****             scaledY[i]=blobWeightsY[j]/blobElements[j];
+ 390              		.loc 1 263 0
+ 391 027a 56F82010 		ldr	r1, [r6, r0, lsl #2]
+ 392 027e 464C     		ldr	r4, .L57+12
+ 393 0280 91FBF2F1 		sdiv	r1, r1, r2
+ 394 0284 24F81310 		strh	r1, [r4, r3, lsl #1]	@ movhi
+ 264:.\camera_functions.c ****             scaledClr[i]=blobClr[j];
+ 395              		.loc 1 264 0
+ 396 0288 3968     		ldr	r1, [r7]
+ 397 028a 0C5C     		ldrb	r4, [r1, r0]	@ zero_extendqisi2
+ 398 028c 4349     		ldr	r1, .L57+16
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 13
+
+
+ 399 028e CC54     		strb	r4, [r1, r3]
+ 265:.\camera_functions.c ****             scaledElements[i]=blobElements[j];
+ 400              		.loc 1 265 0
+ 401 0290 3F49     		ldr	r1, .L57+4
+ 402 0292 41F82320 		str	r2, [r1, r3, lsl #2]
+ 266:.\camera_functions.c ****             i++;
+ 403              		.loc 1 266 0
+ 404 0296 0133     		adds	r3, r3, #1
+ 405 0298 DBB2     		uxtb	r3, r3
+ 406              	.L26:
+ 407 029a 421C     		adds	r2, r0, #1
+ 408 029c 90B2     		uxth	r0, r2
+ 409 029e DEE7     		b	.L25
+ 410              	.L55:
+ 267:.\camera_functions.c ****         }
+ 268:.\camera_functions.c ****     }    
+ 269:.\camera_functions.c **** }
+ 411              		.loc 1 269 0
+ 412 02a0 1437     		adds	r7, r7, #20
+ 413              		.cfi_remember_state
+ 414              		.cfi_def_cfa_offset 36
+ 415              	.LVL31:
+ 416 02a2 A9F80400 		strh	r0, [r9, #4]	@ movhi
+ 417 02a6 89F80230 		strb	r3, [r9, #2]
+ 418 02aa BD46     		mov	sp, r7
+ 419              		.cfi_def_cfa_register 13
+ 420              	.LVL32:
+ 421              		@ sp needed
+ 422 02ac BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 423              	.LVL33:
+ 424              	.L11:
+ 425              		.cfi_restore_state
+ 204:.\camera_functions.c ****                 //Rule 2: All blank but A, A is new blob type.
+ 426              		.loc 1 204 0
+ 427 02b0 BAF1000F 		cmp	r10, #0
+ 428 02b4 BCD0     		beq	.L14
+ 429 02b6 64E7     		b	.L28
+ 430              	.LVL34:
+ 431              	.L15:
+ 215:.\camera_functions.c ****                     blobWeightsX[B-1]=blobWeightsX[B-1]+blobWeightsX[D-1]+j;
+ 432              		.loc 1 215 0
+ 433 02b8 B9F1000F 		cmp	r9, #0
+ 434 02bc 72D0     		beq	.L56
+ 215:.\camera_functions.c ****                     blobWeightsX[B-1]=blobWeightsX[B-1]+blobWeightsX[D-1]+j;
+ 435              		.loc 1 215 0 is_stmt 0 discriminator 3
+ 436 02be CE45     		cmp	lr, r9
+ 437 02c0 4FEA8902 		lsl	r2, r9, #2
+ 438              	.LVL35:
+ 439 02c4 9ED0     		beq	.L19
+ 440 02c6 4FEA8E01 		lsl	r1, lr, #2
+ 441 02ca 05EB0109 		add	r9, r5, r1
+ 442              	.LVL36:
+ 443 02ce 05EB020A 		add	r10, r5, r2
+ 444              	.LVL37:
+ 216:.\camera_functions.c ****                     blobWeightsX[D-1]=0;
+ 445              		.loc 1 216 0 is_stmt 1
+ 446 02d2 59F8040C 		ldr	r0, [r9, #-4]
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 14
+
+
+ 447 02d6 7960     		str	r1, [r7, #4]
+ 448 02d8 5AF8041C 		ldr	r1, [r10, #-4]
+ 222:.\camera_functions.c ****                     for (k = 0;k<j-1;k++)
+ 449              		.loc 1 222 0
+ 450 02dc 04F803E0 		strb	lr, [r4, r3]
+ 451              	.LVL38:
+ 216:.\camera_functions.c ****                     blobWeightsX[D-1]=0;
+ 452              		.loc 1 216 0
+ 453 02e0 0144     		add	r1, r1, r0
+ 454 02e2 1944     		add	r1, r1, r3
+ 455 02e4 49F8041C 		str	r1, [r9, #-4]
+ 217:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+blobWeightsY[D-1]+i;
+ 456              		.loc 1 217 0
+ 457 02e8 0021     		movs	r1, #0
+ 458 02ea 4AF8041C 		str	r1, [r10, #-4]
+ 459 02ee 7968     		ldr	r1, [r7, #4]
+ 460 02f0 06EB020A 		add	r10, r6, r2
+ 461 02f4 06EB0109 		add	r9, r6, r1
+ 218:.\camera_functions.c ****                     blobWeightsY[D-1]=0;
+ 462              		.loc 1 218 0
+ 463 02f8 5AF8041C 		ldr	r1, [r10, #-4]
+ 464 02fc 4244     		add	r2, r2, r8
+ 465 02fe 0846     		mov	r0, r1
+ 466 0300 59F8041C 		ldr	r1, [r9, #-4]
+ 467 0304 0844     		add	r0, r0, r1
+ 468 0306 0146     		mov	r1, r0
+ 469 0308 6144     		add	r1, r1, ip
+ 470 030a 49F8041C 		str	r1, [r9, #-4]
+ 219:.\camera_functions.c ****                     blobElements[B-1]=blobElements[B-1]+blobElements[D-1]+1;
+ 471              		.loc 1 219 0
+ 472 030e 0021     		movs	r1, #0
+ 473 0310 4AF8041C 		str	r1, [r10, #-4]
+ 474 0314 7968     		ldr	r1, [r7, #4]
+ 475 0316 08EB010A 		add	r10, r8, r1
+ 220:.\camera_functions.c ****                     blobElements[D-1]=0;
+ 476              		.loc 1 220 0
+ 477 031a 52F8041C 		ldr	r1, [r2, #-4]
+ 478 031e 0846     		mov	r0, r1
+ 479 0320 5AF8041C 		ldr	r1, [r10, #-4]
+ 480 0324 0844     		add	r0, r0, r1
+ 481 0326 0146     		mov	r1, r0
+ 482 0328 0131     		adds	r1, r1, #1
+ 483 032a 4AF8041C 		str	r1, [r10, #-4]
+ 221:.\camera_functions.c ****                     bottom[j]=top[j];
+ 484              		.loc 1 221 0
+ 485 032e 0021     		movs	r1, #0
+ 223:.\camera_functions.c ****                         if (bottom[k]==bottom[j-1])
+ 486              		.loc 1 223 0
+ 487 0330 8946     		mov	r9, r1
+ 221:.\camera_functions.c ****                     bottom[j]=top[j];
+ 488              		.loc 1 221 0
+ 489 0332 42F8041C 		str	r1, [r2, #-4]
+ 490              	.L20:
+ 491 0336 1FFA89F1 		uxth	r1, r9
+ 223:.\camera_functions.c ****                         if (bottom[k]==bottom[j-1])
+ 492              		.loc 1 223 0 discriminator 1
+ 493 033a 5A1E     		subs	r2, r3, #1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 15
+
+
+ 494 033c 9142     		cmp	r1, r2
+ 495 033e BFF677AF 		bge	.L14
+ 224:.\camera_functions.c ****                             bottom[k]=top[j];
+ 496              		.loc 1 224 0
+ 497 0342 605C     		ldrb	r0, [r4, r1]	@ zero_extendqisi2
+ 498 0344 A25C     		ldrb	r2, [r4, r2]	@ zero_extendqisi2
+ 499 0346 09F10109 		add	r9, r9, #1
+ 500 034a 9042     		cmp	r0, r2
+ 225:.\camera_functions.c ****                 }
+ 501              		.loc 1 225 0
+ 502 034c 08BF     		it	eq
+ 503 034e 04F801E0 		strbeq	lr, [r4, r1]
+ 504 0352 F0E7     		b	.L20
+ 505              	.LVL39:
+ 506              	.L54:
+ 507 0354 9000     		lsls	r0, r2, #2
+ 508 0356 05EB000E 		add	lr, r5, r0
+ 509              	.LVL40:
+ 236:.\camera_functions.c ****                     blobWeightsY[C-1]=blobWeightsY[C-1]+i;
+ 510              		.loc 1 236 0
+ 511 035a 5EF8042C 		ldr	r2, [lr, #-4]
+ 512              	.LVL41:
+ 513 035e 1A44     		add	r2, r2, r3
+ 514 0360 4EF8042C 		str	r2, [lr, #-4]
+ 515 0364 06EB000E 		add	lr, r6, r0
+ 237:.\camera_functions.c ****                     blobElements[C-1]=blobElements[C-1]+1;
+ 516              		.loc 1 237 0
+ 517 0368 5EF8042C 		ldr	r2, [lr, #-4]
+ 518 036c 4044     		add	r0, r0, r8
+ 519 036e 6244     		add	r2, r2, ip
+ 520 0370 4EF8042C 		str	r2, [lr, #-4]
+ 238:.\camera_functions.c ****                     bottom[j]=top[j-1];
+ 521              		.loc 1 238 0
+ 522 0374 50F8042C 		ldr	r2, [r0, #-4]
+ 523 0378 0132     		adds	r2, r2, #1
+ 524 037a 40F8042C 		str	r2, [r0, #-4]
+ 239:.\camera_functions.c ****                 }
+ 525              		.loc 1 239 0
+ 526 037e BA68     		ldr	r2, [r7, #8]
+ 527 0380 1A44     		add	r2, r2, r3
+ 528              	.LVL42:
+ 529              	.L48:
+ 530 0382 12F8012C 		ldrb	r2, [r2, #-1]	@ zero_extendqisi2
+ 531 0386 E254     		strb	r2, [r4, r3]
+ 532 0388 52E7     		b	.L14
+ 533              	.L58:
+ 534 038a 00BF     		.align	2
+ 535              	.L57:
+ 536 038c 00000000 		.word	.LANCHOR0
+ 537 0390 00000000 		.word	scaledElements
+ 538 0394 00000000 		.word	scaledX
+ 539 0398 00000000 		.word	scaledY
+ 540 039c 00000000 		.word	scaledClr
+ 541 03a0 00000000 		.word	loadPix
+ 542              	.LVL43:
+ 543              	.L56:
+ 544 03a4 4FEA8E00 		lsl	r0, lr, #2
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 16
+
+
+ 545 03a8 05EB0009 		add	r9, r5, r0
+ 546              	.LVL44:
+ 250:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 547              		.loc 1 250 0
+ 548 03ac 59F8042C 		ldr	r2, [r9, #-4]
+ 549              	.LVL45:
+ 253:.\camera_functions.c ****                 }
+ 550              		.loc 1 253 0
+ 551 03b0 04F803E0 		strb	lr, [r4, r3]
+ 250:.\camera_functions.c ****                     blobWeightsY[B-1]=blobWeightsY[B-1]+i;
+ 552              		.loc 1 250 0
+ 553 03b4 1A44     		add	r2, r2, r3
+ 554 03b6 49F8042C 		str	r2, [r9, #-4]
+ 555 03ba 06EB0009 		add	r9, r6, r0
+ 251:.\camera_functions.c ****                     blobElements[B-1]=blobElements[B-1]+1;
+ 556              		.loc 1 251 0
+ 557 03be 59F8042C 		ldr	r2, [r9, #-4]
+ 558 03c2 4044     		add	r0, r0, r8
+ 559 03c4 6244     		add	r2, r2, ip
+ 560 03c6 49F8042C 		str	r2, [r9, #-4]
+ 252:.\camera_functions.c ****                     bottom[j]=top[j];
+ 561              		.loc 1 252 0
+ 562 03ca 50F8042C 		ldr	r2, [r0, #-4]
+ 563 03ce 0132     		adds	r2, r2, #1
+ 564 03d0 40F8042C 		str	r2, [r0, #-4]
+ 565 03d4 2CE7     		b	.L14
+ 566              	.LVL46:
+ 567              	.L13:
+ 204:.\camera_functions.c ****                 //Rule 2: All blank but A, A is new blob type.
+ 568              		.loc 1 204 0
+ 569 03d6 BAF1000F 		cmp	r10, #0
+ 570 03da 3FF429AF 		beq	.L14
+ 571 03de D3E6     		b	.L31
+ 572              		.cfi_endproc
+ 573              	.LFE64:
+ 574              		.size	CamAnalyseFrame, .-CamAnalyseFrame
+ 575              		.section	.text.CamGetSequence,"ax",%progbits
+ 576              		.align	1
+ 577              		.global	CamGetSequence
+ 578              		.thumb
+ 579              		.thumb_func
+ 580              		.type	CamGetSequence, %function
+ 581              	CamGetSequence:
+ 582              	.LFB63:
+  57:.\camera_functions.c ****     uint16 orderedScaledX[5];
+ 583              		.loc 1 57 0
+ 584              		.cfi_startproc
+ 585              		@ args = 0, pretend = 0, frame = 56
+ 586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 587 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 588              		.cfi_def_cfa_offset 20
+ 589              		.cfi_offset 4, -20
+ 590              		.cfi_offset 5, -16
+ 591              		.cfi_offset 6, -12
+ 592              		.cfi_offset 7, -8
+ 593              		.cfi_offset 14, -4
+ 594 0002 8FB0     		sub	sp, sp, #60
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 17
+
+
+ 595              		.cfi_def_cfa_offset 80
+  63:.\camera_functions.c ****     memset(lrgY,0,5*2);
+ 596              		.loc 1 63 0
+ 597 0004 08AD     		add	r5, sp, #32
+ 598 0006 0021     		movs	r1, #0
+ 599 0008 0A22     		movs	r2, #10
+ 600 000a 2846     		mov	r0, r5
+  65:.\camera_functions.c ****     memset(orderedScaledX,0,5*2);
+ 601              		.loc 1 65 0
+ 602 000c 0026     		movs	r6, #0
+  63:.\camera_functions.c ****     memset(lrgY,0,5*2);
+ 603              		.loc 1 63 0
+ 604 000e FFF7FEFF 		bl	memset
+ 605              	.LVL47:
+  64:.\camera_functions.c ****     memset(lrgClr,0,5);
+ 606              		.loc 1 64 0
+ 607 0012 0021     		movs	r1, #0
+ 608 0014 0A22     		movs	r2, #10
+ 609 0016 0BA8     		add	r0, sp, #44
+ 610 0018 FFF7FEFF 		bl	memset
+ 611              	.LVL48:
+  66:.\camera_functions.c ****     memset(orderedScaledY,0,5*2);
+ 612              		.loc 1 66 0
+ 613 001c 3146     		mov	r1, r6
+ 614 001e 0A22     		movs	r2, #10
+ 615 0020 02A8     		add	r0, sp, #8
+  65:.\camera_functions.c ****     memset(orderedScaledX,0,5*2);
+ 616              		.loc 1 65 0
+ 617 0022 0096     		str	r6, [sp]
+ 618 0024 8DF80460 		strb	r6, [sp, #4]
+  75:.\camera_functions.c ****         max=0;
+ 619              		.loc 1 75 0
+ 620 0028 574C     		ldr	r4, .L83
+  66:.\camera_functions.c ****     memset(orderedScaledY,0,5*2);
+ 621              		.loc 1 66 0
+ 622 002a FFF7FEFF 		bl	memset
+ 623              	.LVL49:
+  67:.\camera_functions.c ****     memset(orderedScaledClr,0,5);
+ 624              		.loc 1 67 0
+ 625 002e 3146     		mov	r1, r6
+ 626 0030 0A22     		movs	r2, #10
+ 627 0032 05A8     		add	r0, sp, #20
+ 628 0034 FFF7FEFF 		bl	memset
+ 629              	.LVL50:
+  68:.\camera_functions.c ****     
+ 630              		.loc 1 68 0
+ 631 0038 3146     		mov	r1, r6
+ 632 003a 0522     		movs	r2, #5
+ 633 003c 5348     		ldr	r0, .L83+4
+ 634 003e FFF7FEFF 		bl	memset
+ 635              	.LVL51:
+  71:.\camera_functions.c ****     
+ 636              		.loc 1 71 0
+ 637 0042 FFF7FEFF 		bl	CamAnalyseFrame
+ 638              	.LVL52:
+  77:.\camera_functions.c ****             if(scaledElements[k]>scaledElements[max])
+ 639              		.loc 1 77 0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 18
+
+
+ 640 0046 A778     		ldrb	r7, [r4, #2]	@ zero_extendqisi2
+ 641              	.LVL53:
+ 642              	.L60:
+  75:.\camera_functions.c ****         max=0;
+ 643              		.loc 1 75 0 discriminator 1
+ 644 0048 052E     		cmp	r6, #5
+ 645 004a 4FF00003 		mov	r3, #0
+ 646 004e 41D0     		beq	.L64
+ 647 0050 1A46     		mov	r2, r3
+ 648              	.L63:
+ 649 0052 98B2     		uxth	r0, r3
+ 650              	.LVL54:
+  77:.\camera_functions.c ****             if(scaledElements[k]>scaledElements[max])
+ 651              		.loc 1 77 0 discriminator 1
+ 652 0054 B842     		cmp	r0, r7
+ 653 0056 4E49     		ldr	r1, .L83+8
+ 654 0058 08D2     		bcs	.L78
+  78:.\camera_functions.c ****                 max=k;
+ 655              		.loc 1 78 0
+ 656 005a 51F823E0 		ldr	lr, [r1, r3, lsl #2]
+ 657 005e 51F82210 		ldr	r1, [r1, r2, lsl #2]
+ 658 0062 0133     		adds	r3, r3, #1
+ 659 0064 8E45     		cmp	lr, r1
+ 660 0066 C8BF     		it	gt
+ 661 0068 0246     		movgt	r2, r0
+ 662              	.LVL55:
+ 663 006a F2E7     		b	.L63
+ 664              	.L78:
+  81:.\camera_functions.c ****         lrgY[j]=scaledY[max];
+ 665              		.loc 1 81 0 discriminator 2
+ 666 006c 4948     		ldr	r0, .L83+12
+ 667 006e 0EAB     		add	r3, sp, #56
+ 668 0070 30F81200 		ldrh	r0, [r0, r2, lsl #1]
+ 669 0074 03EB4603 		add	r3, r3, r6, lsl #1
+ 670 0078 23F8180C 		strh	r0, [r3, #-24]	@ movhi
+  82:.\camera_functions.c ****         lrgClr[j]=scaledClr[max];
+ 671              		.loc 1 82 0 discriminator 2
+ 672 007c 4648     		ldr	r0, .L83+16
+ 673 007e 30F81200 		ldrh	r0, [r0, r2, lsl #1]
+ 674 0082 23F80C0C 		strh	r0, [r3, #-12]	@ movhi
+  83:.\camera_functions.c ****         scaledElements[max]=0; //Reset Value of Counter, as to not find it again.
+ 675              		.loc 1 83 0 discriminator 2
+ 676 0086 4548     		ldr	r0, .L83+20
+ 677 0088 0EAB     		add	r3, sp, #56
+ 678 008a 805C     		ldrb	r0, [r0, r2]	@ zero_extendqisi2
+ 679 008c 3344     		add	r3, r3, r6
+ 680 008e 03F8380C 		strb	r0, [r3, #-56]
+ 681 0092 0136     		adds	r6, r6, #1
+  84:.\camera_functions.c ****     }
+ 682              		.loc 1 84 0 discriminator 2
+ 683 0094 0023     		movs	r3, #0
+ 684 0096 41F82230 		str	r3, [r1, r2, lsl #2]
+ 685 009a B6B2     		uxth	r6, r6
+ 686 009c D4E7     		b	.L60
+ 687              	.LVL56:
+ 688              	.L80:
+  95:.\camera_functions.c ****         orderedScaledY[j]=lrgY[max];
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 19
+
+
+ 689              		.loc 1 95 0 discriminator 2
+ 690 009e 0EAA     		add	r2, sp, #56
+ 691 00a0 02EB4306 		add	r6, r2, r3, lsl #1
+ 692 00a4 0A44     		add	r2, r2, r1
+ 693 00a6 32F8181C 		ldrh	r1, [r2, #-24]
+ 694 00aa 26F8301C 		strh	r1, [r6, #-48]	@ movhi
+  96:.\camera_functions.c ****         orderedScaledClr[j]=lrgClr[max];
+ 695              		.loc 1 96 0 discriminator 2
+ 696 00ae 32F80C1C 		ldrh	r1, [r2, #-12]
+ 697 00b2 26F8241C 		strh	r1, [r6, #-36]	@ movhi
+  97:.\camera_functions.c ****         lrgX[max]=0; //Reset Counter, to not find again.
+ 698              		.loc 1 97 0 discriminator 2
+ 699 00b6 0EA9     		add	r1, sp, #56
+ 700 00b8 0844     		add	r0, r0, r1
+ 701              	.LVL57:
+ 702 00ba 10F8386C 		ldrb	r6, [r0, #-56]	@ zero_extendqisi2
+ 703 00be 3349     		ldr	r1, .L83+4
+ 704 00c0 CE54     		strb	r6, [r1, r3]
+  98:.\camera_functions.c ****         lrgY[max]=0;
+ 705              		.loc 1 98 0 discriminator 2
+ 706 00c2 0021     		movs	r1, #0
+ 707 00c4 0133     		adds	r3, r3, #1
+ 708 00c6 22F8181C 		strh	r1, [r2, #-24]	@ movhi
+  99:.\camera_functions.c ****         lrgClr[max]=0;
+ 709              		.loc 1 99 0 discriminator 2
+ 710 00ca 22F80C1C 		strh	r1, [r2, #-12]	@ movhi
+ 100:.\camera_functions.c ****     }    
+ 711              		.loc 1 100 0 discriminator 2
+ 712 00ce 00F8381C 		strb	r1, [r0, #-56]
+ 713 00d2 9BB2     		uxth	r3, r3
+ 714              	.L64:
+  88:.\camera_functions.c ****         max=0;
+ 715              		.loc 1 88 0 discriminator 1
+ 716 00d4 052B     		cmp	r3, #5
+ 717 00d6 4FF00002 		mov	r2, #0
+ 718 00da 10D0     		beq	.L79
+ 719 00dc 1046     		mov	r0, r2
+ 720              	.L67:
+  90:.\camera_functions.c ****             //Find Largest
+ 721              		.loc 1 90 0 discriminator 1
+ 722 00de 052A     		cmp	r2, #5
+ 723 00e0 96B2     		uxth	r6, r2
+ 724              	.LVL58:
+ 725 00e2 4FEA4001 		lsl	r1, r0, #1
+ 726 00e6 DAD0     		beq	.L80
+  92:.\camera_functions.c ****                 max=k;
+ 727              		.loc 1 92 0
+ 728 00e8 0EAF     		add	r7, sp, #56
+ 729 00ea 3944     		add	r1, r1, r7
+ 730 00ec 31F8181C 		ldrh	r1, [r1, #-24]
+ 731 00f0 35F81270 		ldrh	r7, [r5, r2, lsl #1]
+ 732 00f4 0132     		adds	r2, r2, #1
+ 733 00f6 8F42     		cmp	r7, r1
+ 734 00f8 88BF     		it	hi
+ 735 00fa 3046     		movhi	r0, r6
+ 736              	.LVL59:
+ 737 00fc EFE7     		b	.L67
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 20
+
+
+ 738              	.LVL60:
+ 739              	.L79:
+ 740 00fe A380     		strh	r3, [r4, #4]	@ movhi
+ 104:.\camera_functions.c ****         LCD_SetWindowWrite(offset+(k-1)*2+k*15,0,offset+k*15 + (k-1)*2+14,4);
+ 741              		.loc 1 104 0
+ 742 0100 E280     		strh	r2, [r4, #6]	@ movhi
+ 743              	.L68:
+ 104:.\camera_functions.c ****         LCD_SetWindowWrite(offset+(k-1)*2+k*15,0,offset+k*15 + (k-1)*2+14,4);
+ 744              		.loc 1 104 0 is_stmt 0 discriminator 1
+ 745 0102 E288     		ldrh	r2, [r4, #6]
+ 746 0104 042A     		cmp	r2, #4
+ 747 0106 3DD8     		bhi	.L81
+ 105:.\camera_functions.c ****         if(orderedScaledClr[k]==RED){ //R
+ 748              		.loc 1 105 0 is_stmt 1
+ 749 0108 C2EB0211 		rsb	r1, r2, r2, lsl #4
+ 750 010c 8BB2     		uxth	r3, r1
+ 751 010e 02F10E00 		add	r0, r2, #14
+ 752 0112 03EB4202 		add	r2, r3, r2, lsl #1
+ 753 0116 03EB4000 		add	r0, r3, r0, lsl #1
+ 754 011a 2A32     		adds	r2, r2, #42
+ 755 011c 92B2     		uxth	r2, r2
+ 756 011e 0423     		movs	r3, #4
+ 757 0120 80B2     		uxth	r0, r0
+ 758 0122 0021     		movs	r1, #0
+ 759 0124 FFF7FEFF 		bl	LCD_SetWindowWrite
+ 760              	.LVL61:
+ 106:.\camera_functions.c ****             loadPix.R=255;
+ 761              		.loc 1 106 0
+ 762 0128 174B     		ldr	r3, .L83
+ 763 012a 184A     		ldr	r2, .L83+4
+ 764 012c DB88     		ldrh	r3, [r3, #6]
+ 765 012e 1C4D     		ldr	r5, .L83+24
+ 766 0130 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 767 0132 22B9     		cbnz	r2, .L69
+ 107:.\camera_functions.c ****             loadPix.G=0;
+ 768              		.loc 1 107 0
+ 769 0134 FF23     		movs	r3, #255
+ 770 0136 2B70     		strb	r3, [r5]
+ 108:.\camera_functions.c ****             loadPix.B=0;
+ 771              		.loc 1 108 0
+ 772 0138 6A70     		strb	r2, [r5, #1]
+ 109:.\camera_functions.c ****         } else if (orderedScaledClr[k]==GREEN){ //G
+ 773              		.loc 1 109 0
+ 774 013a AA70     		strb	r2, [r5, #2]
+ 775 013c 0BE0     		b	.L70
+ 776              	.L69:
+ 777 013e 0023     		movs	r3, #0
+ 110:.\camera_functions.c ****             loadPix.R=0;
+ 778              		.loc 1 110 0
+ 779 0140 012A     		cmp	r2, #1
+ 111:.\camera_functions.c ****             loadPix.G=255;
+ 780              		.loc 1 111 0
+ 781 0142 2B70     		strb	r3, [r5]
+ 110:.\camera_functions.c ****             loadPix.R=0;
+ 782              		.loc 1 110 0
+ 783 0144 02D1     		bne	.L71
+ 112:.\camera_functions.c ****             loadPix.B=0;} 
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 21
+
+
+ 784              		.loc 1 112 0
+ 785 0146 FF22     		movs	r2, #255
+ 786 0148 6A70     		strb	r2, [r5, #1]
+ 787 014a 03E0     		b	.L72
+ 788              	.L71:
+ 114:.\camera_functions.c ****             loadPix.R=0;
+ 789              		.loc 1 114 0
+ 790 014c 022A     		cmp	r2, #2
+ 116:.\camera_functions.c ****             loadPix.B=255;
+ 791              		.loc 1 116 0
+ 792 014e 6B70     		strb	r3, [r5, #1]
+ 117:.\camera_functions.c ****         } else {
+ 793              		.loc 1 117 0
+ 794 0150 08BF     		it	eq
+ 795 0152 FF23     		moveq	r3, #255
+ 796              	.L72:
+ 121:.\camera_functions.c ****         }   
+ 797              		.loc 1 121 0
+ 798 0154 AB70     		strb	r3, [r5, #2]
+ 799              	.L70:
+ 123:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 800              		.loc 1 123 0
+ 801 0156 0023     		movs	r3, #0
+ 802 0158 A380     		strh	r3, [r4, #4]	@ movhi
+ 803              	.L73:
+ 123:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 804              		.loc 1 123 0 is_stmt 0 discriminator 1
+ 805 015a A388     		ldrh	r3, [r4, #4]
+ 806 015c 0A4E     		ldr	r6, .L83
+ 807 015e 4A2B     		cmp	r3, #74
+ 808 0160 0CD8     		bhi	.L82
+ 124:.\camera_functions.c ****     }
+ 809              		.loc 1 124 0 is_stmt 1 discriminator 3
+ 810 0162 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 811 0164 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 812 0166 43EA0023 		orr	r3, r3, r0, lsl #8
+ 813 016a A878     		ldrb	r0, [r5, #2]	@ zero_extendqisi2
+ 814 016c 43EA0040 		orr	r0, r3, r0, lsl #16
+ 815 0170 FFF7FEFF 		bl	LCD_WritePixel
+ 816              	.LVL62:
+ 123:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 817              		.loc 1 123 0 discriminator 3
+ 818 0174 B388     		ldrh	r3, [r6, #4]
+ 819 0176 0133     		adds	r3, r3, #1
+ 820 0178 B380     		strh	r3, [r6, #4]	@ movhi
+ 821 017a EEE7     		b	.L73
+ 822              	.L82:
+ 104:.\camera_functions.c ****         LCD_SetWindowWrite(offset+(k-1)*2+k*15,0,offset+k*15 + (k-1)*2+14,4);
+ 823              		.loc 1 104 0 discriminator 2
+ 824 017c F388     		ldrh	r3, [r6, #6]
+ 825 017e 0133     		adds	r3, r3, #1
+ 826 0180 F380     		strh	r3, [r6, #6]	@ movhi
+ 827 0182 BEE7     		b	.L68
+ 828              	.L81:
+ 126:.\camera_functions.c **** 
+ 829              		.loc 1 126 0
+ 830 0184 0FB0     		add	sp, sp, #60
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 22
+
+
+ 831              		.cfi_def_cfa_offset 20
+ 832              		@ sp needed
+ 833 0186 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 834              	.L84:
+ 835              		.align	2
+ 836              	.L83:
+ 837 0188 00000000 		.word	.LANCHOR0
+ 838 018c 00000000 		.word	orderedScaledClr
+ 839 0190 00000000 		.word	scaledElements
+ 840 0194 00000000 		.word	scaledX
+ 841 0198 00000000 		.word	scaledY
+ 842 019c 00000000 		.word	scaledClr
+ 843 01a0 00000000 		.word	loadPix
+ 844              		.cfi_endproc
+ 845              	.LFE63:
+ 846              		.size	CamGetSequence, .-CamGetSequence
+ 847              		.section	.text.CamMarkBlobs,"ax",%progbits
+ 848              		.align	1
+ 849              		.global	CamMarkBlobs
+ 850              		.thumb
+ 851              		.thumb_func
+ 852              		.type	CamMarkBlobs, %function
+ 853              	CamMarkBlobs:
+ 854              	.LFB65:
+ 270:.\camera_functions.c **** 
+ 271:.\camera_functions.c **** /*******************************************************************************
+ 272:.\camera_functions.c **** * Function Name: CamMarkBlobs
+ 273:.\camera_functions.c **** ****************************************************************************//**
+ 274:.\camera_functions.c **** *
+ 275:.\camera_functions.c **** * Takes the scaledX,Y data, and generates a white 10x10 square at the area 
+ 276:.\camera_functions.c **** * of interest. This shows the effective pinpointing done, in real time.
+ 277:.\camera_functions.c **** * 'i' holds how many blobs have been detected prior, from an Analyse Frame call.
+ 278:.\camera_functions.c **** *
+ 279:.\camera_functions.c **** *******************************************************************************/
+ 280:.\camera_functions.c **** 
+ 281:.\camera_functions.c **** void CamMarkBlobs() {
+ 855              		.loc 1 281 0
+ 856              		.cfi_startproc
+ 857              		@ args = 0, pretend = 0, frame = 0
+ 858              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282:.\camera_functions.c ****     loadPix.R=255;
+ 859              		.loc 1 282 0
+ 860 0000 1B4B     		ldr	r3, .L92
+ 281:.\camera_functions.c ****     loadPix.R=255;
+ 861              		.loc 1 281 0
+ 862 0002 70B5     		push	{r4, r5, r6, lr}
+ 863              		.cfi_def_cfa_offset 16
+ 864              		.cfi_offset 4, -16
+ 865              		.cfi_offset 5, -12
+ 866              		.cfi_offset 6, -8
+ 867              		.cfi_offset 14, -4
+ 868 0004 1E46     		mov	r6, r3
+ 869              		.loc 1 282 0
+ 870 0006 FF22     		movs	r2, #255
+ 283:.\camera_functions.c ****     loadPix.G=255;
+ 284:.\camera_functions.c ****     loadPix.B=255;
+ 285:.\camera_functions.c ****     for (j=0;j<i; j++) {
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 23
+
+
+ 871              		.loc 1 285 0
+ 872 0008 1A4C     		ldr	r4, .L92+4
+ 282:.\camera_functions.c ****     loadPix.G=255;
+ 873              		.loc 1 282 0
+ 874 000a 1A70     		strb	r2, [r3]
+ 283:.\camera_functions.c ****     loadPix.G=255;
+ 875              		.loc 1 283 0
+ 876 000c 5A70     		strb	r2, [r3, #1]
+ 284:.\camera_functions.c ****     for (j=0;j<i; j++) {
+ 877              		.loc 1 284 0
+ 878 000e 9A70     		strb	r2, [r3, #2]
+ 879              		.loc 1 285 0
+ 880 0010 0022     		movs	r2, #0
+ 881 0012 A280     		strh	r2, [r4, #4]	@ movhi
+ 882              	.L86:
+ 883              		.loc 1 285 0 is_stmt 0 discriminator 1
+ 884 0014 A388     		ldrh	r3, [r4, #4]
+ 885 0016 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
+ 886 0018 9A42     		cmp	r2, r3
+ 887 001a 27D9     		bls	.L90
+ 286:.\camera_functions.c ****         LCD_SetWindowWrite(scaledX[j]-5,scaledY[j]-5,scaledX[j]+5,scaledY[j]+5);
+ 888              		.loc 1 286 0 is_stmt 1
+ 889 001c 1649     		ldr	r1, .L92+8
+ 890 001e 174A     		ldr	r2, .L92+12
+ 891 0020 32F81320 		ldrh	r2, [r2, r3, lsl #1]
+ 892 0024 31F81330 		ldrh	r3, [r1, r3, lsl #1]
+ 893 0028 501F     		subs	r0, r2, #5
+ 894 002a 591F     		subs	r1, r3, #5
+ 895 002c 0532     		adds	r2, r2, #5
+ 896 002e 0533     		adds	r3, r3, #5
+ 897 0030 92B2     		uxth	r2, r2
+ 898 0032 9BB2     		uxth	r3, r3
+ 899 0034 80B2     		uxth	r0, r0
+ 900 0036 89B2     		uxth	r1, r1
+ 901 0038 FFF7FEFF 		bl	LCD_SetWindowWrite
+ 902              	.LVL63:
+ 287:.\camera_functions.c ****         for (k=0;k<100;k++) {
+ 903              		.loc 1 287 0
+ 904 003c 0D4B     		ldr	r3, .L92+4
+ 905 003e 0022     		movs	r2, #0
+ 906 0040 DA80     		strh	r2, [r3, #6]	@ movhi
+ 907              	.L87:
+ 908              		.loc 1 287 0 is_stmt 0 discriminator 1
+ 909 0042 E388     		ldrh	r3, [r4, #6]
+ 910 0044 0B4D     		ldr	r5, .L92+4
+ 911 0046 632B     		cmp	r3, #99
+ 912 0048 0CD8     		bhi	.L91
+ 288:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 913              		.loc 1 288 0 is_stmt 1 discriminator 3
+ 914 004a 7078     		ldrb	r0, [r6, #1]	@ zero_extendqisi2
+ 915 004c 3378     		ldrb	r3, [r6]	@ zero_extendqisi2
+ 916 004e 43EA0023 		orr	r3, r3, r0, lsl #8
+ 917 0052 B078     		ldrb	r0, [r6, #2]	@ zero_extendqisi2
+ 918 0054 43EA0040 		orr	r0, r3, r0, lsl #16
+ 919 0058 FFF7FEFF 		bl	LCD_WritePixel
+ 920              	.LVL64:
+ 287:.\camera_functions.c ****         for (k=0;k<100;k++) {
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 24
+
+
+ 921              		.loc 1 287 0 discriminator 3
+ 922 005c EB88     		ldrh	r3, [r5, #6]
+ 923 005e 0133     		adds	r3, r3, #1
+ 924 0060 EB80     		strh	r3, [r5, #6]	@ movhi
+ 925 0062 EEE7     		b	.L87
+ 926              	.L91:
+ 285:.\camera_functions.c ****         LCD_SetWindowWrite(scaledX[j]-5,scaledY[j]-5,scaledX[j]+5,scaledY[j]+5);
+ 927              		.loc 1 285 0 discriminator 2
+ 928 0064 AB88     		ldrh	r3, [r5, #4]
+ 929 0066 0133     		adds	r3, r3, #1
+ 930 0068 AB80     		strh	r3, [r5, #4]	@ movhi
+ 931 006a D3E7     		b	.L86
+ 932              	.L90:
+ 289:.\camera_functions.c ****         }
+ 290:.\camera_functions.c ****     }
+ 291:.\camera_functions.c **** }
+ 933              		.loc 1 291 0
+ 934 006c 70BD     		pop	{r4, r5, r6, pc}
+ 935              	.L93:
+ 936 006e 00BF     		.align	2
+ 937              	.L92:
+ 938 0070 00000000 		.word	loadPix
+ 939 0074 00000000 		.word	.LANCHOR0
+ 940 0078 00000000 		.word	scaledY
+ 941 007c 00000000 		.word	scaledX
+ 942              		.cfi_endproc
+ 943              	.LFE65:
+ 944              		.size	CamMarkBlobs, .-CamMarkBlobs
+ 945              		.section	.text.CamScanClosest,"ax",%progbits
+ 946              		.align	1
+ 947              		.global	CamScanClosest
+ 948              		.thumb
+ 949              		.thumb_func
+ 950              		.type	CamScanClosest, %function
+ 951              	CamScanClosest:
+ 952              	.LFB66:
+ 292:.\camera_functions.c **** 
+ 293:.\camera_functions.c **** /*******************************************************************************
+ 294:.\camera_functions.c **** * Function Name: CamScanClosest
+ 295:.\camera_functions.c **** ****************************************************************************//**
+ 296:.\camera_functions.c **** *
+ 297:.\camera_functions.c **** * Finds the closest puck of a specific colour, using depth perception.
+ 298:.\camera_functions.c **** * Returns False if no puck is found.
+ 299:.\camera_functions.c **** *
+ 300:.\camera_functions.c **** *******************************************************************************/
+ 301:.\camera_functions.c **** 
+ 302:.\camera_functions.c **** bool CamScanClosest(uint8 clr) {
+ 953              		.loc 1 302 0
+ 954              		.cfi_startproc
+ 955              		@ args = 0, pretend = 0, frame = 0
+ 956              		@ frame_needed = 0, uses_anonymous_args = 0
+ 957              	.LVL65:
+ 958 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 959              		.cfi_def_cfa_offset 24
+ 960              		.cfi_offset 3, -24
+ 961              		.cfi_offset 4, -20
+ 962              		.cfi_offset 5, -16
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 25
+
+
+ 963              		.cfi_offset 6, -12
+ 964              		.cfi_offset 7, -8
+ 965              		.cfi_offset 14, -4
+ 966              		.loc 1 302 0
+ 967 0002 0646     		mov	r6, r0
+ 303:.\camera_functions.c ****     //Get a frame and find significant blobs.
+ 304:.\camera_functions.c ****     CamAnalyseFrame();
+ 968              		.loc 1 304 0
+ 969 0004 FFF7FEFF 		bl	CamAnalyseFrame
+ 970              	.LVL66:
+ 305:.\camera_functions.c ****     CamMarkBlobs();
+ 971              		.loc 1 305 0
+ 972 0008 FFF7FEFF 		bl	CamMarkBlobs
+ 973              	.LVL67:
+ 974 000c 0022     		movs	r2, #0
+ 975 000e 1046     		mov	r0, r2
+ 306:.\camera_functions.c ****     //Reset Counters for X and Y values.
+ 307:.\camera_functions.c ****     closestX=0;
+ 308:.\camera_functions.c ****     closestY=0;
+ 309:.\camera_functions.c ****     
+ 310:.\camera_functions.c ****     //i Holds how many blobs have been detected.
+ 311:.\camera_functions.c ****     for (j=0; j<i; j++) {
+ 976              		.loc 1 311 0
+ 977 0010 1346     		mov	r3, r2
+ 978 0012 244D     		ldr	r5, .L108
+ 979 0014 AC78     		ldrb	r4, [r5, #2]	@ zero_extendqisi2
+ 980              	.L95:
+ 981              		.loc 1 311 0 is_stmt 0 discriminator 1
+ 982 0016 A342     		cmp	r3, r4
+ 983 0018 0FD2     		bcs	.L106
+ 312:.\camera_functions.c ****         if (closestY < scaledY[j] && scaledClr[j]==clr) {
+ 984              		.loc 1 312 0 is_stmt 1
+ 985 001a 2349     		ldr	r1, .L108+4
+ 986 001c 31F81310 		ldrh	r1, [r1, r3, lsl #1]
+ 987 0020 8A42     		cmp	r2, r1
+ 988 0022 07D2     		bcs	.L96
+ 989              		.loc 1 312 0 is_stmt 0 discriminator 1
+ 990 0024 214F     		ldr	r7, .L108+8
+ 991 0026 FF5C     		ldrb	r7, [r7, r3]	@ zero_extendqisi2
+ 992 0028 B742     		cmp	r7, r6
+ 313:.\camera_functions.c ****             closestY = scaledY[j];
+ 314:.\camera_functions.c ****             closestX = scaledX[j];
+ 993              		.loc 1 314 0 is_stmt 1 discriminator 1
+ 994 002a 02BF     		ittt	eq
+ 995 002c 204A     		ldreq	r2, .L108+12
+ 996 002e 32F81300 		ldrheq	r0, [r2, r3, lsl #1]
+ 997 0032 0A46     		moveq	r2, r1
+ 998              	.L96:
+ 999 0034 0133     		adds	r3, r3, #1
+ 1000 0036 9BB2     		uxth	r3, r3
+ 1001 0038 EDE7     		b	.L95
+ 1002              	.L106:
+ 1003 003a 1E49     		ldr	r1, .L108+16
+ 1004 003c AB80     		strh	r3, [r5, #4]	@ movhi
+ 1005 003e 0A80     		strh	r2, [r1]	@ movhi
+ 1006 0040 1D4A     		ldr	r2, .L108+20
+ 1007 0042 1080     		strh	r0, [r2]	@ movhi
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 26
+
+
+ 315:.\camera_functions.c ****         }
+ 316:.\camera_functions.c ****     }
+ 317:.\camera_functions.c ****     
+ 318:.\camera_functions.c ****     if(closestX != 0) {
+ 1008              		.loc 1 318 0
+ 1009 0044 68B3     		cbz	r0, .L98
+ 319:.\camera_functions.c ****     
+ 320:.\camera_functions.c ****         //mark closest with inverted colour.
+ 321:.\camera_functions.c ****         LCD_SetWindowWrite(closestX-5,closestY-5,closestX+5,closestY+5);
+ 1010              		.loc 1 321 0
+ 1011 0046 0B88     		ldrh	r3, [r1]
+ 1012 0048 441F     		subs	r4, r0, #5
+ 1013 004a 591F     		subs	r1, r3, #5
+ 1014 004c 421D     		adds	r2, r0, #5
+ 1015 004e 0533     		adds	r3, r3, #5
+ 1016 0050 A0B2     		uxth	r0, r4
+ 1017 0052 9BB2     		uxth	r3, r3
+ 1018 0054 89B2     		uxth	r1, r1
+ 1019 0056 92B2     		uxth	r2, r2
+ 1020 0058 FFF7FEFF 		bl	LCD_SetWindowWrite
+ 1021              	.LVL68:
+ 1022 005c 174C     		ldr	r4, .L108+24
+ 1023 005e FF23     		movs	r3, #255
+ 322:.\camera_functions.c ****         if (clr == RED) { //Red.
+ 1024              		.loc 1 322 0
+ 1025 0060 16B9     		cbnz	r6, .L99
+ 323:.\camera_functions.c ****             loadPix.R=0;
+ 1026              		.loc 1 323 0
+ 1027 0062 2670     		strb	r6, [r4]
+ 324:.\camera_functions.c ****             loadPix.G=255;
+ 1028              		.loc 1 324 0
+ 1029 0064 6370     		strb	r3, [r4, #1]
+ 1030 0066 07E0     		b	.L105
+ 1031              	.L99:
+ 325:.\camera_functions.c ****             loadPix.B=255;
+ 326:.\camera_functions.c ****         } else if (clr == GREEN){ //Green.
+ 1032              		.loc 1 326 0
+ 1033 0068 012E     		cmp	r6, #1
+ 327:.\camera_functions.c ****             loadPix.R=255;
+ 328:.\camera_functions.c ****             loadPix.G=0;
+ 1034              		.loc 1 328 0
+ 1035 006a 08BF     		it	eq
+ 1036 006c 0022     		moveq	r2, #0
+ 327:.\camera_functions.c ****             loadPix.R=255;
+ 1037              		.loc 1 327 0
+ 1038 006e 2370     		strb	r3, [r4]
+ 329:.\camera_functions.c ****             loadPix.B=255;
+ 330:.\camera_functions.c ****         } else  {
+ 331:.\camera_functions.c ****             loadPix.R=255;
+ 332:.\camera_functions.c ****             loadPix.G=255;
+ 1039              		.loc 1 332 0
+ 1040 0070 16BF     		itet	ne
+ 1041 0072 6370     		strbne	r3, [r4, #1]
+ 328:.\camera_functions.c ****             loadPix.B=255;
+ 1042              		.loc 1 328 0
+ 1043 0074 6270     		strbeq	r2, [r4, #1]
+ 333:.\camera_functions.c ****             loadPix.B=0;
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 27
+
+
+ 1044              		.loc 1 333 0
+ 1045 0076 0023     		movne	r3, #0
+ 1046              	.L105:
+ 1047 0078 A370     		strb	r3, [r4, #2]
+ 334:.\camera_functions.c ****         }
+ 335:.\camera_functions.c ****         
+ 336:.\camera_functions.c ****         for (k=0; k<100; k++) {
+ 1048              		.loc 1 336 0
+ 1049 007a 0023     		movs	r3, #0
+ 1050 007c EB80     		strh	r3, [r5, #6]	@ movhi
+ 1051              	.L102:
+ 1052              		.loc 1 336 0 is_stmt 0 discriminator 1
+ 1053 007e EB88     		ldrh	r3, [r5, #6]
+ 1054 0080 084E     		ldr	r6, .L108
+ 1055 0082 632B     		cmp	r3, #99
+ 1056 0084 0CD8     		bhi	.L107
+ 337:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 1057              		.loc 1 337 0 is_stmt 1 discriminator 3
+ 1058 0086 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 1059 0088 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 1060 008a 43EA0023 		orr	r3, r3, r0, lsl #8
+ 1061 008e A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 1062 0090 43EA0040 		orr	r0, r3, r0, lsl #16
+ 1063 0094 FFF7FEFF 		bl	LCD_WritePixel
+ 1064              	.LVL69:
+ 336:.\camera_functions.c ****             LCD_WritePixel(loadPix);
+ 1065              		.loc 1 336 0 discriminator 3
+ 1066 0098 F388     		ldrh	r3, [r6, #6]
+ 1067 009a 0133     		adds	r3, r3, #1
+ 1068 009c F380     		strh	r3, [r6, #6]	@ movhi
+ 1069 009e EEE7     		b	.L102
+ 1070              	.L107:
+ 338:.\camera_functions.c ****         }
+ 339:.\camera_functions.c ****     
+ 340:.\camera_functions.c ****         return true;   
+ 1071              		.loc 1 340 0
+ 1072 00a0 0120     		movs	r0, #1
+ 1073              	.L98:
+ 341:.\camera_functions.c ****     } else {
+ 342:.\camera_functions.c ****         return false;      
+ 343:.\camera_functions.c ****     }
+ 344:.\camera_functions.c **** }
+ 1074              		.loc 1 344 0
+ 1075 00a2 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1076              	.L109:
+ 1077              		.align	2
+ 1078              	.L108:
+ 1079 00a4 00000000 		.word	.LANCHOR0
+ 1080 00a8 00000000 		.word	scaledY
+ 1081 00ac 00000000 		.word	scaledClr
+ 1082 00b0 00000000 		.word	scaledX
+ 1083 00b4 00000000 		.word	closestY
+ 1084 00b8 00000000 		.word	closestX
+ 1085 00bc 00000000 		.word	loadPix
+ 1086              		.cfi_endproc
+ 1087              	.LFE66:
+ 1088              		.size	CamScanClosest, .-CamScanClosest
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 28
+
+
+ 1089              		.section	.text.CamMarkClosest,"ax",%progbits
+ 1090              		.align	1
+ 1091              		.global	CamMarkClosest
+ 1092              		.thumb
+ 1093              		.thumb_func
+ 1094              		.type	CamMarkClosest, %function
+ 1095              	CamMarkClosest:
+ 1096              	.LFB67:
+ 345:.\camera_functions.c **** 
+ 346:.\camera_functions.c **** /*******************************************************************************
+ 347:.\camera_functions.c **** * Function Name: CamMarkClosest
+ 348:.\camera_functions.c **** ****************************************************************************//**
+ 349:.\camera_functions.c **** *
+ 350:.\camera_functions.c **** * Marks the found puck on the display.
+ 351:.\camera_functions.c **** *
+ 352:.\camera_functions.c **** *******************************************************************************/
+ 353:.\camera_functions.c **** void CamMarkClosest() {
+ 1097              		.loc 1 353 0
+ 1098              		.cfi_startproc
+ 1099              		@ args = 0, pretend = 0, frame = 0
+ 1100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1101 0000 70B5     		push	{r4, r5, r6, lr}
+ 1102              		.cfi_def_cfa_offset 16
+ 1103              		.cfi_offset 4, -16
+ 1104              		.cfi_offset 5, -12
+ 1105              		.cfi_offset 6, -8
+ 1106              		.cfi_offset 14, -4
+ 354:.\camera_functions.c ****     loadPix.R=255;
+ 1107              		.loc 1 354 0
+ 1108 0002 144C     		ldr	r4, .L114
+ 1109 0004 FF23     		movs	r3, #255
+ 1110 0006 2370     		strb	r3, [r4]
+ 355:.\camera_functions.c ****     loadPix.G=255;
+ 1111              		.loc 1 355 0
+ 1112 0008 6370     		strb	r3, [r4, #1]
+ 356:.\camera_functions.c ****     loadPix.B=255;
+ 1113              		.loc 1 356 0
+ 1114 000a A370     		strb	r3, [r4, #2]
+ 357:.\camera_functions.c ****     LCD_SetWindowWrite(closestX-5,closestY-5,closestX+5,closestY+5);
+ 1115              		.loc 1 357 0
+ 1116 000c 124B     		ldr	r3, .L114+4
+ 1117 000e 1A88     		ldrh	r2, [r3]
+ 1118 0010 124B     		ldr	r3, .L114+8
+ 1119 0012 501F     		subs	r0, r2, #5
+ 1120 0014 1B88     		ldrh	r3, [r3]
+ 1121 0016 0532     		adds	r2, r2, #5
+ 1122 0018 591F     		subs	r1, r3, #5
+ 1123 001a 0533     		adds	r3, r3, #5
+ 1124 001c 92B2     		uxth	r2, r2
+ 1125 001e 9BB2     		uxth	r3, r3
+ 1126 0020 80B2     		uxth	r0, r0
+ 1127 0022 89B2     		uxth	r1, r1
+ 1128 0024 FFF7FEFF 		bl	LCD_SetWindowWrite
+ 1129              	.LVL70:
+ 358:.\camera_functions.c ****     for (k=0;k<100;k++) {
+ 1130              		.loc 1 358 0
+ 1131 0028 0D4B     		ldr	r3, .L114+12
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 29
+
+
+ 1132 002a 0022     		movs	r2, #0
+ 1133 002c 1D46     		mov	r5, r3
+ 1134 002e DA80     		strh	r2, [r3, #6]	@ movhi
+ 1135              	.L111:
+ 1136              		.loc 1 358 0 is_stmt 0 discriminator 1
+ 1137 0030 EB88     		ldrh	r3, [r5, #6]
+ 1138 0032 0B4E     		ldr	r6, .L114+12
+ 1139 0034 632B     		cmp	r3, #99
+ 1140 0036 0CD8     		bhi	.L113
+ 359:.\camera_functions.c ****         LCD_WritePixel(loadPix);
+ 1141              		.loc 1 359 0 is_stmt 1 discriminator 3
+ 1142 0038 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 1143 003a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 1144 003c 43EA0023 		orr	r3, r3, r0, lsl #8
+ 1145 0040 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 1146 0042 43EA0040 		orr	r0, r3, r0, lsl #16
+ 1147 0046 FFF7FEFF 		bl	LCD_WritePixel
+ 1148              	.LVL71:
+ 358:.\camera_functions.c ****     for (k=0;k<100;k++) {
+ 1149              		.loc 1 358 0 discriminator 3
+ 1150 004a F388     		ldrh	r3, [r6, #6]
+ 1151 004c 0133     		adds	r3, r3, #1
+ 1152 004e F380     		strh	r3, [r6, #6]	@ movhi
+ 1153 0050 EEE7     		b	.L111
+ 1154              	.L113:
+ 360:.\camera_functions.c ****     }
+ 361:.\camera_functions.c **** }
+ 1155              		.loc 1 361 0
+ 1156 0052 70BD     		pop	{r4, r5, r6, pc}
+ 1157              	.L115:
+ 1158              		.align	2
+ 1159              	.L114:
+ 1160 0054 00000000 		.word	loadPix
+ 1161 0058 00000000 		.word	closestX
+ 1162 005c 00000000 		.word	closestY
+ 1163 0060 00000000 		.word	.LANCHOR0
+ 1164              		.cfi_endproc
+ 1165              	.LFE67:
+ 1166              		.size	CamMarkClosest, .-CamMarkClosest
+ 1167              		.comm	closestY,2,2
+ 1168              		.comm	closestX,2,2
+ 1169              		.comm	orderedScaledClr,5,1
+ 1170              		.global	blobCounter
+ 1171              		.comm	scaledElements,200,4
+ 1172              		.comm	scaledClr,50,1
+ 1173              		.comm	scaledY,100,2
+ 1174              		.comm	scaledX,100,2
+ 1175              		.global	k
+ 1176              		.global	j
+ 1177              		.global	i
+ 1178              		.comm	loadPix,3,1
+ 1179              		.global	blobThresholdSize
+ 1180              		.global	offset
+ 1181              		.global	numCols
+ 1182              		.global	numRows
+ 1183              		.global	BLUE
+ 1184              		.global	GREEN
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 30
+
+
+ 1185              		.global	RED
+ 1186              		.comm	Camera_linebuffer,640,4
+ 1187              		.section	.rodata
+ 1188              		.align	1
+ 1189              		.type	blobThresholdSize, %object
+ 1190              		.size	blobThresholdSize, 1
+ 1191              	blobThresholdSize:
+ 1192 0000 50       		.byte	80
+ 1193              		.type	offset, %object
+ 1194              		.size	offset, 1
+ 1195              	offset:
+ 1196 0001 1E       		.byte	30
+ 1197              		.type	numCols, %object
+ 1198              		.size	numCols, 2
+ 1199              	numCols:
+ 1200 0002 4001     		.short	320
+ 1201              		.type	numRows, %object
+ 1202              		.size	numRows, 1
+ 1203              	numRows:
+ 1204 0004 F0       		.byte	-16
+ 1205              		.type	BLUE, %object
+ 1206              		.size	BLUE, 1
+ 1207              	BLUE:
+ 1208 0005 02       		.byte	2
+ 1209              		.type	GREEN, %object
+ 1210              		.size	GREEN, 1
+ 1211              	GREEN:
+ 1212 0006 01       		.byte	1
+ 1213              		.type	RED, %object
+ 1214              		.size	RED, 1
+ 1215              	RED:
+ 1216 0007 00       		.space	1
+ 1217              		.bss
+ 1218              		.align	1
+ 1219              		.set	.LANCHOR0,. + 0
+ 1220              		.type	blobCounter, %object
+ 1221              		.size	blobCounter, 2
+ 1222              	blobCounter:
+ 1223 0000 0000     		.space	2
+ 1224              		.type	i, %object
+ 1225              		.size	i, 1
+ 1226              	i:
+ 1227 0002 00       		.space	1
+ 1228 0003 00       		.space	1
+ 1229              		.type	j, %object
+ 1230              		.size	j, 2
+ 1231              	j:
+ 1232 0004 0000     		.space	2
+ 1233              		.type	k, %object
+ 1234              		.size	k, 2
+ 1235              	k:
+ 1236 0006 0000     		.space	2
+ 1237              		.text
+ 1238              	.Letext0:
+ 1239              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1240              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1241              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 31
+
+
+ 1242              		.file 5 "Generated_Source\\PSoC5/LCD.h"
+ 1243              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 1244              		.file 7 "Generated_Source\\PSoC5/Camera.h"
+ 1245              		.file 8 ".\\camera_functions.h"
+ 1246              		.section	.debug_info,"",%progbits
+ 1247              	.Ldebug_info0:
+ 1248 0000 AF070000 		.4byte	0x7af
+ 1249 0004 0400     		.2byte	0x4
+ 1250 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1251 000a 04       		.byte	0x4
+ 1252 000b 01       		.uleb128 0x1
+ 1253 000c 79000000 		.4byte	.LASF55
+ 1254 0010 01       		.byte	0x1
+ 1255 0011 6E010000 		.4byte	.LASF56
+ 1256 0015 C9020000 		.4byte	.LASF57
+ 1257 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1258 001d 00000000 		.4byte	0
+ 1259 0021 00000000 		.4byte	.Ldebug_line0
+ 1260 0025 02       		.uleb128 0x2
+ 1261 0026 01       		.byte	0x1
+ 1262 0027 06       		.byte	0x6
+ 1263 0028 4F010000 		.4byte	.LASF0
+ 1264 002c 02       		.uleb128 0x2
+ 1265 002d 01       		.byte	0x1
+ 1266 002e 08       		.byte	0x8
+ 1267 002f C8010000 		.4byte	.LASF1
+ 1268 0033 02       		.uleb128 0x2
+ 1269 0034 02       		.byte	0x2
+ 1270 0035 05       		.byte	0x5
+ 1271 0036 46000000 		.4byte	.LASF2
+ 1272 003a 02       		.uleb128 0x2
+ 1273 003b 02       		.byte	0x2
+ 1274 003c 07       		.byte	0x7
+ 1275 003d 4A020000 		.4byte	.LASF3
+ 1276 0041 03       		.uleb128 0x3
+ 1277 0042 11030000 		.4byte	.LASF9
+ 1278 0046 02       		.byte	0x2
+ 1279 0047 3F       		.byte	0x3f
+ 1280 0048 4C000000 		.4byte	0x4c
+ 1281 004c 02       		.uleb128 0x2
+ 1282 004d 04       		.byte	0x4
+ 1283 004e 05       		.byte	0x5
+ 1284 004f 6F020000 		.4byte	.LASF4
+ 1285 0053 02       		.uleb128 0x2
+ 1286 0054 04       		.byte	0x4
+ 1287 0055 07       		.byte	0x7
+ 1288 0056 9C020000 		.4byte	.LASF5
+ 1289 005a 02       		.uleb128 0x2
+ 1290 005b 08       		.byte	0x8
+ 1291 005c 05       		.byte	0x5
+ 1292 005d 60010000 		.4byte	.LASF6
+ 1293 0061 02       		.uleb128 0x2
+ 1294 0062 08       		.byte	0x8
+ 1295 0063 07       		.byte	0x7
+ 1296 0064 04020000 		.4byte	.LASF7
+ 1297 0068 04       		.uleb128 0x4
+ 1298 0069 04       		.byte	0x4
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 32
+
+
+ 1299 006a 05       		.byte	0x5
+ 1300 006b 696E7400 		.ascii	"int\000"
+ 1301 006f 02       		.uleb128 0x2
+ 1302 0070 04       		.byte	0x4
+ 1303 0071 07       		.byte	0x7
+ 1304 0072 1B020000 		.4byte	.LASF8
+ 1305 0076 03       		.uleb128 0x3
+ 1306 0077 78020000 		.4byte	.LASF10
+ 1307 007b 03       		.byte	0x3
+ 1308 007c 2C       		.byte	0x2c
+ 1309 007d 41000000 		.4byte	0x41
+ 1310 0081 05       		.uleb128 0x5
+ 1311 0082 2B010000 		.4byte	.LASF11
+ 1312 0086 04       		.byte	0x4
+ 1313 0087 9201     		.2byte	0x192
+ 1314 0089 2C000000 		.4byte	0x2c
+ 1315 008d 05       		.uleb128 0x5
+ 1316 008e 24010000 		.4byte	.LASF12
+ 1317 0092 04       		.byte	0x4
+ 1318 0093 9301     		.2byte	0x193
+ 1319 0095 3A000000 		.4byte	0x3a
+ 1320 0099 05       		.uleb128 0x5
+ 1321 009a 95020000 		.4byte	.LASF13
+ 1322 009e 04       		.byte	0x4
+ 1323 009f 9401     		.2byte	0x194
+ 1324 00a1 53000000 		.4byte	0x53
+ 1325 00a5 02       		.uleb128 0x2
+ 1326 00a6 04       		.byte	0x4
+ 1327 00a7 04       		.byte	0x4
+ 1328 00a8 28000000 		.4byte	.LASF14
+ 1329 00ac 02       		.uleb128 0x2
+ 1330 00ad 08       		.byte	0x8
+ 1331 00ae 04       		.byte	0x4
+ 1332 00af AE020000 		.4byte	.LASF15
+ 1333 00b3 02       		.uleb128 0x2
+ 1334 00b4 01       		.byte	0x1
+ 1335 00b5 08       		.byte	0x8
+ 1336 00b6 6A020000 		.4byte	.LASF16
+ 1337 00ba 02       		.uleb128 0x2
+ 1338 00bb 04       		.byte	0x4
+ 1339 00bc 07       		.byte	0x7
+ 1340 00bd 61000000 		.4byte	.LASF17
+ 1341 00c1 06       		.uleb128 0x6
+ 1342 00c2 04       		.byte	0x4
+ 1343 00c3 07       		.uleb128 0x7
+ 1344 00c4 03       		.byte	0x3
+ 1345 00c5 05       		.byte	0x5
+ 1346 00c6 12       		.byte	0x12
+ 1347 00c7 EA000000 		.4byte	0xea
+ 1348 00cb 08       		.uleb128 0x8
+ 1349 00cc 5200     		.ascii	"R\000"
+ 1350 00ce 05       		.byte	0x5
+ 1351 00cf 14       		.byte	0x14
+ 1352 00d0 81000000 		.4byte	0x81
+ 1353 00d4 00       		.byte	0
+ 1354 00d5 08       		.uleb128 0x8
+ 1355 00d6 4700     		.ascii	"G\000"
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 33
+
+
+ 1356 00d8 05       		.byte	0x5
+ 1357 00d9 14       		.byte	0x14
+ 1358 00da 81000000 		.4byte	0x81
+ 1359 00de 01       		.byte	0x1
+ 1360 00df 08       		.uleb128 0x8
+ 1361 00e0 4200     		.ascii	"B\000"
+ 1362 00e2 05       		.byte	0x5
+ 1363 00e3 14       		.byte	0x14
+ 1364 00e4 81000000 		.4byte	0x81
+ 1365 00e8 02       		.byte	0x2
+ 1366 00e9 00       		.byte	0
+ 1367 00ea 03       		.uleb128 0x3
+ 1368 00eb 2E000000 		.4byte	.LASF18
+ 1369 00ef 05       		.byte	0x5
+ 1370 00f0 15       		.byte	0x15
+ 1371 00f1 C3000000 		.4byte	0xc3
+ 1372 00f5 09       		.uleb128 0x9
+ 1373 00f6 B0010000 		.4byte	.LASF24
+ 1374 00fa 01       		.byte	0x1
+ 1375 00fb 8D       		.byte	0x8d
+ 1376 00fc 00000000 		.4byte	.LFB64
+ 1377 0100 E0030000 		.4byte	.LFE64-.LFB64
+ 1378 0104 01       		.uleb128 0x1
+ 1379 0105 9C       		.byte	0x9c
+ 1380 0106 0D030000 		.4byte	0x30d
+ 1381 010a 0A       		.uleb128 0xa
+ 1382 010b 4D030000 		.4byte	.LASF19
+ 1383 010f 01       		.byte	0x1
+ 1384 0110 91       		.byte	0x91
+ 1385 0111 0D030000 		.4byte	0x30d
+ 1386 0115 02       		.uleb128 0x2
+ 1387 0116 75       		.byte	0x75
+ 1388 0117 00       		.sleb128 0
+ 1389 0118 0A       		.uleb128 0xa
+ 1390 0119 5A030000 		.4byte	.LASF20
+ 1391 011d 01       		.byte	0x1
+ 1392 011e 92       		.byte	0x92
+ 1393 011f 20030000 		.4byte	0x320
+ 1394 0123 02       		.uleb128 0x2
+ 1395 0124 76       		.byte	0x76
+ 1396 0125 00       		.sleb128 0
+ 1397 0126 0A       		.uleb128 0xa
+ 1398 0127 E8010000 		.4byte	.LASF21
+ 1399 012b 01       		.byte	0x1
+ 1400 012c 93       		.byte	0x93
+ 1401 012d 33030000 		.4byte	0x333
+ 1402 0131 02       		.uleb128 0x2
+ 1403 0132 78       		.byte	0x78
+ 1404 0133 00       		.sleb128 0
+ 1405 0134 0B       		.uleb128 0xb
+ 1406 0135 47010000 		.4byte	.LASF22
+ 1407 0139 01       		.byte	0x1
+ 1408 013a 94       		.byte	0x94
+ 1409 013b 46030000 		.4byte	0x346
+ 1410 013f 0C       		.uleb128 0xc
+ 1411 0140 746F7000 		.ascii	"top\000"
+ 1412 0144 01       		.byte	0x1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 34
+
+
+ 1413 0145 96       		.byte	0x96
+ 1414 0146 59030000 		.4byte	0x359
+ 1415 014a 0D       		.uleb128 0xd
+ 1416 014b 40010000 		.4byte	.LASF23
+ 1417 014f 01       		.byte	0x1
+ 1418 0150 97       		.byte	0x97
+ 1419 0151 6C030000 		.4byte	0x36c
+ 1420 0155 00000000 		.4byte	.LLST0
+ 1421 0159 0E       		.uleb128 0xe
+ 1422 015a 636C7200 		.ascii	"clr\000"
+ 1423 015e 01       		.byte	0x1
+ 1424 015f A8       		.byte	0xa8
+ 1425 0160 81000000 		.4byte	0x81
+ 1426 0164 3D000000 		.4byte	.LLST1
+ 1427 0168 0E       		.uleb128 0xe
+ 1428 0169 4100     		.ascii	"A\000"
+ 1429 016b 01       		.byte	0x1
+ 1430 016c AA       		.byte	0xaa
+ 1431 016d 81000000 		.4byte	0x81
+ 1432 0171 69000000 		.4byte	.LLST2
+ 1433 0175 0E       		.uleb128 0xe
+ 1434 0176 4200     		.ascii	"B\000"
+ 1435 0178 01       		.byte	0x1
+ 1436 0179 AA       		.byte	0xaa
+ 1437 017a 81000000 		.4byte	0x81
+ 1438 017e A1000000 		.4byte	.LLST3
+ 1439 0182 0E       		.uleb128 0xe
+ 1440 0183 4300     		.ascii	"C\000"
+ 1441 0185 01       		.byte	0x1
+ 1442 0186 AA       		.byte	0xaa
+ 1443 0187 81000000 		.4byte	0x81
+ 1444 018b 27010000 		.4byte	.LLST4
+ 1445 018f 0E       		.uleb128 0xe
+ 1446 0190 4400     		.ascii	"D\000"
+ 1447 0192 01       		.byte	0x1
+ 1448 0193 AA       		.byte	0xaa
+ 1449 0194 81000000 		.4byte	0x81
+ 1450 0198 95010000 		.4byte	.LLST5
+ 1451 019c 0F       		.uleb128 0xf
+ 1452 019d 3E000000 		.4byte	.LVL1
+ 1453 01a1 37070000 		.4byte	0x737
+ 1454 01a5 BF010000 		.4byte	0x1bf
+ 1455 01a9 10       		.uleb128 0x10
+ 1456 01aa 01       		.uleb128 0x1
+ 1457 01ab 52       		.byte	0x52
+ 1458 01ac 02       		.uleb128 0x2
+ 1459 01ad 08       		.byte	0x8
+ 1460 01ae C8       		.byte	0xc8
+ 1461 01af 10       		.uleb128 0x10
+ 1462 01b0 01       		.uleb128 0x1
+ 1463 01b1 51       		.byte	0x51
+ 1464 01b2 02       		.uleb128 0x2
+ 1465 01b3 79       		.byte	0x79
+ 1466 01b4 00       		.sleb128 0
+ 1467 01b5 10       		.uleb128 0x10
+ 1468 01b6 01       		.uleb128 0x1
+ 1469 01b7 50       		.byte	0x50
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 35
+
+
+ 1470 01b8 05       		.uleb128 0x5
+ 1471 01b9 03       		.byte	0x3
+ 1472 01ba 00000000 		.4byte	scaledElements
+ 1473 01be 00       		.byte	0
+ 1474 01bf 0F       		.uleb128 0xf
+ 1475 01c0 48000000 		.4byte	.LVL2
+ 1476 01c4 37070000 		.4byte	0x737
+ 1477 01c8 E2010000 		.4byte	0x1e2
+ 1478 01cc 10       		.uleb128 0x10
+ 1479 01cd 01       		.uleb128 0x1
+ 1480 01ce 52       		.byte	0x52
+ 1481 01cf 02       		.uleb128 0x2
+ 1482 01d0 08       		.byte	0x8
+ 1483 01d1 64       		.byte	0x64
+ 1484 01d2 10       		.uleb128 0x10
+ 1485 01d3 01       		.uleb128 0x1
+ 1486 01d4 51       		.byte	0x51
+ 1487 01d5 02       		.uleb128 0x2
+ 1488 01d6 79       		.byte	0x79
+ 1489 01d7 00       		.sleb128 0
+ 1490 01d8 10       		.uleb128 0x10
+ 1491 01d9 01       		.uleb128 0x1
+ 1492 01da 50       		.byte	0x50
+ 1493 01db 05       		.uleb128 0x5
+ 1494 01dc 03       		.byte	0x3
+ 1495 01dd 00000000 		.4byte	scaledX
+ 1496 01e1 00       		.byte	0
+ 1497 01e2 0F       		.uleb128 0xf
+ 1498 01e3 52000000 		.4byte	.LVL3
+ 1499 01e7 37070000 		.4byte	0x737
+ 1500 01eb 05020000 		.4byte	0x205
+ 1501 01ef 10       		.uleb128 0x10
+ 1502 01f0 01       		.uleb128 0x1
+ 1503 01f1 52       		.byte	0x52
+ 1504 01f2 02       		.uleb128 0x2
+ 1505 01f3 08       		.byte	0x8
+ 1506 01f4 64       		.byte	0x64
+ 1507 01f5 10       		.uleb128 0x10
+ 1508 01f6 01       		.uleb128 0x1
+ 1509 01f7 51       		.byte	0x51
+ 1510 01f8 02       		.uleb128 0x2
+ 1511 01f9 79       		.byte	0x79
+ 1512 01fa 00       		.sleb128 0
+ 1513 01fb 10       		.uleb128 0x10
+ 1514 01fc 01       		.uleb128 0x1
+ 1515 01fd 50       		.byte	0x50
+ 1516 01fe 05       		.uleb128 0x5
+ 1517 01ff 03       		.byte	0x3
+ 1518 0200 00000000 		.4byte	scaledY
+ 1519 0204 00       		.byte	0
+ 1520 0205 0F       		.uleb128 0xf
+ 1521 0206 5C000000 		.4byte	.LVL4
+ 1522 020a 37070000 		.4byte	0x737
+ 1523 020e 28020000 		.4byte	0x228
+ 1524 0212 10       		.uleb128 0x10
+ 1525 0213 01       		.uleb128 0x1
+ 1526 0214 52       		.byte	0x52
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 36
+
+
+ 1527 0215 02       		.uleb128 0x2
+ 1528 0216 08       		.byte	0x8
+ 1529 0217 32       		.byte	0x32
+ 1530 0218 10       		.uleb128 0x10
+ 1531 0219 01       		.uleb128 0x1
+ 1532 021a 51       		.byte	0x51
+ 1533 021b 02       		.uleb128 0x2
+ 1534 021c 79       		.byte	0x79
+ 1535 021d 00       		.sleb128 0
+ 1536 021e 10       		.uleb128 0x10
+ 1537 021f 01       		.uleb128 0x1
+ 1538 0220 50       		.byte	0x50
+ 1539 0221 05       		.uleb128 0x5
+ 1540 0222 03       		.byte	0x3
+ 1541 0223 00000000 		.4byte	scaledClr
+ 1542 0227 00       		.byte	0
+ 1543 0228 0F       		.uleb128 0xf
+ 1544 0229 68000000 		.4byte	.LVL5
+ 1545 022d 37070000 		.4byte	0x737
+ 1546 0231 49020000 		.4byte	0x249
+ 1547 0235 10       		.uleb128 0x10
+ 1548 0236 01       		.uleb128 0x1
+ 1549 0237 52       		.byte	0x52
+ 1550 0238 03       		.uleb128 0x3
+ 1551 0239 0A       		.byte	0xa
+ 1552 023a 0005     		.2byte	0x500
+ 1553 023c 10       		.uleb128 0x10
+ 1554 023d 01       		.uleb128 0x1
+ 1555 023e 51       		.byte	0x51
+ 1556 023f 02       		.uleb128 0x2
+ 1557 0240 79       		.byte	0x79
+ 1558 0241 00       		.sleb128 0
+ 1559 0242 10       		.uleb128 0x10
+ 1560 0243 01       		.uleb128 0x1
+ 1561 0244 50       		.byte	0x50
+ 1562 0245 02       		.uleb128 0x2
+ 1563 0246 75       		.byte	0x75
+ 1564 0247 00       		.sleb128 0
+ 1565 0248 00       		.byte	0
+ 1566 0249 0F       		.uleb128 0xf
+ 1567 024a 74000000 		.4byte	.LVL6
+ 1568 024e 37070000 		.4byte	0x737
+ 1569 0252 6A020000 		.4byte	0x26a
+ 1570 0256 10       		.uleb128 0x10
+ 1571 0257 01       		.uleb128 0x1
+ 1572 0258 52       		.byte	0x52
+ 1573 0259 03       		.uleb128 0x3
+ 1574 025a 0A       		.byte	0xa
+ 1575 025b 0005     		.2byte	0x500
+ 1576 025d 10       		.uleb128 0x10
+ 1577 025e 01       		.uleb128 0x1
+ 1578 025f 51       		.byte	0x51
+ 1579 0260 02       		.uleb128 0x2
+ 1580 0261 79       		.byte	0x79
+ 1581 0262 00       		.sleb128 0
+ 1582 0263 10       		.uleb128 0x10
+ 1583 0264 01       		.uleb128 0x1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 37
+
+
+ 1584 0265 50       		.byte	0x50
+ 1585 0266 02       		.uleb128 0x2
+ 1586 0267 76       		.byte	0x76
+ 1587 0268 00       		.sleb128 0
+ 1588 0269 00       		.byte	0
+ 1589 026a 0F       		.uleb128 0xf
+ 1590 026b 80000000 		.4byte	.LVL7
+ 1591 026f 37070000 		.4byte	0x737
+ 1592 0273 8B020000 		.4byte	0x28b
+ 1593 0277 10       		.uleb128 0x10
+ 1594 0278 01       		.uleb128 0x1
+ 1595 0279 52       		.byte	0x52
+ 1596 027a 03       		.uleb128 0x3
+ 1597 027b 0A       		.byte	0xa
+ 1598 027c 0005     		.2byte	0x500
+ 1599 027e 10       		.uleb128 0x10
+ 1600 027f 01       		.uleb128 0x1
+ 1601 0280 51       		.byte	0x51
+ 1602 0281 02       		.uleb128 0x2
+ 1603 0282 79       		.byte	0x79
+ 1604 0283 00       		.sleb128 0
+ 1605 0284 10       		.uleb128 0x10
+ 1606 0285 01       		.uleb128 0x1
+ 1607 0286 50       		.byte	0x50
+ 1608 0287 02       		.uleb128 0x2
+ 1609 0288 78       		.byte	0x78
+ 1610 0289 00       		.sleb128 0
+ 1611 028a 00       		.byte	0
+ 1612 028b 0F       		.uleb128 0xf
+ 1613 028c 8C000000 		.4byte	.LVL8
+ 1614 0290 37070000 		.4byte	0x737
+ 1615 0294 AD020000 		.4byte	0x2ad
+ 1616 0298 10       		.uleb128 0x10
+ 1617 0299 01       		.uleb128 0x1
+ 1618 029a 52       		.byte	0x52
+ 1619 029b 03       		.uleb128 0x3
+ 1620 029c 0A       		.byte	0xa
+ 1621 029d 4001     		.2byte	0x140
+ 1622 029f 10       		.uleb128 0x10
+ 1623 02a0 01       		.uleb128 0x1
+ 1624 02a1 51       		.byte	0x51
+ 1625 02a2 02       		.uleb128 0x2
+ 1626 02a3 79       		.byte	0x79
+ 1627 02a4 00       		.sleb128 0
+ 1628 02a5 10       		.uleb128 0x10
+ 1629 02a6 01       		.uleb128 0x1
+ 1630 02a7 50       		.byte	0x50
+ 1631 02a8 03       		.uleb128 0x3
+ 1632 02a9 77       		.byte	0x77
+ 1633 02aa 38       		.sleb128 56
+ 1634 02ab 06       		.byte	0x6
+ 1635 02ac 00       		.byte	0
+ 1636 02ad 0F       		.uleb128 0xf
+ 1637 02ae 98000000 		.4byte	.LVL9
+ 1638 02b2 37070000 		.4byte	0x737
+ 1639 02b6 CE020000 		.4byte	0x2ce
+ 1640 02ba 10       		.uleb128 0x10
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 38
+
+
+ 1641 02bb 01       		.uleb128 0x1
+ 1642 02bc 52       		.byte	0x52
+ 1643 02bd 03       		.uleb128 0x3
+ 1644 02be 0A       		.byte	0xa
+ 1645 02bf 4001     		.2byte	0x140
+ 1646 02c1 10       		.uleb128 0x10
+ 1647 02c2 01       		.uleb128 0x1
+ 1648 02c3 51       		.byte	0x51
+ 1649 02c4 02       		.uleb128 0x2
+ 1650 02c5 79       		.byte	0x79
+ 1651 02c6 00       		.sleb128 0
+ 1652 02c7 10       		.uleb128 0x10
+ 1653 02c8 01       		.uleb128 0x1
+ 1654 02c9 50       		.byte	0x50
+ 1655 02ca 02       		.uleb128 0x2
+ 1656 02cb 74       		.byte	0x74
+ 1657 02cc 00       		.sleb128 0
+ 1658 02cd 00       		.byte	0
+ 1659 02ce 0F       		.uleb128 0xf
+ 1660 02cf A4000000 		.4byte	.LVL10
+ 1661 02d3 37070000 		.4byte	0x737
+ 1662 02d7 F0020000 		.4byte	0x2f0
+ 1663 02db 10       		.uleb128 0x10
+ 1664 02dc 01       		.uleb128 0x1
+ 1665 02dd 52       		.byte	0x52
+ 1666 02de 03       		.uleb128 0x3
+ 1667 02df 0A       		.byte	0xa
+ 1668 02e0 4001     		.2byte	0x140
+ 1669 02e2 10       		.uleb128 0x10
+ 1670 02e3 01       		.uleb128 0x1
+ 1671 02e4 51       		.byte	0x51
+ 1672 02e5 02       		.uleb128 0x2
+ 1673 02e6 79       		.byte	0x79
+ 1674 02e7 00       		.sleb128 0
+ 1675 02e8 10       		.uleb128 0x10
+ 1676 02e9 01       		.uleb128 0x1
+ 1677 02ea 50       		.byte	0x50
+ 1678 02eb 03       		.uleb128 0x3
+ 1679 02ec 77       		.byte	0x77
+ 1680 02ed 30       		.sleb128 48
+ 1681 02ee 06       		.byte	0x6
+ 1682 02ef 00       		.byte	0
+ 1683 02f0 0F       		.uleb128 0xf
+ 1684 02f1 DE000000 		.4byte	.LVL12
+ 1685 02f5 54070000 		.4byte	0x754
+ 1686 02f9 03030000 		.4byte	0x303
+ 1687 02fd 10       		.uleb128 0x10
+ 1688 02fe 01       		.uleb128 0x1
+ 1689 02ff 50       		.byte	0x50
+ 1690 0300 01       		.uleb128 0x1
+ 1691 0301 30       		.byte	0x30
+ 1692 0302 00       		.byte	0
+ 1693 0303 11       		.uleb128 0x11
+ 1694 0304 F6000000 		.4byte	.LVL13
+ 1695 0308 74070000 		.4byte	0x774
+ 1696 030c 00       		.byte	0
+ 1697 030d 12       		.uleb128 0x12
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 39
+
+
+ 1698 030e 68000000 		.4byte	0x68
+ 1699 0312 20030000 		.4byte	0x320
+ 1700 0316 13       		.uleb128 0x13
+ 1701 0317 BA000000 		.4byte	0xba
+ 1702 031b 03       		.uleb128 0x3
+ 1703 031c 0A       		.byte	0xa
+ 1704 031d 3F01     		.2byte	0x13f
+ 1705 031f 00       		.byte	0
+ 1706 0320 12       		.uleb128 0x12
+ 1707 0321 68000000 		.4byte	0x68
+ 1708 0325 33030000 		.4byte	0x333
+ 1709 0329 13       		.uleb128 0x13
+ 1710 032a BA000000 		.4byte	0xba
+ 1711 032e 03       		.uleb128 0x3
+ 1712 032f 0A       		.byte	0xa
+ 1713 0330 3F01     		.2byte	0x13f
+ 1714 0332 00       		.byte	0
+ 1715 0333 12       		.uleb128 0x12
+ 1716 0334 68000000 		.4byte	0x68
+ 1717 0338 46030000 		.4byte	0x346
+ 1718 033c 13       		.uleb128 0x13
+ 1719 033d BA000000 		.4byte	0xba
+ 1720 0341 03       		.uleb128 0x3
+ 1721 0342 0A       		.byte	0xa
+ 1722 0343 3F01     		.2byte	0x13f
+ 1723 0345 00       		.byte	0
+ 1724 0346 12       		.uleb128 0x12
+ 1725 0347 81000000 		.4byte	0x81
+ 1726 034b 59030000 		.4byte	0x359
+ 1727 034f 13       		.uleb128 0x13
+ 1728 0350 BA000000 		.4byte	0xba
+ 1729 0354 03       		.uleb128 0x3
+ 1730 0355 0A       		.byte	0xa
+ 1731 0356 3F01     		.2byte	0x13f
+ 1732 0358 00       		.byte	0
+ 1733 0359 12       		.uleb128 0x12
+ 1734 035a 81000000 		.4byte	0x81
+ 1735 035e 6C030000 		.4byte	0x36c
+ 1736 0362 13       		.uleb128 0x13
+ 1737 0363 BA000000 		.4byte	0xba
+ 1738 0367 03       		.uleb128 0x3
+ 1739 0368 0A       		.byte	0xa
+ 1740 0369 3F01     		.2byte	0x13f
+ 1741 036b 00       		.byte	0
+ 1742 036c 12       		.uleb128 0x12
+ 1743 036d 81000000 		.4byte	0x81
+ 1744 0371 7F030000 		.4byte	0x37f
+ 1745 0375 13       		.uleb128 0x13
+ 1746 0376 BA000000 		.4byte	0xba
+ 1747 037a 03       		.uleb128 0x3
+ 1748 037b 0A       		.byte	0xa
+ 1749 037c 3F01     		.2byte	0x13f
+ 1750 037e 00       		.byte	0
+ 1751 037f 09       		.uleb128 0x9
+ 1752 0380 80020000 		.4byte	.LASF25
+ 1753 0384 01       		.byte	0x1
+ 1754 0385 39       		.byte	0x39
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 40
+
+
+ 1755 0386 00000000 		.4byte	.LFB63
+ 1756 038a A4010000 		.4byte	.LFE63-.LFB63
+ 1757 038e 01       		.uleb128 0x1
+ 1758 038f 9C       		.byte	0x9c
+ 1759 0390 B5040000 		.4byte	0x4b5
+ 1760 0394 0A       		.uleb128 0xa
+ 1761 0395 00000000 		.4byte	.LASF26
+ 1762 0399 01       		.byte	0x1
+ 1763 039a 3A       		.byte	0x3a
+ 1764 039b B5040000 		.4byte	0x4b5
+ 1765 039f 03       		.uleb128 0x3
+ 1766 03a0 91       		.byte	0x91
+ 1767 03a1 B87F     		.sleb128 -72
+ 1768 03a3 0A       		.uleb128 0xa
+ 1769 03a4 0F000000 		.4byte	.LASF27
+ 1770 03a8 01       		.byte	0x1
+ 1771 03a9 3B       		.byte	0x3b
+ 1772 03aa B5040000 		.4byte	0x4b5
+ 1773 03ae 02       		.uleb128 0x2
+ 1774 03af 91       		.byte	0x91
+ 1775 03b0 44       		.sleb128 -60
+ 1776 03b1 0A       		.uleb128 0xa
+ 1777 03b2 B5020000 		.4byte	.LASF28
+ 1778 03b6 01       		.byte	0x1
+ 1779 03b7 3C       		.byte	0x3c
+ 1780 03b8 B5040000 		.4byte	0x4b5
+ 1781 03bc 02       		.uleb128 0x2
+ 1782 03bd 91       		.byte	0x91
+ 1783 03be 50       		.sleb128 -48
+ 1784 03bf 0A       		.uleb128 0xa
+ 1785 03c0 5B010000 		.4byte	.LASF29
+ 1786 03c4 01       		.byte	0x1
+ 1787 03c5 3D       		.byte	0x3d
+ 1788 03c6 B5040000 		.4byte	0x4b5
+ 1789 03ca 02       		.uleb128 0x2
+ 1790 03cb 91       		.byte	0x91
+ 1791 03cc 5C       		.sleb128 -36
+ 1792 03cd 0A       		.uleb128 0xa
+ 1793 03ce 39010000 		.4byte	.LASF30
+ 1794 03d2 01       		.byte	0x1
+ 1795 03d3 3E       		.byte	0x3e
+ 1796 03d4 C5040000 		.4byte	0x4c5
+ 1797 03d8 03       		.uleb128 0x3
+ 1798 03d9 91       		.byte	0x91
+ 1799 03da B07F     		.sleb128 -80
+ 1800 03dc 0E       		.uleb128 0xe
+ 1801 03dd 6D617800 		.ascii	"max\000"
+ 1802 03e1 01       		.byte	0x1
+ 1803 03e2 4A       		.byte	0x4a
+ 1804 03e3 8D000000 		.4byte	0x8d
+ 1805 03e7 02020000 		.4byte	.LLST6
+ 1806 03eb 0F       		.uleb128 0xf
+ 1807 03ec 12000000 		.4byte	.LVL47
+ 1808 03f0 37070000 		.4byte	0x737
+ 1809 03f4 0A040000 		.4byte	0x40a
+ 1810 03f8 10       		.uleb128 0x10
+ 1811 03f9 01       		.uleb128 0x1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 41
+
+
+ 1812 03fa 52       		.byte	0x52
+ 1813 03fb 01       		.uleb128 0x1
+ 1814 03fc 3A       		.byte	0x3a
+ 1815 03fd 10       		.uleb128 0x10
+ 1816 03fe 01       		.uleb128 0x1
+ 1817 03ff 51       		.byte	0x51
+ 1818 0400 02       		.uleb128 0x2
+ 1819 0401 76       		.byte	0x76
+ 1820 0402 00       		.sleb128 0
+ 1821 0403 10       		.uleb128 0x10
+ 1822 0404 01       		.uleb128 0x1
+ 1823 0405 50       		.byte	0x50
+ 1824 0406 02       		.uleb128 0x2
+ 1825 0407 75       		.byte	0x75
+ 1826 0408 00       		.sleb128 0
+ 1827 0409 00       		.byte	0
+ 1828 040a 0F       		.uleb128 0xf
+ 1829 040b 1C000000 		.4byte	.LVL48
+ 1830 040f 37070000 		.4byte	0x737
+ 1831 0413 29040000 		.4byte	0x429
+ 1832 0417 10       		.uleb128 0x10
+ 1833 0418 01       		.uleb128 0x1
+ 1834 0419 52       		.byte	0x52
+ 1835 041a 01       		.uleb128 0x1
+ 1836 041b 3A       		.byte	0x3a
+ 1837 041c 10       		.uleb128 0x10
+ 1838 041d 01       		.uleb128 0x1
+ 1839 041e 51       		.byte	0x51
+ 1840 041f 02       		.uleb128 0x2
+ 1841 0420 76       		.byte	0x76
+ 1842 0421 00       		.sleb128 0
+ 1843 0422 10       		.uleb128 0x10
+ 1844 0423 01       		.uleb128 0x1
+ 1845 0424 50       		.byte	0x50
+ 1846 0425 02       		.uleb128 0x2
+ 1847 0426 91       		.byte	0x91
+ 1848 0427 5C       		.sleb128 -36
+ 1849 0428 00       		.byte	0
+ 1850 0429 0F       		.uleb128 0xf
+ 1851 042a 2E000000 		.4byte	.LVL49
+ 1852 042e 37070000 		.4byte	0x737
+ 1853 0432 49040000 		.4byte	0x449
+ 1854 0436 10       		.uleb128 0x10
+ 1855 0437 01       		.uleb128 0x1
+ 1856 0438 52       		.byte	0x52
+ 1857 0439 01       		.uleb128 0x1
+ 1858 043a 3A       		.byte	0x3a
+ 1859 043b 10       		.uleb128 0x10
+ 1860 043c 01       		.uleb128 0x1
+ 1861 043d 51       		.byte	0x51
+ 1862 043e 02       		.uleb128 0x2
+ 1863 043f 76       		.byte	0x76
+ 1864 0440 00       		.sleb128 0
+ 1865 0441 10       		.uleb128 0x10
+ 1866 0442 01       		.uleb128 0x1
+ 1867 0443 50       		.byte	0x50
+ 1868 0444 03       		.uleb128 0x3
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 42
+
+
+ 1869 0445 91       		.byte	0x91
+ 1870 0446 B87F     		.sleb128 -72
+ 1871 0448 00       		.byte	0
+ 1872 0449 0F       		.uleb128 0xf
+ 1873 044a 38000000 		.4byte	.LVL50
+ 1874 044e 37070000 		.4byte	0x737
+ 1875 0452 68040000 		.4byte	0x468
+ 1876 0456 10       		.uleb128 0x10
+ 1877 0457 01       		.uleb128 0x1
+ 1878 0458 52       		.byte	0x52
+ 1879 0459 01       		.uleb128 0x1
+ 1880 045a 3A       		.byte	0x3a
+ 1881 045b 10       		.uleb128 0x10
+ 1882 045c 01       		.uleb128 0x1
+ 1883 045d 51       		.byte	0x51
+ 1884 045e 02       		.uleb128 0x2
+ 1885 045f 76       		.byte	0x76
+ 1886 0460 00       		.sleb128 0
+ 1887 0461 10       		.uleb128 0x10
+ 1888 0462 01       		.uleb128 0x1
+ 1889 0463 50       		.byte	0x50
+ 1890 0464 02       		.uleb128 0x2
+ 1891 0465 91       		.byte	0x91
+ 1892 0466 44       		.sleb128 -60
+ 1893 0467 00       		.byte	0
+ 1894 0468 0F       		.uleb128 0xf
+ 1895 0469 42000000 		.4byte	.LVL51
+ 1896 046d 37070000 		.4byte	0x737
+ 1897 0471 8A040000 		.4byte	0x48a
+ 1898 0475 10       		.uleb128 0x10
+ 1899 0476 01       		.uleb128 0x1
+ 1900 0477 52       		.byte	0x52
+ 1901 0478 01       		.uleb128 0x1
+ 1902 0479 35       		.byte	0x35
+ 1903 047a 10       		.uleb128 0x10
+ 1904 047b 01       		.uleb128 0x1
+ 1905 047c 51       		.byte	0x51
+ 1906 047d 02       		.uleb128 0x2
+ 1907 047e 76       		.byte	0x76
+ 1908 047f 00       		.sleb128 0
+ 1909 0480 10       		.uleb128 0x10
+ 1910 0481 01       		.uleb128 0x1
+ 1911 0482 50       		.byte	0x50
+ 1912 0483 05       		.uleb128 0x5
+ 1913 0484 03       		.byte	0x3
+ 1914 0485 00000000 		.4byte	orderedScaledClr
+ 1915 0489 00       		.byte	0
+ 1916 048a 11       		.uleb128 0x11
+ 1917 048b 46000000 		.4byte	.LVL52
+ 1918 048f F5000000 		.4byte	0xf5
+ 1919 0493 0F       		.uleb128 0xf
+ 1920 0494 28010000 		.4byte	.LVL61
+ 1921 0498 85070000 		.4byte	0x785
+ 1922 049c AB040000 		.4byte	0x4ab
+ 1923 04a0 10       		.uleb128 0x10
+ 1924 04a1 01       		.uleb128 0x1
+ 1925 04a2 53       		.byte	0x53
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 43
+
+
+ 1926 04a3 01       		.uleb128 0x1
+ 1927 04a4 34       		.byte	0x34
+ 1928 04a5 10       		.uleb128 0x10
+ 1929 04a6 01       		.uleb128 0x1
+ 1930 04a7 51       		.byte	0x51
+ 1931 04a8 01       		.uleb128 0x1
+ 1932 04a9 30       		.byte	0x30
+ 1933 04aa 00       		.byte	0
+ 1934 04ab 11       		.uleb128 0x11
+ 1935 04ac 74010000 		.4byte	.LVL62
+ 1936 04b0 A5070000 		.4byte	0x7a5
+ 1937 04b4 00       		.byte	0
+ 1938 04b5 12       		.uleb128 0x12
+ 1939 04b6 8D000000 		.4byte	0x8d
+ 1940 04ba C5040000 		.4byte	0x4c5
+ 1941 04be 14       		.uleb128 0x14
+ 1942 04bf BA000000 		.4byte	0xba
+ 1943 04c3 04       		.byte	0x4
+ 1944 04c4 00       		.byte	0
+ 1945 04c5 12       		.uleb128 0x12
+ 1946 04c6 81000000 		.4byte	0x81
+ 1947 04ca D5040000 		.4byte	0x4d5
+ 1948 04ce 14       		.uleb128 0x14
+ 1949 04cf BA000000 		.4byte	0xba
+ 1950 04d3 04       		.byte	0x4
+ 1951 04d4 00       		.byte	0
+ 1952 04d5 15       		.uleb128 0x15
+ 1953 04d6 5D020000 		.4byte	.LASF31
+ 1954 04da 01       		.byte	0x1
+ 1955 04db 1901     		.2byte	0x119
+ 1956 04dd 00000000 		.4byte	.LFB65
+ 1957 04e1 80000000 		.4byte	.LFE65-.LFB65
+ 1958 04e5 01       		.uleb128 0x1
+ 1959 04e6 9C       		.byte	0x9c
+ 1960 04e7 FE040000 		.4byte	0x4fe
+ 1961 04eb 11       		.uleb128 0x11
+ 1962 04ec 3C000000 		.4byte	.LVL63
+ 1963 04f0 85070000 		.4byte	0x785
+ 1964 04f4 11       		.uleb128 0x11
+ 1965 04f5 5C000000 		.4byte	.LVL64
+ 1966 04f9 A5070000 		.4byte	0x7a5
+ 1967 04fd 00       		.byte	0
+ 1968 04fe 16       		.uleb128 0x16
+ 1969 04ff BA020000 		.4byte	.LASF58
+ 1970 0503 01       		.byte	0x1
+ 1971 0504 2E01     		.2byte	0x12e
+ 1972 0506 5E050000 		.4byte	0x55e
+ 1973 050a 00000000 		.4byte	.LFB66
+ 1974 050e C0000000 		.4byte	.LFE66-.LFB66
+ 1975 0512 01       		.uleb128 0x1
+ 1976 0513 9C       		.byte	0x9c
+ 1977 0514 5E050000 		.4byte	0x55e
+ 1978 0518 17       		.uleb128 0x17
+ 1979 0519 636C7200 		.ascii	"clr\000"
+ 1980 051d 01       		.byte	0x1
+ 1981 051e 2E01     		.2byte	0x12e
+ 1982 0520 81000000 		.4byte	0x81
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 44
+
+
+ 1983 0524 37020000 		.4byte	.LLST7
+ 1984 0528 11       		.uleb128 0x11
+ 1985 0529 08000000 		.4byte	.LVL66
+ 1986 052d F5000000 		.4byte	0xf5
+ 1987 0531 11       		.uleb128 0x11
+ 1988 0532 0C000000 		.4byte	.LVL67
+ 1989 0536 D5040000 		.4byte	0x4d5
+ 1990 053a 0F       		.uleb128 0xf
+ 1991 053b 5C000000 		.4byte	.LVL68
+ 1992 053f 85070000 		.4byte	0x785
+ 1993 0543 54050000 		.4byte	0x554
+ 1994 0547 10       		.uleb128 0x10
+ 1995 0548 01       		.uleb128 0x1
+ 1996 0549 52       		.byte	0x52
+ 1997 054a 02       		.uleb128 0x2
+ 1998 054b 74       		.byte	0x74
+ 1999 054c 0A       		.sleb128 10
+ 2000 054d 10       		.uleb128 0x10
+ 2001 054e 01       		.uleb128 0x1
+ 2002 054f 50       		.byte	0x50
+ 2003 0550 02       		.uleb128 0x2
+ 2004 0551 74       		.byte	0x74
+ 2005 0552 00       		.sleb128 0
+ 2006 0553 00       		.byte	0
+ 2007 0554 11       		.uleb128 0x11
+ 2008 0555 98000000 		.4byte	.LVL69
+ 2009 0559 A5070000 		.4byte	0x7a5
+ 2010 055d 00       		.byte	0
+ 2011 055e 02       		.uleb128 0x2
+ 2012 055f 01       		.byte	0x1
+ 2013 0560 02       		.byte	0x2
+ 2014 0561 8F020000 		.4byte	.LASF32
+ 2015 0565 15       		.uleb128 0x15
+ 2016 0566 6A000000 		.4byte	.LASF33
+ 2017 056a 01       		.byte	0x1
+ 2018 056b 6101     		.2byte	0x161
+ 2019 056d 00000000 		.4byte	.LFB67
+ 2020 0571 64000000 		.4byte	.LFE67-.LFB67
+ 2021 0575 01       		.uleb128 0x1
+ 2022 0576 9C       		.byte	0x9c
+ 2023 0577 8E050000 		.4byte	0x58e
+ 2024 057b 11       		.uleb128 0x11
+ 2025 057c 28000000 		.4byte	.LVL70
+ 2026 0580 85070000 		.4byte	0x785
+ 2027 0584 11       		.uleb128 0x11
+ 2028 0585 4A000000 		.4byte	.LVL71
+ 2029 0589 A5070000 		.4byte	0x7a5
+ 2030 058d 00       		.byte	0
+ 2031 058e 18       		.uleb128 0x18
+ 2032 058f 23030000 		.4byte	.LASF34
+ 2033 0593 06       		.byte	0x6
+ 2034 0594 9606     		.2byte	0x696
+ 2035 0596 9A050000 		.4byte	0x59a
+ 2036 059a 19       		.uleb128 0x19
+ 2037 059b 76000000 		.4byte	0x76
+ 2038 059f 12       		.uleb128 0x12
+ 2039 05a0 99000000 		.4byte	0x99
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 45
+
+
+ 2040 05a4 AF050000 		.4byte	0x5af
+ 2041 05a8 14       		.uleb128 0x14
+ 2042 05a9 BA000000 		.4byte	0xba
+ 2043 05ad 9F       		.byte	0x9f
+ 2044 05ae 00       		.byte	0
+ 2045 05af 1A       		.uleb128 0x1a
+ 2046 05b0 38020000 		.4byte	.LASF35
+ 2047 05b4 07       		.byte	0x7
+ 2048 05b5 13       		.byte	0x13
+ 2049 05b6 9F050000 		.4byte	0x59f
+ 2050 05ba 05       		.uleb128 0x5
+ 2051 05bb 03       		.byte	0x3
+ 2052 05bc 00000000 		.4byte	Camera_linebuffer
+ 2053 05c0 1B       		.uleb128 0x1b
+ 2054 05c1 52454400 		.ascii	"RED\000"
+ 2055 05c5 08       		.byte	0x8
+ 2056 05c6 11       		.byte	0x11
+ 2057 05c7 D1050000 		.4byte	0x5d1
+ 2058 05cb 05       		.uleb128 0x5
+ 2059 05cc 03       		.byte	0x3
+ 2060 05cd 00000000 		.4byte	RED
+ 2061 05d1 1C       		.uleb128 0x1c
+ 2062 05d2 81000000 		.4byte	0x81
+ 2063 05d6 1A       		.uleb128 0x1a
+ 2064 05d7 30030000 		.4byte	.LASF36
+ 2065 05db 08       		.byte	0x8
+ 2066 05dc 12       		.byte	0x12
+ 2067 05dd D1050000 		.4byte	0x5d1
+ 2068 05e1 05       		.uleb128 0x5
+ 2069 05e2 03       		.byte	0x3
+ 2070 05e3 00000000 		.4byte	GREEN
+ 2071 05e7 1A       		.uleb128 0x1a
+ 2072 05e8 36030000 		.4byte	.LASF37
+ 2073 05ec 08       		.byte	0x8
+ 2074 05ed 13       		.byte	0x13
+ 2075 05ee D1050000 		.4byte	0x5d1
+ 2076 05f2 05       		.uleb128 0x5
+ 2077 05f3 03       		.byte	0x3
+ 2078 05f4 00000000 		.4byte	BLUE
+ 2079 05f8 1A       		.uleb128 0x1a
+ 2080 05f9 31010000 		.4byte	.LASF38
+ 2081 05fd 08       		.byte	0x8
+ 2082 05fe 16       		.byte	0x16
+ 2083 05ff D1050000 		.4byte	0x5d1
+ 2084 0603 05       		.uleb128 0x5
+ 2085 0604 03       		.byte	0x3
+ 2086 0605 00000000 		.4byte	numRows
+ 2087 0609 1A       		.uleb128 0x1a
+ 2088 060a C0010000 		.4byte	.LASF39
+ 2089 060e 08       		.byte	0x8
+ 2090 060f 17       		.byte	0x17
+ 2091 0610 1A060000 		.4byte	0x61a
+ 2092 0614 05       		.uleb128 0x5
+ 2093 0615 03       		.byte	0x3
+ 2094 0616 00000000 		.4byte	numCols
+ 2095 061a 1C       		.uleb128 0x1c
+ 2096 061b 8D000000 		.4byte	0x8d
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 46
+
+
+ 2097 061f 1A       		.uleb128 0x1a
+ 2098 0620 A9010000 		.4byte	.LASF40
+ 2099 0624 08       		.byte	0x8
+ 2100 0625 18       		.byte	0x18
+ 2101 0626 D1050000 		.4byte	0x5d1
+ 2102 062a 05       		.uleb128 0x5
+ 2103 062b 03       		.byte	0x3
+ 2104 062c 00000000 		.4byte	offset
+ 2105 0630 1A       		.uleb128 0x1a
+ 2106 0631 3B030000 		.4byte	.LASF41
+ 2107 0635 08       		.byte	0x8
+ 2108 0636 19       		.byte	0x19
+ 2109 0637 D1050000 		.4byte	0x5d1
+ 2110 063b 05       		.uleb128 0x5
+ 2111 063c 03       		.byte	0x3
+ 2112 063d 00000000 		.4byte	blobThresholdSize
+ 2113 0641 1A       		.uleb128 0x1a
+ 2114 0642 1B030000 		.4byte	.LASF42
+ 2115 0646 01       		.byte	0x1
+ 2116 0647 1F       		.byte	0x1f
+ 2117 0648 EA000000 		.4byte	0xea
+ 2118 064c 05       		.uleb128 0x5
+ 2119 064d 03       		.byte	0x3
+ 2120 064e 00000000 		.4byte	loadPix
+ 2121 0652 1B       		.uleb128 0x1b
+ 2122 0653 6900     		.ascii	"i\000"
+ 2123 0655 01       		.byte	0x1
+ 2124 0656 20       		.byte	0x20
+ 2125 0657 81000000 		.4byte	0x81
+ 2126 065b 05       		.uleb128 0x5
+ 2127 065c 03       		.byte	0x3
+ 2128 065d 00000000 		.4byte	i
+ 2129 0661 1B       		.uleb128 0x1b
+ 2130 0662 6A00     		.ascii	"j\000"
+ 2131 0664 01       		.byte	0x1
+ 2132 0665 21       		.byte	0x21
+ 2133 0666 8D000000 		.4byte	0x8d
+ 2134 066a 05       		.uleb128 0x5
+ 2135 066b 03       		.byte	0x3
+ 2136 066c 00000000 		.4byte	j
+ 2137 0670 1B       		.uleb128 0x1b
+ 2138 0671 6B00     		.ascii	"k\000"
+ 2139 0673 01       		.byte	0x1
+ 2140 0674 22       		.byte	0x22
+ 2141 0675 8D000000 		.4byte	0x8d
+ 2142 0679 05       		.uleb128 0x5
+ 2143 067a 03       		.byte	0x3
+ 2144 067b 00000000 		.4byte	k
+ 2145 067f 12       		.uleb128 0x12
+ 2146 0680 8D000000 		.4byte	0x8d
+ 2147 0684 8F060000 		.4byte	0x68f
+ 2148 0688 14       		.uleb128 0x14
+ 2149 0689 BA000000 		.4byte	0xba
+ 2150 068d 31       		.byte	0x31
+ 2151 068e 00       		.byte	0
+ 2152 068f 1A       		.uleb128 0x1a
+ 2153 0690 28020000 		.4byte	.LASF43
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 47
+
+
+ 2154 0694 01       		.byte	0x1
+ 2155 0695 25       		.byte	0x25
+ 2156 0696 7F060000 		.4byte	0x67f
+ 2157 069a 05       		.uleb128 0x5
+ 2158 069b 03       		.byte	0x3
+ 2159 069c 00000000 		.4byte	scaledX
+ 2160 06a0 1A       		.uleb128 0x1a
+ 2161 06a1 30020000 		.4byte	.LASF44
+ 2162 06a5 01       		.byte	0x1
+ 2163 06a6 26       		.byte	0x26
+ 2164 06a7 7F060000 		.4byte	0x67f
+ 2165 06ab 05       		.uleb128 0x5
+ 2166 06ac 03       		.byte	0x3
+ 2167 06ad 00000000 		.4byte	scaledY
+ 2168 06b1 12       		.uleb128 0x12
+ 2169 06b2 81000000 		.4byte	0x81
+ 2170 06b6 C1060000 		.4byte	0x6c1
+ 2171 06ba 14       		.uleb128 0x14
+ 2172 06bb BA000000 		.4byte	0xba
+ 2173 06bf 31       		.byte	0x31
+ 2174 06c0 00       		.byte	0
+ 2175 06c1 1A       		.uleb128 0x1a
+ 2176 06c2 1E000000 		.4byte	.LASF45
+ 2177 06c6 01       		.byte	0x1
+ 2178 06c7 27       		.byte	0x27
+ 2179 06c8 B1060000 		.4byte	0x6b1
+ 2180 06cc 05       		.uleb128 0x5
+ 2181 06cd 03       		.byte	0x3
+ 2182 06ce 00000000 		.4byte	scaledClr
+ 2183 06d2 12       		.uleb128 0x12
+ 2184 06d3 68000000 		.4byte	0x68
+ 2185 06d7 E2060000 		.4byte	0x6e2
+ 2186 06db 14       		.uleb128 0x14
+ 2187 06dc BA000000 		.4byte	0xba
+ 2188 06e0 31       		.byte	0x31
+ 2189 06e1 00       		.byte	0
+ 2190 06e2 1A       		.uleb128 0x1a
+ 2191 06e3 F5010000 		.4byte	.LASF46
+ 2192 06e7 01       		.byte	0x1
+ 2193 06e8 28       		.byte	0x28
+ 2194 06e9 D2060000 		.4byte	0x6d2
+ 2195 06ed 05       		.uleb128 0x5
+ 2196 06ee 03       		.byte	0x3
+ 2197 06ef 00000000 		.4byte	scaledElements
+ 2198 06f3 1A       		.uleb128 0x1a
+ 2199 06f4 83010000 		.4byte	.LASF47
+ 2200 06f8 01       		.byte	0x1
+ 2201 06f9 29       		.byte	0x29
+ 2202 06fa 8D000000 		.4byte	0x8d
+ 2203 06fe 05       		.uleb128 0x5
+ 2204 06ff 03       		.byte	0x3
+ 2205 0700 00000000 		.4byte	blobCounter
+ 2206 0704 1A       		.uleb128 0x1a
+ 2207 0705 50000000 		.4byte	.LASF48
+ 2208 0709 01       		.byte	0x1
+ 2209 070a 2C       		.byte	0x2c
+ 2210 070b C5040000 		.4byte	0x4c5
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 48
+
+
+ 2211 070f 05       		.uleb128 0x5
+ 2212 0710 03       		.byte	0x3
+ 2213 0711 00000000 		.4byte	orderedScaledClr
+ 2214 0715 1A       		.uleb128 0x1a
+ 2215 0716 34000000 		.4byte	.LASF49
+ 2216 071a 01       		.byte	0x1
+ 2217 071b 2F       		.byte	0x2f
+ 2218 071c 8D000000 		.4byte	0x8d
+ 2219 0720 05       		.uleb128 0x5
+ 2220 0721 03       		.byte	0x3
+ 2221 0722 00000000 		.4byte	closestX
+ 2222 0726 1A       		.uleb128 0x1a
+ 2223 0727 3D000000 		.4byte	.LASF50
+ 2224 072b 01       		.byte	0x1
+ 2225 072c 30       		.byte	0x30
+ 2226 072d 8D000000 		.4byte	0x8d
+ 2227 0731 05       		.uleb128 0x5
+ 2228 0732 03       		.byte	0x3
+ 2229 0733 00000000 		.4byte	closestY
+ 2230 0737 1D       		.uleb128 0x1d
+ 2231 0738 8F010000 		.4byte	.LASF51
+ 2232 073c C1000000 		.4byte	0xc1
+ 2233 0740 54070000 		.4byte	0x754
+ 2234 0744 1E       		.uleb128 0x1e
+ 2235 0745 C1000000 		.4byte	0xc1
+ 2236 0749 1E       		.uleb128 0x1e
+ 2237 074a 68000000 		.4byte	0x68
+ 2238 074e 1E       		.uleb128 0x1e
+ 2239 074f BA000000 		.4byte	0xba
+ 2240 0753 00       		.byte	0
+ 2241 0754 1F       		.uleb128 0x1f
+ 2242 0755 D6010000 		.4byte	.LASF52
+ 2243 0759 05       		.byte	0x5
+ 2244 075a 26       		.byte	0x26
+ 2245 075b 74070000 		.4byte	0x774
+ 2246 075f 1E       		.uleb128 0x1e
+ 2247 0760 8D000000 		.4byte	0x8d
+ 2248 0764 1E       		.uleb128 0x1e
+ 2249 0765 8D000000 		.4byte	0x8d
+ 2250 0769 1E       		.uleb128 0x1e
+ 2251 076a 8D000000 		.4byte	0x8d
+ 2252 076e 1E       		.uleb128 0x1e
+ 2253 076f 8D000000 		.4byte	0x8d
+ 2254 0773 00       		.byte	0
+ 2255 0774 20       		.uleb128 0x20
+ 2256 0775 07010000 		.4byte	.LASF53
+ 2257 0779 05       		.byte	0x5
+ 2258 077a 2A       		.byte	0x2a
+ 2259 077b EA000000 		.4byte	0xea
+ 2260 077f 85070000 		.4byte	0x785
+ 2261 0783 21       		.uleb128 0x21
+ 2262 0784 00       		.byte	0
+ 2263 0785 1F       		.uleb128 0x1f
+ 2264 0786 96010000 		.4byte	.LASF54
+ 2265 078a 05       		.byte	0x5
+ 2266 078b 27       		.byte	0x27
+ 2267 078c A5070000 		.4byte	0x7a5
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 49
+
+
+ 2268 0790 1E       		.uleb128 0x1e
+ 2269 0791 8D000000 		.4byte	0x8d
+ 2270 0795 1E       		.uleb128 0x1e
+ 2271 0796 8D000000 		.4byte	0x8d
+ 2272 079a 1E       		.uleb128 0x1e
+ 2273 079b 8D000000 		.4byte	0x8d
+ 2274 079f 1E       		.uleb128 0x1e
+ 2275 07a0 8D000000 		.4byte	0x8d
+ 2276 07a4 00       		.byte	0
+ 2277 07a5 22       		.uleb128 0x22
+ 2278 07a6 15010000 		.4byte	.LASF59
+ 2279 07aa 05       		.byte	0x5
+ 2280 07ab 2D       		.byte	0x2d
+ 2281 07ac 1E       		.uleb128 0x1e
+ 2282 07ad EA000000 		.4byte	0xea
+ 2283 07b1 00       		.byte	0
+ 2284 07b2 00       		.byte	0
+ 2285              		.section	.debug_abbrev,"",%progbits
+ 2286              	.Ldebug_abbrev0:
+ 2287 0000 01       		.uleb128 0x1
+ 2288 0001 11       		.uleb128 0x11
+ 2289 0002 01       		.byte	0x1
+ 2290 0003 25       		.uleb128 0x25
+ 2291 0004 0E       		.uleb128 0xe
+ 2292 0005 13       		.uleb128 0x13
+ 2293 0006 0B       		.uleb128 0xb
+ 2294 0007 03       		.uleb128 0x3
+ 2295 0008 0E       		.uleb128 0xe
+ 2296 0009 1B       		.uleb128 0x1b
+ 2297 000a 0E       		.uleb128 0xe
+ 2298 000b 55       		.uleb128 0x55
+ 2299 000c 17       		.uleb128 0x17
+ 2300 000d 11       		.uleb128 0x11
+ 2301 000e 01       		.uleb128 0x1
+ 2302 000f 10       		.uleb128 0x10
+ 2303 0010 17       		.uleb128 0x17
+ 2304 0011 00       		.byte	0
+ 2305 0012 00       		.byte	0
+ 2306 0013 02       		.uleb128 0x2
+ 2307 0014 24       		.uleb128 0x24
+ 2308 0015 00       		.byte	0
+ 2309 0016 0B       		.uleb128 0xb
+ 2310 0017 0B       		.uleb128 0xb
+ 2311 0018 3E       		.uleb128 0x3e
+ 2312 0019 0B       		.uleb128 0xb
+ 2313 001a 03       		.uleb128 0x3
+ 2314 001b 0E       		.uleb128 0xe
+ 2315 001c 00       		.byte	0
+ 2316 001d 00       		.byte	0
+ 2317 001e 03       		.uleb128 0x3
+ 2318 001f 16       		.uleb128 0x16
+ 2319 0020 00       		.byte	0
+ 2320 0021 03       		.uleb128 0x3
+ 2321 0022 0E       		.uleb128 0xe
+ 2322 0023 3A       		.uleb128 0x3a
+ 2323 0024 0B       		.uleb128 0xb
+ 2324 0025 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 50
+
+
+ 2325 0026 0B       		.uleb128 0xb
+ 2326 0027 49       		.uleb128 0x49
+ 2327 0028 13       		.uleb128 0x13
+ 2328 0029 00       		.byte	0
+ 2329 002a 00       		.byte	0
+ 2330 002b 04       		.uleb128 0x4
+ 2331 002c 24       		.uleb128 0x24
+ 2332 002d 00       		.byte	0
+ 2333 002e 0B       		.uleb128 0xb
+ 2334 002f 0B       		.uleb128 0xb
+ 2335 0030 3E       		.uleb128 0x3e
+ 2336 0031 0B       		.uleb128 0xb
+ 2337 0032 03       		.uleb128 0x3
+ 2338 0033 08       		.uleb128 0x8
+ 2339 0034 00       		.byte	0
+ 2340 0035 00       		.byte	0
+ 2341 0036 05       		.uleb128 0x5
+ 2342 0037 16       		.uleb128 0x16
+ 2343 0038 00       		.byte	0
+ 2344 0039 03       		.uleb128 0x3
+ 2345 003a 0E       		.uleb128 0xe
+ 2346 003b 3A       		.uleb128 0x3a
+ 2347 003c 0B       		.uleb128 0xb
+ 2348 003d 3B       		.uleb128 0x3b
+ 2349 003e 05       		.uleb128 0x5
+ 2350 003f 49       		.uleb128 0x49
+ 2351 0040 13       		.uleb128 0x13
+ 2352 0041 00       		.byte	0
+ 2353 0042 00       		.byte	0
+ 2354 0043 06       		.uleb128 0x6
+ 2355 0044 0F       		.uleb128 0xf
+ 2356 0045 00       		.byte	0
+ 2357 0046 0B       		.uleb128 0xb
+ 2358 0047 0B       		.uleb128 0xb
+ 2359 0048 00       		.byte	0
+ 2360 0049 00       		.byte	0
+ 2361 004a 07       		.uleb128 0x7
+ 2362 004b 13       		.uleb128 0x13
+ 2363 004c 01       		.byte	0x1
+ 2364 004d 0B       		.uleb128 0xb
+ 2365 004e 0B       		.uleb128 0xb
+ 2366 004f 3A       		.uleb128 0x3a
+ 2367 0050 0B       		.uleb128 0xb
+ 2368 0051 3B       		.uleb128 0x3b
+ 2369 0052 0B       		.uleb128 0xb
+ 2370 0053 01       		.uleb128 0x1
+ 2371 0054 13       		.uleb128 0x13
+ 2372 0055 00       		.byte	0
+ 2373 0056 00       		.byte	0
+ 2374 0057 08       		.uleb128 0x8
+ 2375 0058 0D       		.uleb128 0xd
+ 2376 0059 00       		.byte	0
+ 2377 005a 03       		.uleb128 0x3
+ 2378 005b 08       		.uleb128 0x8
+ 2379 005c 3A       		.uleb128 0x3a
+ 2380 005d 0B       		.uleb128 0xb
+ 2381 005e 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 51
+
+
+ 2382 005f 0B       		.uleb128 0xb
+ 2383 0060 49       		.uleb128 0x49
+ 2384 0061 13       		.uleb128 0x13
+ 2385 0062 38       		.uleb128 0x38
+ 2386 0063 0B       		.uleb128 0xb
+ 2387 0064 00       		.byte	0
+ 2388 0065 00       		.byte	0
+ 2389 0066 09       		.uleb128 0x9
+ 2390 0067 2E       		.uleb128 0x2e
+ 2391 0068 01       		.byte	0x1
+ 2392 0069 3F       		.uleb128 0x3f
+ 2393 006a 19       		.uleb128 0x19
+ 2394 006b 03       		.uleb128 0x3
+ 2395 006c 0E       		.uleb128 0xe
+ 2396 006d 3A       		.uleb128 0x3a
+ 2397 006e 0B       		.uleb128 0xb
+ 2398 006f 3B       		.uleb128 0x3b
+ 2399 0070 0B       		.uleb128 0xb
+ 2400 0071 11       		.uleb128 0x11
+ 2401 0072 01       		.uleb128 0x1
+ 2402 0073 12       		.uleb128 0x12
+ 2403 0074 06       		.uleb128 0x6
+ 2404 0075 40       		.uleb128 0x40
+ 2405 0076 18       		.uleb128 0x18
+ 2406 0077 9742     		.uleb128 0x2117
+ 2407 0079 19       		.uleb128 0x19
+ 2408 007a 01       		.uleb128 0x1
+ 2409 007b 13       		.uleb128 0x13
+ 2410 007c 00       		.byte	0
+ 2411 007d 00       		.byte	0
+ 2412 007e 0A       		.uleb128 0xa
+ 2413 007f 34       		.uleb128 0x34
+ 2414 0080 00       		.byte	0
+ 2415 0081 03       		.uleb128 0x3
+ 2416 0082 0E       		.uleb128 0xe
+ 2417 0083 3A       		.uleb128 0x3a
+ 2418 0084 0B       		.uleb128 0xb
+ 2419 0085 3B       		.uleb128 0x3b
+ 2420 0086 0B       		.uleb128 0xb
+ 2421 0087 49       		.uleb128 0x49
+ 2422 0088 13       		.uleb128 0x13
+ 2423 0089 02       		.uleb128 0x2
+ 2424 008a 18       		.uleb128 0x18
+ 2425 008b 00       		.byte	0
+ 2426 008c 00       		.byte	0
+ 2427 008d 0B       		.uleb128 0xb
+ 2428 008e 34       		.uleb128 0x34
+ 2429 008f 00       		.byte	0
+ 2430 0090 03       		.uleb128 0x3
+ 2431 0091 0E       		.uleb128 0xe
+ 2432 0092 3A       		.uleb128 0x3a
+ 2433 0093 0B       		.uleb128 0xb
+ 2434 0094 3B       		.uleb128 0x3b
+ 2435 0095 0B       		.uleb128 0xb
+ 2436 0096 49       		.uleb128 0x49
+ 2437 0097 13       		.uleb128 0x13
+ 2438 0098 00       		.byte	0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 52
+
+
+ 2439 0099 00       		.byte	0
+ 2440 009a 0C       		.uleb128 0xc
+ 2441 009b 34       		.uleb128 0x34
+ 2442 009c 00       		.byte	0
+ 2443 009d 03       		.uleb128 0x3
+ 2444 009e 08       		.uleb128 0x8
+ 2445 009f 3A       		.uleb128 0x3a
+ 2446 00a0 0B       		.uleb128 0xb
+ 2447 00a1 3B       		.uleb128 0x3b
+ 2448 00a2 0B       		.uleb128 0xb
+ 2449 00a3 49       		.uleb128 0x49
+ 2450 00a4 13       		.uleb128 0x13
+ 2451 00a5 00       		.byte	0
+ 2452 00a6 00       		.byte	0
+ 2453 00a7 0D       		.uleb128 0xd
+ 2454 00a8 34       		.uleb128 0x34
+ 2455 00a9 00       		.byte	0
+ 2456 00aa 03       		.uleb128 0x3
+ 2457 00ab 0E       		.uleb128 0xe
+ 2458 00ac 3A       		.uleb128 0x3a
+ 2459 00ad 0B       		.uleb128 0xb
+ 2460 00ae 3B       		.uleb128 0x3b
+ 2461 00af 0B       		.uleb128 0xb
+ 2462 00b0 49       		.uleb128 0x49
+ 2463 00b1 13       		.uleb128 0x13
+ 2464 00b2 02       		.uleb128 0x2
+ 2465 00b3 17       		.uleb128 0x17
+ 2466 00b4 00       		.byte	0
+ 2467 00b5 00       		.byte	0
+ 2468 00b6 0E       		.uleb128 0xe
+ 2469 00b7 34       		.uleb128 0x34
+ 2470 00b8 00       		.byte	0
+ 2471 00b9 03       		.uleb128 0x3
+ 2472 00ba 08       		.uleb128 0x8
+ 2473 00bb 3A       		.uleb128 0x3a
+ 2474 00bc 0B       		.uleb128 0xb
+ 2475 00bd 3B       		.uleb128 0x3b
+ 2476 00be 0B       		.uleb128 0xb
+ 2477 00bf 49       		.uleb128 0x49
+ 2478 00c0 13       		.uleb128 0x13
+ 2479 00c1 02       		.uleb128 0x2
+ 2480 00c2 17       		.uleb128 0x17
+ 2481 00c3 00       		.byte	0
+ 2482 00c4 00       		.byte	0
+ 2483 00c5 0F       		.uleb128 0xf
+ 2484 00c6 898201   		.uleb128 0x4109
+ 2485 00c9 01       		.byte	0x1
+ 2486 00ca 11       		.uleb128 0x11
+ 2487 00cb 01       		.uleb128 0x1
+ 2488 00cc 31       		.uleb128 0x31
+ 2489 00cd 13       		.uleb128 0x13
+ 2490 00ce 01       		.uleb128 0x1
+ 2491 00cf 13       		.uleb128 0x13
+ 2492 00d0 00       		.byte	0
+ 2493 00d1 00       		.byte	0
+ 2494 00d2 10       		.uleb128 0x10
+ 2495 00d3 8A8201   		.uleb128 0x410a
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 53
+
+
+ 2496 00d6 00       		.byte	0
+ 2497 00d7 02       		.uleb128 0x2
+ 2498 00d8 18       		.uleb128 0x18
+ 2499 00d9 9142     		.uleb128 0x2111
+ 2500 00db 18       		.uleb128 0x18
+ 2501 00dc 00       		.byte	0
+ 2502 00dd 00       		.byte	0
+ 2503 00de 11       		.uleb128 0x11
+ 2504 00df 898201   		.uleb128 0x4109
+ 2505 00e2 00       		.byte	0
+ 2506 00e3 11       		.uleb128 0x11
+ 2507 00e4 01       		.uleb128 0x1
+ 2508 00e5 31       		.uleb128 0x31
+ 2509 00e6 13       		.uleb128 0x13
+ 2510 00e7 00       		.byte	0
+ 2511 00e8 00       		.byte	0
+ 2512 00e9 12       		.uleb128 0x12
+ 2513 00ea 01       		.uleb128 0x1
+ 2514 00eb 01       		.byte	0x1
+ 2515 00ec 49       		.uleb128 0x49
+ 2516 00ed 13       		.uleb128 0x13
+ 2517 00ee 01       		.uleb128 0x1
+ 2518 00ef 13       		.uleb128 0x13
+ 2519 00f0 00       		.byte	0
+ 2520 00f1 00       		.byte	0
+ 2521 00f2 13       		.uleb128 0x13
+ 2522 00f3 21       		.uleb128 0x21
+ 2523 00f4 00       		.byte	0
+ 2524 00f5 49       		.uleb128 0x49
+ 2525 00f6 13       		.uleb128 0x13
+ 2526 00f7 2F       		.uleb128 0x2f
+ 2527 00f8 18       		.uleb128 0x18
+ 2528 00f9 00       		.byte	0
+ 2529 00fa 00       		.byte	0
+ 2530 00fb 14       		.uleb128 0x14
+ 2531 00fc 21       		.uleb128 0x21
+ 2532 00fd 00       		.byte	0
+ 2533 00fe 49       		.uleb128 0x49
+ 2534 00ff 13       		.uleb128 0x13
+ 2535 0100 2F       		.uleb128 0x2f
+ 2536 0101 0B       		.uleb128 0xb
+ 2537 0102 00       		.byte	0
+ 2538 0103 00       		.byte	0
+ 2539 0104 15       		.uleb128 0x15
+ 2540 0105 2E       		.uleb128 0x2e
+ 2541 0106 01       		.byte	0x1
+ 2542 0107 3F       		.uleb128 0x3f
+ 2543 0108 19       		.uleb128 0x19
+ 2544 0109 03       		.uleb128 0x3
+ 2545 010a 0E       		.uleb128 0xe
+ 2546 010b 3A       		.uleb128 0x3a
+ 2547 010c 0B       		.uleb128 0xb
+ 2548 010d 3B       		.uleb128 0x3b
+ 2549 010e 05       		.uleb128 0x5
+ 2550 010f 11       		.uleb128 0x11
+ 2551 0110 01       		.uleb128 0x1
+ 2552 0111 12       		.uleb128 0x12
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 54
+
+
+ 2553 0112 06       		.uleb128 0x6
+ 2554 0113 40       		.uleb128 0x40
+ 2555 0114 18       		.uleb128 0x18
+ 2556 0115 9742     		.uleb128 0x2117
+ 2557 0117 19       		.uleb128 0x19
+ 2558 0118 01       		.uleb128 0x1
+ 2559 0119 13       		.uleb128 0x13
+ 2560 011a 00       		.byte	0
+ 2561 011b 00       		.byte	0
+ 2562 011c 16       		.uleb128 0x16
+ 2563 011d 2E       		.uleb128 0x2e
+ 2564 011e 01       		.byte	0x1
+ 2565 011f 3F       		.uleb128 0x3f
+ 2566 0120 19       		.uleb128 0x19
+ 2567 0121 03       		.uleb128 0x3
+ 2568 0122 0E       		.uleb128 0xe
+ 2569 0123 3A       		.uleb128 0x3a
+ 2570 0124 0B       		.uleb128 0xb
+ 2571 0125 3B       		.uleb128 0x3b
+ 2572 0126 05       		.uleb128 0x5
+ 2573 0127 27       		.uleb128 0x27
+ 2574 0128 19       		.uleb128 0x19
+ 2575 0129 49       		.uleb128 0x49
+ 2576 012a 13       		.uleb128 0x13
+ 2577 012b 11       		.uleb128 0x11
+ 2578 012c 01       		.uleb128 0x1
+ 2579 012d 12       		.uleb128 0x12
+ 2580 012e 06       		.uleb128 0x6
+ 2581 012f 40       		.uleb128 0x40
+ 2582 0130 18       		.uleb128 0x18
+ 2583 0131 9742     		.uleb128 0x2117
+ 2584 0133 19       		.uleb128 0x19
+ 2585 0134 01       		.uleb128 0x1
+ 2586 0135 13       		.uleb128 0x13
+ 2587 0136 00       		.byte	0
+ 2588 0137 00       		.byte	0
+ 2589 0138 17       		.uleb128 0x17
+ 2590 0139 05       		.uleb128 0x5
+ 2591 013a 00       		.byte	0
+ 2592 013b 03       		.uleb128 0x3
+ 2593 013c 08       		.uleb128 0x8
+ 2594 013d 3A       		.uleb128 0x3a
+ 2595 013e 0B       		.uleb128 0xb
+ 2596 013f 3B       		.uleb128 0x3b
+ 2597 0140 05       		.uleb128 0x5
+ 2598 0141 49       		.uleb128 0x49
+ 2599 0142 13       		.uleb128 0x13
+ 2600 0143 02       		.uleb128 0x2
+ 2601 0144 17       		.uleb128 0x17
+ 2602 0145 00       		.byte	0
+ 2603 0146 00       		.byte	0
+ 2604 0147 18       		.uleb128 0x18
+ 2605 0148 34       		.uleb128 0x34
+ 2606 0149 00       		.byte	0
+ 2607 014a 03       		.uleb128 0x3
+ 2608 014b 0E       		.uleb128 0xe
+ 2609 014c 3A       		.uleb128 0x3a
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 55
+
+
+ 2610 014d 0B       		.uleb128 0xb
+ 2611 014e 3B       		.uleb128 0x3b
+ 2612 014f 05       		.uleb128 0x5
+ 2613 0150 49       		.uleb128 0x49
+ 2614 0151 13       		.uleb128 0x13
+ 2615 0152 3F       		.uleb128 0x3f
+ 2616 0153 19       		.uleb128 0x19
+ 2617 0154 3C       		.uleb128 0x3c
+ 2618 0155 19       		.uleb128 0x19
+ 2619 0156 00       		.byte	0
+ 2620 0157 00       		.byte	0
+ 2621 0158 19       		.uleb128 0x19
+ 2622 0159 35       		.uleb128 0x35
+ 2623 015a 00       		.byte	0
+ 2624 015b 49       		.uleb128 0x49
+ 2625 015c 13       		.uleb128 0x13
+ 2626 015d 00       		.byte	0
+ 2627 015e 00       		.byte	0
+ 2628 015f 1A       		.uleb128 0x1a
+ 2629 0160 34       		.uleb128 0x34
+ 2630 0161 00       		.byte	0
+ 2631 0162 03       		.uleb128 0x3
+ 2632 0163 0E       		.uleb128 0xe
+ 2633 0164 3A       		.uleb128 0x3a
+ 2634 0165 0B       		.uleb128 0xb
+ 2635 0166 3B       		.uleb128 0x3b
+ 2636 0167 0B       		.uleb128 0xb
+ 2637 0168 49       		.uleb128 0x49
+ 2638 0169 13       		.uleb128 0x13
+ 2639 016a 3F       		.uleb128 0x3f
+ 2640 016b 19       		.uleb128 0x19
+ 2641 016c 02       		.uleb128 0x2
+ 2642 016d 18       		.uleb128 0x18
+ 2643 016e 00       		.byte	0
+ 2644 016f 00       		.byte	0
+ 2645 0170 1B       		.uleb128 0x1b
+ 2646 0171 34       		.uleb128 0x34
+ 2647 0172 00       		.byte	0
+ 2648 0173 03       		.uleb128 0x3
+ 2649 0174 08       		.uleb128 0x8
+ 2650 0175 3A       		.uleb128 0x3a
+ 2651 0176 0B       		.uleb128 0xb
+ 2652 0177 3B       		.uleb128 0x3b
+ 2653 0178 0B       		.uleb128 0xb
+ 2654 0179 49       		.uleb128 0x49
+ 2655 017a 13       		.uleb128 0x13
+ 2656 017b 3F       		.uleb128 0x3f
+ 2657 017c 19       		.uleb128 0x19
+ 2658 017d 02       		.uleb128 0x2
+ 2659 017e 18       		.uleb128 0x18
+ 2660 017f 00       		.byte	0
+ 2661 0180 00       		.byte	0
+ 2662 0181 1C       		.uleb128 0x1c
+ 2663 0182 26       		.uleb128 0x26
+ 2664 0183 00       		.byte	0
+ 2665 0184 49       		.uleb128 0x49
+ 2666 0185 13       		.uleb128 0x13
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 56
+
+
+ 2667 0186 00       		.byte	0
+ 2668 0187 00       		.byte	0
+ 2669 0188 1D       		.uleb128 0x1d
+ 2670 0189 2E       		.uleb128 0x2e
+ 2671 018a 01       		.byte	0x1
+ 2672 018b 3F       		.uleb128 0x3f
+ 2673 018c 19       		.uleb128 0x19
+ 2674 018d 03       		.uleb128 0x3
+ 2675 018e 0E       		.uleb128 0xe
+ 2676 018f 27       		.uleb128 0x27
+ 2677 0190 19       		.uleb128 0x19
+ 2678 0191 49       		.uleb128 0x49
+ 2679 0192 13       		.uleb128 0x13
+ 2680 0193 34       		.uleb128 0x34
+ 2681 0194 19       		.uleb128 0x19
+ 2682 0195 3C       		.uleb128 0x3c
+ 2683 0196 19       		.uleb128 0x19
+ 2684 0197 01       		.uleb128 0x1
+ 2685 0198 13       		.uleb128 0x13
+ 2686 0199 00       		.byte	0
+ 2687 019a 00       		.byte	0
+ 2688 019b 1E       		.uleb128 0x1e
+ 2689 019c 05       		.uleb128 0x5
+ 2690 019d 00       		.byte	0
+ 2691 019e 49       		.uleb128 0x49
+ 2692 019f 13       		.uleb128 0x13
+ 2693 01a0 00       		.byte	0
+ 2694 01a1 00       		.byte	0
+ 2695 01a2 1F       		.uleb128 0x1f
+ 2696 01a3 2E       		.uleb128 0x2e
+ 2697 01a4 01       		.byte	0x1
+ 2698 01a5 3F       		.uleb128 0x3f
+ 2699 01a6 19       		.uleb128 0x19
+ 2700 01a7 03       		.uleb128 0x3
+ 2701 01a8 0E       		.uleb128 0xe
+ 2702 01a9 3A       		.uleb128 0x3a
+ 2703 01aa 0B       		.uleb128 0xb
+ 2704 01ab 3B       		.uleb128 0x3b
+ 2705 01ac 0B       		.uleb128 0xb
+ 2706 01ad 27       		.uleb128 0x27
+ 2707 01ae 19       		.uleb128 0x19
+ 2708 01af 3C       		.uleb128 0x3c
+ 2709 01b0 19       		.uleb128 0x19
+ 2710 01b1 01       		.uleb128 0x1
+ 2711 01b2 13       		.uleb128 0x13
+ 2712 01b3 00       		.byte	0
+ 2713 01b4 00       		.byte	0
+ 2714 01b5 20       		.uleb128 0x20
+ 2715 01b6 2E       		.uleb128 0x2e
+ 2716 01b7 01       		.byte	0x1
+ 2717 01b8 3F       		.uleb128 0x3f
+ 2718 01b9 19       		.uleb128 0x19
+ 2719 01ba 03       		.uleb128 0x3
+ 2720 01bb 0E       		.uleb128 0xe
+ 2721 01bc 3A       		.uleb128 0x3a
+ 2722 01bd 0B       		.uleb128 0xb
+ 2723 01be 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 57
+
+
+ 2724 01bf 0B       		.uleb128 0xb
+ 2725 01c0 49       		.uleb128 0x49
+ 2726 01c1 13       		.uleb128 0x13
+ 2727 01c2 3C       		.uleb128 0x3c
+ 2728 01c3 19       		.uleb128 0x19
+ 2729 01c4 01       		.uleb128 0x1
+ 2730 01c5 13       		.uleb128 0x13
+ 2731 01c6 00       		.byte	0
+ 2732 01c7 00       		.byte	0
+ 2733 01c8 21       		.uleb128 0x21
+ 2734 01c9 18       		.uleb128 0x18
+ 2735 01ca 00       		.byte	0
+ 2736 01cb 00       		.byte	0
+ 2737 01cc 00       		.byte	0
+ 2738 01cd 22       		.uleb128 0x22
+ 2739 01ce 2E       		.uleb128 0x2e
+ 2740 01cf 01       		.byte	0x1
+ 2741 01d0 3F       		.uleb128 0x3f
+ 2742 01d1 19       		.uleb128 0x19
+ 2743 01d2 03       		.uleb128 0x3
+ 2744 01d3 0E       		.uleb128 0xe
+ 2745 01d4 3A       		.uleb128 0x3a
+ 2746 01d5 0B       		.uleb128 0xb
+ 2747 01d6 3B       		.uleb128 0x3b
+ 2748 01d7 0B       		.uleb128 0xb
+ 2749 01d8 27       		.uleb128 0x27
+ 2750 01d9 19       		.uleb128 0x19
+ 2751 01da 3C       		.uleb128 0x3c
+ 2752 01db 19       		.uleb128 0x19
+ 2753 01dc 00       		.byte	0
+ 2754 01dd 00       		.byte	0
+ 2755 01de 00       		.byte	0
+ 2756              		.section	.debug_loc,"",%progbits
+ 2757              	.Ldebug_loc0:
+ 2758              	.LLST0:
+ 2759 0000 3A000000 		.4byte	.LVL0
+ 2760 0004 5E020000 		.4byte	.LVL30
+ 2761 0008 0200     		.2byte	0x2
+ 2762 000a 74       		.byte	0x74
+ 2763 000b 00       		.sleb128 0
+ 2764 000c 5E020000 		.4byte	.LVL30
+ 2765 0010 AC020000 		.4byte	.LVL32
+ 2766 0014 0200     		.2byte	0x2
+ 2767 0016 7D       		.byte	0x7d
+ 2768 0017 00       		.sleb128 0
+ 2769 0018 AC020000 		.4byte	.LVL32
+ 2770 001c B0020000 		.4byte	.LVL33
+ 2771 0020 0700     		.2byte	0x7
+ 2772 0022 91       		.byte	0x91
+ 2773 0023 00       		.sleb128 0
+ 2774 0024 06       		.byte	0x6
+ 2775 0025 0A       		.byte	0xa
+ 2776 0026 4001     		.2byte	0x140
+ 2777 0028 1C       		.byte	0x1c
+ 2778 0029 B0020000 		.4byte	.LVL33
+ 2779 002d E0030000 		.4byte	.LFE64
+ 2780 0031 0200     		.2byte	0x2
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 58
+
+
+ 2781 0033 74       		.byte	0x74
+ 2782 0034 00       		.sleb128 0
+ 2783 0035 00000000 		.4byte	0
+ 2784 0039 00000000 		.4byte	0
+ 2785              	.LLST1:
+ 2786 003d A4000000 		.4byte	.LVL10
+ 2787 0041 A8000000 		.4byte	.LVL11
+ 2788 0045 0200     		.2byte	0x2
+ 2789 0047 30       		.byte	0x30
+ 2790 0048 9F       		.byte	0x9f
+ 2791 0049 A8000000 		.4byte	.LVL11
+ 2792 004d A2020000 		.4byte	.LVL31
+ 2793 0051 0200     		.2byte	0x2
+ 2794 0053 77       		.byte	0x77
+ 2795 0054 3C       		.sleb128 60
+ 2796 0055 A2020000 		.4byte	.LVL31
+ 2797 0059 E0030000 		.4byte	.LFE64
+ 2798 005d 0200     		.2byte	0x2
+ 2799 005f 91       		.byte	0x91
+ 2800 0060 04       		.sleb128 4
+ 2801 0061 00000000 		.4byte	0
+ 2802 0065 00000000 		.4byte	0
+ 2803              	.LLST2:
+ 2804 0069 48010000 		.4byte	.LVL14
+ 2805 006d 30020000 		.4byte	.LVL28
+ 2806 0071 0100     		.2byte	0x1
+ 2807 0073 5A       		.byte	0x5a
+ 2808 0074 B0020000 		.4byte	.LVL33
+ 2809 0078 D2020000 		.4byte	.LVL37
+ 2810 007c 0100     		.2byte	0x1
+ 2811 007e 5A       		.byte	0x5a
+ 2812 007f D2020000 		.4byte	.LVL37
+ 2813 0083 E0020000 		.4byte	.LVL38
+ 2814 0087 0500     		.2byte	0x5
+ 2815 0089 74       		.byte	0x74
+ 2816 008a 00       		.sleb128 0
+ 2817 008b 73       		.byte	0x73
+ 2818 008c 00       		.sleb128 0
+ 2819 008d 22       		.byte	0x22
+ 2820 008e 54030000 		.4byte	.LVL39
+ 2821 0092 E0030000 		.4byte	.LFE64
+ 2822 0096 0100     		.2byte	0x1
+ 2823 0098 5A       		.byte	0x5a
+ 2824 0099 00000000 		.4byte	0
+ 2825 009d 00000000 		.4byte	0
+ 2826              	.LLST3:
+ 2827 00a1 72010000 		.4byte	.LVL19
+ 2828 00a5 82010000 		.4byte	.LVL20
+ 2829 00a9 0100     		.2byte	0x1
+ 2830 00ab 5E       		.byte	0x5e
+ 2831 00ac CC010000 		.4byte	.LVL22
+ 2832 00b0 D4010000 		.4byte	.LVL23
+ 2833 00b4 0100     		.2byte	0x1
+ 2834 00b6 5E       		.byte	0x5e
+ 2835 00b7 04020000 		.4byte	.LVL25
+ 2836 00bb 08020000 		.4byte	.LVL26
+ 2837 00bf 0100     		.2byte	0x1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 59
+
+
+ 2838 00c1 5E       		.byte	0x5e
+ 2839 00c2 08020000 		.4byte	.LVL26
+ 2840 00c6 0C020000 		.4byte	.LVL27
+ 2841 00ca 0500     		.2byte	0x5
+ 2842 00cc 70       		.byte	0x70
+ 2843 00cd 00       		.sleb128 0
+ 2844 00ce 73       		.byte	0x73
+ 2845 00cf 00       		.sleb128 0
+ 2846 00d0 22       		.byte	0x22
+ 2847 00d1 0C020000 		.4byte	.LVL27
+ 2848 00d5 30020000 		.4byte	.LVL28
+ 2849 00d9 0600     		.2byte	0x6
+ 2850 00db 77       		.byte	0x77
+ 2851 00dc 38       		.sleb128 56
+ 2852 00dd 06       		.byte	0x6
+ 2853 00de 73       		.byte	0x73
+ 2854 00df 00       		.sleb128 0
+ 2855 00e0 22       		.byte	0x22
+ 2856 00e1 B0020000 		.4byte	.LVL33
+ 2857 00e5 B8020000 		.4byte	.LVL34
+ 2858 00e9 0200     		.2byte	0x2
+ 2859 00eb 30       		.byte	0x30
+ 2860 00ec 9F       		.byte	0x9f
+ 2861 00ed B8020000 		.4byte	.LVL34
+ 2862 00f1 5A030000 		.4byte	.LVL40
+ 2863 00f5 0100     		.2byte	0x1
+ 2864 00f7 5E       		.byte	0x5e
+ 2865 00f8 5A030000 		.4byte	.LVL40
+ 2866 00fc 82030000 		.4byte	.LVL42
+ 2867 0100 0600     		.2byte	0x6
+ 2868 0102 91       		.byte	0x91
+ 2869 0103 00       		.sleb128 0
+ 2870 0104 06       		.byte	0x6
+ 2871 0105 73       		.byte	0x73
+ 2872 0106 00       		.sleb128 0
+ 2873 0107 22       		.byte	0x22
+ 2874 0108 A4030000 		.4byte	.LVL43
+ 2875 010c D6030000 		.4byte	.LVL46
+ 2876 0110 0100     		.2byte	0x1
+ 2877 0112 5E       		.byte	0x5e
+ 2878 0113 D6030000 		.4byte	.LVL46
+ 2879 0117 E0030000 		.4byte	.LFE64
+ 2880 011b 0200     		.2byte	0x2
+ 2881 011d 30       		.byte	0x30
+ 2882 011e 9F       		.byte	0x9f
+ 2883 011f 00000000 		.4byte	0
+ 2884 0123 00000000 		.4byte	0
+ 2885              	.LLST4:
+ 2886 0127 5C010000 		.4byte	.LVL16
+ 2887 012b 5E010000 		.4byte	.LVL17
+ 2888 012f 0100     		.2byte	0x1
+ 2889 0131 52       		.byte	0x52
+ 2890 0132 5E010000 		.4byte	.LVL17
+ 2891 0136 6C010000 		.4byte	.LVL18
+ 2892 013a 0200     		.2byte	0x2
+ 2893 013c 30       		.byte	0x30
+ 2894 013d 9F       		.byte	0x9f
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 60
+
+
+ 2895 013e 6C010000 		.4byte	.LVL18
+ 2896 0142 82010000 		.4byte	.LVL20
+ 2897 0146 0100     		.2byte	0x1
+ 2898 0148 52       		.byte	0x52
+ 2899 0149 CC010000 		.4byte	.LVL22
+ 2900 014d D4010000 		.4byte	.LVL23
+ 2901 0151 0100     		.2byte	0x1
+ 2902 0153 52       		.byte	0x52
+ 2903 0154 B0020000 		.4byte	.LVL33
+ 2904 0158 B8020000 		.4byte	.LVL34
+ 2905 015c 0200     		.2byte	0x2
+ 2906 015e 30       		.byte	0x30
+ 2907 015f 9F       		.byte	0x9f
+ 2908 0160 B8020000 		.4byte	.LVL34
+ 2909 0164 C4020000 		.4byte	.LVL35
+ 2910 0168 0100     		.2byte	0x1
+ 2911 016a 52       		.byte	0x52
+ 2912 016b 54030000 		.4byte	.LVL39
+ 2913 016f 5E030000 		.4byte	.LVL41
+ 2914 0173 0100     		.2byte	0x1
+ 2915 0175 52       		.byte	0x52
+ 2916 0176 A4030000 		.4byte	.LVL43
+ 2917 017a B0030000 		.4byte	.LVL45
+ 2918 017e 0100     		.2byte	0x1
+ 2919 0180 52       		.byte	0x52
+ 2920 0181 D6030000 		.4byte	.LVL46
+ 2921 0185 E0030000 		.4byte	.LFE64
+ 2922 0189 0200     		.2byte	0x2
+ 2923 018b 30       		.byte	0x30
+ 2924 018c 9F       		.byte	0x9f
+ 2925 018d 00000000 		.4byte	0
+ 2926 0191 00000000 		.4byte	0
+ 2927              	.LLST5:
+ 2928 0195 54010000 		.4byte	.LVL15
+ 2929 0199 5E010000 		.4byte	.LVL17
+ 2930 019d 0100     		.2byte	0x1
+ 2931 019f 59       		.byte	0x59
+ 2932 01a0 5E010000 		.4byte	.LVL17
+ 2933 01a4 6C010000 		.4byte	.LVL18
+ 2934 01a8 0200     		.2byte	0x2
+ 2935 01aa 30       		.byte	0x30
+ 2936 01ab 9F       		.byte	0x9f
+ 2937 01ac 6C010000 		.4byte	.LVL18
+ 2938 01b0 88010000 		.4byte	.LVL21
+ 2939 01b4 0100     		.2byte	0x1
+ 2940 01b6 59       		.byte	0x59
+ 2941 01b7 CC010000 		.4byte	.LVL22
+ 2942 01bb D8010000 		.4byte	.LVL24
+ 2943 01bf 0100     		.2byte	0x1
+ 2944 01c1 59       		.byte	0x59
+ 2945 01c2 04020000 		.4byte	.LVL25
+ 2946 01c6 30020000 		.4byte	.LVL28
+ 2947 01ca 0100     		.2byte	0x1
+ 2948 01cc 59       		.byte	0x59
+ 2949 01cd B0020000 		.4byte	.LVL33
+ 2950 01d1 CE020000 		.4byte	.LVL36
+ 2951 01d5 0100     		.2byte	0x1
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 61
+
+
+ 2952 01d7 59       		.byte	0x59
+ 2953 01d8 54030000 		.4byte	.LVL39
+ 2954 01dc 82030000 		.4byte	.LVL42
+ 2955 01e0 0100     		.2byte	0x1
+ 2956 01e2 59       		.byte	0x59
+ 2957 01e3 A4030000 		.4byte	.LVL43
+ 2958 01e7 AC030000 		.4byte	.LVL44
+ 2959 01eb 0100     		.2byte	0x1
+ 2960 01ed 59       		.byte	0x59
+ 2961 01ee D6030000 		.4byte	.LVL46
+ 2962 01f2 E0030000 		.4byte	.LFE64
+ 2963 01f6 0200     		.2byte	0x2
+ 2964 01f8 30       		.byte	0x30
+ 2965 01f9 9F       		.byte	0x9f
+ 2966 01fa 00000000 		.4byte	0
+ 2967 01fe 00000000 		.4byte	0
+ 2968              	.LLST6:
+ 2969 0202 46000000 		.4byte	.LVL52
+ 2970 0206 48000000 		.4byte	.LVL53
+ 2971 020a 0200     		.2byte	0x2
+ 2972 020c 30       		.byte	0x30
+ 2973 020d 9F       		.byte	0x9f
+ 2974 020e 54000000 		.4byte	.LVL54
+ 2975 0212 9E000000 		.4byte	.LVL56
+ 2976 0216 0100     		.2byte	0x1
+ 2977 0218 52       		.byte	0x52
+ 2978 0219 9E000000 		.4byte	.LVL56
+ 2979 021d BA000000 		.4byte	.LVL57
+ 2980 0221 0100     		.2byte	0x1
+ 2981 0223 50       		.byte	0x50
+ 2982 0224 E2000000 		.4byte	.LVL58
+ 2983 0228 FE000000 		.4byte	.LVL60
+ 2984 022c 0100     		.2byte	0x1
+ 2985 022e 50       		.byte	0x50
+ 2986 022f 00000000 		.4byte	0
+ 2987 0233 00000000 		.4byte	0
+ 2988              	.LLST7:
+ 2989 0237 00000000 		.4byte	.LVL65
+ 2990 023b 07000000 		.4byte	.LVL66-1
+ 2991 023f 0100     		.2byte	0x1
+ 2992 0241 50       		.byte	0x50
+ 2993 0242 07000000 		.4byte	.LVL66-1
+ 2994 0246 C0000000 		.4byte	.LFE66
+ 2995 024a 0400     		.2byte	0x4
+ 2996 024c F3       		.byte	0xf3
+ 2997 024d 01       		.uleb128 0x1
+ 2998 024e 50       		.byte	0x50
+ 2999 024f 9F       		.byte	0x9f
+ 3000 0250 00000000 		.4byte	0
+ 3001 0254 00000000 		.4byte	0
+ 3002              		.section	.debug_aranges,"",%progbits
+ 3003 0000 3C000000 		.4byte	0x3c
+ 3004 0004 0200     		.2byte	0x2
+ 3005 0006 00000000 		.4byte	.Ldebug_info0
+ 3006 000a 04       		.byte	0x4
+ 3007 000b 00       		.byte	0
+ 3008 000c 0000     		.2byte	0
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 62
+
+
+ 3009 000e 0000     		.2byte	0
+ 3010 0010 00000000 		.4byte	.LFB64
+ 3011 0014 E0030000 		.4byte	.LFE64-.LFB64
+ 3012 0018 00000000 		.4byte	.LFB63
+ 3013 001c A4010000 		.4byte	.LFE63-.LFB63
+ 3014 0020 00000000 		.4byte	.LFB65
+ 3015 0024 80000000 		.4byte	.LFE65-.LFB65
+ 3016 0028 00000000 		.4byte	.LFB66
+ 3017 002c C0000000 		.4byte	.LFE66-.LFB66
+ 3018 0030 00000000 		.4byte	.LFB67
+ 3019 0034 64000000 		.4byte	.LFE67-.LFB67
+ 3020 0038 00000000 		.4byte	0
+ 3021 003c 00000000 		.4byte	0
+ 3022              		.section	.debug_ranges,"",%progbits
+ 3023              	.Ldebug_ranges0:
+ 3024 0000 00000000 		.4byte	.LFB64
+ 3025 0004 E0030000 		.4byte	.LFE64
+ 3026 0008 00000000 		.4byte	.LFB63
+ 3027 000c A4010000 		.4byte	.LFE63
+ 3028 0010 00000000 		.4byte	.LFB65
+ 3029 0014 80000000 		.4byte	.LFE65
+ 3030 0018 00000000 		.4byte	.LFB66
+ 3031 001c C0000000 		.4byte	.LFE66
+ 3032 0020 00000000 		.4byte	.LFB67
+ 3033 0024 64000000 		.4byte	.LFE67
+ 3034 0028 00000000 		.4byte	0
+ 3035 002c 00000000 		.4byte	0
+ 3036              		.section	.debug_line,"",%progbits
+ 3037              	.Ldebug_line0:
+ 3038 0000 AF030000 		.section	.debug_str,"MS",%progbits,1
+ 3038      02008201 
+ 3038      00000201 
+ 3038      FB0E0D00 
+ 3038      01010101 
+ 3039              	.LASF26:
+ 3040 0000 6F726465 		.ascii	"orderedScaledX\000"
+ 3040      72656453 
+ 3040      63616C65 
+ 3040      645800
+ 3041              	.LASF27:
+ 3042 000f 6F726465 		.ascii	"orderedScaledY\000"
+ 3042      72656453 
+ 3042      63616C65 
+ 3042      645900
+ 3043              	.LASF45:
+ 3044 001e 7363616C 		.ascii	"scaledClr\000"
+ 3044      6564436C 
+ 3044      7200
+ 3045              	.LASF14:
+ 3046 0028 666C6F61 		.ascii	"float\000"
+ 3046      7400
+ 3047              	.LASF18:
+ 3048 002e 70697865 		.ascii	"pixel\000"
+ 3048      6C00
+ 3049              	.LASF49:
+ 3050 0034 636C6F73 		.ascii	"closestX\000"
+ 3050      65737458 
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 63
+
+
+ 3050      00
+ 3051              	.LASF50:
+ 3052 003d 636C6F73 		.ascii	"closestY\000"
+ 3052      65737459 
+ 3052      00
+ 3053              	.LASF2:
+ 3054 0046 73686F72 		.ascii	"short int\000"
+ 3054      7420696E 
+ 3054      7400
+ 3055              	.LASF48:
+ 3056 0050 6F726465 		.ascii	"orderedScaledClr\000"
+ 3056      72656453 
+ 3056      63616C65 
+ 3056      64436C72 
+ 3056      00
+ 3057              	.LASF17:
+ 3058 0061 73697A65 		.ascii	"sizetype\000"
+ 3058      74797065 
+ 3058      00
+ 3059              	.LASF33:
+ 3060 006a 43616D4D 		.ascii	"CamMarkClosest\000"
+ 3060      61726B43 
+ 3060      6C6F7365 
+ 3060      737400
+ 3061              	.LASF55:
+ 3062 0079 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3062      4320342E 
+ 3062      392E3320 
+ 3062      32303135 
+ 3062      30333033 
+ 3063 00ac 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3063      20726576 
+ 3063      6973696F 
+ 3063      6E203232 
+ 3063      31323230 
+ 3064 00df 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 3064      66756E63 
+ 3064      74696F6E 
+ 3064      2D736563 
+ 3064      74696F6E 
+ 3065              	.LASF53:
+ 3066 0107 4C43445F 		.ascii	"LCD_ReadPixel\000"
+ 3066      52656164 
+ 3066      50697865 
+ 3066      6C00
+ 3067              	.LASF59:
+ 3068 0115 4C43445F 		.ascii	"LCD_WritePixel\000"
+ 3068      57726974 
+ 3068      65506978 
+ 3068      656C00
+ 3069              	.LASF12:
+ 3070 0124 75696E74 		.ascii	"uint16\000"
+ 3070      313600
+ 3071              	.LASF11:
+ 3072 012b 75696E74 		.ascii	"uint8\000"
+ 3072      3800
+ 3073              	.LASF38:
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 64
+
+
+ 3074 0131 6E756D52 		.ascii	"numRows\000"
+ 3074      6F777300 
+ 3075              	.LASF30:
+ 3076 0139 6C726743 		.ascii	"lrgClr\000"
+ 3076      6C7200
+ 3077              	.LASF23:
+ 3078 0140 626F7474 		.ascii	"bottom\000"
+ 3078      6F6D00
+ 3079              	.LASF22:
+ 3080 0147 626C6F62 		.ascii	"blobClr\000"
+ 3080      436C7200 
+ 3081              	.LASF0:
+ 3082 014f 7369676E 		.ascii	"signed char\000"
+ 3082      65642063 
+ 3082      68617200 
+ 3083              	.LASF29:
+ 3084 015b 6C726759 		.ascii	"lrgY\000"
+ 3084      00
+ 3085              	.LASF6:
+ 3086 0160 6C6F6E67 		.ascii	"long long int\000"
+ 3086      206C6F6E 
+ 3086      6720696E 
+ 3086      7400
+ 3087              	.LASF56:
+ 3088 016e 2E5C6361 		.ascii	".\\camera_functions.c\000"
+ 3088      6D657261 
+ 3088      5F66756E 
+ 3088      6374696F 
+ 3088      6E732E63 
+ 3089              	.LASF47:
+ 3090 0183 626C6F62 		.ascii	"blobCounter\000"
+ 3090      436F756E 
+ 3090      74657200 
+ 3091              	.LASF51:
+ 3092 018f 6D656D73 		.ascii	"memset\000"
+ 3092      657400
+ 3093              	.LASF54:
+ 3094 0196 4C43445F 		.ascii	"LCD_SetWindowWrite\000"
+ 3094      53657457 
+ 3094      696E646F 
+ 3094      77577269 
+ 3094      746500
+ 3095              	.LASF40:
+ 3096 01a9 6F666673 		.ascii	"offset\000"
+ 3096      657400
+ 3097              	.LASF24:
+ 3098 01b0 43616D41 		.ascii	"CamAnalyseFrame\000"
+ 3098      6E616C79 
+ 3098      73654672 
+ 3098      616D6500 
+ 3099              	.LASF39:
+ 3100 01c0 6E756D43 		.ascii	"numCols\000"
+ 3100      6F6C7300 
+ 3101              	.LASF1:
+ 3102 01c8 756E7369 		.ascii	"unsigned char\000"
+ 3102      676E6564 
+ 3102      20636861 
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 65
+
+
+ 3102      7200
+ 3103              	.LASF52:
+ 3104 01d6 4C43445F 		.ascii	"LCD_SetWindowRead\000"
+ 3104      53657457 
+ 3104      696E646F 
+ 3104      77526561 
+ 3104      6400
+ 3105              	.LASF21:
+ 3106 01e8 626C6F62 		.ascii	"blobElements\000"
+ 3106      456C656D 
+ 3106      656E7473 
+ 3106      00
+ 3107              	.LASF46:
+ 3108 01f5 7363616C 		.ascii	"scaledElements\000"
+ 3108      6564456C 
+ 3108      656D656E 
+ 3108      747300
+ 3109              	.LASF7:
+ 3110 0204 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3110      206C6F6E 
+ 3110      6720756E 
+ 3110      7369676E 
+ 3110      65642069 
+ 3111              	.LASF8:
+ 3112 021b 756E7369 		.ascii	"unsigned int\000"
+ 3112      676E6564 
+ 3112      20696E74 
+ 3112      00
+ 3113              	.LASF43:
+ 3114 0228 7363616C 		.ascii	"scaledX\000"
+ 3114      65645800 
+ 3115              	.LASF44:
+ 3116 0230 7363616C 		.ascii	"scaledY\000"
+ 3116      65645900 
+ 3117              	.LASF35:
+ 3118 0238 43616D65 		.ascii	"Camera_linebuffer\000"
+ 3118      72615F6C 
+ 3118      696E6562 
+ 3118      75666665 
+ 3118      7200
+ 3119              	.LASF3:
+ 3120 024a 73686F72 		.ascii	"short unsigned int\000"
+ 3120      7420756E 
+ 3120      7369676E 
+ 3120      65642069 
+ 3120      6E7400
+ 3121              	.LASF31:
+ 3122 025d 43616D4D 		.ascii	"CamMarkBlobs\000"
+ 3122      61726B42 
+ 3122      6C6F6273 
+ 3122      00
+ 3123              	.LASF16:
+ 3124 026a 63686172 		.ascii	"char\000"
+ 3124      00
+ 3125              	.LASF4:
+ 3126 026f 6C6F6E67 		.ascii	"long int\000"
+ 3126      20696E74 
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 66
+
+
+ 3126      00
+ 3127              	.LASF10:
+ 3128 0278 696E7433 		.ascii	"int32_t\000"
+ 3128      325F7400 
+ 3129              	.LASF25:
+ 3130 0280 43616D47 		.ascii	"CamGetSequence\000"
+ 3130      65745365 
+ 3130      7175656E 
+ 3130      636500
+ 3131              	.LASF32:
+ 3132 028f 5F426F6F 		.ascii	"_Bool\000"
+ 3132      6C00
+ 3133              	.LASF13:
+ 3134 0295 75696E74 		.ascii	"uint32\000"
+ 3134      333200
+ 3135              	.LASF5:
+ 3136 029c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3136      20756E73 
+ 3136      69676E65 
+ 3136      6420696E 
+ 3136      7400
+ 3137              	.LASF15:
+ 3138 02ae 646F7562 		.ascii	"double\000"
+ 3138      6C6500
+ 3139              	.LASF28:
+ 3140 02b5 6C726758 		.ascii	"lrgX\000"
+ 3140      00
+ 3141              	.LASF58:
+ 3142 02ba 43616D53 		.ascii	"CamScanClosest\000"
+ 3142      63616E43 
+ 3142      6C6F7365 
+ 3142      737400
+ 3143              	.LASF57:
+ 3144 02c9 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 3144      6F63756D 
+ 3144      656E7473 
+ 3144      5C436F6D 
+ 3144      70757465 
+ 3145 02f8 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 3145      5069636B 
+ 3145      75705C44 
+ 3145      6973706C 
+ 3145      61792E63 
+ 3146              	.LASF9:
+ 3147 0311 5F5F696E 		.ascii	"__int32_t\000"
+ 3147      7433325F 
+ 3147      7400
+ 3148              	.LASF42:
+ 3149 031b 6C6F6164 		.ascii	"loadPix\000"
+ 3149      50697800 
+ 3150              	.LASF34:
+ 3151 0323 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3151      52784275 
+ 3151      66666572 
+ 3151      00
+ 3152              	.LASF36:
+ 3153 0330 47524545 		.ascii	"GREEN\000"
+ARM GAS  D:\TEMP\ccgG5kSd.s 			page 67
+
+
+ 3153      4E00
+ 3154              	.LASF37:
+ 3155 0336 424C5545 		.ascii	"BLUE\000"
+ 3155      00
+ 3156              	.LASF41:
+ 3157 033b 626C6F62 		.ascii	"blobThresholdSize\000"
+ 3157      54687265 
+ 3157      73686F6C 
+ 3157      6453697A 
+ 3157      6500
+ 3158              	.LASF19:
+ 3159 034d 626C6F62 		.ascii	"blobWeightsX\000"
+ 3159      57656967 
+ 3159      68747358 
+ 3159      00
+ 3160              	.LASF20:
+ 3161 035a 626C6F62 		.ascii	"blobWeightsY\000"
+ 3161      57656967 
+ 3161      68747359 
+ 3161      00
+ 3162              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

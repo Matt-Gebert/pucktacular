@@ -1,0 +1,1499 @@
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"SW_DAC.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.SW_DAC_Enable,"ax",%progbits
+  19              		.align	1
+  20              		.global	SW_DAC_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	SW_DAC_Enable, %function
+  24              	SW_DAC_Enable:
+  25              	.LFB1:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\SW_DAC.c"
+   1:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/SW_DAC.c **** * File Name: SW_DAC.c  
+   3:.\Generated_Source\PSoC5/SW_DAC.c **** * Version 1.90
+   4:.\Generated_Source\PSoC5/SW_DAC.c **** *
+   5:.\Generated_Source\PSoC5/SW_DAC.c **** * Description:
+   6:.\Generated_Source\PSoC5/SW_DAC.c **** *  This file provides the source code to the API for the 8-bit Voltage DAC 
+   7:.\Generated_Source\PSoC5/SW_DAC.c **** *  (VDAC8) User Module.
+   8:.\Generated_Source\PSoC5/SW_DAC.c **** *
+   9:.\Generated_Source\PSoC5/SW_DAC.c **** * Note:
+  10:.\Generated_Source\PSoC5/SW_DAC.c **** *  Any unusual or non-standard behavior should be noted here. Other-
+  11:.\Generated_Source\PSoC5/SW_DAC.c **** *  wise, this section should remain blank.
+  12:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  13:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+  14:.\Generated_Source\PSoC5/SW_DAC.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  15:.\Generated_Source\PSoC5/SW_DAC.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  16:.\Generated_Source\PSoC5/SW_DAC.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  17:.\Generated_Source\PSoC5/SW_DAC.c **** * the software package with which this file was provided.
+  18:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+  19:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  20:.\Generated_Source\PSoC5/SW_DAC.c **** #include "cytypes.h"
+  21:.\Generated_Source\PSoC5/SW_DAC.c **** #include "SW_DAC.h"
+  22:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  23:.\Generated_Source\PSoC5/SW_DAC.c **** #if (CY_PSOC5A)
+  24:.\Generated_Source\PSoC5/SW_DAC.c **** #include <CyLib.h>
+  25:.\Generated_Source\PSoC5/SW_DAC.c **** #endif /* CY_PSOC5A */
+  26:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  27:.\Generated_Source\PSoC5/SW_DAC.c **** uint8 SW_DAC_initVar = 0u;
+  28:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  29:.\Generated_Source\PSoC5/SW_DAC.c **** #if (CY_PSOC5A)
+  30:.\Generated_Source\PSoC5/SW_DAC.c ****     static uint8 SW_DAC_restoreVal = 0u;
+  31:.\Generated_Source\PSoC5/SW_DAC.c **** #endif /* CY_PSOC5A */
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  33:.\Generated_Source\PSoC5/SW_DAC.c **** #if (CY_PSOC5A)
+  34:.\Generated_Source\PSoC5/SW_DAC.c ****     static SW_DAC_backupStruct SW_DAC_backup;
+  35:.\Generated_Source\PSoC5/SW_DAC.c **** #endif /* CY_PSOC5A */
+  36:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  37:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  38:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+  39:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_Init
+  40:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+  41:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+  42:.\Generated_Source\PSoC5/SW_DAC.c **** *  Initialize to the schematic state.
+  43:.\Generated_Source\PSoC5/SW_DAC.c **** * 
+  44:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/SW_DAC.c **** *  void:
+  46:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  47:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+  48:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+  49:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  50:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory:
+  51:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  52:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+  53:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  54:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+  55:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_Init(void) 
+  56:.\Generated_Source\PSoC5/SW_DAC.c **** {
+  57:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 = (SW_DAC_MODE_V );
+  58:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  59:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Set default data source */
+  60:.\Generated_Source\PSoC5/SW_DAC.c ****     #if(SW_DAC_DEFAULT_DATA_SRC != 0 )
+  61:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_CR1 = (SW_DAC_DEFAULT_CNTL | SW_DAC_DACBUS_ENABLE) ;
+  62:.\Generated_Source\PSoC5/SW_DAC.c ****     #else
+  63:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_CR1 = (SW_DAC_DEFAULT_CNTL | SW_DAC_DACBUS_DISABLE) ;
+  64:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* (SW_DAC_DEFAULT_DATA_SRC != 0 ) */
+  65:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  66:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Set default strobe mode */
+  67:.\Generated_Source\PSoC5/SW_DAC.c ****     #if(SW_DAC_DEFAULT_STRB != 0)
+  68:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_Strobe |= SW_DAC_STRB_EN ;
+  69:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif/* (SW_DAC_DEFAULT_STRB != 0) */
+  70:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  71:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Set default range */
+  72:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_SetRange(SW_DAC_DEFAULT_RANGE); 
+  73:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  74:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Set default speed */
+  75:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_SetSpeed(SW_DAC_DEFAULT_SPEED);
+  76:.\Generated_Source\PSoC5/SW_DAC.c **** }
+  77:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  78:.\Generated_Source\PSoC5/SW_DAC.c **** 
+  79:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+  80:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_Enable
+  81:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+  82:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+  83:.\Generated_Source\PSoC5/SW_DAC.c **** *  Enable the VDAC8
+  84:.\Generated_Source\PSoC5/SW_DAC.c **** * 
+  85:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+  86:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+  87:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  88:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+  90:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  91:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory:
+  92:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  93:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+  94:.\Generated_Source\PSoC5/SW_DAC.c **** *
+  95:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+  96:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_Enable(void) 
+  97:.\Generated_Source\PSoC5/SW_DAC.c **** {
+  27              		.loc 1 97 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  98:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_PWRMGR |= SW_DAC_ACT_PWR_EN;
+  32              		.loc 1 98 0
+  33 0000 044A     		ldr	r2, .L2
+  34 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  35 0004 43F00403 		orr	r3, r3, #4
+  36 0008 1370     		strb	r3, [r2]
+  99:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_STBY_PWRMGR |= SW_DAC_STBY_PWR_EN;
+  37              		.loc 1 99 0
+  38 000a 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+  39 000c 43F00403 		orr	r3, r3, #4
+  40 0010 1374     		strb	r3, [r2, #16]
+  41 0012 7047     		bx	lr
+  42              	.L3:
+  43              		.align	2
+  44              	.L2:
+  45 0014 A8430040 		.word	1073759144
+  46              		.cfi_endproc
+  47              	.LFE1:
+  48              		.size	SW_DAC_Enable, .-SW_DAC_Enable
+  49              		.section	.text.SW_DAC_Stop,"ax",%progbits
+  50              		.align	1
+  51              		.global	SW_DAC_Stop
+  52              		.thumb
+  53              		.thumb_func
+  54              		.type	SW_DAC_Stop, %function
+  55              	SW_DAC_Stop:
+  56              	.LFB3:
+ 100:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 101:.\Generated_Source\PSoC5/SW_DAC.c ****     /*This is to restore the value of register CR0 ,
+ 102:.\Generated_Source\PSoC5/SW_DAC.c ****     which is modified  in Stop API , this prevents misbehaviour of VDAC */
+ 103:.\Generated_Source\PSoC5/SW_DAC.c ****     #if (CY_PSOC5A)
+ 104:.\Generated_Source\PSoC5/SW_DAC.c ****         if(SW_DAC_restoreVal == 1u) 
+ 105:.\Generated_Source\PSoC5/SW_DAC.c ****         {
+ 106:.\Generated_Source\PSoC5/SW_DAC.c ****              SW_DAC_CR0 = SW_DAC_backup.data_value;
+ 107:.\Generated_Source\PSoC5/SW_DAC.c ****              SW_DAC_restoreVal = 0u;
+ 108:.\Generated_Source\PSoC5/SW_DAC.c ****         }
+ 109:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* CY_PSOC5A */
+ 110:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 111:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 112:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 113:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 114:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_Start
+ 115:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 4
+
+
+ 116:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 117:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 118:.\Generated_Source\PSoC5/SW_DAC.c **** *  The start function initializes the voltage DAC with the default values, 
+ 119:.\Generated_Source\PSoC5/SW_DAC.c **** *  and sets the power to the given level.  A power level of 0, is the same as
+ 120:.\Generated_Source\PSoC5/SW_DAC.c **** *  executing the stop function.
+ 121:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 122:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+ 123:.\Generated_Source\PSoC5/SW_DAC.c **** *  Power: Sets power level between off (0) and (3) high power
+ 124:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 125:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ 126:.\Generated_Source\PSoC5/SW_DAC.c **** *  void 
+ 127:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 128:.\Generated_Source\PSoC5/SW_DAC.c **** * Global variables:
+ 129:.\Generated_Source\PSoC5/SW_DAC.c **** *  SW_DAC_initVar: Is modified when this function is called for the 
+ 130:.\Generated_Source\PSoC5/SW_DAC.c **** *  first time. Is used to ensure that initialization happens only once.
+ 131:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 132:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 133:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_Start(void)  
+ 134:.\Generated_Source\PSoC5/SW_DAC.c **** {
+ 135:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Hardware initiazation only needs to occure the first time */
+ 136:.\Generated_Source\PSoC5/SW_DAC.c ****     if(SW_DAC_initVar == 0u)
+ 137:.\Generated_Source\PSoC5/SW_DAC.c ****     { 
+ 138:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_Init();
+ 139:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_initVar = 1u;
+ 140:.\Generated_Source\PSoC5/SW_DAC.c ****     }
+ 141:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 142:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Enable power to DAC */
+ 143:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_Enable();
+ 144:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 145:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Set default value */
+ 146:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_SetValue(SW_DAC_DEFAULT_DATA); 
+ 147:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 148:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 149:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 150:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 151:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_Stop
+ 152:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ 153:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 154:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 155:.\Generated_Source\PSoC5/SW_DAC.c **** *  Powers down DAC to lowest power state.
+ 156:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 157:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+ 158:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+ 159:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 160:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ 161:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+ 162:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 163:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory:
+ 164:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 165:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+ 166:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 167:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 168:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_Stop(void) 
+ 169:.\Generated_Source\PSoC5/SW_DAC.c **** {
+  57              		.loc 1 169 0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 5
+
+
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		@ link register save eliminated.
+ 170:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Disble power to DAC */
+ 171:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_PWRMGR &= (uint8)(~SW_DAC_ACT_PWR_EN);
+  62              		.loc 1 171 0
+  63 0000 044A     		ldr	r2, .L5
+  64 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  65 0004 03F0FB03 		and	r3, r3, #251
+  66 0008 1370     		strb	r3, [r2]
+ 172:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_STBY_PWRMGR &= (uint8)(~SW_DAC_STBY_PWR_EN);
+  67              		.loc 1 172 0
+  68 000a 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+  69 000c 03F0FB03 		and	r3, r3, #251
+  70 0010 1374     		strb	r3, [r2, #16]
+  71 0012 7047     		bx	lr
+  72              	.L6:
+  73              		.align	2
+  74              	.L5:
+  75 0014 A8430040 		.word	1073759144
+  76              		.cfi_endproc
+  77              	.LFE3:
+  78              		.size	SW_DAC_Stop, .-SW_DAC_Stop
+  79              		.section	.text.SW_DAC_SetSpeed,"ax",%progbits
+  80              		.align	1
+  81              		.global	SW_DAC_SetSpeed
+  82              		.thumb
+  83              		.thumb_func
+  84              		.type	SW_DAC_SetSpeed, %function
+  85              	SW_DAC_SetSpeed:
+  86              	.LFB4:
+ 173:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 174:.\Generated_Source\PSoC5/SW_DAC.c ****     /* This is a work around for PSoC5A  ,
+ 175:.\Generated_Source\PSoC5/SW_DAC.c ****     this sets VDAC to current mode with output off */
+ 176:.\Generated_Source\PSoC5/SW_DAC.c ****     #if (CY_PSOC5A)
+ 177:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_backup.data_value = SW_DAC_CR0;
+ 178:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_CR0 = SW_DAC_CUR_MODE_OUT_OFF;
+ 179:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_restoreVal = 1u;
+ 180:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* CY_PSOC5A */
+ 181:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 182:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 183:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 184:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 185:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_SetSpeed
+ 186:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ 187:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 188:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 189:.\Generated_Source\PSoC5/SW_DAC.c **** *  Set DAC speed
+ 190:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 191:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+ 192:.\Generated_Source\PSoC5/SW_DAC.c **** *  power: Sets speed value
+ 193:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 194:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ 195:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+ 196:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 197:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory:
+ 198:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 199:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 6
+
+
+ 200:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 201:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 202:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_SetSpeed(uint8 speed) 
+ 203:.\Generated_Source\PSoC5/SW_DAC.c **** {
+  87              		.loc 1 203 0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91              		@ link register save eliminated.
+  92              	.LVL0:
+ 204:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Clear power mask then write in new value */
+ 205:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 &= (uint8)(~SW_DAC_HS_MASK);
+  93              		.loc 1 205 0
+  94 0000 054B     		ldr	r3, .L8
+ 206:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 |=  (speed & SW_DAC_HS_MASK);
+  95              		.loc 1 206 0
+  96 0002 00F00200 		and	r0, r0, #2
+  97              	.LVL1:
+ 205:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 |=  (speed & SW_DAC_HS_MASK);
+  98              		.loc 1 205 0
+  99 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 100 0008 02F0FD02 		and	r2, r2, #253
+ 101 000c 1A70     		strb	r2, [r3]
+ 102              		.loc 1 206 0
+ 103 000e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 104 0010 1043     		orrs	r0, r0, r2
+ 105 0012 1870     		strb	r0, [r3]
+ 106 0014 7047     		bx	lr
+ 107              	.L9:
+ 108 0016 00BF     		.align	2
+ 109              	.L8:
+ 110 0018 28580040 		.word	1073764392
+ 111              		.cfi_endproc
+ 112              	.LFE4:
+ 113              		.size	SW_DAC_SetSpeed, .-SW_DAC_SetSpeed
+ 114              		.section	.text.SW_DAC_SetValue,"ax",%progbits
+ 115              		.align	1
+ 116              		.global	SW_DAC_SetValue
+ 117              		.thumb
+ 118              		.thumb_func
+ 119              		.type	SW_DAC_SetValue, %function
+ 120              	SW_DAC_SetValue:
+ 121              	.LFB6:
+ 207:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 208:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 209:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 210:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_SetRange
+ 212:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 214:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 215:.\Generated_Source\PSoC5/SW_DAC.c **** *  Set one of three current ranges.
+ 216:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 217:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+ 218:.\Generated_Source\PSoC5/SW_DAC.c **** *  Range: Sets one of Three valid ranges.
+ 219:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 220:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 7
+
+
+ 221:.\Generated_Source\PSoC5/SW_DAC.c **** *  void 
+ 222:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 223:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory:
+ 224:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 225:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+ 226:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 227:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 228:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_SetRange(uint8 range) 
+ 229:.\Generated_Source\PSoC5/SW_DAC.c **** {
+ 230:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 &= (uint8)(~SW_DAC_RANGE_MASK);      /* Clear existing mode */
+ 231:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 |= (range & SW_DAC_RANGE_MASK);      /*  Set Range  */
+ 232:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_DacTrim();
+ 233:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 234:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 235:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 236:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 237:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_SetValue
+ 238:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ 239:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 240:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 241:.\Generated_Source\PSoC5/SW_DAC.c **** *  Set 8-bit DAC value
+ 242:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 243:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:  
+ 244:.\Generated_Source\PSoC5/SW_DAC.c **** *  value:  Sets DAC value between 0 and 255.
+ 245:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 246:.\Generated_Source\PSoC5/SW_DAC.c **** * Return: 
+ 247:.\Generated_Source\PSoC5/SW_DAC.c **** *  void 
+ 248:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 249:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory: 
+ 250:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 251:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+ 252:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 253:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 254:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_SetValue(uint8 value) 
+ 255:.\Generated_Source\PSoC5/SW_DAC.c **** {
+ 122              		.loc 1 255 0
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              		@ link register save eliminated.
+ 127              	.LVL2:
+ 256:.\Generated_Source\PSoC5/SW_DAC.c ****     #if (CY_PSOC5A)
+ 257:.\Generated_Source\PSoC5/SW_DAC.c ****         uint8 SW_DAC_intrStatus = CyEnterCriticalSection();
+ 258:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* CY_PSOC5A */
+ 259:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 260:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_Data = value;                /*  Set Value  */
+ 128              		.loc 1 260 0
+ 129 0000 014B     		ldr	r3, .L11
+ 130 0002 1870     		strb	r0, [r3]
+ 131 0004 7047     		bx	lr
+ 132              	.L12:
+ 133 0006 00BF     		.align	2
+ 134              	.L11:
+ 135 0008 825B0040 		.word	1073765250
+ 136              		.cfi_endproc
+ 137              	.LFE6:
+ 138              		.size	SW_DAC_SetValue, .-SW_DAC_SetValue
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 8
+
+
+ 139              		.section	.text.SW_DAC_DacTrim,"ax",%progbits
+ 140              		.align	1
+ 141              		.global	SW_DAC_DacTrim
+ 142              		.thumb
+ 143              		.thumb_func
+ 144              		.type	SW_DAC_DacTrim, %function
+ 145              	SW_DAC_DacTrim:
+ 146              	.LFB7:
+ 261:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 262:.\Generated_Source\PSoC5/SW_DAC.c ****     /* PSOC5A requires a double write */
+ 263:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Exit Critical Section */
+ 264:.\Generated_Source\PSoC5/SW_DAC.c ****     #if (CY_PSOC5A)
+ 265:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_Data = value;
+ 266:.\Generated_Source\PSoC5/SW_DAC.c ****         CyExitCriticalSection(SW_DAC_intrStatus);
+ 267:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* CY_PSOC5A */
+ 268:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 269:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 270:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 271:.\Generated_Source\PSoC5/SW_DAC.c **** /*******************************************************************************
+ 272:.\Generated_Source\PSoC5/SW_DAC.c **** * Function Name: SW_DAC_DacTrim
+ 273:.\Generated_Source\PSoC5/SW_DAC.c **** ********************************************************************************
+ 274:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 275:.\Generated_Source\PSoC5/SW_DAC.c **** * Summary:
+ 276:.\Generated_Source\PSoC5/SW_DAC.c **** *  Set the trim value for the given range.
+ 277:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 278:.\Generated_Source\PSoC5/SW_DAC.c **** * Parameters:
+ 279:.\Generated_Source\PSoC5/SW_DAC.c **** *  range:  1V or 4V range.  See constants.
+ 280:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 281:.\Generated_Source\PSoC5/SW_DAC.c **** * Return:
+ 282:.\Generated_Source\PSoC5/SW_DAC.c **** *  void
+ 283:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 284:.\Generated_Source\PSoC5/SW_DAC.c **** * Theory: 
+ 285:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 286:.\Generated_Source\PSoC5/SW_DAC.c **** * Side Effects:
+ 287:.\Generated_Source\PSoC5/SW_DAC.c **** *
+ 288:.\Generated_Source\PSoC5/SW_DAC.c **** *******************************************************************************/
+ 289:.\Generated_Source\PSoC5/SW_DAC.c **** void SW_DAC_DacTrim(void) 
+ 290:.\Generated_Source\PSoC5/SW_DAC.c **** {
+ 147              		.loc 1 290 0
+ 148              		.cfi_startproc
+ 149              		@ args = 0, pretend = 0, frame = 0
+ 150              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151              		@ link register save eliminated.
+ 291:.\Generated_Source\PSoC5/SW_DAC.c ****     uint8 mode;
+ 292:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 293:.\Generated_Source\PSoC5/SW_DAC.c ****     mode = (uint8)((SW_DAC_CR0 & SW_DAC_RANGE_MASK) >> 2) + SW_DAC_TRIM_M7_1V_RNG_OFFSET;
+ 152              		.loc 1 293 0
+ 153 0000 064B     		ldr	r3, .L14
+ 294:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_TR = CY_GET_XTND_REG8((uint8 *)(SW_DAC_DAC_TRIM_BASE + mode));
+ 154              		.loc 1 294 0
+ 155 0002 074A     		ldr	r2, .L14+4
+ 293:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_TR = CY_GET_XTND_REG8((uint8 *)(SW_DAC_DAC_TRIM_BASE + mode));
+ 156              		.loc 1 293 0
+ 157 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 158              	.LVL3:
+ 159 0006 C3F38103 		ubfx	r3, r3, #2, #2
+ 160              	.LVL4:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 9
+
+
+ 161              		.loc 1 294 0
+ 162 000a 03F19243 		add	r3, r3, #1224736768
+ 163 000e 0633     		adds	r3, r3, #6
+ 164 0010 93F82831 		ldrb	r3, [r3, #296]	@ zero_extendqisi2
+ 165 0014 DBB2     		uxtb	r3, r3
+ 166 0016 1370     		strb	r3, [r2]
+ 167 0018 7047     		bx	lr
+ 168              	.L15:
+ 169 001a 00BF     		.align	2
+ 170              	.L14:
+ 171 001c 28580040 		.word	1073764392
+ 172 0020 0A460040 		.word	1073759754
+ 173              		.cfi_endproc
+ 174              	.LFE7:
+ 175              		.size	SW_DAC_DacTrim, .-SW_DAC_DacTrim
+ 176              		.section	.text.SW_DAC_SetRange,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	SW_DAC_SetRange
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.type	SW_DAC_SetRange, %function
+ 182              	SW_DAC_SetRange:
+ 183              	.LFB5:
+ 229:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 &= (uint8)(~SW_DAC_RANGE_MASK);      /* Clear existing mode */
+ 184              		.loc 1 229 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 189              	.LVL5:
+ 230:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 |= (range & SW_DAC_RANGE_MASK);      /*  Set Range  */
+ 190              		.loc 1 230 0
+ 191 0000 054B     		ldr	r3, .L17
+ 231:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_DacTrim();
+ 192              		.loc 1 231 0
+ 193 0002 00F00C00 		and	r0, r0, #12
+ 194              	.LVL6:
+ 230:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 |= (range & SW_DAC_RANGE_MASK);      /*  Set Range  */
+ 195              		.loc 1 230 0
+ 196 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 197 0008 02F0F302 		and	r2, r2, #243
+ 198 000c 1A70     		strb	r2, [r3]
+ 231:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_DacTrim();
+ 199              		.loc 1 231 0
+ 200 000e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 201 0010 1043     		orrs	r0, r0, r2
+ 202 0012 1870     		strb	r0, [r3]
+ 232:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 203              		.loc 1 232 0
+ 204 0014 FFF7FEBF 		b	SW_DAC_DacTrim
+ 205              	.LVL7:
+ 206              	.L18:
+ 207              		.align	2
+ 208              	.L17:
+ 209 0018 28580040 		.word	1073764392
+ 210              		.cfi_endproc
+ 211              	.LFE5:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 10
+
+
+ 212              		.size	SW_DAC_SetRange, .-SW_DAC_SetRange
+ 213              		.section	.text.SW_DAC_Init,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	SW_DAC_Init
+ 216              		.thumb
+ 217              		.thumb_func
+ 218              		.type	SW_DAC_Init, %function
+ 219              	SW_DAC_Init:
+ 220              	.LFB0:
+  56:.\Generated_Source\PSoC5/SW_DAC.c ****     SW_DAC_CR0 = (SW_DAC_MODE_V );
+ 221              		.loc 1 56 0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225 0000 08B5     		push	{r3, lr}
+ 226              		.cfi_def_cfa_offset 8
+ 227              		.cfi_offset 3, -8
+ 228              		.cfi_offset 14, -4
+  57:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 229              		.loc 1 57 0
+ 230 0002 054B     		ldr	r3, .L20
+ 231 0004 0020     		movs	r0, #0
+ 232 0006 1870     		strb	r0, [r3]
+  63:.\Generated_Source\PSoC5/SW_DAC.c ****     #endif /* (SW_DAC_DEFAULT_DATA_SRC != 0 ) */
+ 233              		.loc 1 63 0
+ 234 0008 5870     		strb	r0, [r3, #1]
+  72:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 235              		.loc 1 72 0
+ 236 000a FFF7FEFF 		bl	SW_DAC_SetRange
+ 237              	.LVL8:
+  76:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 238              		.loc 1 76 0
+ 239 000e BDE80840 		pop	{r3, lr}
+ 240              		.cfi_restore 14
+ 241              		.cfi_restore 3
+ 242              		.cfi_def_cfa_offset 0
+  75:.\Generated_Source\PSoC5/SW_DAC.c **** }
+ 243              		.loc 1 75 0
+ 244 0012 0220     		movs	r0, #2
+ 245 0014 FFF7FEBF 		b	SW_DAC_SetSpeed
+ 246              	.LVL9:
+ 247              	.L21:
+ 248              		.align	2
+ 249              	.L20:
+ 250 0018 28580040 		.word	1073764392
+ 251              		.cfi_endproc
+ 252              	.LFE0:
+ 253              		.size	SW_DAC_Init, .-SW_DAC_Init
+ 254              		.section	.text.SW_DAC_Start,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	SW_DAC_Start
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.type	SW_DAC_Start, %function
+ 260              	SW_DAC_Start:
+ 261              	.LFB2:
+ 134:.\Generated_Source\PSoC5/SW_DAC.c ****     /* Hardware initiazation only needs to occure the first time */
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 11
+
+
+ 262              		.loc 1 134 0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266 0000 10B5     		push	{r4, lr}
+ 267              		.cfi_def_cfa_offset 8
+ 268              		.cfi_offset 4, -8
+ 269              		.cfi_offset 14, -4
+ 136:.\Generated_Source\PSoC5/SW_DAC.c ****     { 
+ 270              		.loc 1 136 0
+ 271 0002 064C     		ldr	r4, .L25
+ 272 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 273 0006 1BB9     		cbnz	r3, .L23
+ 138:.\Generated_Source\PSoC5/SW_DAC.c ****         SW_DAC_initVar = 1u;
+ 274              		.loc 1 138 0
+ 275 0008 FFF7FEFF 		bl	SW_DAC_Init
+ 276              	.LVL10:
+ 139:.\Generated_Source\PSoC5/SW_DAC.c ****     }
+ 277              		.loc 1 139 0
+ 278 000c 0123     		movs	r3, #1
+ 279 000e 2370     		strb	r3, [r4]
+ 280              	.L23:
+ 143:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 281              		.loc 1 143 0
+ 282 0010 FFF7FEFF 		bl	SW_DAC_Enable
+ 283              	.LVL11:
+ 284              	.LBB4:
+ 285              	.LBB5:
+ 260:.\Generated_Source\PSoC5/SW_DAC.c **** 
+ 286              		.loc 1 260 0
+ 287 0014 024B     		ldr	r3, .L25+4
+ 288 0016 4B22     		movs	r2, #75
+ 289 0018 1A70     		strb	r2, [r3]
+ 290 001a 10BD     		pop	{r4, pc}
+ 291              	.L26:
+ 292              		.align	2
+ 293              	.L25:
+ 294 001c 00000000 		.word	.LANCHOR0
+ 295 0020 825B0040 		.word	1073765250
+ 296              	.LBE5:
+ 297              	.LBE4:
+ 298              		.cfi_endproc
+ 299              	.LFE2:
+ 300              		.size	SW_DAC_Start, .-SW_DAC_Start
+ 301              		.global	SW_DAC_initVar
+ 302              		.bss
+ 303              		.set	.LANCHOR0,. + 0
+ 304              		.type	SW_DAC_initVar, %object
+ 305              		.size	SW_DAC_initVar, 1
+ 306              	SW_DAC_initVar:
+ 307 0000 00       		.space	1
+ 308              		.text
+ 309              	.Letext0:
+ 310              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 311              		.section	.debug_info,"",%progbits
+ 312              	.Ldebug_info0:
+ 313 0000 F4010000 		.4byte	0x1f4
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 12
+
+
+ 314 0004 0400     		.2byte	0x4
+ 315 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 316 000a 04       		.byte	0x4
+ 317 000b 01       		.uleb128 0x1
+ 318 000c 82010000 		.4byte	.LASF23
+ 319 0010 01       		.byte	0x1
+ 320 0011 15000000 		.4byte	.LASF24
+ 321 0015 61000000 		.4byte	.LASF25
+ 322 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 323 001d 00000000 		.4byte	0
+ 324 0021 00000000 		.4byte	.Ldebug_line0
+ 325 0025 02       		.uleb128 0x2
+ 326 0026 01       		.byte	0x1
+ 327 0027 06       		.byte	0x6
+ 328 0028 19020000 		.4byte	.LASF0
+ 329 002c 02       		.uleb128 0x2
+ 330 002d 01       		.byte	0x1
+ 331 002e 08       		.byte	0x8
+ 332 002f 53000000 		.4byte	.LASF1
+ 333 0033 02       		.uleb128 0x2
+ 334 0034 02       		.byte	0x2
+ 335 0035 05       		.byte	0x5
+ 336 0036 68010000 		.4byte	.LASF2
+ 337 003a 02       		.uleb128 0x2
+ 338 003b 02       		.byte	0x2
+ 339 003c 07       		.byte	0x7
+ 340 003d C0000000 		.4byte	.LASF3
+ 341 0041 02       		.uleb128 0x2
+ 342 0042 04       		.byte	0x4
+ 343 0043 05       		.byte	0x5
+ 344 0044 10020000 		.4byte	.LASF4
+ 345 0048 02       		.uleb128 0x2
+ 346 0049 04       		.byte	0x4
+ 347 004a 07       		.byte	0x7
+ 348 004b AE000000 		.4byte	.LASF5
+ 349 004f 02       		.uleb128 0x2
+ 350 0050 08       		.byte	0x8
+ 351 0051 05       		.byte	0x5
+ 352 0052 55010000 		.4byte	.LASF6
+ 353 0056 02       		.uleb128 0x2
+ 354 0057 08       		.byte	0x8
+ 355 0058 07       		.byte	0x7
+ 356 0059 24010000 		.4byte	.LASF7
+ 357 005d 03       		.uleb128 0x3
+ 358 005e 04       		.byte	0x4
+ 359 005f 05       		.byte	0x5
+ 360 0060 696E7400 		.ascii	"int\000"
+ 361 0064 02       		.uleb128 0x2
+ 362 0065 04       		.byte	0x4
+ 363 0066 07       		.byte	0x7
+ 364 0067 F0000000 		.4byte	.LASF8
+ 365 006b 04       		.uleb128 0x4
+ 366 006c 4D000000 		.4byte	.LASF12
+ 367 0070 02       		.byte	0x2
+ 368 0071 9201     		.2byte	0x192
+ 369 0073 2C000000 		.4byte	0x2c
+ 370 0077 02       		.uleb128 0x2
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 13
+
+
+ 371 0078 04       		.byte	0x4
+ 372 0079 04       		.byte	0x4
+ 373 007a 47000000 		.4byte	.LASF9
+ 374 007e 02       		.uleb128 0x2
+ 375 007f 08       		.byte	0x8
+ 376 0080 04       		.byte	0x4
+ 377 0081 E9000000 		.4byte	.LASF10
+ 378 0085 02       		.uleb128 0x2
+ 379 0086 01       		.byte	0x1
+ 380 0087 08       		.byte	0x8
+ 381 0088 63010000 		.4byte	.LASF11
+ 382 008c 04       		.uleb128 0x4
+ 383 008d A9000000 		.4byte	.LASF13
+ 384 0091 02       		.byte	0x2
+ 385 0092 3C02     		.2byte	0x23c
+ 386 0094 98000000 		.4byte	0x98
+ 387 0098 05       		.uleb128 0x5
+ 388 0099 6B000000 		.4byte	0x6b
+ 389 009d 06       		.uleb128 0x6
+ 390 009e 72010000 		.4byte	.LASF26
+ 391 00a2 01       		.byte	0x1
+ 392 00a3 FE       		.byte	0xfe
+ 393 00a4 01       		.byte	0x1
+ 394 00a5 B5000000 		.4byte	0xb5
+ 395 00a9 07       		.uleb128 0x7
+ 396 00aa 0F000000 		.4byte	.LASF27
+ 397 00ae 01       		.byte	0x1
+ 398 00af FE       		.byte	0xfe
+ 399 00b0 6B000000 		.4byte	0x6b
+ 400 00b4 00       		.byte	0
+ 401 00b5 08       		.uleb128 0x8
+ 402 00b6 16010000 		.4byte	.LASF14
+ 403 00ba 01       		.byte	0x1
+ 404 00bb 60       		.byte	0x60
+ 405 00bc 00000000 		.4byte	.LFB1
+ 406 00c0 18000000 		.4byte	.LFE1-.LFB1
+ 407 00c4 01       		.uleb128 0x1
+ 408 00c5 9C       		.byte	0x9c
+ 409 00c6 08       		.uleb128 0x8
+ 410 00c7 25020000 		.4byte	.LASF15
+ 411 00cb 01       		.byte	0x1
+ 412 00cc A8       		.byte	0xa8
+ 413 00cd 00000000 		.4byte	.LFB3
+ 414 00d1 18000000 		.4byte	.LFE3-.LFB3
+ 415 00d5 01       		.uleb128 0x1
+ 416 00d6 9C       		.byte	0x9c
+ 417 00d7 09       		.uleb128 0x9
+ 418 00d8 D3000000 		.4byte	.LASF16
+ 419 00dc 01       		.byte	0x1
+ 420 00dd CA       		.byte	0xca
+ 421 00de 00000000 		.4byte	.LFB4
+ 422 00e2 1C000000 		.4byte	.LFE4-.LFB4
+ 423 00e6 01       		.uleb128 0x1
+ 424 00e7 9C       		.byte	0x9c
+ 425 00e8 FC000000 		.4byte	0xfc
+ 426 00ec 0A       		.uleb128 0xa
+ 427 00ed 4F010000 		.4byte	.LASF19
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 14
+
+
+ 428 00f1 01       		.byte	0x1
+ 429 00f2 CA       		.byte	0xca
+ 430 00f3 6B000000 		.4byte	0x6b
+ 431 00f7 00000000 		.4byte	.LLST0
+ 432 00fb 00       		.byte	0
+ 433 00fc 0B       		.uleb128 0xb
+ 434 00fd 9D000000 		.4byte	0x9d
+ 435 0101 00000000 		.4byte	.LFB6
+ 436 0105 0C000000 		.4byte	.LFE6-.LFB6
+ 437 0109 01       		.uleb128 0x1
+ 438 010a 9C       		.byte	0x9c
+ 439 010b 17010000 		.4byte	0x117
+ 440 010f 0C       		.uleb128 0xc
+ 441 0110 A9000000 		.4byte	0xa9
+ 442 0114 01       		.uleb128 0x1
+ 443 0115 50       		.byte	0x50
+ 444 0116 00       		.byte	0
+ 445 0117 0D       		.uleb128 0xd
+ 446 0118 00000000 		.4byte	.LASF17
+ 447 011c 01       		.byte	0x1
+ 448 011d 2101     		.2byte	0x121
+ 449 011f 00000000 		.4byte	.LFB7
+ 450 0123 24000000 		.4byte	.LFE7-.LFB7
+ 451 0127 01       		.uleb128 0x1
+ 452 0128 9C       		.byte	0x9c
+ 453 0129 3E010000 		.4byte	0x13e
+ 454 012d 0E       		.uleb128 0xe
+ 455 012e 4A010000 		.4byte	.LASF28
+ 456 0132 01       		.byte	0x1
+ 457 0133 2301     		.2byte	0x123
+ 458 0135 6B000000 		.4byte	0x6b
+ 459 0139 21000000 		.4byte	.LLST1
+ 460 013d 00       		.byte	0
+ 461 013e 09       		.uleb128 0x9
+ 462 013f 37000000 		.4byte	.LASF18
+ 463 0143 01       		.byte	0x1
+ 464 0144 E4       		.byte	0xe4
+ 465 0145 00000000 		.4byte	.LFB5
+ 466 0149 1C000000 		.4byte	.LFE5-.LFB5
+ 467 014d 01       		.uleb128 0x1
+ 468 014e 9C       		.byte	0x9c
+ 469 014f 6C010000 		.4byte	0x16c
+ 470 0153 0A       		.uleb128 0xa
+ 471 0154 E3000000 		.4byte	.LASF20
+ 472 0158 01       		.byte	0x1
+ 473 0159 E4       		.byte	0xe4
+ 474 015a 6B000000 		.4byte	0x6b
+ 475 015e 3C000000 		.4byte	.LLST2
+ 476 0162 0F       		.uleb128 0xf
+ 477 0163 18000000 		.4byte	.LVL7
+ 478 0167 17010000 		.4byte	0x117
+ 479 016b 00       		.byte	0
+ 480 016c 09       		.uleb128 0x9
+ 481 016d 0A010000 		.4byte	.LASF21
+ 482 0171 01       		.byte	0x1
+ 483 0172 37       		.byte	0x37
+ 484 0173 00000000 		.4byte	.LFB0
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 15
+
+
+ 485 0177 1C000000 		.4byte	.LFE0-.LFB0
+ 486 017b 01       		.uleb128 0x1
+ 487 017c 9C       		.byte	0x9c
+ 488 017d A4010000 		.4byte	0x1a4
+ 489 0181 10       		.uleb128 0x10
+ 490 0182 0E000000 		.4byte	.LVL8
+ 491 0186 3E010000 		.4byte	0x13e
+ 492 018a 94010000 		.4byte	0x194
+ 493 018e 11       		.uleb128 0x11
+ 494 018f 01       		.uleb128 0x1
+ 495 0190 50       		.byte	0x50
+ 496 0191 01       		.uleb128 0x1
+ 497 0192 30       		.byte	0x30
+ 498 0193 00       		.byte	0
+ 499 0194 12       		.uleb128 0x12
+ 500 0195 18000000 		.4byte	.LVL9
+ 501 0199 D7000000 		.4byte	0xd7
+ 502 019d 11       		.uleb128 0x11
+ 503 019e 01       		.uleb128 0x1
+ 504 019f 50       		.byte	0x50
+ 505 01a0 01       		.uleb128 0x1
+ 506 01a1 32       		.byte	0x32
+ 507 01a2 00       		.byte	0
+ 508 01a3 00       		.byte	0
+ 509 01a4 09       		.uleb128 0x9
+ 510 01a5 FD000000 		.4byte	.LASF22
+ 511 01a9 01       		.byte	0x1
+ 512 01aa 85       		.byte	0x85
+ 513 01ab 00000000 		.4byte	.LFB2
+ 514 01af 24000000 		.4byte	.LFE2-.LFB2
+ 515 01b3 01       		.uleb128 0x1
+ 516 01b4 9C       		.byte	0x9c
+ 517 01b5 E6010000 		.4byte	0x1e6
+ 518 01b9 13       		.uleb128 0x13
+ 519 01ba 9D000000 		.4byte	0x9d
+ 520 01be 14000000 		.4byte	.LBB4
+ 521 01c2 10000000 		.4byte	.LBE4-.LBB4
+ 522 01c6 01       		.byte	0x1
+ 523 01c7 92       		.byte	0x92
+ 524 01c8 D3010000 		.4byte	0x1d3
+ 525 01cc 14       		.uleb128 0x14
+ 526 01cd A9000000 		.4byte	0xa9
+ 527 01d1 4B       		.byte	0x4b
+ 528 01d2 00       		.byte	0
+ 529 01d3 15       		.uleb128 0x15
+ 530 01d4 0C000000 		.4byte	.LVL10
+ 531 01d8 6C010000 		.4byte	0x16c
+ 532 01dc 15       		.uleb128 0x15
+ 533 01dd 14000000 		.4byte	.LVL11
+ 534 01e1 B5000000 		.4byte	0xb5
+ 535 01e5 00       		.byte	0
+ 536 01e6 16       		.uleb128 0x16
+ 537 01e7 3B010000 		.4byte	.LASF29
+ 538 01eb 01       		.byte	0x1
+ 539 01ec 1B       		.byte	0x1b
+ 540 01ed 6B000000 		.4byte	0x6b
+ 541 01f1 05       		.uleb128 0x5
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 16
+
+
+ 542 01f2 03       		.byte	0x3
+ 543 01f3 00000000 		.4byte	SW_DAC_initVar
+ 544 01f7 00       		.byte	0
+ 545              		.section	.debug_abbrev,"",%progbits
+ 546              	.Ldebug_abbrev0:
+ 547 0000 01       		.uleb128 0x1
+ 548 0001 11       		.uleb128 0x11
+ 549 0002 01       		.byte	0x1
+ 550 0003 25       		.uleb128 0x25
+ 551 0004 0E       		.uleb128 0xe
+ 552 0005 13       		.uleb128 0x13
+ 553 0006 0B       		.uleb128 0xb
+ 554 0007 03       		.uleb128 0x3
+ 555 0008 0E       		.uleb128 0xe
+ 556 0009 1B       		.uleb128 0x1b
+ 557 000a 0E       		.uleb128 0xe
+ 558 000b 55       		.uleb128 0x55
+ 559 000c 17       		.uleb128 0x17
+ 560 000d 11       		.uleb128 0x11
+ 561 000e 01       		.uleb128 0x1
+ 562 000f 10       		.uleb128 0x10
+ 563 0010 17       		.uleb128 0x17
+ 564 0011 00       		.byte	0
+ 565 0012 00       		.byte	0
+ 566 0013 02       		.uleb128 0x2
+ 567 0014 24       		.uleb128 0x24
+ 568 0015 00       		.byte	0
+ 569 0016 0B       		.uleb128 0xb
+ 570 0017 0B       		.uleb128 0xb
+ 571 0018 3E       		.uleb128 0x3e
+ 572 0019 0B       		.uleb128 0xb
+ 573 001a 03       		.uleb128 0x3
+ 574 001b 0E       		.uleb128 0xe
+ 575 001c 00       		.byte	0
+ 576 001d 00       		.byte	0
+ 577 001e 03       		.uleb128 0x3
+ 578 001f 24       		.uleb128 0x24
+ 579 0020 00       		.byte	0
+ 580 0021 0B       		.uleb128 0xb
+ 581 0022 0B       		.uleb128 0xb
+ 582 0023 3E       		.uleb128 0x3e
+ 583 0024 0B       		.uleb128 0xb
+ 584 0025 03       		.uleb128 0x3
+ 585 0026 08       		.uleb128 0x8
+ 586 0027 00       		.byte	0
+ 587 0028 00       		.byte	0
+ 588 0029 04       		.uleb128 0x4
+ 589 002a 16       		.uleb128 0x16
+ 590 002b 00       		.byte	0
+ 591 002c 03       		.uleb128 0x3
+ 592 002d 0E       		.uleb128 0xe
+ 593 002e 3A       		.uleb128 0x3a
+ 594 002f 0B       		.uleb128 0xb
+ 595 0030 3B       		.uleb128 0x3b
+ 596 0031 05       		.uleb128 0x5
+ 597 0032 49       		.uleb128 0x49
+ 598 0033 13       		.uleb128 0x13
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 17
+
+
+ 599 0034 00       		.byte	0
+ 600 0035 00       		.byte	0
+ 601 0036 05       		.uleb128 0x5
+ 602 0037 35       		.uleb128 0x35
+ 603 0038 00       		.byte	0
+ 604 0039 49       		.uleb128 0x49
+ 605 003a 13       		.uleb128 0x13
+ 606 003b 00       		.byte	0
+ 607 003c 00       		.byte	0
+ 608 003d 06       		.uleb128 0x6
+ 609 003e 2E       		.uleb128 0x2e
+ 610 003f 01       		.byte	0x1
+ 611 0040 3F       		.uleb128 0x3f
+ 612 0041 19       		.uleb128 0x19
+ 613 0042 03       		.uleb128 0x3
+ 614 0043 0E       		.uleb128 0xe
+ 615 0044 3A       		.uleb128 0x3a
+ 616 0045 0B       		.uleb128 0xb
+ 617 0046 3B       		.uleb128 0x3b
+ 618 0047 0B       		.uleb128 0xb
+ 619 0048 27       		.uleb128 0x27
+ 620 0049 19       		.uleb128 0x19
+ 621 004a 20       		.uleb128 0x20
+ 622 004b 0B       		.uleb128 0xb
+ 623 004c 01       		.uleb128 0x1
+ 624 004d 13       		.uleb128 0x13
+ 625 004e 00       		.byte	0
+ 626 004f 00       		.byte	0
+ 627 0050 07       		.uleb128 0x7
+ 628 0051 05       		.uleb128 0x5
+ 629 0052 00       		.byte	0
+ 630 0053 03       		.uleb128 0x3
+ 631 0054 0E       		.uleb128 0xe
+ 632 0055 3A       		.uleb128 0x3a
+ 633 0056 0B       		.uleb128 0xb
+ 634 0057 3B       		.uleb128 0x3b
+ 635 0058 0B       		.uleb128 0xb
+ 636 0059 49       		.uleb128 0x49
+ 637 005a 13       		.uleb128 0x13
+ 638 005b 00       		.byte	0
+ 639 005c 00       		.byte	0
+ 640 005d 08       		.uleb128 0x8
+ 641 005e 2E       		.uleb128 0x2e
+ 642 005f 00       		.byte	0
+ 643 0060 3F       		.uleb128 0x3f
+ 644 0061 19       		.uleb128 0x19
+ 645 0062 03       		.uleb128 0x3
+ 646 0063 0E       		.uleb128 0xe
+ 647 0064 3A       		.uleb128 0x3a
+ 648 0065 0B       		.uleb128 0xb
+ 649 0066 3B       		.uleb128 0x3b
+ 650 0067 0B       		.uleb128 0xb
+ 651 0068 27       		.uleb128 0x27
+ 652 0069 19       		.uleb128 0x19
+ 653 006a 11       		.uleb128 0x11
+ 654 006b 01       		.uleb128 0x1
+ 655 006c 12       		.uleb128 0x12
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 18
+
+
+ 656 006d 06       		.uleb128 0x6
+ 657 006e 40       		.uleb128 0x40
+ 658 006f 18       		.uleb128 0x18
+ 659 0070 9742     		.uleb128 0x2117
+ 660 0072 19       		.uleb128 0x19
+ 661 0073 00       		.byte	0
+ 662 0074 00       		.byte	0
+ 663 0075 09       		.uleb128 0x9
+ 664 0076 2E       		.uleb128 0x2e
+ 665 0077 01       		.byte	0x1
+ 666 0078 3F       		.uleb128 0x3f
+ 667 0079 19       		.uleb128 0x19
+ 668 007a 03       		.uleb128 0x3
+ 669 007b 0E       		.uleb128 0xe
+ 670 007c 3A       		.uleb128 0x3a
+ 671 007d 0B       		.uleb128 0xb
+ 672 007e 3B       		.uleb128 0x3b
+ 673 007f 0B       		.uleb128 0xb
+ 674 0080 27       		.uleb128 0x27
+ 675 0081 19       		.uleb128 0x19
+ 676 0082 11       		.uleb128 0x11
+ 677 0083 01       		.uleb128 0x1
+ 678 0084 12       		.uleb128 0x12
+ 679 0085 06       		.uleb128 0x6
+ 680 0086 40       		.uleb128 0x40
+ 681 0087 18       		.uleb128 0x18
+ 682 0088 9742     		.uleb128 0x2117
+ 683 008a 19       		.uleb128 0x19
+ 684 008b 01       		.uleb128 0x1
+ 685 008c 13       		.uleb128 0x13
+ 686 008d 00       		.byte	0
+ 687 008e 00       		.byte	0
+ 688 008f 0A       		.uleb128 0xa
+ 689 0090 05       		.uleb128 0x5
+ 690 0091 00       		.byte	0
+ 691 0092 03       		.uleb128 0x3
+ 692 0093 0E       		.uleb128 0xe
+ 693 0094 3A       		.uleb128 0x3a
+ 694 0095 0B       		.uleb128 0xb
+ 695 0096 3B       		.uleb128 0x3b
+ 696 0097 0B       		.uleb128 0xb
+ 697 0098 49       		.uleb128 0x49
+ 698 0099 13       		.uleb128 0x13
+ 699 009a 02       		.uleb128 0x2
+ 700 009b 17       		.uleb128 0x17
+ 701 009c 00       		.byte	0
+ 702 009d 00       		.byte	0
+ 703 009e 0B       		.uleb128 0xb
+ 704 009f 2E       		.uleb128 0x2e
+ 705 00a0 01       		.byte	0x1
+ 706 00a1 31       		.uleb128 0x31
+ 707 00a2 13       		.uleb128 0x13
+ 708 00a3 11       		.uleb128 0x11
+ 709 00a4 01       		.uleb128 0x1
+ 710 00a5 12       		.uleb128 0x12
+ 711 00a6 06       		.uleb128 0x6
+ 712 00a7 40       		.uleb128 0x40
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 19
+
+
+ 713 00a8 18       		.uleb128 0x18
+ 714 00a9 9742     		.uleb128 0x2117
+ 715 00ab 19       		.uleb128 0x19
+ 716 00ac 01       		.uleb128 0x1
+ 717 00ad 13       		.uleb128 0x13
+ 718 00ae 00       		.byte	0
+ 719 00af 00       		.byte	0
+ 720 00b0 0C       		.uleb128 0xc
+ 721 00b1 05       		.uleb128 0x5
+ 722 00b2 00       		.byte	0
+ 723 00b3 31       		.uleb128 0x31
+ 724 00b4 13       		.uleb128 0x13
+ 725 00b5 02       		.uleb128 0x2
+ 726 00b6 18       		.uleb128 0x18
+ 727 00b7 00       		.byte	0
+ 728 00b8 00       		.byte	0
+ 729 00b9 0D       		.uleb128 0xd
+ 730 00ba 2E       		.uleb128 0x2e
+ 731 00bb 01       		.byte	0x1
+ 732 00bc 3F       		.uleb128 0x3f
+ 733 00bd 19       		.uleb128 0x19
+ 734 00be 03       		.uleb128 0x3
+ 735 00bf 0E       		.uleb128 0xe
+ 736 00c0 3A       		.uleb128 0x3a
+ 737 00c1 0B       		.uleb128 0xb
+ 738 00c2 3B       		.uleb128 0x3b
+ 739 00c3 05       		.uleb128 0x5
+ 740 00c4 27       		.uleb128 0x27
+ 741 00c5 19       		.uleb128 0x19
+ 742 00c6 11       		.uleb128 0x11
+ 743 00c7 01       		.uleb128 0x1
+ 744 00c8 12       		.uleb128 0x12
+ 745 00c9 06       		.uleb128 0x6
+ 746 00ca 40       		.uleb128 0x40
+ 747 00cb 18       		.uleb128 0x18
+ 748 00cc 9742     		.uleb128 0x2117
+ 749 00ce 19       		.uleb128 0x19
+ 750 00cf 01       		.uleb128 0x1
+ 751 00d0 13       		.uleb128 0x13
+ 752 00d1 00       		.byte	0
+ 753 00d2 00       		.byte	0
+ 754 00d3 0E       		.uleb128 0xe
+ 755 00d4 34       		.uleb128 0x34
+ 756 00d5 00       		.byte	0
+ 757 00d6 03       		.uleb128 0x3
+ 758 00d7 0E       		.uleb128 0xe
+ 759 00d8 3A       		.uleb128 0x3a
+ 760 00d9 0B       		.uleb128 0xb
+ 761 00da 3B       		.uleb128 0x3b
+ 762 00db 05       		.uleb128 0x5
+ 763 00dc 49       		.uleb128 0x49
+ 764 00dd 13       		.uleb128 0x13
+ 765 00de 02       		.uleb128 0x2
+ 766 00df 17       		.uleb128 0x17
+ 767 00e0 00       		.byte	0
+ 768 00e1 00       		.byte	0
+ 769 00e2 0F       		.uleb128 0xf
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 20
+
+
+ 770 00e3 898201   		.uleb128 0x4109
+ 771 00e6 00       		.byte	0
+ 772 00e7 11       		.uleb128 0x11
+ 773 00e8 01       		.uleb128 0x1
+ 774 00e9 9542     		.uleb128 0x2115
+ 775 00eb 19       		.uleb128 0x19
+ 776 00ec 31       		.uleb128 0x31
+ 777 00ed 13       		.uleb128 0x13
+ 778 00ee 00       		.byte	0
+ 779 00ef 00       		.byte	0
+ 780 00f0 10       		.uleb128 0x10
+ 781 00f1 898201   		.uleb128 0x4109
+ 782 00f4 01       		.byte	0x1
+ 783 00f5 11       		.uleb128 0x11
+ 784 00f6 01       		.uleb128 0x1
+ 785 00f7 31       		.uleb128 0x31
+ 786 00f8 13       		.uleb128 0x13
+ 787 00f9 01       		.uleb128 0x1
+ 788 00fa 13       		.uleb128 0x13
+ 789 00fb 00       		.byte	0
+ 790 00fc 00       		.byte	0
+ 791 00fd 11       		.uleb128 0x11
+ 792 00fe 8A8201   		.uleb128 0x410a
+ 793 0101 00       		.byte	0
+ 794 0102 02       		.uleb128 0x2
+ 795 0103 18       		.uleb128 0x18
+ 796 0104 9142     		.uleb128 0x2111
+ 797 0106 18       		.uleb128 0x18
+ 798 0107 00       		.byte	0
+ 799 0108 00       		.byte	0
+ 800 0109 12       		.uleb128 0x12
+ 801 010a 898201   		.uleb128 0x4109
+ 802 010d 01       		.byte	0x1
+ 803 010e 11       		.uleb128 0x11
+ 804 010f 01       		.uleb128 0x1
+ 805 0110 9542     		.uleb128 0x2115
+ 806 0112 19       		.uleb128 0x19
+ 807 0113 31       		.uleb128 0x31
+ 808 0114 13       		.uleb128 0x13
+ 809 0115 00       		.byte	0
+ 810 0116 00       		.byte	0
+ 811 0117 13       		.uleb128 0x13
+ 812 0118 1D       		.uleb128 0x1d
+ 813 0119 01       		.byte	0x1
+ 814 011a 31       		.uleb128 0x31
+ 815 011b 13       		.uleb128 0x13
+ 816 011c 11       		.uleb128 0x11
+ 817 011d 01       		.uleb128 0x1
+ 818 011e 12       		.uleb128 0x12
+ 819 011f 06       		.uleb128 0x6
+ 820 0120 58       		.uleb128 0x58
+ 821 0121 0B       		.uleb128 0xb
+ 822 0122 59       		.uleb128 0x59
+ 823 0123 0B       		.uleb128 0xb
+ 824 0124 01       		.uleb128 0x1
+ 825 0125 13       		.uleb128 0x13
+ 826 0126 00       		.byte	0
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 21
+
+
+ 827 0127 00       		.byte	0
+ 828 0128 14       		.uleb128 0x14
+ 829 0129 05       		.uleb128 0x5
+ 830 012a 00       		.byte	0
+ 831 012b 31       		.uleb128 0x31
+ 832 012c 13       		.uleb128 0x13
+ 833 012d 1C       		.uleb128 0x1c
+ 834 012e 0B       		.uleb128 0xb
+ 835 012f 00       		.byte	0
+ 836 0130 00       		.byte	0
+ 837 0131 15       		.uleb128 0x15
+ 838 0132 898201   		.uleb128 0x4109
+ 839 0135 00       		.byte	0
+ 840 0136 11       		.uleb128 0x11
+ 841 0137 01       		.uleb128 0x1
+ 842 0138 31       		.uleb128 0x31
+ 843 0139 13       		.uleb128 0x13
+ 844 013a 00       		.byte	0
+ 845 013b 00       		.byte	0
+ 846 013c 16       		.uleb128 0x16
+ 847 013d 34       		.uleb128 0x34
+ 848 013e 00       		.byte	0
+ 849 013f 03       		.uleb128 0x3
+ 850 0140 0E       		.uleb128 0xe
+ 851 0141 3A       		.uleb128 0x3a
+ 852 0142 0B       		.uleb128 0xb
+ 853 0143 3B       		.uleb128 0x3b
+ 854 0144 0B       		.uleb128 0xb
+ 855 0145 49       		.uleb128 0x49
+ 856 0146 13       		.uleb128 0x13
+ 857 0147 3F       		.uleb128 0x3f
+ 858 0148 19       		.uleb128 0x19
+ 859 0149 02       		.uleb128 0x2
+ 860 014a 18       		.uleb128 0x18
+ 861 014b 00       		.byte	0
+ 862 014c 00       		.byte	0
+ 863 014d 00       		.byte	0
+ 864              		.section	.debug_loc,"",%progbits
+ 865              	.Ldebug_loc0:
+ 866              	.LLST0:
+ 867 0000 00000000 		.4byte	.LVL0
+ 868 0004 06000000 		.4byte	.LVL1
+ 869 0008 0100     		.2byte	0x1
+ 870 000a 50       		.byte	0x50
+ 871 000b 06000000 		.4byte	.LVL1
+ 872 000f 1C000000 		.4byte	.LFE4
+ 873 0013 0400     		.2byte	0x4
+ 874 0015 F3       		.byte	0xf3
+ 875 0016 01       		.uleb128 0x1
+ 876 0017 50       		.byte	0x50
+ 877 0018 9F       		.byte	0x9f
+ 878 0019 00000000 		.4byte	0
+ 879 001d 00000000 		.4byte	0
+ 880              	.LLST1:
+ 881 0021 06000000 		.4byte	.LVL3
+ 882 0025 0A000000 		.4byte	.LVL4
+ 883 0029 0900     		.2byte	0x9
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 22
+
+
+ 884 002b 73       		.byte	0x73
+ 885 002c 00       		.sleb128 0
+ 886 002d 3C       		.byte	0x3c
+ 887 002e 1A       		.byte	0x1a
+ 888 002f 32       		.byte	0x32
+ 889 0030 25       		.byte	0x25
+ 890 0031 23       		.byte	0x23
+ 891 0032 06       		.uleb128 0x6
+ 892 0033 9F       		.byte	0x9f
+ 893 0034 00000000 		.4byte	0
+ 894 0038 00000000 		.4byte	0
+ 895              	.LLST2:
+ 896 003c 00000000 		.4byte	.LVL5
+ 897 0040 06000000 		.4byte	.LVL6
+ 898 0044 0100     		.2byte	0x1
+ 899 0046 50       		.byte	0x50
+ 900 0047 06000000 		.4byte	.LVL6
+ 901 004b 1C000000 		.4byte	.LFE5
+ 902 004f 0400     		.2byte	0x4
+ 903 0051 F3       		.byte	0xf3
+ 904 0052 01       		.uleb128 0x1
+ 905 0053 50       		.byte	0x50
+ 906 0054 9F       		.byte	0x9f
+ 907 0055 00000000 		.4byte	0
+ 908 0059 00000000 		.4byte	0
+ 909              		.section	.debug_aranges,"",%progbits
+ 910 0000 54000000 		.4byte	0x54
+ 911 0004 0200     		.2byte	0x2
+ 912 0006 00000000 		.4byte	.Ldebug_info0
+ 913 000a 04       		.byte	0x4
+ 914 000b 00       		.byte	0
+ 915 000c 0000     		.2byte	0
+ 916 000e 0000     		.2byte	0
+ 917 0010 00000000 		.4byte	.LFB1
+ 918 0014 18000000 		.4byte	.LFE1-.LFB1
+ 919 0018 00000000 		.4byte	.LFB3
+ 920 001c 18000000 		.4byte	.LFE3-.LFB3
+ 921 0020 00000000 		.4byte	.LFB4
+ 922 0024 1C000000 		.4byte	.LFE4-.LFB4
+ 923 0028 00000000 		.4byte	.LFB6
+ 924 002c 0C000000 		.4byte	.LFE6-.LFB6
+ 925 0030 00000000 		.4byte	.LFB7
+ 926 0034 24000000 		.4byte	.LFE7-.LFB7
+ 927 0038 00000000 		.4byte	.LFB5
+ 928 003c 1C000000 		.4byte	.LFE5-.LFB5
+ 929 0040 00000000 		.4byte	.LFB0
+ 930 0044 1C000000 		.4byte	.LFE0-.LFB0
+ 931 0048 00000000 		.4byte	.LFB2
+ 932 004c 24000000 		.4byte	.LFE2-.LFB2
+ 933 0050 00000000 		.4byte	0
+ 934 0054 00000000 		.4byte	0
+ 935              		.section	.debug_ranges,"",%progbits
+ 936              	.Ldebug_ranges0:
+ 937 0000 00000000 		.4byte	.LFB1
+ 938 0004 18000000 		.4byte	.LFE1
+ 939 0008 00000000 		.4byte	.LFB3
+ 940 000c 18000000 		.4byte	.LFE3
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 23
+
+
+ 941 0010 00000000 		.4byte	.LFB4
+ 942 0014 1C000000 		.4byte	.LFE4
+ 943 0018 00000000 		.4byte	.LFB6
+ 944 001c 0C000000 		.4byte	.LFE6
+ 945 0020 00000000 		.4byte	.LFB7
+ 946 0024 24000000 		.4byte	.LFE7
+ 947 0028 00000000 		.4byte	.LFB5
+ 948 002c 1C000000 		.4byte	.LFE5
+ 949 0030 00000000 		.4byte	.LFB0
+ 950 0034 1C000000 		.4byte	.LFE0
+ 951 0038 00000000 		.4byte	.LFB2
+ 952 003c 24000000 		.4byte	.LFE2
+ 953 0040 00000000 		.4byte	0
+ 954 0044 00000000 		.4byte	0
+ 955              		.section	.debug_line,"",%progbits
+ 956              	.Ldebug_line0:
+ 957 0000 EB000000 		.section	.debug_str,"MS",%progbits,1
+ 957      02004500 
+ 957      00000201 
+ 957      FB0E0D00 
+ 957      01010101 
+ 958              	.LASF17:
+ 959 0000 53575F44 		.ascii	"SW_DAC_DacTrim\000"
+ 959      41435F44 
+ 959      61635472 
+ 959      696D00
+ 960              	.LASF27:
+ 961 000f 76616C75 		.ascii	"value\000"
+ 961      6500
+ 962              	.LASF24:
+ 963 0015 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SW_DAC.c\000"
+ 963      6E657261 
+ 963      7465645F 
+ 963      536F7572 
+ 963      63655C50 
+ 964              	.LASF18:
+ 965 0037 53575F44 		.ascii	"SW_DAC_SetRange\000"
+ 965      41435F53 
+ 965      65745261 
+ 965      6E676500 
+ 966              	.LASF9:
+ 967 0047 666C6F61 		.ascii	"float\000"
+ 967      7400
+ 968              	.LASF12:
+ 969 004d 75696E74 		.ascii	"uint8\000"
+ 969      3800
+ 970              	.LASF1:
+ 971 0053 756E7369 		.ascii	"unsigned char\000"
+ 971      676E6564 
+ 971      20636861 
+ 971      7200
+ 972              	.LASF25:
+ 973 0061 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 973      6F63756D 
+ 973      656E7473 
+ 973      5C436F6D 
+ 973      70757465 
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 24
+
+
+ 974 0090 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 974      5069636B 
+ 974      75705C44 
+ 974      6973706C 
+ 974      61792E63 
+ 975              	.LASF13:
+ 976 00a9 72656738 		.ascii	"reg8\000"
+ 976      00
+ 977              	.LASF5:
+ 978 00ae 6C6F6E67 		.ascii	"long unsigned int\000"
+ 978      20756E73 
+ 978      69676E65 
+ 978      6420696E 
+ 978      7400
+ 979              	.LASF3:
+ 980 00c0 73686F72 		.ascii	"short unsigned int\000"
+ 980      7420756E 
+ 980      7369676E 
+ 980      65642069 
+ 980      6E7400
+ 981              	.LASF16:
+ 982 00d3 53575F44 		.ascii	"SW_DAC_SetSpeed\000"
+ 982      41435F53 
+ 982      65745370 
+ 982      65656400 
+ 983              	.LASF20:
+ 984 00e3 72616E67 		.ascii	"range\000"
+ 984      6500
+ 985              	.LASF10:
+ 986 00e9 646F7562 		.ascii	"double\000"
+ 986      6C6500
+ 987              	.LASF8:
+ 988 00f0 756E7369 		.ascii	"unsigned int\000"
+ 988      676E6564 
+ 988      20696E74 
+ 988      00
+ 989              	.LASF22:
+ 990 00fd 53575F44 		.ascii	"SW_DAC_Start\000"
+ 990      41435F53 
+ 990      74617274 
+ 990      00
+ 991              	.LASF21:
+ 992 010a 53575F44 		.ascii	"SW_DAC_Init\000"
+ 992      41435F49 
+ 992      6E697400 
+ 993              	.LASF14:
+ 994 0116 53575F44 		.ascii	"SW_DAC_Enable\000"
+ 994      41435F45 
+ 994      6E61626C 
+ 994      6500
+ 995              	.LASF7:
+ 996 0124 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 996      206C6F6E 
+ 996      6720756E 
+ 996      7369676E 
+ 996      65642069 
+ 997              	.LASF29:
+ARM GAS  D:\TEMP\ccaqzfrw.s 			page 25
+
+
+ 998 013b 53575F44 		.ascii	"SW_DAC_initVar\000"
+ 998      41435F69 
+ 998      6E697456 
+ 998      617200
+ 999              	.LASF28:
+ 1000 014a 6D6F6465 		.ascii	"mode\000"
+ 1000      00
+ 1001              	.LASF19:
+ 1002 014f 73706565 		.ascii	"speed\000"
+ 1002      6400
+ 1003              	.LASF6:
+ 1004 0155 6C6F6E67 		.ascii	"long long int\000"
+ 1004      206C6F6E 
+ 1004      6720696E 
+ 1004      7400
+ 1005              	.LASF11:
+ 1006 0163 63686172 		.ascii	"char\000"
+ 1006      00
+ 1007              	.LASF2:
+ 1008 0168 73686F72 		.ascii	"short int\000"
+ 1008      7420696E 
+ 1008      7400
+ 1009              	.LASF26:
+ 1010 0172 53575F44 		.ascii	"SW_DAC_SetValue\000"
+ 1010      41435F53 
+ 1010      65745661 
+ 1010      6C756500 
+ 1011              	.LASF23:
+ 1012 0182 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1012      4320342E 
+ 1012      392E3320 
+ 1012      32303135 
+ 1012      30333033 
+ 1013 01b5 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1013      20726576 
+ 1013      6973696F 
+ 1013      6E203232 
+ 1013      31323230 
+ 1014 01e8 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1014      66756E63 
+ 1014      74696F6E 
+ 1014      2D736563 
+ 1014      74696F6E 
+ 1015              	.LASF4:
+ 1016 0210 6C6F6E67 		.ascii	"long int\000"
+ 1016      20696E74 
+ 1016      00
+ 1017              	.LASF0:
+ 1018 0219 7369676E 		.ascii	"signed char\000"
+ 1018      65642063 
+ 1018      68617200 
+ 1019              	.LASF15:
+ 1020 0225 53575F44 		.ascii	"SW_DAC_Stop\000"
+ 1020      41435F53 
+ 1020      746F7000 
+ 1021              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

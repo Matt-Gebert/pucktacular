@@ -1,14 +1,14 @@
 /*******************************************************************************
 * File Name: Camera_SIOD.h  
-* Version 2.10
+* Version 2.20
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains Pin function prototypes and register defines
 *
 * Note:
 *
 ********************************************************************************
-* Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+* Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
 * You may use this file only in accordance with the license, terms, conditions, 
 * disclaimers, and limitations in the end user license agreement accompanying 
 * the software package with which this file was provided.
@@ -22,12 +22,6 @@
 #include "cypins.h"
 #include "Camera_SIOD_aliases.h"
 
-/* Check to see if required defines such as CY_PSOC5A are available */
-/* They are defined starting with cy_boot v3.0 */
-#if !defined (CY_PSOC5A)
-    #error Component cy_pins_v2_10 requires cy_boot v3.0 or later
-#endif /* (CY_PSOC5A) */
-
 /* APIs are not generated for P15[7:6] */
 #if !(CY_PSOC5A &&\
 	 Camera_SIOD__PORT == 15 && ((Camera_SIOD__MASK & 0xC0) != 0))
@@ -37,31 +31,64 @@
 *        Function Prototypes             
 ***************************************/    
 
-void    Camera_SIOD_Write(uint8 value) ;
-void    Camera_SIOD_SetDriveMode(uint8 mode) ;
-uint8   Camera_SIOD_ReadDataReg(void) ;
-uint8   Camera_SIOD_Read(void) ;
-uint8   Camera_SIOD_ClearInterrupt(void) ;
-
+/**
+* \addtogroup group_general
+* @{
+*/
+void    Camera_SIOD_Write(uint8 value);
+void    Camera_SIOD_SetDriveMode(uint8 mode);
+uint8   Camera_SIOD_ReadDataReg(void);
+uint8   Camera_SIOD_Read(void);
+void    Camera_SIOD_SetInterruptMode(uint16 position, uint16 mode);
+uint8   Camera_SIOD_ClearInterrupt(void);
+/** @} general */
 
 /***************************************
 *           API Constants        
 ***************************************/
-
-/* Drive Modes */
-#define Camera_SIOD_DM_ALG_HIZ         PIN_DM_ALG_HIZ
-#define Camera_SIOD_DM_DIG_HIZ         PIN_DM_DIG_HIZ
-#define Camera_SIOD_DM_RES_UP          PIN_DM_RES_UP
-#define Camera_SIOD_DM_RES_DWN         PIN_DM_RES_DWN
-#define Camera_SIOD_DM_OD_LO           PIN_DM_OD_LO
-#define Camera_SIOD_DM_OD_HI           PIN_DM_OD_HI
-#define Camera_SIOD_DM_STRONG          PIN_DM_STRONG
-#define Camera_SIOD_DM_RES_UPDWN       PIN_DM_RES_UPDWN
-
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup driveMode Drive mode constants
+     * \brief Constants to be passed as "mode" parameter in the Camera_SIOD_SetDriveMode() function.
+     *  @{
+     */
+        #define Camera_SIOD_DM_ALG_HIZ         PIN_DM_ALG_HIZ
+        #define Camera_SIOD_DM_DIG_HIZ         PIN_DM_DIG_HIZ
+        #define Camera_SIOD_DM_RES_UP          PIN_DM_RES_UP
+        #define Camera_SIOD_DM_RES_DWN         PIN_DM_RES_DWN
+        #define Camera_SIOD_DM_OD_LO           PIN_DM_OD_LO
+        #define Camera_SIOD_DM_OD_HI           PIN_DM_OD_HI
+        #define Camera_SIOD_DM_STRONG          PIN_DM_STRONG
+        #define Camera_SIOD_DM_RES_UPDWN       PIN_DM_RES_UPDWN
+    /** @} driveMode */
+/** @} group_constants */
+    
 /* Digital Port Constants */
 #define Camera_SIOD_MASK               Camera_SIOD__MASK
 #define Camera_SIOD_SHIFT              Camera_SIOD__SHIFT
 #define Camera_SIOD_WIDTH              1u
+
+/* Interrupt constants */
+#if defined(Camera_SIOD__INTSTAT)
+/**
+* \addtogroup group_constants
+* @{
+*/
+    /** \addtogroup intrMode Interrupt constants
+     * \brief Constants to be passed as "mode" parameter in Camera_SIOD_SetInterruptMode() function.
+     *  @{
+     */
+        #define Camera_SIOD_INTR_NONE      (uint16)(0x0000u)
+        #define Camera_SIOD_INTR_RISING    (uint16)(0x0001u)
+        #define Camera_SIOD_INTR_FALLING   (uint16)(0x0002u)
+        #define Camera_SIOD_INTR_BOTH      (uint16)(0x0003u) 
+    /** @} intrMode */
+/** @} group_constants */
+
+    #define Camera_SIOD_INTR_MASK      (0x01u) 
+#endif /* (Camera_SIOD__INTSTAT) */
 
 
 /***************************************
@@ -114,13 +141,21 @@ uint8   Camera_SIOD_ClearInterrupt(void) ;
 /* Sync Output Enable Registers */
 #define Camera_SIOD_PRTDSI__SYNC_OUT       (* (reg8 *) Camera_SIOD__PRTDSI__SYNC_OUT) 
 
+/* SIO registers */
+#if defined(Camera_SIOD__SIO_CFG)
+    #define Camera_SIOD_SIO_HYST_EN        (* (reg8 *) Camera_SIOD__SIO_HYST_EN)
+    #define Camera_SIOD_SIO_REG_HIFREQ     (* (reg8 *) Camera_SIOD__SIO_REG_HIFREQ)
+    #define Camera_SIOD_SIO_CFG            (* (reg8 *) Camera_SIOD__SIO_CFG)
+    #define Camera_SIOD_SIO_DIFF           (* (reg8 *) Camera_SIOD__SIO_DIFF)
+#endif /* (Camera_SIOD__SIO_CFG) */
 
-#if defined(Camera_SIOD__INTSTAT)  /* Interrupt Registers */
-
-    #define Camera_SIOD_INTSTAT                (* (reg8 *) Camera_SIOD__INTSTAT)
-    #define Camera_SIOD_SNAP                   (* (reg8 *) Camera_SIOD__SNAP)
-
-#endif /* Interrupt Registers */
+/* Interrupt Registers */
+#if defined(Camera_SIOD__INTSTAT)
+    #define Camera_SIOD_INTSTAT            (* (reg8 *) Camera_SIOD__INTSTAT)
+    #define Camera_SIOD_SNAP               (* (reg8 *) Camera_SIOD__SNAP)
+    
+	#define Camera_SIOD_0_INTTYPE_REG 		(* (reg8 *) Camera_SIOD__0__INTTYPE)
+#endif /* (Camera_SIOD__INTSTAT) */
 
 #endif /* CY_PSOC5A... */
 

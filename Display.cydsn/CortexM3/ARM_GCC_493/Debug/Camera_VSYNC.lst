@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 1
 
 
    1              		.syntax unified
@@ -29,7 +29,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   26              		.file 1 ".\\Generated_Source\\PSoC5\\Camera_VSYNC.c"
    1:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
    2:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * File Name: Camera_VSYNC.c  
-   3:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Version 2.10
+   3:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Version 2.20
    4:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
    5:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Description:
    6:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  This file contains API to enable firmware control of a Pins component.
@@ -37,7 +37,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
    8:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Note:
    9:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
   10:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ********************************************************************************
-  11:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  11:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
   12:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * You may use this file only in accordance with the license, terms, conditions, 
   13:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * disclaimers, and limitations in the end user license agreement accompanying 
   14:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * the software package with which this file was provided.
@@ -53,37 +53,55 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   24:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
   25:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
   26:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_Write
-  27:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ****************************************************************************//**
   28:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  29:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Summary:
-  30:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Assign a new value to the digital port's data output register.  
+  29:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \brief Writes the value to the physical port (data output register), masking
+  30:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  and shifting the bits appropriately. 
   31:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 2
 
 
-  32:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
-  33:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  prtValue:  The value to be assigned to the Digital Port. 
-  34:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  35:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Return: 
-  36:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None
-  37:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  
-  38:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
-  39:.\Generated_Source\PSoC5/Camera_VSYNC.c **** void Camera_VSYNC_Write(uint8 value) 
-  40:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
-  27              		.loc 1 40 0
+  32:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * The data output register controls the signal applied to the physical pin in 
+  33:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * conjunction with the drive mode parameter. This function avoids changing 
+  34:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * other bits in the port by using the appropriate method (read-modify-write or
+  35:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * bit banding).
+  36:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  37:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * <b>Note</b> This function should not be used on a hardware digital output pin 
+  38:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * as it is driven by the hardware signal attached to it.
+  39:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  40:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \param value
+  41:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Value to write to the component instance.
+  42:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  43:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \return 
+  44:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None 
+  45:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  46:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \sideeffect
+  47:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  If you use read-modify-write operations that are not atomic; the Interrupt 
+  48:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Service Routines (ISR) can cause corruption of this function. An ISR that 
+  49:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  interrupts this function and performs writes to the Pins component data 
+  50:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  register can cause corrupted port data. To avoid this issue, you should 
+  51:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  either use the Per-Pin APIs (primary method) or disable interrupts around 
+  52:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  this function.
+  53:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  54:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \funcusage
+  55:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  \snippet Camera_VSYNC_SUT.c usage_Camera_VSYNC_Write
+  56:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC5/Camera_VSYNC.c **** void Camera_VSYNC_Write(uint8 value)
+  58:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
+  27              		.loc 1 58 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
   31              		@ link register save eliminated.
   32              	.LVL0:
-  41:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     uint8 staticBits = (Camera_VSYNC_DR & (uint8)(~Camera_VSYNC_MASK));
-  33              		.loc 1 41 0
+  59:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     uint8 staticBits = (Camera_VSYNC_DR & (uint8)(~Camera_VSYNC_MASK));
+  33              		.loc 1 59 0
   34 0000 044A     		ldr	r2, .L2
   35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
   36 0004 03F0FE03 		and	r3, r3, #254
   37              	.LVL1:
-  42:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     Camera_VSYNC_DR = staticBits | ((uint8)(value << Camera_VSYNC_SHIFT) & Camera_VSYNC_MASK);
-  38              		.loc 1 42 0
+  60:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     Camera_VSYNC_DR = staticBits | ((uint8)(value << Camera_VSYNC_SHIFT) & Camera_VSYNC_MASK);
+  38              		.loc 1 60 0
   39 0008 00F00100 		and	r0, r0, #1
   40              	.LVL2:
   41 000c 1843     		orrs	r0, r0, r3
@@ -100,49 +118,52 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   52              		.align	2
   53              		.global	Camera_VSYNC_SetDriveMode
   54              		.thumb
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 3
+
+
   55              		.thumb_func
   56              		.type	Camera_VSYNC_SetDriveMode, %function
   57              	Camera_VSYNC_SetDriveMode:
   58              	.LFB1:
-  43:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
-  44:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  45:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  46:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
-  47:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_SetDriveMode
-  48:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ********************************************************************************
-  49:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  50:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Summary:
-  51:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Change the drive mode on the pins of the port.
-  52:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * 
-  53:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
-  54:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  mode:  Change the pins to one of the following drive modes.
-  55:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  56:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_STRONG     Strong Drive 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 3
-
-
-  57:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_OD_HI      Open Drain, Drives High 
-  58:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_OD_LO      Open Drain, Drives Low 
-  59:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_RES_UP     Resistive Pull Up 
-  60:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_RES_DWN    Resistive Pull Down 
-  61:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_RES_UPDWN  Resistive Pull Up/Down 
-  62:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_DIG_HIZ    High Impedance Digital 
-  63:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Camera_VSYNC_DM_ALG_HIZ    High Impedance Analog 
-  64:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  65:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Return: 
-  66:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None
+  61:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
+  62:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+  63:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+  64:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
+  65:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_SetDriveMode
+  66:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ****************************************************************************//**
   67:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  68:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
-  69:.\Generated_Source\PSoC5/Camera_VSYNC.c **** void Camera_VSYNC_SetDriveMode(uint8 mode) 
-  70:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
-  59              		.loc 1 70 0
+  68:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \brief Sets the drive mode for each of the Pins component's pins.
+  69:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * 
+  70:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * <b>Note</b> This affects all pins in the Pins component instance. Use the
+  71:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Per-Pin APIs if you wish to control individual pin's drive modes.
+  72:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  73:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \param mode
+  74:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Mode for the selected signals. Valid options are documented in 
+  75:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  \ref driveMode.
+  76:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  77:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \return
+  78:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None
+  79:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  80:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \sideeffect
+  81:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  If you use read-modify-write operations that are not atomic, the ISR can
+  82:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  cause corruption of this function. An ISR that interrupts this function 
+  83:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  and performs writes to the Pins component Drive Mode registers can cause 
+  84:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  corrupted port data. To avoid this issue, you should either use the Per-Pin
+  85:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  APIs (primary method) or disable interrupts around this function.
+  86:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+  87:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \funcusage
+  88:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  \snippet Camera_VSYNC_SUT.c usage_Camera_VSYNC_SetDriveMode
+  89:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
+  90:.\Generated_Source\PSoC5/Camera_VSYNC.c **** void Camera_VSYNC_SetDriveMode(uint8 mode)
+  91:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
+  59              		.loc 1 91 0
   60              		.cfi_startproc
   61              		@ args = 0, pretend = 0, frame = 0
   62              		@ frame_needed = 0, uses_anonymous_args = 0
   63              		@ link register save eliminated.
   64              	.LVL3:
-  71:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 	CyPins_SetPinDriveMode(Camera_VSYNC_0, mode);
-  65              		.loc 1 71 0
+  92:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 	CyPins_SetPinDriveMode(Camera_VSYNC_0, mode);
+  65              		.loc 1 92 0
   66 0000 044A     		ldr	r2, .L5
   67 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
   68 0004 03F0F103 		and	r3, r3, #241
@@ -157,6 +178,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   77 0014 00500040 		.word	1073762304
   78              		.cfi_endproc
   79              	.LFE1:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 4
+
+
   80              		.size	Camera_VSYNC_SetDriveMode, .-Camera_VSYNC_SetDriveMode
   81              		.section	.text.Camera_VSYNC_Read,"ax",%progbits
   82              		.align	2
@@ -166,43 +190,39 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
   86              		.type	Camera_VSYNC_Read, %function
   87              	Camera_VSYNC_Read:
   88              	.LFB2:
-  72:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
-  73:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  74:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  75:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
-  76:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_Read
-  77:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ********************************************************************************
-  78:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  79:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Summary:
-  80:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Read the current value on the pins of the Digital Port in right justified 
-  81:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  form.
-  82:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  83:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 4
-
-
-  84:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None
-  85:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
-  86:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Return: 
-  87:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Returns the current value of the Digital Port as a right justified number
-  88:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  
-  89:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Note:
-  90:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Macro Camera_VSYNC_ReadPS calls this function. 
-  91:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  
-  92:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
-  93:.\Generated_Source\PSoC5/Camera_VSYNC.c **** uint8 Camera_VSYNC_Read(void) 
-  94:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
-  89              		.loc 1 94 0
+  93:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
+  94:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+  95:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+  96:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
+  97:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_Read
+  98:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ****************************************************************************//**
+  99:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 100:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \brief Reads the associated physical port (pin status register) and masks 
+ 101:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  the required bits according to the width and bit position of the component
+ 102:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  instance. 
+ 103:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 104:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * The pin's status register returns the current logic level present on the 
+ 105:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * physical pin.
+ 106:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 107:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \return 
+ 108:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  The current value for the pins in the component as a right justified number.
+ 109:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 110:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \funcusage
+ 111:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  \snippet Camera_VSYNC_SUT.c usage_Camera_VSYNC_Read  
+ 112:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
+ 113:.\Generated_Source\PSoC5/Camera_VSYNC.c **** uint8 Camera_VSYNC_Read(void)
+ 114:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
+  89              		.loc 1 114 0
   90              		.cfi_startproc
   91              		@ args = 0, pretend = 0, frame = 0
   92              		@ frame_needed = 0, uses_anonymous_args = 0
   93              		@ link register save eliminated.
-  95:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     return (Camera_VSYNC_PS & Camera_VSYNC_MASK) >> Camera_VSYNC_SHIFT;
-  94              		.loc 1 95 0
+ 115:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     return (Camera_VSYNC_PS & Camera_VSYNC_MASK) >> Camera_VSYNC_SHIFT;
+  94              		.loc 1 115 0
   95 0000 024B     		ldr	r3, .L8
   96 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
-  96:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
-  97              		.loc 1 96 0
+ 116:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
+  97              		.loc 1 116 0
   98 0004 00F00100 		and	r0, r0, #1
   99 0008 7047     		bx	lr
  100              	.L9:
@@ -218,40 +238,48 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  110              		.thumb
  111              		.thumb_func
  112              		.type	Camera_VSYNC_ReadDataReg, %function
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 5
+
+
  113              	Camera_VSYNC_ReadDataReg:
  114              	.LFB3:
-  97:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  98:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
-  99:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
- 100:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_ReadDataReg
- 101:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ********************************************************************************
- 102:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
- 103:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Summary:
- 104:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Read the current value assigned to a Digital Port's data output register
- 105:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
- 106:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Parameters:  
- 107:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  None 
- 108:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
- 109:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Return: 
- 110:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  Returns the current value assigned to the Digital Port's data output register
- 111:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  
- 112:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
- 113:.\Generated_Source\PSoC5/Camera_VSYNC.c **** uint8 Camera_VSYNC_ReadDataReg(void) 
- 114:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 5
-
-
- 115              		.loc 1 114 0
+ 117:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+ 118:.\Generated_Source\PSoC5/Camera_VSYNC.c **** 
+ 119:.\Generated_Source\PSoC5/Camera_VSYNC.c **** /*******************************************************************************
+ 120:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Function Name: Camera_VSYNC_ReadDataReg
+ 121:.\Generated_Source\PSoC5/Camera_VSYNC.c **** ****************************************************************************//**
+ 122:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 123:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \brief Reads the associated physical port's data output register and masks 
+ 124:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  the correct bits according to the width and bit position of the component 
+ 125:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  instance. 
+ 126:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 127:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * The data output register controls the signal applied to the physical pin in 
+ 128:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * conjunction with the drive mode parameter. This is not the same as the 
+ 129:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * preferred Camera_VSYNC_Read() API because the 
+ 130:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * Camera_VSYNC_ReadDataReg() reads the data register instead of the status 
+ 131:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * register. For output pins this is a useful function to determine the value 
+ 132:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * just written to the pin.
+ 133:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 134:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \return 
+ 135:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  The current value of the data register masked and shifted into a right 
+ 136:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  justified number for the component instance.
+ 137:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *
+ 138:.\Generated_Source\PSoC5/Camera_VSYNC.c **** * \funcusage
+ 139:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *  \snippet Camera_VSYNC_SUT.c usage_Camera_VSYNC_ReadDataReg 
+ 140:.\Generated_Source\PSoC5/Camera_VSYNC.c **** *******************************************************************************/
+ 141:.\Generated_Source\PSoC5/Camera_VSYNC.c **** uint8 Camera_VSYNC_ReadDataReg(void)
+ 142:.\Generated_Source\PSoC5/Camera_VSYNC.c **** {
+ 115              		.loc 1 142 0
  116              		.cfi_startproc
  117              		@ args = 0, pretend = 0, frame = 0
  118              		@ frame_needed = 0, uses_anonymous_args = 0
  119              		@ link register save eliminated.
- 115:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     return (Camera_VSYNC_DR & Camera_VSYNC_MASK) >> Camera_VSYNC_SHIFT;
- 120              		.loc 1 115 0
+ 143:.\Generated_Source\PSoC5/Camera_VSYNC.c ****     return (Camera_VSYNC_DR & Camera_VSYNC_MASK) >> Camera_VSYNC_SHIFT;
+ 120              		.loc 1 143 0
  121 0000 024B     		ldr	r3, .L11
  122 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
- 116:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
- 123              		.loc 1 116 0
+ 144:.\Generated_Source\PSoC5/Camera_VSYNC.c **** }
+ 123              		.loc 1 144 0
  124 0004 00F00100 		and	r0, r0, #1
  125 0008 7047     		bx	lr
  126              	.L12:
@@ -270,18 +298,21 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  139 0004 0400     		.2byte	0x4
  140 0006 00000000 		.4byte	.Ldebug_abbrev0
  141 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 6
+
+
  142 000b 01       		.uleb128 0x1
  143 000c 9B000000 		.4byte	.LASF20
  144 0010 01       		.byte	0x1
  145 0011 29010000 		.4byte	.LASF21
- 146 0015 C5010000 		.4byte	.LASF22
+ 146 0015 A0010000 		.4byte	.LASF22
  147 0019 00000000 		.4byte	.Ldebug_ranges0+0
  148 001d 00000000 		.4byte	0
  149 0021 00000000 		.4byte	.Ldebug_line0
  150 0025 02       		.uleb128 0x2
  151 0026 01       		.byte	0x1
  152 0027 06       		.byte	0x6
- 153 0028 B9010000 		.4byte	.LASF0
+ 153 0028 00020000 		.4byte	.LASF0
  154 002c 02       		.uleb128 0x2
  155 002d 01       		.byte	0x1
  156 002e 08       		.byte	0x8
@@ -289,7 +320,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  158 0033 02       		.uleb128 0x2
  159 0034 02       		.byte	0x2
  160 0035 05       		.byte	0x5
- 161 0036 A0010000 		.4byte	.LASF2
+ 161 0036 E7010000 		.4byte	.LASF2
  162 003a 02       		.uleb128 0x2
  163 003b 02       		.byte	0x2
  164 003c 07       		.byte	0x7
@@ -297,10 +328,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  166 0041 02       		.uleb128 0x2
  167 0042 04       		.byte	0x4
  168 0043 05       		.byte	0x5
- 169 0044 B0010000 		.4byte	.LASF4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 6
-
-
+ 169 0044 F7010000 		.4byte	.LASF4
  170 0048 02       		.uleb128 0x2
  171 0049 04       		.byte	0x4
  172 004a 07       		.byte	0x7
@@ -322,7 +350,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  188 0066 07       		.byte	0x7
  189 0067 51010000 		.4byte	.LASF8
  190 006b 04       		.uleb128 0x4
- 191 006c AA010000 		.4byte	.LASF12
+ 191 006c F1010000 		.4byte	.LASF12
  192 0070 02       		.byte	0x2
  193 0071 9201     		.2byte	0x192
  194 0073 2C000000 		.4byte	0x2c
@@ -330,6 +358,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  196 0078 04       		.byte	0x4
  197 0079 04       		.byte	0x4
  198 007a 3C000000 		.4byte	.LASF9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 7
+
+
  199 007e 02       		.uleb128 0x2
  200 007f 08       		.byte	0x8
  201 0080 04       		.byte	0x4
@@ -348,7 +379,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  214 009d 06       		.uleb128 0x6
  215 009e 5E010000 		.4byte	.LASF14
  216 00a2 01       		.byte	0x1
- 217 00a3 27       		.byte	0x27
+ 217 00a3 39       		.byte	0x39
  218 00a4 00000000 		.4byte	.LFB0
  219 00a8 18000000 		.4byte	.LFE0-.LFB0
  220 00ac 01       		.uleb128 0x1
@@ -357,16 +388,13 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  223 00b2 07       		.uleb128 0x7
  224 00b3 12000000 		.4byte	.LASF16
  225 00b7 01       		.byte	0x1
- 226 00b8 27       		.byte	0x27
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 7
-
-
+ 226 00b8 39       		.byte	0x39
  227 00b9 6B000000 		.4byte	0x6b
  228 00bd 00000000 		.4byte	.LLST0
  229 00c1 08       		.uleb128 0x8
  230 00c2 18000000 		.4byte	.LASF23
  231 00c6 01       		.byte	0x1
- 232 00c7 29       		.byte	0x29
+ 232 00c7 3B       		.byte	0x3b
  233 00c8 6B000000 		.4byte	0x6b
  234 00cc 01       		.uleb128 0x1
  235 00cd 53       		.byte	0x53
@@ -374,7 +402,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  237 00cf 06       		.uleb128 0x6
  238 00d0 81000000 		.4byte	.LASF15
  239 00d4 01       		.byte	0x1
- 240 00d5 45       		.byte	0x45
+ 240 00d5 5A       		.byte	0x5a
  241 00d6 00000000 		.4byte	.LFB1
  242 00da 18000000 		.4byte	.LFE1-.LFB1
  243 00de 01       		.uleb128 0x1
@@ -383,14 +411,17 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  246 00e4 07       		.uleb128 0x7
  247 00e5 88010000 		.4byte	.LASF17
  248 00e9 01       		.byte	0x1
- 249 00ea 45       		.byte	0x45
+ 249 00ea 5A       		.byte	0x5a
  250 00eb 6B000000 		.4byte	0x6b
  251 00ef 21000000 		.4byte	.LLST1
  252 00f3 00       		.byte	0
  253 00f4 09       		.uleb128 0x9
  254 00f5 00000000 		.4byte	.LASF18
  255 00f9 01       		.byte	0x1
- 256 00fa 5D       		.byte	0x5d
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 8
+
+
+ 256 00fa 71       		.byte	0x71
  257 00fb 6B000000 		.4byte	0x6b
  258 00ff 00000000 		.4byte	.LFB2
  259 0103 10000000 		.4byte	.LFE2-.LFB2
@@ -399,7 +430,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  262 0109 09       		.uleb128 0x9
  263 010a 23000000 		.4byte	.LASF19
  264 010e 01       		.byte	0x1
- 265 010f 71       		.byte	0x71
+ 265 010f 8D       		.byte	0x8d
  266 0110 6B000000 		.4byte	0x6b
  267 0114 00000000 		.4byte	.LFB3
  268 0118 10000000 		.4byte	.LFE3-.LFB3
@@ -418,9 +449,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  281 0007 03       		.uleb128 0x3
  282 0008 0E       		.uleb128 0xe
  283 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 8
-
-
  284 000a 0E       		.uleb128 0xe
  285 000b 55       		.uleb128 0x55
  286 000c 17       		.uleb128 0x17
@@ -450,6 +478,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  310 0024 0B       		.uleb128 0xb
  311 0025 03       		.uleb128 0x3
  312 0026 08       		.uleb128 0x8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 9
+
+
  313 0027 00       		.byte	0
  314 0028 00       		.byte	0
  315 0029 04       		.uleb128 0x4
@@ -478,9 +509,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  338 0040 3F       		.uleb128 0x3f
  339 0041 19       		.uleb128 0x19
  340 0042 03       		.uleb128 0x3
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 9
-
-
  341 0043 0E       		.uleb128 0xe
  342 0044 3A       		.uleb128 0x3a
  343 0045 0B       		.uleb128 0xb
@@ -510,6 +538,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  367 005e 3B       		.uleb128 0x3b
  368 005f 0B       		.uleb128 0xb
  369 0060 49       		.uleb128 0x49
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 10
+
+
  370 0061 13       		.uleb128 0x13
  371 0062 02       		.uleb128 0x2
  372 0063 17       		.uleb128 0x17
@@ -538,9 +569,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  395 007a 03       		.uleb128 0x3
  396 007b 0E       		.uleb128 0xe
  397 007c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 10
-
-
  398 007d 0B       		.uleb128 0xb
  399 007e 3B       		.uleb128 0x3b
  400 007f 0B       		.uleb128 0xb
@@ -570,6 +598,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  424 000f 18000000 		.4byte	.LFE0
  425 0013 0400     		.2byte	0x4
  426 0015 F3       		.byte	0xf3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 11
+
+
  427 0016 01       		.uleb128 0x1
  428 0017 50       		.byte	0x50
  429 0018 9F       		.byte	0x9f
@@ -598,9 +629,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  452 000c 0000     		.2byte	0
  453 000e 0000     		.2byte	0
  454 0010 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 11
-
-
  455 0014 18000000 		.4byte	.LFE0-.LFB0
  456 0018 00000000 		.4byte	.LFB1
  457 001c 18000000 		.4byte	.LFE1-.LFB1
@@ -630,6 +658,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  478      FB0E0D00 
  478      01010101 
  479              	.LASF18:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 12
+
+
  480 0000 43616D65 		.ascii	"Camera_VSYNC_Read\000"
  480      72615F56 
  480      53594E43 
@@ -658,9 +689,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  490      7200
  491              	.LASF13:
  492 0050 72656738 		.ascii	"reg8\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 12
-
-
  492      00
  493              	.LASF5:
  494 0055 6C6F6E67 		.ascii	"long unsigned int\000"
@@ -690,6 +718,9 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  502      32303135 
  502      30333033 
  503 00ce 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 13
+
+
  503      20726576 
  503      6973696F 
  503      6E203232 
@@ -718,9 +749,6 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  510      746500
  511              	.LASF7:
  512 0171 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 13
-
-
  512      206C6F6E 
  512      6720756E 
  512      7369676E 
@@ -736,28 +764,33 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6Me3y0.s 			page 1
  517              	.LASF11:
  518 019b 63686172 		.ascii	"char\000"
  518      00
- 519              	.LASF2:
- 520 01a0 73686F72 		.ascii	"short int\000"
- 520      7420696E 
- 520      7400
- 521              	.LASF12:
- 522 01aa 75696E74 		.ascii	"uint8\000"
- 522      3800
- 523              	.LASF4:
- 524 01b0 6C6F6E67 		.ascii	"long int\000"
- 524      20696E74 
- 524      00
- 525              	.LASF0:
- 526 01b9 7369676E 		.ascii	"signed char\000"
- 526      65642063 
- 526      68617200 
- 527              	.LASF22:
- 528 01c5 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 528      73657273 
- 528      5C54696D 
- 528      5C446F63 
- 528      756D656E 
- 529 01f2 706C6179 		.ascii	"play.cydsn\000"
- 529      2E637964 
- 529      736E00
+ 519              	.LASF22:
+ 520 01a0 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 520      73657273 
+ 520      5C44616E 
+ 520      69656C5C 
+ 520      446F6375 
+ 521 01ce 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 521      74657220 
+ 521      56335C44 
+ 521      6973706C 
+ 521      61792E63 
+ 522              	.LASF2:
+ 523 01e7 73686F72 		.ascii	"short int\000"
+ 523      7420696E 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cc3maEVV.s 			page 14
+
+
+ 523      7400
+ 524              	.LASF12:
+ 525 01f1 75696E74 		.ascii	"uint8\000"
+ 525      3800
+ 526              	.LASF4:
+ 527 01f7 6C6F6E67 		.ascii	"long int\000"
+ 527      20696E74 
+ 527      00
+ 528              	.LASF0:
+ 529 0200 7369676E 		.ascii	"signed char\000"
+ 529      65642063 
+ 529      68617200 
  530              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

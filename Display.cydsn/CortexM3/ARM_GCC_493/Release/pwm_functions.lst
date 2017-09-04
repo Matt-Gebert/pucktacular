@@ -1,0 +1,1349 @@
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"pwm_functions.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ClawOpen,"ax",%progbits
+  19              		.align	1
+  20              		.global	ClawOpen
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ClawOpen, %function
+  24              	ClawOpen:
+  25              	.LFB63:
+  26              		.file 1 ".\\pwm_functions.c"
+   1:.\pwm_functions.c **** /* ========================================
+   2:.\pwm_functions.c ****  *
+   3:.\pwm_functions.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\pwm_functions.c ****  * All Rights Reserved
+   5:.\pwm_functions.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\pwm_functions.c ****  *
+   7:.\pwm_functions.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\pwm_functions.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\pwm_functions.c ****  *
+  10:.\pwm_functions.c ****  * ========================================
+  11:.\pwm_functions.c **** */
+  12:.\pwm_functions.c **** #include <project.h>
+  13:.\pwm_functions.c **** /*
+  14:.\pwm_functions.c **** Important information
+  15:.\pwm_functions.c ****     The PWM Channels to the Microservers run on a 20ms period.
+  16:.\pwm_functions.c ****     To Achieve accuracy in the pwm duty width, we use a freq much higher than this.
+  17:.\pwm_functions.c ****     Thereby we have 2000 counts at 100kHz.
+  18:.\pwm_functions.c ****     Cycles:
+  19:.\pwm_functions.c ****         max = 200;  eg cam left (bot perspective) or tilt face down
+  20:.\pwm_functions.c ****         halfway = 125;
+  21:.\pwm_functions.c ****         zerodegrees = 50;  eg cam right (bot perspective) or tilt face up
+  22:.\pwm_functions.c **** */
+  23:.\pwm_functions.c ****         
+  24:.\pwm_functions.c **** uint8 max = 200;
+  25:.\pwm_functions.c **** uint8 halfway = 125;
+  26:.\pwm_functions.c **** uint8 zerodegrees = 50;
+  27:.\pwm_functions.c **** 
+  28:.\pwm_functions.c **** void ClawOpen() {
+  27              		.loc 1 28 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 2
+
+
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  29:.\pwm_functions.c ****    PWM_Claw_WriteCompare(80);
+  32              		.loc 1 29 0
+  33 0000 5020     		movs	r0, #80
+  34 0002 FFF7FEBF 		b	PWM_Claw_WriteCompare
+  35              	.LVL0:
+  36              		.cfi_endproc
+  37              	.LFE63:
+  38              		.size	ClawOpen, .-ClawOpen
+  39              		.section	.text.ClawClose,"ax",%progbits
+  40              		.align	1
+  41              		.global	ClawClose
+  42              		.thumb
+  43              		.thumb_func
+  44              		.type	ClawClose, %function
+  45              	ClawClose:
+  46              	.LFB64:
+  30:.\pwm_functions.c **** }
+  31:.\pwm_functions.c **** 
+  32:.\pwm_functions.c **** void ClawClose() {
+  47              		.loc 1 32 0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  33:.\pwm_functions.c ****    PWM_Claw_WriteCompare(50);
+  52              		.loc 1 33 0
+  53 0000 3220     		movs	r0, #50
+  54 0002 FFF7FEBF 		b	PWM_Claw_WriteCompare
+  55              	.LVL1:
+  56              		.cfi_endproc
+  57              	.LFE64:
+  58              		.size	ClawClose, .-ClawClose
+  59              		.section	.text.TiltUp,"ax",%progbits
+  60              		.align	1
+  61              		.global	TiltUp
+  62              		.thumb
+  63              		.thumb_func
+  64              		.type	TiltUp, %function
+  65              	TiltUp:
+  66              	.LFB65:
+  34:.\pwm_functions.c **** }
+  35:.\pwm_functions.c **** 
+  36:.\pwm_functions.c **** void TiltUp(){
+  67              		.loc 1 36 0
+  68              		.cfi_startproc
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71              		@ link register save eliminated.
+  37:.\pwm_functions.c ****     PWM_Tilt_WriteCompare(zerodegrees);
+  72              		.loc 1 37 0
+  73 0000 014B     		ldr	r3, .L4
+  74 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  75 0004 FFF7FEBF 		b	PWM_Tilt_WriteCompare
+  76              	.LVL2:
+  77              	.L5:
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 3
+
+
+  78              		.align	2
+  79              	.L4:
+  80 0008 00000000 		.word	.LANCHOR0
+  81              		.cfi_endproc
+  82              	.LFE65:
+  83              		.size	TiltUp, .-TiltUp
+  84              		.section	.text.TiltStraight,"ax",%progbits
+  85              		.align	1
+  86              		.global	TiltStraight
+  87              		.thumb
+  88              		.thumb_func
+  89              		.type	TiltStraight, %function
+  90              	TiltStraight:
+  91              	.LFB66:
+  38:.\pwm_functions.c **** }
+  39:.\pwm_functions.c **** void TiltStraight(){
+  92              		.loc 1 39 0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 0
+  95              		@ frame_needed = 0, uses_anonymous_args = 0
+  96              		@ link register save eliminated.
+  40:.\pwm_functions.c ****     PWM_Tilt_WriteCompare(halfway);
+  97              		.loc 1 40 0
+  98 0000 014B     		ldr	r3, .L7
+  99 0002 5878     		ldrb	r0, [r3, #1]	@ zero_extendqisi2
+ 100 0004 FFF7FEBF 		b	PWM_Tilt_WriteCompare
+ 101              	.LVL3:
+ 102              	.L8:
+ 103              		.align	2
+ 104              	.L7:
+ 105 0008 00000000 		.word	.LANCHOR0
+ 106              		.cfi_endproc
+ 107              	.LFE66:
+ 108              		.size	TiltStraight, .-TiltStraight
+ 109              		.section	.text.TiltDown,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	TiltDown
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	TiltDown, %function
+ 115              	TiltDown:
+ 116              	.LFB67:
+  41:.\pwm_functions.c **** }
+  42:.\pwm_functions.c **** void TiltDown(){
+ 117              		.loc 1 42 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              		@ link register save eliminated.
+  43:.\pwm_functions.c ****     PWM_Tilt_WriteCompare(max);
+ 122              		.loc 1 43 0
+ 123 0000 014B     		ldr	r3, .L10
+ 124 0002 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 125 0004 FFF7FEBF 		b	PWM_Tilt_WriteCompare
+ 126              	.LVL4:
+ 127              	.L11:
+ 128              		.align	2
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 4
+
+
+ 129              	.L10:
+ 130 0008 00000000 		.word	.LANCHOR0
+ 131              		.cfi_endproc
+ 132              	.LFE67:
+ 133              		.size	TiltDown, .-TiltDown
+ 134              		.section	.text.TiltDown45,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	TiltDown45
+ 137              		.thumb
+ 138              		.thumb_func
+ 139              		.type	TiltDown45, %function
+ 140              	TiltDown45:
+ 141              	.LFB68:
+  44:.\pwm_functions.c **** }
+  45:.\pwm_functions.c **** void TiltDown45(){
+ 142              		.loc 1 45 0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146              		@ link register save eliminated.
+  46:.\pwm_functions.c ****     PWM_Tilt_WriteCompare(162);
+ 147              		.loc 1 46 0
+ 148 0000 A220     		movs	r0, #162
+ 149 0002 FFF7FEBF 		b	PWM_Tilt_WriteCompare
+ 150              	.LVL5:
+ 151              		.cfi_endproc
+ 152              	.LFE68:
+ 153              		.size	TiltDown45, .-TiltDown45
+ 154              		.section	.text.PanRight,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	PanRight
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	PanRight, %function
+ 160              	PanRight:
+ 161              	.LFB69:
+  47:.\pwm_functions.c **** }
+  48:.\pwm_functions.c **** 
+  49:.\pwm_functions.c **** void PanRight(){
+ 162              		.loc 1 49 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 08B5     		push	{r3, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 3, -8
+ 169              		.cfi_offset 14, -4
+  50:.\pwm_functions.c ****     TiltUp();   // good logic Dan
+ 170              		.loc 1 50 0
+ 171 0002 FFF7FEFF 		bl	TiltUp
+ 172              	.LVL6:
+  51:.\pwm_functions.c ****     CyDelay(100);
+ 173              		.loc 1 51 0
+ 174 0006 6420     		movs	r0, #100
+ 175 0008 FFF7FEFF 		bl	CyDelay
+ 176              	.LVL7:
+  52:.\pwm_functions.c ****     PWM_Pan_WriteCompare(zerodegrees);
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 5
+
+
+ 177              		.loc 1 52 0
+ 178 000c 024B     		ldr	r3, .L14
+ 179 000e 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  53:.\pwm_functions.c **** }
+ 180              		.loc 1 53 0
+ 181 0010 BDE80840 		pop	{r3, lr}
+ 182              		.cfi_restore 14
+ 183              		.cfi_restore 3
+ 184              		.cfi_def_cfa_offset 0
+  52:.\pwm_functions.c ****     PWM_Pan_WriteCompare(zerodegrees);
+ 185              		.loc 1 52 0
+ 186 0014 FFF7FEBF 		b	PWM_Pan_WriteCompare
+ 187              	.LVL8:
+ 188              	.L15:
+ 189              		.align	2
+ 190              	.L14:
+ 191 0018 00000000 		.word	.LANCHOR0
+ 192              		.cfi_endproc
+ 193              	.LFE69:
+ 194              		.size	PanRight, .-PanRight
+ 195              		.section	.text.PanMid,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	PanMid
+ 198              		.thumb
+ 199              		.thumb_func
+ 200              		.type	PanMid, %function
+ 201              	PanMid:
+ 202              	.LFB70:
+  54:.\pwm_functions.c **** void PanMid(){
+ 203              		.loc 1 54 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207              		@ link register save eliminated.
+  55:.\pwm_functions.c ****     PWM_Pan_WriteCompare(100); //Halfway 125 was too much.
+ 208              		.loc 1 55 0
+ 209 0000 6420     		movs	r0, #100
+ 210 0002 FFF7FEBF 		b	PWM_Pan_WriteCompare
+ 211              	.LVL9:
+ 212              		.cfi_endproc
+ 213              	.LFE70:
+ 214              		.size	PanMid, .-PanMid
+ 215              		.section	.text.LiftGround,"ax",%progbits
+ 216              		.align	1
+ 217              		.global	LiftGround
+ 218              		.thumb
+ 219              		.thumb_func
+ 220              		.type	LiftGround, %function
+ 221              	LiftGround:
+ 222              	.LFB71:
+  56:.\pwm_functions.c **** }
+  57:.\pwm_functions.c **** 
+  58:.\pwm_functions.c **** void LiftGround(){
+ 223              		.loc 1 58 0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 6
+
+
+ 227              		@ link register save eliminated.
+  59:.\pwm_functions.c ****      PWM_Lift_WriteCompare(65);
+ 228              		.loc 1 59 0
+ 229 0000 4120     		movs	r0, #65
+ 230 0002 FFF7FEBF 		b	PWM_Lift_WriteCompare
+ 231              	.LVL10:
+ 232              		.cfi_endproc
+ 233              	.LFE71:
+ 234              		.size	LiftGround, .-LiftGround
+ 235              		.section	.text.LiftHalf,"ax",%progbits
+ 236              		.align	1
+ 237              		.global	LiftHalf
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.type	LiftHalf, %function
+ 241              	LiftHalf:
+ 242              	.LFB72:
+  60:.\pwm_functions.c **** }
+  61:.\pwm_functions.c **** 
+  62:.\pwm_functions.c **** void LiftHalf(){
+ 243              		.loc 1 62 0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 0
+ 246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+  63:.\pwm_functions.c ****     PWM_Lift_WriteCompare((max+65)/2);
+ 248              		.loc 1 63 0
+ 249 0000 034B     		ldr	r3, .L19
+ 250 0002 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 251 0004 4130     		adds	r0, r0, #65
+ 252 0006 C0F34F00 		ubfx	r0, r0, #1, #16
+ 253 000a FFF7FEBF 		b	PWM_Lift_WriteCompare
+ 254              	.LVL11:
+ 255              	.L20:
+ 256 000e 00BF     		.align	2
+ 257              	.L19:
+ 258 0010 00000000 		.word	.LANCHOR0
+ 259              		.cfi_endproc
+ 260              	.LFE72:
+ 261              		.size	LiftHalf, .-LiftHalf
+ 262              		.section	.text.LiftTop,"ax",%progbits
+ 263              		.align	1
+ 264              		.global	LiftTop
+ 265              		.thumb
+ 266              		.thumb_func
+ 267              		.type	LiftTop, %function
+ 268              	LiftTop:
+ 269              	.LFB73:
+  64:.\pwm_functions.c **** }
+  65:.\pwm_functions.c **** 
+  66:.\pwm_functions.c **** void LiftTop(){
+ 270              		.loc 1 66 0
+ 271              		.cfi_startproc
+ 272              		@ args = 0, pretend = 0, frame = 0
+ 273              		@ frame_needed = 0, uses_anonymous_args = 0
+ 274              		@ link register save eliminated.
+  67:.\pwm_functions.c ****      PWM_Lift_WriteCompare(max);
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 7
+
+
+ 275              		.loc 1 67 0
+ 276 0000 014B     		ldr	r3, .L22
+ 277 0002 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 278 0004 FFF7FEBF 		b	PWM_Lift_WriteCompare
+ 279              	.LVL12:
+ 280              	.L23:
+ 281              		.align	2
+ 282              	.L22:
+ 283 0008 00000000 		.word	.LANCHOR0
+ 284              		.cfi_endproc
+ 285              	.LFE73:
+ 286              		.size	LiftTop, .-LiftTop
+ 287              		.global	zerodegrees
+ 288              		.global	halfway
+ 289              		.global	max
+ 290              		.comm	Camera_linebuffer,640,4
+ 291              		.data
+ 292              		.set	.LANCHOR0,. + 0
+ 293              		.type	zerodegrees, %object
+ 294              		.size	zerodegrees, 1
+ 295              	zerodegrees:
+ 296 0000 32       		.byte	50
+ 297              		.type	halfway, %object
+ 298              		.size	halfway, 1
+ 299              	halfway:
+ 300 0001 7D       		.byte	125
+ 301              		.type	max, %object
+ 302              		.size	max, 1
+ 303              	max:
+ 304 0002 C8       		.byte	-56
+ 305              		.text
+ 306              	.Letext0:
+ 307              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 308              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 309              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 310              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 311              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 312              		.file 7 "Generated_Source\\PSoC5/PWM_Claw.h"
+ 313              		.file 8 "Generated_Source\\PSoC5/PWM_Tilt.h"
+ 314              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 315              		.file 10 "Generated_Source\\PSoC5/PWM_Pan.h"
+ 316              		.file 11 "Generated_Source\\PSoC5/PWM_Lift.h"
+ 317              		.section	.debug_info,"",%progbits
+ 318              	.Ldebug_info0:
+ 319 0000 09030000 		.4byte	0x309
+ 320 0004 0400     		.2byte	0x4
+ 321 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 322 000a 04       		.byte	0x4
+ 323 000b 01       		.uleb128 0x1
+ 324 000c B2010000 		.4byte	.LASF37
+ 325 0010 01       		.byte	0x1
+ 326 0011 07010000 		.4byte	.LASF38
+ 327 0015 57000000 		.4byte	.LASF39
+ 328 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 329 001d 00000000 		.4byte	0
+ 330 0021 00000000 		.4byte	.Ldebug_line0
+ 331 0025 02       		.uleb128 0x2
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 8
+
+
+ 332 0026 01       		.byte	0x1
+ 333 0027 06       		.byte	0x6
+ 334 0028 7E020000 		.4byte	.LASF0
+ 335 002c 02       		.uleb128 0x2
+ 336 002d 01       		.byte	0x1
+ 337 002e 08       		.byte	0x8
+ 338 002f 49000000 		.4byte	.LASF1
+ 339 0033 02       		.uleb128 0x2
+ 340 0034 02       		.byte	0x2
+ 341 0035 05       		.byte	0x5
+ 342 0036 A8010000 		.4byte	.LASF2
+ 343 003a 02       		.uleb128 0x2
+ 344 003b 02       		.byte	0x2
+ 345 003c 07       		.byte	0x7
+ 346 003d A6000000 		.4byte	.LASF3
+ 347 0041 03       		.uleb128 0x3
+ 348 0042 00000000 		.4byte	.LASF9
+ 349 0046 02       		.byte	0x2
+ 350 0047 3F       		.byte	0x3f
+ 351 0048 4C000000 		.4byte	0x4c
+ 352 004c 02       		.uleb128 0x2
+ 353 004d 04       		.byte	0x4
+ 354 004e 05       		.byte	0x5
+ 355 004f 49020000 		.4byte	.LASF4
+ 356 0053 02       		.uleb128 0x2
+ 357 0054 04       		.byte	0x4
+ 358 0055 07       		.byte	0x7
+ 359 0056 F5000000 		.4byte	.LASF5
+ 360 005a 02       		.uleb128 0x2
+ 361 005b 08       		.byte	0x8
+ 362 005c 05       		.byte	0x5
+ 363 005d 81010000 		.4byte	.LASF6
+ 364 0061 02       		.uleb128 0x2
+ 365 0062 08       		.byte	0x8
+ 366 0063 07       		.byte	0x7
+ 367 0064 30010000 		.4byte	.LASF7
+ 368 0068 04       		.uleb128 0x4
+ 369 0069 04       		.byte	0x4
+ 370 006a 05       		.byte	0x5
+ 371 006b 696E7400 		.ascii	"int\000"
+ 372 006f 02       		.uleb128 0x2
+ 373 0070 04       		.byte	0x4
+ 374 0071 07       		.byte	0x7
+ 375 0072 12000000 		.4byte	.LASF8
+ 376 0076 03       		.uleb128 0x3
+ 377 0077 66010000 		.4byte	.LASF10
+ 378 007b 03       		.byte	0x3
+ 379 007c 2C       		.byte	0x2c
+ 380 007d 41000000 		.4byte	0x41
+ 381 0081 05       		.uleb128 0x5
+ 382 0082 43000000 		.4byte	.LASF11
+ 383 0086 04       		.byte	0x4
+ 384 0087 9201     		.2byte	0x192
+ 385 0089 2C000000 		.4byte	0x2c
+ 386 008d 05       		.uleb128 0x5
+ 387 008e 19010000 		.4byte	.LASF12
+ 388 0092 04       		.byte	0x4
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 9
+
+
+ 389 0093 9301     		.2byte	0x193
+ 390 0095 3A000000 		.4byte	0x3a
+ 391 0099 05       		.uleb128 0x5
+ 392 009a 20010000 		.4byte	.LASF13
+ 393 009e 04       		.byte	0x4
+ 394 009f 9401     		.2byte	0x194
+ 395 00a1 53000000 		.4byte	0x53
+ 396 00a5 02       		.uleb128 0x2
+ 397 00a6 04       		.byte	0x4
+ 398 00a7 04       		.byte	0x4
+ 399 00a8 3D000000 		.4byte	.LASF14
+ 400 00ac 02       		.uleb128 0x2
+ 401 00ad 08       		.byte	0x8
+ 402 00ae 04       		.byte	0x4
+ 403 00af 8A020000 		.4byte	.LASF15
+ 404 00b3 02       		.uleb128 0x2
+ 405 00b4 01       		.byte	0x1
+ 406 00b5 08       		.byte	0x8
+ 407 00b6 8F010000 		.4byte	.LASF16
+ 408 00ba 02       		.uleb128 0x2
+ 409 00bb 04       		.byte	0x4
+ 410 00bc 07       		.byte	0x7
+ 411 00bd 6E010000 		.4byte	.LASF17
+ 412 00c1 06       		.uleb128 0x6
+ 413 00c2 94010000 		.4byte	.LASF18
+ 414 00c6 01       		.byte	0x1
+ 415 00c7 1C       		.byte	0x1c
+ 416 00c8 00000000 		.4byte	.LFB63
+ 417 00cc 06000000 		.4byte	.LFE63-.LFB63
+ 418 00d0 01       		.uleb128 0x1
+ 419 00d1 9C       		.byte	0x9c
+ 420 00d2 E7000000 		.4byte	0xe7
+ 421 00d6 07       		.uleb128 0x7
+ 422 00d7 06000000 		.4byte	.LVL0
+ 423 00db BB020000 		.4byte	0x2bb
+ 424 00df 08       		.uleb128 0x8
+ 425 00e0 01       		.uleb128 0x1
+ 426 00e1 50       		.byte	0x50
+ 427 00e2 02       		.uleb128 0x2
+ 428 00e3 08       		.byte	0x8
+ 429 00e4 50       		.byte	0x50
+ 430 00e5 00       		.byte	0
+ 431 00e6 00       		.byte	0
+ 432 00e7 06       		.uleb128 0x6
+ 433 00e8 77010000 		.4byte	.LASF19
+ 434 00ec 01       		.byte	0x1
+ 435 00ed 20       		.byte	0x20
+ 436 00ee 00000000 		.4byte	.LFB64
+ 437 00f2 06000000 		.4byte	.LFE64-.LFB64
+ 438 00f6 01       		.uleb128 0x1
+ 439 00f7 9C       		.byte	0x9c
+ 440 00f8 0D010000 		.4byte	0x10d
+ 441 00fc 07       		.uleb128 0x7
+ 442 00fd 06000000 		.4byte	.LVL1
+ 443 0101 BB020000 		.4byte	0x2bb
+ 444 0105 08       		.uleb128 0x8
+ 445 0106 01       		.uleb128 0x1
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 10
+
+
+ 446 0107 50       		.byte	0x50
+ 447 0108 02       		.uleb128 0x2
+ 448 0109 08       		.byte	0x8
+ 449 010a 32       		.byte	0x32
+ 450 010b 00       		.byte	0
+ 451 010c 00       		.byte	0
+ 452 010d 06       		.uleb128 0x6
+ 453 010e 2B000000 		.4byte	.LASF20
+ 454 0112 01       		.byte	0x1
+ 455 0113 24       		.byte	0x24
+ 456 0114 00000000 		.4byte	.LFB65
+ 457 0118 0C000000 		.4byte	.LFE65-.LFB65
+ 458 011c 01       		.uleb128 0x1
+ 459 011d 9C       		.byte	0x9c
+ 460 011e 2C010000 		.4byte	0x12c
+ 461 0122 09       		.uleb128 0x9
+ 462 0123 08000000 		.4byte	.LVL2
+ 463 0127 CC020000 		.4byte	0x2cc
+ 464 012b 00       		.byte	0
+ 465 012c 06       		.uleb128 0x6
+ 466 012d 99020000 		.4byte	.LASF21
+ 467 0131 01       		.byte	0x1
+ 468 0132 27       		.byte	0x27
+ 469 0133 00000000 		.4byte	.LFB66
+ 470 0137 0C000000 		.4byte	.LFE66-.LFB66
+ 471 013b 01       		.uleb128 0x1
+ 472 013c 9C       		.byte	0x9c
+ 473 013d 4B010000 		.4byte	0x14b
+ 474 0141 09       		.uleb128 0x9
+ 475 0142 08000000 		.4byte	.LVL3
+ 476 0146 CC020000 		.4byte	0x2cc
+ 477 014a 00       		.byte	0
+ 478 014b 06       		.uleb128 0x6
+ 479 014c 40020000 		.4byte	.LASF22
+ 480 0150 01       		.byte	0x1
+ 481 0151 2A       		.byte	0x2a
+ 482 0152 00000000 		.4byte	.LFB67
+ 483 0156 0C000000 		.4byte	.LFE67-.LFB67
+ 484 015a 01       		.uleb128 0x1
+ 485 015b 9C       		.byte	0x9c
+ 486 015c 6A010000 		.4byte	0x16a
+ 487 0160 09       		.uleb128 0x9
+ 488 0161 08000000 		.4byte	.LVL4
+ 489 0165 CC020000 		.4byte	0x2cc
+ 490 0169 00       		.byte	0
+ 491 016a 06       		.uleb128 0x6
+ 492 016b 32000000 		.4byte	.LASF23
+ 493 016f 01       		.byte	0x1
+ 494 0170 2D       		.byte	0x2d
+ 495 0171 00000000 		.4byte	.LFB68
+ 496 0175 06000000 		.4byte	.LFE68-.LFB68
+ 497 0179 01       		.uleb128 0x1
+ 498 017a 9C       		.byte	0x9c
+ 499 017b 90010000 		.4byte	0x190
+ 500 017f 07       		.uleb128 0x7
+ 501 0180 06000000 		.4byte	.LVL5
+ 502 0184 CC020000 		.4byte	0x2cc
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 11
+
+
+ 503 0188 08       		.uleb128 0x8
+ 504 0189 01       		.uleb128 0x1
+ 505 018a 50       		.byte	0x50
+ 506 018b 02       		.uleb128 0x2
+ 507 018c 08       		.byte	0x8
+ 508 018d A2       		.byte	0xa2
+ 509 018e 00       		.byte	0
+ 510 018f 00       		.byte	0
+ 511 0190 06       		.uleb128 0x6
+ 512 0191 27010000 		.4byte	.LASF24
+ 513 0195 01       		.byte	0x1
+ 514 0196 31       		.byte	0x31
+ 515 0197 00000000 		.4byte	.LFB69
+ 516 019b 1C000000 		.4byte	.LFE69-.LFB69
+ 517 019f 01       		.uleb128 0x1
+ 518 01a0 9C       		.byte	0x9c
+ 519 01a1 CC010000 		.4byte	0x1cc
+ 520 01a5 0A       		.uleb128 0xa
+ 521 01a6 06000000 		.4byte	.LVL6
+ 522 01aa 0D010000 		.4byte	0x10d
+ 523 01ae 0B       		.uleb128 0xb
+ 524 01af 0C000000 		.4byte	.LVL7
+ 525 01b3 DD020000 		.4byte	0x2dd
+ 526 01b7 C2010000 		.4byte	0x1c2
+ 527 01bb 08       		.uleb128 0x8
+ 528 01bc 01       		.uleb128 0x1
+ 529 01bd 50       		.byte	0x50
+ 530 01be 02       		.uleb128 0x2
+ 531 01bf 08       		.byte	0x8
+ 532 01c0 64       		.byte	0x64
+ 533 01c1 00       		.byte	0
+ 534 01c2 09       		.uleb128 0x9
+ 535 01c3 18000000 		.4byte	.LVL8
+ 536 01c7 EE020000 		.4byte	0x2ee
+ 537 01cb 00       		.byte	0
+ 538 01cc 06       		.uleb128 0x6
+ 539 01cd 9F000000 		.4byte	.LASF25
+ 540 01d1 01       		.byte	0x1
+ 541 01d2 36       		.byte	0x36
+ 542 01d3 00000000 		.4byte	.LFB70
+ 543 01d7 06000000 		.4byte	.LFE70-.LFB70
+ 544 01db 01       		.uleb128 0x1
+ 545 01dc 9C       		.byte	0x9c
+ 546 01dd F2010000 		.4byte	0x1f2
+ 547 01e1 07       		.uleb128 0x7
+ 548 01e2 06000000 		.4byte	.LVL9
+ 549 01e6 EE020000 		.4byte	0x2ee
+ 550 01ea 08       		.uleb128 0x8
+ 551 01eb 01       		.uleb128 0x1
+ 552 01ec 50       		.byte	0x50
+ 553 01ed 02       		.uleb128 0x2
+ 554 01ee 08       		.byte	0x8
+ 555 01ef 64       		.byte	0x64
+ 556 01f0 00       		.byte	0
+ 557 01f1 00       		.byte	0
+ 558 01f2 06       		.uleb128 0x6
+ 559 01f3 9D010000 		.4byte	.LASF26
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 12
+
+
+ 560 01f7 01       		.byte	0x1
+ 561 01f8 3A       		.byte	0x3a
+ 562 01f9 00000000 		.4byte	.LFB71
+ 563 01fd 06000000 		.4byte	.LFE71-.LFB71
+ 564 0201 01       		.uleb128 0x1
+ 565 0202 9C       		.byte	0x9c
+ 566 0203 18020000 		.4byte	0x218
+ 567 0207 07       		.uleb128 0x7
+ 568 0208 06000000 		.4byte	.LVL10
+ 569 020c FF020000 		.4byte	0x2ff
+ 570 0210 08       		.uleb128 0x8
+ 571 0211 01       		.uleb128 0x1
+ 572 0212 50       		.byte	0x50
+ 573 0213 02       		.uleb128 0x2
+ 574 0214 08       		.byte	0x8
+ 575 0215 41       		.byte	0x41
+ 576 0216 00       		.byte	0
+ 577 0217 00       		.byte	0
+ 578 0218 06       		.uleb128 0x6
+ 579 0219 47010000 		.4byte	.LASF27
+ 580 021d 01       		.byte	0x1
+ 581 021e 3E       		.byte	0x3e
+ 582 021f 00000000 		.4byte	.LFB72
+ 583 0223 14000000 		.4byte	.LFE72-.LFB72
+ 584 0227 01       		.uleb128 0x1
+ 585 0228 9C       		.byte	0x9c
+ 586 0229 37020000 		.4byte	0x237
+ 587 022d 09       		.uleb128 0x9
+ 588 022e 0E000000 		.4byte	.LVL11
+ 589 0232 FF020000 		.4byte	0x2ff
+ 590 0236 00       		.byte	0
+ 591 0237 06       		.uleb128 0x6
+ 592 0238 0A000000 		.4byte	.LASF28
+ 593 023c 01       		.byte	0x1
+ 594 023d 42       		.byte	0x42
+ 595 023e 00000000 		.4byte	.LFB73
+ 596 0242 0C000000 		.4byte	.LFE73-.LFB73
+ 597 0246 01       		.uleb128 0x1
+ 598 0247 9C       		.byte	0x9c
+ 599 0248 56020000 		.4byte	0x256
+ 600 024c 09       		.uleb128 0x9
+ 601 024d 08000000 		.4byte	.LVL12
+ 602 0251 FF020000 		.4byte	0x2ff
+ 603 0255 00       		.byte	0
+ 604 0256 0C       		.uleb128 0xc
+ 605 0257 D6000000 		.4byte	.LASF29
+ 606 025b 05       		.byte	0x5
+ 607 025c 9606     		.2byte	0x696
+ 608 025e 62020000 		.4byte	0x262
+ 609 0262 0D       		.uleb128 0xd
+ 610 0263 76000000 		.4byte	0x76
+ 611 0267 0E       		.uleb128 0xe
+ 612 0268 99000000 		.4byte	0x99
+ 613 026c 77020000 		.4byte	0x277
+ 614 0270 0F       		.uleb128 0xf
+ 615 0271 BA000000 		.4byte	0xba
+ 616 0275 9F       		.byte	0x9f
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 13
+
+
+ 617 0276 00       		.byte	0
+ 618 0277 10       		.uleb128 0x10
+ 619 0278 E3000000 		.4byte	.LASF30
+ 620 027c 06       		.byte	0x6
+ 621 027d 13       		.byte	0x13
+ 622 027e 67020000 		.4byte	0x267
+ 623 0282 05       		.uleb128 0x5
+ 624 0283 03       		.byte	0x3
+ 625 0284 00000000 		.4byte	Camera_linebuffer
+ 626 0288 11       		.uleb128 0x11
+ 627 0289 6D617800 		.ascii	"max\000"
+ 628 028d 01       		.byte	0x1
+ 629 028e 18       		.byte	0x18
+ 630 028f 81000000 		.4byte	0x81
+ 631 0293 05       		.uleb128 0x5
+ 632 0294 03       		.byte	0x3
+ 633 0295 00000000 		.4byte	max
+ 634 0299 10       		.uleb128 0x10
+ 635 029a B9000000 		.4byte	.LASF31
+ 636 029e 01       		.byte	0x1
+ 637 029f 19       		.byte	0x19
+ 638 02a0 81000000 		.4byte	0x81
+ 639 02a4 05       		.uleb128 0x5
+ 640 02a5 03       		.byte	0x3
+ 641 02a6 00000000 		.4byte	halfway
+ 642 02aa 10       		.uleb128 0x10
+ 643 02ab 1F000000 		.4byte	.LASF32
+ 644 02af 01       		.byte	0x1
+ 645 02b0 1A       		.byte	0x1a
+ 646 02b1 81000000 		.4byte	0x81
+ 647 02b5 05       		.uleb128 0x5
+ 648 02b6 03       		.byte	0x3
+ 649 02b7 00000000 		.4byte	zerodegrees
+ 650 02bb 12       		.uleb128 0x12
+ 651 02bc 52020000 		.4byte	.LASF33
+ 652 02c0 07       		.byte	0x7
+ 653 02c1 C3       		.byte	0xc3
+ 654 02c2 CC020000 		.4byte	0x2cc
+ 655 02c6 13       		.uleb128 0x13
+ 656 02c7 8D000000 		.4byte	0x8d
+ 657 02cb 00       		.byte	0
+ 658 02cc 12       		.uleb128 0x12
+ 659 02cd 68020000 		.4byte	.LASF34
+ 660 02d1 08       		.byte	0x8
+ 661 02d2 C3       		.byte	0xc3
+ 662 02d3 DD020000 		.4byte	0x2dd
+ 663 02d7 13       		.uleb128 0x13
+ 664 02d8 8D000000 		.4byte	0x8d
+ 665 02dc 00       		.byte	0
+ 666 02dd 12       		.uleb128 0x12
+ 667 02de 91020000 		.4byte	.LASF35
+ 668 02e2 09       		.byte	0x9
+ 669 02e3 76       		.byte	0x76
+ 670 02e4 EE020000 		.4byte	0x2ee
+ 671 02e8 13       		.uleb128 0x13
+ 672 02e9 99000000 		.4byte	0x99
+ 673 02ed 00       		.byte	0
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 14
+
+
+ 674 02ee 12       		.uleb128 0x12
+ 675 02ef C1000000 		.4byte	.LASF36
+ 676 02f3 0A       		.byte	0xa
+ 677 02f4 C3       		.byte	0xc3
+ 678 02f5 FF020000 		.4byte	0x2ff
+ 679 02f9 13       		.uleb128 0x13
+ 680 02fa 8D000000 		.4byte	0x8d
+ 681 02fe 00       		.byte	0
+ 682 02ff 14       		.uleb128 0x14
+ 683 0300 50010000 		.4byte	.LASF40
+ 684 0304 0B       		.byte	0xb
+ 685 0305 C3       		.byte	0xc3
+ 686 0306 13       		.uleb128 0x13
+ 687 0307 8D000000 		.4byte	0x8d
+ 688 030b 00       		.byte	0
+ 689 030c 00       		.byte	0
+ 690              		.section	.debug_abbrev,"",%progbits
+ 691              	.Ldebug_abbrev0:
+ 692 0000 01       		.uleb128 0x1
+ 693 0001 11       		.uleb128 0x11
+ 694 0002 01       		.byte	0x1
+ 695 0003 25       		.uleb128 0x25
+ 696 0004 0E       		.uleb128 0xe
+ 697 0005 13       		.uleb128 0x13
+ 698 0006 0B       		.uleb128 0xb
+ 699 0007 03       		.uleb128 0x3
+ 700 0008 0E       		.uleb128 0xe
+ 701 0009 1B       		.uleb128 0x1b
+ 702 000a 0E       		.uleb128 0xe
+ 703 000b 55       		.uleb128 0x55
+ 704 000c 17       		.uleb128 0x17
+ 705 000d 11       		.uleb128 0x11
+ 706 000e 01       		.uleb128 0x1
+ 707 000f 10       		.uleb128 0x10
+ 708 0010 17       		.uleb128 0x17
+ 709 0011 00       		.byte	0
+ 710 0012 00       		.byte	0
+ 711 0013 02       		.uleb128 0x2
+ 712 0014 24       		.uleb128 0x24
+ 713 0015 00       		.byte	0
+ 714 0016 0B       		.uleb128 0xb
+ 715 0017 0B       		.uleb128 0xb
+ 716 0018 3E       		.uleb128 0x3e
+ 717 0019 0B       		.uleb128 0xb
+ 718 001a 03       		.uleb128 0x3
+ 719 001b 0E       		.uleb128 0xe
+ 720 001c 00       		.byte	0
+ 721 001d 00       		.byte	0
+ 722 001e 03       		.uleb128 0x3
+ 723 001f 16       		.uleb128 0x16
+ 724 0020 00       		.byte	0
+ 725 0021 03       		.uleb128 0x3
+ 726 0022 0E       		.uleb128 0xe
+ 727 0023 3A       		.uleb128 0x3a
+ 728 0024 0B       		.uleb128 0xb
+ 729 0025 3B       		.uleb128 0x3b
+ 730 0026 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 15
+
+
+ 731 0027 49       		.uleb128 0x49
+ 732 0028 13       		.uleb128 0x13
+ 733 0029 00       		.byte	0
+ 734 002a 00       		.byte	0
+ 735 002b 04       		.uleb128 0x4
+ 736 002c 24       		.uleb128 0x24
+ 737 002d 00       		.byte	0
+ 738 002e 0B       		.uleb128 0xb
+ 739 002f 0B       		.uleb128 0xb
+ 740 0030 3E       		.uleb128 0x3e
+ 741 0031 0B       		.uleb128 0xb
+ 742 0032 03       		.uleb128 0x3
+ 743 0033 08       		.uleb128 0x8
+ 744 0034 00       		.byte	0
+ 745 0035 00       		.byte	0
+ 746 0036 05       		.uleb128 0x5
+ 747 0037 16       		.uleb128 0x16
+ 748 0038 00       		.byte	0
+ 749 0039 03       		.uleb128 0x3
+ 750 003a 0E       		.uleb128 0xe
+ 751 003b 3A       		.uleb128 0x3a
+ 752 003c 0B       		.uleb128 0xb
+ 753 003d 3B       		.uleb128 0x3b
+ 754 003e 05       		.uleb128 0x5
+ 755 003f 49       		.uleb128 0x49
+ 756 0040 13       		.uleb128 0x13
+ 757 0041 00       		.byte	0
+ 758 0042 00       		.byte	0
+ 759 0043 06       		.uleb128 0x6
+ 760 0044 2E       		.uleb128 0x2e
+ 761 0045 01       		.byte	0x1
+ 762 0046 3F       		.uleb128 0x3f
+ 763 0047 19       		.uleb128 0x19
+ 764 0048 03       		.uleb128 0x3
+ 765 0049 0E       		.uleb128 0xe
+ 766 004a 3A       		.uleb128 0x3a
+ 767 004b 0B       		.uleb128 0xb
+ 768 004c 3B       		.uleb128 0x3b
+ 769 004d 0B       		.uleb128 0xb
+ 770 004e 11       		.uleb128 0x11
+ 771 004f 01       		.uleb128 0x1
+ 772 0050 12       		.uleb128 0x12
+ 773 0051 06       		.uleb128 0x6
+ 774 0052 40       		.uleb128 0x40
+ 775 0053 18       		.uleb128 0x18
+ 776 0054 9742     		.uleb128 0x2117
+ 777 0056 19       		.uleb128 0x19
+ 778 0057 01       		.uleb128 0x1
+ 779 0058 13       		.uleb128 0x13
+ 780 0059 00       		.byte	0
+ 781 005a 00       		.byte	0
+ 782 005b 07       		.uleb128 0x7
+ 783 005c 898201   		.uleb128 0x4109
+ 784 005f 01       		.byte	0x1
+ 785 0060 11       		.uleb128 0x11
+ 786 0061 01       		.uleb128 0x1
+ 787 0062 9542     		.uleb128 0x2115
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 16
+
+
+ 788 0064 19       		.uleb128 0x19
+ 789 0065 31       		.uleb128 0x31
+ 790 0066 13       		.uleb128 0x13
+ 791 0067 00       		.byte	0
+ 792 0068 00       		.byte	0
+ 793 0069 08       		.uleb128 0x8
+ 794 006a 8A8201   		.uleb128 0x410a
+ 795 006d 00       		.byte	0
+ 796 006e 02       		.uleb128 0x2
+ 797 006f 18       		.uleb128 0x18
+ 798 0070 9142     		.uleb128 0x2111
+ 799 0072 18       		.uleb128 0x18
+ 800 0073 00       		.byte	0
+ 801 0074 00       		.byte	0
+ 802 0075 09       		.uleb128 0x9
+ 803 0076 898201   		.uleb128 0x4109
+ 804 0079 00       		.byte	0
+ 805 007a 11       		.uleb128 0x11
+ 806 007b 01       		.uleb128 0x1
+ 807 007c 9542     		.uleb128 0x2115
+ 808 007e 19       		.uleb128 0x19
+ 809 007f 31       		.uleb128 0x31
+ 810 0080 13       		.uleb128 0x13
+ 811 0081 00       		.byte	0
+ 812 0082 00       		.byte	0
+ 813 0083 0A       		.uleb128 0xa
+ 814 0084 898201   		.uleb128 0x4109
+ 815 0087 00       		.byte	0
+ 816 0088 11       		.uleb128 0x11
+ 817 0089 01       		.uleb128 0x1
+ 818 008a 31       		.uleb128 0x31
+ 819 008b 13       		.uleb128 0x13
+ 820 008c 00       		.byte	0
+ 821 008d 00       		.byte	0
+ 822 008e 0B       		.uleb128 0xb
+ 823 008f 898201   		.uleb128 0x4109
+ 824 0092 01       		.byte	0x1
+ 825 0093 11       		.uleb128 0x11
+ 826 0094 01       		.uleb128 0x1
+ 827 0095 31       		.uleb128 0x31
+ 828 0096 13       		.uleb128 0x13
+ 829 0097 01       		.uleb128 0x1
+ 830 0098 13       		.uleb128 0x13
+ 831 0099 00       		.byte	0
+ 832 009a 00       		.byte	0
+ 833 009b 0C       		.uleb128 0xc
+ 834 009c 34       		.uleb128 0x34
+ 835 009d 00       		.byte	0
+ 836 009e 03       		.uleb128 0x3
+ 837 009f 0E       		.uleb128 0xe
+ 838 00a0 3A       		.uleb128 0x3a
+ 839 00a1 0B       		.uleb128 0xb
+ 840 00a2 3B       		.uleb128 0x3b
+ 841 00a3 05       		.uleb128 0x5
+ 842 00a4 49       		.uleb128 0x49
+ 843 00a5 13       		.uleb128 0x13
+ 844 00a6 3F       		.uleb128 0x3f
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 17
+
+
+ 845 00a7 19       		.uleb128 0x19
+ 846 00a8 3C       		.uleb128 0x3c
+ 847 00a9 19       		.uleb128 0x19
+ 848 00aa 00       		.byte	0
+ 849 00ab 00       		.byte	0
+ 850 00ac 0D       		.uleb128 0xd
+ 851 00ad 35       		.uleb128 0x35
+ 852 00ae 00       		.byte	0
+ 853 00af 49       		.uleb128 0x49
+ 854 00b0 13       		.uleb128 0x13
+ 855 00b1 00       		.byte	0
+ 856 00b2 00       		.byte	0
+ 857 00b3 0E       		.uleb128 0xe
+ 858 00b4 01       		.uleb128 0x1
+ 859 00b5 01       		.byte	0x1
+ 860 00b6 49       		.uleb128 0x49
+ 861 00b7 13       		.uleb128 0x13
+ 862 00b8 01       		.uleb128 0x1
+ 863 00b9 13       		.uleb128 0x13
+ 864 00ba 00       		.byte	0
+ 865 00bb 00       		.byte	0
+ 866 00bc 0F       		.uleb128 0xf
+ 867 00bd 21       		.uleb128 0x21
+ 868 00be 00       		.byte	0
+ 869 00bf 49       		.uleb128 0x49
+ 870 00c0 13       		.uleb128 0x13
+ 871 00c1 2F       		.uleb128 0x2f
+ 872 00c2 0B       		.uleb128 0xb
+ 873 00c3 00       		.byte	0
+ 874 00c4 00       		.byte	0
+ 875 00c5 10       		.uleb128 0x10
+ 876 00c6 34       		.uleb128 0x34
+ 877 00c7 00       		.byte	0
+ 878 00c8 03       		.uleb128 0x3
+ 879 00c9 0E       		.uleb128 0xe
+ 880 00ca 3A       		.uleb128 0x3a
+ 881 00cb 0B       		.uleb128 0xb
+ 882 00cc 3B       		.uleb128 0x3b
+ 883 00cd 0B       		.uleb128 0xb
+ 884 00ce 49       		.uleb128 0x49
+ 885 00cf 13       		.uleb128 0x13
+ 886 00d0 3F       		.uleb128 0x3f
+ 887 00d1 19       		.uleb128 0x19
+ 888 00d2 02       		.uleb128 0x2
+ 889 00d3 18       		.uleb128 0x18
+ 890 00d4 00       		.byte	0
+ 891 00d5 00       		.byte	0
+ 892 00d6 11       		.uleb128 0x11
+ 893 00d7 34       		.uleb128 0x34
+ 894 00d8 00       		.byte	0
+ 895 00d9 03       		.uleb128 0x3
+ 896 00da 08       		.uleb128 0x8
+ 897 00db 3A       		.uleb128 0x3a
+ 898 00dc 0B       		.uleb128 0xb
+ 899 00dd 3B       		.uleb128 0x3b
+ 900 00de 0B       		.uleb128 0xb
+ 901 00df 49       		.uleb128 0x49
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 18
+
+
+ 902 00e0 13       		.uleb128 0x13
+ 903 00e1 3F       		.uleb128 0x3f
+ 904 00e2 19       		.uleb128 0x19
+ 905 00e3 02       		.uleb128 0x2
+ 906 00e4 18       		.uleb128 0x18
+ 907 00e5 00       		.byte	0
+ 908 00e6 00       		.byte	0
+ 909 00e7 12       		.uleb128 0x12
+ 910 00e8 2E       		.uleb128 0x2e
+ 911 00e9 01       		.byte	0x1
+ 912 00ea 3F       		.uleb128 0x3f
+ 913 00eb 19       		.uleb128 0x19
+ 914 00ec 03       		.uleb128 0x3
+ 915 00ed 0E       		.uleb128 0xe
+ 916 00ee 3A       		.uleb128 0x3a
+ 917 00ef 0B       		.uleb128 0xb
+ 918 00f0 3B       		.uleb128 0x3b
+ 919 00f1 0B       		.uleb128 0xb
+ 920 00f2 27       		.uleb128 0x27
+ 921 00f3 19       		.uleb128 0x19
+ 922 00f4 3C       		.uleb128 0x3c
+ 923 00f5 19       		.uleb128 0x19
+ 924 00f6 01       		.uleb128 0x1
+ 925 00f7 13       		.uleb128 0x13
+ 926 00f8 00       		.byte	0
+ 927 00f9 00       		.byte	0
+ 928 00fa 13       		.uleb128 0x13
+ 929 00fb 05       		.uleb128 0x5
+ 930 00fc 00       		.byte	0
+ 931 00fd 49       		.uleb128 0x49
+ 932 00fe 13       		.uleb128 0x13
+ 933 00ff 00       		.byte	0
+ 934 0100 00       		.byte	0
+ 935 0101 14       		.uleb128 0x14
+ 936 0102 2E       		.uleb128 0x2e
+ 937 0103 01       		.byte	0x1
+ 938 0104 3F       		.uleb128 0x3f
+ 939 0105 19       		.uleb128 0x19
+ 940 0106 03       		.uleb128 0x3
+ 941 0107 0E       		.uleb128 0xe
+ 942 0108 3A       		.uleb128 0x3a
+ 943 0109 0B       		.uleb128 0xb
+ 944 010a 3B       		.uleb128 0x3b
+ 945 010b 0B       		.uleb128 0xb
+ 946 010c 27       		.uleb128 0x27
+ 947 010d 19       		.uleb128 0x19
+ 948 010e 3C       		.uleb128 0x3c
+ 949 010f 19       		.uleb128 0x19
+ 950 0110 00       		.byte	0
+ 951 0111 00       		.byte	0
+ 952 0112 00       		.byte	0
+ 953              		.section	.debug_aranges,"",%progbits
+ 954 0000 6C000000 		.4byte	0x6c
+ 955 0004 0200     		.2byte	0x2
+ 956 0006 00000000 		.4byte	.Ldebug_info0
+ 957 000a 04       		.byte	0x4
+ 958 000b 00       		.byte	0
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 19
+
+
+ 959 000c 0000     		.2byte	0
+ 960 000e 0000     		.2byte	0
+ 961 0010 00000000 		.4byte	.LFB63
+ 962 0014 06000000 		.4byte	.LFE63-.LFB63
+ 963 0018 00000000 		.4byte	.LFB64
+ 964 001c 06000000 		.4byte	.LFE64-.LFB64
+ 965 0020 00000000 		.4byte	.LFB65
+ 966 0024 0C000000 		.4byte	.LFE65-.LFB65
+ 967 0028 00000000 		.4byte	.LFB66
+ 968 002c 0C000000 		.4byte	.LFE66-.LFB66
+ 969 0030 00000000 		.4byte	.LFB67
+ 970 0034 0C000000 		.4byte	.LFE67-.LFB67
+ 971 0038 00000000 		.4byte	.LFB68
+ 972 003c 06000000 		.4byte	.LFE68-.LFB68
+ 973 0040 00000000 		.4byte	.LFB69
+ 974 0044 1C000000 		.4byte	.LFE69-.LFB69
+ 975 0048 00000000 		.4byte	.LFB70
+ 976 004c 06000000 		.4byte	.LFE70-.LFB70
+ 977 0050 00000000 		.4byte	.LFB71
+ 978 0054 06000000 		.4byte	.LFE71-.LFB71
+ 979 0058 00000000 		.4byte	.LFB72
+ 980 005c 14000000 		.4byte	.LFE72-.LFB72
+ 981 0060 00000000 		.4byte	.LFB73
+ 982 0064 0C000000 		.4byte	.LFE73-.LFB73
+ 983 0068 00000000 		.4byte	0
+ 984 006c 00000000 		.4byte	0
+ 985              		.section	.debug_ranges,"",%progbits
+ 986              	.Ldebug_ranges0:
+ 987 0000 00000000 		.4byte	.LFB63
+ 988 0004 06000000 		.4byte	.LFE63
+ 989 0008 00000000 		.4byte	.LFB64
+ 990 000c 06000000 		.4byte	.LFE64
+ 991 0010 00000000 		.4byte	.LFB65
+ 992 0014 0C000000 		.4byte	.LFE65
+ 993 0018 00000000 		.4byte	.LFB66
+ 994 001c 0C000000 		.4byte	.LFE66
+ 995 0020 00000000 		.4byte	.LFB67
+ 996 0024 0C000000 		.4byte	.LFE67
+ 997 0028 00000000 		.4byte	.LFB68
+ 998 002c 06000000 		.4byte	.LFE68
+ 999 0030 00000000 		.4byte	.LFB69
+ 1000 0034 1C000000 		.4byte	.LFE69
+ 1001 0038 00000000 		.4byte	.LFB70
+ 1002 003c 06000000 		.4byte	.LFE70
+ 1003 0040 00000000 		.4byte	.LFB71
+ 1004 0044 06000000 		.4byte	.LFE71
+ 1005 0048 00000000 		.4byte	.LFB72
+ 1006 004c 14000000 		.4byte	.LFE72
+ 1007 0050 00000000 		.4byte	.LFB73
+ 1008 0054 0C000000 		.4byte	.LFE73
+ 1009 0058 00000000 		.4byte	0
+ 1010 005c 00000000 		.4byte	0
+ 1011              		.section	.debug_line,"",%progbits
+ 1012              	.Ldebug_line0:
+ 1013 0000 5B020000 		.section	.debug_str,"MS",%progbits,1
+ 1013      0200A001 
+ 1013      00000201 
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 20
+
+
+ 1013      FB0E0D00 
+ 1013      01010101 
+ 1014              	.LASF9:
+ 1015 0000 5F5F696E 		.ascii	"__int32_t\000"
+ 1015      7433325F 
+ 1015      7400
+ 1016              	.LASF28:
+ 1017 000a 4C696674 		.ascii	"LiftTop\000"
+ 1017      546F7000 
+ 1018              	.LASF8:
+ 1019 0012 756E7369 		.ascii	"unsigned int\000"
+ 1019      676E6564 
+ 1019      20696E74 
+ 1019      00
+ 1020              	.LASF32:
+ 1021 001f 7A65726F 		.ascii	"zerodegrees\000"
+ 1021      64656772 
+ 1021      65657300 
+ 1022              	.LASF20:
+ 1023 002b 54696C74 		.ascii	"TiltUp\000"
+ 1023      557000
+ 1024              	.LASF23:
+ 1025 0032 54696C74 		.ascii	"TiltDown45\000"
+ 1025      446F776E 
+ 1025      343500
+ 1026              	.LASF14:
+ 1027 003d 666C6F61 		.ascii	"float\000"
+ 1027      7400
+ 1028              	.LASF11:
+ 1029 0043 75696E74 		.ascii	"uint8\000"
+ 1029      3800
+ 1030              	.LASF1:
+ 1031 0049 756E7369 		.ascii	"unsigned char\000"
+ 1031      676E6564 
+ 1031      20636861 
+ 1031      7200
+ 1032              	.LASF39:
+ 1033 0057 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 1033      6F63756D 
+ 1033      656E7473 
+ 1033      5C436F6D 
+ 1033      70757465 
+ 1034 0086 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 1034      5069636B 
+ 1034      75705C44 
+ 1034      6973706C 
+ 1034      61792E63 
+ 1035              	.LASF25:
+ 1036 009f 50616E4D 		.ascii	"PanMid\000"
+ 1036      696400
+ 1037              	.LASF3:
+ 1038 00a6 73686F72 		.ascii	"short unsigned int\000"
+ 1038      7420756E 
+ 1038      7369676E 
+ 1038      65642069 
+ 1038      6E7400
+ 1039              	.LASF31:
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 21
+
+
+ 1040 00b9 68616C66 		.ascii	"halfway\000"
+ 1040      77617900 
+ 1041              	.LASF36:
+ 1042 00c1 50574D5F 		.ascii	"PWM_Pan_WriteCompare\000"
+ 1042      50616E5F 
+ 1042      57726974 
+ 1042      65436F6D 
+ 1042      70617265 
+ 1043              	.LASF29:
+ 1044 00d6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1044      52784275 
+ 1044      66666572 
+ 1044      00
+ 1045              	.LASF30:
+ 1046 00e3 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1046      72615F6C 
+ 1046      696E6562 
+ 1046      75666665 
+ 1046      7200
+ 1047              	.LASF5:
+ 1048 00f5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1048      20756E73 
+ 1048      69676E65 
+ 1048      6420696E 
+ 1048      7400
+ 1049              	.LASF38:
+ 1050 0107 2E5C7077 		.ascii	".\\pwm_functions.c\000"
+ 1050      6D5F6675 
+ 1050      6E637469 
+ 1050      6F6E732E 
+ 1050      6300
+ 1051              	.LASF12:
+ 1052 0119 75696E74 		.ascii	"uint16\000"
+ 1052      313600
+ 1053              	.LASF13:
+ 1054 0120 75696E74 		.ascii	"uint32\000"
+ 1054      333200
+ 1055              	.LASF24:
+ 1056 0127 50616E52 		.ascii	"PanRight\000"
+ 1056      69676874 
+ 1056      00
+ 1057              	.LASF7:
+ 1058 0130 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1058      206C6F6E 
+ 1058      6720756E 
+ 1058      7369676E 
+ 1058      65642069 
+ 1059              	.LASF27:
+ 1060 0147 4C696674 		.ascii	"LiftHalf\000"
+ 1060      48616C66 
+ 1060      00
+ 1061              	.LASF40:
+ 1062 0150 50574D5F 		.ascii	"PWM_Lift_WriteCompare\000"
+ 1062      4C696674 
+ 1062      5F577269 
+ 1062      7465436F 
+ 1062      6D706172 
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 22
+
+
+ 1063              	.LASF10:
+ 1064 0166 696E7433 		.ascii	"int32_t\000"
+ 1064      325F7400 
+ 1065              	.LASF17:
+ 1066 016e 73697A65 		.ascii	"sizetype\000"
+ 1066      74797065 
+ 1066      00
+ 1067              	.LASF19:
+ 1068 0177 436C6177 		.ascii	"ClawClose\000"
+ 1068      436C6F73 
+ 1068      6500
+ 1069              	.LASF6:
+ 1070 0181 6C6F6E67 		.ascii	"long long int\000"
+ 1070      206C6F6E 
+ 1070      6720696E 
+ 1070      7400
+ 1071              	.LASF16:
+ 1072 018f 63686172 		.ascii	"char\000"
+ 1072      00
+ 1073              	.LASF18:
+ 1074 0194 436C6177 		.ascii	"ClawOpen\000"
+ 1074      4F70656E 
+ 1074      00
+ 1075              	.LASF26:
+ 1076 019d 4C696674 		.ascii	"LiftGround\000"
+ 1076      47726F75 
+ 1076      6E6400
+ 1077              	.LASF2:
+ 1078 01a8 73686F72 		.ascii	"short int\000"
+ 1078      7420696E 
+ 1078      7400
+ 1079              	.LASF37:
+ 1080 01b2 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1080      4320342E 
+ 1080      392E3320 
+ 1080      32303135 
+ 1080      30333033 
+ 1081 01e5 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1081      20726576 
+ 1081      6973696F 
+ 1081      6E203232 
+ 1081      31323230 
+ 1082 0218 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1082      66756E63 
+ 1082      74696F6E 
+ 1082      2D736563 
+ 1082      74696F6E 
+ 1083              	.LASF22:
+ 1084 0240 54696C74 		.ascii	"TiltDown\000"
+ 1084      446F776E 
+ 1084      00
+ 1085              	.LASF4:
+ 1086 0249 6C6F6E67 		.ascii	"long int\000"
+ 1086      20696E74 
+ 1086      00
+ 1087              	.LASF33:
+ 1088 0252 50574D5F 		.ascii	"PWM_Claw_WriteCompare\000"
+ARM GAS  D:\TEMP\ccPNd7Sn.s 			page 23
+
+
+ 1088      436C6177 
+ 1088      5F577269 
+ 1088      7465436F 
+ 1088      6D706172 
+ 1089              	.LASF34:
+ 1090 0268 50574D5F 		.ascii	"PWM_Tilt_WriteCompare\000"
+ 1090      54696C74 
+ 1090      5F577269 
+ 1090      7465436F 
+ 1090      6D706172 
+ 1091              	.LASF0:
+ 1092 027e 7369676E 		.ascii	"signed char\000"
+ 1092      65642063 
+ 1092      68617200 
+ 1093              	.LASF15:
+ 1094 028a 646F7562 		.ascii	"double\000"
+ 1094      6C6500
+ 1095              	.LASF35:
+ 1096 0291 43794465 		.ascii	"CyDelay\000"
+ 1096      6C617900 
+ 1097              	.LASF21:
+ 1098 0299 54696C74 		.ascii	"TiltStraight\000"
+ 1098      53747261 
+ 1098      69676874 
+ 1098      00
+ 1099              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

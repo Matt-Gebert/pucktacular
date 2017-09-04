@@ -1,0 +1,1520 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"initial_path_sequence.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_dcmplt
+  19              		.section	.text.PathInitialSequence,"ax",%progbits
+  20              		.align	2
+  21              		.global	PathInitialSequence
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	PathInitialSequence, %function
+  25              	PathInitialSequence:
+  26              	.LFB63:
+  27              		.file 1 ".\\initial_path_sequence.c"
+   1:.\initial_path_sequence.c **** /*
+   2:.\initial_path_sequence.c ****  * Copyright @Pucktacular, 2016
+   3:.\initial_path_sequence.c ****  * @Matt Gebert, Daniel Hranilovic & Kevin Duxbury
+   4:.\initial_path_sequence.c ****  * All Rights Reserved
+   5:.\initial_path_sequence.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\initial_path_sequence.c ****  *
+   7:.\initial_path_sequence.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\initial_path_sequence.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\initial_path_sequence.c ****  *
+  10:.\initial_path_sequence.c ****  * ========================================
+  11:.\initial_path_sequence.c **** */
+  12:.\initial_path_sequence.c **** #include <project.h>
+  13:.\initial_path_sequence.c **** #include <stdbool.h>
+  14:.\initial_path_sequence.c **** #include <math.h>
+  15:.\initial_path_sequence.c **** #include <stdlib.h>
+  16:.\initial_path_sequence.c **** #include "movement_functions.h"
+  17:.\initial_path_sequence.c **** #include "camera_display.h"
+  18:.\initial_path_sequence.c **** #include "camera_functions.h"
+  19:.\initial_path_sequence.c **** #include "pwm_functions.h"
+  20:.\initial_path_sequence.c **** #include "Ultrasonics.h"
+  21:.\initial_path_sequence.c **** #include "initial_path_sequence.h"
+  22:.\initial_path_sequence.c **** #include "utils.h"
+  23:.\initial_path_sequence.c **** 
+  24:.\initial_path_sequence.c **** 
+  25:.\initial_path_sequence.c **** bool PathInitialSequence(){
+  28              		.loc 1 25 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 2DE9D043 		push	{r4, r6, r7, r8, r9, lr}
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 2
+
+
+  33              		.cfi_def_cfa_offset 24
+  34              		.cfi_offset 4, -24
+  35              		.cfi_offset 6, -20
+  36              		.cfi_offset 7, -16
+  37              		.cfi_offset 8, -12
+  38              		.cfi_offset 9, -8
+  39              		.cfi_offset 14, -4
+  40 0004 82B0     		sub	sp, sp, #8
+  41              		.cfi_def_cfa_offset 32
+  42              	.LVL0:
+  26:.\initial_path_sequence.c ****     bool block = false;
+  27:.\initial_path_sequence.c ****     double check_angle = 5;
+  28:.\initial_path_sequence.c ****     double dist1,dist2;
+  29:.\initial_path_sequence.c ****     uint8 i;
+  30:.\initial_path_sequence.c ****     //move back
+  31:.\initial_path_sequence.c ****     MovementBackward(6000);
+  43              		.loc 1 31 0
+  44 0006 41F27070 		movw	r0, #6000
+  45 000a FFF7FEFF 		bl	MovementBackward
+  46              	.LVL1:
+  32:.\initial_path_sequence.c ****     //move back to 25cm
+  33:.\initial_path_sequence.c ****     //CyDelay(50);
+  34:.\initial_path_sequence.c ****     //MoveAlignBack(21,1);
+  35:.\initial_path_sequence.c ****     //camera sequence code here
+  36:.\initial_path_sequence.c ****     PanMid();
+  47              		.loc 1 36 0
+  48 000e FFF7FEFF 		bl	PanMid
+  49              	.LVL2:
+  37:.\initial_path_sequence.c ****     CyDelay(50);
+  50              		.loc 1 37 0
+  51 0012 3220     		movs	r0, #50
+  52 0014 FFF7FEFF 		bl	CyDelay
+  53              	.LVL3:
+  38:.\initial_path_sequence.c ****     TiltStraight();
+  54              		.loc 1 38 0
+  55 0018 FFF7FEFF 		bl	TiltStraight
+  56              	.LVL4:
+  39:.\initial_path_sequence.c ****     CyDelay(100);
+  57              		.loc 1 39 0
+  58 001c 6420     		movs	r0, #100
+  59 001e FFF7FEFF 		bl	CyDelay
+  60              	.LVL5:
+  40:.\initial_path_sequence.c ****     PWM_Pan_WriteCompare(125);//Adjusted Cam Angle for Puck Seq
+  61              		.loc 1 40 0
+  62 0022 7D20     		movs	r0, #125
+  63 0024 FFF7FEFF 		bl	PWM_Pan_WriteCompare
+  64              	.LVL6:
+  41:.\initial_path_sequence.c ****     CyDelay(100);
+  65              		.loc 1 41 0
+  66 0028 6420     		movs	r0, #100
+  67 002a FFF7FEFF 		bl	CyDelay
+  68              	.LVL7:
+  42:.\initial_path_sequence.c ****     CaptureFrameWithLights();
+  69              		.loc 1 42 0
+  70 002e FFF7FEFF 		bl	CaptureFrameWithLights
+  71              	.LVL8:
+  43:.\initial_path_sequence.c ****     CyDelay(100);
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 3
+
+
+  72              		.loc 1 43 0
+  73 0032 6420     		movs	r0, #100
+  74 0034 FFF7FEFF 		bl	CyDelay
+  75              	.LVL9:
+  44:.\initial_path_sequence.c ****     CamGetSequence();
+  76              		.loc 1 44 0
+  77 0038 FFF7FEFF 		bl	CamGetSequence
+  78              	.LVL10:
+  45:.\initial_path_sequence.c ****     PanMid();
+  79              		.loc 1 45 0
+  80 003c FFF7FEFF 		bl	PanMid
+  81              	.LVL11:
+  46:.\initial_path_sequence.c ****     CyDelay(100);
+  82              		.loc 1 46 0
+  83 0040 6420     		movs	r0, #100
+  84 0042 FFF7FEFF 		bl	CyDelay
+  85              	.LVL12:
+  47:.\initial_path_sequence.c ****     MovementForward(200);
+  86              		.loc 1 47 0
+  87 0046 C820     		movs	r0, #200
+  88 0048 FFF7FEFF 		bl	MovementForward
+  89              	.LVL13:
+  48:.\initial_path_sequence.c ****     CyDelay(50);
+  90              		.loc 1 48 0
+  91 004c 3220     		movs	r0, #50
+  92 004e FFF7FEFF 		bl	CyDelay
+  93              	.LVL14:
+  49:.\initial_path_sequence.c ****     //pivot right 90
+  50:.\initial_path_sequence.c ****     MovementPivotRight(80);
+  94              		.loc 1 50 0
+  95 0052 0020     		movs	r0, #0
+  96 0054 2749     		ldr	r1, .L12
+  97 0056 FFF7FEFF 		bl	MovementPivotRight
+  98              	.LVL15:
+  51:.\initial_path_sequence.c ****     //move to side wall
+  52:.\initial_path_sequence.c ****     MovementForward(3000);
+  99              		.loc 1 52 0
+ 100 005a 40F6B830 		movw	r0, #3000
+ 101 005e FFF7FEFF 		bl	MovementForward
+ 102              	.LVL16:
+  53:.\initial_path_sequence.c ****     MoveAlign(16,0,0,0.8);
+ 103              		.loc 1 53 0
+ 104 0062 254B     		ldr	r3, .L12+4
+ 105 0064 0093     		str	r3, [sp]	@ float
+ 106 0066 0020     		movs	r0, #0
+ 107 0068 2449     		ldr	r1, .L12+8
+ 108 006a 0022     		movs	r2, #0
+ 109 006c 1346     		mov	r3, r2
+ 110 006e FFF7FEFF 		bl	MoveAlign
+ 111              	.LVL17:
+  54:.\initial_path_sequence.c ****     //pivot right 90
+  55:.\initial_path_sequence.c ****     MovementPivotRight90();
+ 112              		.loc 1 55 0
+ 113 0072 FFF7FEFF 		bl	MovementPivotRight90
+ 114              	.LVL18:
+  56:.\initial_path_sequence.c ****     //check distance for brick
+  57:.\initial_path_sequence.c ****     for(i=0;i<3;i++){
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 4
+
+
+ 115              		.loc 1 57 0
+ 116 0076 0024     		movs	r4, #0
+ 117 0078 31E0     		b	.L2
+ 118              	.LVL19:
+ 119              	.L8:
+  58:.\initial_path_sequence.c ****         if(i==1){
+ 120              		.loc 1 58 0
+ 121 007a 012C     		cmp	r4, #1
+ 122 007c 03D1     		bne	.L3
+  59:.\initial_path_sequence.c ****             MovementPivotLeft(check_angle);
+ 123              		.loc 1 59 0
+ 124 007e 0020     		movs	r0, #0
+ 125 0080 1F49     		ldr	r1, .L12+12
+ 126 0082 FFF7FEFF 		bl	MovementPivotLeft
+ 127              	.LVL20:
+ 128              	.L3:
+  60:.\initial_path_sequence.c ****         }
+  61:.\initial_path_sequence.c ****         
+  62:.\initial_path_sequence.c ****         if(i==2){
+ 129              		.loc 1 62 0
+ 130 0086 022C     		cmp	r4, #2
+ 131 0088 03D1     		bne	.L4
+  63:.\initial_path_sequence.c ****             MovementPivotRight(check_angle);
+ 132              		.loc 1 63 0
+ 133 008a 0020     		movs	r0, #0
+ 134 008c 1C49     		ldr	r1, .L12+12
+ 135 008e FFF7FEFF 		bl	MovementPivotRight
+ 136              	.LVL21:
+ 137              	.L4:
+  64:.\initial_path_sequence.c ****         }
+  65:.\initial_path_sequence.c ****         dist1 = Ultrasonics(1);
+ 138              		.loc 1 65 0
+ 139 0092 0120     		movs	r0, #1
+ 140 0094 FFF7FEFF 		bl	Ultrasonics
+ 141              	.LVL22:
+ 142 0098 8046     		mov	r8, r0
+ 143 009a 8946     		mov	r9, r1
+ 144              	.LVL23:
+  66:.\initial_path_sequence.c ****         dist2 = Ultrasonics(0);
+ 145              		.loc 1 66 0
+ 146 009c 0020     		movs	r0, #0
+ 147 009e FFF7FEFF 		bl	Ultrasonics
+ 148              	.LVL24:
+ 149 00a2 0646     		mov	r6, r0
+ 150 00a4 0F46     		mov	r7, r1
+ 151              	.LVL25:
+  67:.\initial_path_sequence.c ****         if(i==1){
+ 152              		.loc 1 67 0
+ 153 00a6 012C     		cmp	r4, #1
+ 154 00a8 03D1     		bne	.L5
+  68:.\initial_path_sequence.c ****             MovementPivotRight(check_angle);
+ 155              		.loc 1 68 0
+ 156 00aa 0020     		movs	r0, #0
+ 157 00ac 1449     		ldr	r1, .L12+12
+ 158 00ae FFF7FEFF 		bl	MovementPivotRight
+ 159              	.LVL26:
+ 160              	.L5:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 5
+
+
+  69:.\initial_path_sequence.c ****         }
+  70:.\initial_path_sequence.c ****         
+  71:.\initial_path_sequence.c ****         if(i==2){
+ 161              		.loc 1 71 0
+ 162 00b2 022C     		cmp	r4, #2
+ 163 00b4 03D1     		bne	.L6
+  72:.\initial_path_sequence.c ****             MovementPivotLeft(check_angle);
+ 164              		.loc 1 72 0
+ 165 00b6 0020     		movs	r0, #0
+ 166 00b8 1149     		ldr	r1, .L12+12
+ 167 00ba FFF7FEFF 		bl	MovementPivotLeft
+ 168              	.LVL27:
+ 169              	.L6:
+  73:.\initial_path_sequence.c ****         }
+  74:.\initial_path_sequence.c ****         //dist_diff = fabs(dist1-dist2);
+  75:.\initial_path_sequence.c ****         if( (dist2<30) || (dist1<30) ){
+ 170              		.loc 1 75 0
+ 171 00be 3046     		mov	r0, r6
+ 172 00c0 3946     		mov	r1, r7
+ 173 00c2 0022     		movs	r2, #0
+ 174 00c4 0F4B     		ldr	r3, .L12+16
+ 175 00c6 FFF7FEFF 		bl	__aeabi_dcmplt
+ 176              	.LVL28:
+ 177 00ca 60B9     		cbnz	r0, .L9
+ 178              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 179 00cc 4046     		mov	r0, r8
+ 180 00ce 4946     		mov	r1, r9
+ 181 00d0 0022     		movs	r2, #0
+ 182 00d2 0C4B     		ldr	r3, .L12+16
+ 183 00d4 FFF7FEFF 		bl	__aeabi_dcmplt
+ 184              	.LVL29:
+ 185 00d8 38B9     		cbnz	r0, .L10
+  57:.\initial_path_sequence.c ****         if(i==1){
+ 186              		.loc 1 57 0 is_stmt 1 discriminator 2
+ 187 00da 0134     		adds	r4, r4, #1
+ 188              	.LVL30:
+ 189 00dc E4B2     		uxtb	r4, r4
+ 190              	.LVL31:
+ 191              	.L2:
+  57:.\initial_path_sequence.c ****         if(i==1){
+ 192              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 193 00de 022C     		cmp	r4, #2
+ 194 00e0 CBD9     		bls	.L8
+  76:.\initial_path_sequence.c ****            block = true;
+  77:.\initial_path_sequence.c ****            return block;
+  78:.\initial_path_sequence.c ****         }
+  79:.\initial_path_sequence.c ****     }
+  80:.\initial_path_sequence.c ****     return block;
+ 195              		.loc 1 80 0 is_stmt 1
+ 196 00e2 0020     		movs	r0, #0
+ 197 00e4 02E0     		b	.L7
+ 198              	.LVL32:
+ 199              	.L9:
+  77:.\initial_path_sequence.c ****         }
+ 200              		.loc 1 77 0
+ 201 00e6 0120     		movs	r0, #1
+ 202 00e8 00E0     		b	.L7
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 6
+
+
+ 203              	.L10:
+ 204 00ea 0120     		movs	r0, #1
+ 205              	.LVL33:
+ 206              	.L7:
+  81:.\initial_path_sequence.c **** }
+ 207              		.loc 1 81 0
+ 208 00ec 02B0     		add	sp, sp, #8
+ 209              		.cfi_def_cfa_offset 24
+ 210              		@ sp needed
+ 211 00ee BDE8D083 		pop	{r4, r6, r7, r8, r9, pc}
+ 212              	.LVL34:
+ 213              	.L13:
+ 214 00f2 00BF     		.align	2
+ 215              	.L12:
+ 216 00f4 00005440 		.word	1079246848
+ 217 00f8 CDCC4C3F 		.word	1061997773
+ 218 00fc 00003040 		.word	1076887552
+ 219 0100 00001440 		.word	1075052544
+ 220 0104 00003E40 		.word	1077805056
+ 221              		.cfi_endproc
+ 222              	.LFE63:
+ 223              		.size	PathInitialSequence, .-PathInitialSequence
+ 224              		.comm	display_mode,1,1
+ 225              		.comm	Camera_linebuffer,640,4
+ 226              		.text
+ 227              	.Letext0:
+ 228              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 229              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 230              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 231              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 232              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 233              		.file 7 ".\\camera_display.h"
+ 234              		.file 8 ".\\movement_functions.h"
+ 235              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 236              		.file 10 ".\\pwm_functions.h"
+ 237              		.file 11 "Generated_Source\\PSoC5/PWM_Pan.h"
+ 238              		.file 12 ".\\utils.h"
+ 239              		.file 13 ".\\camera_functions.h"
+ 240              		.file 14 ".\\Ultrasonics.h"
+ 241              		.section	.debug_info,"",%progbits
+ 242              	.Ldebug_info0:
+ 243 0000 D2030000 		.4byte	0x3d2
+ 244 0004 0400     		.2byte	0x4
+ 245 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 246 000a 04       		.byte	0x4
+ 247 000b 01       		.uleb128 0x1
+ 248 000c 71010000 		.4byte	.LASF43
+ 249 0010 01       		.byte	0x1
+ 250 0011 B2000000 		.4byte	.LASF44
+ 251 0015 6E020000 		.4byte	.LASF45
+ 252 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 253 001d 00000000 		.4byte	0
+ 254 0021 00000000 		.4byte	.Ldebug_line0
+ 255 0025 02       		.uleb128 0x2
+ 256 0026 01       		.byte	0x1
+ 257 0027 06       		.byte	0x6
+ 258 0028 DA020000 		.4byte	.LASF0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 7
+
+
+ 259 002c 02       		.uleb128 0x2
+ 260 002d 01       		.byte	0x1
+ 261 002e 08       		.byte	0x8
+ 262 002f A4000000 		.4byte	.LASF1
+ 263 0033 02       		.uleb128 0x2
+ 264 0034 02       		.byte	0x2
+ 265 0035 05       		.byte	0x5
+ 266 0036 B5020000 		.4byte	.LASF2
+ 267 003a 02       		.uleb128 0x2
+ 268 003b 02       		.byte	0x2
+ 269 003c 07       		.byte	0x7
+ 270 003d EF000000 		.4byte	.LASF3
+ 271 0041 03       		.uleb128 0x3
+ 272 0042 46000000 		.4byte	.LASF9
+ 273 0046 02       		.byte	0x2
+ 274 0047 3F       		.byte	0x3f
+ 275 0048 4C000000 		.4byte	0x4c
+ 276 004c 02       		.uleb128 0x2
+ 277 004d 04       		.byte	0x4
+ 278 004e 05       		.byte	0x5
+ 279 004f C5020000 		.4byte	.LASF4
+ 280 0053 02       		.uleb128 0x2
+ 281 0054 04       		.byte	0x4
+ 282 0055 07       		.byte	0x7
+ 283 0056 47010000 		.4byte	.LASF5
+ 284 005a 02       		.uleb128 0x2
+ 285 005b 08       		.byte	0x8
+ 286 005c 05       		.byte	0x5
+ 287 005d 00000000 		.4byte	.LASF6
+ 288 0061 02       		.uleb128 0x2
+ 289 0062 08       		.byte	0x8
+ 290 0063 07       		.byte	0x7
+ 291 0064 12020000 		.4byte	.LASF7
+ 292 0068 04       		.uleb128 0x4
+ 293 0069 04       		.byte	0x4
+ 294 006a 05       		.byte	0x5
+ 295 006b 696E7400 		.ascii	"int\000"
+ 296 006f 02       		.uleb128 0x2
+ 297 0070 04       		.byte	0x4
+ 298 0071 07       		.byte	0x7
+ 299 0072 FF010000 		.4byte	.LASF8
+ 300 0076 03       		.uleb128 0x3
+ 301 0077 4C020000 		.4byte	.LASF10
+ 302 007b 03       		.byte	0x3
+ 303 007c 2C       		.byte	0x2c
+ 304 007d 41000000 		.4byte	0x41
+ 305 0081 05       		.uleb128 0x5
+ 306 0082 BF020000 		.4byte	.LASF11
+ 307 0086 04       		.byte	0x4
+ 308 0087 9201     		.2byte	0x192
+ 309 0089 2C000000 		.4byte	0x2c
+ 310 008d 05       		.uleb128 0x5
+ 311 008e 63010000 		.4byte	.LASF12
+ 312 0092 04       		.byte	0x4
+ 313 0093 9301     		.2byte	0x193
+ 314 0095 3A000000 		.4byte	0x3a
+ 315 0099 05       		.uleb128 0x5
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 8
+
+
+ 316 009a 6A010000 		.4byte	.LASF13
+ 317 009e 04       		.byte	0x4
+ 318 009f 9401     		.2byte	0x194
+ 319 00a1 53000000 		.4byte	0x53
+ 320 00a5 02       		.uleb128 0x2
+ 321 00a6 04       		.byte	0x4
+ 322 00a7 04       		.byte	0x4
+ 323 00a8 8C000000 		.4byte	.LASF14
+ 324 00ac 02       		.uleb128 0x2
+ 325 00ad 08       		.byte	0x8
+ 326 00ae 04       		.byte	0x4
+ 327 00af E6020000 		.4byte	.LASF15
+ 328 00b3 02       		.uleb128 0x2
+ 329 00b4 01       		.byte	0x1
+ 330 00b5 08       		.byte	0x8
+ 331 00b6 69020000 		.4byte	.LASF16
+ 332 00ba 02       		.uleb128 0x2
+ 333 00bb 04       		.byte	0x4
+ 334 00bc 07       		.byte	0x7
+ 335 00bd 54020000 		.4byte	.LASF17
+ 336 00c1 02       		.uleb128 0x2
+ 337 00c2 08       		.byte	0x8
+ 338 00c3 04       		.byte	0x4
+ 339 00c4 CE020000 		.4byte	.LASF18
+ 340 00c8 06       		.uleb128 0x6
+ 341 00c9 01       		.byte	0x1
+ 342 00ca 07       		.byte	0x7
+ 343 00cb 1D       		.byte	0x1d
+ 344 00cc E3000000 		.4byte	0xe3
+ 345 00d0 07       		.uleb128 0x7
+ 346 00d1 0C020000 		.4byte	.LASF19
+ 347 00d5 00       		.sleb128 0
+ 348 00d6 07       		.uleb128 0x7
+ 349 00d7 59010000 		.4byte	.LASF20
+ 350 00db 01       		.sleb128 1
+ 351 00dc 07       		.uleb128 0x7
+ 352 00dd 50000000 		.4byte	.LASF21
+ 353 00e1 02       		.sleb128 2
+ 354 00e2 00       		.byte	0
+ 355 00e3 08       		.uleb128 0x8
+ 356 00e4 29020000 		.4byte	.LASF46
+ 357 00e8 01       		.byte	0x1
+ 358 00e9 19       		.byte	0x19
+ 359 00ea B3020000 		.4byte	0x2b3
+ 360 00ee 00000000 		.4byte	.LFB63
+ 361 00f2 08010000 		.4byte	.LFE63-.LFB63
+ 362 00f6 01       		.uleb128 0x1
+ 363 00f7 9C       		.byte	0x9c
+ 364 00f8 B3020000 		.4byte	0x2b3
+ 365 00fc 09       		.uleb128 0x9
+ 366 00fd 92000000 		.4byte	.LASF22
+ 367 0101 01       		.byte	0x1
+ 368 0102 1A       		.byte	0x1a
+ 369 0103 B3020000 		.4byte	0x2b3
+ 370 0107 00       		.byte	0
+ 371 0108 0A       		.uleb128 0xa
+ 372 0109 5D020000 		.4byte	.LASF23
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 9
+
+
+ 373 010d 01       		.byte	0x1
+ 374 010e 1B       		.byte	0x1b
+ 375 010f AC000000 		.4byte	0xac
+ 376 0113 08       		.byte	0x8
+ 377 0114 00000000 		.4byte	0
+ 378 0118 00001440 		.4byte	0x40140000
+ 379 011c 0B       		.uleb128 0xb
+ 380 011d 3A000000 		.4byte	.LASF24
+ 381 0121 01       		.byte	0x1
+ 382 0122 1C       		.byte	0x1c
+ 383 0123 AC000000 		.4byte	0xac
+ 384 0127 00000000 		.4byte	.LLST0
+ 385 012b 0B       		.uleb128 0xb
+ 386 012c 40000000 		.4byte	.LASF25
+ 387 0130 01       		.byte	0x1
+ 388 0131 1C       		.byte	0x1c
+ 389 0132 AC000000 		.4byte	0xac
+ 390 0136 28000000 		.4byte	.LLST1
+ 391 013a 0C       		.uleb128 0xc
+ 392 013b 6900     		.ascii	"i\000"
+ 393 013d 01       		.byte	0x1
+ 394 013e 1D       		.byte	0x1d
+ 395 013f 81000000 		.4byte	0x81
+ 396 0143 50000000 		.4byte	.LLST2
+ 397 0147 0D       		.uleb128 0xd
+ 398 0148 0E000000 		.4byte	.LVL1
+ 399 014c FD020000 		.4byte	0x2fd
+ 400 0150 5C010000 		.4byte	0x15c
+ 401 0154 0E       		.uleb128 0xe
+ 402 0155 01       		.uleb128 0x1
+ 403 0156 50       		.byte	0x50
+ 404 0157 03       		.uleb128 0x3
+ 405 0158 0A       		.byte	0xa
+ 406 0159 7017     		.2byte	0x1770
+ 407 015b 00       		.byte	0
+ 408 015c 0F       		.uleb128 0xf
+ 409 015d 12000000 		.4byte	.LVL2
+ 410 0161 0E030000 		.4byte	0x30e
+ 411 0165 0D       		.uleb128 0xd
+ 412 0166 18000000 		.4byte	.LVL3
+ 413 016a 1B030000 		.4byte	0x31b
+ 414 016e 79010000 		.4byte	0x179
+ 415 0172 0E       		.uleb128 0xe
+ 416 0173 01       		.uleb128 0x1
+ 417 0174 50       		.byte	0x50
+ 418 0175 02       		.uleb128 0x2
+ 419 0176 08       		.byte	0x8
+ 420 0177 32       		.byte	0x32
+ 421 0178 00       		.byte	0
+ 422 0179 0F       		.uleb128 0xf
+ 423 017a 1C000000 		.4byte	.LVL4
+ 424 017e 2C030000 		.4byte	0x32c
+ 425 0182 0D       		.uleb128 0xd
+ 426 0183 22000000 		.4byte	.LVL5
+ 427 0187 1B030000 		.4byte	0x31b
+ 428 018b 96010000 		.4byte	0x196
+ 429 018f 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 10
+
+
+ 430 0190 01       		.uleb128 0x1
+ 431 0191 50       		.byte	0x50
+ 432 0192 02       		.uleb128 0x2
+ 433 0193 08       		.byte	0x8
+ 434 0194 64       		.byte	0x64
+ 435 0195 00       		.byte	0
+ 436 0196 0D       		.uleb128 0xd
+ 437 0197 28000000 		.4byte	.LVL6
+ 438 019b 39030000 		.4byte	0x339
+ 439 019f AA010000 		.4byte	0x1aa
+ 440 01a3 0E       		.uleb128 0xe
+ 441 01a4 01       		.uleb128 0x1
+ 442 01a5 50       		.byte	0x50
+ 443 01a6 02       		.uleb128 0x2
+ 444 01a7 08       		.byte	0x8
+ 445 01a8 7D       		.byte	0x7d
+ 446 01a9 00       		.byte	0
+ 447 01aa 0D       		.uleb128 0xd
+ 448 01ab 2E000000 		.4byte	.LVL7
+ 449 01af 1B030000 		.4byte	0x31b
+ 450 01b3 BE010000 		.4byte	0x1be
+ 451 01b7 0E       		.uleb128 0xe
+ 452 01b8 01       		.uleb128 0x1
+ 453 01b9 50       		.byte	0x50
+ 454 01ba 02       		.uleb128 0x2
+ 455 01bb 08       		.byte	0x8
+ 456 01bc 64       		.byte	0x64
+ 457 01bd 00       		.byte	0
+ 458 01be 0F       		.uleb128 0xf
+ 459 01bf 32000000 		.4byte	.LVL8
+ 460 01c3 4A030000 		.4byte	0x34a
+ 461 01c7 0D       		.uleb128 0xd
+ 462 01c8 38000000 		.4byte	.LVL9
+ 463 01cc 1B030000 		.4byte	0x31b
+ 464 01d0 DB010000 		.4byte	0x1db
+ 465 01d4 0E       		.uleb128 0xe
+ 466 01d5 01       		.uleb128 0x1
+ 467 01d6 50       		.byte	0x50
+ 468 01d7 02       		.uleb128 0x2
+ 469 01d8 08       		.byte	0x8
+ 470 01d9 64       		.byte	0x64
+ 471 01da 00       		.byte	0
+ 472 01db 0F       		.uleb128 0xf
+ 473 01dc 3C000000 		.4byte	.LVL10
+ 474 01e0 57030000 		.4byte	0x357
+ 475 01e4 0F       		.uleb128 0xf
+ 476 01e5 40000000 		.4byte	.LVL11
+ 477 01e9 0E030000 		.4byte	0x30e
+ 478 01ed 0D       		.uleb128 0xd
+ 479 01ee 46000000 		.4byte	.LVL12
+ 480 01f2 1B030000 		.4byte	0x31b
+ 481 01f6 01020000 		.4byte	0x201
+ 482 01fa 0E       		.uleb128 0xe
+ 483 01fb 01       		.uleb128 0x1
+ 484 01fc 50       		.byte	0x50
+ 485 01fd 02       		.uleb128 0x2
+ 486 01fe 08       		.byte	0x8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 11
+
+
+ 487 01ff 64       		.byte	0x64
+ 488 0200 00       		.byte	0
+ 489 0201 0D       		.uleb128 0xd
+ 490 0202 4C000000 		.4byte	.LVL13
+ 491 0206 64030000 		.4byte	0x364
+ 492 020a 15020000 		.4byte	0x215
+ 493 020e 0E       		.uleb128 0xe
+ 494 020f 01       		.uleb128 0x1
+ 495 0210 50       		.byte	0x50
+ 496 0211 02       		.uleb128 0x2
+ 497 0212 08       		.byte	0x8
+ 498 0213 C8       		.byte	0xc8
+ 499 0214 00       		.byte	0
+ 500 0215 0D       		.uleb128 0xd
+ 501 0216 52000000 		.4byte	.LVL14
+ 502 021a 1B030000 		.4byte	0x31b
+ 503 021e 29020000 		.4byte	0x229
+ 504 0222 0E       		.uleb128 0xe
+ 505 0223 01       		.uleb128 0x1
+ 506 0224 50       		.byte	0x50
+ 507 0225 02       		.uleb128 0x2
+ 508 0226 08       		.byte	0x8
+ 509 0227 32       		.byte	0x32
+ 510 0228 00       		.byte	0
+ 511 0229 0F       		.uleb128 0xf
+ 512 022a 5A000000 		.4byte	.LVL15
+ 513 022e 75030000 		.4byte	0x375
+ 514 0232 0D       		.uleb128 0xd
+ 515 0233 62000000 		.4byte	.LVL16
+ 516 0237 64030000 		.4byte	0x364
+ 517 023b 47020000 		.4byte	0x247
+ 518 023f 0E       		.uleb128 0xe
+ 519 0240 01       		.uleb128 0x1
+ 520 0241 50       		.byte	0x50
+ 521 0242 03       		.uleb128 0x3
+ 522 0243 0A       		.byte	0xa
+ 523 0244 B80B     		.2byte	0xbb8
+ 524 0246 00       		.byte	0
+ 525 0247 0D       		.uleb128 0xd
+ 526 0248 72000000 		.4byte	.LVL17
+ 527 024c 86030000 		.4byte	0x386
+ 528 0250 5F020000 		.4byte	0x25f
+ 529 0254 0E       		.uleb128 0xe
+ 530 0255 01       		.uleb128 0x1
+ 531 0256 53       		.byte	0x53
+ 532 0257 01       		.uleb128 0x1
+ 533 0258 30       		.byte	0x30
+ 534 0259 0E       		.uleb128 0xe
+ 535 025a 01       		.uleb128 0x1
+ 536 025b 52       		.byte	0x52
+ 537 025c 01       		.uleb128 0x1
+ 538 025d 30       		.byte	0x30
+ 539 025e 00       		.byte	0
+ 540 025f 0F       		.uleb128 0xf
+ 541 0260 76000000 		.4byte	.LVL18
+ 542 0264 A6030000 		.4byte	0x3a6
+ 543 0268 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 12
+
+
+ 544 0269 86000000 		.4byte	.LVL20
+ 545 026d B3030000 		.4byte	0x3b3
+ 546 0271 0F       		.uleb128 0xf
+ 547 0272 92000000 		.4byte	.LVL21
+ 548 0276 75030000 		.4byte	0x375
+ 549 027a 0D       		.uleb128 0xd
+ 550 027b 98000000 		.4byte	.LVL22
+ 551 027f C4030000 		.4byte	0x3c4
+ 552 0283 8D020000 		.4byte	0x28d
+ 553 0287 0E       		.uleb128 0xe
+ 554 0288 01       		.uleb128 0x1
+ 555 0289 50       		.byte	0x50
+ 556 028a 01       		.uleb128 0x1
+ 557 028b 31       		.byte	0x31
+ 558 028c 00       		.byte	0
+ 559 028d 0D       		.uleb128 0xd
+ 560 028e A2000000 		.4byte	.LVL24
+ 561 0292 C4030000 		.4byte	0x3c4
+ 562 0296 A0020000 		.4byte	0x2a0
+ 563 029a 0E       		.uleb128 0xe
+ 564 029b 01       		.uleb128 0x1
+ 565 029c 50       		.byte	0x50
+ 566 029d 01       		.uleb128 0x1
+ 567 029e 30       		.byte	0x30
+ 568 029f 00       		.byte	0
+ 569 02a0 0F       		.uleb128 0xf
+ 570 02a1 B2000000 		.4byte	.LVL26
+ 571 02a5 75030000 		.4byte	0x375
+ 572 02a9 0F       		.uleb128 0xf
+ 573 02aa BE000000 		.4byte	.LVL27
+ 574 02ae B3030000 		.4byte	0x3b3
+ 575 02b2 00       		.byte	0
+ 576 02b3 02       		.uleb128 0x2
+ 577 02b4 01       		.byte	0x1
+ 578 02b5 02       		.byte	0x2
+ 579 02b6 ED020000 		.4byte	.LASF26
+ 580 02ba 10       		.uleb128 0x10
+ 581 02bb 17010000 		.4byte	.LASF27
+ 582 02bf 05       		.byte	0x5
+ 583 02c0 9606     		.2byte	0x696
+ 584 02c2 C6020000 		.4byte	0x2c6
+ 585 02c6 11       		.uleb128 0x11
+ 586 02c7 76000000 		.4byte	0x76
+ 587 02cb 12       		.uleb128 0x12
+ 588 02cc 99000000 		.4byte	0x99
+ 589 02d0 DB020000 		.4byte	0x2db
+ 590 02d4 13       		.uleb128 0x13
+ 591 02d5 BA000000 		.4byte	0xba
+ 592 02d9 9F       		.byte	0x9f
+ 593 02da 00       		.byte	0
+ 594 02db 14       		.uleb128 0x14
+ 595 02dc 35010000 		.4byte	.LASF28
+ 596 02e0 06       		.byte	0x6
+ 597 02e1 13       		.byte	0x13
+ 598 02e2 CB020000 		.4byte	0x2cb
+ 599 02e6 05       		.uleb128 0x5
+ 600 02e7 03       		.byte	0x3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 13
+
+
+ 601 02e8 00000000 		.4byte	Camera_linebuffer
+ 602 02ec 14       		.uleb128 0x14
+ 603 02ed 6C000000 		.4byte	.LASF29
+ 604 02f1 07       		.byte	0x7
+ 605 02f2 21       		.byte	0x21
+ 606 02f3 C8000000 		.4byte	0xc8
+ 607 02f7 05       		.uleb128 0x5
+ 608 02f8 03       		.byte	0x3
+ 609 02f9 00000000 		.4byte	display_mode
+ 610 02fd 15       		.uleb128 0x15
+ 611 02fe 24010000 		.4byte	.LASF30
+ 612 0302 08       		.byte	0x8
+ 613 0303 26       		.byte	0x26
+ 614 0304 0E030000 		.4byte	0x30e
+ 615 0308 16       		.uleb128 0x16
+ 616 0309 8D000000 		.4byte	0x8d
+ 617 030d 00       		.byte	0
+ 618 030e 17       		.uleb128 0x17
+ 619 030f E8000000 		.4byte	.LASF32
+ 620 0313 0A       		.byte	0xa
+ 621 0314 2A       		.byte	0x2a
+ 622 0315 1B030000 		.4byte	0x31b
+ 623 0319 18       		.uleb128 0x18
+ 624 031a 00       		.byte	0
+ 625 031b 15       		.uleb128 0x15
+ 626 031c F3020000 		.4byte	.LASF31
+ 627 0320 09       		.byte	0x9
+ 628 0321 76       		.byte	0x76
+ 629 0322 2C030000 		.4byte	0x32c
+ 630 0326 16       		.uleb128 0x16
+ 631 0327 99000000 		.4byte	0x99
+ 632 032b 00       		.byte	0
+ 633 032c 17       		.uleb128 0x17
+ 634 032d FB020000 		.4byte	.LASF33
+ 635 0331 0A       		.byte	0xa
+ 636 0332 22       		.byte	0x22
+ 637 0333 39030000 		.4byte	0x339
+ 638 0337 18       		.uleb128 0x18
+ 639 0338 00       		.byte	0
+ 640 0339 15       		.uleb128 0x15
+ 641 033a 02010000 		.4byte	.LASF34
+ 642 033e 0B       		.byte	0xb
+ 643 033f C3       		.byte	0xc3
+ 644 0340 4A030000 		.4byte	0x34a
+ 645 0344 16       		.uleb128 0x16
+ 646 0345 8D000000 		.4byte	0x8d
+ 647 0349 00       		.byte	0
+ 648 034a 17       		.uleb128 0x17
+ 649 034b 23000000 		.4byte	.LASF35
+ 650 034f 0C       		.byte	0xc
+ 651 0350 1D       		.byte	0x1d
+ 652 0351 57030000 		.4byte	0x357
+ 653 0355 18       		.uleb128 0x18
+ 654 0356 00       		.byte	0
+ 655 0357 17       		.uleb128 0x17
+ 656 0358 3D020000 		.4byte	.LASF36
+ 657 035c 0D       		.byte	0xd
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 14
+
+
+ 658 035d 16       		.byte	0x16
+ 659 035e 64030000 		.4byte	0x364
+ 660 0362 18       		.uleb128 0x18
+ 661 0363 00       		.byte	0
+ 662 0364 15       		.uleb128 0x15
+ 663 0365 5C000000 		.4byte	.LASF37
+ 664 0369 08       		.byte	0x8
+ 665 036a 25       		.byte	0x25
+ 666 036b 75030000 		.4byte	0x375
+ 667 036f 16       		.uleb128 0x16
+ 668 0370 8D000000 		.4byte	0x8d
+ 669 0374 00       		.byte	0
+ 670 0375 15       		.uleb128 0x15
+ 671 0376 79000000 		.4byte	.LASF38
+ 672 037a 08       		.byte	0x8
+ 673 037b 23       		.byte	0x23
+ 674 037c 86030000 		.4byte	0x386
+ 675 0380 16       		.uleb128 0x16
+ 676 0381 AC000000 		.4byte	0xac
+ 677 0385 00       		.byte	0
+ 678 0386 15       		.uleb128 0x15
+ 679 0387 CC000000 		.4byte	.LASF39
+ 680 038b 0E       		.byte	0xe
+ 681 038c 26       		.byte	0x26
+ 682 038d A6030000 		.4byte	0x3a6
+ 683 0391 16       		.uleb128 0x16
+ 684 0392 AC000000 		.4byte	0xac
+ 685 0396 16       		.uleb128 0x16
+ 686 0397 B3020000 		.4byte	0x2b3
+ 687 039b 16       		.uleb128 0x16
+ 688 039c B3020000 		.4byte	0x2b3
+ 689 03a0 16       		.uleb128 0x16
+ 690 03a1 A5000000 		.4byte	0xa5
+ 691 03a5 00       		.byte	0
+ 692 03a6 17       		.uleb128 0x17
+ 693 03a7 0E000000 		.4byte	.LASF40
+ 694 03ab 08       		.byte	0x8
+ 695 03ac 21       		.byte	0x21
+ 696 03ad B3030000 		.4byte	0x3b3
+ 697 03b1 18       		.uleb128 0x18
+ 698 03b2 00       		.byte	0
+ 699 03b3 15       		.uleb128 0x15
+ 700 03b4 D6000000 		.4byte	.LASF41
+ 701 03b8 08       		.byte	0x8
+ 702 03b9 24       		.byte	0x24
+ 703 03ba C4030000 		.4byte	0x3c4
+ 704 03be 16       		.uleb128 0x16
+ 705 03bf AC000000 		.4byte	0xac
+ 706 03c3 00       		.byte	0
+ 707 03c4 19       		.uleb128 0x19
+ 708 03c5 98000000 		.4byte	.LASF42
+ 709 03c9 0E       		.byte	0xe
+ 710 03ca 12       		.byte	0x12
+ 711 03cb AC000000 		.4byte	0xac
+ 712 03cf 16       		.uleb128 0x16
+ 713 03d0 81000000 		.4byte	0x81
+ 714 03d4 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 15
+
+
+ 715 03d5 00       		.byte	0
+ 716              		.section	.debug_abbrev,"",%progbits
+ 717              	.Ldebug_abbrev0:
+ 718 0000 01       		.uleb128 0x1
+ 719 0001 11       		.uleb128 0x11
+ 720 0002 01       		.byte	0x1
+ 721 0003 25       		.uleb128 0x25
+ 722 0004 0E       		.uleb128 0xe
+ 723 0005 13       		.uleb128 0x13
+ 724 0006 0B       		.uleb128 0xb
+ 725 0007 03       		.uleb128 0x3
+ 726 0008 0E       		.uleb128 0xe
+ 727 0009 1B       		.uleb128 0x1b
+ 728 000a 0E       		.uleb128 0xe
+ 729 000b 55       		.uleb128 0x55
+ 730 000c 17       		.uleb128 0x17
+ 731 000d 11       		.uleb128 0x11
+ 732 000e 01       		.uleb128 0x1
+ 733 000f 10       		.uleb128 0x10
+ 734 0010 17       		.uleb128 0x17
+ 735 0011 00       		.byte	0
+ 736 0012 00       		.byte	0
+ 737 0013 02       		.uleb128 0x2
+ 738 0014 24       		.uleb128 0x24
+ 739 0015 00       		.byte	0
+ 740 0016 0B       		.uleb128 0xb
+ 741 0017 0B       		.uleb128 0xb
+ 742 0018 3E       		.uleb128 0x3e
+ 743 0019 0B       		.uleb128 0xb
+ 744 001a 03       		.uleb128 0x3
+ 745 001b 0E       		.uleb128 0xe
+ 746 001c 00       		.byte	0
+ 747 001d 00       		.byte	0
+ 748 001e 03       		.uleb128 0x3
+ 749 001f 16       		.uleb128 0x16
+ 750 0020 00       		.byte	0
+ 751 0021 03       		.uleb128 0x3
+ 752 0022 0E       		.uleb128 0xe
+ 753 0023 3A       		.uleb128 0x3a
+ 754 0024 0B       		.uleb128 0xb
+ 755 0025 3B       		.uleb128 0x3b
+ 756 0026 0B       		.uleb128 0xb
+ 757 0027 49       		.uleb128 0x49
+ 758 0028 13       		.uleb128 0x13
+ 759 0029 00       		.byte	0
+ 760 002a 00       		.byte	0
+ 761 002b 04       		.uleb128 0x4
+ 762 002c 24       		.uleb128 0x24
+ 763 002d 00       		.byte	0
+ 764 002e 0B       		.uleb128 0xb
+ 765 002f 0B       		.uleb128 0xb
+ 766 0030 3E       		.uleb128 0x3e
+ 767 0031 0B       		.uleb128 0xb
+ 768 0032 03       		.uleb128 0x3
+ 769 0033 08       		.uleb128 0x8
+ 770 0034 00       		.byte	0
+ 771 0035 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 16
+
+
+ 772 0036 05       		.uleb128 0x5
+ 773 0037 16       		.uleb128 0x16
+ 774 0038 00       		.byte	0
+ 775 0039 03       		.uleb128 0x3
+ 776 003a 0E       		.uleb128 0xe
+ 777 003b 3A       		.uleb128 0x3a
+ 778 003c 0B       		.uleb128 0xb
+ 779 003d 3B       		.uleb128 0x3b
+ 780 003e 05       		.uleb128 0x5
+ 781 003f 49       		.uleb128 0x49
+ 782 0040 13       		.uleb128 0x13
+ 783 0041 00       		.byte	0
+ 784 0042 00       		.byte	0
+ 785 0043 06       		.uleb128 0x6
+ 786 0044 04       		.uleb128 0x4
+ 787 0045 01       		.byte	0x1
+ 788 0046 0B       		.uleb128 0xb
+ 789 0047 0B       		.uleb128 0xb
+ 790 0048 3A       		.uleb128 0x3a
+ 791 0049 0B       		.uleb128 0xb
+ 792 004a 3B       		.uleb128 0x3b
+ 793 004b 0B       		.uleb128 0xb
+ 794 004c 01       		.uleb128 0x1
+ 795 004d 13       		.uleb128 0x13
+ 796 004e 00       		.byte	0
+ 797 004f 00       		.byte	0
+ 798 0050 07       		.uleb128 0x7
+ 799 0051 28       		.uleb128 0x28
+ 800 0052 00       		.byte	0
+ 801 0053 03       		.uleb128 0x3
+ 802 0054 0E       		.uleb128 0xe
+ 803 0055 1C       		.uleb128 0x1c
+ 804 0056 0D       		.uleb128 0xd
+ 805 0057 00       		.byte	0
+ 806 0058 00       		.byte	0
+ 807 0059 08       		.uleb128 0x8
+ 808 005a 2E       		.uleb128 0x2e
+ 809 005b 01       		.byte	0x1
+ 810 005c 3F       		.uleb128 0x3f
+ 811 005d 19       		.uleb128 0x19
+ 812 005e 03       		.uleb128 0x3
+ 813 005f 0E       		.uleb128 0xe
+ 814 0060 3A       		.uleb128 0x3a
+ 815 0061 0B       		.uleb128 0xb
+ 816 0062 3B       		.uleb128 0x3b
+ 817 0063 0B       		.uleb128 0xb
+ 818 0064 49       		.uleb128 0x49
+ 819 0065 13       		.uleb128 0x13
+ 820 0066 11       		.uleb128 0x11
+ 821 0067 01       		.uleb128 0x1
+ 822 0068 12       		.uleb128 0x12
+ 823 0069 06       		.uleb128 0x6
+ 824 006a 40       		.uleb128 0x40
+ 825 006b 18       		.uleb128 0x18
+ 826 006c 9642     		.uleb128 0x2116
+ 827 006e 19       		.uleb128 0x19
+ 828 006f 01       		.uleb128 0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 17
+
+
+ 829 0070 13       		.uleb128 0x13
+ 830 0071 00       		.byte	0
+ 831 0072 00       		.byte	0
+ 832 0073 09       		.uleb128 0x9
+ 833 0074 34       		.uleb128 0x34
+ 834 0075 00       		.byte	0
+ 835 0076 03       		.uleb128 0x3
+ 836 0077 0E       		.uleb128 0xe
+ 837 0078 3A       		.uleb128 0x3a
+ 838 0079 0B       		.uleb128 0xb
+ 839 007a 3B       		.uleb128 0x3b
+ 840 007b 0B       		.uleb128 0xb
+ 841 007c 49       		.uleb128 0x49
+ 842 007d 13       		.uleb128 0x13
+ 843 007e 1C       		.uleb128 0x1c
+ 844 007f 0B       		.uleb128 0xb
+ 845 0080 00       		.byte	0
+ 846 0081 00       		.byte	0
+ 847 0082 0A       		.uleb128 0xa
+ 848 0083 34       		.uleb128 0x34
+ 849 0084 00       		.byte	0
+ 850 0085 03       		.uleb128 0x3
+ 851 0086 0E       		.uleb128 0xe
+ 852 0087 3A       		.uleb128 0x3a
+ 853 0088 0B       		.uleb128 0xb
+ 854 0089 3B       		.uleb128 0x3b
+ 855 008a 0B       		.uleb128 0xb
+ 856 008b 49       		.uleb128 0x49
+ 857 008c 13       		.uleb128 0x13
+ 858 008d 1C       		.uleb128 0x1c
+ 859 008e 0A       		.uleb128 0xa
+ 860 008f 00       		.byte	0
+ 861 0090 00       		.byte	0
+ 862 0091 0B       		.uleb128 0xb
+ 863 0092 34       		.uleb128 0x34
+ 864 0093 00       		.byte	0
+ 865 0094 03       		.uleb128 0x3
+ 866 0095 0E       		.uleb128 0xe
+ 867 0096 3A       		.uleb128 0x3a
+ 868 0097 0B       		.uleb128 0xb
+ 869 0098 3B       		.uleb128 0x3b
+ 870 0099 0B       		.uleb128 0xb
+ 871 009a 49       		.uleb128 0x49
+ 872 009b 13       		.uleb128 0x13
+ 873 009c 02       		.uleb128 0x2
+ 874 009d 17       		.uleb128 0x17
+ 875 009e 00       		.byte	0
+ 876 009f 00       		.byte	0
+ 877 00a0 0C       		.uleb128 0xc
+ 878 00a1 34       		.uleb128 0x34
+ 879 00a2 00       		.byte	0
+ 880 00a3 03       		.uleb128 0x3
+ 881 00a4 08       		.uleb128 0x8
+ 882 00a5 3A       		.uleb128 0x3a
+ 883 00a6 0B       		.uleb128 0xb
+ 884 00a7 3B       		.uleb128 0x3b
+ 885 00a8 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 18
+
+
+ 886 00a9 49       		.uleb128 0x49
+ 887 00aa 13       		.uleb128 0x13
+ 888 00ab 02       		.uleb128 0x2
+ 889 00ac 17       		.uleb128 0x17
+ 890 00ad 00       		.byte	0
+ 891 00ae 00       		.byte	0
+ 892 00af 0D       		.uleb128 0xd
+ 893 00b0 898201   		.uleb128 0x4109
+ 894 00b3 01       		.byte	0x1
+ 895 00b4 11       		.uleb128 0x11
+ 896 00b5 01       		.uleb128 0x1
+ 897 00b6 31       		.uleb128 0x31
+ 898 00b7 13       		.uleb128 0x13
+ 899 00b8 01       		.uleb128 0x1
+ 900 00b9 13       		.uleb128 0x13
+ 901 00ba 00       		.byte	0
+ 902 00bb 00       		.byte	0
+ 903 00bc 0E       		.uleb128 0xe
+ 904 00bd 8A8201   		.uleb128 0x410a
+ 905 00c0 00       		.byte	0
+ 906 00c1 02       		.uleb128 0x2
+ 907 00c2 18       		.uleb128 0x18
+ 908 00c3 9142     		.uleb128 0x2111
+ 909 00c5 18       		.uleb128 0x18
+ 910 00c6 00       		.byte	0
+ 911 00c7 00       		.byte	0
+ 912 00c8 0F       		.uleb128 0xf
+ 913 00c9 898201   		.uleb128 0x4109
+ 914 00cc 00       		.byte	0
+ 915 00cd 11       		.uleb128 0x11
+ 916 00ce 01       		.uleb128 0x1
+ 917 00cf 31       		.uleb128 0x31
+ 918 00d0 13       		.uleb128 0x13
+ 919 00d1 00       		.byte	0
+ 920 00d2 00       		.byte	0
+ 921 00d3 10       		.uleb128 0x10
+ 922 00d4 34       		.uleb128 0x34
+ 923 00d5 00       		.byte	0
+ 924 00d6 03       		.uleb128 0x3
+ 925 00d7 0E       		.uleb128 0xe
+ 926 00d8 3A       		.uleb128 0x3a
+ 927 00d9 0B       		.uleb128 0xb
+ 928 00da 3B       		.uleb128 0x3b
+ 929 00db 05       		.uleb128 0x5
+ 930 00dc 49       		.uleb128 0x49
+ 931 00dd 13       		.uleb128 0x13
+ 932 00de 3F       		.uleb128 0x3f
+ 933 00df 19       		.uleb128 0x19
+ 934 00e0 3C       		.uleb128 0x3c
+ 935 00e1 19       		.uleb128 0x19
+ 936 00e2 00       		.byte	0
+ 937 00e3 00       		.byte	0
+ 938 00e4 11       		.uleb128 0x11
+ 939 00e5 35       		.uleb128 0x35
+ 940 00e6 00       		.byte	0
+ 941 00e7 49       		.uleb128 0x49
+ 942 00e8 13       		.uleb128 0x13
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 19
+
+
+ 943 00e9 00       		.byte	0
+ 944 00ea 00       		.byte	0
+ 945 00eb 12       		.uleb128 0x12
+ 946 00ec 01       		.uleb128 0x1
+ 947 00ed 01       		.byte	0x1
+ 948 00ee 49       		.uleb128 0x49
+ 949 00ef 13       		.uleb128 0x13
+ 950 00f0 01       		.uleb128 0x1
+ 951 00f1 13       		.uleb128 0x13
+ 952 00f2 00       		.byte	0
+ 953 00f3 00       		.byte	0
+ 954 00f4 13       		.uleb128 0x13
+ 955 00f5 21       		.uleb128 0x21
+ 956 00f6 00       		.byte	0
+ 957 00f7 49       		.uleb128 0x49
+ 958 00f8 13       		.uleb128 0x13
+ 959 00f9 2F       		.uleb128 0x2f
+ 960 00fa 0B       		.uleb128 0xb
+ 961 00fb 00       		.byte	0
+ 962 00fc 00       		.byte	0
+ 963 00fd 14       		.uleb128 0x14
+ 964 00fe 34       		.uleb128 0x34
+ 965 00ff 00       		.byte	0
+ 966 0100 03       		.uleb128 0x3
+ 967 0101 0E       		.uleb128 0xe
+ 968 0102 3A       		.uleb128 0x3a
+ 969 0103 0B       		.uleb128 0xb
+ 970 0104 3B       		.uleb128 0x3b
+ 971 0105 0B       		.uleb128 0xb
+ 972 0106 49       		.uleb128 0x49
+ 973 0107 13       		.uleb128 0x13
+ 974 0108 3F       		.uleb128 0x3f
+ 975 0109 19       		.uleb128 0x19
+ 976 010a 02       		.uleb128 0x2
+ 977 010b 18       		.uleb128 0x18
+ 978 010c 00       		.byte	0
+ 979 010d 00       		.byte	0
+ 980 010e 15       		.uleb128 0x15
+ 981 010f 2E       		.uleb128 0x2e
+ 982 0110 01       		.byte	0x1
+ 983 0111 3F       		.uleb128 0x3f
+ 984 0112 19       		.uleb128 0x19
+ 985 0113 03       		.uleb128 0x3
+ 986 0114 0E       		.uleb128 0xe
+ 987 0115 3A       		.uleb128 0x3a
+ 988 0116 0B       		.uleb128 0xb
+ 989 0117 3B       		.uleb128 0x3b
+ 990 0118 0B       		.uleb128 0xb
+ 991 0119 27       		.uleb128 0x27
+ 992 011a 19       		.uleb128 0x19
+ 993 011b 3C       		.uleb128 0x3c
+ 994 011c 19       		.uleb128 0x19
+ 995 011d 01       		.uleb128 0x1
+ 996 011e 13       		.uleb128 0x13
+ 997 011f 00       		.byte	0
+ 998 0120 00       		.byte	0
+ 999 0121 16       		.uleb128 0x16
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 20
+
+
+ 1000 0122 05       		.uleb128 0x5
+ 1001 0123 00       		.byte	0
+ 1002 0124 49       		.uleb128 0x49
+ 1003 0125 13       		.uleb128 0x13
+ 1004 0126 00       		.byte	0
+ 1005 0127 00       		.byte	0
+ 1006 0128 17       		.uleb128 0x17
+ 1007 0129 2E       		.uleb128 0x2e
+ 1008 012a 01       		.byte	0x1
+ 1009 012b 3F       		.uleb128 0x3f
+ 1010 012c 19       		.uleb128 0x19
+ 1011 012d 03       		.uleb128 0x3
+ 1012 012e 0E       		.uleb128 0xe
+ 1013 012f 3A       		.uleb128 0x3a
+ 1014 0130 0B       		.uleb128 0xb
+ 1015 0131 3B       		.uleb128 0x3b
+ 1016 0132 0B       		.uleb128 0xb
+ 1017 0133 3C       		.uleb128 0x3c
+ 1018 0134 19       		.uleb128 0x19
+ 1019 0135 01       		.uleb128 0x1
+ 1020 0136 13       		.uleb128 0x13
+ 1021 0137 00       		.byte	0
+ 1022 0138 00       		.byte	0
+ 1023 0139 18       		.uleb128 0x18
+ 1024 013a 18       		.uleb128 0x18
+ 1025 013b 00       		.byte	0
+ 1026 013c 00       		.byte	0
+ 1027 013d 00       		.byte	0
+ 1028 013e 19       		.uleb128 0x19
+ 1029 013f 2E       		.uleb128 0x2e
+ 1030 0140 01       		.byte	0x1
+ 1031 0141 3F       		.uleb128 0x3f
+ 1032 0142 19       		.uleb128 0x19
+ 1033 0143 03       		.uleb128 0x3
+ 1034 0144 0E       		.uleb128 0xe
+ 1035 0145 3A       		.uleb128 0x3a
+ 1036 0146 0B       		.uleb128 0xb
+ 1037 0147 3B       		.uleb128 0x3b
+ 1038 0148 0B       		.uleb128 0xb
+ 1039 0149 27       		.uleb128 0x27
+ 1040 014a 19       		.uleb128 0x19
+ 1041 014b 49       		.uleb128 0x49
+ 1042 014c 13       		.uleb128 0x13
+ 1043 014d 3C       		.uleb128 0x3c
+ 1044 014e 19       		.uleb128 0x19
+ 1045 014f 00       		.byte	0
+ 1046 0150 00       		.byte	0
+ 1047 0151 00       		.byte	0
+ 1048              		.section	.debug_loc,"",%progbits
+ 1049              	.Ldebug_loc0:
+ 1050              	.LLST0:
+ 1051 0000 9C000000 		.4byte	.LVL23
+ 1052 0004 DE000000 		.4byte	.LVL31
+ 1053 0008 0600     		.2byte	0x6
+ 1054 000a 58       		.byte	0x58
+ 1055 000b 93       		.byte	0x93
+ 1056 000c 04       		.uleb128 0x4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 21
+
+
+ 1057 000d 59       		.byte	0x59
+ 1058 000e 93       		.byte	0x93
+ 1059 000f 04       		.uleb128 0x4
+ 1060 0010 E6000000 		.4byte	.LVL32
+ 1061 0014 EC000000 		.4byte	.LVL33
+ 1062 0018 0600     		.2byte	0x6
+ 1063 001a 58       		.byte	0x58
+ 1064 001b 93       		.byte	0x93
+ 1065 001c 04       		.uleb128 0x4
+ 1066 001d 59       		.byte	0x59
+ 1067 001e 93       		.byte	0x93
+ 1068 001f 04       		.uleb128 0x4
+ 1069 0020 00000000 		.4byte	0
+ 1070 0024 00000000 		.4byte	0
+ 1071              	.LLST1:
+ 1072 0028 A6000000 		.4byte	.LVL25
+ 1073 002c DE000000 		.4byte	.LVL31
+ 1074 0030 0600     		.2byte	0x6
+ 1075 0032 56       		.byte	0x56
+ 1076 0033 93       		.byte	0x93
+ 1077 0034 04       		.uleb128 0x4
+ 1078 0035 57       		.byte	0x57
+ 1079 0036 93       		.byte	0x93
+ 1080 0037 04       		.uleb128 0x4
+ 1081 0038 E6000000 		.4byte	.LVL32
+ 1082 003c EC000000 		.4byte	.LVL33
+ 1083 0040 0600     		.2byte	0x6
+ 1084 0042 56       		.byte	0x56
+ 1085 0043 93       		.byte	0x93
+ 1086 0044 04       		.uleb128 0x4
+ 1087 0045 57       		.byte	0x57
+ 1088 0046 93       		.byte	0x93
+ 1089 0047 04       		.uleb128 0x4
+ 1090 0048 00000000 		.4byte	0
+ 1091 004c 00000000 		.4byte	0
+ 1092              	.LLST2:
+ 1093 0050 76000000 		.4byte	.LVL18
+ 1094 0054 7A000000 		.4byte	.LVL19
+ 1095 0058 0200     		.2byte	0x2
+ 1096 005a 30       		.byte	0x30
+ 1097 005b 9F       		.byte	0x9f
+ 1098 005c 7A000000 		.4byte	.LVL19
+ 1099 0060 DC000000 		.4byte	.LVL30
+ 1100 0064 0100     		.2byte	0x1
+ 1101 0066 54       		.byte	0x54
+ 1102 0067 DE000000 		.4byte	.LVL31
+ 1103 006b F2000000 		.4byte	.LVL34
+ 1104 006f 0100     		.2byte	0x1
+ 1105 0071 54       		.byte	0x54
+ 1106 0072 00000000 		.4byte	0
+ 1107 0076 00000000 		.4byte	0
+ 1108              		.section	.debug_aranges,"",%progbits
+ 1109 0000 1C000000 		.4byte	0x1c
+ 1110 0004 0200     		.2byte	0x2
+ 1111 0006 00000000 		.4byte	.Ldebug_info0
+ 1112 000a 04       		.byte	0x4
+ 1113 000b 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 22
+
+
+ 1114 000c 0000     		.2byte	0
+ 1115 000e 0000     		.2byte	0
+ 1116 0010 00000000 		.4byte	.LFB63
+ 1117 0014 08010000 		.4byte	.LFE63-.LFB63
+ 1118 0018 00000000 		.4byte	0
+ 1119 001c 00000000 		.4byte	0
+ 1120              		.section	.debug_ranges,"",%progbits
+ 1121              	.Ldebug_ranges0:
+ 1122 0000 00000000 		.4byte	.LFB63
+ 1123 0004 08010000 		.4byte	.LFE63
+ 1124 0008 00000000 		.4byte	0
+ 1125 000c 00000000 		.4byte	0
+ 1126              		.section	.debug_line,"",%progbits
+ 1127              	.Ldebug_line0:
+ 1128 0000 48020000 		.section	.debug_str,"MS",%progbits,1
+ 1128      0200FB01 
+ 1128      00000201 
+ 1128      FB0E0D00 
+ 1128      01010101 
+ 1129              	.LASF6:
+ 1130 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1130      206C6F6E 
+ 1130      6720696E 
+ 1130      7400
+ 1131              	.LASF40:
+ 1132 000e 4D6F7665 		.ascii	"MovementPivotRight90\000"
+ 1132      6D656E74 
+ 1132      5069766F 
+ 1132      74526967 
+ 1132      68743930 
+ 1133              	.LASF35:
+ 1134 0023 43617074 		.ascii	"CaptureFrameWithLights\000"
+ 1134      75726546 
+ 1134      72616D65 
+ 1134      57697468 
+ 1134      4C696768 
+ 1135              	.LASF24:
+ 1136 003a 64697374 		.ascii	"dist1\000"
+ 1136      3100
+ 1137              	.LASF25:
+ 1138 0040 64697374 		.ascii	"dist2\000"
+ 1138      3200
+ 1139              	.LASF9:
+ 1140 0046 5F5F696E 		.ascii	"__int32_t\000"
+ 1140      7433325F 
+ 1140      7400
+ 1141              	.LASF21:
+ 1142 0050 54485245 		.ascii	"THRESHOLDED\000"
+ 1142      53484F4C 
+ 1142      44454400 
+ 1143              	.LASF37:
+ 1144 005c 4D6F7665 		.ascii	"MovementForward\000"
+ 1144      6D656E74 
+ 1144      466F7277 
+ 1144      61726400 
+ 1145              	.LASF29:
+ 1146 006c 64697370 		.ascii	"display_mode\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 23
+
+
+ 1146      6C61795F 
+ 1146      6D6F6465 
+ 1146      00
+ 1147              	.LASF38:
+ 1148 0079 4D6F7665 		.ascii	"MovementPivotRight\000"
+ 1148      6D656E74 
+ 1148      5069766F 
+ 1148      74526967 
+ 1148      687400
+ 1149              	.LASF14:
+ 1150 008c 666C6F61 		.ascii	"float\000"
+ 1150      7400
+ 1151              	.LASF22:
+ 1152 0092 626C6F63 		.ascii	"block\000"
+ 1152      6B00
+ 1153              	.LASF42:
+ 1154 0098 556C7472 		.ascii	"Ultrasonics\000"
+ 1154      61736F6E 
+ 1154      69637300 
+ 1155              	.LASF1:
+ 1156 00a4 756E7369 		.ascii	"unsigned char\000"
+ 1156      676E6564 
+ 1156      20636861 
+ 1156      7200
+ 1157              	.LASF44:
+ 1158 00b2 2E5C696E 		.ascii	".\\initial_path_sequence.c\000"
+ 1158      69746961 
+ 1158      6C5F7061 
+ 1158      74685F73 
+ 1158      65717565 
+ 1159              	.LASF39:
+ 1160 00cc 4D6F7665 		.ascii	"MoveAlign\000"
+ 1160      416C6967 
+ 1160      6E00
+ 1161              	.LASF41:
+ 1162 00d6 4D6F7665 		.ascii	"MovementPivotLeft\000"
+ 1162      6D656E74 
+ 1162      5069766F 
+ 1162      744C6566 
+ 1162      7400
+ 1163              	.LASF32:
+ 1164 00e8 50616E4D 		.ascii	"PanMid\000"
+ 1164      696400
+ 1165              	.LASF3:
+ 1166 00ef 73686F72 		.ascii	"short unsigned int\000"
+ 1166      7420756E 
+ 1166      7369676E 
+ 1166      65642069 
+ 1166      6E7400
+ 1167              	.LASF34:
+ 1168 0102 50574D5F 		.ascii	"PWM_Pan_WriteCompare\000"
+ 1168      50616E5F 
+ 1168      57726974 
+ 1168      65436F6D 
+ 1168      70617265 
+ 1169              	.LASF27:
+ 1170 0117 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 24
+
+
+ 1170      52784275 
+ 1170      66666572 
+ 1170      00
+ 1171              	.LASF30:
+ 1172 0124 4D6F7665 		.ascii	"MovementBackward\000"
+ 1172      6D656E74 
+ 1172      4261636B 
+ 1172      77617264 
+ 1172      00
+ 1173              	.LASF28:
+ 1174 0135 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1174      72615F6C 
+ 1174      696E6562 
+ 1174      75666665 
+ 1174      7200
+ 1175              	.LASF5:
+ 1176 0147 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1176      20756E73 
+ 1176      69676E65 
+ 1176      6420696E 
+ 1176      7400
+ 1177              	.LASF20:
+ 1178 0159 48495354 		.ascii	"HISTOGRAM\000"
+ 1178      4F475241 
+ 1178      4D00
+ 1179              	.LASF12:
+ 1180 0163 75696E74 		.ascii	"uint16\000"
+ 1180      313600
+ 1181              	.LASF13:
+ 1182 016a 75696E74 		.ascii	"uint32\000"
+ 1182      333200
+ 1183              	.LASF43:
+ 1184 0171 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1184      4320342E 
+ 1184      392E3320 
+ 1184      32303135 
+ 1184      30333033 
+ 1185 01a4 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1185      20726576 
+ 1185      6973696F 
+ 1185      6E203232 
+ 1185      31323230 
+ 1186 01d7 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1186      66756E63 
+ 1186      74696F6E 
+ 1186      2D736563 
+ 1186      74696F6E 
+ 1187              	.LASF8:
+ 1188 01ff 756E7369 		.ascii	"unsigned int\000"
+ 1188      676E6564 
+ 1188      20696E74 
+ 1188      00
+ 1189              	.LASF19:
+ 1190 020c 494D4147 		.ascii	"IMAGE\000"
+ 1190      4500
+ 1191              	.LASF7:
+ 1192 0212 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 25
+
+
+ 1192      206C6F6E 
+ 1192      6720756E 
+ 1192      7369676E 
+ 1192      65642069 
+ 1193              	.LASF46:
+ 1194 0229 50617468 		.ascii	"PathInitialSequence\000"
+ 1194      496E6974 
+ 1194      69616C53 
+ 1194      65717565 
+ 1194      6E636500 
+ 1195              	.LASF36:
+ 1196 023d 43616D47 		.ascii	"CamGetSequence\000"
+ 1196      65745365 
+ 1196      7175656E 
+ 1196      636500
+ 1197              	.LASF10:
+ 1198 024c 696E7433 		.ascii	"int32_t\000"
+ 1198      325F7400 
+ 1199              	.LASF17:
+ 1200 0254 73697A65 		.ascii	"sizetype\000"
+ 1200      74797065 
+ 1200      00
+ 1201              	.LASF23:
+ 1202 025d 63686563 		.ascii	"check_angle\000"
+ 1202      6B5F616E 
+ 1202      676C6500 
+ 1203              	.LASF16:
+ 1204 0269 63686172 		.ascii	"char\000"
+ 1204      00
+ 1205              	.LASF45:
+ 1206 026e 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 1206      73657273 
+ 1206      5C44616E 
+ 1206      69656C5C 
+ 1206      446F6375 
+ 1207 029c 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 1207      74657220 
+ 1207      56335C44 
+ 1207      6973706C 
+ 1207      61792E63 
+ 1208              	.LASF2:
+ 1209 02b5 73686F72 		.ascii	"short int\000"
+ 1209      7420696E 
+ 1209      7400
+ 1210              	.LASF11:
+ 1211 02bf 75696E74 		.ascii	"uint8\000"
+ 1211      3800
+ 1212              	.LASF4:
+ 1213 02c5 6C6F6E67 		.ascii	"long int\000"
+ 1213      20696E74 
+ 1213      00
+ 1214              	.LASF18:
+ 1215 02ce 6C6F6E67 		.ascii	"long double\000"
+ 1215      20646F75 
+ 1215      626C6500 
+ 1216              	.LASF0:
+ 1217 02da 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\cct51Wep.s 			page 26
+
+
+ 1217      65642063 
+ 1217      68617200 
+ 1218              	.LASF15:
+ 1219 02e6 646F7562 		.ascii	"double\000"
+ 1219      6C6500
+ 1220              	.LASF26:
+ 1221 02ed 5F426F6F 		.ascii	"_Bool\000"
+ 1221      6C00
+ 1222              	.LASF31:
+ 1223 02f3 43794465 		.ascii	"CyDelay\000"
+ 1223      6C617900 
+ 1224              	.LASF33:
+ 1225 02fb 54696C74 		.ascii	"TiltStraight\000"
+ 1225      53747261 
+ 1225      69676874 
+ 1225      00
+ 1226              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

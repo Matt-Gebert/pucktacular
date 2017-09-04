@@ -1,231 +1,172 @@
+/*
+ * Copyright @Pucktacular, 2016
+ * @Matt Gebert, Daniel Hranilovic & Kevin Duxbury
+ * All Rights Reserved
+ * UNPUBLISHED, LICENSED SOFTWARE.
+ *
+ * CONFIDENTIAL AND PROPRIETARY INFORMATION
+ * WHICH IS THE PROPERTY OF your company.
+ *
+ * ========================================
+*/
 #include <project.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <math.h>
+//#include <tgmath.h>
 #include "camera_display.h"
-#include "claw_functions.h"
-#include "movement_functions_unofficial.h"
-//*************************************************
-//
-//Function prototypes
-//
-//*************************************************   
-    void PSOCReset();
-    void ISRSetUp(); 
-    void VariablesInitialise();
-    void InitialisationSequnce();
-    void LEDFlash();
-    void PWMOperate();
-    void Beep(int a);
-    void BiDirPortInPut();
-    void BiDirPortOutPut();
-    void ISR1Handler(); 
-//*************************************************
-//
-//RAM variables
-//
-//*************************************************    
-    int a;
-    int b;
-    int c;
-    int AD0Data;
-    int OnOff;
-//*************************************************
-//
-//Main program starts here
-//Added Line :)
-//
-//************************************************* 
+#include "camera_functions.h"
+#include "movement_functions.h"
+#include "pwm_functions.h"
+#include "puck_functions.h"
+#include "Ultrasonics.h"
+#include "pathing.h"
+#include "initial_path_sequence.h"
+#include "lift_functions.h"
+#include "utils.h"
+ 
+void Initialise();
+void Headlights();
+void HeadlightsOff();
+void Beep(int x);
+void BiDirPortOutPut();
+void BiDirPortInPut();
+
+
+/*Variables from Camera Functions:
+---------------------------------*/
+/*extern uint16 closestX;
+extern uint16 closestY;
+extern const uint8 numRows;
+extern const uint16 numCols; */
+extern const uint8 RED;
+extern const uint8 GREEN;
+extern const uint8 BLUE;
+extern uint8 orderedScaledClr[5];
+/*-------------------------------*/
+
+
+
 int main()
 {
-    PSOCReset();                                    //Put PSOC in ready state
-    VariablesInitialise();                          //Initialise all variables
-    PWM_1_Start();                                  //Start PWM channel    
-    ISRSetUp();                                     //Setup all interupts
+    HeadlightsOff();
+    
+    SW_Start();
+    
     LCD_Start();
     LCD_DMA_Start();
-    Camera_Start();
-    Camera_WriteReg(0x41,0x02);                     //double colour matrix (more saturation)
-    Camera_SetBlankTime(600);                       //increase blanking time if image is corrupted; range is 0-2047 (I used 600 for debug build and 500 for release build)
-    
-    LCD_CLK_SetDividerValue(5);
-    CyGlobalIntEnable;                              //interrupts must be enabled for camera to work
-    
-    Beep(1);
-    CyDelay(200);
-    Beep(1); 
-    while(OnOff==0)
-    {
-    }
-    InitialisationSequnce();
-    PWM_Claw_Enable();
-    PWM_Claw_Start();
-       
-    uint8 n=0;
-    uint16 zerodegrees = 1749;
-    uint16 halfway = 1849;
-    uint16 max = 1930;
-    for(;;n++)
-    {
-        PWM_Claw_WriteCompare(1999-zerodegrees);
-        CyDelay(1000);
-        PWM_Claw_WriteCompare(1999-halfway);
-        CyDelay(1000);
-        PWM_Claw_WriteCompare(1999-max);
-        CyDelay(1000);
-        //PWMOperate();
-        //CyDelay(500);
-        //LEDFlash();
-        //MovementTest();
-    }
-}
-//*************************************************
-//
-//Put 8 bit port in output mode
-//
-//*************************************************
-void BiDirPortOutPut()
-{
-    OE_Control=3;                           //enable output driver and switch to user output
-}
-//************************************************
-//
-//Put 8 bit port in input mode
-//
-//*************************************************
-void BiDirPortInPut()
-{
-   OE_Control=0;                            //disable output driver                    
-}
-//*************************************************
-//
-// Beep for 100mS minimum
-// On entry X contains quantity of 100mS beeps
-//
-//*************************************************
-void Beep(int x) 
-{
-    BiDirPortOutPut();
-    for(;x>0;x--)
-    {
-        Data_Out_Write(0x03);      //Turn beeper on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-    }
-     Data_Out_Write(0x01);      //Turn beeper off
-     CS_Write(0x02);  
-     CS_Write(0x08);   
-}
-//************************************************
-//
-// Do a few things to wake up robot
-//
-//*************************************************
-void InitialisationSequnce()
-{
-    Beep(2);                         //Beep 4 times
-    CyDelay(400);
-    for(a=0;a<3;a++)                //Flash LED 5 times
-    {
-        LEDFlash();
-    }
-    for(a=0;a<3;a++)                //Flash headlights 3 times
-    {
-        BiDirPortOutPut();
-        Data_Out_Write(0x09);       //HeadLights on
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-        Data_Out_Write(0x01);      //Headlights off
-        CS_Write(0x02);  
-        CS_Write(0x08);
-        CyDelay(100);
-    }
-}
-//************************************************************
-//
-// Turn LED on for 100mS 
-// 
-//************************************************************
-void LEDFlash() 
-{
-	BiDirPortOutPut();
-    Data_Out_Write(0x09);      //Set bit 2 high
-    CS_Write(0x02);  
-    CS_Write(0x08);
-    CyDelay(100);
-    Data_Out_Write(0x01);      //Set bit 2 low
-    CS_Write(0x02);  
-    CS_Write(0x08); 
-}
-//************************************************
-//
-//Set up PSOC in the correct state
-//
-//*************************************************
-void PSOCReset()
-{
-    CS_Write(0x08); 
-    RST_Write(0);
-    CyDelay(700);
-    RST_Write(1);
-    CyDelay(700);
-    RST_Write(0);
-    CyDelay(700);
-    RST_Write(1);
-} 
-//*************************************************
-//
-// ISR Set Up all interupts as required
-//
-//*************************************************
-void ISRSetUp()  
-{
-    isr_1_ClearPending();                          
-    isr_1_StartEx(ISR1Handler);                     //for switch 2
-} 
-//*************************************************
-//
-//ISR1 Handler for switch. Interupt comes here when switch is pushed
-//
-//*************************************************
-void ISR1Handler()  
-{
-    if(OnOff==0)
-    {
-        OnOff=1;
-    }
-    else
-    {
-        OnOff=0;
-    }
-}
-//*************************************************
-//
-// Change PWM pulse
-// If middle switch is held down, pulse is extended
-//
-//*************************************************
-void PWMOperate()
-{
-    if(SW1_Read())
-    {
-        //OpenClaw();
-       PWM_1_WriteCompare1(15);
-       PWM_1_WriteCompare2(15);
 
+    Camera_Start();
+    Camera_WriteReg(0x41,0x02); //double colour matrix (more saturation)
+    Camera_SetBlankTime(1000); //increase blanking time if image is corrupted; range is 0-2047
+    
+    CyGlobalIntEnable; //interrupts must be enabled for camera to work
+        
+    
+    //3 lines taht set up loop for button presses
+    uint8 buttons=0xff;;
+    uint8 buttons_old=0xff;
+    bool start =false;
+    bool block;
+    display_mode=THRESHOLDED; //start displaying image
+    
+    //Camera_SetEGWB(80,0,128,128); //set exposure, gain and white balance //ORIGNIAL VALUES...
+    Camera_SetEGWB(160,0,128,128); //set exposure, gain and white balance
+    Camera_SetThresholds(-32,64,0,-64,48,-32,-16,32); //set thresholds for the 4 colours
+    
+    //Loop until button press
+    Beep(3);
+    LiftInital();
+    while(start==false){        
+        buttons=Buttons_Status;
+        if(buttons&~buttons_old&4)  start=true;
+        if(buttons&~buttons_old&2)  LiftUpReset();
+        if(buttons&~buttons_old&1)  LiftDownReset();
+        
+        buttons_old=buttons;
     }
-    else
+    
+    //Setup PWM Channels
+    Initialise();
+    Beep(2);
+    CyDelay(200); //Wait for PWM's to initialize position correctly.
+    ClawClose();
+    Beep(2);
+    Beep(2);
+    CyDelay(200);
+    ClawOpen();
+    
+    //TEMP STUFF
+    /*
+    orderedScaledClr[0]=0;
+    orderedScaledClr[1]=1;
+    orderedScaledClr[2]=2;
+    orderedScaledClr[3]=2;
+    orderedScaledClr[4]=1;
+    block=0;
+    */
+    
+    Beep(2);
+    CyDelay(200);
+    PanRight();
+    CyDelay(200);
+    block = PathInitialSequence();
+    CyDelay(20);
+    
+    uint8 n=0;
+    //for(n=0;n<5;n++)
+    for(n=0;n<5;n++)
     {
-        //CloseClaw();
-        PWM_1_WriteCompare1(35);
-        PWM_1_WriteCompare2(35);
+        PathForward(block);
+        PuckResetAngleTotal();
+        PuckAquire(orderedScaledClr[n],block);
+        MovementResetQuadCount();
+        PathBackward(block);
+        
+        if(n==0){
+            MoveAlign(4.0,1,0,0.5);
+            ClawOpen();
+            CyDelay(200);
+            MovementBackward(4000);
+            MovementPivotLeft(180);
+            CyDelay(20);
+        } else {
+            PanRight();
+            CyDelay(50);
+            LiftLvMax();
+            //Camera to check and position!
+            PuckPositionToStack(orderedScaledClr[0]); //orderedScaledClr[4] //PWM's... 45 & ? -> 162 & 180 
+            PanRight();
+            CyDelay(50);
+            LiftLvN(n);
+            ClawOpen();
+            CyDelay(200);
+            MovementBackward(4000);
+            ClawClose();
+            LiftLvN(0);
+            MovementPivotLeft(180);
+            PanMid();
+            ClawOpen();
+            CyDelay(20);
+        }
+        
     }
+    
+    MovementPivotRight(360);
 }
-//*************************************************
-//
-//Initialise all necessary variables
-//
-//*************************************************
- void VariablesInitialise()
-{
-   OnOff=0;
+
+void Initialise(){
+    Timer_1_Start();
+    Timer_2_Start();
+    Quad_1_Start();
+    Quad_2_Start();
+    PWM_Pan_Start();
+    CyDelay(10);
+    PWM_Tilt_Start();
+    CyDelay(10);
+    PWM_Claw_Start();
+    CyDelay(10);
+    LiftSetGround();
 }
+
+
