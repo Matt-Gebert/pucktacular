@@ -6,3 +6,5 @@ Code began on GitHub, but as semester wore on and due to lack of team participat
 a final version was merged without tracking of commits.
 
 Code is unmaintained and not well documented.
+
+See https://youtu.be/KzGbJ5BAvhI for a video demonstration (a competition run).
