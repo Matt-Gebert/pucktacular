@@ -1,0 +1,10 @@
+Last Modified Date & Time: 09/14/2016 07:27:15
+
+Display: OV9650_QVGA.cysch
+	XCLK [v2.10] to [v2.20]
+	PCLK [v2.10] to [v2.20]
+	VSYNC [v2.10] to [v2.20]
+	SIOD [v2.10] to [v2.20]
+	SIOC [v2.10] to [v2.20]
+
+

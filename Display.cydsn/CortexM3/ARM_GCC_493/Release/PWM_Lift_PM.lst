@@ -1,0 +1,1184 @@
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_Lift_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PWM_Lift_SaveConfig,"ax",%progbits
+  19              		.align	1
+  20              		.global	PWM_Lift_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PWM_Lift_SaveConfig, %function
+  24              	PWM_Lift_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\PWM_Lift_PM.c"
+   1:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * File Name: PWM_Lift_PM.c
+   3:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+   5:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  This file provides the power management source code to API for the
+   7:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  PWM.
+   8:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+   9:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  11:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  18:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** #include "PWM_Lift.h"
+  19:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  20:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** static PWM_Lift_backupStruct PWM_Lift_backup;
+  21:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  22:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  23:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Function Name: PWM_Lift_SaveConfig
+  25:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  27:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Summary:
+  28:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  Saves the current user configuration of the component.
+  29:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  30:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  33:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Return:
+  34:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+  35:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  36:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Global variables:
+  37:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  PWM_Lift_backup:  Variables of this global structure are modified to
+  38:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  store the values of non retention configuration registers when Sleep() API is
+  39:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  called.
+  40:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  41:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** void PWM_Lift_SaveConfig(void) 
+  43:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** {
+  27              		.loc 1 43 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  44:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  45:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     #if(!PWM_Lift_UsingFixedFunction)
+  46:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if(!PWM_Lift_PWMModeIsCenterAligned)
+  47:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.PWMPeriod = PWM_Lift_ReadPeriod();
+  35              		.loc 1 47 0
+  36 0002 FFF7FEFF 		bl	PWM_Lift_ReadPeriod
+  37              	.LVL0:
+  38 0006 064C     		ldr	r4, .L2
+  39 0008 A080     		strh	r0, [r4, #4]	@ movhi
+  48:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif /* (!PWM_Lift_PWMModeIsCenterAligned) */
+  49:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         PWM_Lift_backup.PWMUdb = PWM_Lift_ReadCounter();
+  40              		.loc 1 49 0
+  41 000a FFF7FEFF 		bl	PWM_Lift_ReadCounter
+  42              	.LVL1:
+  50:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if (PWM_Lift_UseStatus)
+  51:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.InterruptMaskValue = PWM_Lift_STATUS_MASK;
+  43              		.loc 1 51 0
+  44 000e 054B     		ldr	r3, .L2+4
+  49:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if (PWM_Lift_UseStatus)
+  45              		.loc 1 49 0
+  46 0010 6080     		strh	r0, [r4, #2]	@ movhi
+  47              		.loc 1 51 0
+  48 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  49 0014 A371     		strb	r3, [r4, #6]
+  52:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif /* (PWM_Lift_UseStatus) */
+  53:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  54:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if(PWM_Lift_DeadBandMode == PWM_Lift__B_PWM__DBM_256_CLOCKS || \
+  55:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_DeadBandMode == PWM_Lift__B_PWM__DBM_2_4_CLOCKS)
+  56:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.PWMdeadBandValue = PWM_Lift_ReadDeadTime();
+  57:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif /*  deadband count is either 2-4 clocks or 256 clocks */
+  58:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  59:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if(PWM_Lift_KillModeMinTime)
+  60:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****              PWM_Lift_backup.PWMKillCounterPeriod = PWM_Lift_ReadKillTime();
+  61:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif /* (PWM_Lift_KillModeMinTime) */
+  62:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  63:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if(PWM_Lift_UseControl)
+  64:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.PWMControlRegister = PWM_Lift_ReadControlRegister();
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 3
+
+
+  50              		.loc 1 64 0
+  51 0016 FFF7FEFF 		bl	PWM_Lift_ReadControlRegister
+  52              	.LVL2:
+  53 001a E071     		strb	r0, [r4, #7]
+  54 001c 10BD     		pop	{r4, pc}
+  55              	.L3:
+  56 001e 00BF     		.align	2
+  57              	.L2:
+  58 0020 00000000 		.word	.LANCHOR0
+  59 0024 86650040 		.word	1073767814
+  60              		.cfi_endproc
+  61              	.LFE0:
+  62              		.size	PWM_Lift_SaveConfig, .-PWM_Lift_SaveConfig
+  63              		.section	.text.PWM_Lift_RestoreConfig,"ax",%progbits
+  64              		.align	1
+  65              		.global	PWM_Lift_RestoreConfig
+  66              		.thumb
+  67              		.thumb_func
+  68              		.type	PWM_Lift_RestoreConfig, %function
+  69              	PWM_Lift_RestoreConfig:
+  70              	.LFB1:
+  65:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif /* (PWM_Lift_UseControl) */
+  66:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     #endif  /* (!PWM_Lift_UsingFixedFunction) */
+  67:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** }
+  68:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  69:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  70:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** /*******************************************************************************
+  71:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Function Name: PWM_Lift_RestoreConfig
+  72:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** ********************************************************************************
+  73:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  74:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Summary:
+  75:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  Restores the current user configuration of the component.
+  76:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  77:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Parameters:
+  78:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+  79:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  80:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Return:
+  81:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+  82:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  83:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Global variables:
+  84:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  PWM_Lift_backup:  Variables of this global structure are used to
+  85:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  86:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+  87:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *******************************************************************************/
+  88:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** void PWM_Lift_RestoreConfig(void) 
+  89:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** {
+  71              		.loc 1 89 0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 0, uses_anonymous_args = 0
+  75 0000 10B5     		push	{r4, lr}
+  76              		.cfi_def_cfa_offset 8
+  77              		.cfi_offset 4, -8
+  78              		.cfi_offset 14, -4
+  90:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #if(!PWM_Lift_UsingFixedFunction)
+  91:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #if(!PWM_Lift_PWMModeIsCenterAligned)
+  92:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_WritePeriod(PWM_Lift_backup.PWMPeriod);
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 4
+
+
+  79              		.loc 1 92 0
+  80 0002 074C     		ldr	r4, .L5
+  81 0004 A088     		ldrh	r0, [r4, #4]
+  82 0006 FFF7FEFF 		bl	PWM_Lift_WritePeriod
+  83              	.LVL3:
+  93:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* (!PWM_Lift_PWMModeIsCenterAligned) */
+  94:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  95:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_WriteCounter(PWM_Lift_backup.PWMUdb);
+  84              		.loc 1 95 0
+  85 000a 6088     		ldrh	r0, [r4, #2]
+  86 000c FFF7FEFF 		bl	PWM_Lift_WriteCounter
+  87              	.LVL4:
+  96:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+  97:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #if (PWM_Lift_UseStatus)
+  98:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_STATUS_MASK = PWM_Lift_backup.InterruptMaskValue;
+  88              		.loc 1 98 0
+  89 0010 A279     		ldrb	r2, [r4, #6]	@ zero_extendqisi2
+  90 0012 044B     		ldr	r3, .L5+4
+  91 0014 1A70     		strb	r2, [r3]
+  99:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* (PWM_Lift_UseStatus) */
+ 100:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 101:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #if(PWM_Lift_DeadBandMode == PWM_Lift__B_PWM__DBM_256_CLOCKS || \
+ 102:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_DeadBandMode == PWM_Lift__B_PWM__DBM_2_4_CLOCKS)
+ 103:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_WriteDeadTime(PWM_Lift_backup.PWMdeadBandValue);
+ 104:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* deadband count is either 2-4 clocks or 256 clocks */
+ 105:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 106:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #if(PWM_Lift_KillModeMinTime)
+ 107:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_WriteKillTime(PWM_Lift_backup.PWMKillCounterPeriod);
+ 108:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* (PWM_Lift_KillModeMinTime) */
+ 109:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 110:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #if(PWM_Lift_UseControl)
+ 111:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****                 PWM_Lift_WriteControlRegister(PWM_Lift_backup.PWMControlRegister);
+  92              		.loc 1 111 0
+  93 0016 E079     		ldrb	r0, [r4, #7]	@ zero_extendqisi2
+ 112:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* (PWM_Lift_UseControl) */
+ 113:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         #endif  /* (!PWM_Lift_UsingFixedFunction) */
+ 114:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     }
+  94              		.loc 1 114 0
+  95 0018 BDE81040 		pop	{r4, lr}
+  96              		.cfi_restore 14
+  97              		.cfi_restore 4
+  98              		.cfi_def_cfa_offset 0
+ 111:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             #endif /* (PWM_Lift_UseControl) */
+  99              		.loc 1 111 0
+ 100 001c FFF7FEBF 		b	PWM_Lift_WriteControlRegister
+ 101              	.LVL5:
+ 102              	.L6:
+ 103              		.align	2
+ 104              	.L5:
+ 105 0020 00000000 		.word	.LANCHOR0
+ 106 0024 86650040 		.word	1073767814
+ 107              		.cfi_endproc
+ 108              	.LFE1:
+ 109              		.size	PWM_Lift_RestoreConfig, .-PWM_Lift_RestoreConfig
+ 110              		.section	.text.PWM_Lift_Sleep,"ax",%progbits
+ 111              		.align	1
+ 112              		.global	PWM_Lift_Sleep
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 5
+
+
+ 113              		.thumb
+ 114              		.thumb_func
+ 115              		.type	PWM_Lift_Sleep, %function
+ 116              	PWM_Lift_Sleep:
+ 117              	.LFB2:
+ 115:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 116:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 117:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** /*******************************************************************************
+ 118:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Function Name: PWM_Lift_Sleep
+ 119:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** ********************************************************************************
+ 120:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 121:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Summary:
+ 122:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  Disables block's operation and saves the user configuration. Should be called
+ 123:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  just prior to entering sleep.
+ 124:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 125:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Parameters:
+ 126:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+ 127:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 128:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Return:
+ 129:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+ 130:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 131:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Global variables:
+ 132:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  PWM_Lift_backup.PWMEnableState:  Is modified depending on the enable
+ 133:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  state of the block before entering sleep mode.
+ 134:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 135:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *******************************************************************************/
+ 136:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** void PWM_Lift_Sleep(void) 
+ 137:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** {
+ 118              		.loc 1 137 0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122 0000 08B5     		push	{r3, lr}
+ 123              		.cfi_def_cfa_offset 8
+ 124              		.cfi_offset 3, -8
+ 125              		.cfi_offset 14, -4
+ 138:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     #if(PWM_Lift_UseControl)
+ 139:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         if(PWM_Lift_CTRL_ENABLE == (PWM_Lift_CONTROL & PWM_Lift_CTRL_ENABLE))
+ 126              		.loc 1 139 0
+ 127 0002 074B     		ldr	r3, .L11
+ 128 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 129 0006 13F0800F 		tst	r3, #128
+ 130 000a 064B     		ldr	r3, .L11+4
+ 140:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         {
+ 141:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             /*Component is enabled */
+ 142:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.PWMEnableState = 1u;
+ 131              		.loc 1 142 0
+ 132 000c 14BF     		ite	ne
+ 133 000e 0122     		movne	r2, #1
+ 143:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         }
+ 144:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         else
+ 145:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         {
+ 146:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             /* Component is disabled */
+ 147:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****             PWM_Lift_backup.PWMEnableState = 0u;
+ 134              		.loc 1 147 0
+ 135 0010 0022     		moveq	r2, #0
+ 136 0012 1A70     		strb	r2, [r3]
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 6
+
+
+ 148:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         }
+ 149:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     #endif /* (PWM_Lift_UseControl) */
+ 150:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 151:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     /* Stop component */
+ 152:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     PWM_Lift_Stop();
+ 137              		.loc 1 152 0
+ 138 0014 FFF7FEFF 		bl	PWM_Lift_Stop
+ 139              	.LVL6:
+ 153:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 154:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     /* Save registers configuration */
+ 155:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     PWM_Lift_SaveConfig();
+ 156:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** }
+ 140              		.loc 1 156 0
+ 141 0018 BDE80840 		pop	{r3, lr}
+ 142              		.cfi_restore 14
+ 143              		.cfi_restore 3
+ 144              		.cfi_def_cfa_offset 0
+ 155:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** }
+ 145              		.loc 1 155 0
+ 146 001c FFF7FEBF 		b	PWM_Lift_SaveConfig
+ 147              	.LVL7:
+ 148              	.L12:
+ 149              		.align	2
+ 150              	.L11:
+ 151 0020 75650040 		.word	1073767797
+ 152 0024 00000000 		.word	.LANCHOR0
+ 153              		.cfi_endproc
+ 154              	.LFE2:
+ 155              		.size	PWM_Lift_Sleep, .-PWM_Lift_Sleep
+ 156              		.section	.text.PWM_Lift_Wakeup,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	PWM_Lift_Wakeup
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	PWM_Lift_Wakeup, %function
+ 162              	PWM_Lift_Wakeup:
+ 163              	.LFB3:
+ 157:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 158:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 159:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** /*******************************************************************************
+ 160:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Function Name: PWM_Lift_Wakeup
+ 161:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** ********************************************************************************
+ 162:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 163:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Summary:
+ 164:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  Restores and enables the user configuration. Should be called just after
+ 165:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  awaking from sleep.
+ 166:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 167:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Parameters:
+ 168:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+ 169:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 170:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Return:
+ 171:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  None
+ 172:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ 173:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** * Global variables:
+ 174:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  PWM_Lift_backup.pwmEnable:  Is used to restore the enable state of
+ 175:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *  block on wakeup from sleep mode.
+ 176:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 7
+
+
+ 177:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** *******************************************************************************/
+ 178:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** void PWM_Lift_Wakeup(void) 
+ 179:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** {
+ 164              		.loc 1 179 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168 0000 08B5     		push	{r3, lr}
+ 169              		.cfi_def_cfa_offset 8
+ 170              		.cfi_offset 3, -8
+ 171              		.cfi_offset 14, -4
+ 180:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****      /* Restore registers values */
+ 181:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     PWM_Lift_RestoreConfig();
+ 172              		.loc 1 181 0
+ 173 0002 FFF7FEFF 		bl	PWM_Lift_RestoreConfig
+ 174              	.LVL8:
+ 182:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 183:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     if(PWM_Lift_backup.PWMEnableState != 0u)
+ 175              		.loc 1 183 0
+ 176 0006 044B     		ldr	r3, .L16
+ 177 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 178 000a 1BB1     		cbz	r3, .L13
+ 184:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     {
+ 185:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         /* Enable component's operation */
+ 186:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****         PWM_Lift_Enable();
+ 187:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     } /* Do nothing if component's block was disabled before */
+ 188:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** 
+ 189:.\Generated_Source\PSoC5/PWM_Lift_PM.c **** }
+ 179              		.loc 1 189 0
+ 180 000c BDE80840 		pop	{r3, lr}
+ 181              		.cfi_remember_state
+ 182              		.cfi_restore 14
+ 183              		.cfi_restore 3
+ 184              		.cfi_def_cfa_offset 0
+ 186:.\Generated_Source\PSoC5/PWM_Lift_PM.c ****     } /* Do nothing if component's block was disabled before */
+ 185              		.loc 1 186 0
+ 186 0010 FFF7FEBF 		b	PWM_Lift_Enable
+ 187              	.LVL9:
+ 188              	.L13:
+ 189              		.cfi_restore_state
+ 190 0014 08BD     		pop	{r3, pc}
+ 191              	.L17:
+ 192 0016 00BF     		.align	2
+ 193              	.L16:
+ 194 0018 00000000 		.word	.LANCHOR0
+ 195              		.cfi_endproc
+ 196              	.LFE3:
+ 197              		.size	PWM_Lift_Wakeup, .-PWM_Lift_Wakeup
+ 198              		.bss
+ 199              		.align	1
+ 200              		.set	.LANCHOR0,. + 0
+ 201              		.type	PWM_Lift_backup, %object
+ 202              		.size	PWM_Lift_backup, 8
+ 203              	PWM_Lift_backup:
+ 204 0000 00000000 		.space	8
+ 204      00000000 
+ 205              		.text
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 8
+
+
+ 206              	.Letext0:
+ 207              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 208              		.file 3 ".\\Generated_Source\\PSoC5\\PWM_Lift.h"
+ 209              		.section	.debug_info,"",%progbits
+ 210              	.Ldebug_info0:
+ 211 0000 22020000 		.4byte	0x222
+ 212 0004 0400     		.2byte	0x4
+ 213 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 214 000a 04       		.byte	0x4
+ 215 000b 01       		.uleb128 0x1
+ 216 000c 12020000 		.4byte	.LASF34
+ 217 0010 01       		.byte	0x1
+ 218 0011 D7020000 		.4byte	.LASF35
+ 219 0015 9F000000 		.4byte	.LASF36
+ 220 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 221 001d 00000000 		.4byte	0
+ 222 0021 00000000 		.4byte	.Ldebug_line0
+ 223 0025 02       		.uleb128 0x2
+ 224 0026 01       		.byte	0x1
+ 225 0027 06       		.byte	0x6
+ 226 0028 CB020000 		.4byte	.LASF0
+ 227 002c 02       		.uleb128 0x2
+ 228 002d 01       		.byte	0x1
+ 229 002e 08       		.byte	0x8
+ 230 002f 91000000 		.4byte	.LASF1
+ 231 0033 02       		.uleb128 0x2
+ 232 0034 02       		.byte	0x2
+ 233 0035 05       		.byte	0x5
+ 234 0036 08020000 		.4byte	.LASF2
+ 235 003a 02       		.uleb128 0x2
+ 236 003b 02       		.byte	0x2
+ 237 003c 07       		.byte	0x7
+ 238 003d 54000000 		.4byte	.LASF3
+ 239 0041 02       		.uleb128 0x2
+ 240 0042 04       		.byte	0x4
+ 241 0043 05       		.byte	0x5
+ 242 0044 BD020000 		.4byte	.LASF4
+ 243 0048 02       		.uleb128 0x2
+ 244 0049 04       		.byte	0x4
+ 245 004a 07       		.byte	0x7
+ 246 004b 0A010000 		.4byte	.LASF5
+ 247 004f 02       		.uleb128 0x2
+ 248 0050 08       		.byte	0x8
+ 249 0051 05       		.byte	0x5
+ 250 0052 DC010000 		.4byte	.LASF6
+ 251 0056 02       		.uleb128 0x2
+ 252 0057 08       		.byte	0x8
+ 253 0058 07       		.byte	0x7
+ 254 0059 92010000 		.4byte	.LASF7
+ 255 005d 03       		.uleb128 0x3
+ 256 005e 04       		.byte	0x4
+ 257 005f 05       		.byte	0x5
+ 258 0060 696E7400 		.ascii	"int\000"
+ 259 0064 02       		.uleb128 0x2
+ 260 0065 04       		.byte	0x4
+ 261 0066 07       		.byte	0x7
+ 262 0067 85010000 		.4byte	.LASF8
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 9
+
+
+ 263 006b 04       		.uleb128 0x4
+ 264 006c 1C010000 		.4byte	.LASF9
+ 265 0070 02       		.byte	0x2
+ 266 0071 9201     		.2byte	0x192
+ 267 0073 2C000000 		.4byte	0x2c
+ 268 0077 04       		.uleb128 0x4
+ 269 0078 7E010000 		.4byte	.LASF10
+ 270 007c 02       		.byte	0x2
+ 271 007d 9301     		.2byte	0x193
+ 272 007f 3A000000 		.4byte	0x3a
+ 273 0083 02       		.uleb128 0x2
+ 274 0084 04       		.byte	0x4
+ 275 0085 04       		.byte	0x4
+ 276 0086 8B000000 		.4byte	.LASF11
+ 277 008a 02       		.uleb128 0x2
+ 278 008b 08       		.byte	0x8
+ 279 008c 04       		.byte	0x4
+ 280 008d 60010000 		.4byte	.LASF12
+ 281 0091 02       		.uleb128 0x2
+ 282 0092 01       		.byte	0x1
+ 283 0093 08       		.byte	0x8
+ 284 0094 C6020000 		.4byte	.LASF13
+ 285 0098 04       		.uleb128 0x4
+ 286 0099 BE010000 		.4byte	.LASF14
+ 287 009d 02       		.byte	0x2
+ 288 009e 3C02     		.2byte	0x23c
+ 289 00a0 A4000000 		.4byte	0xa4
+ 290 00a4 05       		.uleb128 0x5
+ 291 00a5 6B000000 		.4byte	0x6b
+ 292 00a9 02       		.uleb128 0x2
+ 293 00aa 04       		.byte	0x4
+ 294 00ab 07       		.byte	0x7
+ 295 00ac D3010000 		.4byte	.LASF15
+ 296 00b0 06       		.uleb128 0x6
+ 297 00b1 08       		.byte	0x8
+ 298 00b2 03       		.byte	0x3
+ 299 00b3 6B       		.byte	0x6b
+ 300 00b4 F5000000 		.4byte	0xf5
+ 301 00b8 07       		.uleb128 0x7
+ 302 00b9 E7000000 		.4byte	.LASF16
+ 303 00bd 03       		.byte	0x3
+ 304 00be 6E       		.byte	0x6e
+ 305 00bf 6B000000 		.4byte	0x6b
+ 306 00c3 00       		.byte	0
+ 307 00c4 07       		.uleb128 0x7
+ 308 00c5 16000000 		.4byte	.LASF17
+ 309 00c9 03       		.byte	0x3
+ 310 00ca 71       		.byte	0x71
+ 311 00cb 77000000 		.4byte	0x77
+ 312 00cf 02       		.byte	0x2
+ 313 00d0 07       		.uleb128 0x7
+ 314 00d1 2D000000 		.4byte	.LASF18
+ 315 00d5 03       		.byte	0x3
+ 316 00d6 73       		.byte	0x73
+ 317 00d7 77000000 		.4byte	0x77
+ 318 00db 04       		.byte	0x4
+ 319 00dc 07       		.uleb128 0x7
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 10
+
+
+ 320 00dd FE020000 		.4byte	.LASF19
+ 321 00e1 03       		.byte	0x3
+ 322 00e2 76       		.byte	0x76
+ 323 00e3 6B000000 		.4byte	0x6b
+ 324 00e7 06       		.byte	0x6
+ 325 00e8 07       		.uleb128 0x7
+ 326 00e9 37010000 		.4byte	.LASF20
+ 327 00ed 03       		.byte	0x3
+ 328 00ee 86       		.byte	0x86
+ 329 00ef 6B000000 		.4byte	0x6b
+ 330 00f3 07       		.byte	0x7
+ 331 00f4 00       		.byte	0
+ 332 00f5 08       		.uleb128 0x8
+ 333 00f6 4A010000 		.4byte	.LASF21
+ 334 00fa 03       		.byte	0x3
+ 335 00fb 8B       		.byte	0x8b
+ 336 00fc B0000000 		.4byte	0xb0
+ 337 0100 09       		.uleb128 0x9
+ 338 0101 F6000000 		.4byte	.LASF22
+ 339 0105 01       		.byte	0x1
+ 340 0106 2A       		.byte	0x2a
+ 341 0107 00000000 		.4byte	.LFB0
+ 342 010b 28000000 		.4byte	.LFE0-.LFB0
+ 343 010f 01       		.uleb128 0x1
+ 344 0110 9C       		.byte	0x9c
+ 345 0111 31010000 		.4byte	0x131
+ 346 0115 0A       		.uleb128 0xa
+ 347 0116 06000000 		.4byte	.LVL0
+ 348 011a C3010000 		.4byte	0x1c3
+ 349 011e 0A       		.uleb128 0xa
+ 350 011f 0E000000 		.4byte	.LVL1
+ 351 0123 CE010000 		.4byte	0x1ce
+ 352 0127 0A       		.uleb128 0xa
+ 353 0128 1A000000 		.4byte	.LVL2
+ 354 012c D9010000 		.4byte	0x1d9
+ 355 0130 00       		.byte	0
+ 356 0131 09       		.uleb128 0x9
+ 357 0132 67010000 		.4byte	.LASF23
+ 358 0136 01       		.byte	0x1
+ 359 0137 58       		.byte	0x58
+ 360 0138 00000000 		.4byte	.LFB1
+ 361 013c 28000000 		.4byte	.LFE1-.LFB1
+ 362 0140 01       		.uleb128 0x1
+ 363 0141 9C       		.byte	0x9c
+ 364 0142 62010000 		.4byte	0x162
+ 365 0146 0A       		.uleb128 0xa
+ 366 0147 0A000000 		.4byte	.LVL3
+ 367 014b E4010000 		.4byte	0x1e4
+ 368 014f 0A       		.uleb128 0xa
+ 369 0150 10000000 		.4byte	.LVL4
+ 370 0154 F5010000 		.4byte	0x1f5
+ 371 0158 0B       		.uleb128 0xb
+ 372 0159 20000000 		.4byte	.LVL5
+ 373 015d 06020000 		.4byte	0x206
+ 374 0161 00       		.byte	0
+ 375 0162 09       		.uleb128 0x9
+ 376 0163 45000000 		.4byte	.LASF24
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 11
+
+
+ 377 0167 01       		.byte	0x1
+ 378 0168 88       		.byte	0x88
+ 379 0169 00000000 		.4byte	.LFB2
+ 380 016d 28000000 		.4byte	.LFE2-.LFB2
+ 381 0171 01       		.uleb128 0x1
+ 382 0172 9C       		.byte	0x9c
+ 383 0173 8A010000 		.4byte	0x18a
+ 384 0177 0A       		.uleb128 0xa
+ 385 0178 18000000 		.4byte	.LVL6
+ 386 017c 17020000 		.4byte	0x217
+ 387 0180 0B       		.uleb128 0xb
+ 388 0181 20000000 		.4byte	.LVL7
+ 389 0185 00010000 		.4byte	0x100
+ 390 0189 00       		.byte	0
+ 391 018a 09       		.uleb128 0x9
+ 392 018b 7B000000 		.4byte	.LASF25
+ 393 018f 01       		.byte	0x1
+ 394 0190 B2       		.byte	0xb2
+ 395 0191 00000000 		.4byte	.LFB3
+ 396 0195 1C000000 		.4byte	.LFE3-.LFB3
+ 397 0199 01       		.uleb128 0x1
+ 398 019a 9C       		.byte	0x9c
+ 399 019b B2010000 		.4byte	0x1b2
+ 400 019f 0A       		.uleb128 0xa
+ 401 01a0 06000000 		.4byte	.LVL8
+ 402 01a4 31010000 		.4byte	0x131
+ 403 01a8 0B       		.uleb128 0xb
+ 404 01a9 14000000 		.4byte	.LVL9
+ 405 01ad 1E020000 		.4byte	0x21e
+ 406 01b1 00       		.byte	0
+ 407 01b2 0C       		.uleb128 0xc
+ 408 01b3 1D000000 		.4byte	.LASF37
+ 409 01b7 01       		.byte	0x1
+ 410 01b8 14       		.byte	0x14
+ 411 01b9 F5000000 		.4byte	0xf5
+ 412 01bd 05       		.uleb128 0x5
+ 413 01be 03       		.byte	0x3
+ 414 01bf 00000000 		.4byte	PWM_Lift_backup
+ 415 01c3 0D       		.uleb128 0xd
+ 416 01c4 67000000 		.4byte	.LASF26
+ 417 01c8 03       		.byte	0x3
+ 418 01c9 C0       		.byte	0xc0
+ 419 01ca 77000000 		.4byte	0x77
+ 420 01ce 0D       		.uleb128 0xd
+ 421 01cf A9010000 		.4byte	.LASF27
+ 422 01d3 03       		.byte	0x3
+ 423 01d4 B3       		.byte	0xb3
+ 424 01d5 77000000 		.4byte	0x77
+ 425 01d9 0D       		.uleb128 0xd
+ 426 01da A0020000 		.4byte	.LASF28
+ 427 01de 03       		.byte	0x3
+ 428 01df 9D       		.byte	0x9d
+ 429 01e0 6B000000 		.4byte	0x6b
+ 430 01e4 0E       		.uleb128 0xe
+ 431 01e5 22010000 		.4byte	.LASF29
+ 432 01e9 03       		.byte	0x3
+ 433 01ea BE       		.byte	0xbe
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 12
+
+
+ 434 01eb F5010000 		.4byte	0x1f5
+ 435 01ef 0F       		.uleb128 0xf
+ 436 01f0 77000000 		.4byte	0x77
+ 437 01f4 00       		.byte	0
+ 438 01f5 0E       		.uleb128 0xe
+ 439 01f6 00000000 		.4byte	.LASF30
+ 440 01fa 03       		.byte	0x3
+ 441 01fb BA       		.byte	0xba
+ 442 01fc 06020000 		.4byte	0x206
+ 443 0200 0F       		.uleb128 0xf
+ 444 0201 77000000 		.4byte	0x77
+ 445 0205 00       		.byte	0
+ 446 0206 0E       		.uleb128 0xe
+ 447 0207 EA010000 		.4byte	.LASF31
+ 448 020b 03       		.byte	0x3
+ 449 020c 9E       		.byte	0x9e
+ 450 020d 17020000 		.4byte	0x217
+ 451 0211 0F       		.uleb128 0xf
+ 452 0212 6B000000 		.4byte	0x6b
+ 453 0216 00       		.byte	0
+ 454 0217 10       		.uleb128 0x10
+ 455 0218 37000000 		.4byte	.LASF32
+ 456 021c 03       		.byte	0x3
+ 457 021d 93       		.byte	0x93
+ 458 021e 10       		.uleb128 0x10
+ 459 021f C3010000 		.4byte	.LASF33
+ 460 0223 03       		.byte	0x3
+ 461 0224 DB       		.byte	0xdb
+ 462 0225 00       		.byte	0
+ 463              		.section	.debug_abbrev,"",%progbits
+ 464              	.Ldebug_abbrev0:
+ 465 0000 01       		.uleb128 0x1
+ 466 0001 11       		.uleb128 0x11
+ 467 0002 01       		.byte	0x1
+ 468 0003 25       		.uleb128 0x25
+ 469 0004 0E       		.uleb128 0xe
+ 470 0005 13       		.uleb128 0x13
+ 471 0006 0B       		.uleb128 0xb
+ 472 0007 03       		.uleb128 0x3
+ 473 0008 0E       		.uleb128 0xe
+ 474 0009 1B       		.uleb128 0x1b
+ 475 000a 0E       		.uleb128 0xe
+ 476 000b 55       		.uleb128 0x55
+ 477 000c 17       		.uleb128 0x17
+ 478 000d 11       		.uleb128 0x11
+ 479 000e 01       		.uleb128 0x1
+ 480 000f 10       		.uleb128 0x10
+ 481 0010 17       		.uleb128 0x17
+ 482 0011 00       		.byte	0
+ 483 0012 00       		.byte	0
+ 484 0013 02       		.uleb128 0x2
+ 485 0014 24       		.uleb128 0x24
+ 486 0015 00       		.byte	0
+ 487 0016 0B       		.uleb128 0xb
+ 488 0017 0B       		.uleb128 0xb
+ 489 0018 3E       		.uleb128 0x3e
+ 490 0019 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 13
+
+
+ 491 001a 03       		.uleb128 0x3
+ 492 001b 0E       		.uleb128 0xe
+ 493 001c 00       		.byte	0
+ 494 001d 00       		.byte	0
+ 495 001e 03       		.uleb128 0x3
+ 496 001f 24       		.uleb128 0x24
+ 497 0020 00       		.byte	0
+ 498 0021 0B       		.uleb128 0xb
+ 499 0022 0B       		.uleb128 0xb
+ 500 0023 3E       		.uleb128 0x3e
+ 501 0024 0B       		.uleb128 0xb
+ 502 0025 03       		.uleb128 0x3
+ 503 0026 08       		.uleb128 0x8
+ 504 0027 00       		.byte	0
+ 505 0028 00       		.byte	0
+ 506 0029 04       		.uleb128 0x4
+ 507 002a 16       		.uleb128 0x16
+ 508 002b 00       		.byte	0
+ 509 002c 03       		.uleb128 0x3
+ 510 002d 0E       		.uleb128 0xe
+ 511 002e 3A       		.uleb128 0x3a
+ 512 002f 0B       		.uleb128 0xb
+ 513 0030 3B       		.uleb128 0x3b
+ 514 0031 05       		.uleb128 0x5
+ 515 0032 49       		.uleb128 0x49
+ 516 0033 13       		.uleb128 0x13
+ 517 0034 00       		.byte	0
+ 518 0035 00       		.byte	0
+ 519 0036 05       		.uleb128 0x5
+ 520 0037 35       		.uleb128 0x35
+ 521 0038 00       		.byte	0
+ 522 0039 49       		.uleb128 0x49
+ 523 003a 13       		.uleb128 0x13
+ 524 003b 00       		.byte	0
+ 525 003c 00       		.byte	0
+ 526 003d 06       		.uleb128 0x6
+ 527 003e 13       		.uleb128 0x13
+ 528 003f 01       		.byte	0x1
+ 529 0040 0B       		.uleb128 0xb
+ 530 0041 0B       		.uleb128 0xb
+ 531 0042 3A       		.uleb128 0x3a
+ 532 0043 0B       		.uleb128 0xb
+ 533 0044 3B       		.uleb128 0x3b
+ 534 0045 0B       		.uleb128 0xb
+ 535 0046 01       		.uleb128 0x1
+ 536 0047 13       		.uleb128 0x13
+ 537 0048 00       		.byte	0
+ 538 0049 00       		.byte	0
+ 539 004a 07       		.uleb128 0x7
+ 540 004b 0D       		.uleb128 0xd
+ 541 004c 00       		.byte	0
+ 542 004d 03       		.uleb128 0x3
+ 543 004e 0E       		.uleb128 0xe
+ 544 004f 3A       		.uleb128 0x3a
+ 545 0050 0B       		.uleb128 0xb
+ 546 0051 3B       		.uleb128 0x3b
+ 547 0052 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 14
+
+
+ 548 0053 49       		.uleb128 0x49
+ 549 0054 13       		.uleb128 0x13
+ 550 0055 38       		.uleb128 0x38
+ 551 0056 0B       		.uleb128 0xb
+ 552 0057 00       		.byte	0
+ 553 0058 00       		.byte	0
+ 554 0059 08       		.uleb128 0x8
+ 555 005a 16       		.uleb128 0x16
+ 556 005b 00       		.byte	0
+ 557 005c 03       		.uleb128 0x3
+ 558 005d 0E       		.uleb128 0xe
+ 559 005e 3A       		.uleb128 0x3a
+ 560 005f 0B       		.uleb128 0xb
+ 561 0060 3B       		.uleb128 0x3b
+ 562 0061 0B       		.uleb128 0xb
+ 563 0062 49       		.uleb128 0x49
+ 564 0063 13       		.uleb128 0x13
+ 565 0064 00       		.byte	0
+ 566 0065 00       		.byte	0
+ 567 0066 09       		.uleb128 0x9
+ 568 0067 2E       		.uleb128 0x2e
+ 569 0068 01       		.byte	0x1
+ 570 0069 3F       		.uleb128 0x3f
+ 571 006a 19       		.uleb128 0x19
+ 572 006b 03       		.uleb128 0x3
+ 573 006c 0E       		.uleb128 0xe
+ 574 006d 3A       		.uleb128 0x3a
+ 575 006e 0B       		.uleb128 0xb
+ 576 006f 3B       		.uleb128 0x3b
+ 577 0070 0B       		.uleb128 0xb
+ 578 0071 27       		.uleb128 0x27
+ 579 0072 19       		.uleb128 0x19
+ 580 0073 11       		.uleb128 0x11
+ 581 0074 01       		.uleb128 0x1
+ 582 0075 12       		.uleb128 0x12
+ 583 0076 06       		.uleb128 0x6
+ 584 0077 40       		.uleb128 0x40
+ 585 0078 18       		.uleb128 0x18
+ 586 0079 9742     		.uleb128 0x2117
+ 587 007b 19       		.uleb128 0x19
+ 588 007c 01       		.uleb128 0x1
+ 589 007d 13       		.uleb128 0x13
+ 590 007e 00       		.byte	0
+ 591 007f 00       		.byte	0
+ 592 0080 0A       		.uleb128 0xa
+ 593 0081 898201   		.uleb128 0x4109
+ 594 0084 00       		.byte	0
+ 595 0085 11       		.uleb128 0x11
+ 596 0086 01       		.uleb128 0x1
+ 597 0087 31       		.uleb128 0x31
+ 598 0088 13       		.uleb128 0x13
+ 599 0089 00       		.byte	0
+ 600 008a 00       		.byte	0
+ 601 008b 0B       		.uleb128 0xb
+ 602 008c 898201   		.uleb128 0x4109
+ 603 008f 00       		.byte	0
+ 604 0090 11       		.uleb128 0x11
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 15
+
+
+ 605 0091 01       		.uleb128 0x1
+ 606 0092 9542     		.uleb128 0x2115
+ 607 0094 19       		.uleb128 0x19
+ 608 0095 31       		.uleb128 0x31
+ 609 0096 13       		.uleb128 0x13
+ 610 0097 00       		.byte	0
+ 611 0098 00       		.byte	0
+ 612 0099 0C       		.uleb128 0xc
+ 613 009a 34       		.uleb128 0x34
+ 614 009b 00       		.byte	0
+ 615 009c 03       		.uleb128 0x3
+ 616 009d 0E       		.uleb128 0xe
+ 617 009e 3A       		.uleb128 0x3a
+ 618 009f 0B       		.uleb128 0xb
+ 619 00a0 3B       		.uleb128 0x3b
+ 620 00a1 0B       		.uleb128 0xb
+ 621 00a2 49       		.uleb128 0x49
+ 622 00a3 13       		.uleb128 0x13
+ 623 00a4 02       		.uleb128 0x2
+ 624 00a5 18       		.uleb128 0x18
+ 625 00a6 00       		.byte	0
+ 626 00a7 00       		.byte	0
+ 627 00a8 0D       		.uleb128 0xd
+ 628 00a9 2E       		.uleb128 0x2e
+ 629 00aa 00       		.byte	0
+ 630 00ab 3F       		.uleb128 0x3f
+ 631 00ac 19       		.uleb128 0x19
+ 632 00ad 03       		.uleb128 0x3
+ 633 00ae 0E       		.uleb128 0xe
+ 634 00af 3A       		.uleb128 0x3a
+ 635 00b0 0B       		.uleb128 0xb
+ 636 00b1 3B       		.uleb128 0x3b
+ 637 00b2 0B       		.uleb128 0xb
+ 638 00b3 27       		.uleb128 0x27
+ 639 00b4 19       		.uleb128 0x19
+ 640 00b5 49       		.uleb128 0x49
+ 641 00b6 13       		.uleb128 0x13
+ 642 00b7 3C       		.uleb128 0x3c
+ 643 00b8 19       		.uleb128 0x19
+ 644 00b9 00       		.byte	0
+ 645 00ba 00       		.byte	0
+ 646 00bb 0E       		.uleb128 0xe
+ 647 00bc 2E       		.uleb128 0x2e
+ 648 00bd 01       		.byte	0x1
+ 649 00be 3F       		.uleb128 0x3f
+ 650 00bf 19       		.uleb128 0x19
+ 651 00c0 03       		.uleb128 0x3
+ 652 00c1 0E       		.uleb128 0xe
+ 653 00c2 3A       		.uleb128 0x3a
+ 654 00c3 0B       		.uleb128 0xb
+ 655 00c4 3B       		.uleb128 0x3b
+ 656 00c5 0B       		.uleb128 0xb
+ 657 00c6 27       		.uleb128 0x27
+ 658 00c7 19       		.uleb128 0x19
+ 659 00c8 3C       		.uleb128 0x3c
+ 660 00c9 19       		.uleb128 0x19
+ 661 00ca 01       		.uleb128 0x1
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 16
+
+
+ 662 00cb 13       		.uleb128 0x13
+ 663 00cc 00       		.byte	0
+ 664 00cd 00       		.byte	0
+ 665 00ce 0F       		.uleb128 0xf
+ 666 00cf 05       		.uleb128 0x5
+ 667 00d0 00       		.byte	0
+ 668 00d1 49       		.uleb128 0x49
+ 669 00d2 13       		.uleb128 0x13
+ 670 00d3 00       		.byte	0
+ 671 00d4 00       		.byte	0
+ 672 00d5 10       		.uleb128 0x10
+ 673 00d6 2E       		.uleb128 0x2e
+ 674 00d7 00       		.byte	0
+ 675 00d8 3F       		.uleb128 0x3f
+ 676 00d9 19       		.uleb128 0x19
+ 677 00da 03       		.uleb128 0x3
+ 678 00db 0E       		.uleb128 0xe
+ 679 00dc 3A       		.uleb128 0x3a
+ 680 00dd 0B       		.uleb128 0xb
+ 681 00de 3B       		.uleb128 0x3b
+ 682 00df 0B       		.uleb128 0xb
+ 683 00e0 27       		.uleb128 0x27
+ 684 00e1 19       		.uleb128 0x19
+ 685 00e2 3C       		.uleb128 0x3c
+ 686 00e3 19       		.uleb128 0x19
+ 687 00e4 00       		.byte	0
+ 688 00e5 00       		.byte	0
+ 689 00e6 00       		.byte	0
+ 690              		.section	.debug_aranges,"",%progbits
+ 691 0000 34000000 		.4byte	0x34
+ 692 0004 0200     		.2byte	0x2
+ 693 0006 00000000 		.4byte	.Ldebug_info0
+ 694 000a 04       		.byte	0x4
+ 695 000b 00       		.byte	0
+ 696 000c 0000     		.2byte	0
+ 697 000e 0000     		.2byte	0
+ 698 0010 00000000 		.4byte	.LFB0
+ 699 0014 28000000 		.4byte	.LFE0-.LFB0
+ 700 0018 00000000 		.4byte	.LFB1
+ 701 001c 28000000 		.4byte	.LFE1-.LFB1
+ 702 0020 00000000 		.4byte	.LFB2
+ 703 0024 28000000 		.4byte	.LFE2-.LFB2
+ 704 0028 00000000 		.4byte	.LFB3
+ 705 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 706 0030 00000000 		.4byte	0
+ 707 0034 00000000 		.4byte	0
+ 708              		.section	.debug_ranges,"",%progbits
+ 709              	.Ldebug_ranges0:
+ 710 0000 00000000 		.4byte	.LFB0
+ 711 0004 28000000 		.4byte	.LFE0
+ 712 0008 00000000 		.4byte	.LFB1
+ 713 000c 28000000 		.4byte	.LFE1
+ 714 0010 00000000 		.4byte	.LFB2
+ 715 0014 28000000 		.4byte	.LFE2
+ 716 0018 00000000 		.4byte	.LFB3
+ 717 001c 1C000000 		.4byte	.LFE3
+ 718 0020 00000000 		.4byte	0
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 17
+
+
+ 719 0024 00000000 		.4byte	0
+ 720              		.section	.debug_line,"",%progbits
+ 721              	.Ldebug_line0:
+ 722 0000 B7000000 		.section	.debug_str,"MS",%progbits,1
+ 722      02005800 
+ 722      00000201 
+ 722      FB0E0D00 
+ 722      01010101 
+ 723              	.LASF30:
+ 724 0000 50574D5F 		.ascii	"PWM_Lift_WriteCounter\000"
+ 724      4C696674 
+ 724      5F577269 
+ 724      7465436F 
+ 724      756E7465 
+ 725              	.LASF17:
+ 726 0016 50574D55 		.ascii	"PWMUdb\000"
+ 726      646200
+ 727              	.LASF37:
+ 728 001d 50574D5F 		.ascii	"PWM_Lift_backup\000"
+ 728      4C696674 
+ 728      5F626163 
+ 728      6B757000 
+ 729              	.LASF18:
+ 730 002d 50574D50 		.ascii	"PWMPeriod\000"
+ 730      6572696F 
+ 730      6400
+ 731              	.LASF32:
+ 732 0037 50574D5F 		.ascii	"PWM_Lift_Stop\000"
+ 732      4C696674 
+ 732      5F53746F 
+ 732      7000
+ 733              	.LASF24:
+ 734 0045 50574D5F 		.ascii	"PWM_Lift_Sleep\000"
+ 734      4C696674 
+ 734      5F536C65 
+ 734      657000
+ 735              	.LASF3:
+ 736 0054 73686F72 		.ascii	"short unsigned int\000"
+ 736      7420756E 
+ 736      7369676E 
+ 736      65642069 
+ 736      6E7400
+ 737              	.LASF26:
+ 738 0067 50574D5F 		.ascii	"PWM_Lift_ReadPeriod\000"
+ 738      4C696674 
+ 738      5F526561 
+ 738      64506572 
+ 738      696F6400 
+ 739              	.LASF25:
+ 740 007b 50574D5F 		.ascii	"PWM_Lift_Wakeup\000"
+ 740      4C696674 
+ 740      5F57616B 
+ 740      65757000 
+ 741              	.LASF11:
+ 742 008b 666C6F61 		.ascii	"float\000"
+ 742      7400
+ 743              	.LASF1:
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 18
+
+
+ 744 0091 756E7369 		.ascii	"unsigned char\000"
+ 744      676E6564 
+ 744      20636861 
+ 744      7200
+ 745              	.LASF36:
+ 746 009f 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 746      6F63756D 
+ 746      656E7473 
+ 746      5C436F6D 
+ 746      70757465 
+ 747 00ce 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 747      5069636B 
+ 747      75705C44 
+ 747      6973706C 
+ 747      61792E63 
+ 748              	.LASF16:
+ 749 00e7 50574D45 		.ascii	"PWMEnableState\000"
+ 749      6E61626C 
+ 749      65537461 
+ 749      746500
+ 750              	.LASF22:
+ 751 00f6 50574D5F 		.ascii	"PWM_Lift_SaveConfig\000"
+ 751      4C696674 
+ 751      5F536176 
+ 751      65436F6E 
+ 751      66696700 
+ 752              	.LASF5:
+ 753 010a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 753      20756E73 
+ 753      69676E65 
+ 753      6420696E 
+ 753      7400
+ 754              	.LASF9:
+ 755 011c 75696E74 		.ascii	"uint8\000"
+ 755      3800
+ 756              	.LASF29:
+ 757 0122 50574D5F 		.ascii	"PWM_Lift_WritePeriod\000"
+ 757      4C696674 
+ 757      5F577269 
+ 757      74655065 
+ 757      72696F64 
+ 758              	.LASF20:
+ 759 0137 50574D43 		.ascii	"PWMControlRegister\000"
+ 759      6F6E7472 
+ 759      6F6C5265 
+ 759      67697374 
+ 759      657200
+ 760              	.LASF21:
+ 761 014a 50574D5F 		.ascii	"PWM_Lift_backupStruct\000"
+ 761      4C696674 
+ 761      5F626163 
+ 761      6B757053 
+ 761      74727563 
+ 762              	.LASF12:
+ 763 0160 646F7562 		.ascii	"double\000"
+ 763      6C6500
+ 764              	.LASF23:
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 19
+
+
+ 765 0167 50574D5F 		.ascii	"PWM_Lift_RestoreConfig\000"
+ 765      4C696674 
+ 765      5F526573 
+ 765      746F7265 
+ 765      436F6E66 
+ 766              	.LASF10:
+ 767 017e 75696E74 		.ascii	"uint16\000"
+ 767      313600
+ 768              	.LASF8:
+ 769 0185 756E7369 		.ascii	"unsigned int\000"
+ 769      676E6564 
+ 769      20696E74 
+ 769      00
+ 770              	.LASF7:
+ 771 0192 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 771      206C6F6E 
+ 771      6720756E 
+ 771      7369676E 
+ 771      65642069 
+ 772              	.LASF27:
+ 773 01a9 50574D5F 		.ascii	"PWM_Lift_ReadCounter\000"
+ 773      4C696674 
+ 773      5F526561 
+ 773      64436F75 
+ 773      6E746572 
+ 774              	.LASF14:
+ 775 01be 72656738 		.ascii	"reg8\000"
+ 775      00
+ 776              	.LASF33:
+ 777 01c3 50574D5F 		.ascii	"PWM_Lift_Enable\000"
+ 777      4C696674 
+ 777      5F456E61 
+ 777      626C6500 
+ 778              	.LASF15:
+ 779 01d3 73697A65 		.ascii	"sizetype\000"
+ 779      74797065 
+ 779      00
+ 780              	.LASF6:
+ 781 01dc 6C6F6E67 		.ascii	"long long int\000"
+ 781      206C6F6E 
+ 781      6720696E 
+ 781      7400
+ 782              	.LASF31:
+ 783 01ea 50574D5F 		.ascii	"PWM_Lift_WriteControlRegister\000"
+ 783      4C696674 
+ 783      5F577269 
+ 783      7465436F 
+ 783      6E74726F 
+ 784              	.LASF2:
+ 785 0208 73686F72 		.ascii	"short int\000"
+ 785      7420696E 
+ 785      7400
+ 786              	.LASF34:
+ 787 0212 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 787      4320342E 
+ 787      392E3320 
+ 787      32303135 
+ARM GAS  D:\TEMP\ccVj5gsX.s 			page 20
+
+
+ 787      30333033 
+ 788 0245 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 788      20726576 
+ 788      6973696F 
+ 788      6E203232 
+ 788      31323230 
+ 789 0278 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 789      66756E63 
+ 789      74696F6E 
+ 789      2D736563 
+ 789      74696F6E 
+ 790              	.LASF28:
+ 791 02a0 50574D5F 		.ascii	"PWM_Lift_ReadControlRegister\000"
+ 791      4C696674 
+ 791      5F526561 
+ 791      64436F6E 
+ 791      74726F6C 
+ 792              	.LASF4:
+ 793 02bd 6C6F6E67 		.ascii	"long int\000"
+ 793      20696E74 
+ 793      00
+ 794              	.LASF13:
+ 795 02c6 63686172 		.ascii	"char\000"
+ 795      00
+ 796              	.LASF0:
+ 797 02cb 7369676E 		.ascii	"signed char\000"
+ 797      65642063 
+ 797      68617200 
+ 798              	.LASF35:
+ 799 02d7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_Lift_PM.c\000"
+ 799      6E657261 
+ 799      7465645F 
+ 799      536F7572 
+ 799      63655C50 
+ 800              	.LASF19:
+ 801 02fe 496E7465 		.ascii	"InterruptMaskValue\000"
+ 801      72727570 
+ 801      744D6173 
+ 801      6B56616C 
+ 801      756500
+ 802              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

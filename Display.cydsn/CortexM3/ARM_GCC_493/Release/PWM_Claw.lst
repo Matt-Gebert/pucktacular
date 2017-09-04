@@ -1,0 +1,2851 @@
+ARM GAS  D:\TEMP\ccncbz78.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_Claw.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PWM_Claw_Enable,"ax",%progbits
+  19              		.align	1
+  20              		.global	PWM_Claw_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PWM_Claw_Enable, %function
+  24              	PWM_Claw_Enable:
+  25              	.LFB2:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\PWM_Claw.c"
+   1:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PWM_Claw.c **** * File Name: PWM_Claw.c
+   3:.\Generated_Source\PSoC5/PWM_Claw.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+   5:.\Generated_Source\PSoC5/PWM_Claw.c **** * Description:
+   6:.\Generated_Source\PSoC5/PWM_Claw.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:.\Generated_Source\PSoC5/PWM_Claw.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:.\Generated_Source\PSoC5/PWM_Claw.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:.\Generated_Source\PSoC5/PWM_Claw.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:.\Generated_Source\PSoC5/PWM_Claw.c **** *  The compare value output may be configured to be active when the present
+  11:.\Generated_Source\PSoC5/PWM_Claw.c **** *  counter is less than or less than/equal to the compare value.
+  12:.\Generated_Source\PSoC5/PWM_Claw.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:.\Generated_Source\PSoC5/PWM_Claw.c **** *  width wide when the counter is equal to zero.
+  14:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  15:.\Generated_Source\PSoC5/PWM_Claw.c **** * Note:
+  16:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  17:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************
+  18:.\Generated_Source\PSoC5/PWM_Claw.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:.\Generated_Source\PSoC5/PWM_Claw.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:.\Generated_Source\PSoC5/PWM_Claw.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:.\Generated_Source\PSoC5/PWM_Claw.c **** * the software package with which this file was provided.
+  22:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************/
+  23:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  24:.\Generated_Source\PSoC5/PWM_Claw.c **** #include "PWM_Claw.h"
+  25:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  26:.\Generated_Source\PSoC5/PWM_Claw.c **** /* Error message for removed <resource> through optimization */
+  27:.\Generated_Source\PSoC5/PWM_Claw.c **** #ifdef PWM_Claw_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:.\Generated_Source\PSoC5/PWM_Claw.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:.\Generated_Source\PSoC5/PWM_Claw.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* PWM_Claw_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/PWM_Claw.c **** uint8 PWM_Claw_initVar = 0u;
+  33:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  34:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  35:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+  36:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_Start
+  37:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+  38:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  39:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+  40:.\Generated_Source\PSoC5/PWM_Claw.c **** *  The start function initializes the pwm with the default values, the
+  41:.\Generated_Source\PSoC5/PWM_Claw.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:.\Generated_Source\PSoC5/PWM_Claw.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  44:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+  46:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  47:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+  48:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+  49:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  50:.\Generated_Source\PSoC5/PWM_Claw.c **** * Global variables:
+  51:.\Generated_Source\PSoC5/PWM_Claw.c **** *  PWM_Claw_initVar: Is modified when this function is called for the
+  52:.\Generated_Source\PSoC5/PWM_Claw.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  54:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+  55:.\Generated_Source\PSoC5/PWM_Claw.c **** void PWM_Claw_Start(void) 
+  56:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+  57:.\Generated_Source\PSoC5/PWM_Claw.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:.\Generated_Source\PSoC5/PWM_Claw.c ****     if(PWM_Claw_initVar == 0u)
+  59:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+  60:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_Init();
+  61:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_initVar = 1u;
+  62:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+  63:.\Generated_Source\PSoC5/PWM_Claw.c ****     PWM_Claw_Enable();
+  64:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  65:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+  66:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  67:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  68:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+  69:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_Init
+  70:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+  71:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  72:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+  73:.\Generated_Source\PSoC5/PWM_Claw.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:.\Generated_Source\PSoC5/PWM_Claw.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:.\Generated_Source\PSoC5/PWM_Claw.c **** *  PWM_Claw_Start().
+  76:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  77:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+  78:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+  79:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  80:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+  81:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+  82:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+  83:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+  84:.\Generated_Source\PSoC5/PWM_Claw.c **** void PWM_Claw_Init(void) 
+  85:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+  86:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction || PWM_Claw_UseControl)
+  87:.\Generated_Source\PSoC5/PWM_Claw.c ****         uint8 ctrl;
+  88:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction || PWM_Claw_UseControl) */
+ARM GAS  D:\TEMP\ccncbz78.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  90:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if(!PWM_Claw_UsingFixedFunction)
+  91:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UseStatus)
+  92:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Interrupt State Backup for Critical Region*/
+  93:.\Generated_Source\PSoC5/PWM_Claw.c ****             uint8 PWM_Claw_interruptState;
+  94:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UseStatus) */
+  95:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (!PWM_Claw_UsingFixedFunction) */
+  96:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+  97:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction)
+  98:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* You are allowed to write the compare value (FF only) */
+  99:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL |= PWM_Claw_CFG0_MODE;
+ 100:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_DeadBand2_4)
+ 101:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_CONTROL |= PWM_Claw_CFG0_DB;
+ 102:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_DeadBand2_4) */
+ 103:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 104:.\Generated_Source\PSoC5/PWM_Claw.c ****         ctrl = PWM_Claw_CONTROL3 & ((uint8 )(~PWM_Claw_CTRL_CMPMODE1_MASK));
+ 105:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL3 = ctrl | PWM_Claw_DEFAULT_COMPARE1_MODE;
+ 106:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 107:.\Generated_Source\PSoC5/PWM_Claw.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_RT1 &= ((uint8)(~PWM_Claw_RT1_MASK));
+ 109:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_RT1 |= PWM_Claw_SYNC;
+ 110:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 111:.\Generated_Source\PSoC5/PWM_Claw.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_RT1 &= ((uint8)(~PWM_Claw_SYNCDSI_MASK));
+ 113:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_RT1 |= PWM_Claw_SYNCDSI_EN;
+ 114:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 115:.\Generated_Source\PSoC5/PWM_Claw.c ****     #elif (PWM_Claw_UseControl)
+ 116:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Set the default compare mode defined in the parameter */
+ 117:.\Generated_Source\PSoC5/PWM_Claw.c ****         ctrl = PWM_Claw_CONTROL & ((uint8)(~PWM_Claw_CTRL_CMPMODE2_MASK)) &
+ 118:.\Generated_Source\PSoC5/PWM_Claw.c ****                 ((uint8)(~PWM_Claw_CTRL_CMPMODE1_MASK));
+ 119:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL = ctrl | PWM_Claw_DEFAULT_COMPARE2_MODE |
+ 120:.\Generated_Source\PSoC5/PWM_Claw.c ****                                    PWM_Claw_DEFAULT_COMPARE1_MODE;
+ 121:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 122:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 123:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (!PWM_Claw_UsingFixedFunction)
+ 124:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_Resolution == 8)
+ 125:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_AUX_CONTROLDP0 |= (PWM_Claw_AUX_CTRL_FIFO0_CLR);
+ 127:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else /* (PWM_Claw_Resolution == 16)*/
+ 128:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_AUX_CONTROLDP0 |= (PWM_Claw_AUX_CTRL_FIFO0_CLR);
+ 130:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_AUX_CONTROLDP1 |= (PWM_Claw_AUX_CTRL_FIFO0_CLR);
+ 131:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_Resolution == 8) */
+ 132:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 133:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_WriteCounter(PWM_Claw_INIT_PERIOD_VALUE);
+ 134:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (!PWM_Claw_UsingFixedFunction) */
+ 135:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 136:.\Generated_Source\PSoC5/PWM_Claw.c ****     PWM_Claw_WritePeriod(PWM_Claw_INIT_PERIOD_VALUE);
+ 137:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 138:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_UseOneCompareMode)
+ 139:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_WriteCompare(PWM_Claw_INIT_COMPARE_VALUE1);
+ 140:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 141:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_WriteCompare1(PWM_Claw_INIT_COMPARE_VALUE1);
+ 142:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_WriteCompare2(PWM_Claw_INIT_COMPARE_VALUE2);
+ 143:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UseOneCompareMode) */
+ 144:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 145:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_KillModeMinTime)
+ARM GAS  D:\TEMP\ccncbz78.s 			page 4
+
+
+ 146:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_WriteKillTime(PWM_Claw_MinimumKillTime);
+ 147:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_KillModeMinTime) */
+ 148:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 149:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_DeadBandUsed)
+ 150:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_WriteDeadTime(PWM_Claw_INIT_DEAD_TIME);
+ 151:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_DeadBandUsed) */
+ 152:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 153:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UseStatus || PWM_Claw_UsingFixedFunction)
+ 154:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_SetInterruptMode(PWM_Claw_INIT_INTERRUPTS_MODE);
+ 155:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UseStatus || PWM_Claw_UsingFixedFunction) */
+ 156:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 157:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction)
+ 158:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_GLOBAL_ENABLE |= PWM_Claw_BLOCK_EN_MASK;
+ 160:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Set the Interrupt source to come from the status register */
+ 161:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL2 |= PWM_Claw_CTRL2_IRQ_SEL;
+ 162:.\Generated_Source\PSoC5/PWM_Claw.c ****     #else
+ 163:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UseStatus)
+ 164:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 165:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Enter Critical Region*/
+ 167:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_interruptState = CyEnterCriticalSection();
+ 168:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_STATUS_AUX_CTRL |= PWM_Claw_STATUS_ACTL_INT_EN_MASK;
+ 170:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 171:.\Generated_Source\PSoC5/PWM_Claw.c ****              /* Exit Critical Region*/
+ 172:.\Generated_Source\PSoC5/PWM_Claw.c ****             CyExitCriticalSection(PWM_Claw_interruptState);
+ 173:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 174:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Clear the FIFO to enable the PWM_Claw_STATUS_FIFOFULL
+ 175:.\Generated_Source\PSoC5/PWM_Claw.c ****                    bit to be set on FIFO full. */
+ 176:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_ClearFIFO();
+ 177:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UseStatus) */
+ 178:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 179:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+ 180:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 181:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 182:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+ 183:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_Enable
+ 184:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+ 185:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 186:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+ 187:.\Generated_Source\PSoC5/PWM_Claw.c **** *  Enables the PWM block operation
+ 188:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 189:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+ 190:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 191:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 192:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+ 193:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 194:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 195:.\Generated_Source\PSoC5/PWM_Claw.c **** * Side Effects:
+ 196:.\Generated_Source\PSoC5/PWM_Claw.c **** *  This works only if software enable mode is chosen
+ 197:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 198:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+ 199:.\Generated_Source\PSoC5/PWM_Claw.c **** void PWM_Claw_Enable(void) 
+ 200:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+  27              		.loc 1 200 0
+  28              		.cfi_startproc
+ARM GAS  D:\TEMP\ccncbz78.s 			page 5
+
+
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+ 201:.\Generated_Source\PSoC5/PWM_Claw.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction)
+ 203:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_GLOBAL_ENABLE |= PWM_Claw_BLOCK_EN_MASK;
+ 204:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_GLOBAL_STBY_ENABLE |= PWM_Claw_BLOCK_STBY_EN_MASK;
+ 205:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 206:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 207:.\Generated_Source\PSoC5/PWM_Claw.c ****     /* Enable the PWM from the control register  */
+ 208:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UseControl || PWM_Claw_UsingFixedFunction)
+ 209:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL |= PWM_Claw_CTRL_ENABLE;
+  32              		.loc 1 209 0
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  35 0004 43F08003 		orr	r3, r3, #128
+  36 0008 1370     		strb	r3, [r2]
+  37 000a 7047     		bx	lr
+  38              	.L3:
+  39              		.align	2
+  40              	.L2:
+  41 000c 72640040 		.word	1073767538
+  42              		.cfi_endproc
+  43              	.LFE2:
+  44              		.size	PWM_Claw_Enable, .-PWM_Claw_Enable
+  45              		.section	.text.PWM_Claw_Stop,"ax",%progbits
+  46              		.align	1
+  47              		.global	PWM_Claw_Stop
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	PWM_Claw_Stop, %function
+  51              	PWM_Claw_Stop:
+  52              	.LFB3:
+ 210:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UseControl || PWM_Claw_UsingFixedFunction) */
+ 211:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+ 212:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 213:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 214:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+ 215:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_Stop
+ 216:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+ 217:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 218:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+ 219:.\Generated_Source\PSoC5/PWM_Claw.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:.\Generated_Source\PSoC5/PWM_Claw.c **** *  interrupts.
+ 221:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 222:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+ 223:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 224:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 225:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+ 226:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 227:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 228:.\Generated_Source\PSoC5/PWM_Claw.c **** * Side Effects:
+ 229:.\Generated_Source\PSoC5/PWM_Claw.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:.\Generated_Source\PSoC5/PWM_Claw.c **** *  has no effect on the operation of the PWM
+ 231:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 232:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+ 233:.\Generated_Source\PSoC5/PWM_Claw.c **** void PWM_Claw_Stop(void) 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 6
+
+
+ 234:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+  53              		.loc 1 234 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+ 235:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UseControl || PWM_Claw_UsingFixedFunction)
+ 236:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_CONTROL &= ((uint8)(~PWM_Claw_CTRL_ENABLE));
+  58              		.loc 1 236 0
+  59 0000 024A     		ldr	r2, .L5
+  60 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  61 0004 03F07F03 		and	r3, r3, #127
+  62 0008 1370     		strb	r3, [r2]
+  63 000a 7047     		bx	lr
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 000c 72640040 		.word	1073767538
+  68              		.cfi_endproc
+  69              	.LFE3:
+  70              		.size	PWM_Claw_Stop, .-PWM_Claw_Stop
+  71              		.section	.text.PWM_Claw_WriteCounter,"ax",%progbits
+  72              		.align	1
+  73              		.global	PWM_Claw_WriteCounter
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	PWM_Claw_WriteCounter, %function
+  77              	PWM_Claw_WriteCounter:
+  78              	.LFB4:
+ 237:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UseControl || PWM_Claw_UsingFixedFunction) */
+ 238:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 239:.\Generated_Source\PSoC5/PWM_Claw.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction)
+ 241:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_GLOBAL_ENABLE &= ((uint8)(~PWM_Claw_BLOCK_EN_MASK));
+ 242:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_Claw_BLOCK_STBY_EN_MASK));
+ 243:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 244:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+ 245:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 246:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_UseOneCompareMode)
+ 247:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_CompareMode1SW)
+ 248:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 249:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 250:.\Generated_Source\PSoC5/PWM_Claw.c ****         /*******************************************************************************
+ 251:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Function Name: PWM_Claw_SetCompareMode
+ 252:.\Generated_Source\PSoC5/PWM_Claw.c ****         ********************************************************************************
+ 253:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 254:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Summary:
+ 255:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  Center Align Mode or One Output Mode.
+ 257:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 258:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Parameters:
+ 259:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:.\Generated_Source\PSoC5/PWM_Claw.c ****         *                defined in the H file as input arguments.
+ 261:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 262:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Return:
+ 263:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  None
+ 264:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ARM GAS  D:\TEMP\ccncbz78.s 			page 7
+
+
+ 265:.\Generated_Source\PSoC5/PWM_Claw.c ****         *******************************************************************************/
+ 266:.\Generated_Source\PSoC5/PWM_Claw.c ****         void PWM_Claw_SetCompareMode(uint8 comparemode) 
+ 267:.\Generated_Source\PSoC5/PWM_Claw.c ****         {
+ 268:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if(PWM_Claw_UsingFixedFunction)
+ 269:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 270:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #if(0 != PWM_Claw_CTRL_CMPMODE1_SHIFT)
+ 271:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Claw_CTRL_CMPMODE1
+ 272:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #else
+ 273:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemodemasked = comparemode;
+ 274:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #endif /* (0 != PWM_Claw_CTRL_CMPMODE1_SHIFT) */
+ 275:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 276:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL3 &= ((uint8)(~PWM_Claw_CTRL_CMPMODE1_MASK)); /*Clear Existing Data
+ 277:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL3 |= comparemodemasked;
+ 278:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 279:.\Generated_Source\PSoC5/PWM_Claw.c ****             #elif (PWM_Claw_UseControl)
+ 280:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 281:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #if(0 != PWM_Claw_CTRL_CMPMODE1_SHIFT)
+ 282:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_Claw_CTRL_CMPMODE
+ 283:.\Generated_Source\PSoC5/PWM_Claw.c ****                                                 PWM_Claw_CTRL_CMPMODE1_MASK;
+ 284:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #else
+ 285:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemode1masked = comparemode & PWM_Claw_CTRL_CMPMODE1_MASK;
+ 286:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #endif /* (0 != PWM_Claw_CTRL_CMPMODE1_SHIFT) */
+ 287:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 288:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #if(0 != PWM_Claw_CTRL_CMPMODE2_SHIFT)
+ 289:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_Claw_CTRL_CMPMODE
+ 290:.\Generated_Source\PSoC5/PWM_Claw.c ****                                                PWM_Claw_CTRL_CMPMODE2_MASK;
+ 291:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #else
+ 292:.\Generated_Source\PSoC5/PWM_Claw.c ****                     uint8 comparemode2masked = comparemode & PWM_Claw_CTRL_CMPMODE2_MASK;
+ 293:.\Generated_Source\PSoC5/PWM_Claw.c ****                 #endif /* (0 != PWM_Claw_CTRL_CMPMODE2_SHIFT) */
+ 294:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 295:.\Generated_Source\PSoC5/PWM_Claw.c ****                 /*Clear existing mode */
+ 296:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL &= ((uint8)(~(PWM_Claw_CTRL_CMPMODE1_MASK |
+ 297:.\Generated_Source\PSoC5/PWM_Claw.c ****                                             PWM_Claw_CTRL_CMPMODE2_MASK)));
+ 298:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 300:.\Generated_Source\PSoC5/PWM_Claw.c ****             #else
+ 301:.\Generated_Source\PSoC5/PWM_Claw.c ****                 uint8 temp = comparemode;
+ 302:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (PWM_Claw_UsingFixedFunction) */
+ 303:.\Generated_Source\PSoC5/PWM_Claw.c ****         }
+ 304:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* PWM_Claw_CompareMode1SW */
+ 305:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 306:.\Generated_Source\PSoC5/PWM_Claw.c **** #else /* UseOneCompareMode */
+ 307:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 308:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_CompareMode1SW)
+ 309:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 310:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 311:.\Generated_Source\PSoC5/PWM_Claw.c ****         /*******************************************************************************
+ 312:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Function Name: PWM_Claw_SetCompareMode1
+ 313:.\Generated_Source\PSoC5/PWM_Claw.c ****         ********************************************************************************
+ 314:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 315:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Summary:
+ 316:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 318:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Parameters:
+ 319:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:.\Generated_Source\PSoC5/PWM_Claw.c ****         *                defined in the H file as input arguments.
+ 321:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ARM GAS  D:\TEMP\ccncbz78.s 			page 8
+
+
+ 322:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Return:
+ 323:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  None
+ 324:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 325:.\Generated_Source\PSoC5/PWM_Claw.c ****         *******************************************************************************/
+ 326:.\Generated_Source\PSoC5/PWM_Claw.c ****         void PWM_Claw_SetCompareMode1(uint8 comparemode) 
+ 327:.\Generated_Source\PSoC5/PWM_Claw.c ****         {
+ 328:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if(0 != PWM_Claw_CTRL_CMPMODE1_SHIFT)
+ 329:.\Generated_Source\PSoC5/PWM_Claw.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Claw_CTRL_CMPMODE1_SHI
+ 330:.\Generated_Source\PSoC5/PWM_Claw.c ****                                            PWM_Claw_CTRL_CMPMODE1_MASK;
+ 331:.\Generated_Source\PSoC5/PWM_Claw.c ****             #else
+ 332:.\Generated_Source\PSoC5/PWM_Claw.c ****                 uint8 comparemodemasked = comparemode & PWM_Claw_CTRL_CMPMODE1_MASK;
+ 333:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (0 != PWM_Claw_CTRL_CMPMODE1_SHIFT) */
+ 334:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 335:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if (PWM_Claw_UseControl)
+ 336:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL &= ((uint8)(~PWM_Claw_CTRL_CMPMODE1_MASK)); /*Clear existing mode 
+ 337:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_CONTROL |= comparemodemasked;
+ 338:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (PWM_Claw_UseControl) */
+ 339:.\Generated_Source\PSoC5/PWM_Claw.c ****         }
+ 340:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* PWM_Claw_CompareMode1SW */
+ 341:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 342:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_CompareMode2SW)
+ 343:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 344:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 345:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 346:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_SetCompareMode2
+ 347:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 348:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 349:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 350:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 352:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 353:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:.\Generated_Source\PSoC5/PWM_Claw.c ****     *                defined in the H file as input arguments.
+ 355:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 356:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 357:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 358:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 359:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 360:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_SetCompareMode2(uint8 comparemode) 
+ 361:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 362:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 363:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(0 != PWM_Claw_CTRL_CMPMODE2_SHIFT)
+ 364:.\Generated_Source\PSoC5/PWM_Claw.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Claw_CTRL_CMPMODE2_SHIFT))
+ 365:.\Generated_Source\PSoC5/PWM_Claw.c ****                                                  PWM_Claw_CTRL_CMPMODE2_MASK;
+ 366:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 367:.\Generated_Source\PSoC5/PWM_Claw.c ****             uint8 comparemodemasked = comparemode & PWM_Claw_CTRL_CMPMODE2_MASK;
+ 368:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (0 != PWM_Claw_CTRL_CMPMODE2_SHIFT) */
+ 369:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 370:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_UseControl)
+ 371:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_CONTROL &= ((uint8)(~PWM_Claw_CTRL_CMPMODE2_MASK)); /*Clear existing mode */
+ 372:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_CONTROL |= comparemodemasked;
+ 373:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UseControl) */
+ 374:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 375:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /*PWM_Claw_CompareMode2SW */
+ 376:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 377:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* UseOneCompareMode */
+ 378:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 9
+
+
+ 379:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 380:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (!PWM_Claw_UsingFixedFunction)
+ 381:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 382:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 383:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 384:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteCounter
+ 385:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 386:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 387:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 388:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  implemented for that currently running period and only that period. This API
+ 390:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  PWM implementation.
+ 392:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 393:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 394:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  counter:  The period new period counter value.
+ 395:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 396:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 397:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 398:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 399:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Side Effects:
+ 400:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 402:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 403:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteCounter(uint16 counter) \
+ 404:.\Generated_Source\PSoC5/PWM_Claw.c ****                                        
+ 405:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+  79              		.loc 1 405 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL0:
+ 406:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG16(PWM_Claw_COUNTER_LSB_PTR, counter);
+  85              		.loc 1 406 0
+  86 0000 014B     		ldr	r3, .L8
+  87 0002 1880     		strh	r0, [r3]	@ movhi
+  88 0004 7047     		bx	lr
+  89              	.L9:
+  90 0006 00BF     		.align	2
+  91              	.L8:
+  92 0008 00680040 		.word	1073768448
+  93              		.cfi_endproc
+  94              	.LFE4:
+  95              		.size	PWM_Claw_WriteCounter, .-PWM_Claw_WriteCounter
+  96              		.section	.text.PWM_Claw_ReadCounter,"ax",%progbits
+  97              		.align	1
+  98              		.global	PWM_Claw_ReadCounter
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	PWM_Claw_ReadCounter, %function
+ 102              	PWM_Claw_ReadCounter:
+ 103              	.LFB5:
+ 407:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 408:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 409:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 410:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ARM GAS  D:\TEMP\ccncbz78.s 			page 10
+
+
+ 411:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadCounter
+ 412:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 413:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 414:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 415:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  if the counter is enabled or running.
+ 417:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 418:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 419:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 420:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 421:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 422:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  The current value of the counter.
+ 423:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 424:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 425:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint16 PWM_Claw_ReadCounter(void) 
+ 426:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 104              		.loc 1 426 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		@ link register save eliminated.
+ 427:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Force capture by reading Accumulator */
+ 428:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:.\Generated_Source\PSoC5/PWM_Claw.c ****           (void)CY_GET_REG8(PWM_Claw_COUNTERCAP_LSB_PTR_8BIT);
+ 109              		.loc 1 430 0
+ 110 0000 024B     		ldr	r3, .L11
+ 111 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 431:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 432:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* Read the data from the FIFO */
+ 433:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_CAPTURE_LSB_PTR));
+ 112              		.loc 1 433 0
+ 113 0004 024B     		ldr	r3, .L11+4
+ 114 0006 1888     		ldrh	r0, [r3]
+ 434:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 115              		.loc 1 434 0
+ 116 0008 80B2     		uxth	r0, r0
+ 117 000a 7047     		bx	lr
+ 118              	.L12:
+ 119              		.align	2
+ 120              	.L11:
+ 121 000c 10640040 		.word	1073767440
+ 122 0010 A0680040 		.word	1073768608
+ 123              		.cfi_endproc
+ 124              	.LFE5:
+ 125              		.size	PWM_Claw_ReadCounter, .-PWM_Claw_ReadCounter
+ 126              		.section	.text.PWM_Claw_ClearFIFO,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	PWM_Claw_ClearFIFO
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	PWM_Claw_ClearFIFO, %function
+ 132              	PWM_Claw_ClearFIFO:
+ 133              	.LFB6:
+ 435:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 436:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UseStatus)
+ 437:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 11
+
+
+ 438:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 439:.\Generated_Source\PSoC5/PWM_Claw.c ****         /*******************************************************************************
+ 440:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Function Name: PWM_Claw_ClearFIFO
+ 441:.\Generated_Source\PSoC5/PWM_Claw.c ****         ********************************************************************************
+ 442:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 443:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Summary:
+ 444:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  This function clears all capture data from the capture FIFO
+ 445:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 446:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Parameters:
+ 447:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  None
+ 448:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 449:.\Generated_Source\PSoC5/PWM_Claw.c ****         * Return:
+ 450:.\Generated_Source\PSoC5/PWM_Claw.c ****         *  None
+ 451:.\Generated_Source\PSoC5/PWM_Claw.c ****         *
+ 452:.\Generated_Source\PSoC5/PWM_Claw.c ****         *******************************************************************************/
+ 453:.\Generated_Source\PSoC5/PWM_Claw.c ****         void PWM_Claw_ClearFIFO(void) 
+ 454:.\Generated_Source\PSoC5/PWM_Claw.c ****         {
+ 134              		.loc 1 454 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+ 139              	.L14:
+ 140              	.LBB14:
+ 141              	.LBB15:
+ 455:.\Generated_Source\PSoC5/PWM_Claw.c ****             while(0u != (PWM_Claw_ReadStatusRegister() & PWM_Claw_STATUS_FIFONEMPTY))
+ 456:.\Generated_Source\PSoC5/PWM_Claw.c ****             {
+ 457:.\Generated_Source\PSoC5/PWM_Claw.c ****                 (void)PWM_Claw_ReadCapture();
+ 458:.\Generated_Source\PSoC5/PWM_Claw.c ****             }
+ 459:.\Generated_Source\PSoC5/PWM_Claw.c ****         }
+ 460:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 461:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* PWM_Claw_UseStatus */
+ 462:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 463:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* !PWM_Claw_UsingFixedFunction */
+ 464:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 465:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 466:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+ 467:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_WritePeriod
+ 468:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+ 469:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 470:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+ 471:.\Generated_Source\PSoC5/PWM_Claw.c **** *  This function is used to change the period of the counter.  The new period
+ 472:.\Generated_Source\PSoC5/PWM_Claw.c **** *  will be loaded the next time terminal count is detected.
+ 473:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 474:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+ 475:.\Generated_Source\PSoC5/PWM_Claw.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:.\Generated_Source\PSoC5/PWM_Claw.c **** *           will result in the counter remaining at zero.
+ 477:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 478:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+ 479:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 480:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 481:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+ 482:.\Generated_Source\PSoC5/PWM_Claw.c **** void PWM_Claw_WritePeriod(uint16 period) 
+ 483:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+ 484:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if(PWM_Claw_UsingFixedFunction)
+ 485:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG16(PWM_Claw_PERIOD_LSB_PTR, (uint16)period);
+ 486:.\Generated_Source\PSoC5/PWM_Claw.c ****     #else
+ARM GAS  D:\TEMP\ccncbz78.s 			page 12
+
+
+ 487:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG16(PWM_Claw_PERIOD_LSB_PTR, period);
+ 488:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 489:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+ 490:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 491:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_UseOneCompareMode)
+ 492:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 493:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 494:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 495:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteCompare
+ 496:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 497:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 498:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 499:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  The compare output will be driven high when the present counter value is
+ 502:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Dither Mode.
+ 504:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 505:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 506:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  compare:  New compare value.
+ 507:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 508:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 509:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 510:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 511:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Side Effects:
+ 512:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 515:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 516:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteCompare(uint16 compare) \
+ 517:.\Generated_Source\PSoC5/PWM_Claw.c ****                                        
+ 518:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 519:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UsingFixedFunction)
+ 520:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 522:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE1_LSB_PTR, compare);
+ 523:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ 524:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 525:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if (PWM_Claw_PWMMode == PWM_Claw__B_PWM__DITHER)
+ 526:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if(PWM_Claw_UsingFixedFunction)
+ 527:.\Generated_Source\PSoC5/PWM_Claw.c ****                 CY_SET_REG16(PWM_Claw_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ 528:.\Generated_Source\PSoC5/PWM_Claw.c ****             #else
+ 529:.\Generated_Source\PSoC5/PWM_Claw.c ****                 CY_SET_REG16(PWM_Claw_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (PWM_Claw_UsingFixedFunction) */
+ 531:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_PWMMode == PWM_Claw__B_PWM__DITHER) */
+ 532:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 533:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 534:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 535:.\Generated_Source\PSoC5/PWM_Claw.c **** #else
+ 536:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 537:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 538:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 539:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteCompare1
+ 540:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 541:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 542:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 543:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ARM GAS  D:\TEMP\ccncbz78.s 			page 13
+
+
+ 544:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  driven high when the present counter value is less than or less than or
+ 546:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  equal to the compare register, depending on the mode.
+ 547:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 548:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 549:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  compare:  New compare value.
+ 550:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 551:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 552:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 553:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 554:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 555:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteCompare1(uint16 compare) \
+ 556:.\Generated_Source\PSoC5/PWM_Claw.c ****                                         
+ 557:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 558:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UsingFixedFunction)
+ 559:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 561:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE1_LSB_PTR, compare);
+ 562:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ 563:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 564:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 565:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 566:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 567:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteCompare2
+ 568:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 569:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 570:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 571:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  The compare output will be driven high when the present counter value is
+ 574:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  mode.
+ 576:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 577:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 578:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  compare:  New compare value.
+ 579:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 580:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 581:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 582:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 583:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 584:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteCompare2(uint16 compare) \
+ 585:.\Generated_Source\PSoC5/PWM_Claw.c ****                                         
+ 586:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 587:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UsingFixedFunction)
+ 588:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE2_LSB_PTR, compare);
+ 589:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 590:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG16(PWM_Claw_COMPARE2_LSB_PTR, compare);
+ 591:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ 592:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 593:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* UseOneCompareMode */
+ 594:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 595:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_DeadBandUsed)
+ 596:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 597:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 598:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 599:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteDeadTime
+ 600:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ARM GAS  D:\TEMP\ccncbz78.s 			page 14
+
+
+ 601:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 602:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 603:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 605:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 606:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  deadtime:  Number of counts for dead time
+ 607:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 608:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 609:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 610:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 611:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 612:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteDeadTime(uint8 deadtime) 
+ 613:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 614:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(!PWM_Claw_DeadBand2_4)
+ 616:.\Generated_Source\PSoC5/PWM_Claw.c ****             CY_SET_REG8(PWM_Claw_DEADBAND_COUNT_PTR, deadtime);
+ 617:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 618:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Otherwise the data has to be masked and offset */
+ 619:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Clear existing data */
+ 620:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_DEADBAND_COUNT &= ((uint8)(~PWM_Claw_DEADBAND_COUNT_MASK));
+ 621:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 622:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Set new dead time */
+ 623:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if(PWM_Claw_DEADBAND_COUNT_SHIFT)
+ 624:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_Claw_DEADBAND_COUNT_SHIF
+ 625:.\Generated_Source\PSoC5/PWM_Claw.c ****                                                     PWM_Claw_DEADBAND_COUNT_MASK;
+ 626:.\Generated_Source\PSoC5/PWM_Claw.c ****             #else
+ 627:.\Generated_Source\PSoC5/PWM_Claw.c ****                 PWM_Claw_DEADBAND_COUNT |= deadtime & PWM_Claw_DEADBAND_COUNT_MASK;
+ 628:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (PWM_Claw_DEADBAND_COUNT_SHIFT) */
+ 629:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 630:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (!PWM_Claw_DeadBand2_4) */
+ 631:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 632:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 633:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 634:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 635:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadDeadTime
+ 636:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 637:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 638:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 639:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 641:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 642:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 643:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 644:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 645:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Dead Band Counts
+ 646:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 647:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 648:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint8 PWM_Claw_ReadDeadTime(void) 
+ 649:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 650:.\Generated_Source\PSoC5/PWM_Claw.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(!PWM_Claw_DeadBand2_4)
+ 652:.\Generated_Source\PSoC5/PWM_Claw.c ****             return (CY_GET_REG8(PWM_Claw_DEADBAND_COUNT_PTR));
+ 653:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 654:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 655:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Otherwise the data has to be masked and offset */
+ 656:.\Generated_Source\PSoC5/PWM_Claw.c ****             #if(PWM_Claw_DEADBAND_COUNT_SHIFT)
+ 657:.\Generated_Source\PSoC5/PWM_Claw.c ****                 return ((uint8)(((uint8)(PWM_Claw_DEADBAND_COUNT & PWM_Claw_DEADBAND_COUNT_MASK)) >
+ARM GAS  D:\TEMP\ccncbz78.s 			page 15
+
+
+ 658:.\Generated_Source\PSoC5/PWM_Claw.c ****                                                                            PWM_Claw_DEADBAND_COUNT_
+ 659:.\Generated_Source\PSoC5/PWM_Claw.c ****             #else
+ 660:.\Generated_Source\PSoC5/PWM_Claw.c ****                 return (PWM_Claw_DEADBAND_COUNT & PWM_Claw_DEADBAND_COUNT_MASK);
+ 661:.\Generated_Source\PSoC5/PWM_Claw.c ****             #endif /* (PWM_Claw_DEADBAND_COUNT_SHIFT) */
+ 662:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (!PWM_Claw_DeadBand2_4) */
+ 663:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 664:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* DeadBandUsed */
+ 665:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 666:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_UseStatus || PWM_Claw_UsingFixedFunction)
+ 667:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 668:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 669:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 670:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_SetInterruptMode
+ 671:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 672:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 673:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 674:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  source status register.
+ 676:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 677:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 678:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 680:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 681:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 682:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 683:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 684:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_SetInterruptMode(uint8 interruptMode) 
+ 685:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 686:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG8(PWM_Claw_STATUS_MASK_PTR, interruptMode);
+ 687:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 688:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 689:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 690:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 691:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadStatusRegister
+ 692:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 693:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 694:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 695:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  This function returns the current state of the status register.
+ 696:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 697:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 698:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 699:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 700:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 701:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [7:6] : Unused(0)
+ 703:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [5]   : Kill event output
+ 704:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [4]   : FIFO not empty
+ 705:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [3]   : FIFO full
+ 706:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [2]   : Terminal count
+ 707:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [1]   : Compare output 2
+ 708:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [0]   : Compare output 1
+ 709:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 710:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 711:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint8 PWM_Claw_ReadStatusRegister(void) 
+ 712:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 713:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG8(PWM_Claw_STATUS_PTR));
+ 142              		.loc 1 713 0
+ARM GAS  D:\TEMP\ccncbz78.s 			page 16
+
+
+ 143 0000 034B     		ldr	r3, .L18
+ 144 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 145              	.LBE15:
+ 146              	.LBE14:
+ 455:.\Generated_Source\PSoC5/PWM_Claw.c ****             while(0u != (PWM_Claw_ReadStatusRegister() & PWM_Claw_STATUS_FIFONEMPTY))
+ 147              		.loc 1 455 0
+ 148 0004 DB06     		lsls	r3, r3, #27
+ 149 0006 02D5     		bpl	.L17
+ 150              	.LBB16:
+ 151              	.LBB17:
+ 714:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 715:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 716:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* (PWM_Claw_UseStatus || PWM_Claw_UsingFixedFunction) */
+ 717:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 718:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 719:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_UseControl)
+ 720:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 721:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 722:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 723:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadControlRegister
+ 724:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 725:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 726:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 727:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Returns the current state of the control register. This API is available
+ 728:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  only if the control register is not removed.
+ 729:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 730:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 731:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 732:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 733:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 734:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8 : Current control register value
+ 735:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 736:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 737:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint8 PWM_Claw_ReadControlRegister(void) 
+ 738:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 739:.\Generated_Source\PSoC5/PWM_Claw.c ****         uint8 result;
+ 740:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 741:.\Generated_Source\PSoC5/PWM_Claw.c ****         result = CY_GET_REG8(PWM_Claw_CONTROL_PTR);
+ 742:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (result);
+ 743:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 744:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 745:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 746:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 747:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_WriteControlRegister
+ 748:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 749:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 750:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 751:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  the control register is not removed.
+ 753:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 754:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 755:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [7]   : PWM Enable
+ 757:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [6]   : Reset
+ 758:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [5:3] : Compare Mode2
+ 759:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  [2:0] : Compare Mode2
+ 760:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ARM GAS  D:\TEMP\ccncbz78.s 			page 17
+
+
+ 761:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 762:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 763:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 764:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 765:.\Generated_Source\PSoC5/PWM_Claw.c ****     void PWM_Claw_WriteControlRegister(uint8 control) 
+ 766:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 767:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG8(PWM_Claw_CONTROL_PTR, control);
+ 768:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 769:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 770:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* (PWM_Claw_UseControl) */
+ 771:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 772:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 773:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (!PWM_Claw_UsingFixedFunction)
+ 774:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 775:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 776:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 777:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadCapture
+ 778:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 779:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 780:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 781:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Reads the capture value from the capture FIFO.
+ 782:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 783:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 784:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 785:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 786:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 787:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8/uint16: The current capture value
+ 788:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 789:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 790:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint16 PWM_Claw_ReadCapture(void) 
+ 791:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 792:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_CAPTURE_LSB_PTR));
+ 152              		.loc 1 792 0
+ 153 0008 024B     		ldr	r3, .L18+4
+ 154 000a 1B88     		ldrh	r3, [r3]
+ 155 000c F8E7     		b	.L14
+ 156              	.L17:
+ 157              	.LBE17:
+ 158              	.LBE16:
+ 459:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 159              		.loc 1 459 0
+ 160 000e 7047     		bx	lr
+ 161              	.L19:
+ 162              		.align	2
+ 163              	.L18:
+ 164 0010 61640040 		.word	1073767521
+ 165 0014 A0680040 		.word	1073768608
+ 166              		.cfi_endproc
+ 167              	.LFE6:
+ 168              		.size	PWM_Claw_ClearFIFO, .-PWM_Claw_ClearFIFO
+ 169              		.section	.text.PWM_Claw_Init,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	PWM_Claw_Init
+ 172              		.thumb
+ 173              		.thumb_func
+ 174              		.type	PWM_Claw_Init, %function
+ 175              	PWM_Claw_Init:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 18
+
+
+ 176              	.LFB1:
+  85:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if (PWM_Claw_UsingFixedFunction || PWM_Claw_UseControl)
+ 177              		.loc 1 85 0
+ 178              		.cfi_startproc
+ 179              		@ args = 0, pretend = 0, frame = 0
+ 180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181 0000 10B5     		push	{r4, lr}
+ 182              		.cfi_def_cfa_offset 8
+ 183              		.cfi_offset 4, -8
+ 184              		.cfi_offset 14, -4
+ 117:.\Generated_Source\PSoC5/PWM_Claw.c ****                 ((uint8)(~PWM_Claw_CTRL_CMPMODE1_MASK));
+ 185              		.loc 1 117 0
+ 186 0002 144A     		ldr	r2, .L21
+ 130:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_Resolution == 8) */
+ 187              		.loc 1 130 0
+ 188 0004 144C     		ldr	r4, .L21+4
+ 117:.\Generated_Source\PSoC5/PWM_Claw.c ****                 ((uint8)(~PWM_Claw_CTRL_CMPMODE1_MASK));
+ 189              		.loc 1 117 0
+ 190 0006 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 191              	.LVL1:
+ 192 0008 03F0C003 		and	r3, r3, #192
+ 193              	.LVL2:
+ 119:.\Generated_Source\PSoC5/PWM_Claw.c ****                                    PWM_Claw_DEFAULT_COMPARE1_MODE;
+ 194              		.loc 1 119 0
+ 195 000c 43F00903 		orr	r3, r3, #9
+ 196 0010 1370     		strb	r3, [r2]
+ 129:.\Generated_Source\PSoC5/PWM_Claw.c ****             PWM_Claw_AUX_CONTROLDP1 |= (PWM_Claw_AUX_CTRL_FIFO0_CLR);
+ 197              		.loc 1 129 0
+ 198 0012 937F     		ldrb	r3, [r2, #30]	@ zero_extendqisi2
+ 199 0014 43F00103 		orr	r3, r3, #1
+ 200 0018 9377     		strb	r3, [r2, #30]
+ 130:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_Resolution == 8) */
+ 201              		.loc 1 130 0
+ 202 001a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 203 001c 43F00103 		orr	r3, r3, #1
+ 204 0020 2370     		strb	r3, [r4]
+ 205              	.LVL3:
+ 206              	.LBB18:
+ 207              	.LBB19:
+ 406:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 208              		.loc 1 406 0
+ 209 0022 40F2CF73 		movw	r3, #1999
+ 210 0026 A2F88E33 		strh	r3, [r2, #910]	@ movhi
+ 211              	.LVL4:
+ 212              	.LBE19:
+ 213              	.LBE18:
+ 214              	.LBB20:
+ 215              	.LBB21:
+ 487:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 216              		.loc 1 487 0
+ 217 002a A2F80E34 		strh	r3, [r2, #1038]	@ movhi
+ 218              	.LVL5:
+ 219              	.LBE21:
+ 220              	.LBE20:
+ 221              	.LBB22:
+ 222              	.LBB23:
+ 522:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ARM GAS  D:\TEMP\ccncbz78.s 			page 19
+
+
+ 223              		.loc 1 522 0
+ 224 002e 0B4B     		ldr	r3, .L21+8
+ 225 0030 5022     		movs	r2, #80
+ 226 0032 1A80     		strh	r2, [r3]	@ movhi
+ 227              	.LVL6:
+ 228              	.LBE23:
+ 229              	.LBE22:
+ 230              	.LBB24:
+ 231              	.LBB25:
+ 686:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 232              		.loc 1 686 0
+ 233 0034 0022     		movs	r2, #0
+ 234 0036 A3F2BF33 		subw	r3, r3, #959
+ 235 003a 1A70     		strb	r2, [r3]
+ 236              	.LBE25:
+ 237              	.LBE24:
+ 167:.\Generated_Source\PSoC5/PWM_Claw.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 238              		.loc 1 167 0
+ 239 003c FFF7FEFF 		bl	CyEnterCriticalSection
+ 240              	.LVL7:
+ 169:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 241              		.loc 1 169 0
+ 242 0040 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 243 0042 43F01003 		orr	r3, r3, #16
+ 244 0046 2370     		strb	r3, [r4]
+ 172:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 245              		.loc 1 172 0
+ 246 0048 FFF7FEFF 		bl	CyExitCriticalSection
+ 247              	.LVL8:
+ 179:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 248              		.loc 1 179 0
+ 249 004c BDE81040 		pop	{r4, lr}
+ 250              		.cfi_restore 14
+ 251              		.cfi_restore 4
+ 252              		.cfi_def_cfa_offset 0
+ 176:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UseStatus) */
+ 253              		.loc 1 176 0
+ 254 0050 FFF7FEBF 		b	PWM_Claw_ClearFIFO
+ 255              	.LVL9:
+ 256              	.L22:
+ 257              		.align	2
+ 258              	.L21:
+ 259 0054 72640040 		.word	1073767538
+ 260 0058 91640040 		.word	1073767569
+ 261 005c 40680040 		.word	1073768512
+ 262              		.cfi_endproc
+ 263              	.LFE1:
+ 264              		.size	PWM_Claw_Init, .-PWM_Claw_Init
+ 265              		.section	.text.PWM_Claw_Start,"ax",%progbits
+ 266              		.align	1
+ 267              		.global	PWM_Claw_Start
+ 268              		.thumb
+ 269              		.thumb_func
+ 270              		.type	PWM_Claw_Start, %function
+ 271              	PWM_Claw_Start:
+ 272              	.LFB0:
+  56:.\Generated_Source\PSoC5/PWM_Claw.c ****     /* If not Initialized then initialize all required hardware and software */
+ARM GAS  D:\TEMP\ccncbz78.s 			page 20
+
+
+ 273              		.loc 1 56 0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 0
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277 0000 10B5     		push	{r4, lr}
+ 278              		.cfi_def_cfa_offset 8
+ 279              		.cfi_offset 4, -8
+ 280              		.cfi_offset 14, -4
+  58:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 281              		.loc 1 58 0
+ 282 0002 054C     		ldr	r4, .L25
+ 283 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 284 0006 1BB9     		cbnz	r3, .L24
+  60:.\Generated_Source\PSoC5/PWM_Claw.c ****         PWM_Claw_initVar = 1u;
+ 285              		.loc 1 60 0
+ 286 0008 FFF7FEFF 		bl	PWM_Claw_Init
+ 287              	.LVL10:
+  61:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 288              		.loc 1 61 0
+ 289 000c 0123     		movs	r3, #1
+ 290 000e 2370     		strb	r3, [r4]
+ 291              	.L24:
+  65:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 292              		.loc 1 65 0
+ 293 0010 BDE81040 		pop	{r4, lr}
+ 294              		.cfi_restore 14
+ 295              		.cfi_restore 4
+ 296              		.cfi_def_cfa_offset 0
+  63:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 297              		.loc 1 63 0
+ 298 0014 FFF7FEBF 		b	PWM_Claw_Enable
+ 299              	.LVL11:
+ 300              	.L26:
+ 301              		.align	2
+ 302              	.L25:
+ 303 0018 00000000 		.word	.LANCHOR0
+ 304              		.cfi_endproc
+ 305              	.LFE0:
+ 306              		.size	PWM_Claw_Start, .-PWM_Claw_Start
+ 307              		.section	.text.PWM_Claw_WritePeriod,"ax",%progbits
+ 308              		.align	1
+ 309              		.global	PWM_Claw_WritePeriod
+ 310              		.thumb
+ 311              		.thumb_func
+ 312              		.type	PWM_Claw_WritePeriod, %function
+ 313              	PWM_Claw_WritePeriod:
+ 314              	.LFB7:
+ 483:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if(PWM_Claw_UsingFixedFunction)
+ 315              		.loc 1 483 0
+ 316              		.cfi_startproc
+ 317              		@ args = 0, pretend = 0, frame = 0
+ 318              		@ frame_needed = 0, uses_anonymous_args = 0
+ 319              		@ link register save eliminated.
+ 320              	.LVL12:
+ 487:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 321              		.loc 1 487 0
+ 322 0000 014B     		ldr	r3, .L28
+ARM GAS  D:\TEMP\ccncbz78.s 			page 21
+
+
+ 323 0002 1880     		strh	r0, [r3]	@ movhi
+ 324 0004 7047     		bx	lr
+ 325              	.L29:
+ 326 0006 00BF     		.align	2
+ 327              	.L28:
+ 328 0008 80680040 		.word	1073768576
+ 329              		.cfi_endproc
+ 330              	.LFE7:
+ 331              		.size	PWM_Claw_WritePeriod, .-PWM_Claw_WritePeriod
+ 332              		.section	.text.PWM_Claw_WriteCompare,"ax",%progbits
+ 333              		.align	1
+ 334              		.global	PWM_Claw_WriteCompare
+ 335              		.thumb
+ 336              		.thumb_func
+ 337              		.type	PWM_Claw_WriteCompare, %function
+ 338              	PWM_Claw_WriteCompare:
+ 339              	.LFB8:
+ 518:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UsingFixedFunction)
+ 340              		.loc 1 518 0
+ 341              		.cfi_startproc
+ 342              		@ args = 0, pretend = 0, frame = 0
+ 343              		@ frame_needed = 0, uses_anonymous_args = 0
+ 344              		@ link register save eliminated.
+ 345              	.LVL13:
+ 522:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ 346              		.loc 1 522 0
+ 347 0000 014B     		ldr	r3, .L31
+ 348 0002 1880     		strh	r0, [r3]	@ movhi
+ 349 0004 7047     		bx	lr
+ 350              	.L32:
+ 351 0006 00BF     		.align	2
+ 352              	.L31:
+ 353 0008 40680040 		.word	1073768512
+ 354              		.cfi_endproc
+ 355              	.LFE8:
+ 356              		.size	PWM_Claw_WriteCompare, .-PWM_Claw_WriteCompare
+ 357              		.section	.text.PWM_Claw_SetInterruptMode,"ax",%progbits
+ 358              		.align	1
+ 359              		.global	PWM_Claw_SetInterruptMode
+ 360              		.thumb
+ 361              		.thumb_func
+ 362              		.type	PWM_Claw_SetInterruptMode, %function
+ 363              	PWM_Claw_SetInterruptMode:
+ 364              	.LFB9:
+ 685:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG8(PWM_Claw_STATUS_MASK_PTR, interruptMode);
+ 365              		.loc 1 685 0
+ 366              		.cfi_startproc
+ 367              		@ args = 0, pretend = 0, frame = 0
+ 368              		@ frame_needed = 0, uses_anonymous_args = 0
+ 369              		@ link register save eliminated.
+ 370              	.LVL14:
+ 686:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 371              		.loc 1 686 0
+ 372 0000 014B     		ldr	r3, .L34
+ 373 0002 1870     		strb	r0, [r3]
+ 374 0004 7047     		bx	lr
+ 375              	.L35:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 22
+
+
+ 376 0006 00BF     		.align	2
+ 377              	.L34:
+ 378 0008 81640040 		.word	1073767553
+ 379              		.cfi_endproc
+ 380              	.LFE9:
+ 381              		.size	PWM_Claw_SetInterruptMode, .-PWM_Claw_SetInterruptMode
+ 382              		.section	.text.PWM_Claw_ReadStatusRegister,"ax",%progbits
+ 383              		.align	1
+ 384              		.global	PWM_Claw_ReadStatusRegister
+ 385              		.thumb
+ 386              		.thumb_func
+ 387              		.type	PWM_Claw_ReadStatusRegister, %function
+ 388              	PWM_Claw_ReadStatusRegister:
+ 389              	.LFB10:
+ 712:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG8(PWM_Claw_STATUS_PTR));
+ 390              		.loc 1 712 0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394              		@ link register save eliminated.
+ 713:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 395              		.loc 1 713 0
+ 396 0000 014B     		ldr	r3, .L37
+ 397 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 714:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 398              		.loc 1 714 0
+ 399 0004 7047     		bx	lr
+ 400              	.L38:
+ 401 0006 00BF     		.align	2
+ 402              	.L37:
+ 403 0008 61640040 		.word	1073767521
+ 404              		.cfi_endproc
+ 405              	.LFE10:
+ 406              		.size	PWM_Claw_ReadStatusRegister, .-PWM_Claw_ReadStatusRegister
+ 407              		.section	.text.PWM_Claw_ReadControlRegister,"ax",%progbits
+ 408              		.align	1
+ 409              		.global	PWM_Claw_ReadControlRegister
+ 410              		.thumb
+ 411              		.thumb_func
+ 412              		.type	PWM_Claw_ReadControlRegister, %function
+ 413              	PWM_Claw_ReadControlRegister:
+ 414              	.LFB11:
+ 738:.\Generated_Source\PSoC5/PWM_Claw.c ****         uint8 result;
+ 415              		.loc 1 738 0
+ 416              		.cfi_startproc
+ 417              		@ args = 0, pretend = 0, frame = 0
+ 418              		@ frame_needed = 0, uses_anonymous_args = 0
+ 419              		@ link register save eliminated.
+ 741:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (result);
+ 420              		.loc 1 741 0
+ 421 0000 014B     		ldr	r3, .L40
+ 422 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 423              	.LVL15:
+ 743:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 424              		.loc 1 743 0
+ 425 0004 7047     		bx	lr
+ 426              	.L41:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 23
+
+
+ 427 0006 00BF     		.align	2
+ 428              	.L40:
+ 429 0008 72640040 		.word	1073767538
+ 430              		.cfi_endproc
+ 431              	.LFE11:
+ 432              		.size	PWM_Claw_ReadControlRegister, .-PWM_Claw_ReadControlRegister
+ 433              		.section	.text.PWM_Claw_WriteControlRegister,"ax",%progbits
+ 434              		.align	1
+ 435              		.global	PWM_Claw_WriteControlRegister
+ 436              		.thumb
+ 437              		.thumb_func
+ 438              		.type	PWM_Claw_WriteControlRegister, %function
+ 439              	PWM_Claw_WriteControlRegister:
+ 440              	.LFB12:
+ 766:.\Generated_Source\PSoC5/PWM_Claw.c ****         CY_SET_REG8(PWM_Claw_CONTROL_PTR, control);
+ 441              		.loc 1 766 0
+ 442              		.cfi_startproc
+ 443              		@ args = 0, pretend = 0, frame = 0
+ 444              		@ frame_needed = 0, uses_anonymous_args = 0
+ 445              		@ link register save eliminated.
+ 446              	.LVL16:
+ 767:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 447              		.loc 1 767 0
+ 448 0000 014B     		ldr	r3, .L43
+ 449 0002 1870     		strb	r0, [r3]
+ 450 0004 7047     		bx	lr
+ 451              	.L44:
+ 452 0006 00BF     		.align	2
+ 453              	.L43:
+ 454 0008 72640040 		.word	1073767538
+ 455              		.cfi_endproc
+ 456              	.LFE12:
+ 457              		.size	PWM_Claw_WriteControlRegister, .-PWM_Claw_WriteControlRegister
+ 458              		.section	.text.PWM_Claw_ReadCapture,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	PWM_Claw_ReadCapture
+ 461              		.thumb
+ 462              		.thumb_func
+ 463              		.type	PWM_Claw_ReadCapture, %function
+ 464              	PWM_Claw_ReadCapture:
+ 465              	.LFB13:
+ 791:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_CAPTURE_LSB_PTR));
+ 466              		.loc 1 791 0
+ 467              		.cfi_startproc
+ 468              		@ args = 0, pretend = 0, frame = 0
+ 469              		@ frame_needed = 0, uses_anonymous_args = 0
+ 470              		@ link register save eliminated.
+ 471              		.loc 1 792 0
+ 472 0000 014B     		ldr	r3, .L46
+ 473 0002 1888     		ldrh	r0, [r3]
+ 793:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 474              		.loc 1 793 0
+ 475 0004 80B2     		uxth	r0, r0
+ 476 0006 7047     		bx	lr
+ 477              	.L47:
+ 478              		.align	2
+ 479              	.L46:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 24
+
+
+ 480 0008 A0680040 		.word	1073768608
+ 481              		.cfi_endproc
+ 482              	.LFE13:
+ 483              		.size	PWM_Claw_ReadCapture, .-PWM_Claw_ReadCapture
+ 484              		.section	.text.PWM_Claw_ReadCompare,"ax",%progbits
+ 485              		.align	1
+ 486              		.global	PWM_Claw_ReadCompare
+ 487              		.thumb
+ 488              		.thumb_func
+ 489              		.type	PWM_Claw_ReadCompare, %function
+ 490              	PWM_Claw_ReadCompare:
+ 491              	.LFB14:
+ 794:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 795:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* (!PWM_Claw_UsingFixedFunction) */
+ 796:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 797:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 798:.\Generated_Source\PSoC5/PWM_Claw.c **** #if (PWM_Claw_UseOneCompareMode)
+ 799:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 800:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 801:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 802:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadCompare
+ 803:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 804:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 805:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 806:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 809:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 810:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 811:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 812:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 813:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8/uint16: Current compare value
+ 814:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 815:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 816:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint16 PWM_Claw_ReadCompare(void) 
+ 817:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 492              		.loc 1 817 0
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 0
+ 495              		@ frame_needed = 0, uses_anonymous_args = 0
+ 496              		@ link register save eliminated.
+ 818:.\Generated_Source\PSoC5/PWM_Claw.c ****         #if(PWM_Claw_UsingFixedFunction)
+ 819:.\Generated_Source\PSoC5/PWM_Claw.c ****             return ((uint16)CY_GET_REG16(PWM_Claw_COMPARE1_LSB_PTR));
+ 820:.\Generated_Source\PSoC5/PWM_Claw.c ****         #else
+ 821:.\Generated_Source\PSoC5/PWM_Claw.c ****             return (CY_GET_REG16(PWM_Claw_COMPARE1_LSB_PTR));
+ 497              		.loc 1 821 0
+ 498 0000 014B     		ldr	r3, .L49
+ 499 0002 1888     		ldrh	r0, [r3]
+ 822:.\Generated_Source\PSoC5/PWM_Claw.c ****         #endif /* (PWM_Claw_UsingFixedFunction) */
+ 823:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 500              		.loc 1 823 0
+ 501 0004 80B2     		uxth	r0, r0
+ 502 0006 7047     		bx	lr
+ 503              	.L50:
+ 504              		.align	2
+ 505              	.L49:
+ 506 0008 40680040 		.word	1073768512
+ARM GAS  D:\TEMP\ccncbz78.s 			page 25
+
+
+ 507              		.cfi_endproc
+ 508              	.LFE14:
+ 509              		.size	PWM_Claw_ReadCompare, .-PWM_Claw_ReadCompare
+ 510              		.section	.text.PWM_Claw_ReadPeriod,"ax",%progbits
+ 511              		.align	1
+ 512              		.global	PWM_Claw_ReadPeriod
+ 513              		.thumb
+ 514              		.thumb_func
+ 515              		.type	PWM_Claw_ReadPeriod, %function
+ 516              	PWM_Claw_ReadPeriod:
+ 517              	.LFB15:
+ 824:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 825:.\Generated_Source\PSoC5/PWM_Claw.c **** #else
+ 826:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 827:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 828:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 829:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadCompare1
+ 830:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 831:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 832:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 833:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Reads the compare value for the compare1 output.
+ 834:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 835:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 836:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 837:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 838:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 839:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8/uint16: Current compare value.
+ 840:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 841:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 842:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint16 PWM_Claw_ReadCompare1(void) 
+ 843:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 844:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_COMPARE1_LSB_PTR));
+ 845:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 846:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 847:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 848:.\Generated_Source\PSoC5/PWM_Claw.c ****     /*******************************************************************************
+ 849:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Function Name: PWM_Claw_ReadCompare2
+ 850:.\Generated_Source\PSoC5/PWM_Claw.c ****     ********************************************************************************
+ 851:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 852:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Summary:
+ 853:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  Reads the compare value for the compare2 output.
+ 854:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 855:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Parameters:
+ 856:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  None
+ 857:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 858:.\Generated_Source\PSoC5/PWM_Claw.c ****     * Return:
+ 859:.\Generated_Source\PSoC5/PWM_Claw.c ****     *  uint8/uint16: Current compare value.
+ 860:.\Generated_Source\PSoC5/PWM_Claw.c ****     *
+ 861:.\Generated_Source\PSoC5/PWM_Claw.c ****     *******************************************************************************/
+ 862:.\Generated_Source\PSoC5/PWM_Claw.c ****     uint16 PWM_Claw_ReadCompare2(void) 
+ 863:.\Generated_Source\PSoC5/PWM_Claw.c ****     {
+ 864:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_COMPARE2_LSB_PTR));
+ 865:.\Generated_Source\PSoC5/PWM_Claw.c ****     }
+ 866:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 867:.\Generated_Source\PSoC5/PWM_Claw.c **** #endif /* (PWM_Claw_UseOneCompareMode) */
+ 868:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ 869:.\Generated_Source\PSoC5/PWM_Claw.c **** 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 26
+
+
+ 870:.\Generated_Source\PSoC5/PWM_Claw.c **** /*******************************************************************************
+ 871:.\Generated_Source\PSoC5/PWM_Claw.c **** * Function Name: PWM_Claw_ReadPeriod
+ 872:.\Generated_Source\PSoC5/PWM_Claw.c **** ********************************************************************************
+ 873:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 874:.\Generated_Source\PSoC5/PWM_Claw.c **** * Summary:
+ 875:.\Generated_Source\PSoC5/PWM_Claw.c **** *  Reads the period value used by the PWM hardware.
+ 876:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 877:.\Generated_Source\PSoC5/PWM_Claw.c **** * Parameters:
+ 878:.\Generated_Source\PSoC5/PWM_Claw.c **** *  None
+ 879:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 880:.\Generated_Source\PSoC5/PWM_Claw.c **** * Return:
+ 881:.\Generated_Source\PSoC5/PWM_Claw.c **** *  uint8/16: Period value
+ 882:.\Generated_Source\PSoC5/PWM_Claw.c **** *
+ 883:.\Generated_Source\PSoC5/PWM_Claw.c **** *******************************************************************************/
+ 884:.\Generated_Source\PSoC5/PWM_Claw.c **** uint16 PWM_Claw_ReadPeriod(void) 
+ 885:.\Generated_Source\PSoC5/PWM_Claw.c **** {
+ 518              		.loc 1 885 0
+ 519              		.cfi_startproc
+ 520              		@ args = 0, pretend = 0, frame = 0
+ 521              		@ frame_needed = 0, uses_anonymous_args = 0
+ 522              		@ link register save eliminated.
+ 886:.\Generated_Source\PSoC5/PWM_Claw.c ****     #if(PWM_Claw_UsingFixedFunction)
+ 887:.\Generated_Source\PSoC5/PWM_Claw.c ****         return ((uint16)CY_GET_REG16(PWM_Claw_PERIOD_LSB_PTR));
+ 888:.\Generated_Source\PSoC5/PWM_Claw.c ****     #else
+ 889:.\Generated_Source\PSoC5/PWM_Claw.c ****         return (CY_GET_REG16(PWM_Claw_PERIOD_LSB_PTR));
+ 523              		.loc 1 889 0
+ 524 0000 014B     		ldr	r3, .L52
+ 525 0002 1888     		ldrh	r0, [r3]
+ 890:.\Generated_Source\PSoC5/PWM_Claw.c ****     #endif /* (PWM_Claw_UsingFixedFunction) */
+ 891:.\Generated_Source\PSoC5/PWM_Claw.c **** }
+ 526              		.loc 1 891 0
+ 527 0004 80B2     		uxth	r0, r0
+ 528 0006 7047     		bx	lr
+ 529              	.L53:
+ 530              		.align	2
+ 531              	.L52:
+ 532 0008 80680040 		.word	1073768576
+ 533              		.cfi_endproc
+ 534              	.LFE15:
+ 535              		.size	PWM_Claw_ReadPeriod, .-PWM_Claw_ReadPeriod
+ 536              		.global	PWM_Claw_initVar
+ 537              		.bss
+ 538              		.set	.LANCHOR0,. + 0
+ 539              		.type	PWM_Claw_initVar, %object
+ 540              		.size	PWM_Claw_initVar, 1
+ 541              	PWM_Claw_initVar:
+ 542 0000 00       		.space	1
+ 543              		.text
+ 544              	.Letext0:
+ 545              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 546              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 547              		.section	.debug_info,"",%progbits
+ 548              	.Ldebug_info0:
+ 549 0000 BD030000 		.4byte	0x3bd
+ 550 0004 0400     		.2byte	0x4
+ 551 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 552 000a 04       		.byte	0x4
+ARM GAS  D:\TEMP\ccncbz78.s 			page 27
+
+
+ 553 000b 01       		.uleb128 0x1
+ 554 000c 76020000 		.4byte	.LASF40
+ 555 0010 01       		.byte	0x1
+ 556 0011 56010000 		.4byte	.LASF41
+ 557 0015 CF000000 		.4byte	.LASF42
+ 558 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 559 001d 00000000 		.4byte	0
+ 560 0021 00000000 		.4byte	.Ldebug_line0
+ 561 0025 02       		.uleb128 0x2
+ 562 0026 01       		.byte	0x1
+ 563 0027 06       		.byte	0x6
+ 564 0028 38030000 		.4byte	.LASF0
+ 565 002c 02       		.uleb128 0x2
+ 566 002d 01       		.byte	0x1
+ 567 002e 08       		.byte	0x8
+ 568 002f C1000000 		.4byte	.LASF1
+ 569 0033 02       		.uleb128 0x2
+ 570 0034 02       		.byte	0x2
+ 571 0035 05       		.byte	0x5
+ 572 0036 7A010000 		.4byte	.LASF2
+ 573 003a 02       		.uleb128 0x2
+ 574 003b 02       		.byte	0x2
+ 575 003c 07       		.byte	0x7
+ 576 003d 65000000 		.4byte	.LASF3
+ 577 0041 02       		.uleb128 0x2
+ 578 0042 04       		.byte	0x4
+ 579 0043 05       		.byte	0x5
+ 580 0044 04030000 		.4byte	.LASF4
+ 581 0048 02       		.uleb128 0x2
+ 582 0049 04       		.byte	0x4
+ 583 004a 07       		.byte	0x7
+ 584 004b 1C010000 		.4byte	.LASF5
+ 585 004f 02       		.uleb128 0x2
+ 586 0050 08       		.byte	0x8
+ 587 0051 05       		.byte	0x5
+ 588 0052 2E020000 		.4byte	.LASF6
+ 589 0056 02       		.uleb128 0x2
+ 590 0057 08       		.byte	0x8
+ 591 0058 07       		.byte	0x7
+ 592 0059 AA000000 		.4byte	.LASF7
+ 593 005d 03       		.uleb128 0x3
+ 594 005e 04       		.byte	0x4
+ 595 005f 05       		.byte	0x5
+ 596 0060 696E7400 		.ascii	"int\000"
+ 597 0064 02       		.uleb128 0x2
+ 598 0065 04       		.byte	0x4
+ 599 0066 07       		.byte	0x7
+ 600 0067 C5010000 		.4byte	.LASF8
+ 601 006b 04       		.uleb128 0x4
+ 602 006c 2E010000 		.4byte	.LASF9
+ 603 0070 02       		.byte	0x2
+ 604 0071 9201     		.2byte	0x192
+ 605 0073 2C000000 		.4byte	0x2c
+ 606 0077 04       		.uleb128 0x4
+ 607 0078 84010000 		.4byte	.LASF10
+ 608 007c 02       		.byte	0x2
+ 609 007d 9301     		.2byte	0x193
+ARM GAS  D:\TEMP\ccncbz78.s 			page 28
+
+
+ 610 007f 3A000000 		.4byte	0x3a
+ 611 0083 02       		.uleb128 0x2
+ 612 0084 04       		.byte	0x4
+ 613 0085 04       		.byte	0x4
+ 614 0086 9C000000 		.4byte	.LASF11
+ 615 008a 02       		.uleb128 0x2
+ 616 008b 08       		.byte	0x8
+ 617 008c 04       		.byte	0x4
+ 618 008d 4F010000 		.4byte	.LASF12
+ 619 0091 02       		.uleb128 0x2
+ 620 0092 01       		.byte	0x1
+ 621 0093 08       		.byte	0x8
+ 622 0094 06000000 		.4byte	.LASF13
+ 623 0098 04       		.uleb128 0x4
+ 624 0099 17010000 		.4byte	.LASF14
+ 625 009d 02       		.byte	0x2
+ 626 009e 3C02     		.2byte	0x23c
+ 627 00a0 A4000000 		.4byte	0xa4
+ 628 00a4 05       		.uleb128 0x5
+ 629 00a5 6B000000 		.4byte	0x6b
+ 630 00a9 04       		.uleb128 0x4
+ 631 00aa 00000000 		.4byte	.LASF15
+ 632 00ae 02       		.byte	0x2
+ 633 00af 3D02     		.2byte	0x23d
+ 634 00b1 B5000000 		.4byte	0xb5
+ 635 00b5 05       		.uleb128 0x5
+ 636 00b6 77000000 		.4byte	0x77
+ 637 00ba 02       		.uleb128 0x2
+ 638 00bb 04       		.byte	0x4
+ 639 00bc 07       		.byte	0x7
+ 640 00bd 25020000 		.4byte	.LASF16
+ 641 00c1 06       		.uleb128 0x6
+ 642 00c2 EE010000 		.4byte	.LASF17
+ 643 00c6 01       		.byte	0x1
+ 644 00c7 1603     		.2byte	0x316
+ 645 00c9 77000000 		.4byte	0x77
+ 646 00cd 01       		.byte	0x1
+ 647 00ce 06       		.uleb128 0x6
+ 648 00cf D2010000 		.4byte	.LASF18
+ 649 00d3 01       		.byte	0x1
+ 650 00d4 C702     		.2byte	0x2c7
+ 651 00d6 6B000000 		.4byte	0x6b
+ 652 00da 01       		.byte	0x1
+ 653 00db 07       		.uleb128 0x7
+ 654 00dc 86000000 		.4byte	.LASF19
+ 655 00e0 01       		.byte	0x1
+ 656 00e1 9301     		.2byte	0x193
+ 657 00e3 01       		.byte	0x1
+ 658 00e4 F5000000 		.4byte	0xf5
+ 659 00e8 08       		.uleb128 0x8
+ 660 00e9 A2000000 		.4byte	.LASF21
+ 661 00ed 01       		.byte	0x1
+ 662 00ee 9301     		.2byte	0x193
+ 663 00f0 77000000 		.4byte	0x77
+ 664 00f4 00       		.byte	0
+ 665 00f5 07       		.uleb128 0x7
+ 666 00f6 49000000 		.4byte	.LASF20
+ARM GAS  D:\TEMP\ccncbz78.s 			page 29
+
+
+ 667 00fa 01       		.byte	0x1
+ 668 00fb E201     		.2byte	0x1e2
+ 669 00fd 01       		.byte	0x1
+ 670 00fe 0F010000 		.4byte	0x10f
+ 671 0102 08       		.uleb128 0x8
+ 672 0103 5E000000 		.4byte	.LASF22
+ 673 0107 01       		.byte	0x1
+ 674 0108 E201     		.2byte	0x1e2
+ 675 010a 77000000 		.4byte	0x77
+ 676 010e 00       		.byte	0
+ 677 010f 07       		.uleb128 0x7
+ 678 0110 0D030000 		.4byte	.LASF23
+ 679 0114 01       		.byte	0x1
+ 680 0115 0402     		.2byte	0x204
+ 681 0117 01       		.byte	0x1
+ 682 0118 29010000 		.4byte	0x129
+ 683 011c 08       		.uleb128 0x8
+ 684 011d 44030000 		.4byte	.LASF24
+ 685 0121 01       		.byte	0x1
+ 686 0122 0402     		.2byte	0x204
+ 687 0124 77000000 		.4byte	0x77
+ 688 0128 00       		.byte	0
+ 689 0129 07       		.uleb128 0x7
+ 690 012a 4C030000 		.4byte	.LASF25
+ 691 012e 01       		.byte	0x1
+ 692 012f AC02     		.2byte	0x2ac
+ 693 0131 01       		.byte	0x1
+ 694 0132 43010000 		.4byte	0x143
+ 695 0136 08       		.uleb128 0x8
+ 696 0137 3C020000 		.4byte	.LASF26
+ 697 013b 01       		.byte	0x1
+ 698 013c AC02     		.2byte	0x2ac
+ 699 013e 6B000000 		.4byte	0x6b
+ 700 0142 00       		.byte	0
+ 701 0143 09       		.uleb128 0x9
+ 702 0144 66030000 		.4byte	.LASF27
+ 703 0148 01       		.byte	0x1
+ 704 0149 C7       		.byte	0xc7
+ 705 014a 00000000 		.4byte	.LFB2
+ 706 014e 10000000 		.4byte	.LFE2-.LFB2
+ 707 0152 01       		.uleb128 0x1
+ 708 0153 9C       		.byte	0x9c
+ 709 0154 09       		.uleb128 0x9
+ 710 0155 8B010000 		.4byte	.LASF28
+ 711 0159 01       		.byte	0x1
+ 712 015a E9       		.byte	0xe9
+ 713 015b 00000000 		.4byte	.LFB3
+ 714 015f 10000000 		.4byte	.LFE3-.LFB3
+ 715 0163 01       		.uleb128 0x1
+ 716 0164 9C       		.byte	0x9c
+ 717 0165 0A       		.uleb128 0xa
+ 718 0166 DB000000 		.4byte	0xdb
+ 719 016a 00000000 		.4byte	.LFB4
+ 720 016e 0C000000 		.4byte	.LFE4-.LFB4
+ 721 0172 01       		.uleb128 0x1
+ 722 0173 9C       		.byte	0x9c
+ 723 0174 80010000 		.4byte	0x180
+ARM GAS  D:\TEMP\ccncbz78.s 			page 30
+
+
+ 724 0178 0B       		.uleb128 0xb
+ 725 0179 E8000000 		.4byte	0xe8
+ 726 017d 01       		.uleb128 0x1
+ 727 017e 50       		.byte	0x50
+ 728 017f 00       		.byte	0
+ 729 0180 0C       		.uleb128 0xc
+ 730 0181 23030000 		.4byte	.LASF36
+ 731 0185 01       		.byte	0x1
+ 732 0186 A901     		.2byte	0x1a9
+ 733 0188 77000000 		.4byte	0x77
+ 734 018c 00000000 		.4byte	.LFB5
+ 735 0190 14000000 		.4byte	.LFE5-.LFB5
+ 736 0194 01       		.uleb128 0x1
+ 737 0195 9C       		.byte	0x9c
+ 738 0196 0D       		.uleb128 0xd
+ 739 0197 3C010000 		.4byte	.LASF29
+ 740 019b 01       		.byte	0x1
+ 741 019c C501     		.2byte	0x1c5
+ 742 019e 00000000 		.4byte	.LFB6
+ 743 01a2 18000000 		.4byte	.LFE6-.LFB6
+ 744 01a6 01       		.uleb128 0x1
+ 745 01a7 9C       		.byte	0x9c
+ 746 01a8 CD010000 		.4byte	0x1cd
+ 747 01ac 0E       		.uleb128 0xe
+ 748 01ad CE000000 		.4byte	0xce
+ 749 01b1 00000000 		.4byte	.LBB14
+ 750 01b5 04000000 		.4byte	.LBE14-.LBB14
+ 751 01b9 01       		.byte	0x1
+ 752 01ba C701     		.2byte	0x1c7
+ 753 01bc 0E       		.uleb128 0xe
+ 754 01bd C1000000 		.4byte	0xc1
+ 755 01c1 08000000 		.4byte	.LBB16
+ 756 01c5 06000000 		.4byte	.LBE16-.LBB16
+ 757 01c9 01       		.byte	0x1
+ 758 01ca C901     		.2byte	0x1c9
+ 759 01cc 00       		.byte	0
+ 760 01cd 0F       		.uleb128 0xf
+ 761 01ce 78000000 		.4byte	.LASF30
+ 762 01d2 01       		.byte	0x1
+ 763 01d3 54       		.byte	0x54
+ 764 01d4 00000000 		.4byte	.LFB1
+ 765 01d8 60000000 		.4byte	.LFE1-.LFB1
+ 766 01dc 01       		.uleb128 0x1
+ 767 01dd 9C       		.byte	0x9c
+ 768 01de 86020000 		.4byte	0x286
+ 769 01e2 10       		.uleb128 0x10
+ 770 01e3 20020000 		.4byte	.LASF31
+ 771 01e7 01       		.byte	0x1
+ 772 01e8 57       		.byte	0x57
+ 773 01e9 6B000000 		.4byte	0x6b
+ 774 01ed 00000000 		.4byte	.LLST0
+ 775 01f1 10       		.uleb128 0x10
+ 776 01f2 5E020000 		.4byte	.LASF32
+ 777 01f6 01       		.byte	0x1
+ 778 01f7 5D       		.byte	0x5d
+ 779 01f8 6B000000 		.4byte	0x6b
+ 780 01fc 18000000 		.4byte	.LLST1
+ARM GAS  D:\TEMP\ccncbz78.s 			page 31
+
+
+ 781 0200 11       		.uleb128 0x11
+ 782 0201 DB000000 		.4byte	0xdb
+ 783 0205 22000000 		.4byte	.LBB18
+ 784 0209 08000000 		.4byte	.LBE18-.LBB18
+ 785 020d 01       		.byte	0x1
+ 786 020e 85       		.byte	0x85
+ 787 020f 1B020000 		.4byte	0x21b
+ 788 0213 12       		.uleb128 0x12
+ 789 0214 E8000000 		.4byte	0xe8
+ 790 0218 CF07     		.2byte	0x7cf
+ 791 021a 00       		.byte	0
+ 792 021b 11       		.uleb128 0x11
+ 793 021c F5000000 		.4byte	0xf5
+ 794 0220 2A000000 		.4byte	.LBB20
+ 795 0224 04000000 		.4byte	.LBE20-.LBB20
+ 796 0228 01       		.byte	0x1
+ 797 0229 88       		.byte	0x88
+ 798 022a 36020000 		.4byte	0x236
+ 799 022e 12       		.uleb128 0x12
+ 800 022f 02010000 		.4byte	0x102
+ 801 0233 CF07     		.2byte	0x7cf
+ 802 0235 00       		.byte	0
+ 803 0236 11       		.uleb128 0x11
+ 804 0237 0F010000 		.4byte	0x10f
+ 805 023b 2E000000 		.4byte	.LBB22
+ 806 023f 06000000 		.4byte	.LBE22-.LBB22
+ 807 0243 01       		.byte	0x1
+ 808 0244 8B       		.byte	0x8b
+ 809 0245 50020000 		.4byte	0x250
+ 810 0249 13       		.uleb128 0x13
+ 811 024a 1C010000 		.4byte	0x11c
+ 812 024e 50       		.byte	0x50
+ 813 024f 00       		.byte	0
+ 814 0250 11       		.uleb128 0x11
+ 815 0251 29010000 		.4byte	0x129
+ 816 0255 34000000 		.4byte	.LBB24
+ 817 0259 08000000 		.4byte	.LBE24-.LBB24
+ 818 025d 01       		.byte	0x1
+ 819 025e 9A       		.byte	0x9a
+ 820 025f 6A020000 		.4byte	0x26a
+ 821 0263 13       		.uleb128 0x13
+ 822 0264 36010000 		.4byte	0x136
+ 823 0268 00       		.byte	0
+ 824 0269 00       		.byte	0
+ 825 026a 14       		.uleb128 0x14
+ 826 026b 40000000 		.4byte	.LVL7
+ 827 026f A8030000 		.4byte	0x3a8
+ 828 0273 14       		.uleb128 0x14
+ 829 0274 4C000000 		.4byte	.LVL8
+ 830 0278 B3030000 		.4byte	0x3b3
+ 831 027c 15       		.uleb128 0x15
+ 832 027d 54000000 		.4byte	.LVL9
+ 833 0281 96010000 		.4byte	0x196
+ 834 0285 00       		.byte	0
+ 835 0286 0F       		.uleb128 0xf
+ 836 0287 29000000 		.4byte	.LASF33
+ 837 028b 01       		.byte	0x1
+ARM GAS  D:\TEMP\ccncbz78.s 			page 32
+
+
+ 838 028c 37       		.byte	0x37
+ 839 028d 00000000 		.4byte	.LFB0
+ 840 0291 1C000000 		.4byte	.LFE0-.LFB0
+ 841 0295 01       		.uleb128 0x1
+ 842 0296 9C       		.byte	0x9c
+ 843 0297 AE020000 		.4byte	0x2ae
+ 844 029b 14       		.uleb128 0x14
+ 845 029c 0C000000 		.4byte	.LVL10
+ 846 02a0 CD010000 		.4byte	0x1cd
+ 847 02a4 15       		.uleb128 0x15
+ 848 02a5 18000000 		.4byte	.LVL11
+ 849 02a9 43010000 		.4byte	0x143
+ 850 02ad 00       		.byte	0
+ 851 02ae 0A       		.uleb128 0xa
+ 852 02af F5000000 		.4byte	0xf5
+ 853 02b3 00000000 		.4byte	.LFB7
+ 854 02b7 0C000000 		.4byte	.LFE7-.LFB7
+ 855 02bb 01       		.uleb128 0x1
+ 856 02bc 9C       		.byte	0x9c
+ 857 02bd C9020000 		.4byte	0x2c9
+ 858 02c1 0B       		.uleb128 0xb
+ 859 02c2 02010000 		.4byte	0x102
+ 860 02c6 01       		.uleb128 0x1
+ 861 02c7 50       		.byte	0x50
+ 862 02c8 00       		.byte	0
+ 863 02c9 0A       		.uleb128 0xa
+ 864 02ca 0F010000 		.4byte	0x10f
+ 865 02ce 00000000 		.4byte	.LFB8
+ 866 02d2 0C000000 		.4byte	.LFE8-.LFB8
+ 867 02d6 01       		.uleb128 0x1
+ 868 02d7 9C       		.byte	0x9c
+ 869 02d8 E4020000 		.4byte	0x2e4
+ 870 02dc 0B       		.uleb128 0xb
+ 871 02dd 1C010000 		.4byte	0x11c
+ 872 02e1 01       		.uleb128 0x1
+ 873 02e2 50       		.byte	0x50
+ 874 02e3 00       		.byte	0
+ 875 02e4 0A       		.uleb128 0xa
+ 876 02e5 29010000 		.4byte	0x129
+ 877 02e9 00000000 		.4byte	.LFB9
+ 878 02ed 0C000000 		.4byte	.LFE9-.LFB9
+ 879 02f1 01       		.uleb128 0x1
+ 880 02f2 9C       		.byte	0x9c
+ 881 02f3 FF020000 		.4byte	0x2ff
+ 882 02f7 0B       		.uleb128 0xb
+ 883 02f8 36010000 		.4byte	0x136
+ 884 02fc 01       		.uleb128 0x1
+ 885 02fd 50       		.byte	0x50
+ 886 02fe 00       		.byte	0
+ 887 02ff 16       		.uleb128 0x16
+ 888 0300 CE000000 		.4byte	0xce
+ 889 0304 00000000 		.4byte	.LFB10
+ 890 0308 0C000000 		.4byte	.LFE10-.LFB10
+ 891 030c 01       		.uleb128 0x1
+ 892 030d 9C       		.byte	0x9c
+ 893 030e 17       		.uleb128 0x17
+ 894 030f 76030000 		.4byte	.LASF43
+ARM GAS  D:\TEMP\ccncbz78.s 			page 33
+
+
+ 895 0313 01       		.byte	0x1
+ 896 0314 E102     		.2byte	0x2e1
+ 897 0316 6B000000 		.4byte	0x6b
+ 898 031a 00000000 		.4byte	.LFB11
+ 899 031e 0C000000 		.4byte	.LFE11-.LFB11
+ 900 0322 01       		.uleb128 0x1
+ 901 0323 9C       		.byte	0x9c
+ 902 0324 37030000 		.4byte	0x337
+ 903 0328 18       		.uleb128 0x18
+ 904 0329 19020000 		.4byte	.LASF34
+ 905 032d 01       		.byte	0x1
+ 906 032e E302     		.2byte	0x2e3
+ 907 0330 6B000000 		.4byte	0x6b
+ 908 0334 01       		.uleb128 0x1
+ 909 0335 50       		.byte	0x50
+ 910 0336 00       		.byte	0
+ 911 0337 0D       		.uleb128 0xd
+ 912 0338 0B000000 		.4byte	.LASF35
+ 913 033c 01       		.byte	0x1
+ 914 033d FD02     		.2byte	0x2fd
+ 915 033f 00000000 		.4byte	.LFB12
+ 916 0343 0C000000 		.4byte	.LFE12-.LFB12
+ 917 0347 01       		.uleb128 0x1
+ 918 0348 9C       		.byte	0x9c
+ 919 0349 5C030000 		.4byte	0x35c
+ 920 034d 19       		.uleb128 0x19
+ 921 034e 34010000 		.4byte	.LASF44
+ 922 0352 01       		.byte	0x1
+ 923 0353 FD02     		.2byte	0x2fd
+ 924 0355 6B000000 		.4byte	0x6b
+ 925 0359 01       		.uleb128 0x1
+ 926 035a 50       		.byte	0x50
+ 927 035b 00       		.byte	0
+ 928 035c 16       		.uleb128 0x16
+ 929 035d C1000000 		.4byte	0xc1
+ 930 0361 00000000 		.4byte	.LFB13
+ 931 0365 0C000000 		.4byte	.LFE13-.LFB13
+ 932 0369 01       		.uleb128 0x1
+ 933 036a 9C       		.byte	0x9c
+ 934 036b 0C       		.uleb128 0xc
+ 935 036c 99010000 		.4byte	.LASF37
+ 936 0370 01       		.byte	0x1
+ 937 0371 3003     		.2byte	0x330
+ 938 0373 77000000 		.4byte	0x77
+ 939 0377 00000000 		.4byte	.LFB14
+ 940 037b 0C000000 		.4byte	.LFE14-.LFB14
+ 941 037f 01       		.uleb128 0x1
+ 942 0380 9C       		.byte	0x9c
+ 943 0381 0C       		.uleb128 0xc
+ 944 0382 4A020000 		.4byte	.LASF38
+ 945 0386 01       		.byte	0x1
+ 946 0387 7403     		.2byte	0x374
+ 947 0389 77000000 		.4byte	0x77
+ 948 038d 00000000 		.4byte	.LFB15
+ 949 0391 0C000000 		.4byte	.LFE15-.LFB15
+ 950 0395 01       		.uleb128 0x1
+ 951 0396 9C       		.byte	0x9c
+ARM GAS  D:\TEMP\ccncbz78.s 			page 34
+
+
+ 952 0397 1A       		.uleb128 0x1a
+ 953 0398 38000000 		.4byte	.LASF45
+ 954 039c 01       		.byte	0x1
+ 955 039d 20       		.byte	0x20
+ 956 039e 6B000000 		.4byte	0x6b
+ 957 03a2 05       		.uleb128 0x5
+ 958 03a3 03       		.byte	0x3
+ 959 03a4 00000000 		.4byte	PWM_Claw_initVar
+ 960 03a8 1B       		.uleb128 0x1b
+ 961 03a9 AE010000 		.4byte	.LASF39
+ 962 03ad 03       		.byte	0x3
+ 963 03ae 7D       		.byte	0x7d
+ 964 03af 6B000000 		.4byte	0x6b
+ 965 03b3 1C       		.uleb128 0x1c
+ 966 03b4 03020000 		.4byte	.LASF46
+ 967 03b8 03       		.byte	0x3
+ 968 03b9 7E       		.byte	0x7e
+ 969 03ba 1D       		.uleb128 0x1d
+ 970 03bb 6B000000 		.4byte	0x6b
+ 971 03bf 00       		.byte	0
+ 972 03c0 00       		.byte	0
+ 973              		.section	.debug_abbrev,"",%progbits
+ 974              	.Ldebug_abbrev0:
+ 975 0000 01       		.uleb128 0x1
+ 976 0001 11       		.uleb128 0x11
+ 977 0002 01       		.byte	0x1
+ 978 0003 25       		.uleb128 0x25
+ 979 0004 0E       		.uleb128 0xe
+ 980 0005 13       		.uleb128 0x13
+ 981 0006 0B       		.uleb128 0xb
+ 982 0007 03       		.uleb128 0x3
+ 983 0008 0E       		.uleb128 0xe
+ 984 0009 1B       		.uleb128 0x1b
+ 985 000a 0E       		.uleb128 0xe
+ 986 000b 55       		.uleb128 0x55
+ 987 000c 17       		.uleb128 0x17
+ 988 000d 11       		.uleb128 0x11
+ 989 000e 01       		.uleb128 0x1
+ 990 000f 10       		.uleb128 0x10
+ 991 0010 17       		.uleb128 0x17
+ 992 0011 00       		.byte	0
+ 993 0012 00       		.byte	0
+ 994 0013 02       		.uleb128 0x2
+ 995 0014 24       		.uleb128 0x24
+ 996 0015 00       		.byte	0
+ 997 0016 0B       		.uleb128 0xb
+ 998 0017 0B       		.uleb128 0xb
+ 999 0018 3E       		.uleb128 0x3e
+ 1000 0019 0B       		.uleb128 0xb
+ 1001 001a 03       		.uleb128 0x3
+ 1002 001b 0E       		.uleb128 0xe
+ 1003 001c 00       		.byte	0
+ 1004 001d 00       		.byte	0
+ 1005 001e 03       		.uleb128 0x3
+ 1006 001f 24       		.uleb128 0x24
+ 1007 0020 00       		.byte	0
+ 1008 0021 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\ccncbz78.s 			page 35
+
+
+ 1009 0022 0B       		.uleb128 0xb
+ 1010 0023 3E       		.uleb128 0x3e
+ 1011 0024 0B       		.uleb128 0xb
+ 1012 0025 03       		.uleb128 0x3
+ 1013 0026 08       		.uleb128 0x8
+ 1014 0027 00       		.byte	0
+ 1015 0028 00       		.byte	0
+ 1016 0029 04       		.uleb128 0x4
+ 1017 002a 16       		.uleb128 0x16
+ 1018 002b 00       		.byte	0
+ 1019 002c 03       		.uleb128 0x3
+ 1020 002d 0E       		.uleb128 0xe
+ 1021 002e 3A       		.uleb128 0x3a
+ 1022 002f 0B       		.uleb128 0xb
+ 1023 0030 3B       		.uleb128 0x3b
+ 1024 0031 05       		.uleb128 0x5
+ 1025 0032 49       		.uleb128 0x49
+ 1026 0033 13       		.uleb128 0x13
+ 1027 0034 00       		.byte	0
+ 1028 0035 00       		.byte	0
+ 1029 0036 05       		.uleb128 0x5
+ 1030 0037 35       		.uleb128 0x35
+ 1031 0038 00       		.byte	0
+ 1032 0039 49       		.uleb128 0x49
+ 1033 003a 13       		.uleb128 0x13
+ 1034 003b 00       		.byte	0
+ 1035 003c 00       		.byte	0
+ 1036 003d 06       		.uleb128 0x6
+ 1037 003e 2E       		.uleb128 0x2e
+ 1038 003f 00       		.byte	0
+ 1039 0040 3F       		.uleb128 0x3f
+ 1040 0041 19       		.uleb128 0x19
+ 1041 0042 03       		.uleb128 0x3
+ 1042 0043 0E       		.uleb128 0xe
+ 1043 0044 3A       		.uleb128 0x3a
+ 1044 0045 0B       		.uleb128 0xb
+ 1045 0046 3B       		.uleb128 0x3b
+ 1046 0047 05       		.uleb128 0x5
+ 1047 0048 27       		.uleb128 0x27
+ 1048 0049 19       		.uleb128 0x19
+ 1049 004a 49       		.uleb128 0x49
+ 1050 004b 13       		.uleb128 0x13
+ 1051 004c 20       		.uleb128 0x20
+ 1052 004d 0B       		.uleb128 0xb
+ 1053 004e 00       		.byte	0
+ 1054 004f 00       		.byte	0
+ 1055 0050 07       		.uleb128 0x7
+ 1056 0051 2E       		.uleb128 0x2e
+ 1057 0052 01       		.byte	0x1
+ 1058 0053 3F       		.uleb128 0x3f
+ 1059 0054 19       		.uleb128 0x19
+ 1060 0055 03       		.uleb128 0x3
+ 1061 0056 0E       		.uleb128 0xe
+ 1062 0057 3A       		.uleb128 0x3a
+ 1063 0058 0B       		.uleb128 0xb
+ 1064 0059 3B       		.uleb128 0x3b
+ 1065 005a 05       		.uleb128 0x5
+ARM GAS  D:\TEMP\ccncbz78.s 			page 36
+
+
+ 1066 005b 27       		.uleb128 0x27
+ 1067 005c 19       		.uleb128 0x19
+ 1068 005d 20       		.uleb128 0x20
+ 1069 005e 0B       		.uleb128 0xb
+ 1070 005f 01       		.uleb128 0x1
+ 1071 0060 13       		.uleb128 0x13
+ 1072 0061 00       		.byte	0
+ 1073 0062 00       		.byte	0
+ 1074 0063 08       		.uleb128 0x8
+ 1075 0064 05       		.uleb128 0x5
+ 1076 0065 00       		.byte	0
+ 1077 0066 03       		.uleb128 0x3
+ 1078 0067 0E       		.uleb128 0xe
+ 1079 0068 3A       		.uleb128 0x3a
+ 1080 0069 0B       		.uleb128 0xb
+ 1081 006a 3B       		.uleb128 0x3b
+ 1082 006b 05       		.uleb128 0x5
+ 1083 006c 49       		.uleb128 0x49
+ 1084 006d 13       		.uleb128 0x13
+ 1085 006e 00       		.byte	0
+ 1086 006f 00       		.byte	0
+ 1087 0070 09       		.uleb128 0x9
+ 1088 0071 2E       		.uleb128 0x2e
+ 1089 0072 00       		.byte	0
+ 1090 0073 3F       		.uleb128 0x3f
+ 1091 0074 19       		.uleb128 0x19
+ 1092 0075 03       		.uleb128 0x3
+ 1093 0076 0E       		.uleb128 0xe
+ 1094 0077 3A       		.uleb128 0x3a
+ 1095 0078 0B       		.uleb128 0xb
+ 1096 0079 3B       		.uleb128 0x3b
+ 1097 007a 0B       		.uleb128 0xb
+ 1098 007b 27       		.uleb128 0x27
+ 1099 007c 19       		.uleb128 0x19
+ 1100 007d 11       		.uleb128 0x11
+ 1101 007e 01       		.uleb128 0x1
+ 1102 007f 12       		.uleb128 0x12
+ 1103 0080 06       		.uleb128 0x6
+ 1104 0081 40       		.uleb128 0x40
+ 1105 0082 18       		.uleb128 0x18
+ 1106 0083 9742     		.uleb128 0x2117
+ 1107 0085 19       		.uleb128 0x19
+ 1108 0086 00       		.byte	0
+ 1109 0087 00       		.byte	0
+ 1110 0088 0A       		.uleb128 0xa
+ 1111 0089 2E       		.uleb128 0x2e
+ 1112 008a 01       		.byte	0x1
+ 1113 008b 31       		.uleb128 0x31
+ 1114 008c 13       		.uleb128 0x13
+ 1115 008d 11       		.uleb128 0x11
+ 1116 008e 01       		.uleb128 0x1
+ 1117 008f 12       		.uleb128 0x12
+ 1118 0090 06       		.uleb128 0x6
+ 1119 0091 40       		.uleb128 0x40
+ 1120 0092 18       		.uleb128 0x18
+ 1121 0093 9742     		.uleb128 0x2117
+ 1122 0095 19       		.uleb128 0x19
+ARM GAS  D:\TEMP\ccncbz78.s 			page 37
+
+
+ 1123 0096 01       		.uleb128 0x1
+ 1124 0097 13       		.uleb128 0x13
+ 1125 0098 00       		.byte	0
+ 1126 0099 00       		.byte	0
+ 1127 009a 0B       		.uleb128 0xb
+ 1128 009b 05       		.uleb128 0x5
+ 1129 009c 00       		.byte	0
+ 1130 009d 31       		.uleb128 0x31
+ 1131 009e 13       		.uleb128 0x13
+ 1132 009f 02       		.uleb128 0x2
+ 1133 00a0 18       		.uleb128 0x18
+ 1134 00a1 00       		.byte	0
+ 1135 00a2 00       		.byte	0
+ 1136 00a3 0C       		.uleb128 0xc
+ 1137 00a4 2E       		.uleb128 0x2e
+ 1138 00a5 00       		.byte	0
+ 1139 00a6 3F       		.uleb128 0x3f
+ 1140 00a7 19       		.uleb128 0x19
+ 1141 00a8 03       		.uleb128 0x3
+ 1142 00a9 0E       		.uleb128 0xe
+ 1143 00aa 3A       		.uleb128 0x3a
+ 1144 00ab 0B       		.uleb128 0xb
+ 1145 00ac 3B       		.uleb128 0x3b
+ 1146 00ad 05       		.uleb128 0x5
+ 1147 00ae 27       		.uleb128 0x27
+ 1148 00af 19       		.uleb128 0x19
+ 1149 00b0 49       		.uleb128 0x49
+ 1150 00b1 13       		.uleb128 0x13
+ 1151 00b2 11       		.uleb128 0x11
+ 1152 00b3 01       		.uleb128 0x1
+ 1153 00b4 12       		.uleb128 0x12
+ 1154 00b5 06       		.uleb128 0x6
+ 1155 00b6 40       		.uleb128 0x40
+ 1156 00b7 18       		.uleb128 0x18
+ 1157 00b8 9742     		.uleb128 0x2117
+ 1158 00ba 19       		.uleb128 0x19
+ 1159 00bb 00       		.byte	0
+ 1160 00bc 00       		.byte	0
+ 1161 00bd 0D       		.uleb128 0xd
+ 1162 00be 2E       		.uleb128 0x2e
+ 1163 00bf 01       		.byte	0x1
+ 1164 00c0 3F       		.uleb128 0x3f
+ 1165 00c1 19       		.uleb128 0x19
+ 1166 00c2 03       		.uleb128 0x3
+ 1167 00c3 0E       		.uleb128 0xe
+ 1168 00c4 3A       		.uleb128 0x3a
+ 1169 00c5 0B       		.uleb128 0xb
+ 1170 00c6 3B       		.uleb128 0x3b
+ 1171 00c7 05       		.uleb128 0x5
+ 1172 00c8 27       		.uleb128 0x27
+ 1173 00c9 19       		.uleb128 0x19
+ 1174 00ca 11       		.uleb128 0x11
+ 1175 00cb 01       		.uleb128 0x1
+ 1176 00cc 12       		.uleb128 0x12
+ 1177 00cd 06       		.uleb128 0x6
+ 1178 00ce 40       		.uleb128 0x40
+ 1179 00cf 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\ccncbz78.s 			page 38
+
+
+ 1180 00d0 9742     		.uleb128 0x2117
+ 1181 00d2 19       		.uleb128 0x19
+ 1182 00d3 01       		.uleb128 0x1
+ 1183 00d4 13       		.uleb128 0x13
+ 1184 00d5 00       		.byte	0
+ 1185 00d6 00       		.byte	0
+ 1186 00d7 0E       		.uleb128 0xe
+ 1187 00d8 1D       		.uleb128 0x1d
+ 1188 00d9 00       		.byte	0
+ 1189 00da 31       		.uleb128 0x31
+ 1190 00db 13       		.uleb128 0x13
+ 1191 00dc 11       		.uleb128 0x11
+ 1192 00dd 01       		.uleb128 0x1
+ 1193 00de 12       		.uleb128 0x12
+ 1194 00df 06       		.uleb128 0x6
+ 1195 00e0 58       		.uleb128 0x58
+ 1196 00e1 0B       		.uleb128 0xb
+ 1197 00e2 59       		.uleb128 0x59
+ 1198 00e3 05       		.uleb128 0x5
+ 1199 00e4 00       		.byte	0
+ 1200 00e5 00       		.byte	0
+ 1201 00e6 0F       		.uleb128 0xf
+ 1202 00e7 2E       		.uleb128 0x2e
+ 1203 00e8 01       		.byte	0x1
+ 1204 00e9 3F       		.uleb128 0x3f
+ 1205 00ea 19       		.uleb128 0x19
+ 1206 00eb 03       		.uleb128 0x3
+ 1207 00ec 0E       		.uleb128 0xe
+ 1208 00ed 3A       		.uleb128 0x3a
+ 1209 00ee 0B       		.uleb128 0xb
+ 1210 00ef 3B       		.uleb128 0x3b
+ 1211 00f0 0B       		.uleb128 0xb
+ 1212 00f1 27       		.uleb128 0x27
+ 1213 00f2 19       		.uleb128 0x19
+ 1214 00f3 11       		.uleb128 0x11
+ 1215 00f4 01       		.uleb128 0x1
+ 1216 00f5 12       		.uleb128 0x12
+ 1217 00f6 06       		.uleb128 0x6
+ 1218 00f7 40       		.uleb128 0x40
+ 1219 00f8 18       		.uleb128 0x18
+ 1220 00f9 9742     		.uleb128 0x2117
+ 1221 00fb 19       		.uleb128 0x19
+ 1222 00fc 01       		.uleb128 0x1
+ 1223 00fd 13       		.uleb128 0x13
+ 1224 00fe 00       		.byte	0
+ 1225 00ff 00       		.byte	0
+ 1226 0100 10       		.uleb128 0x10
+ 1227 0101 34       		.uleb128 0x34
+ 1228 0102 00       		.byte	0
+ 1229 0103 03       		.uleb128 0x3
+ 1230 0104 0E       		.uleb128 0xe
+ 1231 0105 3A       		.uleb128 0x3a
+ 1232 0106 0B       		.uleb128 0xb
+ 1233 0107 3B       		.uleb128 0x3b
+ 1234 0108 0B       		.uleb128 0xb
+ 1235 0109 49       		.uleb128 0x49
+ 1236 010a 13       		.uleb128 0x13
+ARM GAS  D:\TEMP\ccncbz78.s 			page 39
+
+
+ 1237 010b 02       		.uleb128 0x2
+ 1238 010c 17       		.uleb128 0x17
+ 1239 010d 00       		.byte	0
+ 1240 010e 00       		.byte	0
+ 1241 010f 11       		.uleb128 0x11
+ 1242 0110 1D       		.uleb128 0x1d
+ 1243 0111 01       		.byte	0x1
+ 1244 0112 31       		.uleb128 0x31
+ 1245 0113 13       		.uleb128 0x13
+ 1246 0114 11       		.uleb128 0x11
+ 1247 0115 01       		.uleb128 0x1
+ 1248 0116 12       		.uleb128 0x12
+ 1249 0117 06       		.uleb128 0x6
+ 1250 0118 58       		.uleb128 0x58
+ 1251 0119 0B       		.uleb128 0xb
+ 1252 011a 59       		.uleb128 0x59
+ 1253 011b 0B       		.uleb128 0xb
+ 1254 011c 01       		.uleb128 0x1
+ 1255 011d 13       		.uleb128 0x13
+ 1256 011e 00       		.byte	0
+ 1257 011f 00       		.byte	0
+ 1258 0120 12       		.uleb128 0x12
+ 1259 0121 05       		.uleb128 0x5
+ 1260 0122 00       		.byte	0
+ 1261 0123 31       		.uleb128 0x31
+ 1262 0124 13       		.uleb128 0x13
+ 1263 0125 1C       		.uleb128 0x1c
+ 1264 0126 05       		.uleb128 0x5
+ 1265 0127 00       		.byte	0
+ 1266 0128 00       		.byte	0
+ 1267 0129 13       		.uleb128 0x13
+ 1268 012a 05       		.uleb128 0x5
+ 1269 012b 00       		.byte	0
+ 1270 012c 31       		.uleb128 0x31
+ 1271 012d 13       		.uleb128 0x13
+ 1272 012e 1C       		.uleb128 0x1c
+ 1273 012f 0B       		.uleb128 0xb
+ 1274 0130 00       		.byte	0
+ 1275 0131 00       		.byte	0
+ 1276 0132 14       		.uleb128 0x14
+ 1277 0133 898201   		.uleb128 0x4109
+ 1278 0136 00       		.byte	0
+ 1279 0137 11       		.uleb128 0x11
+ 1280 0138 01       		.uleb128 0x1
+ 1281 0139 31       		.uleb128 0x31
+ 1282 013a 13       		.uleb128 0x13
+ 1283 013b 00       		.byte	0
+ 1284 013c 00       		.byte	0
+ 1285 013d 15       		.uleb128 0x15
+ 1286 013e 898201   		.uleb128 0x4109
+ 1287 0141 00       		.byte	0
+ 1288 0142 11       		.uleb128 0x11
+ 1289 0143 01       		.uleb128 0x1
+ 1290 0144 9542     		.uleb128 0x2115
+ 1291 0146 19       		.uleb128 0x19
+ 1292 0147 31       		.uleb128 0x31
+ 1293 0148 13       		.uleb128 0x13
+ARM GAS  D:\TEMP\ccncbz78.s 			page 40
+
+
+ 1294 0149 00       		.byte	0
+ 1295 014a 00       		.byte	0
+ 1296 014b 16       		.uleb128 0x16
+ 1297 014c 2E       		.uleb128 0x2e
+ 1298 014d 00       		.byte	0
+ 1299 014e 31       		.uleb128 0x31
+ 1300 014f 13       		.uleb128 0x13
+ 1301 0150 11       		.uleb128 0x11
+ 1302 0151 01       		.uleb128 0x1
+ 1303 0152 12       		.uleb128 0x12
+ 1304 0153 06       		.uleb128 0x6
+ 1305 0154 40       		.uleb128 0x40
+ 1306 0155 18       		.uleb128 0x18
+ 1307 0156 9742     		.uleb128 0x2117
+ 1308 0158 19       		.uleb128 0x19
+ 1309 0159 00       		.byte	0
+ 1310 015a 00       		.byte	0
+ 1311 015b 17       		.uleb128 0x17
+ 1312 015c 2E       		.uleb128 0x2e
+ 1313 015d 01       		.byte	0x1
+ 1314 015e 3F       		.uleb128 0x3f
+ 1315 015f 19       		.uleb128 0x19
+ 1316 0160 03       		.uleb128 0x3
+ 1317 0161 0E       		.uleb128 0xe
+ 1318 0162 3A       		.uleb128 0x3a
+ 1319 0163 0B       		.uleb128 0xb
+ 1320 0164 3B       		.uleb128 0x3b
+ 1321 0165 05       		.uleb128 0x5
+ 1322 0166 27       		.uleb128 0x27
+ 1323 0167 19       		.uleb128 0x19
+ 1324 0168 49       		.uleb128 0x49
+ 1325 0169 13       		.uleb128 0x13
+ 1326 016a 11       		.uleb128 0x11
+ 1327 016b 01       		.uleb128 0x1
+ 1328 016c 12       		.uleb128 0x12
+ 1329 016d 06       		.uleb128 0x6
+ 1330 016e 40       		.uleb128 0x40
+ 1331 016f 18       		.uleb128 0x18
+ 1332 0170 9742     		.uleb128 0x2117
+ 1333 0172 19       		.uleb128 0x19
+ 1334 0173 01       		.uleb128 0x1
+ 1335 0174 13       		.uleb128 0x13
+ 1336 0175 00       		.byte	0
+ 1337 0176 00       		.byte	0
+ 1338 0177 18       		.uleb128 0x18
+ 1339 0178 34       		.uleb128 0x34
+ 1340 0179 00       		.byte	0
+ 1341 017a 03       		.uleb128 0x3
+ 1342 017b 0E       		.uleb128 0xe
+ 1343 017c 3A       		.uleb128 0x3a
+ 1344 017d 0B       		.uleb128 0xb
+ 1345 017e 3B       		.uleb128 0x3b
+ 1346 017f 05       		.uleb128 0x5
+ 1347 0180 49       		.uleb128 0x49
+ 1348 0181 13       		.uleb128 0x13
+ 1349 0182 02       		.uleb128 0x2
+ 1350 0183 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\ccncbz78.s 			page 41
+
+
+ 1351 0184 00       		.byte	0
+ 1352 0185 00       		.byte	0
+ 1353 0186 19       		.uleb128 0x19
+ 1354 0187 05       		.uleb128 0x5
+ 1355 0188 00       		.byte	0
+ 1356 0189 03       		.uleb128 0x3
+ 1357 018a 0E       		.uleb128 0xe
+ 1358 018b 3A       		.uleb128 0x3a
+ 1359 018c 0B       		.uleb128 0xb
+ 1360 018d 3B       		.uleb128 0x3b
+ 1361 018e 05       		.uleb128 0x5
+ 1362 018f 49       		.uleb128 0x49
+ 1363 0190 13       		.uleb128 0x13
+ 1364 0191 02       		.uleb128 0x2
+ 1365 0192 18       		.uleb128 0x18
+ 1366 0193 00       		.byte	0
+ 1367 0194 00       		.byte	0
+ 1368 0195 1A       		.uleb128 0x1a
+ 1369 0196 34       		.uleb128 0x34
+ 1370 0197 00       		.byte	0
+ 1371 0198 03       		.uleb128 0x3
+ 1372 0199 0E       		.uleb128 0xe
+ 1373 019a 3A       		.uleb128 0x3a
+ 1374 019b 0B       		.uleb128 0xb
+ 1375 019c 3B       		.uleb128 0x3b
+ 1376 019d 0B       		.uleb128 0xb
+ 1377 019e 49       		.uleb128 0x49
+ 1378 019f 13       		.uleb128 0x13
+ 1379 01a0 3F       		.uleb128 0x3f
+ 1380 01a1 19       		.uleb128 0x19
+ 1381 01a2 02       		.uleb128 0x2
+ 1382 01a3 18       		.uleb128 0x18
+ 1383 01a4 00       		.byte	0
+ 1384 01a5 00       		.byte	0
+ 1385 01a6 1B       		.uleb128 0x1b
+ 1386 01a7 2E       		.uleb128 0x2e
+ 1387 01a8 00       		.byte	0
+ 1388 01a9 3F       		.uleb128 0x3f
+ 1389 01aa 19       		.uleb128 0x19
+ 1390 01ab 03       		.uleb128 0x3
+ 1391 01ac 0E       		.uleb128 0xe
+ 1392 01ad 3A       		.uleb128 0x3a
+ 1393 01ae 0B       		.uleb128 0xb
+ 1394 01af 3B       		.uleb128 0x3b
+ 1395 01b0 0B       		.uleb128 0xb
+ 1396 01b1 27       		.uleb128 0x27
+ 1397 01b2 19       		.uleb128 0x19
+ 1398 01b3 49       		.uleb128 0x49
+ 1399 01b4 13       		.uleb128 0x13
+ 1400 01b5 3C       		.uleb128 0x3c
+ 1401 01b6 19       		.uleb128 0x19
+ 1402 01b7 00       		.byte	0
+ 1403 01b8 00       		.byte	0
+ 1404 01b9 1C       		.uleb128 0x1c
+ 1405 01ba 2E       		.uleb128 0x2e
+ 1406 01bb 01       		.byte	0x1
+ 1407 01bc 3F       		.uleb128 0x3f
+ARM GAS  D:\TEMP\ccncbz78.s 			page 42
+
+
+ 1408 01bd 19       		.uleb128 0x19
+ 1409 01be 03       		.uleb128 0x3
+ 1410 01bf 0E       		.uleb128 0xe
+ 1411 01c0 3A       		.uleb128 0x3a
+ 1412 01c1 0B       		.uleb128 0xb
+ 1413 01c2 3B       		.uleb128 0x3b
+ 1414 01c3 0B       		.uleb128 0xb
+ 1415 01c4 27       		.uleb128 0x27
+ 1416 01c5 19       		.uleb128 0x19
+ 1417 01c6 3C       		.uleb128 0x3c
+ 1418 01c7 19       		.uleb128 0x19
+ 1419 01c8 00       		.byte	0
+ 1420 01c9 00       		.byte	0
+ 1421 01ca 1D       		.uleb128 0x1d
+ 1422 01cb 05       		.uleb128 0x5
+ 1423 01cc 00       		.byte	0
+ 1424 01cd 49       		.uleb128 0x49
+ 1425 01ce 13       		.uleb128 0x13
+ 1426 01cf 00       		.byte	0
+ 1427 01d0 00       		.byte	0
+ 1428 01d1 00       		.byte	0
+ 1429              		.section	.debug_loc,"",%progbits
+ 1430              	.Ldebug_loc0:
+ 1431              	.LLST0:
+ 1432 0000 08000000 		.4byte	.LVL1
+ 1433 0004 0C000000 		.4byte	.LVL2
+ 1434 0008 0600     		.2byte	0x6
+ 1435 000a 73       		.byte	0x73
+ 1436 000b 00       		.sleb128 0
+ 1437 000c 09       		.byte	0x9
+ 1438 000d C0       		.byte	0xc0
+ 1439 000e 1A       		.byte	0x1a
+ 1440 000f 9F       		.byte	0x9f
+ 1441 0010 00000000 		.4byte	0
+ 1442 0014 00000000 		.4byte	0
+ 1443              	.LLST1:
+ 1444 0018 40000000 		.4byte	.LVL7
+ 1445 001c 4B000000 		.4byte	.LVL8-1
+ 1446 0020 0100     		.2byte	0x1
+ 1447 0022 50       		.byte	0x50
+ 1448 0023 00000000 		.4byte	0
+ 1449 0027 00000000 		.4byte	0
+ 1450              		.section	.debug_aranges,"",%progbits
+ 1451 0000 94000000 		.4byte	0x94
+ 1452 0004 0200     		.2byte	0x2
+ 1453 0006 00000000 		.4byte	.Ldebug_info0
+ 1454 000a 04       		.byte	0x4
+ 1455 000b 00       		.byte	0
+ 1456 000c 0000     		.2byte	0
+ 1457 000e 0000     		.2byte	0
+ 1458 0010 00000000 		.4byte	.LFB2
+ 1459 0014 10000000 		.4byte	.LFE2-.LFB2
+ 1460 0018 00000000 		.4byte	.LFB3
+ 1461 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1462 0020 00000000 		.4byte	.LFB4
+ 1463 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1464 0028 00000000 		.4byte	.LFB5
+ARM GAS  D:\TEMP\ccncbz78.s 			page 43
+
+
+ 1465 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1466 0030 00000000 		.4byte	.LFB6
+ 1467 0034 18000000 		.4byte	.LFE6-.LFB6
+ 1468 0038 00000000 		.4byte	.LFB1
+ 1469 003c 60000000 		.4byte	.LFE1-.LFB1
+ 1470 0040 00000000 		.4byte	.LFB0
+ 1471 0044 1C000000 		.4byte	.LFE0-.LFB0
+ 1472 0048 00000000 		.4byte	.LFB7
+ 1473 004c 0C000000 		.4byte	.LFE7-.LFB7
+ 1474 0050 00000000 		.4byte	.LFB8
+ 1475 0054 0C000000 		.4byte	.LFE8-.LFB8
+ 1476 0058 00000000 		.4byte	.LFB9
+ 1477 005c 0C000000 		.4byte	.LFE9-.LFB9
+ 1478 0060 00000000 		.4byte	.LFB10
+ 1479 0064 0C000000 		.4byte	.LFE10-.LFB10
+ 1480 0068 00000000 		.4byte	.LFB11
+ 1481 006c 0C000000 		.4byte	.LFE11-.LFB11
+ 1482 0070 00000000 		.4byte	.LFB12
+ 1483 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1484 0078 00000000 		.4byte	.LFB13
+ 1485 007c 0C000000 		.4byte	.LFE13-.LFB13
+ 1486 0080 00000000 		.4byte	.LFB14
+ 1487 0084 0C000000 		.4byte	.LFE14-.LFB14
+ 1488 0088 00000000 		.4byte	.LFB15
+ 1489 008c 0C000000 		.4byte	.LFE15-.LFB15
+ 1490 0090 00000000 		.4byte	0
+ 1491 0094 00000000 		.4byte	0
+ 1492              		.section	.debug_ranges,"",%progbits
+ 1493              	.Ldebug_ranges0:
+ 1494 0000 00000000 		.4byte	.LFB2
+ 1495 0004 10000000 		.4byte	.LFE2
+ 1496 0008 00000000 		.4byte	.LFB3
+ 1497 000c 10000000 		.4byte	.LFE3
+ 1498 0010 00000000 		.4byte	.LFB4
+ 1499 0014 0C000000 		.4byte	.LFE4
+ 1500 0018 00000000 		.4byte	.LFB5
+ 1501 001c 14000000 		.4byte	.LFE5
+ 1502 0020 00000000 		.4byte	.LFB6
+ 1503 0024 18000000 		.4byte	.LFE6
+ 1504 0028 00000000 		.4byte	.LFB1
+ 1505 002c 60000000 		.4byte	.LFE1
+ 1506 0030 00000000 		.4byte	.LFB0
+ 1507 0034 1C000000 		.4byte	.LFE0
+ 1508 0038 00000000 		.4byte	.LFB7
+ 1509 003c 0C000000 		.4byte	.LFE7
+ 1510 0040 00000000 		.4byte	.LFB8
+ 1511 0044 0C000000 		.4byte	.LFE8
+ 1512 0048 00000000 		.4byte	.LFB9
+ 1513 004c 0C000000 		.4byte	.LFE9
+ 1514 0050 00000000 		.4byte	.LFB10
+ 1515 0054 0C000000 		.4byte	.LFE10
+ 1516 0058 00000000 		.4byte	.LFB11
+ 1517 005c 0C000000 		.4byte	.LFE11
+ 1518 0060 00000000 		.4byte	.LFB12
+ 1519 0064 0C000000 		.4byte	.LFE12
+ 1520 0068 00000000 		.4byte	.LFB13
+ 1521 006c 0C000000 		.4byte	.LFE13
+ARM GAS  D:\TEMP\ccncbz78.s 			page 44
+
+
+ 1522 0070 00000000 		.4byte	.LFB14
+ 1523 0074 0C000000 		.4byte	.LFE14
+ 1524 0078 00000000 		.4byte	.LFB15
+ 1525 007c 0C000000 		.4byte	.LFE15
+ 1526 0080 00000000 		.4byte	0
+ 1527 0084 00000000 		.4byte	0
+ 1528              		.section	.debug_line,"",%progbits
+ 1529              	.Ldebug_line0:
+ 1530 0000 A7010000 		.section	.debug_str,"MS",%progbits,1
+ 1530      02005200 
+ 1530      00000201 
+ 1530      FB0E0D00 
+ 1530      01010101 
+ 1531              	.LASF15:
+ 1532 0000 72656731 		.ascii	"reg16\000"
+ 1532      3600
+ 1533              	.LASF13:
+ 1534 0006 63686172 		.ascii	"char\000"
+ 1534      00
+ 1535              	.LASF35:
+ 1536 000b 50574D5F 		.ascii	"PWM_Claw_WriteControlRegister\000"
+ 1536      436C6177 
+ 1536      5F577269 
+ 1536      7465436F 
+ 1536      6E74726F 
+ 1537              	.LASF33:
+ 1538 0029 50574D5F 		.ascii	"PWM_Claw_Start\000"
+ 1538      436C6177 
+ 1538      5F537461 
+ 1538      727400
+ 1539              	.LASF45:
+ 1540 0038 50574D5F 		.ascii	"PWM_Claw_initVar\000"
+ 1540      436C6177 
+ 1540      5F696E69 
+ 1540      74566172 
+ 1540      00
+ 1541              	.LASF20:
+ 1542 0049 50574D5F 		.ascii	"PWM_Claw_WritePeriod\000"
+ 1542      436C6177 
+ 1542      5F577269 
+ 1542      74655065 
+ 1542      72696F64 
+ 1543              	.LASF22:
+ 1544 005e 70657269 		.ascii	"period\000"
+ 1544      6F6400
+ 1545              	.LASF3:
+ 1546 0065 73686F72 		.ascii	"short unsigned int\000"
+ 1546      7420756E 
+ 1546      7369676E 
+ 1546      65642069 
+ 1546      6E7400
+ 1547              	.LASF30:
+ 1548 0078 50574D5F 		.ascii	"PWM_Claw_Init\000"
+ 1548      436C6177 
+ 1548      5F496E69 
+ 1548      7400
+ 1549              	.LASF19:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 45
+
+
+ 1550 0086 50574D5F 		.ascii	"PWM_Claw_WriteCounter\000"
+ 1550      436C6177 
+ 1550      5F577269 
+ 1550      7465436F 
+ 1550      756E7465 
+ 1551              	.LASF11:
+ 1552 009c 666C6F61 		.ascii	"float\000"
+ 1552      7400
+ 1553              	.LASF21:
+ 1554 00a2 636F756E 		.ascii	"counter\000"
+ 1554      74657200 
+ 1555              	.LASF7:
+ 1556 00aa 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1556      206C6F6E 
+ 1556      6720756E 
+ 1556      7369676E 
+ 1556      65642069 
+ 1557              	.LASF1:
+ 1558 00c1 756E7369 		.ascii	"unsigned char\000"
+ 1558      676E6564 
+ 1558      20636861 
+ 1558      7200
+ 1559              	.LASF42:
+ 1560 00cf 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 1560      6F63756D 
+ 1560      656E7473 
+ 1560      5C436F6D 
+ 1560      70757465 
+ 1561 00fe 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 1561      5069636B 
+ 1561      75705C44 
+ 1561      6973706C 
+ 1561      61792E63 
+ 1562              	.LASF14:
+ 1563 0117 72656738 		.ascii	"reg8\000"
+ 1563      00
+ 1564              	.LASF5:
+ 1565 011c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1565      20756E73 
+ 1565      69676E65 
+ 1565      6420696E 
+ 1565      7400
+ 1566              	.LASF9:
+ 1567 012e 75696E74 		.ascii	"uint8\000"
+ 1567      3800
+ 1568              	.LASF44:
+ 1569 0134 636F6E74 		.ascii	"control\000"
+ 1569      726F6C00 
+ 1570              	.LASF29:
+ 1571 013c 50574D5F 		.ascii	"PWM_Claw_ClearFIFO\000"
+ 1571      436C6177 
+ 1571      5F436C65 
+ 1571      61724649 
+ 1571      464F00
+ 1572              	.LASF12:
+ 1573 014f 646F7562 		.ascii	"double\000"
+ 1573      6C6500
+ARM GAS  D:\TEMP\ccncbz78.s 			page 46
+
+
+ 1574              	.LASF41:
+ 1575 0156 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_Claw.c\000"
+ 1575      6E657261 
+ 1575      7465645F 
+ 1575      536F7572 
+ 1575      63655C50 
+ 1576              	.LASF2:
+ 1577 017a 73686F72 		.ascii	"short int\000"
+ 1577      7420696E 
+ 1577      7400
+ 1578              	.LASF10:
+ 1579 0184 75696E74 		.ascii	"uint16\000"
+ 1579      313600
+ 1580              	.LASF28:
+ 1581 018b 50574D5F 		.ascii	"PWM_Claw_Stop\000"
+ 1581      436C6177 
+ 1581      5F53746F 
+ 1581      7000
+ 1582              	.LASF37:
+ 1583 0199 50574D5F 		.ascii	"PWM_Claw_ReadCompare\000"
+ 1583      436C6177 
+ 1583      5F526561 
+ 1583      64436F6D 
+ 1583      70617265 
+ 1584              	.LASF39:
+ 1585 01ae 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1585      74657243 
+ 1585      72697469 
+ 1585      63616C53 
+ 1585      65637469 
+ 1586              	.LASF8:
+ 1587 01c5 756E7369 		.ascii	"unsigned int\000"
+ 1587      676E6564 
+ 1587      20696E74 
+ 1587      00
+ 1588              	.LASF18:
+ 1589 01d2 50574D5F 		.ascii	"PWM_Claw_ReadStatusRegister\000"
+ 1589      436C6177 
+ 1589      5F526561 
+ 1589      64537461 
+ 1589      74757352 
+ 1590              	.LASF17:
+ 1591 01ee 50574D5F 		.ascii	"PWM_Claw_ReadCapture\000"
+ 1591      436C6177 
+ 1591      5F526561 
+ 1591      64436170 
+ 1591      74757265 
+ 1592              	.LASF46:
+ 1593 0203 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1593      69744372 
+ 1593      69746963 
+ 1593      616C5365 
+ 1593      6374696F 
+ 1594              	.LASF34:
+ 1595 0219 72657375 		.ascii	"result\000"
+ 1595      6C7400
+ 1596              	.LASF31:
+ARM GAS  D:\TEMP\ccncbz78.s 			page 47
+
+
+ 1597 0220 6374726C 		.ascii	"ctrl\000"
+ 1597      00
+ 1598              	.LASF16:
+ 1599 0225 73697A65 		.ascii	"sizetype\000"
+ 1599      74797065 
+ 1599      00
+ 1600              	.LASF6:
+ 1601 022e 6C6F6E67 		.ascii	"long long int\000"
+ 1601      206C6F6E 
+ 1601      6720696E 
+ 1601      7400
+ 1602              	.LASF26:
+ 1603 023c 696E7465 		.ascii	"interruptMode\000"
+ 1603      72727570 
+ 1603      744D6F64 
+ 1603      6500
+ 1604              	.LASF38:
+ 1605 024a 50574D5F 		.ascii	"PWM_Claw_ReadPeriod\000"
+ 1605      436C6177 
+ 1605      5F526561 
+ 1605      64506572 
+ 1605      696F6400 
+ 1606              	.LASF32:
+ 1607 025e 50574D5F 		.ascii	"PWM_Claw_interruptState\000"
+ 1607      436C6177 
+ 1607      5F696E74 
+ 1607      65727275 
+ 1607      70745374 
+ 1608              	.LASF40:
+ 1609 0276 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1609      4320342E 
+ 1609      392E3320 
+ 1609      32303135 
+ 1609      30333033 
+ 1610 02a9 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1610      20726576 
+ 1610      6973696F 
+ 1610      6E203232 
+ 1610      31323230 
+ 1611 02dc 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1611      66756E63 
+ 1611      74696F6E 
+ 1611      2D736563 
+ 1611      74696F6E 
+ 1612              	.LASF4:
+ 1613 0304 6C6F6E67 		.ascii	"long int\000"
+ 1613      20696E74 
+ 1613      00
+ 1614              	.LASF23:
+ 1615 030d 50574D5F 		.ascii	"PWM_Claw_WriteCompare\000"
+ 1615      436C6177 
+ 1615      5F577269 
+ 1615      7465436F 
+ 1615      6D706172 
+ 1616              	.LASF36:
+ 1617 0323 50574D5F 		.ascii	"PWM_Claw_ReadCounter\000"
+ 1617      436C6177 
+ARM GAS  D:\TEMP\ccncbz78.s 			page 48
+
+
+ 1617      5F526561 
+ 1617      64436F75 
+ 1617      6E746572 
+ 1618              	.LASF0:
+ 1619 0338 7369676E 		.ascii	"signed char\000"
+ 1619      65642063 
+ 1619      68617200 
+ 1620              	.LASF24:
+ 1621 0344 636F6D70 		.ascii	"compare\000"
+ 1621      61726500 
+ 1622              	.LASF25:
+ 1623 034c 50574D5F 		.ascii	"PWM_Claw_SetInterruptMode\000"
+ 1623      436C6177 
+ 1623      5F536574 
+ 1623      496E7465 
+ 1623      72727570 
+ 1624              	.LASF27:
+ 1625 0366 50574D5F 		.ascii	"PWM_Claw_Enable\000"
+ 1625      436C6177 
+ 1625      5F456E61 
+ 1625      626C6500 
+ 1626              	.LASF43:
+ 1627 0376 50574D5F 		.ascii	"PWM_Claw_ReadControlRegister\000"
+ 1627      436C6177 
+ 1627      5F526561 
+ 1627      64436F6E 
+ 1627      74726F6C 
+ 1628              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

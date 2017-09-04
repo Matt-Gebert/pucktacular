@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
   29:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *
   30:.\Generated_Source\PSoC5/SW_DAC_PM.c **** * Parameters:  
   31:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *  void  
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
   52:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *
   53:.\Generated_Source\PSoC5/SW_DAC_PM.c **** * Parameters:  
   54:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *  void
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 3
 
 
   55:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
   97              	.L5:
   98 0038 7047     		bx	lr
   99              	.L9:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 4
 
 
  100 003a 00BF     		.align	2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  128 0006 13F0040F 		tst	r3, #4
  129 000a 03D0     		beq	.L11
   99:.\Generated_Source\PSoC5/SW_DAC_PM.c ****     {
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 5
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 5
 
 
  100:.\Generated_Source\PSoC5/SW_DAC_PM.c ****         /* VDAC8 is enabled */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  120:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *  
  121:.\Generated_Source\PSoC5/SW_DAC_PM.c **** * Parameters:  
  122:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *  void
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 6
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 6
 
 
  123:.\Generated_Source\PSoC5/SW_DAC_PM.c **** *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  198              		.bss
  199              		.align	2
  200              		.set	.LANCHOR0,. + 0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 7
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 7
 
 
  201              		.type	SW_DAC_backup, %object
@@ -376,75 +376,75 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  213 0006 00000000 		.4byte	.Ldebug_abbrev0
  214 000a 04       		.byte	0x4
  215 000b 01       		.uleb128 0x1
- 216 000c C5000000 		.4byte	.LASF23
+ 216 000c B9000000 		.4byte	.LASF23
  217 0010 01       		.byte	0x1
  218 0011 22000000 		.4byte	.LASF24
- 219 0015 EB010000 		.4byte	.LASF25
+ 219 0015 9E010000 		.4byte	.LASF25
  220 0019 00000000 		.4byte	.Ldebug_ranges0+0
  221 001d 00000000 		.4byte	0
  222 0021 00000000 		.4byte	.Ldebug_line0
  223 0025 02       		.uleb128 0x2
  224 0026 01       		.byte	0x1
  225 0027 06       		.byte	0x6
- 226 0028 DF010000 		.4byte	.LASF0
+ 226 0028 1A020000 		.4byte	.LASF0
  227 002c 02       		.uleb128 0x2
  228 002d 01       		.byte	0x1
  229 002e 08       		.byte	0x8
- 230 002f 64000000 		.4byte	.LASF1
+ 230 002f 58000000 		.4byte	.LASF1
  231 0033 02       		.uleb128 0x2
  232 0034 02       		.byte	0x2
  233 0035 05       		.byte	0x5
- 234 0036 AA010000 		.4byte	.LASF2
+ 234 0036 E5010000 		.4byte	.LASF2
  235 003a 02       		.uleb128 0x2
  236 003b 02       		.byte	0x2
  237 003c 07       		.byte	0x7
- 238 003d 89000000 		.4byte	.LASF3
+ 238 003d 7D000000 		.4byte	.LASF3
  239 0041 02       		.uleb128 0x2
  240 0042 04       		.byte	0x4
  241 0043 05       		.byte	0x5
- 242 0044 CA010000 		.4byte	.LASF4
+ 242 0044 05020000 		.4byte	.LASF4
  243 0048 02       		.uleb128 0x2
  244 0049 04       		.byte	0x4
  245 004a 07       		.byte	0x7
- 246 004b 77000000 		.4byte	.LASF5
+ 246 004b 6B000000 		.4byte	.LASF5
  247 004f 02       		.uleb128 0x2
  248 0050 08       		.byte	0x8
  249 0051 05       		.byte	0x5
- 250 0052 85010000 		.4byte	.LASF6
+ 250 0052 79010000 		.4byte	.LASF6
  251 0056 02       		.uleb128 0x2
  252 0057 08       		.byte	0x8
  253 0058 07       		.byte	0x7
- 254 0059 6E010000 		.4byte	.LASF7
+ 254 0059 62010000 		.4byte	.LASF7
  255 005d 03       		.uleb128 0x3
  256 005e 04       		.byte	0x4
  257 005f 05       		.byte	0x5
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 8
 
 
  258 0060 696E7400 		.ascii	"int\000"
  259 0064 02       		.uleb128 0x2
  260 0065 04       		.byte	0x4
  261 0066 07       		.byte	0x7
- 262 0067 53010000 		.4byte	.LASF8
+ 262 0067 47010000 		.4byte	.LASF8
  263 006b 04       		.uleb128 0x4
- 264 006c C4010000 		.4byte	.LASF12
+ 264 006c FF010000 		.4byte	.LASF12
  265 0070 02       		.byte	0x2
  266 0071 9201     		.2byte	0x192
  267 0073 2C000000 		.4byte	0x2c
  268 0077 02       		.uleb128 0x2
  269 0078 04       		.byte	0x4
  270 0079 04       		.byte	0x4
- 271 007a 5E000000 		.4byte	.LASF9
+ 271 007a 52000000 		.4byte	.LASF9
  272 007e 02       		.uleb128 0x2
  273 007f 08       		.byte	0x8
  274 0080 04       		.byte	0x4
- 275 0081 BE000000 		.4byte	.LASF10
+ 275 0081 B2000000 		.4byte	.LASF10
  276 0085 02       		.uleb128 0x2
  277 0086 01       		.byte	0x1
  278 0087 08       		.byte	0x8
- 279 0088 93010000 		.4byte	.LASF11
+ 279 0088 87010000 		.4byte	.LASF11
  280 008c 04       		.uleb128 0x4
- 281 008d 72000000 		.4byte	.LASF13
+ 281 008d 66000000 		.4byte	.LASF13
  282 0091 02       		.byte	0x2
  283 0092 3C02     		.2byte	0x23c
  284 0094 98000000 		.4byte	0x98
@@ -456,13 +456,13 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  290 00a0 25       		.byte	0x25
  291 00a1 BE000000 		.4byte	0xbe
  292 00a5 07       		.uleb128 0x7
- 293 00a6 D3010000 		.4byte	.LASF14
+ 293 00a6 0E020000 		.4byte	.LASF14
  294 00aa 03       		.byte	0x3
  295 00ab 27       		.byte	0x27
  296 00ac 6B000000 		.4byte	0x6b
  297 00b0 00       		.byte	0
  298 00b1 07       		.uleb128 0x7
- 299 00b2 53000000 		.4byte	.LASF15
+ 299 00b2 47000000 		.4byte	.LASF15
  300 00b6 03       		.byte	0x3
  301 00b7 28       		.byte	0x28
  302 00b8 6B000000 		.4byte	0x6b
@@ -474,18 +474,18 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  308 00c4 29       		.byte	0x29
  309 00c5 9D000000 		.4byte	0x9d
  310 00c9 09       		.uleb128 0x9
- 311 00ca 98010000 		.4byte	.LASF17
+ 311 00ca 8C010000 		.4byte	.LASF17
  312 00ce 01       		.byte	0x1
  313 00cf 25       		.byte	0x25
  314 00d0 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 9
 
 
  315 00d4 20000000 		.4byte	.LFE0-.LFB0
  316 00d8 01       		.uleb128 0x1
  317 00d9 9C       		.byte	0x9c
  318 00da 09       		.uleb128 0x9
- 319 00db 9C000000 		.4byte	.LASF18
+ 319 00db 90000000 		.4byte	.LASF18
  320 00df 01       		.byte	0x1
  321 00e0 3C       		.byte	0x3c
  322 00e1 00000000 		.4byte	.LFB1
@@ -493,7 +493,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  324 00e9 01       		.uleb128 0x1
  325 00ea 9C       		.byte	0x9c
  326 00eb 0A       		.uleb128 0xa
- 327 00ec B1000000 		.4byte	.LASF19
+ 327 00ec A5000000 		.4byte	.LASF19
  328 00f0 01       		.byte	0x1
  329 00f1 5F       		.byte	0x5f
  330 00f2 00000000 		.4byte	.LFB2
@@ -528,7 +528,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  359 013f 63010000 		.4byte	0x163
  360 0143 00       		.byte	0
  361 0144 0C       		.uleb128 0xc
- 362 0145 23020000 		.4byte	.LASF26
+ 362 0145 32020000 		.4byte	.LASF26
  363 0149 01       		.byte	0x1
  364 014a 15       		.byte	0x15
  365 014b BE000000 		.4byte	0xbe
@@ -536,18 +536,18 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  367 0150 03       		.byte	0x3
  368 0151 00000000 		.4byte	SW_DAC_backup
  369 0155 0D       		.uleb128 0xd
- 370 0156 47000000 		.4byte	.LASF21
+ 370 0156 26020000 		.4byte	.LASF21
  371 015a 03       		.byte	0x3
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 10
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 10
 
 
  372 015b 34       		.byte	0x34
  373 015c 0D       		.uleb128 0xd
- 374 015d 60010000 		.4byte	.LASF22
+ 374 015d 54010000 		.4byte	.LASF22
  375 0161 03       		.byte	0x3
  376 0162 3A       		.byte	0x3a
  377 0163 0E       		.uleb128 0xe
- 378 0164 B4010000 		.4byte	.LASF27
+ 378 0164 EF010000 		.4byte	.LASF27
  379 0168 03       		.byte	0x3
  380 0169 37       		.byte	0x37
  381 016a 0F       		.uleb128 0xf
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  426 0027 00       		.byte	0
  427 0028 00       		.byte	0
  428 0029 04       		.uleb128 0x4
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 11
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 11
 
 
  429 002a 16       		.uleb128 0x16
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  483 0060 3B       		.uleb128 0x3b
  484 0061 0B       		.uleb128 0xb
  485 0062 49       		.uleb128 0x49
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 12
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 12
 
 
  486 0063 13       		.uleb128 0x13
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  540 009d 11       		.uleb128 0x11
  541 009e 01       		.uleb128 0x1
  542 009f 31       		.uleb128 0x31
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 13
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 13
 
 
  543 00a0 13       		.uleb128 0x13
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  597 00d6 00       		.byte	0
  598 00d7 49       		.uleb128 0x49
  599 00d8 13       		.uleb128 0x13
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 14
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 14
 
 
  600 00d9 00       		.byte	0
@@ -838,141 +838,143 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 1
  641      7465645F 
  641      536F7572 
  641      63655C50 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 15
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 15
 
 
- 642              	.LASF21:
- 643 0047 53575F44 		.ascii	"SW_DAC_Stop\000"
- 643      41435F53 
- 643      746F7000 
- 644              	.LASF15:
- 645 0053 64617461 		.ascii	"data_value\000"
- 645      5F76616C 
- 645      756500
- 646              	.LASF9:
- 647 005e 666C6F61 		.ascii	"float\000"
- 647      7400
- 648              	.LASF1:
- 649 0064 756E7369 		.ascii	"unsigned char\000"
- 649      676E6564 
- 649      20636861 
- 649      7200
- 650              	.LASF13:
- 651 0072 72656738 		.ascii	"reg8\000"
- 651      00
- 652              	.LASF5:
- 653 0077 6C6F6E67 		.ascii	"long unsigned int\000"
- 653      20756E73 
- 653      69676E65 
- 653      6420696E 
- 653      7400
- 654              	.LASF3:
- 655 0089 73686F72 		.ascii	"short unsigned int\000"
- 655      7420756E 
- 655      7369676E 
- 655      65642069 
- 655      6E7400
- 656              	.LASF18:
- 657 009c 53575F44 		.ascii	"SW_DAC_RestoreConfig\000"
- 657      41435F52 
- 657      6573746F 
- 657      7265436F 
- 657      6E666967 
- 658              	.LASF19:
- 659 00b1 53575F44 		.ascii	"SW_DAC_Sleep\000"
- 659      41435F53 
- 659      6C656570 
- 659      00
- 660              	.LASF10:
- 661 00be 646F7562 		.ascii	"double\000"
- 661      6C6500
- 662              	.LASF23:
- 663 00c5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 663      4320342E 
- 663      392E3320 
- 663      32303135 
- 663      30333033 
- 664 00f8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 664      20726576 
- 664      6973696F 
- 664      6E203232 
- 664      31323230 
- 665 012b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 16
+ 642              	.LASF15:
+ 643 0047 64617461 		.ascii	"data_value\000"
+ 643      5F76616C 
+ 643      756500
+ 644              	.LASF9:
+ 645 0052 666C6F61 		.ascii	"float\000"
+ 645      7400
+ 646              	.LASF1:
+ 647 0058 756E7369 		.ascii	"unsigned char\000"
+ 647      676E6564 
+ 647      20636861 
+ 647      7200
+ 648              	.LASF13:
+ 649 0066 72656738 		.ascii	"reg8\000"
+ 649      00
+ 650              	.LASF5:
+ 651 006b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 651      20756E73 
+ 651      69676E65 
+ 651      6420696E 
+ 651      7400
+ 652              	.LASF3:
+ 653 007d 73686F72 		.ascii	"short unsigned int\000"
+ 653      7420756E 
+ 653      7369676E 
+ 653      65642069 
+ 653      6E7400
+ 654              	.LASF18:
+ 655 0090 53575F44 		.ascii	"SW_DAC_RestoreConfig\000"
+ 655      41435F52 
+ 655      6573746F 
+ 655      7265436F 
+ 655      6E666967 
+ 656              	.LASF19:
+ 657 00a5 53575F44 		.ascii	"SW_DAC_Sleep\000"
+ 657      41435F53 
+ 657      6C656570 
+ 657      00
+ 658              	.LASF10:
+ 659 00b2 646F7562 		.ascii	"double\000"
+ 659      6C6500
+ 660              	.LASF23:
+ 661 00b9 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 661      4320342E 
+ 661      392E3320 
+ 661      32303135 
+ 661      30333033 
+ 662 00ec 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 662      20726576 
+ 662      6973696F 
+ 662      6E203232 
+ 662      31323230 
+ 663 011f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 663      66756E63 
+ 663      74696F6E 
+ 663      2D736563 
+ 663      74696F6E 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 16
 
 
- 665      66756E63 
- 665      74696F6E 
- 665      2D736563 
- 665      74696F6E 
- 666              	.LASF8:
- 667 0153 756E7369 		.ascii	"unsigned int\000"
- 667      676E6564 
- 667      20696E74 
- 667      00
- 668              	.LASF22:
- 669 0160 53575F44 		.ascii	"SW_DAC_Enable\000"
- 669      41435F45 
- 669      6E61626C 
- 669      6500
- 670              	.LASF7:
- 671 016e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 664              	.LASF8:
+ 665 0147 756E7369 		.ascii	"unsigned int\000"
+ 665      676E6564 
+ 665      20696E74 
+ 665      00
+ 666              	.LASF22:
+ 667 0154 53575F44 		.ascii	"SW_DAC_Enable\000"
+ 667      41435F45 
+ 667      6E61626C 
+ 667      6500
+ 668              	.LASF7:
+ 669 0162 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 669      206C6F6E 
+ 669      6720756E 
+ 669      7369676E 
+ 669      65642069 
+ 670              	.LASF6:
+ 671 0179 6C6F6E67 		.ascii	"long long int\000"
  671      206C6F6E 
- 671      6720756E 
- 671      7369676E 
- 671      65642069 
- 672              	.LASF6:
- 673 0185 6C6F6E67 		.ascii	"long long int\000"
- 673      206C6F6E 
- 673      6720696E 
- 673      7400
- 674              	.LASF11:
- 675 0193 63686172 		.ascii	"char\000"
- 675      00
- 676              	.LASF17:
- 677 0198 53575F44 		.ascii	"SW_DAC_SaveConfig\000"
- 677      41435F53 
- 677      61766543 
- 677      6F6E6669 
- 677      6700
- 678              	.LASF2:
- 679 01aa 73686F72 		.ascii	"short int\000"
- 679      7420696E 
- 679      7400
- 680              	.LASF27:
- 681 01b4 53575F44 		.ascii	"SW_DAC_SetValue\000"
- 681      41435F53 
- 681      65745661 
- 681      6C756500 
- 682              	.LASF12:
- 683 01c4 75696E74 		.ascii	"uint8\000"
- 683      3800
- 684              	.LASF4:
- 685 01ca 6C6F6E67 		.ascii	"long int\000"
- 685      20696E74 
- 685      00
- 686              	.LASF14:
- 687 01d3 656E6162 		.ascii	"enableState\000"
- 687      6C655374 
- 687      61746500 
- 688              	.LASF0:
- 689 01df 7369676E 		.ascii	"signed char\000"
- 689      65642063 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccpEzvVO.s 			page 17
+ 671      6720696E 
+ 671      7400
+ 672              	.LASF11:
+ 673 0187 63686172 		.ascii	"char\000"
+ 673      00
+ 674              	.LASF17:
+ 675 018c 53575F44 		.ascii	"SW_DAC_SaveConfig\000"
+ 675      41435F53 
+ 675      61766543 
+ 675      6F6E6669 
+ 675      6700
+ 676              	.LASF25:
+ 677 019e 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 677      73657273 
+ 677      5C44616E 
+ 677      69656C5C 
+ 677      446F6375 
+ 678 01cc 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 678      74657220 
+ 678      56335C44 
+ 678      6973706C 
+ 678      61792E63 
+ 679              	.LASF2:
+ 680 01e5 73686F72 		.ascii	"short int\000"
+ 680      7420696E 
+ 680      7400
+ 681              	.LASF27:
+ 682 01ef 53575F44 		.ascii	"SW_DAC_SetValue\000"
+ 682      41435F53 
+ 682      65745661 
+ 682      6C756500 
+ 683              	.LASF12:
+ 684 01ff 75696E74 		.ascii	"uint8\000"
+ 684      3800
+ 685              	.LASF4:
+ 686 0205 6C6F6E67 		.ascii	"long int\000"
+ 686      20696E74 
+ 686      00
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccpLOvgD.s 			page 17
 
 
- 689      68617200 
- 690              	.LASF25:
- 691 01eb 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 691      73657273 
- 691      5C54696D 
- 691      5C446F63 
- 691      756D656E 
- 692 0218 706C6179 		.ascii	"play.cydsn\000"
- 692      2E637964 
- 692      736E00
+ 687              	.LASF14:
+ 688 020e 656E6162 		.ascii	"enableState\000"
+ 688      6C655374 
+ 688      61746500 
+ 689              	.LASF0:
+ 690 021a 7369676E 		.ascii	"signed char\000"
+ 690      65642063 
+ 690      68617200 
+ 691              	.LASF21:
+ 692 0226 53575F44 		.ascii	"SW_DAC_Stop\000"
+ 692      41435F53 
+ 692      746F7000 
  693              	.LASF26:
- 694 0223 53575F44 		.ascii	"SW_DAC_backup\000"
+ 694 0232 53575F44 		.ascii	"SW_DAC_backup\000"
  694      41435F62 
  694      61636B75 
  694      7000

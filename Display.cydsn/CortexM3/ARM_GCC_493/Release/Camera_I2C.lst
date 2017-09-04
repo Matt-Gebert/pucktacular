@@ -1,0 +1,1713 @@
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Camera_I2C.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Camera_I2C_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	Camera_I2C_Init
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Camera_I2C_Init, %function
+  24              	Camera_I2C_Init:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Camera_I2C.c"
+   1:.\Generated_Source\PSoC5/Camera_I2C.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Camera_I2C.c **** * File Name: Camera_I2C.c
+   3:.\Generated_Source\PSoC5/Camera_I2C.c **** * Version 3.50
+   4:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+   5:.\Generated_Source\PSoC5/Camera_I2C.c **** * Description:
+   6:.\Generated_Source\PSoC5/Camera_I2C.c **** *  This file provides the source code of APIs for the I2C component.
+   7:.\Generated_Source\PSoC5/Camera_I2C.c **** *  The actual protocol and operation code resides in the interrupt service
+   8:.\Generated_Source\PSoC5/Camera_I2C.c **** *  routine file.
+   9:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  10:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************
+  11:.\Generated_Source\PSoC5/Camera_I2C.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation. All rights reserved.
+  12:.\Generated_Source\PSoC5/Camera_I2C.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC5/Camera_I2C.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC5/Camera_I2C.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  17:.\Generated_Source\PSoC5/Camera_I2C.c **** #include "Camera_I2C_PVT.h"
+  18:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  19:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  20:.\Generated_Source\PSoC5/Camera_I2C.c **** /**********************************
+  21:.\Generated_Source\PSoC5/Camera_I2C.c **** *      System variables
+  22:.\Generated_Source\PSoC5/Camera_I2C.c **** **********************************/
+  23:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  24:.\Generated_Source\PSoC5/Camera_I2C.c **** uint8 Camera_I2C_initVar = 0u; /* Defines if component was initialized */
+  25:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  26:.\Generated_Source\PSoC5/Camera_I2C.c **** volatile uint8 Camera_I2C_state;  /* Current state of I2C FSM */
+  27:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  28:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  29:.\Generated_Source\PSoC5/Camera_I2C.c **** /*******************************************************************************
+  30:.\Generated_Source\PSoC5/Camera_I2C.c **** * Function Name: Camera_I2C_Init
+  31:.\Generated_Source\PSoC5/Camera_I2C.c **** ********************************************************************************
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  33:.\Generated_Source\PSoC5/Camera_I2C.c **** * Summary:
+  34:.\Generated_Source\PSoC5/Camera_I2C.c **** *  Initializes I2C registers with initial values provided from customizer.
+  35:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  36:.\Generated_Source\PSoC5/Camera_I2C.c **** * Parameters:
+  37:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+  38:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  39:.\Generated_Source\PSoC5/Camera_I2C.c **** * Return:
+  40:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+  41:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  42:.\Generated_Source\PSoC5/Camera_I2C.c **** * Global variables:
+  43:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+  44:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  45:.\Generated_Source\PSoC5/Camera_I2C.c **** * Reentrant:
+  46:.\Generated_Source\PSoC5/Camera_I2C.c **** *  No.
+  47:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+  48:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************/
+  49:.\Generated_Source\PSoC5/Camera_I2C.c **** void Camera_I2C_Init(void) 
+  50:.\Generated_Source\PSoC5/Camera_I2C.c **** {
+  27              		.loc 1 50 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  51:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_FF_IMPLEMENTED)
+  52:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure fixed function block */
+  53:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CFG_REG  = Camera_I2C_DEFAULT_CFG;
+  31              		.loc 1 53 0
+  32 0000 114B     		ldr	r3, .L2
+  33 0002 0222     		movs	r2, #2
+  50:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_FF_IMPLEMENTED)
+  34              		.loc 1 50 0
+  35 0004 10B5     		push	{r4, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+  39              		.loc 1 53 0
+  40 0006 1A70     		strb	r2, [r3]
+  54:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_XCFG_REG = Camera_I2C_DEFAULT_XCFG;
+  41              		.loc 1 54 0
+  42 0008 8122     		movs	r2, #129
+  43 000a 03F80E2C 		strb	r2, [r3, #-14]
+  55:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_ADDR_REG = Camera_I2C_DEFAULT_ADDR;
+  44              		.loc 1 55 0
+  45 000e 0822     		movs	r2, #8
+  46 0010 03F80C2C 		strb	r2, [r3, #-12]
+  56:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CLKDIV1_REG = LO8(Camera_I2C_DEFAULT_DIVIDE_FACTOR);
+  57:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CLKDIV2_REG = HI8(Camera_I2C_DEFAULT_DIVIDE_FACTOR);
+  47              		.loc 1 57 0
+  48 0014 0024     		movs	r4, #0
+  56:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CLKDIV1_REG = LO8(Camera_I2C_DEFAULT_DIVIDE_FACTOR);
+  49              		.loc 1 56 0
+  50 0016 0C22     		movs	r2, #12
+  51 0018 5A71     		strb	r2, [r3, #5]
+  52              		.loc 1 57 0
+  53 001a 9C71     		strb	r4, [r3, #6]
+  58:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  59:.\Generated_Source\PSoC5/Camera_I2C.c **** #else
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 3
+
+
+  60:.\Generated_Source\PSoC5/Camera_I2C.c ****     uint8 intState;
+  61:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  62:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure control and interrupt sources */
+  63:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CFG_REG      = Camera_I2C_DEFAULT_CFG;
+  64:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_INT_MASK_REG = Camera_I2C_DEFAULT_INT_MASK;
+  65:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  66:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Enable interrupt generation in status */
+  67:.\Generated_Source\PSoC5/Camera_I2C.c ****     intState = CyEnterCriticalSection();
+  68:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_INT_ENABLE_REG |= Camera_I2C_INTR_ENABLE;
+  69:.\Generated_Source\PSoC5/Camera_I2C.c ****     CyExitCriticalSection(intState);
+  70:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  71:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure bit counter */
+  72:.\Generated_Source\PSoC5/Camera_I2C.c ****     #if (Camera_I2C_MODE_SLAVE_ENABLED)
+  73:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_PERIOD_REG = Camera_I2C_DEFAULT_PERIOD;
+  74:.\Generated_Source\PSoC5/Camera_I2C.c ****     #endif  /* (Camera_I2C_MODE_SLAVE_ENABLED) */
+  75:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  76:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure clock generator */
+  77:.\Generated_Source\PSoC5/Camera_I2C.c ****     #if (Camera_I2C_MODE_MASTER_ENABLED)
+  78:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_MCLK_PRD_REG = Camera_I2C_DEFAULT_MCLK_PRD;
+  79:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_MCLK_CMP_REG = Camera_I2C_DEFAULT_MCLK_CMP;
+  80:.\Generated_Source\PSoC5/Camera_I2C.c ****     #endif /* (Camera_I2C_MODE_MASTER_ENABLED) */
+  81:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_FF_IMPLEMENTED) */
+  82:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  83:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_TIMEOUT_ENABLED)
+  84:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_TimeoutInit();
+  85:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_TIMEOUT_ENABLED) */
+  86:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  87:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure internal interrupt */
+  88:.\Generated_Source\PSoC5/Camera_I2C.c ****     CyIntDisable    (Camera_I2C_ISR_NUMBER);
+  54              		.loc 1 88 0
+  55 001c 0B4B     		ldr	r3, .L2+4
+  56 001e 4FF40042 		mov	r2, #32768
+  57 0022 1A60     		str	r2, [r3]
+  89:.\Generated_Source\PSoC5/Camera_I2C.c ****     CyIntSetPriority(Camera_I2C_ISR_NUMBER, Camera_I2C_ISR_PRIORITY);
+  58              		.loc 1 89 0
+  59 0024 0F20     		movs	r0, #15
+  60 0026 0721     		movs	r1, #7
+  61 0028 FFF7FEFF 		bl	CyIntSetPriority
+  62              	.LVL0:
+  90:.\Generated_Source\PSoC5/Camera_I2C.c ****     #if (Camera_I2C_INTERN_I2C_INTR_HANDLER)
+  91:.\Generated_Source\PSoC5/Camera_I2C.c ****         (void) CyIntSetVector(Camera_I2C_ISR_NUMBER, &Camera_I2C_ISR);
+  63              		.loc 1 91 0
+  64 002c 0F20     		movs	r0, #15
+  65 002e 0849     		ldr	r1, .L2+8
+  66 0030 FFF7FEFF 		bl	CyIntSetVector
+  67              	.LVL1:
+  92:.\Generated_Source\PSoC5/Camera_I2C.c ****     #endif /* (Camera_I2C_INTERN_I2C_INTR_HANDLER) */
+  93:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  94:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Set FSM to default state */
+  95:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_state = Camera_I2C_SM_IDLE;
+  68              		.loc 1 95 0
+  69 0034 074B     		ldr	r3, .L2+12
+  70 0036 1022     		movs	r2, #16
+  71 0038 1A70     		strb	r2, [r3]
+  96:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+  97:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_MODE_SLAVE_ENABLED)
+  98:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Clear status and buffers index */
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 4
+
+
+  99:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_slStatus = 0u;
+ 100:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_slRdBufIndex = 0u;
+ 101:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_slWrBufIndex = 0u;
+ 102:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 103:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Configure matched address */
+ 104:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_SlaveSetAddress(Camera_I2C_DEFAULT_ADDR);
+ 105:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_MODE_SLAVE_ENABLED) */
+ 106:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 107:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_MODE_MASTER_ENABLED)
+ 108:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Clear status and buffers index */
+ 109:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_mstrStatus = 0u;
+  72              		.loc 1 109 0
+  73 003a 074B     		ldr	r3, .L2+16
+  74 003c 1C70     		strb	r4, [r3]
+ 110:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_mstrRdBufIndex = 0u;
+  75              		.loc 1 110 0
+  76 003e 074B     		ldr	r3, .L2+20
+  77 0040 1C70     		strb	r4, [r3]
+ 111:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_mstrWrBufIndex = 0u;
+  78              		.loc 1 111 0
+  79 0042 074B     		ldr	r3, .L2+24
+  80 0044 1C70     		strb	r4, [r3]
+  81 0046 10BD     		pop	{r4, pc}
+  82              	.L3:
+  83              		.align	2
+  84              	.L2:
+  85 0048 D6490040 		.word	1073760726
+  86 004c 80E100E0 		.word	-536813184
+  87 0050 00000000 		.word	Camera_I2C_ISR
+  88 0054 00000000 		.word	Camera_I2C_state
+  89 0058 00000000 		.word	Camera_I2C_mstrStatus
+  90 005c 00000000 		.word	Camera_I2C_mstrRdBufIndex
+  91 0060 00000000 		.word	Camera_I2C_mstrWrBufIndex
+  92              		.cfi_endproc
+  93              	.LFE0:
+  94              		.size	Camera_I2C_Init, .-Camera_I2C_Init
+  95              		.section	.text.Camera_I2C_Enable,"ax",%progbits
+  96              		.align	1
+  97              		.global	Camera_I2C_Enable
+  98              		.thumb
+  99              		.thumb_func
+ 100              		.type	Camera_I2C_Enable, %function
+ 101              	Camera_I2C_Enable:
+ 102              	.LFB1:
+ 112:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_MODE_MASTER_ENABLED) */
+ 113:.\Generated_Source\PSoC5/Camera_I2C.c **** }
+ 114:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 115:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 116:.\Generated_Source\PSoC5/Camera_I2C.c **** /*******************************************************************************
+ 117:.\Generated_Source\PSoC5/Camera_I2C.c **** * Function Name: Camera_I2C_Enable
+ 118:.\Generated_Source\PSoC5/Camera_I2C.c **** ********************************************************************************
+ 119:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 120:.\Generated_Source\PSoC5/Camera_I2C.c **** * Summary:
+ 121:.\Generated_Source\PSoC5/Camera_I2C.c **** *  Enables I2C operations.
+ 122:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 123:.\Generated_Source\PSoC5/Camera_I2C.c **** * Parameters:
+ 124:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 5
+
+
+ 125:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 126:.\Generated_Source\PSoC5/Camera_I2C.c **** * Return:
+ 127:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 128:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 129:.\Generated_Source\PSoC5/Camera_I2C.c **** * Global variables:
+ 130:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 131:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 132:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************/
+ 133:.\Generated_Source\PSoC5/Camera_I2C.c **** void Camera_I2C_Enable(void) 
+ 134:.\Generated_Source\PSoC5/Camera_I2C.c **** {
+ 103              		.loc 1 134 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 08B5     		push	{r3, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 3, -8
+ 110              		.cfi_offset 14, -4
+ 135:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_FF_IMPLEMENTED)
+ 136:.\Generated_Source\PSoC5/Camera_I2C.c ****     uint8 intState;
+ 137:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 138:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Enable power to block */
+ 139:.\Generated_Source\PSoC5/Camera_I2C.c ****     intState = CyEnterCriticalSection();
+ 111              		.loc 1 139 0
+ 112 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 113              	.LVL2:
+ 140:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_ACT_PWRMGR_REG  |= Camera_I2C_ACT_PWR_EN;
+ 114              		.loc 1 140 0
+ 115 0006 064A     		ldr	r2, .L5
+ 116 0008 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 117 000a 43F00403 		orr	r3, r3, #4
+ 118 000e 1370     		strb	r3, [r2]
+ 141:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_STBY_PWRMGR_REG |= Camera_I2C_STBY_PWR_EN;
+ 119              		.loc 1 141 0
+ 120 0010 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+ 121 0012 43F00403 		orr	r3, r3, #4
+ 122 0016 1374     		strb	r3, [r2, #16]
+ 142:.\Generated_Source\PSoC5/Camera_I2C.c ****     CyExitCriticalSection(intState);
+ 143:.\Generated_Source\PSoC5/Camera_I2C.c **** #else
+ 144:.\Generated_Source\PSoC5/Camera_I2C.c ****     #if (Camera_I2C_MODE_SLAVE_ENABLED)
+ 145:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Enable bit counter */
+ 146:.\Generated_Source\PSoC5/Camera_I2C.c ****         uint8 intState = CyEnterCriticalSection();
+ 147:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_COUNTER_AUX_CTL_REG |= Camera_I2C_CNT7_ENABLE;
+ 148:.\Generated_Source\PSoC5/Camera_I2C.c ****         CyExitCriticalSection(intState);
+ 149:.\Generated_Source\PSoC5/Camera_I2C.c ****     #endif /* (Camera_I2C_MODE_SLAVE_ENABLED) */
+ 150:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 151:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Enable slave or master bits */
+ 152:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CFG_REG |= Camera_I2C_ENABLE_MS;
+ 153:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_FF_IMPLEMENTED) */
+ 154:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 155:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_TIMEOUT_ENABLED)
+ 156:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_TimeoutEnable();
+ 157:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_TIMEOUT_ENABLED) */
+ 158:.\Generated_Source\PSoC5/Camera_I2C.c **** }
+ 123              		.loc 1 158 0
+ 124 0018 BDE80840 		pop	{r3, lr}
+ 125              		.cfi_restore 14
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 6
+
+
+ 126              		.cfi_restore 3
+ 127              		.cfi_def_cfa_offset 0
+ 142:.\Generated_Source\PSoC5/Camera_I2C.c ****     CyExitCriticalSection(intState);
+ 128              		.loc 1 142 0
+ 129 001c FFF7FEBF 		b	CyExitCriticalSection
+ 130              	.LVL3:
+ 131              	.L6:
+ 132              		.align	2
+ 133              	.L5:
+ 134 0020 A5430040 		.word	1073759141
+ 135              		.cfi_endproc
+ 136              	.LFE1:
+ 137              		.size	Camera_I2C_Enable, .-Camera_I2C_Enable
+ 138              		.section	.text.Camera_I2C_Start,"ax",%progbits
+ 139              		.align	1
+ 140              		.global	Camera_I2C_Start
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.type	Camera_I2C_Start, %function
+ 144              	Camera_I2C_Start:
+ 145              	.LFB2:
+ 159:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 160:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 161:.\Generated_Source\PSoC5/Camera_I2C.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC5/Camera_I2C.c **** * Function Name: Camera_I2C_Start
+ 163:.\Generated_Source\PSoC5/Camera_I2C.c **** ********************************************************************************
+ 164:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 165:.\Generated_Source\PSoC5/Camera_I2C.c **** * Summary:
+ 166:.\Generated_Source\PSoC5/Camera_I2C.c **** *  Starts the I2C hardware. Enables Active mode power template bits or clock
+ 167:.\Generated_Source\PSoC5/Camera_I2C.c **** *  gating as appropriate. It is required to be executed before I2C bus
+ 168:.\Generated_Source\PSoC5/Camera_I2C.c **** *  operation.
+ 169:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 170:.\Generated_Source\PSoC5/Camera_I2C.c **** * Parameters:
+ 171:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 172:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 173:.\Generated_Source\PSoC5/Camera_I2C.c **** * Return:
+ 174:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 175:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 176:.\Generated_Source\PSoC5/Camera_I2C.c **** * Side Effects:
+ 177:.\Generated_Source\PSoC5/Camera_I2C.c **** *  This component automatically enables its interrupt.  If I2C is enabled !
+ 178:.\Generated_Source\PSoC5/Camera_I2C.c **** *  without the interrupt enabled, it can lock up the I2C bus.
+ 179:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 180:.\Generated_Source\PSoC5/Camera_I2C.c **** * Global variables:
+ 181:.\Generated_Source\PSoC5/Camera_I2C.c **** *  Camera_I2C_initVar - This variable is used to check the initial
+ 182:.\Generated_Source\PSoC5/Camera_I2C.c **** *                             configuration, modified on the first
+ 183:.\Generated_Source\PSoC5/Camera_I2C.c **** *                             function call.
+ 184:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 185:.\Generated_Source\PSoC5/Camera_I2C.c **** * Reentrant:
+ 186:.\Generated_Source\PSoC5/Camera_I2C.c **** *  No.
+ 187:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 188:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************/
+ 189:.\Generated_Source\PSoC5/Camera_I2C.c **** void Camera_I2C_Start(void) 
+ 190:.\Generated_Source\PSoC5/Camera_I2C.c **** {
+ 146              		.loc 1 190 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 7
+
+
+ 150 0000 10B5     		push	{r4, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 4, -8
+ 153              		.cfi_offset 14, -4
+ 191:.\Generated_Source\PSoC5/Camera_I2C.c ****     if (0u == Camera_I2C_initVar)
+ 154              		.loc 1 191 0
+ 155 0002 074C     		ldr	r4, .L10
+ 156 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 157 0006 1BB9     		cbnz	r3, .L8
+ 192:.\Generated_Source\PSoC5/Camera_I2C.c ****     {
+ 193:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_Init();
+ 158              		.loc 1 193 0
+ 159 0008 FFF7FEFF 		bl	Camera_I2C_Init
+ 160              	.LVL4:
+ 194:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_initVar = 1u; /* Component initialized */
+ 161              		.loc 1 194 0
+ 162 000c 0123     		movs	r3, #1
+ 163 000e 2370     		strb	r3, [r4]
+ 164              	.L8:
+ 195:.\Generated_Source\PSoC5/Camera_I2C.c ****     }
+ 196:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 197:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_Enable();
+ 165              		.loc 1 197 0
+ 166 0010 FFF7FEFF 		bl	Camera_I2C_Enable
+ 167              	.LVL5:
+ 198:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_EnableInt();
+ 168              		.loc 1 198 0
+ 169 0014 034B     		ldr	r3, .L10+4
+ 170 0016 4FF40042 		mov	r2, #32768
+ 171 001a 1A60     		str	r2, [r3]
+ 172 001c 10BD     		pop	{r4, pc}
+ 173              	.L11:
+ 174 001e 00BF     		.align	2
+ 175              	.L10:
+ 176 0020 00000000 		.word	.LANCHOR0
+ 177 0024 00E100E0 		.word	-536813312
+ 178              		.cfi_endproc
+ 179              	.LFE2:
+ 180              		.size	Camera_I2C_Start, .-Camera_I2C_Start
+ 181              		.section	.text.Camera_I2C_Stop,"ax",%progbits
+ 182              		.align	1
+ 183              		.global	Camera_I2C_Stop
+ 184              		.thumb
+ 185              		.thumb_func
+ 186              		.type	Camera_I2C_Stop, %function
+ 187              	Camera_I2C_Stop:
+ 188              	.LFB3:
+ 199:.\Generated_Source\PSoC5/Camera_I2C.c **** }
+ 200:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 201:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 202:.\Generated_Source\PSoC5/Camera_I2C.c **** /*******************************************************************************
+ 203:.\Generated_Source\PSoC5/Camera_I2C.c **** * Function Name: Camera_I2C_Stop
+ 204:.\Generated_Source\PSoC5/Camera_I2C.c **** ********************************************************************************
+ 205:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 206:.\Generated_Source\PSoC5/Camera_I2C.c **** * Summary:
+ 207:.\Generated_Source\PSoC5/Camera_I2C.c **** *  Disables I2C hardware and disables I2C interrupt. Disables Active mode power
+ 208:.\Generated_Source\PSoC5/Camera_I2C.c **** *  template bits or clock gating as appropriate.
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 8
+
+
+ 209:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 210:.\Generated_Source\PSoC5/Camera_I2C.c **** * Parameters:
+ 211:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 212:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 213:.\Generated_Source\PSoC5/Camera_I2C.c **** * Return:
+ 214:.\Generated_Source\PSoC5/Camera_I2C.c **** *  None.
+ 215:.\Generated_Source\PSoC5/Camera_I2C.c **** *
+ 216:.\Generated_Source\PSoC5/Camera_I2C.c **** *******************************************************************************/
+ 217:.\Generated_Source\PSoC5/Camera_I2C.c **** void Camera_I2C_Stop(void) 
+ 218:.\Generated_Source\PSoC5/Camera_I2C.c **** {
+ 189              		.loc 1 218 0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 194              		.cfi_def_cfa_offset 32
+ 195              		.cfi_offset 3, -32
+ 196              		.cfi_offset 4, -28
+ 197              		.cfi_offset 5, -24
+ 198              		.cfi_offset 6, -20
+ 199              		.cfi_offset 7, -16
+ 200              		.cfi_offset 8, -12
+ 201              		.cfi_offset 9, -8
+ 202              		.cfi_offset 14, -4
+ 219:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_DisableInt();
+ 203              		.loc 1 219 0
+ 204 0004 224B     		ldr	r3, .L13
+ 205              	.LBB2:
+ 220:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 221:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_TIMEOUT_ENABLED)
+ 222:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_TimeoutStop();
+ 223:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif  /* End (Camera_I2C_TIMEOUT_ENABLED) */
+ 224:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 225:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_FF_IMPLEMENTED)
+ 226:.\Generated_Source\PSoC5/Camera_I2C.c ****     {
+ 227:.\Generated_Source\PSoC5/Camera_I2C.c ****         uint8 intState;
+ 228:.\Generated_Source\PSoC5/Camera_I2C.c ****         uint16 blockResetCycles;
+ 229:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 230:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Store registers effected by block disable */
+ 231:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.addr    = Camera_I2C_ADDR_REG;
+ 206              		.loc 1 231 0
+ 207 0006 DFF8A880 		ldr	r8, .L13+32
+ 208              	.LBE2:
+ 219:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_DisableInt();
+ 209              		.loc 1 219 0
+ 210 000a 4FF40049 		mov	r9, #32768
+ 211 000e C3F80090 		str	r9, [r3]
+ 212              	.LBB3:
+ 213              		.loc 1 231 0
+ 214 0012 98F80030 		ldrb	r3, [r8]	@ zero_extendqisi2
+ 215 0016 1F4C     		ldr	r4, .L13+4
+ 232:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.clkDiv1 = Camera_I2C_CLKDIV1_REG;
+ 216              		.loc 1 232 0
+ 217 0018 1F4F     		ldr	r7, .L13+8
+ 231:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.clkDiv1 = Camera_I2C_CLKDIV1_REG;
+ 218              		.loc 1 231 0
+ 219 001a E370     		strb	r3, [r4, #3]
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 9
+
+
+ 220              		.loc 1 232 0
+ 221 001c 3B78     		ldrb	r3, [r7]	@ zero_extendqisi2
+ 233:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.clkDiv2 = Camera_I2C_CLKDIV2_REG;
+ 222              		.loc 1 233 0
+ 223 001e 1F4E     		ldr	r6, .L13+12
+ 232:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.clkDiv1 = Camera_I2C_CLKDIV1_REG;
+ 224              		.loc 1 232 0
+ 225 0020 2371     		strb	r3, [r4, #4]
+ 226              		.loc 1 233 0
+ 227 0022 3378     		ldrb	r3, [r6]	@ zero_extendqisi2
+ 234:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 235:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Calculate number of cycles to reset block */
+ 236:.\Generated_Source\PSoC5/Camera_I2C.c ****         blockResetCycles = ((uint16) ((uint16) Camera_I2C_CLKDIV2_REG << 8u) | Camera_I2C_CLKDIV1_R
+ 237:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 238:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Disable block */
+ 239:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CFG_REG &= (uint8) ~Camera_I2C_CFG_EN_SLAVE;
+ 228              		.loc 1 239 0
+ 229 0024 1E4D     		ldr	r5, .L13+16
+ 233:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_backup.clkDiv2 = Camera_I2C_CLKDIV2_REG;
+ 230              		.loc 1 233 0
+ 231 0026 6371     		strb	r3, [r4, #5]
+ 236:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 232              		.loc 1 236 0
+ 233 0028 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+ 234 002a 3B78     		ldrb	r3, [r7]	@ zero_extendqisi2
+ 235              	.LVL6:
+ 236              		.loc 1 239 0
+ 237 002c 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
+ 236:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 238              		.loc 1 236 0
+ 239 002e 43EA0020 		orr	r0, r3, r0, lsl #8
+ 240              	.LVL7:
+ 241              		.loc 1 239 0
+ 242 0032 02F0FE02 		and	r2, r2, #254
+ 236:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 243              		.loc 1 236 0
+ 244 0036 0130     		adds	r0, r0, #1
+ 245              		.loc 1 239 0
+ 246 0038 2A70     		strb	r2, [r5]
+ 240:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Wait for block reset before disable power */
+ 241:.\Generated_Source\PSoC5/Camera_I2C.c ****         CyDelayCycles((uint32) blockResetCycles);
+ 247              		.loc 1 241 0
+ 248 003a 80B2     		uxth	r0, r0
+ 249 003c FFF7FEFF 		bl	CyDelayCycles
+ 250              	.LVL8:
+ 242:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 243:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Disable power to block */
+ 244:.\Generated_Source\PSoC5/Camera_I2C.c ****         intState = CyEnterCriticalSection();
+ 251              		.loc 1 244 0
+ 252 0040 FFF7FEFF 		bl	CyEnterCriticalSection
+ 253              	.LVL9:
+ 245:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_ACT_PWRMGR_REG  &= (uint8) ~Camera_I2C_ACT_PWR_EN;
+ 254              		.loc 1 245 0
+ 255 0044 174A     		ldr	r2, .L13+20
+ 256 0046 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 257 0048 03F0FB03 		and	r3, r3, #251
+ 258 004c 1370     		strb	r3, [r2]
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 10
+
+
+ 246:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_STBY_PWRMGR_REG &= (uint8) ~Camera_I2C_STBY_PWR_EN;
+ 259              		.loc 1 246 0
+ 260 004e 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+ 261 0050 03F0FB03 		and	r3, r3, #251
+ 262 0054 1374     		strb	r3, [r2, #16]
+ 247:.\Generated_Source\PSoC5/Camera_I2C.c ****         CyExitCriticalSection(intState);
+ 263              		.loc 1 247 0
+ 264 0056 FFF7FEFF 		bl	CyExitCriticalSection
+ 265              	.LVL10:
+ 248:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 249:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Enable block */
+ 250:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CFG_REG |= (uint8) Camera_I2C_ENABLE_MS;
+ 266              		.loc 1 250 0
+ 267 005a 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 268              	.LBE3:
+ 251:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 252:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Restore registers effected by block disable. Ticket ID#198004 */
+ 253:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_ADDR_REG    = Camera_I2C_backup.addr;
+ 254:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_ADDR_REG    = Camera_I2C_backup.addr;
+ 255:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CLKDIV1_REG = Camera_I2C_backup.clkDiv1;
+ 256:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CLKDIV2_REG = Camera_I2C_backup.clkDiv2;
+ 257:.\Generated_Source\PSoC5/Camera_I2C.c ****     }
+ 258:.\Generated_Source\PSoC5/Camera_I2C.c **** #else
+ 259:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 260:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Disable slave or master bits */
+ 261:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_CFG_REG &= (uint8) ~Camera_I2C_ENABLE_MS;
+ 262:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 263:.\Generated_Source\PSoC5/Camera_I2C.c **** #if (Camera_I2C_MODE_SLAVE_ENABLED)
+ 264:.\Generated_Source\PSoC5/Camera_I2C.c ****     {
+ 265:.\Generated_Source\PSoC5/Camera_I2C.c ****         /* Disable bit counter */
+ 266:.\Generated_Source\PSoC5/Camera_I2C.c ****         uint8 intState = CyEnterCriticalSection();
+ 267:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_COUNTER_AUX_CTL_REG &= (uint8) ~Camera_I2C_CNT7_ENABLE;
+ 268:.\Generated_Source\PSoC5/Camera_I2C.c ****         CyExitCriticalSection(intState);
+ 269:.\Generated_Source\PSoC5/Camera_I2C.c ****     }
+ 270:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_MODE_SLAVE_ENABLED) */
+ 271:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 272:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Clear interrupt source register */
+ 273:.\Generated_Source\PSoC5/Camera_I2C.c ****     (void) Camera_I2C_CSR_REG;
+ 274:.\Generated_Source\PSoC5/Camera_I2C.c **** #endif /* (Camera_I2C_FF_IMPLEMENTED) */
+ 275:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 276:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Disable interrupt on stop (enabled by write transaction) */
+ 277:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_DISABLE_INT_ON_STOP;
+ 278:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_ClearPendingInt();
+ 279:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 280:.\Generated_Source\PSoC5/Camera_I2C.c ****     /* Reset FSM to default state */
+ 281:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_state = Camera_I2C_SM_IDLE;
+ 269              		.loc 1 281 0
+ 270 005c 1022     		movs	r2, #16
+ 271              	.LBB4:
+ 250:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 272              		.loc 1 250 0
+ 273 005e 43F00203 		orr	r3, r3, #2
+ 274 0062 2B70     		strb	r3, [r5]
+ 253:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_ADDR_REG    = Camera_I2C_backup.addr;
+ 275              		.loc 1 253 0
+ 276 0064 E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
+ 277 0066 88F80030 		strb	r3, [r8]
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 11
+
+
+ 254:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CLKDIV1_REG = Camera_I2C_backup.clkDiv1;
+ 278              		.loc 1 254 0
+ 279 006a E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
+ 280 006c 88F80030 		strb	r3, [r8]
+ 255:.\Generated_Source\PSoC5/Camera_I2C.c ****         Camera_I2C_CLKDIV2_REG = Camera_I2C_backup.clkDiv2;
+ 281              		.loc 1 255 0
+ 282 0070 2379     		ldrb	r3, [r4, #4]	@ zero_extendqisi2
+ 283 0072 3B70     		strb	r3, [r7]
+ 256:.\Generated_Source\PSoC5/Camera_I2C.c ****     }
+ 284              		.loc 1 256 0
+ 285 0074 6379     		ldrb	r3, [r4, #5]	@ zero_extendqisi2
+ 286 0076 3370     		strb	r3, [r6]
+ 287              	.LBE4:
+ 277:.\Generated_Source\PSoC5/Camera_I2C.c ****     Camera_I2C_ClearPendingInt();
+ 288              		.loc 1 277 0
+ 289 0078 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 290 007a 03F0EF03 		and	r3, r3, #239
+ 291 007e 2B70     		strb	r3, [r5]
+ 278:.\Generated_Source\PSoC5/Camera_I2C.c **** 
+ 292              		.loc 1 278 0
+ 293 0080 094B     		ldr	r3, .L13+24
+ 294 0082 C3F80090 		str	r9, [r3]
+ 295              		.loc 1 281 0
+ 296 0086 094B     		ldr	r3, .L13+28
+ 297 0088 1A70     		strb	r2, [r3]
+ 298 008a BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 299              	.L14:
+ 300 008e 00BF     		.align	2
+ 301              	.L13:
+ 302 0090 80E100E0 		.word	-536813184
+ 303 0094 00000000 		.word	Camera_I2C_backup
+ 304 0098 DB490040 		.word	1073760731
+ 305 009c DC490040 		.word	1073760732
+ 306 00a0 D6490040 		.word	1073760726
+ 307 00a4 A5430040 		.word	1073759141
+ 308 00a8 80E200E0 		.word	-536812928
+ 309 00ac 00000000 		.word	Camera_I2C_state
+ 310 00b0 CA490040 		.word	1073760714
+ 311              		.cfi_endproc
+ 312              	.LFE3:
+ 313              		.size	Camera_I2C_Stop, .-Camera_I2C_Stop
+ 314              		.comm	Camera_I2C_state,1,1
+ 315              		.global	Camera_I2C_initVar
+ 316              		.bss
+ 317              		.set	.LANCHOR0,. + 0
+ 318              		.type	Camera_I2C_initVar, %object
+ 319              		.size	Camera_I2C_initVar, 1
+ 320              	Camera_I2C_initVar:
+ 321 0000 00       		.space	1
+ 322              		.text
+ 323              	.Letext0:
+ 324              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 325              		.file 3 ".\\Generated_Source\\PSoC5\\Camera_I2C.h"
+ 326              		.file 4 ".\\Generated_Source\\PSoC5\\Camera_I2C_PVT.h"
+ 327              		.file 5 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 328              		.section	.debug_info,"",%progbits
+ 329              	.Ldebug_info0:
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 12
+
+
+ 330 0000 D1020000 		.4byte	0x2d1
+ 331 0004 0400     		.2byte	0x4
+ 332 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 333 000a 04       		.byte	0x4
+ 334 000b 01       		.uleb128 0x1
+ 335 000c 9F000000 		.4byte	.LASF39
+ 336 0010 01       		.byte	0x1
+ 337 0011 F2020000 		.4byte	.LASF40
+ 338 0015 3B010000 		.4byte	.LASF41
+ 339 0019 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 340 001d 00000000 		.4byte	0
+ 341 0021 00000000 		.4byte	.Ldebug_line0
+ 342 0025 02       		.uleb128 0x2
+ 343 0026 01       		.byte	0x1
+ 344 0027 06       		.byte	0x6
+ 345 0028 18030000 		.4byte	.LASF0
+ 346 002c 02       		.uleb128 0x2
+ 347 002d 01       		.byte	0x1
+ 348 002e 08       		.byte	0x8
+ 349 002f 2D010000 		.4byte	.LASF1
+ 350 0033 02       		.uleb128 0x2
+ 351 0034 02       		.byte	0x2
+ 352 0035 05       		.byte	0x5
+ 353 0036 AB020000 		.4byte	.LASF2
+ 354 003a 02       		.uleb128 0x2
+ 355 003b 02       		.byte	0x2
+ 356 003c 07       		.byte	0x7
+ 357 003d 33000000 		.4byte	.LASF3
+ 358 0041 02       		.uleb128 0x2
+ 359 0042 04       		.byte	0x4
+ 360 0043 05       		.byte	0x5
+ 361 0044 BB020000 		.4byte	.LASF4
+ 362 0048 02       		.uleb128 0x2
+ 363 0049 04       		.byte	0x4
+ 364 004a 07       		.byte	0x7
+ 365 004b 99010000 		.4byte	.LASF5
+ 366 004f 02       		.uleb128 0x2
+ 367 0050 08       		.byte	0x8
+ 368 0051 05       		.byte	0x5
+ 369 0052 93020000 		.4byte	.LASF6
+ 370 0056 02       		.uleb128 0x2
+ 371 0057 08       		.byte	0x8
+ 372 0058 07       		.byte	0x7
+ 373 0059 88000000 		.4byte	.LASF7
+ 374 005d 03       		.uleb128 0x3
+ 375 005e 04       		.byte	0x4
+ 376 005f 05       		.byte	0x5
+ 377 0060 696E7400 		.ascii	"int\000"
+ 378 0064 02       		.uleb128 0x2
+ 379 0065 04       		.byte	0x4
+ 380 0066 07       		.byte	0x7
+ 381 0067 F7010000 		.4byte	.LASF8
+ 382 006b 04       		.uleb128 0x4
+ 383 006c B5020000 		.4byte	.LASF9
+ 384 0070 02       		.byte	0x2
+ 385 0071 9201     		.2byte	0x192
+ 386 0073 2C000000 		.4byte	0x2c
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 13
+
+
+ 387 0077 04       		.uleb128 0x4
+ 388 0078 E0010000 		.4byte	.LASF10
+ 389 007c 02       		.byte	0x2
+ 390 007d 9301     		.2byte	0x193
+ 391 007f 3A000000 		.4byte	0x3a
+ 392 0083 04       		.uleb128 0x4
+ 393 0084 E7010000 		.4byte	.LASF11
+ 394 0088 02       		.byte	0x2
+ 395 0089 9401     		.2byte	0x194
+ 396 008b 48000000 		.4byte	0x48
+ 397 008f 02       		.uleb128 0x2
+ 398 0090 04       		.byte	0x4
+ 399 0091 04       		.byte	0x4
+ 400 0092 82000000 		.4byte	.LASF12
+ 401 0096 02       		.uleb128 0x2
+ 402 0097 08       		.byte	0x8
+ 403 0098 04       		.byte	0x4
+ 404 0099 C6010000 		.4byte	.LASF13
+ 405 009d 02       		.uleb128 0x2
+ 406 009e 01       		.byte	0x1
+ 407 009f 08       		.byte	0x8
+ 408 00a0 A1020000 		.4byte	.LASF14
+ 409 00a4 04       		.uleb128 0x4
+ 410 00a5 83010000 		.4byte	.LASF15
+ 411 00a9 02       		.byte	0x2
+ 412 00aa 3C02     		.2byte	0x23c
+ 413 00ac B0000000 		.4byte	0xb0
+ 414 00b0 05       		.uleb128 0x5
+ 415 00b1 6B000000 		.4byte	0x6b
+ 416 00b5 04       		.uleb128 0x4
+ 417 00b6 0E000000 		.4byte	.LASF16
+ 418 00ba 02       		.byte	0x2
+ 419 00bb 3E02     		.2byte	0x23e
+ 420 00bd C1000000 		.4byte	0xc1
+ 421 00c1 05       		.uleb128 0x5
+ 422 00c2 83000000 		.4byte	0x83
+ 423 00c6 04       		.uleb128 0x4
+ 424 00c7 6C020000 		.4byte	.LASF17
+ 425 00cb 02       		.byte	0x2
+ 426 00cc 4E02     		.2byte	0x24e
+ 427 00ce D2000000 		.4byte	0xd2
+ 428 00d2 06       		.uleb128 0x6
+ 429 00d3 04       		.byte	0x4
+ 430 00d4 D8000000 		.4byte	0xd8
+ 431 00d8 07       		.uleb128 0x7
+ 432 00d9 02       		.uleb128 0x2
+ 433 00da 04       		.byte	0x4
+ 434 00db 07       		.byte	0x7
+ 435 00dc 8A020000 		.4byte	.LASF18
+ 436 00e0 08       		.uleb128 0x8
+ 437 00e1 06       		.byte	0x6
+ 438 00e2 03       		.byte	0x3
+ 439 00e3 76       		.byte	0x76
+ 440 00e4 31010000 		.4byte	0x131
+ 441 00e8 09       		.uleb128 0x9
+ 442 00e9 C4020000 		.4byte	.LASF19
+ 443 00ed 03       		.byte	0x3
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 14
+
+
+ 444 00ee 78       		.byte	0x78
+ 445 00ef 6B000000 		.4byte	0x6b
+ 446 00f3 00       		.byte	0
+ 447 00f4 09       		.uleb128 0x9
+ 448 00f5 A6020000 		.4byte	.LASF20
+ 449 00f9 03       		.byte	0x3
+ 450 00fa 7B       		.byte	0x7b
+ 451 00fb 6B000000 		.4byte	0x6b
+ 452 00ff 01       		.byte	0x1
+ 453 0100 0A       		.uleb128 0xa
+ 454 0101 63666700 		.ascii	"cfg\000"
+ 455 0105 03       		.byte	0x3
+ 456 0106 7C       		.byte	0x7c
+ 457 0107 6B000000 		.4byte	0x6b
+ 458 010b 02       		.byte	0x2
+ 459 010c 09       		.uleb128 0x9
+ 460 010d AB010000 		.4byte	.LASF21
+ 461 0111 03       		.byte	0x3
+ 462 0112 7D       		.byte	0x7d
+ 463 0113 6B000000 		.4byte	0x6b
+ 464 0117 03       		.byte	0x3
+ 465 0118 09       		.uleb128 0x9
+ 466 0119 45020000 		.4byte	.LASF22
+ 467 011d 03       		.byte	0x3
+ 468 011e 7E       		.byte	0x7e
+ 469 011f 6B000000 		.4byte	0x6b
+ 470 0123 04       		.byte	0x4
+ 471 0124 09       		.uleb128 0x9
+ 472 0125 4D020000 		.4byte	.LASF23
+ 473 0129 03       		.byte	0x3
+ 474 012a 7F       		.byte	0x7f
+ 475 012b 6B000000 		.4byte	0x6b
+ 476 012f 05       		.byte	0x5
+ 477 0130 00       		.byte	0
+ 478 0131 0B       		.uleb128 0xb
+ 479 0132 57000000 		.4byte	.LASF24
+ 480 0136 03       		.byte	0x3
+ 481 0137 89       		.byte	0x89
+ 482 0138 E0000000 		.4byte	0xe0
+ 483 013c 0C       		.uleb128 0xc
+ 484 013d E2020000 		.4byte	.LASF25
+ 485 0141 01       		.byte	0x1
+ 486 0142 31       		.byte	0x31
+ 487 0143 00000000 		.4byte	.LFB0
+ 488 0147 64000000 		.4byte	.LFE0-.LFB0
+ 489 014b 01       		.uleb128 0x1
+ 490 014c 9C       		.byte	0x9c
+ 491 014d 79010000 		.4byte	0x179
+ 492 0151 0D       		.uleb128 0xd
+ 493 0152 2C000000 		.4byte	.LVL0
+ 494 0156 7B020000 		.4byte	0x27b
+ 495 015a 69010000 		.4byte	0x169
+ 496 015e 0E       		.uleb128 0xe
+ 497 015f 01       		.uleb128 0x1
+ 498 0160 51       		.byte	0x51
+ 499 0161 01       		.uleb128 0x1
+ 500 0162 37       		.byte	0x37
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 15
+
+
+ 501 0163 0E       		.uleb128 0xe
+ 502 0164 01       		.uleb128 0x1
+ 503 0165 50       		.byte	0x50
+ 504 0166 01       		.uleb128 0x1
+ 505 0167 3F       		.byte	0x3f
+ 506 0168 00       		.byte	0
+ 507 0169 0F       		.uleb128 0xf
+ 508 016a 34000000 		.4byte	.LVL1
+ 509 016e 91020000 		.4byte	0x291
+ 510 0172 0E       		.uleb128 0xe
+ 511 0173 01       		.uleb128 0x1
+ 512 0174 50       		.byte	0x50
+ 513 0175 01       		.uleb128 0x1
+ 514 0176 3F       		.byte	0x3f
+ 515 0177 00       		.byte	0
+ 516 0178 00       		.byte	0
+ 517 0179 0C       		.uleb128 0xc
+ 518 017a D0020000 		.4byte	.LASF26
+ 519 017e 01       		.byte	0x1
+ 520 017f 85       		.byte	0x85
+ 521 0180 00000000 		.4byte	.LFB1
+ 522 0184 24000000 		.4byte	.LFE1-.LFB1
+ 523 0188 01       		.uleb128 0x1
+ 524 0189 9C       		.byte	0x9c
+ 525 018a B0010000 		.4byte	0x1b0
+ 526 018e 10       		.uleb128 0x10
+ 527 018f EE010000 		.4byte	.LASF29
+ 528 0193 01       		.byte	0x1
+ 529 0194 88       		.byte	0x88
+ 530 0195 6B000000 		.4byte	0x6b
+ 531 0199 00000000 		.4byte	.LLST0
+ 532 019d 11       		.uleb128 0x11
+ 533 019e 06000000 		.4byte	.LVL2
+ 534 01a2 AB020000 		.4byte	0x2ab
+ 535 01a6 12       		.uleb128 0x12
+ 536 01a7 20000000 		.4byte	.LVL3
+ 537 01ab B6020000 		.4byte	0x2b6
+ 538 01af 00       		.byte	0
+ 539 01b0 0C       		.uleb128 0xc
+ 540 01b1 79020000 		.4byte	.LASF27
+ 541 01b5 01       		.byte	0x1
+ 542 01b6 BD       		.byte	0xbd
+ 543 01b7 00000000 		.4byte	.LFB2
+ 544 01bb 28000000 		.4byte	.LFE2-.LFB2
+ 545 01bf 01       		.uleb128 0x1
+ 546 01c0 9C       		.byte	0x9c
+ 547 01c1 D8010000 		.4byte	0x1d8
+ 548 01c5 11       		.uleb128 0x11
+ 549 01c6 0C000000 		.4byte	.LVL4
+ 550 01ca 3C010000 		.4byte	0x13c
+ 551 01ce 11       		.uleb128 0x11
+ 552 01cf 14000000 		.4byte	.LVL5
+ 553 01d3 79010000 		.4byte	0x179
+ 554 01d7 00       		.byte	0
+ 555 01d8 0C       		.uleb128 0xc
+ 556 01d9 23000000 		.4byte	.LASF28
+ 557 01dd 01       		.byte	0x1
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 16
+
+
+ 558 01de D9       		.byte	0xd9
+ 559 01df 00000000 		.4byte	.LFB3
+ 560 01e3 B4000000 		.4byte	.LFE3-.LFB3
+ 561 01e7 01       		.uleb128 0x1
+ 562 01e8 9C       		.byte	0x9c
+ 563 01e9 2D020000 		.4byte	0x22d
+ 564 01ed 13       		.uleb128 0x13
+ 565 01ee 00000000 		.4byte	.Ldebug_ranges0+0
+ 566 01f2 10       		.uleb128 0x10
+ 567 01f3 EE010000 		.4byte	.LASF29
+ 568 01f7 01       		.byte	0x1
+ 569 01f8 E3       		.byte	0xe3
+ 570 01f9 6B000000 		.4byte	0x6b
+ 571 01fd 13000000 		.4byte	.LLST1
+ 572 0201 10       		.uleb128 0x10
+ 573 0202 46000000 		.4byte	.LASF30
+ 574 0206 01       		.byte	0x1
+ 575 0207 E4       		.byte	0xe4
+ 576 0208 77000000 		.4byte	0x77
+ 577 020c 26000000 		.4byte	.LLST2
+ 578 0210 11       		.uleb128 0x11
+ 579 0211 40000000 		.4byte	.LVL8
+ 580 0215 C7020000 		.4byte	0x2c7
+ 581 0219 11       		.uleb128 0x11
+ 582 021a 44000000 		.4byte	.LVL9
+ 583 021e AB020000 		.4byte	0x2ab
+ 584 0222 11       		.uleb128 0x11
+ 585 0223 5A000000 		.4byte	.LVL10
+ 586 0227 B6020000 		.4byte	0x2b6
+ 587 022b 00       		.byte	0
+ 588 022c 00       		.byte	0
+ 589 022d 14       		.uleb128 0x14
+ 590 022e CD010000 		.4byte	.LASF31
+ 591 0232 01       		.byte	0x1
+ 592 0233 18       		.byte	0x18
+ 593 0234 6B000000 		.4byte	0x6b
+ 594 0238 05       		.uleb128 0x5
+ 595 0239 03       		.byte	0x3
+ 596 023a 00000000 		.4byte	Camera_I2C_initVar
+ 597 023e 15       		.uleb128 0x15
+ 598 023f 70000000 		.4byte	.LASF32
+ 599 0243 04       		.byte	0x4
+ 600 0244 21       		.byte	0x21
+ 601 0245 31010000 		.4byte	0x131
+ 602 0249 14       		.uleb128 0x14
+ 603 024a 88010000 		.4byte	.LASF33
+ 604 024e 01       		.byte	0x1
+ 605 024f 1A       		.byte	0x1a
+ 606 0250 B0000000 		.4byte	0xb0
+ 607 0254 05       		.uleb128 0x5
+ 608 0255 03       		.byte	0x3
+ 609 0256 00000000 		.4byte	Camera_I2C_state
+ 610 025a 15       		.uleb128 0x15
+ 611 025b B0010000 		.4byte	.LASF34
+ 612 025f 04       		.byte	0x4
+ 613 0260 27       		.byte	0x27
+ 614 0261 B0000000 		.4byte	0xb0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 17
+
+
+ 615 0265 15       		.uleb128 0x15
+ 616 0266 24030000 		.4byte	.LASF35
+ 617 026a 04       		.byte	0x4
+ 618 026b 2D       		.byte	0x2d
+ 619 026c B0000000 		.4byte	0xb0
+ 620 0270 15       		.uleb128 0x15
+ 621 0271 04020000 		.4byte	.LASF36
+ 622 0275 04       		.byte	0x4
+ 623 0276 32       		.byte	0x32
+ 624 0277 B0000000 		.4byte	0xb0
+ 625 027b 16       		.uleb128 0x16
+ 626 027c 34020000 		.4byte	.LASF37
+ 627 0280 05       		.byte	0x5
+ 628 0281 8B       		.byte	0x8b
+ 629 0282 91020000 		.4byte	0x291
+ 630 0286 17       		.uleb128 0x17
+ 631 0287 6B000000 		.4byte	0x6b
+ 632 028b 17       		.uleb128 0x17
+ 633 028c 6B000000 		.4byte	0x6b
+ 634 0290 00       		.byte	0
+ 635 0291 18       		.uleb128 0x18
+ 636 0292 14000000 		.4byte	.LASF42
+ 637 0296 05       		.byte	0x5
+ 638 0297 88       		.byte	0x88
+ 639 0298 C6000000 		.4byte	0xc6
+ 640 029c AB020000 		.4byte	0x2ab
+ 641 02a0 17       		.uleb128 0x17
+ 642 02a1 6B000000 		.4byte	0x6b
+ 643 02a5 17       		.uleb128 0x17
+ 644 02a6 C6000000 		.4byte	0xc6
+ 645 02aa 00       		.byte	0
+ 646 02ab 19       		.uleb128 0x19
+ 647 02ac 55020000 		.4byte	.LASF43
+ 648 02b0 05       		.byte	0x5
+ 649 02b1 7D       		.byte	0x7d
+ 650 02b2 6B000000 		.4byte	0x6b
+ 651 02b6 16       		.uleb128 0x16
+ 652 02b7 1E020000 		.4byte	.LASF38
+ 653 02bb 05       		.byte	0x5
+ 654 02bc 7E       		.byte	0x7e
+ 655 02bd C7020000 		.4byte	0x2c7
+ 656 02c1 17       		.uleb128 0x17
+ 657 02c2 6B000000 		.4byte	0x6b
+ 658 02c6 00       		.byte	0
+ 659 02c7 1A       		.uleb128 0x1a
+ 660 02c8 00000000 		.4byte	.LASF44
+ 661 02cc 05       		.byte	0x5
+ 662 02cd 79       		.byte	0x79
+ 663 02ce 17       		.uleb128 0x17
+ 664 02cf 83000000 		.4byte	0x83
+ 665 02d3 00       		.byte	0
+ 666 02d4 00       		.byte	0
+ 667              		.section	.debug_abbrev,"",%progbits
+ 668              	.Ldebug_abbrev0:
+ 669 0000 01       		.uleb128 0x1
+ 670 0001 11       		.uleb128 0x11
+ 671 0002 01       		.byte	0x1
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 18
+
+
+ 672 0003 25       		.uleb128 0x25
+ 673 0004 0E       		.uleb128 0xe
+ 674 0005 13       		.uleb128 0x13
+ 675 0006 0B       		.uleb128 0xb
+ 676 0007 03       		.uleb128 0x3
+ 677 0008 0E       		.uleb128 0xe
+ 678 0009 1B       		.uleb128 0x1b
+ 679 000a 0E       		.uleb128 0xe
+ 680 000b 55       		.uleb128 0x55
+ 681 000c 17       		.uleb128 0x17
+ 682 000d 11       		.uleb128 0x11
+ 683 000e 01       		.uleb128 0x1
+ 684 000f 10       		.uleb128 0x10
+ 685 0010 17       		.uleb128 0x17
+ 686 0011 00       		.byte	0
+ 687 0012 00       		.byte	0
+ 688 0013 02       		.uleb128 0x2
+ 689 0014 24       		.uleb128 0x24
+ 690 0015 00       		.byte	0
+ 691 0016 0B       		.uleb128 0xb
+ 692 0017 0B       		.uleb128 0xb
+ 693 0018 3E       		.uleb128 0x3e
+ 694 0019 0B       		.uleb128 0xb
+ 695 001a 03       		.uleb128 0x3
+ 696 001b 0E       		.uleb128 0xe
+ 697 001c 00       		.byte	0
+ 698 001d 00       		.byte	0
+ 699 001e 03       		.uleb128 0x3
+ 700 001f 24       		.uleb128 0x24
+ 701 0020 00       		.byte	0
+ 702 0021 0B       		.uleb128 0xb
+ 703 0022 0B       		.uleb128 0xb
+ 704 0023 3E       		.uleb128 0x3e
+ 705 0024 0B       		.uleb128 0xb
+ 706 0025 03       		.uleb128 0x3
+ 707 0026 08       		.uleb128 0x8
+ 708 0027 00       		.byte	0
+ 709 0028 00       		.byte	0
+ 710 0029 04       		.uleb128 0x4
+ 711 002a 16       		.uleb128 0x16
+ 712 002b 00       		.byte	0
+ 713 002c 03       		.uleb128 0x3
+ 714 002d 0E       		.uleb128 0xe
+ 715 002e 3A       		.uleb128 0x3a
+ 716 002f 0B       		.uleb128 0xb
+ 717 0030 3B       		.uleb128 0x3b
+ 718 0031 05       		.uleb128 0x5
+ 719 0032 49       		.uleb128 0x49
+ 720 0033 13       		.uleb128 0x13
+ 721 0034 00       		.byte	0
+ 722 0035 00       		.byte	0
+ 723 0036 05       		.uleb128 0x5
+ 724 0037 35       		.uleb128 0x35
+ 725 0038 00       		.byte	0
+ 726 0039 49       		.uleb128 0x49
+ 727 003a 13       		.uleb128 0x13
+ 728 003b 00       		.byte	0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 19
+
+
+ 729 003c 00       		.byte	0
+ 730 003d 06       		.uleb128 0x6
+ 731 003e 0F       		.uleb128 0xf
+ 732 003f 00       		.byte	0
+ 733 0040 0B       		.uleb128 0xb
+ 734 0041 0B       		.uleb128 0xb
+ 735 0042 49       		.uleb128 0x49
+ 736 0043 13       		.uleb128 0x13
+ 737 0044 00       		.byte	0
+ 738 0045 00       		.byte	0
+ 739 0046 07       		.uleb128 0x7
+ 740 0047 15       		.uleb128 0x15
+ 741 0048 00       		.byte	0
+ 742 0049 27       		.uleb128 0x27
+ 743 004a 19       		.uleb128 0x19
+ 744 004b 00       		.byte	0
+ 745 004c 00       		.byte	0
+ 746 004d 08       		.uleb128 0x8
+ 747 004e 13       		.uleb128 0x13
+ 748 004f 01       		.byte	0x1
+ 749 0050 0B       		.uleb128 0xb
+ 750 0051 0B       		.uleb128 0xb
+ 751 0052 3A       		.uleb128 0x3a
+ 752 0053 0B       		.uleb128 0xb
+ 753 0054 3B       		.uleb128 0x3b
+ 754 0055 0B       		.uleb128 0xb
+ 755 0056 01       		.uleb128 0x1
+ 756 0057 13       		.uleb128 0x13
+ 757 0058 00       		.byte	0
+ 758 0059 00       		.byte	0
+ 759 005a 09       		.uleb128 0x9
+ 760 005b 0D       		.uleb128 0xd
+ 761 005c 00       		.byte	0
+ 762 005d 03       		.uleb128 0x3
+ 763 005e 0E       		.uleb128 0xe
+ 764 005f 3A       		.uleb128 0x3a
+ 765 0060 0B       		.uleb128 0xb
+ 766 0061 3B       		.uleb128 0x3b
+ 767 0062 0B       		.uleb128 0xb
+ 768 0063 49       		.uleb128 0x49
+ 769 0064 13       		.uleb128 0x13
+ 770 0065 38       		.uleb128 0x38
+ 771 0066 0B       		.uleb128 0xb
+ 772 0067 00       		.byte	0
+ 773 0068 00       		.byte	0
+ 774 0069 0A       		.uleb128 0xa
+ 775 006a 0D       		.uleb128 0xd
+ 776 006b 00       		.byte	0
+ 777 006c 03       		.uleb128 0x3
+ 778 006d 08       		.uleb128 0x8
+ 779 006e 3A       		.uleb128 0x3a
+ 780 006f 0B       		.uleb128 0xb
+ 781 0070 3B       		.uleb128 0x3b
+ 782 0071 0B       		.uleb128 0xb
+ 783 0072 49       		.uleb128 0x49
+ 784 0073 13       		.uleb128 0x13
+ 785 0074 38       		.uleb128 0x38
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 20
+
+
+ 786 0075 0B       		.uleb128 0xb
+ 787 0076 00       		.byte	0
+ 788 0077 00       		.byte	0
+ 789 0078 0B       		.uleb128 0xb
+ 790 0079 16       		.uleb128 0x16
+ 791 007a 00       		.byte	0
+ 792 007b 03       		.uleb128 0x3
+ 793 007c 0E       		.uleb128 0xe
+ 794 007d 3A       		.uleb128 0x3a
+ 795 007e 0B       		.uleb128 0xb
+ 796 007f 3B       		.uleb128 0x3b
+ 797 0080 0B       		.uleb128 0xb
+ 798 0081 49       		.uleb128 0x49
+ 799 0082 13       		.uleb128 0x13
+ 800 0083 00       		.byte	0
+ 801 0084 00       		.byte	0
+ 802 0085 0C       		.uleb128 0xc
+ 803 0086 2E       		.uleb128 0x2e
+ 804 0087 01       		.byte	0x1
+ 805 0088 3F       		.uleb128 0x3f
+ 806 0089 19       		.uleb128 0x19
+ 807 008a 03       		.uleb128 0x3
+ 808 008b 0E       		.uleb128 0xe
+ 809 008c 3A       		.uleb128 0x3a
+ 810 008d 0B       		.uleb128 0xb
+ 811 008e 3B       		.uleb128 0x3b
+ 812 008f 0B       		.uleb128 0xb
+ 813 0090 27       		.uleb128 0x27
+ 814 0091 19       		.uleb128 0x19
+ 815 0092 11       		.uleb128 0x11
+ 816 0093 01       		.uleb128 0x1
+ 817 0094 12       		.uleb128 0x12
+ 818 0095 06       		.uleb128 0x6
+ 819 0096 40       		.uleb128 0x40
+ 820 0097 18       		.uleb128 0x18
+ 821 0098 9742     		.uleb128 0x2117
+ 822 009a 19       		.uleb128 0x19
+ 823 009b 01       		.uleb128 0x1
+ 824 009c 13       		.uleb128 0x13
+ 825 009d 00       		.byte	0
+ 826 009e 00       		.byte	0
+ 827 009f 0D       		.uleb128 0xd
+ 828 00a0 898201   		.uleb128 0x4109
+ 829 00a3 01       		.byte	0x1
+ 830 00a4 11       		.uleb128 0x11
+ 831 00a5 01       		.uleb128 0x1
+ 832 00a6 31       		.uleb128 0x31
+ 833 00a7 13       		.uleb128 0x13
+ 834 00a8 01       		.uleb128 0x1
+ 835 00a9 13       		.uleb128 0x13
+ 836 00aa 00       		.byte	0
+ 837 00ab 00       		.byte	0
+ 838 00ac 0E       		.uleb128 0xe
+ 839 00ad 8A8201   		.uleb128 0x410a
+ 840 00b0 00       		.byte	0
+ 841 00b1 02       		.uleb128 0x2
+ 842 00b2 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 21
+
+
+ 843 00b3 9142     		.uleb128 0x2111
+ 844 00b5 18       		.uleb128 0x18
+ 845 00b6 00       		.byte	0
+ 846 00b7 00       		.byte	0
+ 847 00b8 0F       		.uleb128 0xf
+ 848 00b9 898201   		.uleb128 0x4109
+ 849 00bc 01       		.byte	0x1
+ 850 00bd 11       		.uleb128 0x11
+ 851 00be 01       		.uleb128 0x1
+ 852 00bf 31       		.uleb128 0x31
+ 853 00c0 13       		.uleb128 0x13
+ 854 00c1 00       		.byte	0
+ 855 00c2 00       		.byte	0
+ 856 00c3 10       		.uleb128 0x10
+ 857 00c4 34       		.uleb128 0x34
+ 858 00c5 00       		.byte	0
+ 859 00c6 03       		.uleb128 0x3
+ 860 00c7 0E       		.uleb128 0xe
+ 861 00c8 3A       		.uleb128 0x3a
+ 862 00c9 0B       		.uleb128 0xb
+ 863 00ca 3B       		.uleb128 0x3b
+ 864 00cb 0B       		.uleb128 0xb
+ 865 00cc 49       		.uleb128 0x49
+ 866 00cd 13       		.uleb128 0x13
+ 867 00ce 02       		.uleb128 0x2
+ 868 00cf 17       		.uleb128 0x17
+ 869 00d0 00       		.byte	0
+ 870 00d1 00       		.byte	0
+ 871 00d2 11       		.uleb128 0x11
+ 872 00d3 898201   		.uleb128 0x4109
+ 873 00d6 00       		.byte	0
+ 874 00d7 11       		.uleb128 0x11
+ 875 00d8 01       		.uleb128 0x1
+ 876 00d9 31       		.uleb128 0x31
+ 877 00da 13       		.uleb128 0x13
+ 878 00db 00       		.byte	0
+ 879 00dc 00       		.byte	0
+ 880 00dd 12       		.uleb128 0x12
+ 881 00de 898201   		.uleb128 0x4109
+ 882 00e1 00       		.byte	0
+ 883 00e2 11       		.uleb128 0x11
+ 884 00e3 01       		.uleb128 0x1
+ 885 00e4 9542     		.uleb128 0x2115
+ 886 00e6 19       		.uleb128 0x19
+ 887 00e7 31       		.uleb128 0x31
+ 888 00e8 13       		.uleb128 0x13
+ 889 00e9 00       		.byte	0
+ 890 00ea 00       		.byte	0
+ 891 00eb 13       		.uleb128 0x13
+ 892 00ec 0B       		.uleb128 0xb
+ 893 00ed 01       		.byte	0x1
+ 894 00ee 55       		.uleb128 0x55
+ 895 00ef 17       		.uleb128 0x17
+ 896 00f0 00       		.byte	0
+ 897 00f1 00       		.byte	0
+ 898 00f2 14       		.uleb128 0x14
+ 899 00f3 34       		.uleb128 0x34
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 22
+
+
+ 900 00f4 00       		.byte	0
+ 901 00f5 03       		.uleb128 0x3
+ 902 00f6 0E       		.uleb128 0xe
+ 903 00f7 3A       		.uleb128 0x3a
+ 904 00f8 0B       		.uleb128 0xb
+ 905 00f9 3B       		.uleb128 0x3b
+ 906 00fa 0B       		.uleb128 0xb
+ 907 00fb 49       		.uleb128 0x49
+ 908 00fc 13       		.uleb128 0x13
+ 909 00fd 3F       		.uleb128 0x3f
+ 910 00fe 19       		.uleb128 0x19
+ 911 00ff 02       		.uleb128 0x2
+ 912 0100 18       		.uleb128 0x18
+ 913 0101 00       		.byte	0
+ 914 0102 00       		.byte	0
+ 915 0103 15       		.uleb128 0x15
+ 916 0104 34       		.uleb128 0x34
+ 917 0105 00       		.byte	0
+ 918 0106 03       		.uleb128 0x3
+ 919 0107 0E       		.uleb128 0xe
+ 920 0108 3A       		.uleb128 0x3a
+ 921 0109 0B       		.uleb128 0xb
+ 922 010a 3B       		.uleb128 0x3b
+ 923 010b 0B       		.uleb128 0xb
+ 924 010c 49       		.uleb128 0x49
+ 925 010d 13       		.uleb128 0x13
+ 926 010e 3F       		.uleb128 0x3f
+ 927 010f 19       		.uleb128 0x19
+ 928 0110 3C       		.uleb128 0x3c
+ 929 0111 19       		.uleb128 0x19
+ 930 0112 00       		.byte	0
+ 931 0113 00       		.byte	0
+ 932 0114 16       		.uleb128 0x16
+ 933 0115 2E       		.uleb128 0x2e
+ 934 0116 01       		.byte	0x1
+ 935 0117 3F       		.uleb128 0x3f
+ 936 0118 19       		.uleb128 0x19
+ 937 0119 03       		.uleb128 0x3
+ 938 011a 0E       		.uleb128 0xe
+ 939 011b 3A       		.uleb128 0x3a
+ 940 011c 0B       		.uleb128 0xb
+ 941 011d 3B       		.uleb128 0x3b
+ 942 011e 0B       		.uleb128 0xb
+ 943 011f 27       		.uleb128 0x27
+ 944 0120 19       		.uleb128 0x19
+ 945 0121 3C       		.uleb128 0x3c
+ 946 0122 19       		.uleb128 0x19
+ 947 0123 01       		.uleb128 0x1
+ 948 0124 13       		.uleb128 0x13
+ 949 0125 00       		.byte	0
+ 950 0126 00       		.byte	0
+ 951 0127 17       		.uleb128 0x17
+ 952 0128 05       		.uleb128 0x5
+ 953 0129 00       		.byte	0
+ 954 012a 49       		.uleb128 0x49
+ 955 012b 13       		.uleb128 0x13
+ 956 012c 00       		.byte	0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 23
+
+
+ 957 012d 00       		.byte	0
+ 958 012e 18       		.uleb128 0x18
+ 959 012f 2E       		.uleb128 0x2e
+ 960 0130 01       		.byte	0x1
+ 961 0131 3F       		.uleb128 0x3f
+ 962 0132 19       		.uleb128 0x19
+ 963 0133 03       		.uleb128 0x3
+ 964 0134 0E       		.uleb128 0xe
+ 965 0135 3A       		.uleb128 0x3a
+ 966 0136 0B       		.uleb128 0xb
+ 967 0137 3B       		.uleb128 0x3b
+ 968 0138 0B       		.uleb128 0xb
+ 969 0139 27       		.uleb128 0x27
+ 970 013a 19       		.uleb128 0x19
+ 971 013b 49       		.uleb128 0x49
+ 972 013c 13       		.uleb128 0x13
+ 973 013d 3C       		.uleb128 0x3c
+ 974 013e 19       		.uleb128 0x19
+ 975 013f 01       		.uleb128 0x1
+ 976 0140 13       		.uleb128 0x13
+ 977 0141 00       		.byte	0
+ 978 0142 00       		.byte	0
+ 979 0143 19       		.uleb128 0x19
+ 980 0144 2E       		.uleb128 0x2e
+ 981 0145 00       		.byte	0
+ 982 0146 3F       		.uleb128 0x3f
+ 983 0147 19       		.uleb128 0x19
+ 984 0148 03       		.uleb128 0x3
+ 985 0149 0E       		.uleb128 0xe
+ 986 014a 3A       		.uleb128 0x3a
+ 987 014b 0B       		.uleb128 0xb
+ 988 014c 3B       		.uleb128 0x3b
+ 989 014d 0B       		.uleb128 0xb
+ 990 014e 27       		.uleb128 0x27
+ 991 014f 19       		.uleb128 0x19
+ 992 0150 49       		.uleb128 0x49
+ 993 0151 13       		.uleb128 0x13
+ 994 0152 3C       		.uleb128 0x3c
+ 995 0153 19       		.uleb128 0x19
+ 996 0154 00       		.byte	0
+ 997 0155 00       		.byte	0
+ 998 0156 1A       		.uleb128 0x1a
+ 999 0157 2E       		.uleb128 0x2e
+ 1000 0158 01       		.byte	0x1
+ 1001 0159 3F       		.uleb128 0x3f
+ 1002 015a 19       		.uleb128 0x19
+ 1003 015b 03       		.uleb128 0x3
+ 1004 015c 0E       		.uleb128 0xe
+ 1005 015d 3A       		.uleb128 0x3a
+ 1006 015e 0B       		.uleb128 0xb
+ 1007 015f 3B       		.uleb128 0x3b
+ 1008 0160 0B       		.uleb128 0xb
+ 1009 0161 27       		.uleb128 0x27
+ 1010 0162 19       		.uleb128 0x19
+ 1011 0163 3C       		.uleb128 0x3c
+ 1012 0164 19       		.uleb128 0x19
+ 1013 0165 00       		.byte	0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 24
+
+
+ 1014 0166 00       		.byte	0
+ 1015 0167 00       		.byte	0
+ 1016              		.section	.debug_loc,"",%progbits
+ 1017              	.Ldebug_loc0:
+ 1018              	.LLST0:
+ 1019 0000 06000000 		.4byte	.LVL2
+ 1020 0004 1F000000 		.4byte	.LVL3-1
+ 1021 0008 0100     		.2byte	0x1
+ 1022 000a 50       		.byte	0x50
+ 1023 000b 00000000 		.4byte	0
+ 1024 000f 00000000 		.4byte	0
+ 1025              	.LLST1:
+ 1026 0013 44000000 		.4byte	.LVL9
+ 1027 0017 59000000 		.4byte	.LVL10-1
+ 1028 001b 0100     		.2byte	0x1
+ 1029 001d 50       		.byte	0x50
+ 1030 001e 00000000 		.4byte	0
+ 1031 0022 00000000 		.4byte	0
+ 1032              	.LLST2:
+ 1033 0026 2C000000 		.4byte	.LVL6
+ 1034 002a 32000000 		.4byte	.LVL7
+ 1035 002e 1000     		.2byte	0x10
+ 1036 0030 70       		.byte	0x70
+ 1037 0031 00       		.sleb128 0
+ 1038 0032 08       		.byte	0x8
+ 1039 0033 FF       		.byte	0xff
+ 1040 0034 1A       		.byte	0x1a
+ 1041 0035 38       		.byte	0x38
+ 1042 0036 24       		.byte	0x24
+ 1043 0037 73       		.byte	0x73
+ 1044 0038 00       		.sleb128 0
+ 1045 0039 08       		.byte	0x8
+ 1046 003a FF       		.byte	0xff
+ 1047 003b 1A       		.byte	0x1a
+ 1048 003c 21       		.byte	0x21
+ 1049 003d 23       		.byte	0x23
+ 1050 003e 01       		.uleb128 0x1
+ 1051 003f 9F       		.byte	0x9f
+ 1052 0040 00000000 		.4byte	0
+ 1053 0044 00000000 		.4byte	0
+ 1054              		.section	.debug_aranges,"",%progbits
+ 1055 0000 34000000 		.4byte	0x34
+ 1056 0004 0200     		.2byte	0x2
+ 1057 0006 00000000 		.4byte	.Ldebug_info0
+ 1058 000a 04       		.byte	0x4
+ 1059 000b 00       		.byte	0
+ 1060 000c 0000     		.2byte	0
+ 1061 000e 0000     		.2byte	0
+ 1062 0010 00000000 		.4byte	.LFB0
+ 1063 0014 64000000 		.4byte	.LFE0-.LFB0
+ 1064 0018 00000000 		.4byte	.LFB1
+ 1065 001c 24000000 		.4byte	.LFE1-.LFB1
+ 1066 0020 00000000 		.4byte	.LFB2
+ 1067 0024 28000000 		.4byte	.LFE2-.LFB2
+ 1068 0028 00000000 		.4byte	.LFB3
+ 1069 002c B4000000 		.4byte	.LFE3-.LFB3
+ 1070 0030 00000000 		.4byte	0
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 25
+
+
+ 1071 0034 00000000 		.4byte	0
+ 1072              		.section	.debug_ranges,"",%progbits
+ 1073              	.Ldebug_ranges0:
+ 1074 0000 06000000 		.4byte	.LBB2
+ 1075 0004 0A000000 		.4byte	.LBE2
+ 1076 0008 12000000 		.4byte	.LBB3
+ 1077 000c 5C000000 		.4byte	.LBE3
+ 1078 0010 5E000000 		.4byte	.LBB4
+ 1079 0014 78000000 		.4byte	.LBE4
+ 1080 0018 00000000 		.4byte	0
+ 1081 001c 00000000 		.4byte	0
+ 1082 0020 00000000 		.4byte	.LFB0
+ 1083 0024 64000000 		.4byte	.LFE0
+ 1084 0028 00000000 		.4byte	.LFB1
+ 1085 002c 24000000 		.4byte	.LFE1
+ 1086 0030 00000000 		.4byte	.LFB2
+ 1087 0034 28000000 		.4byte	.LFE2
+ 1088 0038 00000000 		.4byte	.LFB3
+ 1089 003c B4000000 		.4byte	.LFE3
+ 1090 0040 00000000 		.4byte	0
+ 1091 0044 00000000 		.4byte	0
+ 1092              		.section	.debug_line,"",%progbits
+ 1093              	.Ldebug_line0:
+ 1094 0000 0C010000 		.section	.debug_str,"MS",%progbits,1
+ 1094      02007800 
+ 1094      00000201 
+ 1094      FB0E0D00 
+ 1094      01010101 
+ 1095              	.LASF44:
+ 1096 0000 43794465 		.ascii	"CyDelayCycles\000"
+ 1096      6C617943 
+ 1096      79636C65 
+ 1096      7300
+ 1097              	.LASF16:
+ 1098 000e 72656733 		.ascii	"reg32\000"
+ 1098      3200
+ 1099              	.LASF42:
+ 1100 0014 4379496E 		.ascii	"CyIntSetVector\000"
+ 1100      74536574 
+ 1100      56656374 
+ 1100      6F7200
+ 1101              	.LASF28:
+ 1102 0023 43616D65 		.ascii	"Camera_I2C_Stop\000"
+ 1102      72615F49 
+ 1102      32435F53 
+ 1102      746F7000 
+ 1103              	.LASF3:
+ 1104 0033 73686F72 		.ascii	"short unsigned int\000"
+ 1104      7420756E 
+ 1104      7369676E 
+ 1104      65642069 
+ 1104      6E7400
+ 1105              	.LASF30:
+ 1106 0046 626C6F63 		.ascii	"blockResetCycles\000"
+ 1106      6B526573 
+ 1106      65744379 
+ 1106      636C6573 
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 26
+
+
+ 1106      00
+ 1107              	.LASF24:
+ 1108 0057 43616D65 		.ascii	"Camera_I2C_BACKUP_STRUCT\000"
+ 1108      72615F49 
+ 1108      32435F42 
+ 1108      41434B55 
+ 1108      505F5354 
+ 1109              	.LASF32:
+ 1110 0070 43616D65 		.ascii	"Camera_I2C_backup\000"
+ 1110      72615F49 
+ 1110      32435F62 
+ 1110      61636B75 
+ 1110      7000
+ 1111              	.LASF12:
+ 1112 0082 666C6F61 		.ascii	"float\000"
+ 1112      7400
+ 1113              	.LASF7:
+ 1114 0088 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1114      206C6F6E 
+ 1114      6720756E 
+ 1114      7369676E 
+ 1114      65642069 
+ 1115              	.LASF39:
+ 1116 009f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1116      4320342E 
+ 1116      392E3320 
+ 1116      32303135 
+ 1116      30333033 
+ 1117 00d2 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1117      20726576 
+ 1117      6973696F 
+ 1117      6E203232 
+ 1117      31323230 
+ 1118 0105 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1118      66756E63 
+ 1118      74696F6E 
+ 1118      2D736563 
+ 1118      74696F6E 
+ 1119              	.LASF1:
+ 1120 012d 756E7369 		.ascii	"unsigned char\000"
+ 1120      676E6564 
+ 1120      20636861 
+ 1120      7200
+ 1121              	.LASF41:
+ 1122 013b 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 1122      6F63756D 
+ 1122      656E7473 
+ 1122      5C436F6D 
+ 1122      70757465 
+ 1123 016a 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 1123      5069636B 
+ 1123      75705C44 
+ 1123      6973706C 
+ 1123      61792E63 
+ 1124              	.LASF15:
+ 1125 0183 72656738 		.ascii	"reg8\000"
+ 1125      00
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 27
+
+
+ 1126              	.LASF33:
+ 1127 0188 43616D65 		.ascii	"Camera_I2C_state\000"
+ 1127      72615F49 
+ 1127      32435F73 
+ 1127      74617465 
+ 1127      00
+ 1128              	.LASF5:
+ 1129 0199 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1129      20756E73 
+ 1129      69676E65 
+ 1129      6420696E 
+ 1129      7400
+ 1130              	.LASF21:
+ 1131 01ab 61646472 		.ascii	"addr\000"
+ 1131      00
+ 1132              	.LASF34:
+ 1133 01b0 43616D65 		.ascii	"Camera_I2C_mstrStatus\000"
+ 1133      72615F49 
+ 1133      32435F6D 
+ 1133      73747253 
+ 1133      74617475 
+ 1134              	.LASF13:
+ 1135 01c6 646F7562 		.ascii	"double\000"
+ 1135      6C6500
+ 1136              	.LASF31:
+ 1137 01cd 43616D65 		.ascii	"Camera_I2C_initVar\000"
+ 1137      72615F49 
+ 1137      32435F69 
+ 1137      6E697456 
+ 1137      617200
+ 1138              	.LASF10:
+ 1139 01e0 75696E74 		.ascii	"uint16\000"
+ 1139      313600
+ 1140              	.LASF11:
+ 1141 01e7 75696E74 		.ascii	"uint32\000"
+ 1141      333200
+ 1142              	.LASF29:
+ 1143 01ee 696E7453 		.ascii	"intState\000"
+ 1143      74617465 
+ 1143      00
+ 1144              	.LASF8:
+ 1145 01f7 756E7369 		.ascii	"unsigned int\000"
+ 1145      676E6564 
+ 1145      20696E74 
+ 1145      00
+ 1146              	.LASF36:
+ 1147 0204 43616D65 		.ascii	"Camera_I2C_mstrWrBufIndex\000"
+ 1147      72615F49 
+ 1147      32435F6D 
+ 1147      73747257 
+ 1147      72427566 
+ 1148              	.LASF38:
+ 1149 021e 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1149      69744372 
+ 1149      69746963 
+ 1149      616C5365 
+ 1149      6374696F 
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 28
+
+
+ 1150              	.LASF37:
+ 1151 0234 4379496E 		.ascii	"CyIntSetPriority\000"
+ 1151      74536574 
+ 1151      5072696F 
+ 1151      72697479 
+ 1151      00
+ 1152              	.LASF22:
+ 1153 0245 636C6B44 		.ascii	"clkDiv1\000"
+ 1153      69763100 
+ 1154              	.LASF23:
+ 1155 024d 636C6B44 		.ascii	"clkDiv2\000"
+ 1155      69763200 
+ 1156              	.LASF43:
+ 1157 0255 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1157      74657243 
+ 1157      72697469 
+ 1157      63616C53 
+ 1157      65637469 
+ 1158              	.LASF17:
+ 1159 026c 63796973 		.ascii	"cyisraddress\000"
+ 1159      72616464 
+ 1159      72657373 
+ 1159      00
+ 1160              	.LASF27:
+ 1161 0279 43616D65 		.ascii	"Camera_I2C_Start\000"
+ 1161      72615F49 
+ 1161      32435F53 
+ 1161      74617274 
+ 1161      00
+ 1162              	.LASF18:
+ 1163 028a 73697A65 		.ascii	"sizetype\000"
+ 1163      74797065 
+ 1163      00
+ 1164              	.LASF6:
+ 1165 0293 6C6F6E67 		.ascii	"long long int\000"
+ 1165      206C6F6E 
+ 1165      6720696E 
+ 1165      7400
+ 1166              	.LASF14:
+ 1167 02a1 63686172 		.ascii	"char\000"
+ 1167      00
+ 1168              	.LASF20:
+ 1169 02a6 78636667 		.ascii	"xcfg\000"
+ 1169      00
+ 1170              	.LASF2:
+ 1171 02ab 73686F72 		.ascii	"short int\000"
+ 1171      7420696E 
+ 1171      7400
+ 1172              	.LASF9:
+ 1173 02b5 75696E74 		.ascii	"uint8\000"
+ 1173      3800
+ 1174              	.LASF4:
+ 1175 02bb 6C6F6E67 		.ascii	"long int\000"
+ 1175      20696E74 
+ 1175      00
+ 1176              	.LASF19:
+ 1177 02c4 656E6162 		.ascii	"enableState\000"
+ARM GAS  D:\TEMP\cciL5Skh.s 			page 29
+
+
+ 1177      6C655374 
+ 1177      61746500 
+ 1178              	.LASF26:
+ 1179 02d0 43616D65 		.ascii	"Camera_I2C_Enable\000"
+ 1179      72615F49 
+ 1179      32435F45 
+ 1179      6E61626C 
+ 1179      6500
+ 1180              	.LASF25:
+ 1181 02e2 43616D65 		.ascii	"Camera_I2C_Init\000"
+ 1181      72615F49 
+ 1181      32435F49 
+ 1181      6E697400 
+ 1182              	.LASF40:
+ 1183 02f2 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Camera_I2C.c\000"
+ 1183      6E657261 
+ 1183      7465645F 
+ 1183      536F7572 
+ 1183      63655C50 
+ 1184              	.LASF0:
+ 1185 0318 7369676E 		.ascii	"signed char\000"
+ 1185      65642063 
+ 1185      68617200 
+ 1186              	.LASF35:
+ 1187 0324 43616D65 		.ascii	"Camera_I2C_mstrRdBufIndex\000"
+ 1187      72615F49 
+ 1187      32435F6D 
+ 1187      73747252 
+ 1187      64427566 
+ 1188              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

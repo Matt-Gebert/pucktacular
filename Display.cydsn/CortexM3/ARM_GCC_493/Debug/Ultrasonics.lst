@@ -1,0 +1,3438 @@
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Ultrasonics.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_i2d
+  19              		.global	__aeabi_dmul
+  20              		.section	.text.Ultrasonics,"ax",%progbits
+  21              		.align	2
+  22              		.global	Ultrasonics
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	Ultrasonics, %function
+  26              	Ultrasonics:
+  27              	.LFB63:
+  28              		.file 1 ".\\Ultrasonics.c"
+   1:.\Ultrasonics.c **** /*
+   2:.\Ultrasonics.c ****  * Copyright @Pucktacular, 2016
+   3:.\Ultrasonics.c ****  * @Matt Gebert, Daniel Hranilovic & Kevin Duxbury
+   4:.\Ultrasonics.c ****  * All Rights Reserved
+   5:.\Ultrasonics.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\Ultrasonics.c ****  *
+   7:.\Ultrasonics.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\Ultrasonics.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\Ultrasonics.c ****  *
+  10:.\Ultrasonics.c ****  * ========================================
+  11:.\Ultrasonics.c **** */
+  12:.\Ultrasonics.c **** #include <project.h>
+  13:.\Ultrasonics.c **** #include <stdbool.h>
+  14:.\Ultrasonics.c **** #include <math.h>
+  15:.\Ultrasonics.c **** #include <stdlib.h>
+  16:.\Ultrasonics.c **** #include "movement_functions.h"
+  17:.\Ultrasonics.c **** #include "Ultrasonics.h"
+  18:.\Ultrasonics.c **** #include "utils.h"
+  19:.\Ultrasonics.c **** 
+  20:.\Ultrasonics.c **** /*******************************************************************************
+  21:.\Ultrasonics.c **** * Function Name: Ultrasonics
+  22:.\Ultrasonics.c **** ****************************************************************************//**
+  23:.\Ultrasonics.c **** *
+  24:.\Ultrasonics.c **** * Takes input of which sensor to use (1 for left, else of right (use 0 or 2))
+  25:.\Ultrasonics.c **** * Will output a float for distance from ultrasonic sensors
+  26:.\Ultrasonics.c **** *
+  27:.\Ultrasonics.c **** *******************************************************************************/
+  28:.\Ultrasonics.c **** 
+  29:.\Ultrasonics.c **** double Ultrasonics(uint8 sensor){
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 2
+
+
+  29              		.loc 1 29 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 38B5     		push	{r3, r4, r5, lr}
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 3, -16
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
+  30:.\Ultrasonics.c ****     uint16 countstart,countend, diff;
+  31:.\Ultrasonics.c ****     double time, dist;
+  32:.\Ultrasonics.c ****         Beep(3);
+  41              		.loc 1 32 0
+  42 0004 0320     		movs	r0, #3
+  43              	.LVL1:
+  44 0006 FFF7FEFF 		bl	Beep
+  45              	.LVL2:
+  33:.\Ultrasonics.c ****         BiDirPortInPut();
+  46              		.loc 1 33 0
+  47 000a FFF7FEFF 		bl	BiDirPortInPut
+  48              	.LVL3:
+  34:.\Ultrasonics.c ****         CS_Write(0x01);
+  49              		.loc 1 34 0
+  50 000e 0120     		movs	r0, #1
+  51 0010 FFF7FEFF 		bl	CS_Write
+  52              	.LVL4:
+  35:.\Ultrasonics.c ****         if (sensor==1){
+  53              		.loc 1 35 0
+  54 0014 012C     		cmp	r4, #1
+  55 0016 19D1     		bne	.L2
+  36:.\Ultrasonics.c ****             USTX_Write(1);
+  56              		.loc 1 36 0
+  57 0018 0120     		movs	r0, #1
+  58 001a FFF7FEFF 		bl	USTX_Write
+  59              	.LVL5:
+  37:.\Ultrasonics.c ****             CyDelayUs(10);
+  60              		.loc 1 37 0
+  61 001e 0A20     		movs	r0, #10
+  62 0020 FFF7FEFF 		bl	CyDelayUs
+  63              	.LVL6:
+  38:.\Ultrasonics.c ****             USTX_Write(0);
+  64              		.loc 1 38 0
+  65 0024 0020     		movs	r0, #0
+  66 0026 FFF7FEFF 		bl	USTX_Write
+  67              	.LVL7:
+  68              	.L3:
+  39:.\Ultrasonics.c ****             while (!(D_Read()&0x1)){
+  69              		.loc 1 39 0 discriminator 1
+  70 002a FFF7FEFF 		bl	D_Read
+  71              	.LVL8:
+  72 002e 10F0010F 		tst	r0, #1
+  73 0032 FAD0     		beq	.L3
+  40:.\Ultrasonics.c ****             }
+  41:.\Ultrasonics.c ****             countstart=Timer_1_ReadCounter();
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 3
+
+
+  74              		.loc 1 41 0
+  75 0034 FFF7FEFF 		bl	Timer_1_ReadCounter
+  76              	.LVL9:
+  77 0038 0446     		mov	r4, r0
+  78              	.LVL10:
+  79              	.L4:
+  42:.\Ultrasonics.c ****             while ((D_Read()&0x1)==0x1){
+  80              		.loc 1 42 0 discriminator 1
+  81 003a FFF7FEFF 		bl	D_Read
+  82              	.LVL11:
+  83 003e 10F0010F 		tst	r0, #1
+  84 0042 FAD1     		bne	.L4
+  43:.\Ultrasonics.c ****             }
+  44:.\Ultrasonics.c ****             countend=Timer_1_ReadCounter();
+  85              		.loc 1 44 0
+  86 0044 FFF7FEFF 		bl	Timer_1_ReadCounter
+  87              	.LVL12:
+  88 0048 0546     		mov	r5, r0
+  89              	.LVL13:
+  90 004a 18E0     		b	.L5
+  91              	.LVL14:
+  92              	.L2:
+  45:.\Ultrasonics.c ****         }else{ 
+  46:.\Ultrasonics.c ****             USTX2_Write(1);
+  93              		.loc 1 46 0
+  94 004c 0120     		movs	r0, #1
+  95 004e FFF7FEFF 		bl	USTX2_Write
+  96              	.LVL15:
+  47:.\Ultrasonics.c ****             CyDelayUs(10);
+  97              		.loc 1 47 0
+  98 0052 0A20     		movs	r0, #10
+  99 0054 FFF7FEFF 		bl	CyDelayUs
+ 100              	.LVL16:
+  48:.\Ultrasonics.c ****             USTX2_Write(0);
+ 101              		.loc 1 48 0
+ 102 0058 0020     		movs	r0, #0
+ 103 005a FFF7FEFF 		bl	USTX2_Write
+ 104              	.LVL17:
+ 105              	.L6:
+  49:.\Ultrasonics.c ****             while (!(D_Read()&0x4)){
+ 106              		.loc 1 49 0 discriminator 1
+ 107 005e FFF7FEFF 		bl	D_Read
+ 108              	.LVL18:
+ 109 0062 10F0040F 		tst	r0, #4
+ 110 0066 FAD0     		beq	.L6
+  50:.\Ultrasonics.c ****             }
+  51:.\Ultrasonics.c ****             countstart=Timer_1_ReadCounter();
+ 111              		.loc 1 51 0
+ 112 0068 FFF7FEFF 		bl	Timer_1_ReadCounter
+ 113              	.LVL19:
+ 114 006c 0446     		mov	r4, r0
+ 115              	.LVL20:
+ 116              	.L7:
+  52:.\Ultrasonics.c ****             while ((D_Read()&0x4)==0x4){
+ 117              		.loc 1 52 0 discriminator 1
+ 118 006e FFF7FEFF 		bl	D_Read
+ 119              	.LVL21:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 4
+
+
+ 120 0072 10F0040F 		tst	r0, #4
+ 121 0076 FAD1     		bne	.L7
+  53:.\Ultrasonics.c ****             }
+  54:.\Ultrasonics.c ****             countend=Timer_1_ReadCounter();
+ 122              		.loc 1 54 0
+ 123 0078 FFF7FEFF 		bl	Timer_1_ReadCounter
+ 124              	.LVL22:
+ 125 007c 0546     		mov	r5, r0
+ 126              	.LVL23:
+ 127              	.L5:
+  55:.\Ultrasonics.c ****         }
+  56:.\Ultrasonics.c **** 
+  57:.\Ultrasonics.c ****         CS_Write(8);
+ 128              		.loc 1 57 0
+ 129 007e 0820     		movs	r0, #8
+ 130 0080 FFF7FEFF 		bl	CS_Write
+ 131              	.LVL24:
+  58:.\Ultrasonics.c ****         diff=countstart-countend;
+ 132              		.loc 1 58 0
+ 133 0084 641B     		subs	r4, r4, r5
+ 134              	.LVL25:
+ 135 0086 A4B2     		uxth	r4, r4
+ 136              	.LVL26:
+  59:.\Ultrasonics.c ****         BiDirPortOutPut();
+ 137              		.loc 1 59 0
+ 138 0088 FFF7FEFF 		bl	BiDirPortOutPut
+ 139              	.LVL27:
+  60:.\Ultrasonics.c ****         
+  61:.\Ultrasonics.c ****         //time=0.002731*diff/65536; //this is in seconds (0.002731 for 24 MHz clock)
+  62:.\Ultrasonics.c ****         time=0.006372*diff/65536; //this is in seconds (0.006372 for 10 MHz clock)
+ 140              		.loc 1 62 0
+ 141 008c 2046     		mov	r0, r4
+ 142 008e FFF7FEFF 		bl	__aeabi_i2d
+ 143              	.LVL28:
+ 144 0092 09A3     		adr	r3, .L9
+ 145 0094 D3E90023 		ldrd	r2, [r3]
+ 146 0098 FFF7FEFF 		bl	__aeabi_dmul
+ 147              	.LVL29:
+ 148 009c 0022     		movs	r2, #0
+ 149 009e 0A4B     		ldr	r3, .L9+16
+ 150 00a0 FFF7FEFF 		bl	__aeabi_dmul
+ 151              	.LVL30:
+  63:.\Ultrasonics.c ****         dist=time*34300/2;    //in cm -> note /2 because there and back again (a hobbits journey)
+ 152              		.loc 1 63 0
+ 153 00a4 06A3     		adr	r3, .L9+8
+ 154 00a6 D3E90023 		ldrd	r2, [r3]
+ 155 00aa FFF7FEFF 		bl	__aeabi_dmul
+ 156              	.LVL31:
+ 157 00ae 0022     		movs	r2, #0
+ 158 00b0 064B     		ldr	r3, .L9+20
+ 159 00b2 FFF7FEFF 		bl	__aeabi_dmul
+ 160              	.LVL32:
+  64:.\Ultrasonics.c ****         
+  65:.\Ultrasonics.c ****         return dist;
+  66:.\Ultrasonics.c **** }
+ 161              		.loc 1 66 0
+ 162 00b6 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 5
+
+
+ 163              	.LVL33:
+ 164              	.L10:
+ 165              		.align	3
+ 166              	.L9:
+ 167 00b8 CD04C3B9 		.word	-1178401587
+ 168 00bc 86197A3F 		.word	1064966534
+ 169 00c0 00000000 		.word	0
+ 170 00c4 80BFE040 		.word	1088470912
+ 171 00c8 0000F03E 		.word	1055916032
+ 172 00cc 0000E03F 		.word	1071644672
+ 173              		.cfi_endproc
+ 174              	.LFE63:
+ 175              		.size	Ultrasonics, .-Ultrasonics
+ 176              		.section	.text.UltrasonicsSensitive,"ax",%progbits
+ 177              		.align	2
+ 178              		.global	UltrasonicsSensitive
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.type	UltrasonicsSensitive, %function
+ 182              	UltrasonicsSensitive:
+ 183              	.LFB64:
+  67:.\Ultrasonics.c **** 
+  68:.\Ultrasonics.c **** double UltrasonicsSensitive(uint8 sensor){
+ 184              		.loc 1 68 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              	.LVL34:
+ 189 0000 38B5     		push	{r3, r4, r5, lr}
+ 190              		.cfi_def_cfa_offset 16
+ 191              		.cfi_offset 3, -16
+ 192              		.cfi_offset 4, -12
+ 193              		.cfi_offset 5, -8
+ 194              		.cfi_offset 14, -4
+ 195 0002 0446     		mov	r4, r0
+  69:.\Ultrasonics.c ****     uint16 countstart,countend, diff;
+  70:.\Ultrasonics.c ****     double time, dist;
+  71:.\Ultrasonics.c ****         Beep(3);
+ 196              		.loc 1 71 0
+ 197 0004 0320     		movs	r0, #3
+ 198              	.LVL35:
+ 199 0006 FFF7FEFF 		bl	Beep
+ 200              	.LVL36:
+  72:.\Ultrasonics.c ****         BiDirPortInPut();
+ 201              		.loc 1 72 0
+ 202 000a FFF7FEFF 		bl	BiDirPortInPut
+ 203              	.LVL37:
+  73:.\Ultrasonics.c ****         CS_Write(0x01);
+ 204              		.loc 1 73 0
+ 205 000e 0120     		movs	r0, #1
+ 206 0010 FFF7FEFF 		bl	CS_Write
+ 207              	.LVL38:
+  74:.\Ultrasonics.c ****         if (sensor==1){
+ 208              		.loc 1 74 0
+ 209 0014 012C     		cmp	r4, #1
+ 210 0016 19D1     		bne	.L12
+  75:.\Ultrasonics.c ****             USTX_Write(1);
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 6
+
+
+ 211              		.loc 1 75 0
+ 212 0018 0120     		movs	r0, #1
+ 213 001a FFF7FEFF 		bl	USTX_Write
+ 214              	.LVL39:
+  76:.\Ultrasonics.c ****             CyDelayUs(10);
+ 215              		.loc 1 76 0
+ 216 001e 0A20     		movs	r0, #10
+ 217 0020 FFF7FEFF 		bl	CyDelayUs
+ 218              	.LVL40:
+  77:.\Ultrasonics.c ****             USTX_Write(0);
+ 219              		.loc 1 77 0
+ 220 0024 0020     		movs	r0, #0
+ 221 0026 FFF7FEFF 		bl	USTX_Write
+ 222              	.LVL41:
+ 223              	.L13:
+  78:.\Ultrasonics.c ****             while (!(D_Read()&0x1)){
+ 224              		.loc 1 78 0 discriminator 1
+ 225 002a FFF7FEFF 		bl	D_Read
+ 226              	.LVL42:
+ 227 002e 10F0010F 		tst	r0, #1
+ 228 0032 FAD0     		beq	.L13
+  79:.\Ultrasonics.c ****             }
+  80:.\Ultrasonics.c ****             countstart=Timer_2_ReadCounter();
+ 229              		.loc 1 80 0
+ 230 0034 FFF7FEFF 		bl	Timer_2_ReadCounter
+ 231              	.LVL43:
+ 232 0038 0446     		mov	r4, r0
+ 233              	.LVL44:
+ 234              	.L14:
+  81:.\Ultrasonics.c ****             while ((D_Read()&0x1)==0x1){
+ 235              		.loc 1 81 0 discriminator 1
+ 236 003a FFF7FEFF 		bl	D_Read
+ 237              	.LVL45:
+ 238 003e 10F0010F 		tst	r0, #1
+ 239 0042 FAD1     		bne	.L14
+  82:.\Ultrasonics.c ****             }
+  83:.\Ultrasonics.c ****             countend=Timer_2_ReadCounter();
+ 240              		.loc 1 83 0
+ 241 0044 FFF7FEFF 		bl	Timer_2_ReadCounter
+ 242              	.LVL46:
+ 243 0048 0546     		mov	r5, r0
+ 244              	.LVL47:
+ 245 004a 18E0     		b	.L15
+ 246              	.LVL48:
+ 247              	.L12:
+  84:.\Ultrasonics.c ****         }else{ 
+  85:.\Ultrasonics.c ****             USTX2_Write(1);
+ 248              		.loc 1 85 0
+ 249 004c 0120     		movs	r0, #1
+ 250 004e FFF7FEFF 		bl	USTX2_Write
+ 251              	.LVL49:
+  86:.\Ultrasonics.c ****             CyDelayUs(10);
+ 252              		.loc 1 86 0
+ 253 0052 0A20     		movs	r0, #10
+ 254 0054 FFF7FEFF 		bl	CyDelayUs
+ 255              	.LVL50:
+  87:.\Ultrasonics.c ****             USTX2_Write(0);
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 7
+
+
+ 256              		.loc 1 87 0
+ 257 0058 0020     		movs	r0, #0
+ 258 005a FFF7FEFF 		bl	USTX2_Write
+ 259              	.LVL51:
+ 260              	.L16:
+  88:.\Ultrasonics.c ****             while (!(D_Read()&0x4)){
+ 261              		.loc 1 88 0 discriminator 1
+ 262 005e FFF7FEFF 		bl	D_Read
+ 263              	.LVL52:
+ 264 0062 10F0040F 		tst	r0, #4
+ 265 0066 FAD0     		beq	.L16
+  89:.\Ultrasonics.c ****             }
+  90:.\Ultrasonics.c ****             countstart=Timer_2_ReadCounter();
+ 266              		.loc 1 90 0
+ 267 0068 FFF7FEFF 		bl	Timer_2_ReadCounter
+ 268              	.LVL53:
+ 269 006c 0446     		mov	r4, r0
+ 270              	.LVL54:
+ 271              	.L17:
+  91:.\Ultrasonics.c ****             while ((D_Read()&0x4)==0x4){
+ 272              		.loc 1 91 0 discriminator 1
+ 273 006e FFF7FEFF 		bl	D_Read
+ 274              	.LVL55:
+ 275 0072 10F0040F 		tst	r0, #4
+ 276 0076 FAD1     		bne	.L17
+  92:.\Ultrasonics.c ****             }
+  93:.\Ultrasonics.c ****             countend=Timer_2_ReadCounter();
+ 277              		.loc 1 93 0
+ 278 0078 FFF7FEFF 		bl	Timer_2_ReadCounter
+ 279              	.LVL56:
+ 280 007c 0546     		mov	r5, r0
+ 281              	.LVL57:
+ 282              	.L15:
+  94:.\Ultrasonics.c ****         }
+  95:.\Ultrasonics.c **** 
+  96:.\Ultrasonics.c ****         CS_Write(8);
+ 283              		.loc 1 96 0
+ 284 007e 0820     		movs	r0, #8
+ 285 0080 FFF7FEFF 		bl	CS_Write
+ 286              	.LVL58:
+  97:.\Ultrasonics.c ****         diff=countstart-countend;
+ 287              		.loc 1 97 0
+ 288 0084 641B     		subs	r4, r4, r5
+ 289              	.LVL59:
+ 290 0086 A4B2     		uxth	r4, r4
+ 291              	.LVL60:
+  98:.\Ultrasonics.c ****         BiDirPortOutPut();
+ 292              		.loc 1 98 0
+ 293 0088 FFF7FEFF 		bl	BiDirPortOutPut
+ 294              	.LVL61:
+  99:.\Ultrasonics.c ****         
+ 100:.\Ultrasonics.c ****         //time=0.002731*diff/65536; //this is in seconds (0.002731 for 24 MHz clock)
+ 101:.\Ultrasonics.c ****         time=0.00182*diff/65536; //this is in seconds (0.00182 for 36 MHz clock)
+ 295              		.loc 1 101 0
+ 296 008c 2046     		mov	r0, r4
+ 297 008e FFF7FEFF 		bl	__aeabi_i2d
+ 298              	.LVL62:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 8
+
+
+ 299 0092 09A3     		adr	r3, .L19
+ 300 0094 D3E90023 		ldrd	r2, [r3]
+ 301 0098 FFF7FEFF 		bl	__aeabi_dmul
+ 302              	.LVL63:
+ 303 009c 0022     		movs	r2, #0
+ 304 009e 0A4B     		ldr	r3, .L19+16
+ 305 00a0 FFF7FEFF 		bl	__aeabi_dmul
+ 306              	.LVL64:
+ 102:.\Ultrasonics.c ****         dist=time*34300/2;    //in cm -> note /2 because there and back again (a hobbits journey)
+ 307              		.loc 1 102 0
+ 308 00a4 06A3     		adr	r3, .L19+8
+ 309 00a6 D3E90023 		ldrd	r2, [r3]
+ 310 00aa FFF7FEFF 		bl	__aeabi_dmul
+ 311              	.LVL65:
+ 312 00ae 0022     		movs	r2, #0
+ 313 00b0 064B     		ldr	r3, .L19+20
+ 314 00b2 FFF7FEFF 		bl	__aeabi_dmul
+ 315              	.LVL66:
+ 103:.\Ultrasonics.c ****         
+ 104:.\Ultrasonics.c ****         return dist;
+ 105:.\Ultrasonics.c **** }
+ 316              		.loc 1 105 0
+ 317 00b6 38BD     		pop	{r3, r4, r5, pc}
+ 318              	.LVL67:
+ 319              	.L20:
+ 320              		.align	3
+ 321              	.L19:
+ 322 00b8 3659A31E 		.word	514021686
+ 323 00bc A2D15D3F 		.word	1063113122
+ 324 00c0 00000000 		.word	0
+ 325 00c4 80BFE040 		.word	1088470912
+ 326 00c8 0000F03E 		.word	1055916032
+ 327 00cc 0000E03F 		.word	1071644672
+ 328              		.cfi_endproc
+ 329              	.LFE64:
+ 330              		.size	UltrasonicsSensitive, .-UltrasonicsSensitive
+ 331              		.global	__aeabi_dsub
+ 332              		.global	__aeabi_dadd
+ 333              		.global	__aeabi_ddiv
+ 334              		.global	__aeabi_dcmpgt
+ 335              		.section	.text.Wall_Align,"ax",%progbits
+ 336              		.align	2
+ 337              		.global	Wall_Align
+ 338              		.thumb
+ 339              		.thumb_func
+ 340              		.type	Wall_Align, %function
+ 341              	Wall_Align:
+ 342              	.LFB65:
+ 106:.\Ultrasonics.c **** 
+ 107:.\Ultrasonics.c **** double Wall_Align(bool sense,bool sensors){
+ 343              		.loc 1 107 0
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 16
+ 346              		@ frame_needed = 0, uses_anonymous_args = 0
+ 347              	.LVL68:
+ 348 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 349              		.cfi_def_cfa_offset 36
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 9
+
+
+ 350              		.cfi_offset 4, -36
+ 351              		.cfi_offset 5, -32
+ 352              		.cfi_offset 6, -28
+ 353              		.cfi_offset 7, -24
+ 354              		.cfi_offset 8, -20
+ 355              		.cfi_offset 9, -16
+ 356              		.cfi_offset 10, -12
+ 357              		.cfi_offset 11, -8
+ 358              		.cfi_offset 14, -4
+ 359 0004 85B0     		sub	sp, sp, #20
+ 360              		.cfi_def_cfa_offset 56
+ 361 0006 0646     		mov	r6, r0
+ 362 0008 0391     		str	r1, [sp, #12]
+ 363              	.LVL69:
+ 108:.\Ultrasonics.c ****     const double PI = 3.1415926535;
+ 109:.\Ultrasonics.c ****     const double supression = 0.5;
+ 110:.\Ultrasonics.c ****     double distance1=0;
+ 111:.\Ultrasonics.c ****     double distance2=0;
+ 112:.\Ultrasonics.c ****     double dist_diff=0;
+ 113:.\Ultrasonics.c ****     double alpha;
+ 114:.\Ultrasonics.c ****     int n = 0;
+ 115:.\Ultrasonics.c ****     uint8 i;
+ 116:.\Ultrasonics.c ****     uint8 check = 1;
+ 117:.\Ultrasonics.c ****     uint8 finish = 0;
+ 364              		.loc 1 117 0
+ 365 000a 0023     		movs	r3, #0
+ 366 000c 9A46     		mov	r10, r3
+ 116:.\Ultrasonics.c ****     uint8 finish = 0;
+ 367              		.loc 1 116 0
+ 368 000e 4FF0010B 		mov	fp, #1
+ 110:.\Ultrasonics.c ****     double distance2=0;
+ 369              		.loc 1 110 0
+ 370 0012 0022     		movs	r2, #0
+ 371 0014 0023     		movs	r3, #0
+ 372 0016 CDE90023 		strd	r2, [sp]
+ 118:.\Ultrasonics.c ****     double precision;
+ 119:.\Ultrasonics.c ****     
+ 120:.\Ultrasonics.c ****     while(!finish){
+ 373              		.loc 1 120 0
+ 374 001a DFE0     		b	.L22
+ 375              	.LVL70:
+ 376              	.L39:
+ 121:.\Ultrasonics.c ****         if (sense) distance1 = UltrasonicsSensitive(0);
+ 377              		.loc 1 121 0
+ 378 001c 2EB1     		cbz	r6, .L23
+ 379              		.loc 1 121 0 is_stmt 0 discriminator 1
+ 380 001e 0020     		movs	r0, #0
+ 381 0020 FFF7FEFF 		bl	UltrasonicsSensitive
+ 382              	.LVL71:
+ 383 0024 CDE90001 		strd	r0, [sp]
+ 384              	.LVL72:
+ 385 0028 04E0     		b	.L24
+ 386              	.LVL73:
+ 387              	.L23:
+ 122:.\Ultrasonics.c ****         else distance1 = Ultrasonics(0);
+ 388              		.loc 1 122 0 is_stmt 1
+ 389 002a 0020     		movs	r0, #0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 10
+
+
+ 390 002c FFF7FEFF 		bl	Ultrasonics
+ 391              	.LVL74:
+ 392 0030 CDE90001 		strd	r0, [sp]
+ 393              	.LVL75:
+ 394              	.L24:
+ 123:.\Ultrasonics.c ****         CyDelay(50);
+ 395              		.loc 1 123 0
+ 396 0034 3220     		movs	r0, #50
+ 397 0036 FFF7FEFF 		bl	CyDelay
+ 398              	.LVL76:
+ 124:.\Ultrasonics.c ****         if (sense) distance2 = UltrasonicsSensitive(1);
+ 399              		.loc 1 124 0
+ 400 003a 2EB1     		cbz	r6, .L25
+ 401              		.loc 1 124 0 is_stmt 0 discriminator 1
+ 402 003c 0120     		movs	r0, #1
+ 403 003e FFF7FEFF 		bl	UltrasonicsSensitive
+ 404              	.LVL77:
+ 405 0042 0446     		mov	r4, r0
+ 406 0044 0D46     		mov	r5, r1
+ 407              	.LVL78:
+ 408 0046 04E0     		b	.L26
+ 409              	.LVL79:
+ 410              	.L25:
+ 125:.\Ultrasonics.c ****         else distance2 = Ultrasonics(1);
+ 411              		.loc 1 125 0 is_stmt 1
+ 412 0048 0120     		movs	r0, #1
+ 413 004a FFF7FEFF 		bl	Ultrasonics
+ 414              	.LVL80:
+ 415 004e 0446     		mov	r4, r0
+ 416 0050 0D46     		mov	r5, r1
+ 417              	.LVL81:
+ 418              	.L26:
+ 126:.\Ultrasonics.c ****         dist_diff = (distance1 - distance2);
+ 419              		.loc 1 126 0
+ 420 0052 DDE90001 		ldrd	r0, [sp]
+ 421 0056 2246     		mov	r2, r4
+ 422 0058 2B46     		mov	r3, r5
+ 423 005a FFF7FEFF 		bl	__aeabi_dsub
+ 424              	.LVL82:
+ 425 005e 8146     		mov	r9, r0
+ 426 0060 8846     		mov	r8, r1
+ 427              	.LVL83:
+ 127:.\Ultrasonics.c ****         precision = pow((distance2+distance1)/2/10,0.2);
+ 428              		.loc 1 127 0
+ 429 0062 2046     		mov	r0, r4
+ 430              	.LVL84:
+ 431 0064 2946     		mov	r1, r5
+ 432              	.LVL85:
+ 433 0066 DDE90023 		ldrd	r2, [sp]
+ 434 006a FFF7FEFF 		bl	__aeabi_dadd
+ 435              	.LVL86:
+ 436 006e 0022     		movs	r2, #0
+ 437 0070 674B     		ldr	r3, .L50+32
+ 438 0072 FFF7FEFF 		bl	__aeabi_dmul
+ 439              	.LVL87:
+ 440 0076 0022     		movs	r2, #0
+ 441 0078 664B     		ldr	r3, .L50+36
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 11
+
+
+ 442 007a FFF7FEFF 		bl	__aeabi_ddiv
+ 443              	.LVL88:
+ 444 007e 5CA3     		adr	r3, .L50
+ 445 0080 D3E90023 		ldrd	r2, [r3]
+ 446 0084 FFF7FEFF 		bl	pow
+ 447              	.LVL89:
+ 448 0088 0246     		mov	r2, r0
+ 449 008a 0B46     		mov	r3, r1
+ 450              	.LVL90:
+ 128:.\Ultrasonics.c ****         if(fabs(dist_diff)>precision && sensors==0){
+ 451              		.loc 1 128 0
+ 452 008c 28F00044 		bic	r4, r8, #-2147483648
+ 453              	.LVL91:
+ 454 0090 4846     		mov	r0, r9
+ 455 0092 2146     		mov	r1, r4
+ 456 0094 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 457              	.LVL92:
+ 458 0098 0028     		cmp	r0, #0
+ 459 009a 00F08B80 		beq	.L47
+ 460              		.loc 1 128 0 is_stmt 0 discriminator 1
+ 461 009e 039B     		ldr	r3, [sp, #12]
+ 462 00a0 002B     		cmp	r3, #0
+ 463 00a2 40F08B80 		bne	.L41
+ 129:.\Ultrasonics.c ****             //alpha =  (asin(fabs(dist_diff)/14.0)) * 180.0/PI;
+ 130:.\Ultrasonics.c ****             alpha =  pow(((asin(fabs(dist_diff)/14.0)*180/PI)/60),1.8)*60;
+ 464              		.loc 1 130 0 is_stmt 1
+ 465 00a6 4846     		mov	r0, r9
+ 466 00a8 2146     		mov	r1, r4
+ 467 00aa 0022     		movs	r2, #0
+ 468 00ac 5A4B     		ldr	r3, .L50+40
+ 469 00ae FFF7FEFF 		bl	__aeabi_ddiv
+ 470              	.LVL93:
+ 471 00b2 FFF7FEFF 		bl	asin
+ 472              	.LVL94:
+ 473 00b6 0022     		movs	r2, #0
+ 474 00b8 584B     		ldr	r3, .L50+44
+ 475 00ba FFF7FEFF 		bl	__aeabi_dmul
+ 476              	.LVL95:
+ 477 00be 4EA3     		adr	r3, .L50+8
+ 478 00c0 D3E90023 		ldrd	r2, [r3]
+ 479 00c4 FFF7FEFF 		bl	__aeabi_ddiv
+ 480              	.LVL96:
+ 481 00c8 0022     		movs	r2, #0
+ 482 00ca 554B     		ldr	r3, .L50+48
+ 483 00cc FFF7FEFF 		bl	__aeabi_ddiv
+ 484              	.LVL97:
+ 485 00d0 4BA3     		adr	r3, .L50+16
+ 486 00d2 D3E90023 		ldrd	r2, [r3]
+ 487 00d6 FFF7FEFF 		bl	pow
+ 488              	.LVL98:
+ 489 00da 0022     		movs	r2, #0
+ 490 00dc 504B     		ldr	r3, .L50+48
+ 491 00de FFF7FEFF 		bl	__aeabi_dmul
+ 492              	.LVL99:
+ 493 00e2 0446     		mov	r4, r0
+ 494 00e4 0D46     		mov	r5, r1
+ 495              	.LVL100:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 12
+
+
+ 131:.\Ultrasonics.c ****             if(dist_diff>0){
+ 496              		.loc 1 131 0
+ 497 00e6 4846     		mov	r0, r9
+ 498 00e8 4146     		mov	r1, r8
+ 499 00ea 0022     		movs	r2, #0
+ 500 00ec 0023     		movs	r3, #0
+ 501 00ee FFF7FEFF 		bl	__aeabi_dcmpgt
+ 502              	.LVL101:
+ 503 00f2 68B1     		cbz	r0, .L48
+ 132:.\Ultrasonics.c ****                 //right side close than left
+ 133:.\Ultrasonics.c ****                 MovementPivotLeft(0.6*alpha*supression); 
+ 504              		.loc 1 133 0
+ 505 00f4 2046     		mov	r0, r4
+ 506 00f6 2946     		mov	r1, r5
+ 507 00f8 43A3     		adr	r3, .L50+24
+ 508 00fa D3E90023 		ldrd	r2, [r3]
+ 509 00fe FFF7FEFF 		bl	__aeabi_dmul
+ 510              	.LVL102:
+ 511 0102 0022     		movs	r2, #0
+ 512 0104 424B     		ldr	r3, .L50+32
+ 513 0106 FFF7FEFF 		bl	__aeabi_dmul
+ 514              	.LVL103:
+ 515 010a FFF7FEFF 		bl	MovementPivotLeft
+ 516              	.LVL104:
+ 517 010e 5AE0     		b	.L31
+ 518              	.L48:
+ 134:.\Ultrasonics.c ****             }else{
+ 135:.\Ultrasonics.c ****                 //left side closer than right
+ 136:.\Ultrasonics.c ****                 MovementPivotRight(0.6*alpha*supression);
+ 519              		.loc 1 136 0
+ 520 0110 2046     		mov	r0, r4
+ 521 0112 2946     		mov	r1, r5
+ 522 0114 3CA3     		adr	r3, .L50+24
+ 523 0116 D3E90023 		ldrd	r2, [r3]
+ 524 011a FFF7FEFF 		bl	__aeabi_dmul
+ 525              	.LVL105:
+ 526 011e 0022     		movs	r2, #0
+ 527 0120 3B4B     		ldr	r3, .L50+32
+ 528 0122 FFF7FEFF 		bl	__aeabi_dmul
+ 529              	.LVL106:
+ 530 0126 FFF7FEFF 		bl	MovementPivotRight
+ 531              	.LVL107:
+ 532 012a 4CE0     		b	.L31
+ 533              	.LVL108:
+ 534              	.L37:
+ 137:.\Ultrasonics.c ****             }
+ 138:.\Ultrasonics.c ****         }else{
+ 139:.\Ultrasonics.c ****             check = 0;
+ 140:.\Ultrasonics.c ****             for(i=0;i<5;i++){
+ 141:.\Ultrasonics.c ****                 if (sense) distance1 = UltrasonicsSensitive(0);
+ 535              		.loc 1 141 0
+ 536 012c 2EB1     		cbz	r6, .L32
+ 537              		.loc 1 141 0 is_stmt 0 discriminator 1
+ 538 012e 0020     		movs	r0, #0
+ 539 0130 FFF7FEFF 		bl	UltrasonicsSensitive
+ 540              	.LVL109:
+ 541 0134 CDE90001 		strd	r0, [sp]
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 13
+
+
+ 542              	.LVL110:
+ 543 0138 04E0     		b	.L33
+ 544              	.LVL111:
+ 545              	.L32:
+ 142:.\Ultrasonics.c ****                 else distance1 = Ultrasonics(0);
+ 546              		.loc 1 142 0 is_stmt 1
+ 547 013a 0020     		movs	r0, #0
+ 548 013c FFF7FEFF 		bl	Ultrasonics
+ 549              	.LVL112:
+ 550 0140 CDE90001 		strd	r0, [sp]
+ 551              	.LVL113:
+ 552              	.L33:
+ 143:.\Ultrasonics.c ****                 CyDelay(100);
+ 553              		.loc 1 143 0
+ 554 0144 6420     		movs	r0, #100
+ 555 0146 FFF7FEFF 		bl	CyDelay
+ 556              	.LVL114:
+ 144:.\Ultrasonics.c ****                 if (sense) distance2 =UltrasonicsSensitive(1);
+ 557              		.loc 1 144 0
+ 558 014a 2EB1     		cbz	r6, .L34
+ 559              		.loc 1 144 0 is_stmt 0 discriminator 1
+ 560 014c 0120     		movs	r0, #1
+ 561 014e FFF7FEFF 		bl	UltrasonicsSensitive
+ 562              	.LVL115:
+ 563 0152 8046     		mov	r8, r0
+ 564 0154 8946     		mov	r9, r1
+ 565              	.LVL116:
+ 566 0156 04E0     		b	.L35
+ 567              	.LVL117:
+ 568              	.L34:
+ 145:.\Ultrasonics.c ****                 else distance2 = Ultrasonics(1);
+ 569              		.loc 1 145 0 is_stmt 1
+ 570 0158 0120     		movs	r0, #1
+ 571 015a FFF7FEFF 		bl	Ultrasonics
+ 572              	.LVL118:
+ 573 015e 8046     		mov	r8, r0
+ 574 0160 8946     		mov	r9, r1
+ 575              	.LVL119:
+ 576              	.L35:
+ 146:.\Ultrasonics.c ****                 dist_diff = (distance1 - distance2);
+ 577              		.loc 1 146 0
+ 578 0162 DDE90001 		ldrd	r0, [sp]
+ 579 0166 4246     		mov	r2, r8
+ 580 0168 4B46     		mov	r3, r9
+ 581 016a FFF7FEFF 		bl	__aeabi_dsub
+ 582              	.LVL120:
+ 583 016e 0746     		mov	r7, r0
+ 584 0170 0D46     		mov	r5, r1
+ 585              	.LVL121:
+ 147:.\Ultrasonics.c ****                 precision = pow((distance2+distance1)/2/10,0.2);
+ 586              		.loc 1 147 0
+ 587 0172 4046     		mov	r0, r8
+ 588              	.LVL122:
+ 589 0174 4946     		mov	r1, r9
+ 590              	.LVL123:
+ 591 0176 DDE90023 		ldrd	r2, [sp]
+ 592 017a FFF7FEFF 		bl	__aeabi_dadd
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 14
+
+
+ 593              	.LVL124:
+ 594 017e 0022     		movs	r2, #0
+ 595 0180 234B     		ldr	r3, .L50+32
+ 596 0182 FFF7FEFF 		bl	__aeabi_dmul
+ 597              	.LVL125:
+ 598 0186 0022     		movs	r2, #0
+ 599 0188 224B     		ldr	r3, .L50+36
+ 600 018a FFF7FEFF 		bl	__aeabi_ddiv
+ 601              	.LVL126:
+ 602 018e 18A3     		adr	r3, .L50
+ 603 0190 D3E90023 		ldrd	r2, [r3]
+ 604 0194 FFF7FEFF 		bl	pow
+ 605              	.LVL127:
+ 606 0198 0246     		mov	r2, r0
+ 607 019a 0B46     		mov	r3, r1
+ 608              	.LVL128:
+ 148:.\Ultrasonics.c ****                 if(fabs(dist_diff)>precision){
+ 609              		.loc 1 148 0
+ 610 019c 3846     		mov	r0, r7
+ 611 019e 25F00041 		bic	r1, r5, #-2147483648
+ 612 01a2 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 613              	.LVL129:
+ 614 01a6 10B1     		cbz	r0, .L36
+ 149:.\Ultrasonics.c ****                     check = 1;
+ 615              		.loc 1 149 0
+ 616 01a8 4FF0010B 		mov	fp, #1
+ 617              	.LVL130:
+ 150:.\Ultrasonics.c ****                     i = 5;
+ 618              		.loc 1 150 0
+ 619 01ac 0524     		movs	r4, #5
+ 620              	.LVL131:
+ 621              	.L36:
+ 140:.\Ultrasonics.c ****                 if (sense) distance1 = UltrasonicsSensitive(0);
+ 622              		.loc 1 140 0 discriminator 2
+ 623 01ae 0134     		adds	r4, r4, #1
+ 624              	.LVL132:
+ 625 01b0 E4B2     		uxtb	r4, r4
+ 626              	.LVL133:
+ 627 01b2 06E0     		b	.L27
+ 628              	.LVL134:
+ 629              	.L47:
+ 630 01b4 4FF0000B 		mov	fp, #0
+ 631              	.LVL135:
+ 632 01b8 5C46     		mov	r4, fp
+ 633 01ba 02E0     		b	.L27
+ 634              	.LVL136:
+ 635              	.L41:
+ 636 01bc 4FF0000B 		mov	fp, #0
+ 637              	.LVL137:
+ 638 01c0 5C46     		mov	r4, fp
+ 639              	.LVL138:
+ 640              	.L27:
+ 140:.\Ultrasonics.c ****                 if (sense) distance1 = UltrasonicsSensitive(0);
+ 641              		.loc 1 140 0 is_stmt 0 discriminator 1
+ 642 01c2 042C     		cmp	r4, #4
+ 643 01c4 B2D9     		bls	.L37
+ 644              	.LVL139:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 15
+
+
+ 645              	.L31:
+ 151:.\Ultrasonics.c ****                 }
+ 152:.\Ultrasonics.c ****             }
+ 153:.\Ultrasonics.c ****         }
+ 154:.\Ultrasonics.c ****         n++;
+ 155:.\Ultrasonics.c ****         if(!check || sensors==1){
+ 646              		.loc 1 155 0 is_stmt 1
+ 647 01c6 BBF1000F 		cmp	fp, #0
+ 648 01ca 02D0     		beq	.L43
+ 649              		.loc 1 155 0 is_stmt 0 discriminator 1
+ 650 01cc 039B     		ldr	r3, [sp, #12]
+ 651 01ce 1BB9     		cbnz	r3, .L44
+ 652 01d0 04E0     		b	.L22
+ 653              	.L43:
+ 156:.\Ultrasonics.c ****             finish = 1;
+ 654              		.loc 1 156 0 is_stmt 1
+ 655 01d2 0123     		movs	r3, #1
+ 656 01d4 9A46     		mov	r10, r3
+ 657              	.LVL140:
+ 658 01d6 01E0     		b	.L22
+ 659              	.LVL141:
+ 660              	.L44:
+ 661 01d8 0123     		movs	r3, #1
+ 662 01da 9A46     		mov	r10, r3
+ 663              	.LVL142:
+ 664              	.L22:
+ 120:.\Ultrasonics.c ****         if (sense) distance1 = UltrasonicsSensitive(0);
+ 665              		.loc 1 120 0
+ 666 01dc 5346     		mov	r3, r10
+ 667 01de 002B     		cmp	r3, #0
+ 668 01e0 3FF41CAF 		beq	.L39
+ 157:.\Ultrasonics.c ****             
+ 158:.\Ultrasonics.c ****         }
+ 159:.\Ultrasonics.c ****     }
+ 160:.\Ultrasonics.c ****     return distance1;
+ 161:.\Ultrasonics.c **** }
+ 669              		.loc 1 161 0
+ 670 01e4 DDE90001 		ldrd	r0, [sp]
+ 671 01e8 05B0     		add	sp, sp, #20
+ 672              		.cfi_def_cfa_offset 36
+ 673              	.LVL143:
+ 674              		@ sp needed
+ 675 01ea BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 676              	.LVL144:
+ 677              	.L51:
+ 678 01ee 00BF     		.align	3
+ 679              	.L50:
+ 680 01f0 9A999999 		.word	-1717986918
+ 681 01f4 9999C93F 		.word	1070176665
+ 682 01f8 44174154 		.word	1413551940
+ 683 01fc FB210940 		.word	1074340347
+ 684 0200 CDCCCCCC 		.word	-858993459
+ 685 0204 CCCCFC3F 		.word	1073532108
+ 686 0208 33333333 		.word	858993459
+ 687 020c 3333E33F 		.word	1071854387
+ 688 0210 0000E03F 		.word	1071644672
+ 689 0214 00002440 		.word	1076101120
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 16
+
+
+ 690 0218 00002C40 		.word	1076625408
+ 691 021c 00806640 		.word	1080459264
+ 692 0220 00004E40 		.word	1078853632
+ 693              		.cfi_endproc
+ 694              	.LFE65:
+ 695              		.size	Wall_Align, .-Wall_Align
+ 696              		.global	__aeabi_d2uiz
+ 697              		.global	__aeabi_f2d
+ 698 0224 AFF30080 		.section	.text.MoveAlign,"ax",%progbits
+ 699              		.align	2
+ 700              		.global	MoveAlign
+ 701              		.thumb
+ 702              		.thumb_func
+ 703              		.type	MoveAlign, %function
+ 704              	MoveAlign:
+ 705              	.LFB66:
+ 162:.\Ultrasonics.c **** 
+ 163:.\Ultrasonics.c **** 
+ 164:.\Ultrasonics.c **** void MoveAlign(double distance, bool sense, bool sensors, float prec){    //distance in cm
+ 706              		.loc 1 164 0
+ 707              		.cfi_startproc
+ 708              		@ args = 4, pretend = 0, frame = 0
+ 709              		@ frame_needed = 0, uses_anonymous_args = 0
+ 710              	.LVL145:
+ 711 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 712              		.cfi_def_cfa_offset 40
+ 713              		.cfi_offset 3, -40
+ 714              		.cfi_offset 4, -36
+ 715              		.cfi_offset 5, -32
+ 716              		.cfi_offset 6, -28
+ 717              		.cfi_offset 7, -24
+ 718              		.cfi_offset 8, -20
+ 719              		.cfi_offset 9, -16
+ 720              		.cfi_offset 10, -12
+ 721              		.cfi_offset 11, -8
+ 722              		.cfi_offset 14, -4
+ 723 0004 8046     		mov	r8, r0
+ 724 0006 8946     		mov	r9, r1
+ 725 0008 9246     		mov	r10, r2
+ 726 000a 9B46     		mov	fp, r3
+ 165:.\Ultrasonics.c ****     double dist = Wall_Align(sense,sensors);
+ 727              		.loc 1 165 0
+ 728 000c 1046     		mov	r0, r2
+ 729              	.LVL146:
+ 730 000e 1946     		mov	r1, r3
+ 731 0010 FFF7FEFF 		bl	Wall_Align
+ 732              	.LVL147:
+ 733 0014 0646     		mov	r6, r0
+ 734 0016 0F46     		mov	r7, r1
+ 735              	.LVL148:
+ 166:.\Ultrasonics.c ****     while(fabs(distance-dist)>prec)
+ 736              		.loc 1 166 0
+ 737 0018 3DE0     		b	.L53
+ 738              	.L57:
+ 167:.\Ultrasonics.c ****     {
+ 168:.\Ultrasonics.c ****         //3s/14.5cm
+ 169:.\Ultrasonics.c ****         if (dist-distance>0){
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 17
+
+
+ 739              		.loc 1 169 0
+ 740 001a 3046     		mov	r0, r6
+ 741 001c 3946     		mov	r1, r7
+ 742 001e 4246     		mov	r2, r8
+ 743 0020 4B46     		mov	r3, r9
+ 744 0022 FFF7FEFF 		bl	__aeabi_dsub
+ 745              	.LVL149:
+ 746 0026 0446     		mov	r4, r0
+ 747 0028 0D46     		mov	r5, r1
+ 748 002a 0022     		movs	r2, #0
+ 749 002c 0023     		movs	r3, #0
+ 750 002e FFF7FEFF 		bl	__aeabi_dcmpgt
+ 751              	.LVL150:
+ 752 0032 F0B1     		cbz	r0, .L59
+ 170:.\Ultrasonics.c ****             MovementForward(3000.0/14.5*pow((dist-distance)/10.0,1.25)*10.0);
+ 753              		.loc 1 170 0
+ 754 0034 2046     		mov	r0, r4
+ 755 0036 2946     		mov	r1, r5
+ 756 0038 0022     		movs	r2, #0
+ 757 003a 274B     		ldr	r3, .L61+16
+ 758 003c FFF7FEFF 		bl	__aeabi_ddiv
+ 759              	.LVL151:
+ 760 0040 0022     		movs	r2, #0
+ 761 0042 264B     		ldr	r3, .L61+20
+ 762 0044 FFF7FEFF 		bl	pow
+ 763              	.LVL152:
+ 764 0048 1FA3     		adr	r3, .L61
+ 765 004a D3E90023 		ldrd	r2, [r3]
+ 766 004e FFF7FEFF 		bl	__aeabi_dmul
+ 767              	.LVL153:
+ 768 0052 0022     		movs	r2, #0
+ 769 0054 204B     		ldr	r3, .L61+16
+ 770 0056 FFF7FEFF 		bl	__aeabi_dmul
+ 771              	.LVL154:
+ 772 005a FFF7FEFF 		bl	__aeabi_d2uiz
+ 773              	.LVL155:
+ 774 005e 80B2     		uxth	r0, r0
+ 775 0060 FFF7FEFF 		bl	MovementForward
+ 776              	.LVL156:
+ 171:.\Ultrasonics.c ****             dist = Wall_Align(sense,sensors);
+ 777              		.loc 1 171 0
+ 778 0064 5046     		mov	r0, r10
+ 779 0066 5946     		mov	r1, fp
+ 780 0068 FFF7FEFF 		bl	Wall_Align
+ 781              	.LVL157:
+ 782 006c 0646     		mov	r6, r0
+ 783              	.LVL158:
+ 784 006e 0F46     		mov	r7, r1
+ 785              	.LVL159:
+ 786 0070 11E0     		b	.L53
+ 787              	.L59:
+ 172:.\Ultrasonics.c ****         }else{
+ 173:.\Ultrasonics.c ****             MovementBackward(-3000.0/14.5*(dist-distance));
+ 788              		.loc 1 173 0
+ 789 0072 2046     		mov	r0, r4
+ 790 0074 2946     		mov	r1, r5
+ 791 0076 16A3     		adr	r3, .L61+8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 18
+
+
+ 792 0078 D3E90023 		ldrd	r2, [r3]
+ 793 007c FFF7FEFF 		bl	__aeabi_dmul
+ 794              	.LVL160:
+ 795 0080 FFF7FEFF 		bl	__aeabi_d2uiz
+ 796              	.LVL161:
+ 797 0084 80B2     		uxth	r0, r0
+ 798 0086 FFF7FEFF 		bl	MovementBackward
+ 799              	.LVL162:
+ 174:.\Ultrasonics.c ****             //OLD CORRECTION FCN: MovementBackward(3000.0/14.5*(distance-dist)*0.75);
+ 175:.\Ultrasonics.c ****             dist = Wall_Align(sense,0);
+ 800              		.loc 1 175 0
+ 801 008a 5046     		mov	r0, r10
+ 802 008c 0021     		movs	r1, #0
+ 803 008e FFF7FEFF 		bl	Wall_Align
+ 804              	.LVL163:
+ 805 0092 0646     		mov	r6, r0
+ 806              	.LVL164:
+ 807 0094 0F46     		mov	r7, r1
+ 808              	.LVL165:
+ 809              	.L53:
+ 166:.\Ultrasonics.c ****     {
+ 810              		.loc 1 166 0
+ 811 0096 4046     		mov	r0, r8
+ 812 0098 4946     		mov	r1, r9
+ 813 009a 3246     		mov	r2, r6
+ 814 009c 3B46     		mov	r3, r7
+ 815 009e FFF7FEFF 		bl	__aeabi_dsub
+ 816              	.LVL166:
+ 817 00a2 0546     		mov	r5, r0
+ 818 00a4 21F00044 		bic	r4, r1, #-2147483648
+ 819 00a8 0A98     		ldr	r0, [sp, #40]	@ float
+ 820 00aa FFF7FEFF 		bl	__aeabi_f2d
+ 821              	.LVL167:
+ 822 00ae 0246     		mov	r2, r0
+ 823 00b0 0B46     		mov	r3, r1
+ 824 00b2 2846     		mov	r0, r5
+ 825 00b4 2146     		mov	r1, r4
+ 826 00b6 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 827              	.LVL168:
+ 828 00ba 0028     		cmp	r0, #0
+ 829 00bc ADD1     		bne	.L57
+ 176:.\Ultrasonics.c ****         }
+ 177:.\Ultrasonics.c ****         //dist = Wall_Align();
+ 178:.\Ultrasonics.c ****     }
+ 179:.\Ultrasonics.c **** }
+ 830              		.loc 1 179 0
+ 831 00be BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 832              	.LVL169:
+ 833              	.L62:
+ 834 00c2 00BFAFF3 		.align	3
+ 834      0080
+ 835              	.L61:
+ 836 00c8 09CB3D8D 		.word	-1925330167
+ 837 00cc B0DC6940 		.word	1080679600
+ 838 00d0 09CB3D8D 		.word	-1925330167
+ 839 00d4 B0DC69C0 		.word	-1066804048
+ 840 00d8 00002440 		.word	1076101120
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 19
+
+
+ 841 00dc 0000F43F 		.word	1072955392
+ 842              		.cfi_endproc
+ 843              	.LFE66:
+ 844              		.size	MoveAlign, .-MoveAlign
+ 845              		.comm	Camera_linebuffer,640,4
+ 846              		.text
+ 847              	.Letext0:
+ 848              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 849              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 850              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 851              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 852              		.file 6 "Generated_Source\\PSoC5/Camera.h"
+ 853              		.file 7 ".\\utils.h"
+ 854              		.file 8 "Generated_Source\\PSoC5/CS.h"
+ 855              		.file 9 "Generated_Source\\PSoC5/USTX.h"
+ 856              		.file 10 "Generated_Source\\PSoC5/CyLib.h"
+ 857              		.file 11 "Generated_Source\\PSoC5/D.h"
+ 858              		.file 12 "Generated_Source\\PSoC5/Timer_1.h"
+ 859              		.file 13 "Generated_Source\\PSoC5/USTX2.h"
+ 860              		.file 14 "Generated_Source\\PSoC5/Timer_2.h"
+ 861              		.file 15 ".\\movement_functions.h"
+ 862              		.file 16 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9
+ 863              		.section	.debug_info,"",%progbits
+ 864              	.Ldebug_info0:
+ 865 0000 EF070000 		.4byte	0x7ef
+ 866 0004 0400     		.2byte	0x4
+ 867 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 868 000a 04       		.byte	0x4
+ 869 000b 01       		.uleb128 0x1
+ 870 000c F3010000 		.4byte	.LASF59
+ 871 0010 01       		.byte	0x1
+ 872 0011 0D030000 		.4byte	.LASF60
+ 873 0015 8D000000 		.4byte	.LASF61
+ 874 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 875 001d 00000000 		.4byte	0
+ 876 0021 00000000 		.4byte	.Ldebug_line0
+ 877 0025 02       		.uleb128 0x2
+ 878 0026 08       		.byte	0x8
+ 879 0027 04       		.byte	0x4
+ 880 0028 D9020000 		.4byte	.LASF0
+ 881 002c 02       		.uleb128 0x2
+ 882 002d 01       		.byte	0x1
+ 883 002e 06       		.byte	0x6
+ 884 002f ED000000 		.4byte	.LASF1
+ 885 0033 02       		.uleb128 0x2
+ 886 0034 01       		.byte	0x1
+ 887 0035 08       		.byte	0x8
+ 888 0036 39010000 		.4byte	.LASF2
+ 889 003a 02       		.uleb128 0x2
+ 890 003b 02       		.byte	0x2
+ 891 003c 05       		.byte	0x5
+ 892 003d 6F000000 		.4byte	.LASF3
+ 893 0041 02       		.uleb128 0x2
+ 894 0042 02       		.byte	0x2
+ 895 0043 07       		.byte	0x7
+ 896 0044 C8010000 		.4byte	.LASF4
+ 897 0048 03       		.uleb128 0x3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 20
+
+
+ 898 0049 E6020000 		.4byte	.LASF10
+ 899 004d 02       		.byte	0x2
+ 900 004e 3F       		.byte	0x3f
+ 901 004f 53000000 		.4byte	0x53
+ 902 0053 02       		.uleb128 0x2
+ 903 0054 04       		.byte	0x4
+ 904 0055 05       		.byte	0x5
+ 905 0056 0D010000 		.4byte	.LASF5
+ 906 005a 02       		.uleb128 0x2
+ 907 005b 04       		.byte	0x4
+ 908 005c 07       		.byte	0x7
+ 909 005d B7020000 		.4byte	.LASF6
+ 910 0061 02       		.uleb128 0x2
+ 911 0062 08       		.byte	0x8
+ 912 0063 05       		.byte	0x5
+ 913 0064 FF000000 		.4byte	.LASF7
+ 914 0068 02       		.uleb128 0x2
+ 915 0069 08       		.byte	0x8
+ 916 006a 07       		.byte	0x7
+ 917 006b 82010000 		.4byte	.LASF8
+ 918 006f 04       		.uleb128 0x4
+ 919 0070 04       		.byte	0x4
+ 920 0071 05       		.byte	0x5
+ 921 0072 696E7400 		.ascii	"int\000"
+ 922 0076 02       		.uleb128 0x2
+ 923 0077 04       		.byte	0x4
+ 924 0078 07       		.byte	0x7
+ 925 0079 99010000 		.4byte	.LASF9
+ 926 007d 03       		.uleb128 0x3
+ 927 007e 81020000 		.4byte	.LASF11
+ 928 0082 03       		.byte	0x3
+ 929 0083 2C       		.byte	0x2c
+ 930 0084 48000000 		.4byte	0x48
+ 931 0088 05       		.uleb128 0x5
+ 932 0089 87000000 		.4byte	.LASF12
+ 933 008d 04       		.byte	0x4
+ 934 008e 9201     		.2byte	0x192
+ 935 0090 33000000 		.4byte	0x33
+ 936 0094 05       		.uleb128 0x5
+ 937 0095 79000000 		.4byte	.LASF13
+ 938 0099 04       		.byte	0x4
+ 939 009a 9301     		.2byte	0x193
+ 940 009c 41000000 		.4byte	0x41
+ 941 00a0 05       		.uleb128 0x5
+ 942 00a1 B0020000 		.4byte	.LASF14
+ 943 00a5 04       		.byte	0x4
+ 944 00a6 9401     		.2byte	0x194
+ 945 00a8 5A000000 		.4byte	0x5a
+ 946 00ac 02       		.uleb128 0x2
+ 947 00ad 04       		.byte	0x4
+ 948 00ae 04       		.byte	0x4
+ 949 00af F9000000 		.4byte	.LASF15
+ 950 00b3 02       		.uleb128 0x2
+ 951 00b4 01       		.byte	0x1
+ 952 00b5 08       		.byte	0x8
+ 953 00b6 E5010000 		.4byte	.LASF16
+ 954 00ba 02       		.uleb128 0x2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 21
+
+
+ 955 00bb 04       		.byte	0x4
+ 956 00bc 07       		.byte	0x7
+ 957 00bd 26000000 		.4byte	.LASF17
+ 958 00c1 02       		.uleb128 0x2
+ 959 00c2 08       		.byte	0x8
+ 960 00c3 04       		.byte	0x4
+ 961 00c4 23010000 		.4byte	.LASF18
+ 962 00c8 06       		.uleb128 0x6
+ 963 00c9 89020000 		.4byte	.LASF24
+ 964 00cd 01       		.byte	0x1
+ 965 00ce 1D       		.byte	0x1d
+ 966 00cf 25000000 		.4byte	0x25
+ 967 00d3 00000000 		.4byte	.LFB63
+ 968 00d7 D0000000 		.4byte	.LFE63-.LFB63
+ 969 00db 01       		.uleb128 0x1
+ 970 00dc 9C       		.byte	0x9c
+ 971 00dd 44020000 		.4byte	0x244
+ 972 00e1 07       		.uleb128 0x7
+ 973 00e2 80000000 		.4byte	.LASF26
+ 974 00e6 01       		.byte	0x1
+ 975 00e7 1D       		.byte	0x1d
+ 976 00e8 88000000 		.4byte	0x88
+ 977 00ec 00000000 		.4byte	.LLST0
+ 978 00f0 08       		.uleb128 0x8
+ 979 00f1 36030000 		.4byte	.LASF19
+ 980 00f5 01       		.byte	0x1
+ 981 00f6 1E       		.byte	0x1e
+ 982 00f7 94000000 		.4byte	0x94
+ 983 00fb 21000000 		.4byte	.LLST1
+ 984 00ff 08       		.uleb128 0x8
+ 985 0100 F0020000 		.4byte	.LASF20
+ 986 0104 01       		.byte	0x1
+ 987 0105 1E       		.byte	0x1e
+ 988 0106 94000000 		.4byte	0x94
+ 989 010a 3F000000 		.4byte	.LLST2
+ 990 010e 08       		.uleb128 0x8
+ 991 010f 07000000 		.4byte	.LASF21
+ 992 0113 01       		.byte	0x1
+ 993 0114 1E       		.byte	0x1e
+ 994 0115 94000000 		.4byte	0x94
+ 995 0119 5D000000 		.4byte	.LLST3
+ 996 011d 08       		.uleb128 0x8
+ 997 011e 1D030000 		.4byte	.LASF22
+ 998 0122 01       		.byte	0x1
+ 999 0123 1F       		.byte	0x1f
+ 1000 0124 25000000 		.4byte	0x25
+ 1001 0128 70000000 		.4byte	.LLST4
+ 1002 012c 09       		.uleb128 0x9
+ 1003 012d B1010000 		.4byte	.LASF23
+ 1004 0131 01       		.byte	0x1
+ 1005 0132 1F       		.byte	0x1f
+ 1006 0133 25000000 		.4byte	0x25
+ 1007 0137 06       		.uleb128 0x6
+ 1008 0138 50       		.byte	0x50
+ 1009 0139 93       		.byte	0x93
+ 1010 013a 04       		.uleb128 0x4
+ 1011 013b 51       		.byte	0x51
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 22
+
+
+ 1012 013c 93       		.byte	0x93
+ 1013 013d 04       		.uleb128 0x4
+ 1014 013e 0A       		.uleb128 0xa
+ 1015 013f 0A000000 		.4byte	.LVL2
+ 1016 0143 E2060000 		.4byte	0x6e2
+ 1017 0147 51010000 		.4byte	0x151
+ 1018 014b 0B       		.uleb128 0xb
+ 1019 014c 01       		.uleb128 0x1
+ 1020 014d 50       		.byte	0x50
+ 1021 014e 01       		.uleb128 0x1
+ 1022 014f 33       		.byte	0x33
+ 1023 0150 00       		.byte	0
+ 1024 0151 0C       		.uleb128 0xc
+ 1025 0152 0E000000 		.4byte	.LVL3
+ 1026 0156 F3060000 		.4byte	0x6f3
+ 1027 015a 0A       		.uleb128 0xa
+ 1028 015b 14000000 		.4byte	.LVL4
+ 1029 015f 00070000 		.4byte	0x700
+ 1030 0163 6D010000 		.4byte	0x16d
+ 1031 0167 0B       		.uleb128 0xb
+ 1032 0168 01       		.uleb128 0x1
+ 1033 0169 50       		.byte	0x50
+ 1034 016a 01       		.uleb128 0x1
+ 1035 016b 31       		.byte	0x31
+ 1036 016c 00       		.byte	0
+ 1037 016d 0A       		.uleb128 0xa
+ 1038 016e 1E000000 		.4byte	.LVL5
+ 1039 0172 11070000 		.4byte	0x711
+ 1040 0176 80010000 		.4byte	0x180
+ 1041 017a 0B       		.uleb128 0xb
+ 1042 017b 01       		.uleb128 0x1
+ 1043 017c 50       		.byte	0x50
+ 1044 017d 01       		.uleb128 0x1
+ 1045 017e 31       		.byte	0x31
+ 1046 017f 00       		.byte	0
+ 1047 0180 0A       		.uleb128 0xa
+ 1048 0181 24000000 		.4byte	.LVL6
+ 1049 0185 22070000 		.4byte	0x722
+ 1050 0189 93010000 		.4byte	0x193
+ 1051 018d 0B       		.uleb128 0xb
+ 1052 018e 01       		.uleb128 0x1
+ 1053 018f 50       		.byte	0x50
+ 1054 0190 01       		.uleb128 0x1
+ 1055 0191 3A       		.byte	0x3a
+ 1056 0192 00       		.byte	0
+ 1057 0193 0A       		.uleb128 0xa
+ 1058 0194 2A000000 		.4byte	.LVL7
+ 1059 0198 11070000 		.4byte	0x711
+ 1060 019c A6010000 		.4byte	0x1a6
+ 1061 01a0 0B       		.uleb128 0xb
+ 1062 01a1 01       		.uleb128 0x1
+ 1063 01a2 50       		.byte	0x50
+ 1064 01a3 01       		.uleb128 0x1
+ 1065 01a4 30       		.byte	0x30
+ 1066 01a5 00       		.byte	0
+ 1067 01a6 0C       		.uleb128 0xc
+ 1068 01a7 2E000000 		.4byte	.LVL8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 23
+
+
+ 1069 01ab 33070000 		.4byte	0x733
+ 1070 01af 0C       		.uleb128 0xc
+ 1071 01b0 38000000 		.4byte	.LVL9
+ 1072 01b4 3E070000 		.4byte	0x73e
+ 1073 01b8 0C       		.uleb128 0xc
+ 1074 01b9 3E000000 		.4byte	.LVL11
+ 1075 01bd 33070000 		.4byte	0x733
+ 1076 01c1 0C       		.uleb128 0xc
+ 1077 01c2 48000000 		.4byte	.LVL12
+ 1078 01c6 3E070000 		.4byte	0x73e
+ 1079 01ca 0A       		.uleb128 0xa
+ 1080 01cb 52000000 		.4byte	.LVL15
+ 1081 01cf 49070000 		.4byte	0x749
+ 1082 01d3 DD010000 		.4byte	0x1dd
+ 1083 01d7 0B       		.uleb128 0xb
+ 1084 01d8 01       		.uleb128 0x1
+ 1085 01d9 50       		.byte	0x50
+ 1086 01da 01       		.uleb128 0x1
+ 1087 01db 31       		.byte	0x31
+ 1088 01dc 00       		.byte	0
+ 1089 01dd 0A       		.uleb128 0xa
+ 1090 01de 58000000 		.4byte	.LVL16
+ 1091 01e2 22070000 		.4byte	0x722
+ 1092 01e6 F0010000 		.4byte	0x1f0
+ 1093 01ea 0B       		.uleb128 0xb
+ 1094 01eb 01       		.uleb128 0x1
+ 1095 01ec 50       		.byte	0x50
+ 1096 01ed 01       		.uleb128 0x1
+ 1097 01ee 3A       		.byte	0x3a
+ 1098 01ef 00       		.byte	0
+ 1099 01f0 0A       		.uleb128 0xa
+ 1100 01f1 5E000000 		.4byte	.LVL17
+ 1101 01f5 49070000 		.4byte	0x749
+ 1102 01f9 03020000 		.4byte	0x203
+ 1103 01fd 0B       		.uleb128 0xb
+ 1104 01fe 01       		.uleb128 0x1
+ 1105 01ff 50       		.byte	0x50
+ 1106 0200 01       		.uleb128 0x1
+ 1107 0201 30       		.byte	0x30
+ 1108 0202 00       		.byte	0
+ 1109 0203 0C       		.uleb128 0xc
+ 1110 0204 62000000 		.4byte	.LVL18
+ 1111 0208 33070000 		.4byte	0x733
+ 1112 020c 0C       		.uleb128 0xc
+ 1113 020d 6C000000 		.4byte	.LVL19
+ 1114 0211 3E070000 		.4byte	0x73e
+ 1115 0215 0C       		.uleb128 0xc
+ 1116 0216 72000000 		.4byte	.LVL21
+ 1117 021a 33070000 		.4byte	0x733
+ 1118 021e 0C       		.uleb128 0xc
+ 1119 021f 7C000000 		.4byte	.LVL22
+ 1120 0223 3E070000 		.4byte	0x73e
+ 1121 0227 0A       		.uleb128 0xa
+ 1122 0228 84000000 		.4byte	.LVL24
+ 1123 022c 00070000 		.4byte	0x700
+ 1124 0230 3A020000 		.4byte	0x23a
+ 1125 0234 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 24
+
+
+ 1126 0235 01       		.uleb128 0x1
+ 1127 0236 50       		.byte	0x50
+ 1128 0237 01       		.uleb128 0x1
+ 1129 0238 38       		.byte	0x38
+ 1130 0239 00       		.byte	0
+ 1131 023a 0C       		.uleb128 0xc
+ 1132 023b 8C000000 		.4byte	.LVL27
+ 1133 023f 5A070000 		.4byte	0x75a
+ 1134 0243 00       		.byte	0
+ 1135 0244 06       		.uleb128 0x6
+ 1136 0245 9B020000 		.4byte	.LASF25
+ 1137 0249 01       		.byte	0x1
+ 1138 024a 44       		.byte	0x44
+ 1139 024b 25000000 		.4byte	0x25
+ 1140 024f 00000000 		.4byte	.LFB64
+ 1141 0253 D0000000 		.4byte	.LFE64-.LFB64
+ 1142 0257 01       		.uleb128 0x1
+ 1143 0258 9C       		.byte	0x9c
+ 1144 0259 C0030000 		.4byte	0x3c0
+ 1145 025d 07       		.uleb128 0x7
+ 1146 025e 80000000 		.4byte	.LASF26
+ 1147 0262 01       		.byte	0x1
+ 1148 0263 44       		.byte	0x44
+ 1149 0264 88000000 		.4byte	0x88
+ 1150 0268 88000000 		.4byte	.LLST5
+ 1151 026c 08       		.uleb128 0x8
+ 1152 026d 36030000 		.4byte	.LASF19
+ 1153 0271 01       		.byte	0x1
+ 1154 0272 45       		.byte	0x45
+ 1155 0273 94000000 		.4byte	0x94
+ 1156 0277 A9000000 		.4byte	.LLST6
+ 1157 027b 08       		.uleb128 0x8
+ 1158 027c F0020000 		.4byte	.LASF20
+ 1159 0280 01       		.byte	0x1
+ 1160 0281 45       		.byte	0x45
+ 1161 0282 94000000 		.4byte	0x94
+ 1162 0286 C7000000 		.4byte	.LLST7
+ 1163 028a 08       		.uleb128 0x8
+ 1164 028b 07000000 		.4byte	.LASF21
+ 1165 028f 01       		.byte	0x1
+ 1166 0290 45       		.byte	0x45
+ 1167 0291 94000000 		.4byte	0x94
+ 1168 0295 E5000000 		.4byte	.LLST8
+ 1169 0299 08       		.uleb128 0x8
+ 1170 029a 1D030000 		.4byte	.LASF22
+ 1171 029e 01       		.byte	0x1
+ 1172 029f 46       		.byte	0x46
+ 1173 02a0 25000000 		.4byte	0x25
+ 1174 02a4 F8000000 		.4byte	.LLST9
+ 1175 02a8 09       		.uleb128 0x9
+ 1176 02a9 B1010000 		.4byte	.LASF23
+ 1177 02ad 01       		.byte	0x1
+ 1178 02ae 46       		.byte	0x46
+ 1179 02af 25000000 		.4byte	0x25
+ 1180 02b3 06       		.uleb128 0x6
+ 1181 02b4 50       		.byte	0x50
+ 1182 02b5 93       		.byte	0x93
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 25
+
+
+ 1183 02b6 04       		.uleb128 0x4
+ 1184 02b7 51       		.byte	0x51
+ 1185 02b8 93       		.byte	0x93
+ 1186 02b9 04       		.uleb128 0x4
+ 1187 02ba 0A       		.uleb128 0xa
+ 1188 02bb 0A000000 		.4byte	.LVL36
+ 1189 02bf E2060000 		.4byte	0x6e2
+ 1190 02c3 CD020000 		.4byte	0x2cd
+ 1191 02c7 0B       		.uleb128 0xb
+ 1192 02c8 01       		.uleb128 0x1
+ 1193 02c9 50       		.byte	0x50
+ 1194 02ca 01       		.uleb128 0x1
+ 1195 02cb 33       		.byte	0x33
+ 1196 02cc 00       		.byte	0
+ 1197 02cd 0C       		.uleb128 0xc
+ 1198 02ce 0E000000 		.4byte	.LVL37
+ 1199 02d2 F3060000 		.4byte	0x6f3
+ 1200 02d6 0A       		.uleb128 0xa
+ 1201 02d7 14000000 		.4byte	.LVL38
+ 1202 02db 00070000 		.4byte	0x700
+ 1203 02df E9020000 		.4byte	0x2e9
+ 1204 02e3 0B       		.uleb128 0xb
+ 1205 02e4 01       		.uleb128 0x1
+ 1206 02e5 50       		.byte	0x50
+ 1207 02e6 01       		.uleb128 0x1
+ 1208 02e7 31       		.byte	0x31
+ 1209 02e8 00       		.byte	0
+ 1210 02e9 0A       		.uleb128 0xa
+ 1211 02ea 1E000000 		.4byte	.LVL39
+ 1212 02ee 11070000 		.4byte	0x711
+ 1213 02f2 FC020000 		.4byte	0x2fc
+ 1214 02f6 0B       		.uleb128 0xb
+ 1215 02f7 01       		.uleb128 0x1
+ 1216 02f8 50       		.byte	0x50
+ 1217 02f9 01       		.uleb128 0x1
+ 1218 02fa 31       		.byte	0x31
+ 1219 02fb 00       		.byte	0
+ 1220 02fc 0A       		.uleb128 0xa
+ 1221 02fd 24000000 		.4byte	.LVL40
+ 1222 0301 22070000 		.4byte	0x722
+ 1223 0305 0F030000 		.4byte	0x30f
+ 1224 0309 0B       		.uleb128 0xb
+ 1225 030a 01       		.uleb128 0x1
+ 1226 030b 50       		.byte	0x50
+ 1227 030c 01       		.uleb128 0x1
+ 1228 030d 3A       		.byte	0x3a
+ 1229 030e 00       		.byte	0
+ 1230 030f 0A       		.uleb128 0xa
+ 1231 0310 2A000000 		.4byte	.LVL41
+ 1232 0314 11070000 		.4byte	0x711
+ 1233 0318 22030000 		.4byte	0x322
+ 1234 031c 0B       		.uleb128 0xb
+ 1235 031d 01       		.uleb128 0x1
+ 1236 031e 50       		.byte	0x50
+ 1237 031f 01       		.uleb128 0x1
+ 1238 0320 30       		.byte	0x30
+ 1239 0321 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 26
+
+
+ 1240 0322 0C       		.uleb128 0xc
+ 1241 0323 2E000000 		.4byte	.LVL42
+ 1242 0327 33070000 		.4byte	0x733
+ 1243 032b 0C       		.uleb128 0xc
+ 1244 032c 38000000 		.4byte	.LVL43
+ 1245 0330 67070000 		.4byte	0x767
+ 1246 0334 0C       		.uleb128 0xc
+ 1247 0335 3E000000 		.4byte	.LVL45
+ 1248 0339 33070000 		.4byte	0x733
+ 1249 033d 0C       		.uleb128 0xc
+ 1250 033e 48000000 		.4byte	.LVL46
+ 1251 0342 67070000 		.4byte	0x767
+ 1252 0346 0A       		.uleb128 0xa
+ 1253 0347 52000000 		.4byte	.LVL49
+ 1254 034b 49070000 		.4byte	0x749
+ 1255 034f 59030000 		.4byte	0x359
+ 1256 0353 0B       		.uleb128 0xb
+ 1257 0354 01       		.uleb128 0x1
+ 1258 0355 50       		.byte	0x50
+ 1259 0356 01       		.uleb128 0x1
+ 1260 0357 31       		.byte	0x31
+ 1261 0358 00       		.byte	0
+ 1262 0359 0A       		.uleb128 0xa
+ 1263 035a 58000000 		.4byte	.LVL50
+ 1264 035e 22070000 		.4byte	0x722
+ 1265 0362 6C030000 		.4byte	0x36c
+ 1266 0366 0B       		.uleb128 0xb
+ 1267 0367 01       		.uleb128 0x1
+ 1268 0368 50       		.byte	0x50
+ 1269 0369 01       		.uleb128 0x1
+ 1270 036a 3A       		.byte	0x3a
+ 1271 036b 00       		.byte	0
+ 1272 036c 0A       		.uleb128 0xa
+ 1273 036d 5E000000 		.4byte	.LVL51
+ 1274 0371 49070000 		.4byte	0x749
+ 1275 0375 7F030000 		.4byte	0x37f
+ 1276 0379 0B       		.uleb128 0xb
+ 1277 037a 01       		.uleb128 0x1
+ 1278 037b 50       		.byte	0x50
+ 1279 037c 01       		.uleb128 0x1
+ 1280 037d 30       		.byte	0x30
+ 1281 037e 00       		.byte	0
+ 1282 037f 0C       		.uleb128 0xc
+ 1283 0380 62000000 		.4byte	.LVL52
+ 1284 0384 33070000 		.4byte	0x733
+ 1285 0388 0C       		.uleb128 0xc
+ 1286 0389 6C000000 		.4byte	.LVL53
+ 1287 038d 67070000 		.4byte	0x767
+ 1288 0391 0C       		.uleb128 0xc
+ 1289 0392 72000000 		.4byte	.LVL55
+ 1290 0396 33070000 		.4byte	0x733
+ 1291 039a 0C       		.uleb128 0xc
+ 1292 039b 7C000000 		.4byte	.LVL56
+ 1293 039f 67070000 		.4byte	0x767
+ 1294 03a3 0A       		.uleb128 0xa
+ 1295 03a4 84000000 		.4byte	.LVL58
+ 1296 03a8 00070000 		.4byte	0x700
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 27
+
+
+ 1297 03ac B6030000 		.4byte	0x3b6
+ 1298 03b0 0B       		.uleb128 0xb
+ 1299 03b1 01       		.uleb128 0x1
+ 1300 03b2 50       		.byte	0x50
+ 1301 03b3 01       		.uleb128 0x1
+ 1302 03b4 38       		.byte	0x38
+ 1303 03b5 00       		.byte	0
+ 1304 03b6 0C       		.uleb128 0xc
+ 1305 03b7 8C000000 		.4byte	.LVL61
+ 1306 03bb 5A070000 		.4byte	0x75a
+ 1307 03bf 00       		.byte	0
+ 1308 03c0 06       		.uleb128 0x6
+ 1309 03c1 E2000000 		.4byte	.LASF27
+ 1310 03c5 01       		.byte	0x1
+ 1311 03c6 6B       		.byte	0x6b
+ 1312 03c7 25000000 		.4byte	0x25
+ 1313 03cb 00000000 		.4byte	.LFB65
+ 1314 03cf 24020000 		.4byte	.LFE65-.LFB65
+ 1315 03d3 01       		.uleb128 0x1
+ 1316 03d4 9C       		.byte	0x9c
+ 1317 03d5 DF050000 		.4byte	0x5df
+ 1318 03d9 07       		.uleb128 0x7
+ 1319 03da 1D010000 		.4byte	.LASF28
+ 1320 03de 01       		.byte	0x1
+ 1321 03df 6B       		.byte	0x6b
+ 1322 03e0 DF050000 		.4byte	0x5df
+ 1323 03e4 10010000 		.4byte	.LLST10
+ 1324 03e8 07       		.uleb128 0x7
+ 1325 03e9 43000000 		.4byte	.LASF29
+ 1326 03ed 01       		.byte	0x1
+ 1327 03ee 6B       		.byte	0x6b
+ 1328 03ef DF050000 		.4byte	0x5df
+ 1329 03f3 31010000 		.4byte	.LLST11
+ 1330 03f7 0D       		.uleb128 0xd
+ 1331 03f8 504900   		.ascii	"PI\000"
+ 1332 03fb 01       		.byte	0x1
+ 1333 03fc 6C       		.byte	0x6c
+ 1334 03fd E6050000 		.4byte	0x5e6
+ 1335 0401 08       		.byte	0x8
+ 1336 0402 44174154 		.4byte	0x54411744
+ 1337 0406 FB210940 		.4byte	0x400921fb
+ 1338 040a 0E       		.uleb128 0xe
+ 1339 040b 1B000000 		.4byte	.LASF30
+ 1340 040f 01       		.byte	0x1
+ 1341 0410 6D       		.byte	0x6d
+ 1342 0411 E6050000 		.4byte	0x5e6
+ 1343 0415 08       		.byte	0x8
+ 1344 0416 00000000 		.4byte	0
+ 1345 041a 0000E03F 		.4byte	0x3fe00000
+ 1346 041e 08       		.uleb128 0x8
+ 1347 041f 2F000000 		.4byte	.LASF31
+ 1348 0423 01       		.byte	0x1
+ 1349 0424 6E       		.byte	0x6e
+ 1350 0425 25000000 		.4byte	0x25
+ 1351 0429 52010000 		.4byte	.LLST12
+ 1352 042d 08       		.uleb128 0x8
+ 1353 042e 39000000 		.4byte	.LASF32
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 28
+
+
+ 1354 0432 01       		.byte	0x1
+ 1355 0433 6F       		.byte	0x6f
+ 1356 0434 25000000 		.4byte	0x25
+ 1357 0438 C2010000 		.4byte	.LLST13
+ 1358 043c 08       		.uleb128 0x8
+ 1359 043d DB010000 		.4byte	.LASF33
+ 1360 0441 01       		.byte	0x1
+ 1361 0442 70       		.byte	0x70
+ 1362 0443 25000000 		.4byte	0x25
+ 1363 0447 1E020000 		.4byte	.LLST14
+ 1364 044b 08       		.uleb128 0x8
+ 1365 044c E0020000 		.4byte	.LASF34
+ 1366 0450 01       		.byte	0x1
+ 1367 0451 71       		.byte	0x71
+ 1368 0452 25000000 		.4byte	0x25
+ 1369 0456 AA020000 		.4byte	.LLST15
+ 1370 045a 0F       		.uleb128 0xf
+ 1371 045b 6E00     		.ascii	"n\000"
+ 1372 045d 01       		.byte	0x1
+ 1373 045e 72       		.byte	0x72
+ 1374 045f 6F000000 		.4byte	0x6f
+ 1375 0463 C2020000 		.4byte	.LLST16
+ 1376 0467 0F       		.uleb128 0xf
+ 1377 0468 6900     		.ascii	"i\000"
+ 1378 046a 01       		.byte	0x1
+ 1379 046b 73       		.byte	0x73
+ 1380 046c 88000000 		.4byte	0x88
+ 1381 0470 D6020000 		.4byte	.LLST17
+ 1382 0474 08       		.uleb128 0x8
+ 1383 0475 07030000 		.4byte	.LASF35
+ 1384 0479 01       		.byte	0x1
+ 1385 047a 74       		.byte	0x74
+ 1386 047b 88000000 		.4byte	0x88
+ 1387 047f FF020000 		.4byte	.LLST18
+ 1388 0483 08       		.uleb128 0x8
+ 1389 0484 16010000 		.4byte	.LASF36
+ 1390 0488 01       		.byte	0x1
+ 1391 0489 75       		.byte	0x75
+ 1392 048a 88000000 		.4byte	0x88
+ 1393 048e 3F030000 		.4byte	.LLST19
+ 1394 0492 08       		.uleb128 0x8
+ 1395 0493 65030000 		.4byte	.LASF37
+ 1396 0497 01       		.byte	0x1
+ 1397 0498 76       		.byte	0x76
+ 1398 0499 25000000 		.4byte	0x25
+ 1399 049d 69030000 		.4byte	.LLST20
+ 1400 04a1 0A       		.uleb128 0xa
+ 1401 04a2 24000000 		.4byte	.LVL71
+ 1402 04a6 44020000 		.4byte	0x244
+ 1403 04aa B4040000 		.4byte	0x4b4
+ 1404 04ae 0B       		.uleb128 0xb
+ 1405 04af 01       		.uleb128 0x1
+ 1406 04b0 50       		.byte	0x50
+ 1407 04b1 01       		.uleb128 0x1
+ 1408 04b2 30       		.byte	0x30
+ 1409 04b3 00       		.byte	0
+ 1410 04b4 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 29
+
+
+ 1411 04b5 30000000 		.4byte	.LVL74
+ 1412 04b9 C8000000 		.4byte	0xc8
+ 1413 04bd C7040000 		.4byte	0x4c7
+ 1414 04c1 0B       		.uleb128 0xb
+ 1415 04c2 01       		.uleb128 0x1
+ 1416 04c3 50       		.byte	0x50
+ 1417 04c4 01       		.uleb128 0x1
+ 1418 04c5 30       		.byte	0x30
+ 1419 04c6 00       		.byte	0
+ 1420 04c7 0A       		.uleb128 0xa
+ 1421 04c8 3A000000 		.4byte	.LVL76
+ 1422 04cc 72070000 		.4byte	0x772
+ 1423 04d0 DB040000 		.4byte	0x4db
+ 1424 04d4 0B       		.uleb128 0xb
+ 1425 04d5 01       		.uleb128 0x1
+ 1426 04d6 50       		.byte	0x50
+ 1427 04d7 02       		.uleb128 0x2
+ 1428 04d8 08       		.byte	0x8
+ 1429 04d9 32       		.byte	0x32
+ 1430 04da 00       		.byte	0
+ 1431 04db 0A       		.uleb128 0xa
+ 1432 04dc 42000000 		.4byte	.LVL77
+ 1433 04e0 44020000 		.4byte	0x244
+ 1434 04e4 EE040000 		.4byte	0x4ee
+ 1435 04e8 0B       		.uleb128 0xb
+ 1436 04e9 01       		.uleb128 0x1
+ 1437 04ea 50       		.byte	0x50
+ 1438 04eb 01       		.uleb128 0x1
+ 1439 04ec 31       		.byte	0x31
+ 1440 04ed 00       		.byte	0
+ 1441 04ee 0A       		.uleb128 0xa
+ 1442 04ef 4E000000 		.4byte	.LVL80
+ 1443 04f3 C8000000 		.4byte	0xc8
+ 1444 04f7 01050000 		.4byte	0x501
+ 1445 04fb 0B       		.uleb128 0xb
+ 1446 04fc 01       		.uleb128 0x1
+ 1447 04fd 50       		.byte	0x50
+ 1448 04fe 01       		.uleb128 0x1
+ 1449 04ff 31       		.byte	0x31
+ 1450 0500 00       		.byte	0
+ 1451 0501 0A       		.uleb128 0xa
+ 1452 0502 88000000 		.4byte	.LVL89
+ 1453 0506 83070000 		.4byte	0x783
+ 1454 050a 23050000 		.4byte	0x523
+ 1455 050e 0B       		.uleb128 0xb
+ 1456 050f 06       		.uleb128 0x6
+ 1457 0510 52       		.byte	0x52
+ 1458 0511 93       		.byte	0x93
+ 1459 0512 04       		.uleb128 0x4
+ 1460 0513 53       		.byte	0x53
+ 1461 0514 93       		.byte	0x93
+ 1462 0515 04       		.uleb128 0x4
+ 1463 0516 0B       		.uleb128 0xb
+ 1464 0517 F4       		.byte	0xf4
+ 1465 0518 25       		.uleb128 0x25
+ 1466 0519 08       		.byte	0x8
+ 1467 051a 9A999999 		.4byte	0x9999999a
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 30
+
+
+ 1468 051e 9999C93F 		.4byte	0x3fc99999
+ 1469 0522 00       		.byte	0
+ 1470 0523 0C       		.uleb128 0xc
+ 1471 0524 B6000000 		.4byte	.LVL94
+ 1472 0528 9D070000 		.4byte	0x79d
+ 1473 052c 0A       		.uleb128 0xa
+ 1474 052d DA000000 		.4byte	.LVL98
+ 1475 0531 83070000 		.4byte	0x783
+ 1476 0535 4E050000 		.4byte	0x54e
+ 1477 0539 0B       		.uleb128 0xb
+ 1478 053a 06       		.uleb128 0x6
+ 1479 053b 52       		.byte	0x52
+ 1480 053c 93       		.byte	0x93
+ 1481 053d 04       		.uleb128 0x4
+ 1482 053e 53       		.byte	0x53
+ 1483 053f 93       		.byte	0x93
+ 1484 0540 04       		.uleb128 0x4
+ 1485 0541 0B       		.uleb128 0xb
+ 1486 0542 F4       		.byte	0xf4
+ 1487 0543 25       		.uleb128 0x25
+ 1488 0544 08       		.byte	0x8
+ 1489 0545 CDCCCCCC 		.4byte	0xcccccccd
+ 1490 0549 CCCCFC3F 		.4byte	0x3ffccccc
+ 1491 054d 00       		.byte	0
+ 1492 054e 0C       		.uleb128 0xc
+ 1493 054f 0E010000 		.4byte	.LVL104
+ 1494 0553 B2070000 		.4byte	0x7b2
+ 1495 0557 0C       		.uleb128 0xc
+ 1496 0558 2A010000 		.4byte	.LVL107
+ 1497 055c C3070000 		.4byte	0x7c3
+ 1498 0560 0A       		.uleb128 0xa
+ 1499 0561 34010000 		.4byte	.LVL109
+ 1500 0565 44020000 		.4byte	0x244
+ 1501 0569 73050000 		.4byte	0x573
+ 1502 056d 0B       		.uleb128 0xb
+ 1503 056e 01       		.uleb128 0x1
+ 1504 056f 50       		.byte	0x50
+ 1505 0570 01       		.uleb128 0x1
+ 1506 0571 30       		.byte	0x30
+ 1507 0572 00       		.byte	0
+ 1508 0573 0A       		.uleb128 0xa
+ 1509 0574 40010000 		.4byte	.LVL112
+ 1510 0578 C8000000 		.4byte	0xc8
+ 1511 057c 86050000 		.4byte	0x586
+ 1512 0580 0B       		.uleb128 0xb
+ 1513 0581 01       		.uleb128 0x1
+ 1514 0582 50       		.byte	0x50
+ 1515 0583 01       		.uleb128 0x1
+ 1516 0584 30       		.byte	0x30
+ 1517 0585 00       		.byte	0
+ 1518 0586 0A       		.uleb128 0xa
+ 1519 0587 4A010000 		.4byte	.LVL114
+ 1520 058b 72070000 		.4byte	0x772
+ 1521 058f 9A050000 		.4byte	0x59a
+ 1522 0593 0B       		.uleb128 0xb
+ 1523 0594 01       		.uleb128 0x1
+ 1524 0595 50       		.byte	0x50
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 31
+
+
+ 1525 0596 02       		.uleb128 0x2
+ 1526 0597 08       		.byte	0x8
+ 1527 0598 64       		.byte	0x64
+ 1528 0599 00       		.byte	0
+ 1529 059a 0A       		.uleb128 0xa
+ 1530 059b 52010000 		.4byte	.LVL115
+ 1531 059f 44020000 		.4byte	0x244
+ 1532 05a3 AD050000 		.4byte	0x5ad
+ 1533 05a7 0B       		.uleb128 0xb
+ 1534 05a8 01       		.uleb128 0x1
+ 1535 05a9 50       		.byte	0x50
+ 1536 05aa 01       		.uleb128 0x1
+ 1537 05ab 31       		.byte	0x31
+ 1538 05ac 00       		.byte	0
+ 1539 05ad 0A       		.uleb128 0xa
+ 1540 05ae 5E010000 		.4byte	.LVL118
+ 1541 05b2 C8000000 		.4byte	0xc8
+ 1542 05b6 C0050000 		.4byte	0x5c0
+ 1543 05ba 0B       		.uleb128 0xb
+ 1544 05bb 01       		.uleb128 0x1
+ 1545 05bc 50       		.byte	0x50
+ 1546 05bd 01       		.uleb128 0x1
+ 1547 05be 31       		.byte	0x31
+ 1548 05bf 00       		.byte	0
+ 1549 05c0 10       		.uleb128 0x10
+ 1550 05c1 98010000 		.4byte	.LVL127
+ 1551 05c5 83070000 		.4byte	0x783
+ 1552 05c9 0B       		.uleb128 0xb
+ 1553 05ca 06       		.uleb128 0x6
+ 1554 05cb 52       		.byte	0x52
+ 1555 05cc 93       		.byte	0x93
+ 1556 05cd 04       		.uleb128 0x4
+ 1557 05ce 53       		.byte	0x53
+ 1558 05cf 93       		.byte	0x93
+ 1559 05d0 04       		.uleb128 0x4
+ 1560 05d1 0B       		.uleb128 0xb
+ 1561 05d2 F4       		.byte	0xf4
+ 1562 05d3 25       		.uleb128 0x25
+ 1563 05d4 08       		.byte	0x8
+ 1564 05d5 9A999999 		.4byte	0x9999999a
+ 1565 05d9 9999C93F 		.4byte	0x3fc99999
+ 1566 05dd 00       		.byte	0
+ 1567 05de 00       		.byte	0
+ 1568 05df 02       		.uleb128 0x2
+ 1569 05e0 01       		.byte	0x1
+ 1570 05e1 02       		.byte	0x2
+ 1571 05e2 95020000 		.4byte	.LASF38
+ 1572 05e6 11       		.uleb128 0x11
+ 1573 05e7 25000000 		.4byte	0x25
+ 1574 05eb 12       		.uleb128 0x12
+ 1575 05ec 4E030000 		.4byte	.LASF62
+ 1576 05f0 01       		.byte	0x1
+ 1577 05f1 A4       		.byte	0xa4
+ 1578 05f2 00000000 		.4byte	.LFB66
+ 1579 05f6 E0000000 		.4byte	.LFE66-.LFB66
+ 1580 05fa 01       		.uleb128 0x1
+ 1581 05fb 9C       		.byte	0x9c
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 32
+
+
+ 1582 05fc B0060000 		.4byte	0x6b0
+ 1583 0600 07       		.uleb128 0x7
+ 1584 0601 EA010000 		.4byte	.LASF39
+ 1585 0605 01       		.byte	0x1
+ 1586 0606 A4       		.byte	0xa4
+ 1587 0607 25000000 		.4byte	0x25
+ 1588 060b 91030000 		.4byte	.LLST21
+ 1589 060f 07       		.uleb128 0x7
+ 1590 0610 1D010000 		.4byte	.LASF28
+ 1591 0614 01       		.byte	0x1
+ 1592 0615 A4       		.byte	0xa4
+ 1593 0616 DF050000 		.4byte	0x5df
+ 1594 061a B9030000 		.4byte	.LLST22
+ 1595 061e 07       		.uleb128 0x7
+ 1596 061f 43000000 		.4byte	.LASF29
+ 1597 0623 01       		.byte	0x1
+ 1598 0624 A4       		.byte	0xa4
+ 1599 0625 DF050000 		.4byte	0x5df
+ 1600 0629 DA030000 		.4byte	.LLST23
+ 1601 062d 07       		.uleb128 0x7
+ 1602 062e 02030000 		.4byte	.LASF40
+ 1603 0632 01       		.byte	0x1
+ 1604 0633 A4       		.byte	0xa4
+ 1605 0634 AC000000 		.4byte	0xac
+ 1606 0638 FB030000 		.4byte	.LLST24
+ 1607 063c 08       		.uleb128 0x8
+ 1608 063d B1010000 		.4byte	.LASF23
+ 1609 0641 01       		.byte	0x1
+ 1610 0642 A5       		.byte	0xa5
+ 1611 0643 25000000 		.4byte	0x25
+ 1612 0647 1B040000 		.4byte	.LLST25
+ 1613 064b 0A       		.uleb128 0xa
+ 1614 064c 14000000 		.4byte	.LVL147
+ 1615 0650 C0030000 		.4byte	0x3c0
+ 1616 0654 65060000 		.4byte	0x665
+ 1617 0658 0B       		.uleb128 0xb
+ 1618 0659 01       		.uleb128 0x1
+ 1619 065a 51       		.byte	0x51
+ 1620 065b 02       		.uleb128 0x2
+ 1621 065c 7B       		.byte	0x7b
+ 1622 065d 00       		.sleb128 0
+ 1623 065e 0B       		.uleb128 0xb
+ 1624 065f 01       		.uleb128 0x1
+ 1625 0660 50       		.byte	0x50
+ 1626 0661 02       		.uleb128 0x2
+ 1627 0662 7A       		.byte	0x7a
+ 1628 0663 00       		.sleb128 0
+ 1629 0664 00       		.byte	0
+ 1630 0665 0C       		.uleb128 0xc
+ 1631 0666 48000000 		.4byte	.LVL152
+ 1632 066a 83070000 		.4byte	0x783
+ 1633 066e 0C       		.uleb128 0xc
+ 1634 066f 64000000 		.4byte	.LVL156
+ 1635 0673 D4070000 		.4byte	0x7d4
+ 1636 0677 0A       		.uleb128 0xa
+ 1637 0678 6C000000 		.4byte	.LVL157
+ 1638 067c C0030000 		.4byte	0x3c0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 33
+
+
+ 1639 0680 91060000 		.4byte	0x691
+ 1640 0684 0B       		.uleb128 0xb
+ 1641 0685 01       		.uleb128 0x1
+ 1642 0686 51       		.byte	0x51
+ 1643 0687 02       		.uleb128 0x2
+ 1644 0688 7B       		.byte	0x7b
+ 1645 0689 00       		.sleb128 0
+ 1646 068a 0B       		.uleb128 0xb
+ 1647 068b 01       		.uleb128 0x1
+ 1648 068c 50       		.byte	0x50
+ 1649 068d 02       		.uleb128 0x2
+ 1650 068e 7A       		.byte	0x7a
+ 1651 068f 00       		.sleb128 0
+ 1652 0690 00       		.byte	0
+ 1653 0691 0C       		.uleb128 0xc
+ 1654 0692 8A000000 		.4byte	.LVL162
+ 1655 0696 E5070000 		.4byte	0x7e5
+ 1656 069a 10       		.uleb128 0x10
+ 1657 069b 92000000 		.4byte	.LVL163
+ 1658 069f C0030000 		.4byte	0x3c0
+ 1659 06a3 0B       		.uleb128 0xb
+ 1660 06a4 01       		.uleb128 0x1
+ 1661 06a5 51       		.byte	0x51
+ 1662 06a6 01       		.uleb128 0x1
+ 1663 06a7 30       		.byte	0x30
+ 1664 06a8 0B       		.uleb128 0xb
+ 1665 06a9 01       		.uleb128 0x1
+ 1666 06aa 50       		.byte	0x50
+ 1667 06ab 02       		.uleb128 0x2
+ 1668 06ac 7A       		.byte	0x7a
+ 1669 06ad 00       		.sleb128 0
+ 1670 06ae 00       		.byte	0
+ 1671 06af 00       		.byte	0
+ 1672 06b0 13       		.uleb128 0x13
+ 1673 06b1 41030000 		.4byte	.LASF41
+ 1674 06b5 05       		.byte	0x5
+ 1675 06b6 9606     		.2byte	0x696
+ 1676 06b8 BC060000 		.4byte	0x6bc
+ 1677 06bc 14       		.uleb128 0x14
+ 1678 06bd 7D000000 		.4byte	0x7d
+ 1679 06c1 15       		.uleb128 0x15
+ 1680 06c2 A0000000 		.4byte	0xa0
+ 1681 06c6 D1060000 		.4byte	0x6d1
+ 1682 06ca 16       		.uleb128 0x16
+ 1683 06cb BA000000 		.4byte	0xba
+ 1684 06cf 9F       		.byte	0x9f
+ 1685 06d0 00       		.byte	0
+ 1686 06d1 17       		.uleb128 0x17
+ 1687 06d2 B6010000 		.4byte	.LASF42
+ 1688 06d6 06       		.byte	0x6
+ 1689 06d7 13       		.byte	0x13
+ 1690 06d8 C1060000 		.4byte	0x6c1
+ 1691 06dc 05       		.uleb128 0x5
+ 1692 06dd 03       		.byte	0x3
+ 1693 06de 00000000 		.4byte	Camera_linebuffer
+ 1694 06e2 18       		.uleb128 0x18
+ 1695 06e3 59010000 		.4byte	.LASF43
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 34
+
+
+ 1696 06e7 07       		.byte	0x7
+ 1697 06e8 1B       		.byte	0x1b
+ 1698 06e9 F3060000 		.4byte	0x6f3
+ 1699 06ed 19       		.uleb128 0x19
+ 1700 06ee 6F000000 		.4byte	0x6f
+ 1701 06f2 00       		.byte	0
+ 1702 06f3 1A       		.uleb128 0x1a
+ 1703 06f4 0C000000 		.4byte	.LASF50
+ 1704 06f8 07       		.byte	0x7
+ 1705 06f9 19       		.byte	0x19
+ 1706 06fa 00070000 		.4byte	0x700
+ 1707 06fe 1B       		.uleb128 0x1b
+ 1708 06ff 00       		.byte	0
+ 1709 0700 18       		.uleb128 0x18
+ 1710 0701 F9020000 		.4byte	.LASF44
+ 1711 0705 08       		.byte	0x8
+ 1712 0706 26       		.byte	0x26
+ 1713 0707 11070000 		.4byte	0x711
+ 1714 070b 19       		.uleb128 0x19
+ 1715 070c 88000000 		.4byte	0x88
+ 1716 0710 00       		.byte	0
+ 1717 0711 18       		.uleb128 0x18
+ 1718 0712 A6010000 		.4byte	.LASF45
+ 1719 0716 09       		.byte	0x9
+ 1720 0717 26       		.byte	0x26
+ 1721 0718 22070000 		.4byte	0x722
+ 1722 071c 19       		.uleb128 0x19
+ 1723 071d 88000000 		.4byte	0x88
+ 1724 0721 00       		.byte	0
+ 1725 0722 18       		.uleb128 0x18
+ 1726 0723 2F010000 		.4byte	.LASF46
+ 1727 0727 0A       		.byte	0xa
+ 1728 0728 77       		.byte	0x77
+ 1729 0729 33070000 		.4byte	0x733
+ 1730 072d 19       		.uleb128 0x19
+ 1731 072e 94000000 		.4byte	0x94
+ 1732 0732 00       		.byte	0
+ 1733 0733 1C       		.uleb128 0x1c
+ 1734 0734 00000000 		.4byte	.LASF47
+ 1735 0738 0B       		.byte	0xb
+ 1736 0739 29       		.byte	0x29
+ 1737 073a 88000000 		.4byte	0x88
+ 1738 073e 1C       		.uleb128 0x1c
+ 1739 073f 22030000 		.4byte	.LASF48
+ 1740 0743 0C       		.byte	0xc
+ 1741 0744 69       		.byte	0x69
+ 1742 0745 94000000 		.4byte	0x94
+ 1743 0749 18       		.uleb128 0x18
+ 1744 074a D6000000 		.4byte	.LASF49
+ 1745 074e 0D       		.byte	0xd
+ 1746 074f 26       		.byte	0x26
+ 1747 0750 5A070000 		.4byte	0x75a
+ 1748 0754 19       		.uleb128 0x19
+ 1749 0755 88000000 		.4byte	0x88
+ 1750 0759 00       		.byte	0
+ 1751 075a 1A       		.uleb128 0x1a
+ 1752 075b C9020000 		.4byte	.LASF51
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 35
+
+
+ 1753 075f 07       		.byte	0x7
+ 1754 0760 17       		.byte	0x17
+ 1755 0761 67070000 		.4byte	0x767
+ 1756 0765 1B       		.uleb128 0x1b
+ 1757 0766 00       		.byte	0
+ 1758 0767 1C       		.uleb128 0x1c
+ 1759 0768 4B000000 		.4byte	.LASF52
+ 1760 076c 0E       		.byte	0xe
+ 1761 076d 69       		.byte	0x69
+ 1762 076e 94000000 		.4byte	0x94
+ 1763 0772 18       		.uleb128 0x18
+ 1764 0773 58030000 		.4byte	.LASF53
+ 1765 0777 0A       		.byte	0xa
+ 1766 0778 76       		.byte	0x76
+ 1767 0779 83070000 		.4byte	0x783
+ 1768 077d 19       		.uleb128 0x19
+ 1769 077e A0000000 		.4byte	0xa0
+ 1770 0782 00       		.byte	0
+ 1771 0783 1D       		.uleb128 0x1d
+ 1772 0784 706F7700 		.ascii	"pow\000"
+ 1773 0788 10       		.byte	0x10
+ 1774 0789 85       		.byte	0x85
+ 1775 078a 25000000 		.4byte	0x25
+ 1776 078e 9D070000 		.4byte	0x79d
+ 1777 0792 19       		.uleb128 0x19
+ 1778 0793 25000000 		.4byte	0x25
+ 1779 0797 19       		.uleb128 0x19
+ 1780 0798 25000000 		.4byte	0x25
+ 1781 079c 00       		.byte	0
+ 1782 079d 1E       		.uleb128 0x1e
+ 1783 079e 60030000 		.4byte	.LASF54
+ 1784 07a2 10       		.byte	0x10
+ 1785 07a3 7D       		.byte	0x7d
+ 1786 07a4 25000000 		.4byte	0x25
+ 1787 07a8 B2070000 		.4byte	0x7b2
+ 1788 07ac 19       		.uleb128 0x19
+ 1789 07ad 25000000 		.4byte	0x25
+ 1790 07b1 00       		.byte	0
+ 1791 07b2 18       		.uleb128 0x18
+ 1792 07b3 47010000 		.4byte	.LASF55
+ 1793 07b7 0F       		.byte	0xf
+ 1794 07b8 24       		.byte	0x24
+ 1795 07b9 C3070000 		.4byte	0x7c3
+ 1796 07bd 19       		.uleb128 0x19
+ 1797 07be 25000000 		.4byte	0x25
+ 1798 07c2 00       		.byte	0
+ 1799 07c3 18       		.uleb128 0x18
+ 1800 07c4 6F010000 		.4byte	.LASF56
+ 1801 07c8 0F       		.byte	0xf
+ 1802 07c9 23       		.byte	0x23
+ 1803 07ca D4070000 		.4byte	0x7d4
+ 1804 07ce 19       		.uleb128 0x19
+ 1805 07cf 25000000 		.4byte	0x25
+ 1806 07d3 00       		.byte	0
+ 1807 07d4 18       		.uleb128 0x18
+ 1808 07d5 5F000000 		.4byte	.LASF57
+ 1809 07d9 0F       		.byte	0xf
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 36
+
+
+ 1810 07da 25       		.byte	0x25
+ 1811 07db E5070000 		.4byte	0x7e5
+ 1812 07df 19       		.uleb128 0x19
+ 1813 07e0 94000000 		.4byte	0x94
+ 1814 07e4 00       		.byte	0
+ 1815 07e5 1F       		.uleb128 0x1f
+ 1816 07e6 5E010000 		.4byte	.LASF58
+ 1817 07ea 0F       		.byte	0xf
+ 1818 07eb 26       		.byte	0x26
+ 1819 07ec 19       		.uleb128 0x19
+ 1820 07ed 94000000 		.4byte	0x94
+ 1821 07f1 00       		.byte	0
+ 1822 07f2 00       		.byte	0
+ 1823              		.section	.debug_abbrev,"",%progbits
+ 1824              	.Ldebug_abbrev0:
+ 1825 0000 01       		.uleb128 0x1
+ 1826 0001 11       		.uleb128 0x11
+ 1827 0002 01       		.byte	0x1
+ 1828 0003 25       		.uleb128 0x25
+ 1829 0004 0E       		.uleb128 0xe
+ 1830 0005 13       		.uleb128 0x13
+ 1831 0006 0B       		.uleb128 0xb
+ 1832 0007 03       		.uleb128 0x3
+ 1833 0008 0E       		.uleb128 0xe
+ 1834 0009 1B       		.uleb128 0x1b
+ 1835 000a 0E       		.uleb128 0xe
+ 1836 000b 55       		.uleb128 0x55
+ 1837 000c 17       		.uleb128 0x17
+ 1838 000d 11       		.uleb128 0x11
+ 1839 000e 01       		.uleb128 0x1
+ 1840 000f 10       		.uleb128 0x10
+ 1841 0010 17       		.uleb128 0x17
+ 1842 0011 00       		.byte	0
+ 1843 0012 00       		.byte	0
+ 1844 0013 02       		.uleb128 0x2
+ 1845 0014 24       		.uleb128 0x24
+ 1846 0015 00       		.byte	0
+ 1847 0016 0B       		.uleb128 0xb
+ 1848 0017 0B       		.uleb128 0xb
+ 1849 0018 3E       		.uleb128 0x3e
+ 1850 0019 0B       		.uleb128 0xb
+ 1851 001a 03       		.uleb128 0x3
+ 1852 001b 0E       		.uleb128 0xe
+ 1853 001c 00       		.byte	0
+ 1854 001d 00       		.byte	0
+ 1855 001e 03       		.uleb128 0x3
+ 1856 001f 16       		.uleb128 0x16
+ 1857 0020 00       		.byte	0
+ 1858 0021 03       		.uleb128 0x3
+ 1859 0022 0E       		.uleb128 0xe
+ 1860 0023 3A       		.uleb128 0x3a
+ 1861 0024 0B       		.uleb128 0xb
+ 1862 0025 3B       		.uleb128 0x3b
+ 1863 0026 0B       		.uleb128 0xb
+ 1864 0027 49       		.uleb128 0x49
+ 1865 0028 13       		.uleb128 0x13
+ 1866 0029 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 37
+
+
+ 1867 002a 00       		.byte	0
+ 1868 002b 04       		.uleb128 0x4
+ 1869 002c 24       		.uleb128 0x24
+ 1870 002d 00       		.byte	0
+ 1871 002e 0B       		.uleb128 0xb
+ 1872 002f 0B       		.uleb128 0xb
+ 1873 0030 3E       		.uleb128 0x3e
+ 1874 0031 0B       		.uleb128 0xb
+ 1875 0032 03       		.uleb128 0x3
+ 1876 0033 08       		.uleb128 0x8
+ 1877 0034 00       		.byte	0
+ 1878 0035 00       		.byte	0
+ 1879 0036 05       		.uleb128 0x5
+ 1880 0037 16       		.uleb128 0x16
+ 1881 0038 00       		.byte	0
+ 1882 0039 03       		.uleb128 0x3
+ 1883 003a 0E       		.uleb128 0xe
+ 1884 003b 3A       		.uleb128 0x3a
+ 1885 003c 0B       		.uleb128 0xb
+ 1886 003d 3B       		.uleb128 0x3b
+ 1887 003e 05       		.uleb128 0x5
+ 1888 003f 49       		.uleb128 0x49
+ 1889 0040 13       		.uleb128 0x13
+ 1890 0041 00       		.byte	0
+ 1891 0042 00       		.byte	0
+ 1892 0043 06       		.uleb128 0x6
+ 1893 0044 2E       		.uleb128 0x2e
+ 1894 0045 01       		.byte	0x1
+ 1895 0046 3F       		.uleb128 0x3f
+ 1896 0047 19       		.uleb128 0x19
+ 1897 0048 03       		.uleb128 0x3
+ 1898 0049 0E       		.uleb128 0xe
+ 1899 004a 3A       		.uleb128 0x3a
+ 1900 004b 0B       		.uleb128 0xb
+ 1901 004c 3B       		.uleb128 0x3b
+ 1902 004d 0B       		.uleb128 0xb
+ 1903 004e 27       		.uleb128 0x27
+ 1904 004f 19       		.uleb128 0x19
+ 1905 0050 49       		.uleb128 0x49
+ 1906 0051 13       		.uleb128 0x13
+ 1907 0052 11       		.uleb128 0x11
+ 1908 0053 01       		.uleb128 0x1
+ 1909 0054 12       		.uleb128 0x12
+ 1910 0055 06       		.uleb128 0x6
+ 1911 0056 40       		.uleb128 0x40
+ 1912 0057 18       		.uleb128 0x18
+ 1913 0058 9642     		.uleb128 0x2116
+ 1914 005a 19       		.uleb128 0x19
+ 1915 005b 01       		.uleb128 0x1
+ 1916 005c 13       		.uleb128 0x13
+ 1917 005d 00       		.byte	0
+ 1918 005e 00       		.byte	0
+ 1919 005f 07       		.uleb128 0x7
+ 1920 0060 05       		.uleb128 0x5
+ 1921 0061 00       		.byte	0
+ 1922 0062 03       		.uleb128 0x3
+ 1923 0063 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 38
+
+
+ 1924 0064 3A       		.uleb128 0x3a
+ 1925 0065 0B       		.uleb128 0xb
+ 1926 0066 3B       		.uleb128 0x3b
+ 1927 0067 0B       		.uleb128 0xb
+ 1928 0068 49       		.uleb128 0x49
+ 1929 0069 13       		.uleb128 0x13
+ 1930 006a 02       		.uleb128 0x2
+ 1931 006b 17       		.uleb128 0x17
+ 1932 006c 00       		.byte	0
+ 1933 006d 00       		.byte	0
+ 1934 006e 08       		.uleb128 0x8
+ 1935 006f 34       		.uleb128 0x34
+ 1936 0070 00       		.byte	0
+ 1937 0071 03       		.uleb128 0x3
+ 1938 0072 0E       		.uleb128 0xe
+ 1939 0073 3A       		.uleb128 0x3a
+ 1940 0074 0B       		.uleb128 0xb
+ 1941 0075 3B       		.uleb128 0x3b
+ 1942 0076 0B       		.uleb128 0xb
+ 1943 0077 49       		.uleb128 0x49
+ 1944 0078 13       		.uleb128 0x13
+ 1945 0079 02       		.uleb128 0x2
+ 1946 007a 17       		.uleb128 0x17
+ 1947 007b 00       		.byte	0
+ 1948 007c 00       		.byte	0
+ 1949 007d 09       		.uleb128 0x9
+ 1950 007e 34       		.uleb128 0x34
+ 1951 007f 00       		.byte	0
+ 1952 0080 03       		.uleb128 0x3
+ 1953 0081 0E       		.uleb128 0xe
+ 1954 0082 3A       		.uleb128 0x3a
+ 1955 0083 0B       		.uleb128 0xb
+ 1956 0084 3B       		.uleb128 0x3b
+ 1957 0085 0B       		.uleb128 0xb
+ 1958 0086 49       		.uleb128 0x49
+ 1959 0087 13       		.uleb128 0x13
+ 1960 0088 02       		.uleb128 0x2
+ 1961 0089 18       		.uleb128 0x18
+ 1962 008a 00       		.byte	0
+ 1963 008b 00       		.byte	0
+ 1964 008c 0A       		.uleb128 0xa
+ 1965 008d 898201   		.uleb128 0x4109
+ 1966 0090 01       		.byte	0x1
+ 1967 0091 11       		.uleb128 0x11
+ 1968 0092 01       		.uleb128 0x1
+ 1969 0093 31       		.uleb128 0x31
+ 1970 0094 13       		.uleb128 0x13
+ 1971 0095 01       		.uleb128 0x1
+ 1972 0096 13       		.uleb128 0x13
+ 1973 0097 00       		.byte	0
+ 1974 0098 00       		.byte	0
+ 1975 0099 0B       		.uleb128 0xb
+ 1976 009a 8A8201   		.uleb128 0x410a
+ 1977 009d 00       		.byte	0
+ 1978 009e 02       		.uleb128 0x2
+ 1979 009f 18       		.uleb128 0x18
+ 1980 00a0 9142     		.uleb128 0x2111
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 39
+
+
+ 1981 00a2 18       		.uleb128 0x18
+ 1982 00a3 00       		.byte	0
+ 1983 00a4 00       		.byte	0
+ 1984 00a5 0C       		.uleb128 0xc
+ 1985 00a6 898201   		.uleb128 0x4109
+ 1986 00a9 00       		.byte	0
+ 1987 00aa 11       		.uleb128 0x11
+ 1988 00ab 01       		.uleb128 0x1
+ 1989 00ac 31       		.uleb128 0x31
+ 1990 00ad 13       		.uleb128 0x13
+ 1991 00ae 00       		.byte	0
+ 1992 00af 00       		.byte	0
+ 1993 00b0 0D       		.uleb128 0xd
+ 1994 00b1 34       		.uleb128 0x34
+ 1995 00b2 00       		.byte	0
+ 1996 00b3 03       		.uleb128 0x3
+ 1997 00b4 08       		.uleb128 0x8
+ 1998 00b5 3A       		.uleb128 0x3a
+ 1999 00b6 0B       		.uleb128 0xb
+ 2000 00b7 3B       		.uleb128 0x3b
+ 2001 00b8 0B       		.uleb128 0xb
+ 2002 00b9 49       		.uleb128 0x49
+ 2003 00ba 13       		.uleb128 0x13
+ 2004 00bb 1C       		.uleb128 0x1c
+ 2005 00bc 0A       		.uleb128 0xa
+ 2006 00bd 00       		.byte	0
+ 2007 00be 00       		.byte	0
+ 2008 00bf 0E       		.uleb128 0xe
+ 2009 00c0 34       		.uleb128 0x34
+ 2010 00c1 00       		.byte	0
+ 2011 00c2 03       		.uleb128 0x3
+ 2012 00c3 0E       		.uleb128 0xe
+ 2013 00c4 3A       		.uleb128 0x3a
+ 2014 00c5 0B       		.uleb128 0xb
+ 2015 00c6 3B       		.uleb128 0x3b
+ 2016 00c7 0B       		.uleb128 0xb
+ 2017 00c8 49       		.uleb128 0x49
+ 2018 00c9 13       		.uleb128 0x13
+ 2019 00ca 1C       		.uleb128 0x1c
+ 2020 00cb 0A       		.uleb128 0xa
+ 2021 00cc 00       		.byte	0
+ 2022 00cd 00       		.byte	0
+ 2023 00ce 0F       		.uleb128 0xf
+ 2024 00cf 34       		.uleb128 0x34
+ 2025 00d0 00       		.byte	0
+ 2026 00d1 03       		.uleb128 0x3
+ 2027 00d2 08       		.uleb128 0x8
+ 2028 00d3 3A       		.uleb128 0x3a
+ 2029 00d4 0B       		.uleb128 0xb
+ 2030 00d5 3B       		.uleb128 0x3b
+ 2031 00d6 0B       		.uleb128 0xb
+ 2032 00d7 49       		.uleb128 0x49
+ 2033 00d8 13       		.uleb128 0x13
+ 2034 00d9 02       		.uleb128 0x2
+ 2035 00da 17       		.uleb128 0x17
+ 2036 00db 00       		.byte	0
+ 2037 00dc 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 40
+
+
+ 2038 00dd 10       		.uleb128 0x10
+ 2039 00de 898201   		.uleb128 0x4109
+ 2040 00e1 01       		.byte	0x1
+ 2041 00e2 11       		.uleb128 0x11
+ 2042 00e3 01       		.uleb128 0x1
+ 2043 00e4 31       		.uleb128 0x31
+ 2044 00e5 13       		.uleb128 0x13
+ 2045 00e6 00       		.byte	0
+ 2046 00e7 00       		.byte	0
+ 2047 00e8 11       		.uleb128 0x11
+ 2048 00e9 26       		.uleb128 0x26
+ 2049 00ea 00       		.byte	0
+ 2050 00eb 49       		.uleb128 0x49
+ 2051 00ec 13       		.uleb128 0x13
+ 2052 00ed 00       		.byte	0
+ 2053 00ee 00       		.byte	0
+ 2054 00ef 12       		.uleb128 0x12
+ 2055 00f0 2E       		.uleb128 0x2e
+ 2056 00f1 01       		.byte	0x1
+ 2057 00f2 3F       		.uleb128 0x3f
+ 2058 00f3 19       		.uleb128 0x19
+ 2059 00f4 03       		.uleb128 0x3
+ 2060 00f5 0E       		.uleb128 0xe
+ 2061 00f6 3A       		.uleb128 0x3a
+ 2062 00f7 0B       		.uleb128 0xb
+ 2063 00f8 3B       		.uleb128 0x3b
+ 2064 00f9 0B       		.uleb128 0xb
+ 2065 00fa 27       		.uleb128 0x27
+ 2066 00fb 19       		.uleb128 0x19
+ 2067 00fc 11       		.uleb128 0x11
+ 2068 00fd 01       		.uleb128 0x1
+ 2069 00fe 12       		.uleb128 0x12
+ 2070 00ff 06       		.uleb128 0x6
+ 2071 0100 40       		.uleb128 0x40
+ 2072 0101 18       		.uleb128 0x18
+ 2073 0102 9642     		.uleb128 0x2116
+ 2074 0104 19       		.uleb128 0x19
+ 2075 0105 01       		.uleb128 0x1
+ 2076 0106 13       		.uleb128 0x13
+ 2077 0107 00       		.byte	0
+ 2078 0108 00       		.byte	0
+ 2079 0109 13       		.uleb128 0x13
+ 2080 010a 34       		.uleb128 0x34
+ 2081 010b 00       		.byte	0
+ 2082 010c 03       		.uleb128 0x3
+ 2083 010d 0E       		.uleb128 0xe
+ 2084 010e 3A       		.uleb128 0x3a
+ 2085 010f 0B       		.uleb128 0xb
+ 2086 0110 3B       		.uleb128 0x3b
+ 2087 0111 05       		.uleb128 0x5
+ 2088 0112 49       		.uleb128 0x49
+ 2089 0113 13       		.uleb128 0x13
+ 2090 0114 3F       		.uleb128 0x3f
+ 2091 0115 19       		.uleb128 0x19
+ 2092 0116 3C       		.uleb128 0x3c
+ 2093 0117 19       		.uleb128 0x19
+ 2094 0118 00       		.byte	0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 41
+
+
+ 2095 0119 00       		.byte	0
+ 2096 011a 14       		.uleb128 0x14
+ 2097 011b 35       		.uleb128 0x35
+ 2098 011c 00       		.byte	0
+ 2099 011d 49       		.uleb128 0x49
+ 2100 011e 13       		.uleb128 0x13
+ 2101 011f 00       		.byte	0
+ 2102 0120 00       		.byte	0
+ 2103 0121 15       		.uleb128 0x15
+ 2104 0122 01       		.uleb128 0x1
+ 2105 0123 01       		.byte	0x1
+ 2106 0124 49       		.uleb128 0x49
+ 2107 0125 13       		.uleb128 0x13
+ 2108 0126 01       		.uleb128 0x1
+ 2109 0127 13       		.uleb128 0x13
+ 2110 0128 00       		.byte	0
+ 2111 0129 00       		.byte	0
+ 2112 012a 16       		.uleb128 0x16
+ 2113 012b 21       		.uleb128 0x21
+ 2114 012c 00       		.byte	0
+ 2115 012d 49       		.uleb128 0x49
+ 2116 012e 13       		.uleb128 0x13
+ 2117 012f 2F       		.uleb128 0x2f
+ 2118 0130 0B       		.uleb128 0xb
+ 2119 0131 00       		.byte	0
+ 2120 0132 00       		.byte	0
+ 2121 0133 17       		.uleb128 0x17
+ 2122 0134 34       		.uleb128 0x34
+ 2123 0135 00       		.byte	0
+ 2124 0136 03       		.uleb128 0x3
+ 2125 0137 0E       		.uleb128 0xe
+ 2126 0138 3A       		.uleb128 0x3a
+ 2127 0139 0B       		.uleb128 0xb
+ 2128 013a 3B       		.uleb128 0x3b
+ 2129 013b 0B       		.uleb128 0xb
+ 2130 013c 49       		.uleb128 0x49
+ 2131 013d 13       		.uleb128 0x13
+ 2132 013e 3F       		.uleb128 0x3f
+ 2133 013f 19       		.uleb128 0x19
+ 2134 0140 02       		.uleb128 0x2
+ 2135 0141 18       		.uleb128 0x18
+ 2136 0142 00       		.byte	0
+ 2137 0143 00       		.byte	0
+ 2138 0144 18       		.uleb128 0x18
+ 2139 0145 2E       		.uleb128 0x2e
+ 2140 0146 01       		.byte	0x1
+ 2141 0147 3F       		.uleb128 0x3f
+ 2142 0148 19       		.uleb128 0x19
+ 2143 0149 03       		.uleb128 0x3
+ 2144 014a 0E       		.uleb128 0xe
+ 2145 014b 3A       		.uleb128 0x3a
+ 2146 014c 0B       		.uleb128 0xb
+ 2147 014d 3B       		.uleb128 0x3b
+ 2148 014e 0B       		.uleb128 0xb
+ 2149 014f 27       		.uleb128 0x27
+ 2150 0150 19       		.uleb128 0x19
+ 2151 0151 3C       		.uleb128 0x3c
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 42
+
+
+ 2152 0152 19       		.uleb128 0x19
+ 2153 0153 01       		.uleb128 0x1
+ 2154 0154 13       		.uleb128 0x13
+ 2155 0155 00       		.byte	0
+ 2156 0156 00       		.byte	0
+ 2157 0157 19       		.uleb128 0x19
+ 2158 0158 05       		.uleb128 0x5
+ 2159 0159 00       		.byte	0
+ 2160 015a 49       		.uleb128 0x49
+ 2161 015b 13       		.uleb128 0x13
+ 2162 015c 00       		.byte	0
+ 2163 015d 00       		.byte	0
+ 2164 015e 1A       		.uleb128 0x1a
+ 2165 015f 2E       		.uleb128 0x2e
+ 2166 0160 01       		.byte	0x1
+ 2167 0161 3F       		.uleb128 0x3f
+ 2168 0162 19       		.uleb128 0x19
+ 2169 0163 03       		.uleb128 0x3
+ 2170 0164 0E       		.uleb128 0xe
+ 2171 0165 3A       		.uleb128 0x3a
+ 2172 0166 0B       		.uleb128 0xb
+ 2173 0167 3B       		.uleb128 0x3b
+ 2174 0168 0B       		.uleb128 0xb
+ 2175 0169 3C       		.uleb128 0x3c
+ 2176 016a 19       		.uleb128 0x19
+ 2177 016b 01       		.uleb128 0x1
+ 2178 016c 13       		.uleb128 0x13
+ 2179 016d 00       		.byte	0
+ 2180 016e 00       		.byte	0
+ 2181 016f 1B       		.uleb128 0x1b
+ 2182 0170 18       		.uleb128 0x18
+ 2183 0171 00       		.byte	0
+ 2184 0172 00       		.byte	0
+ 2185 0173 00       		.byte	0
+ 2186 0174 1C       		.uleb128 0x1c
+ 2187 0175 2E       		.uleb128 0x2e
+ 2188 0176 00       		.byte	0
+ 2189 0177 3F       		.uleb128 0x3f
+ 2190 0178 19       		.uleb128 0x19
+ 2191 0179 03       		.uleb128 0x3
+ 2192 017a 0E       		.uleb128 0xe
+ 2193 017b 3A       		.uleb128 0x3a
+ 2194 017c 0B       		.uleb128 0xb
+ 2195 017d 3B       		.uleb128 0x3b
+ 2196 017e 0B       		.uleb128 0xb
+ 2197 017f 27       		.uleb128 0x27
+ 2198 0180 19       		.uleb128 0x19
+ 2199 0181 49       		.uleb128 0x49
+ 2200 0182 13       		.uleb128 0x13
+ 2201 0183 3C       		.uleb128 0x3c
+ 2202 0184 19       		.uleb128 0x19
+ 2203 0185 00       		.byte	0
+ 2204 0186 00       		.byte	0
+ 2205 0187 1D       		.uleb128 0x1d
+ 2206 0188 2E       		.uleb128 0x2e
+ 2207 0189 01       		.byte	0x1
+ 2208 018a 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 43
+
+
+ 2209 018b 19       		.uleb128 0x19
+ 2210 018c 03       		.uleb128 0x3
+ 2211 018d 08       		.uleb128 0x8
+ 2212 018e 3A       		.uleb128 0x3a
+ 2213 018f 0B       		.uleb128 0xb
+ 2214 0190 3B       		.uleb128 0x3b
+ 2215 0191 0B       		.uleb128 0xb
+ 2216 0192 27       		.uleb128 0x27
+ 2217 0193 19       		.uleb128 0x19
+ 2218 0194 49       		.uleb128 0x49
+ 2219 0195 13       		.uleb128 0x13
+ 2220 0196 3C       		.uleb128 0x3c
+ 2221 0197 19       		.uleb128 0x19
+ 2222 0198 01       		.uleb128 0x1
+ 2223 0199 13       		.uleb128 0x13
+ 2224 019a 00       		.byte	0
+ 2225 019b 00       		.byte	0
+ 2226 019c 1E       		.uleb128 0x1e
+ 2227 019d 2E       		.uleb128 0x2e
+ 2228 019e 01       		.byte	0x1
+ 2229 019f 3F       		.uleb128 0x3f
+ 2230 01a0 19       		.uleb128 0x19
+ 2231 01a1 03       		.uleb128 0x3
+ 2232 01a2 0E       		.uleb128 0xe
+ 2233 01a3 3A       		.uleb128 0x3a
+ 2234 01a4 0B       		.uleb128 0xb
+ 2235 01a5 3B       		.uleb128 0x3b
+ 2236 01a6 0B       		.uleb128 0xb
+ 2237 01a7 27       		.uleb128 0x27
+ 2238 01a8 19       		.uleb128 0x19
+ 2239 01a9 49       		.uleb128 0x49
+ 2240 01aa 13       		.uleb128 0x13
+ 2241 01ab 3C       		.uleb128 0x3c
+ 2242 01ac 19       		.uleb128 0x19
+ 2243 01ad 01       		.uleb128 0x1
+ 2244 01ae 13       		.uleb128 0x13
+ 2245 01af 00       		.byte	0
+ 2246 01b0 00       		.byte	0
+ 2247 01b1 1F       		.uleb128 0x1f
+ 2248 01b2 2E       		.uleb128 0x2e
+ 2249 01b3 01       		.byte	0x1
+ 2250 01b4 3F       		.uleb128 0x3f
+ 2251 01b5 19       		.uleb128 0x19
+ 2252 01b6 03       		.uleb128 0x3
+ 2253 01b7 0E       		.uleb128 0xe
+ 2254 01b8 3A       		.uleb128 0x3a
+ 2255 01b9 0B       		.uleb128 0xb
+ 2256 01ba 3B       		.uleb128 0x3b
+ 2257 01bb 0B       		.uleb128 0xb
+ 2258 01bc 27       		.uleb128 0x27
+ 2259 01bd 19       		.uleb128 0x19
+ 2260 01be 3C       		.uleb128 0x3c
+ 2261 01bf 19       		.uleb128 0x19
+ 2262 01c0 00       		.byte	0
+ 2263 01c1 00       		.byte	0
+ 2264 01c2 00       		.byte	0
+ 2265              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 44
+
+
+ 2266              	.Ldebug_loc0:
+ 2267              	.LLST0:
+ 2268 0000 00000000 		.4byte	.LVL0
+ 2269 0004 06000000 		.4byte	.LVL1
+ 2270 0008 0100     		.2byte	0x1
+ 2271 000a 50       		.byte	0x50
+ 2272 000b 06000000 		.4byte	.LVL1
+ 2273 000f D0000000 		.4byte	.LFE63
+ 2274 0013 0400     		.2byte	0x4
+ 2275 0015 F3       		.byte	0xf3
+ 2276 0016 01       		.uleb128 0x1
+ 2277 0017 50       		.byte	0x50
+ 2278 0018 9F       		.byte	0x9f
+ 2279 0019 00000000 		.4byte	0
+ 2280 001d 00000000 		.4byte	0
+ 2281              	.LLST1:
+ 2282 0021 3A000000 		.4byte	.LVL10
+ 2283 0025 4C000000 		.4byte	.LVL14
+ 2284 0029 0100     		.2byte	0x1
+ 2285 002b 54       		.byte	0x54
+ 2286 002c 6E000000 		.4byte	.LVL20
+ 2287 0030 86000000 		.4byte	.LVL25
+ 2288 0034 0100     		.2byte	0x1
+ 2289 0036 54       		.byte	0x54
+ 2290 0037 00000000 		.4byte	0
+ 2291 003b 00000000 		.4byte	0
+ 2292              	.LLST2:
+ 2293 003f 4A000000 		.4byte	.LVL13
+ 2294 0043 4C000000 		.4byte	.LVL14
+ 2295 0047 0100     		.2byte	0x1
+ 2296 0049 55       		.byte	0x55
+ 2297 004a 7E000000 		.4byte	.LVL23
+ 2298 004e B8000000 		.4byte	.LVL33
+ 2299 0052 0100     		.2byte	0x1
+ 2300 0054 55       		.byte	0x55
+ 2301 0055 00000000 		.4byte	0
+ 2302 0059 00000000 		.4byte	0
+ 2303              	.LLST3:
+ 2304 005d 88000000 		.4byte	.LVL26
+ 2305 0061 B8000000 		.4byte	.LVL33
+ 2306 0065 0100     		.2byte	0x1
+ 2307 0067 54       		.byte	0x54
+ 2308 0068 00000000 		.4byte	0
+ 2309 006c 00000000 		.4byte	0
+ 2310              	.LLST4:
+ 2311 0070 A4000000 		.4byte	.LVL30
+ 2312 0074 AD000000 		.4byte	.LVL31-1
+ 2313 0078 0600     		.2byte	0x6
+ 2314 007a 50       		.byte	0x50
+ 2315 007b 93       		.byte	0x93
+ 2316 007c 04       		.uleb128 0x4
+ 2317 007d 51       		.byte	0x51
+ 2318 007e 93       		.byte	0x93
+ 2319 007f 04       		.uleb128 0x4
+ 2320 0080 00000000 		.4byte	0
+ 2321 0084 00000000 		.4byte	0
+ 2322              	.LLST5:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 45
+
+
+ 2323 0088 00000000 		.4byte	.LVL34
+ 2324 008c 06000000 		.4byte	.LVL35
+ 2325 0090 0100     		.2byte	0x1
+ 2326 0092 50       		.byte	0x50
+ 2327 0093 06000000 		.4byte	.LVL35
+ 2328 0097 D0000000 		.4byte	.LFE64
+ 2329 009b 0400     		.2byte	0x4
+ 2330 009d F3       		.byte	0xf3
+ 2331 009e 01       		.uleb128 0x1
+ 2332 009f 50       		.byte	0x50
+ 2333 00a0 9F       		.byte	0x9f
+ 2334 00a1 00000000 		.4byte	0
+ 2335 00a5 00000000 		.4byte	0
+ 2336              	.LLST6:
+ 2337 00a9 3A000000 		.4byte	.LVL44
+ 2338 00ad 4C000000 		.4byte	.LVL48
+ 2339 00b1 0100     		.2byte	0x1
+ 2340 00b3 54       		.byte	0x54
+ 2341 00b4 6E000000 		.4byte	.LVL54
+ 2342 00b8 86000000 		.4byte	.LVL59
+ 2343 00bc 0100     		.2byte	0x1
+ 2344 00be 54       		.byte	0x54
+ 2345 00bf 00000000 		.4byte	0
+ 2346 00c3 00000000 		.4byte	0
+ 2347              	.LLST7:
+ 2348 00c7 4A000000 		.4byte	.LVL47
+ 2349 00cb 4C000000 		.4byte	.LVL48
+ 2350 00cf 0100     		.2byte	0x1
+ 2351 00d1 55       		.byte	0x55
+ 2352 00d2 7E000000 		.4byte	.LVL57
+ 2353 00d6 B8000000 		.4byte	.LVL67
+ 2354 00da 0100     		.2byte	0x1
+ 2355 00dc 55       		.byte	0x55
+ 2356 00dd 00000000 		.4byte	0
+ 2357 00e1 00000000 		.4byte	0
+ 2358              	.LLST8:
+ 2359 00e5 88000000 		.4byte	.LVL60
+ 2360 00e9 B8000000 		.4byte	.LVL67
+ 2361 00ed 0100     		.2byte	0x1
+ 2362 00ef 54       		.byte	0x54
+ 2363 00f0 00000000 		.4byte	0
+ 2364 00f4 00000000 		.4byte	0
+ 2365              	.LLST9:
+ 2366 00f8 A4000000 		.4byte	.LVL64
+ 2367 00fc AD000000 		.4byte	.LVL65-1
+ 2368 0100 0600     		.2byte	0x6
+ 2369 0102 50       		.byte	0x50
+ 2370 0103 93       		.byte	0x93
+ 2371 0104 04       		.uleb128 0x4
+ 2372 0105 51       		.byte	0x51
+ 2373 0106 93       		.byte	0x93
+ 2374 0107 04       		.uleb128 0x4
+ 2375 0108 00000000 		.4byte	0
+ 2376 010c 00000000 		.4byte	0
+ 2377              	.LLST10:
+ 2378 0110 00000000 		.4byte	.LVL68
+ 2379 0114 1C000000 		.4byte	.LVL70
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 46
+
+
+ 2380 0118 0100     		.2byte	0x1
+ 2381 011a 50       		.byte	0x50
+ 2382 011b 1C000000 		.4byte	.LVL70
+ 2383 011f 24020000 		.4byte	.LFE65
+ 2384 0123 0400     		.2byte	0x4
+ 2385 0125 F3       		.byte	0xf3
+ 2386 0126 01       		.uleb128 0x1
+ 2387 0127 50       		.byte	0x50
+ 2388 0128 9F       		.byte	0x9f
+ 2389 0129 00000000 		.4byte	0
+ 2390 012d 00000000 		.4byte	0
+ 2391              	.LLST11:
+ 2392 0131 00000000 		.4byte	.LVL68
+ 2393 0135 1C000000 		.4byte	.LVL70
+ 2394 0139 0100     		.2byte	0x1
+ 2395 013b 51       		.byte	0x51
+ 2396 013c 1C000000 		.4byte	.LVL70
+ 2397 0140 24020000 		.4byte	.LFE65
+ 2398 0144 0400     		.2byte	0x4
+ 2399 0146 F3       		.byte	0xf3
+ 2400 0147 01       		.uleb128 0x1
+ 2401 0148 51       		.byte	0x51
+ 2402 0149 9F       		.byte	0x9f
+ 2403 014a 00000000 		.4byte	0
+ 2404 014e 00000000 		.4byte	0
+ 2405              	.LLST12:
+ 2406 0152 0A000000 		.4byte	.LVL69
+ 2407 0156 1C000000 		.4byte	.LVL70
+ 2408 015a 0A00     		.2byte	0xa
+ 2409 015c 9E       		.byte	0x9e
+ 2410 015d 08       		.uleb128 0x8
+ 2411 015e 00000000 		.4byte	0
+ 2412 0162 00000000 		.4byte	0
+ 2413 0166 1C000000 		.4byte	.LVL70
+ 2414 016a 28000000 		.4byte	.LVL72
+ 2415 016e 0200     		.2byte	0x2
+ 2416 0170 7D       		.byte	0x7d
+ 2417 0171 00       		.sleb128 0
+ 2418 0172 28000000 		.4byte	.LVL72
+ 2419 0176 2A000000 		.4byte	.LVL73
+ 2420 017a 0600     		.2byte	0x6
+ 2421 017c 50       		.byte	0x50
+ 2422 017d 93       		.byte	0x93
+ 2423 017e 04       		.uleb128 0x4
+ 2424 017f 51       		.byte	0x51
+ 2425 0180 93       		.byte	0x93
+ 2426 0181 04       		.uleb128 0x4
+ 2427 0182 2A000000 		.4byte	.LVL73
+ 2428 0186 38010000 		.4byte	.LVL110
+ 2429 018a 0200     		.2byte	0x2
+ 2430 018c 7D       		.byte	0x7d
+ 2431 018d 00       		.sleb128 0
+ 2432 018e 38010000 		.4byte	.LVL110
+ 2433 0192 3A010000 		.4byte	.LVL111
+ 2434 0196 0600     		.2byte	0x6
+ 2435 0198 50       		.byte	0x50
+ 2436 0199 93       		.byte	0x93
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 47
+
+
+ 2437 019a 04       		.uleb128 0x4
+ 2438 019b 51       		.byte	0x51
+ 2439 019c 93       		.byte	0x93
+ 2440 019d 04       		.uleb128 0x4
+ 2441 019e 3A010000 		.4byte	.LVL111
+ 2442 01a2 EA010000 		.4byte	.LVL143
+ 2443 01a6 0200     		.2byte	0x2
+ 2444 01a8 7D       		.byte	0x7d
+ 2445 01a9 00       		.sleb128 0
+ 2446 01aa EA010000 		.4byte	.LVL143
+ 2447 01ae 24020000 		.4byte	.LFE65
+ 2448 01b2 0600     		.2byte	0x6
+ 2449 01b4 50       		.byte	0x50
+ 2450 01b5 93       		.byte	0x93
+ 2451 01b6 04       		.uleb128 0x4
+ 2452 01b7 51       		.byte	0x51
+ 2453 01b8 93       		.byte	0x93
+ 2454 01b9 04       		.uleb128 0x4
+ 2455 01ba 00000000 		.4byte	0
+ 2456 01be 00000000 		.4byte	0
+ 2457              	.LLST13:
+ 2458 01c2 0A000000 		.4byte	.LVL69
+ 2459 01c6 1C000000 		.4byte	.LVL70
+ 2460 01ca 0A00     		.2byte	0xa
+ 2461 01cc 9E       		.byte	0x9e
+ 2462 01cd 08       		.uleb128 0x8
+ 2463 01ce 00000000 		.4byte	0
+ 2464 01d2 00000000 		.4byte	0
+ 2465 01d6 46000000 		.4byte	.LVL78
+ 2466 01da 48000000 		.4byte	.LVL79
+ 2467 01de 0600     		.2byte	0x6
+ 2468 01e0 54       		.byte	0x54
+ 2469 01e1 93       		.byte	0x93
+ 2470 01e2 04       		.uleb128 0x4
+ 2471 01e3 55       		.byte	0x55
+ 2472 01e4 93       		.byte	0x93
+ 2473 01e5 04       		.uleb128 0x4
+ 2474 01e6 52000000 		.4byte	.LVL81
+ 2475 01ea 90000000 		.4byte	.LVL91
+ 2476 01ee 0600     		.2byte	0x6
+ 2477 01f0 54       		.byte	0x54
+ 2478 01f1 93       		.byte	0x93
+ 2479 01f2 04       		.uleb128 0x4
+ 2480 01f3 55       		.byte	0x55
+ 2481 01f4 93       		.byte	0x93
+ 2482 01f5 04       		.uleb128 0x4
+ 2483 01f6 56010000 		.4byte	.LVL116
+ 2484 01fa 58010000 		.4byte	.LVL117
+ 2485 01fe 0600     		.2byte	0x6
+ 2486 0200 58       		.byte	0x58
+ 2487 0201 93       		.byte	0x93
+ 2488 0202 04       		.uleb128 0x4
+ 2489 0203 59       		.byte	0x59
+ 2490 0204 93       		.byte	0x93
+ 2491 0205 04       		.uleb128 0x4
+ 2492 0206 62010000 		.4byte	.LVL119
+ 2493 020a B4010000 		.4byte	.LVL134
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 48
+
+
+ 2494 020e 0600     		.2byte	0x6
+ 2495 0210 58       		.byte	0x58
+ 2496 0211 93       		.byte	0x93
+ 2497 0212 04       		.uleb128 0x4
+ 2498 0213 59       		.byte	0x59
+ 2499 0214 93       		.byte	0x93
+ 2500 0215 04       		.uleb128 0x4
+ 2501 0216 00000000 		.4byte	0
+ 2502 021a 00000000 		.4byte	0
+ 2503              	.LLST14:
+ 2504 021e 0A000000 		.4byte	.LVL69
+ 2505 0222 1C000000 		.4byte	.LVL70
+ 2506 0226 0A00     		.2byte	0xa
+ 2507 0228 9E       		.byte	0x9e
+ 2508 0229 08       		.uleb128 0x8
+ 2509 022a 00000000 		.4byte	0
+ 2510 022e 00000000 		.4byte	0
+ 2511 0232 62000000 		.4byte	.LVL83
+ 2512 0236 64000000 		.4byte	.LVL84
+ 2513 023a 0600     		.2byte	0x6
+ 2514 023c 50       		.byte	0x50
+ 2515 023d 93       		.byte	0x93
+ 2516 023e 04       		.uleb128 0x4
+ 2517 023f 51       		.byte	0x51
+ 2518 0240 93       		.byte	0x93
+ 2519 0241 04       		.uleb128 0x4
+ 2520 0242 64000000 		.4byte	.LVL84
+ 2521 0246 66000000 		.4byte	.LVL85
+ 2522 024a 0600     		.2byte	0x6
+ 2523 024c 59       		.byte	0x59
+ 2524 024d 93       		.byte	0x93
+ 2525 024e 04       		.uleb128 0x4
+ 2526 024f 51       		.byte	0x51
+ 2527 0250 93       		.byte	0x93
+ 2528 0251 04       		.uleb128 0x4
+ 2529 0252 66000000 		.4byte	.LVL85
+ 2530 0256 2C010000 		.4byte	.LVL108
+ 2531 025a 0600     		.2byte	0x6
+ 2532 025c 59       		.byte	0x59
+ 2533 025d 93       		.byte	0x93
+ 2534 025e 04       		.uleb128 0x4
+ 2535 025f 58       		.byte	0x58
+ 2536 0260 93       		.byte	0x93
+ 2537 0261 04       		.uleb128 0x4
+ 2538 0262 72010000 		.4byte	.LVL121
+ 2539 0266 74010000 		.4byte	.LVL122
+ 2540 026a 0600     		.2byte	0x6
+ 2541 026c 50       		.byte	0x50
+ 2542 026d 93       		.byte	0x93
+ 2543 026e 04       		.uleb128 0x4
+ 2544 026f 51       		.byte	0x51
+ 2545 0270 93       		.byte	0x93
+ 2546 0271 04       		.uleb128 0x4
+ 2547 0272 74010000 		.4byte	.LVL122
+ 2548 0276 76010000 		.4byte	.LVL123
+ 2549 027a 0600     		.2byte	0x6
+ 2550 027c 57       		.byte	0x57
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 49
+
+
+ 2551 027d 93       		.byte	0x93
+ 2552 027e 04       		.uleb128 0x4
+ 2553 027f 51       		.byte	0x51
+ 2554 0280 93       		.byte	0x93
+ 2555 0281 04       		.uleb128 0x4
+ 2556 0282 76010000 		.4byte	.LVL123
+ 2557 0286 B4010000 		.4byte	.LVL134
+ 2558 028a 0600     		.2byte	0x6
+ 2559 028c 57       		.byte	0x57
+ 2560 028d 93       		.byte	0x93
+ 2561 028e 04       		.uleb128 0x4
+ 2562 028f 55       		.byte	0x55
+ 2563 0290 93       		.byte	0x93
+ 2564 0291 04       		.uleb128 0x4
+ 2565 0292 B4010000 		.4byte	.LVL134
+ 2566 0296 C2010000 		.4byte	.LVL138
+ 2567 029a 0600     		.2byte	0x6
+ 2568 029c 59       		.byte	0x59
+ 2569 029d 93       		.byte	0x93
+ 2570 029e 04       		.uleb128 0x4
+ 2571 029f 58       		.byte	0x58
+ 2572 02a0 93       		.byte	0x93
+ 2573 02a1 04       		.uleb128 0x4
+ 2574 02a2 00000000 		.4byte	0
+ 2575 02a6 00000000 		.4byte	0
+ 2576              	.LLST15:
+ 2577 02aa E6000000 		.4byte	.LVL100
+ 2578 02ae 2C010000 		.4byte	.LVL108
+ 2579 02b2 0600     		.2byte	0x6
+ 2580 02b4 54       		.byte	0x54
+ 2581 02b5 93       		.byte	0x93
+ 2582 02b6 04       		.uleb128 0x4
+ 2583 02b7 55       		.byte	0x55
+ 2584 02b8 93       		.byte	0x93
+ 2585 02b9 04       		.uleb128 0x4
+ 2586 02ba 00000000 		.4byte	0
+ 2587 02be 00000000 		.4byte	0
+ 2588              	.LLST16:
+ 2589 02c2 0A000000 		.4byte	.LVL69
+ 2590 02c6 1C000000 		.4byte	.LVL70
+ 2591 02ca 0200     		.2byte	0x2
+ 2592 02cc 30       		.byte	0x30
+ 2593 02cd 9F       		.byte	0x9f
+ 2594 02ce 00000000 		.4byte	0
+ 2595 02d2 00000000 		.4byte	0
+ 2596              	.LLST17:
+ 2597 02d6 2C010000 		.4byte	.LVL108
+ 2598 02da B0010000 		.4byte	.LVL132
+ 2599 02de 0100     		.2byte	0x1
+ 2600 02e0 54       		.byte	0x54
+ 2601 02e1 B2010000 		.4byte	.LVL133
+ 2602 02e5 B4010000 		.4byte	.LVL134
+ 2603 02e9 0100     		.2byte	0x1
+ 2604 02eb 54       		.byte	0x54
+ 2605 02ec C2010000 		.4byte	.LVL138
+ 2606 02f0 C6010000 		.4byte	.LVL139
+ 2607 02f4 0100     		.2byte	0x1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 50
+
+
+ 2608 02f6 54       		.byte	0x54
+ 2609 02f7 00000000 		.4byte	0
+ 2610 02fb 00000000 		.4byte	0
+ 2611              	.LLST18:
+ 2612 02ff 0A000000 		.4byte	.LVL69
+ 2613 0303 1C000000 		.4byte	.LVL70
+ 2614 0307 0200     		.2byte	0x2
+ 2615 0309 31       		.byte	0x31
+ 2616 030a 9F       		.byte	0x9f
+ 2617 030b 1C000000 		.4byte	.LVL70
+ 2618 030f AC010000 		.4byte	.LVL130
+ 2619 0313 0100     		.2byte	0x1
+ 2620 0315 5B       		.byte	0x5b
+ 2621 0316 AE010000 		.4byte	.LVL131
+ 2622 031a B8010000 		.4byte	.LVL135
+ 2623 031e 0100     		.2byte	0x1
+ 2624 0320 5B       		.byte	0x5b
+ 2625 0321 BC010000 		.4byte	.LVL136
+ 2626 0325 C0010000 		.4byte	.LVL137
+ 2627 0329 0100     		.2byte	0x1
+ 2628 032b 5B       		.byte	0x5b
+ 2629 032c C2010000 		.4byte	.LVL138
+ 2630 0330 EE010000 		.4byte	.LVL144
+ 2631 0334 0100     		.2byte	0x1
+ 2632 0336 5B       		.byte	0x5b
+ 2633 0337 00000000 		.4byte	0
+ 2634 033b 00000000 		.4byte	0
+ 2635              	.LLST19:
+ 2636 033f 0A000000 		.4byte	.LVL69
+ 2637 0343 1C000000 		.4byte	.LVL70
+ 2638 0347 0200     		.2byte	0x2
+ 2639 0349 30       		.byte	0x30
+ 2640 034a 9F       		.byte	0x9f
+ 2641 034b 1C000000 		.4byte	.LVL70
+ 2642 034f D6010000 		.4byte	.LVL140
+ 2643 0353 0100     		.2byte	0x1
+ 2644 0355 5A       		.byte	0x5a
+ 2645 0356 D8010000 		.4byte	.LVL141
+ 2646 035a EE010000 		.4byte	.LVL144
+ 2647 035e 0100     		.2byte	0x1
+ 2648 0360 5A       		.byte	0x5a
+ 2649 0361 00000000 		.4byte	0
+ 2650 0365 00000000 		.4byte	0
+ 2651              	.LLST20:
+ 2652 0369 8C000000 		.4byte	.LVL90
+ 2653 036d 97000000 		.4byte	.LVL92-1
+ 2654 0371 0600     		.2byte	0x6
+ 2655 0373 52       		.byte	0x52
+ 2656 0374 93       		.byte	0x93
+ 2657 0375 04       		.uleb128 0x4
+ 2658 0376 53       		.byte	0x53
+ 2659 0377 93       		.byte	0x93
+ 2660 0378 04       		.uleb128 0x4
+ 2661 0379 9C010000 		.4byte	.LVL128
+ 2662 037d A5010000 		.4byte	.LVL129-1
+ 2663 0381 0600     		.2byte	0x6
+ 2664 0383 52       		.byte	0x52
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 51
+
+
+ 2665 0384 93       		.byte	0x93
+ 2666 0385 04       		.uleb128 0x4
+ 2667 0386 53       		.byte	0x53
+ 2668 0387 93       		.byte	0x93
+ 2669 0388 04       		.uleb128 0x4
+ 2670 0389 00000000 		.4byte	0
+ 2671 038d 00000000 		.4byte	0
+ 2672              	.LLST21:
+ 2673 0391 00000000 		.4byte	.LVL145
+ 2674 0395 0E000000 		.4byte	.LVL146
+ 2675 0399 0600     		.2byte	0x6
+ 2676 039b 50       		.byte	0x50
+ 2677 039c 93       		.byte	0x93
+ 2678 039d 04       		.uleb128 0x4
+ 2679 039e 51       		.byte	0x51
+ 2680 039f 93       		.byte	0x93
+ 2681 03a0 04       		.uleb128 0x4
+ 2682 03a1 0E000000 		.4byte	.LVL146
+ 2683 03a5 E0000000 		.4byte	.LFE66
+ 2684 03a9 0600     		.2byte	0x6
+ 2685 03ab F3       		.byte	0xf3
+ 2686 03ac 03       		.uleb128 0x3
+ 2687 03ad F5       		.byte	0xf5
+ 2688 03ae 00       		.uleb128 0
+ 2689 03af 25       		.uleb128 0x25
+ 2690 03b0 9F       		.byte	0x9f
+ 2691 03b1 00000000 		.4byte	0
+ 2692 03b5 00000000 		.4byte	0
+ 2693              	.LLST22:
+ 2694 03b9 00000000 		.4byte	.LVL145
+ 2695 03bd 13000000 		.4byte	.LVL147-1
+ 2696 03c1 0100     		.2byte	0x1
+ 2697 03c3 52       		.byte	0x52
+ 2698 03c4 13000000 		.4byte	.LVL147-1
+ 2699 03c8 E0000000 		.4byte	.LFE66
+ 2700 03cc 0400     		.2byte	0x4
+ 2701 03ce F3       		.byte	0xf3
+ 2702 03cf 01       		.uleb128 0x1
+ 2703 03d0 52       		.byte	0x52
+ 2704 03d1 9F       		.byte	0x9f
+ 2705 03d2 00000000 		.4byte	0
+ 2706 03d6 00000000 		.4byte	0
+ 2707              	.LLST23:
+ 2708 03da 00000000 		.4byte	.LVL145
+ 2709 03de 13000000 		.4byte	.LVL147-1
+ 2710 03e2 0100     		.2byte	0x1
+ 2711 03e4 53       		.byte	0x53
+ 2712 03e5 13000000 		.4byte	.LVL147-1
+ 2713 03e9 E0000000 		.4byte	.LFE66
+ 2714 03ed 0400     		.2byte	0x4
+ 2715 03ef F3       		.byte	0xf3
+ 2716 03f0 01       		.uleb128 0x1
+ 2717 03f1 53       		.byte	0x53
+ 2718 03f2 9F       		.byte	0x9f
+ 2719 03f3 00000000 		.4byte	0
+ 2720 03f7 00000000 		.4byte	0
+ 2721              	.LLST24:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 52
+
+
+ 2722 03fb 00000000 		.4byte	.LVL145
+ 2723 03ff C2000000 		.4byte	.LVL169
+ 2724 0403 0200     		.2byte	0x2
+ 2725 0405 91       		.byte	0x91
+ 2726 0406 00       		.sleb128 0
+ 2727 0407 C2000000 		.4byte	.LVL169
+ 2728 040b E0000000 		.4byte	.LFE66
+ 2729 040f 0200     		.2byte	0x2
+ 2730 0411 7D       		.byte	0x7d
+ 2731 0412 00       		.sleb128 0
+ 2732 0413 00000000 		.4byte	0
+ 2733 0417 00000000 		.4byte	0
+ 2734              	.LLST25:
+ 2735 041b 18000000 		.4byte	.LVL148
+ 2736 041f 6E000000 		.4byte	.LVL158
+ 2737 0423 0600     		.2byte	0x6
+ 2738 0425 56       		.byte	0x56
+ 2739 0426 93       		.byte	0x93
+ 2740 0427 04       		.uleb128 0x4
+ 2741 0428 57       		.byte	0x57
+ 2742 0429 93       		.byte	0x93
+ 2743 042a 04       		.uleb128 0x4
+ 2744 042b 70000000 		.4byte	.LVL159
+ 2745 042f 94000000 		.4byte	.LVL164
+ 2746 0433 0600     		.2byte	0x6
+ 2747 0435 56       		.byte	0x56
+ 2748 0436 93       		.byte	0x93
+ 2749 0437 04       		.uleb128 0x4
+ 2750 0438 57       		.byte	0x57
+ 2751 0439 93       		.byte	0x93
+ 2752 043a 04       		.uleb128 0x4
+ 2753 043b 96000000 		.4byte	.LVL165
+ 2754 043f C2000000 		.4byte	.LVL169
+ 2755 0443 0600     		.2byte	0x6
+ 2756 0445 56       		.byte	0x56
+ 2757 0446 93       		.byte	0x93
+ 2758 0447 04       		.uleb128 0x4
+ 2759 0448 57       		.byte	0x57
+ 2760 0449 93       		.byte	0x93
+ 2761 044a 04       		.uleb128 0x4
+ 2762 044b 00000000 		.4byte	0
+ 2763 044f 00000000 		.4byte	0
+ 2764              		.section	.debug_aranges,"",%progbits
+ 2765 0000 34000000 		.4byte	0x34
+ 2766 0004 0200     		.2byte	0x2
+ 2767 0006 00000000 		.4byte	.Ldebug_info0
+ 2768 000a 04       		.byte	0x4
+ 2769 000b 00       		.byte	0
+ 2770 000c 0000     		.2byte	0
+ 2771 000e 0000     		.2byte	0
+ 2772 0010 00000000 		.4byte	.LFB63
+ 2773 0014 D0000000 		.4byte	.LFE63-.LFB63
+ 2774 0018 00000000 		.4byte	.LFB64
+ 2775 001c D0000000 		.4byte	.LFE64-.LFB64
+ 2776 0020 00000000 		.4byte	.LFB65
+ 2777 0024 24020000 		.4byte	.LFE65-.LFB65
+ 2778 0028 00000000 		.4byte	.LFB66
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 53
+
+
+ 2779 002c E0000000 		.4byte	.LFE66-.LFB66
+ 2780 0030 00000000 		.4byte	0
+ 2781 0034 00000000 		.4byte	0
+ 2782              		.section	.debug_ranges,"",%progbits
+ 2783              	.Ldebug_ranges0:
+ 2784 0000 00000000 		.4byte	.LFB63
+ 2785 0004 D0000000 		.4byte	.LFE63
+ 2786 0008 00000000 		.4byte	.LFB64
+ 2787 000c D0000000 		.4byte	.LFE64
+ 2788 0010 00000000 		.4byte	.LFB65
+ 2789 0014 24020000 		.4byte	.LFE65
+ 2790 0018 00000000 		.4byte	.LFB66
+ 2791 001c E0000000 		.4byte	.LFE66
+ 2792 0020 00000000 		.4byte	0
+ 2793 0024 00000000 		.4byte	0
+ 2794              		.section	.debug_line,"",%progbits
+ 2795              	.Ldebug_line0:
+ 2796 0000 DE020000 		.section	.debug_str,"MS",%progbits,1
+ 2796      0200D601 
+ 2796      00000201 
+ 2796      FB0E0D00 
+ 2796      01010101 
+ 2797              	.LASF47:
+ 2798 0000 445F5265 		.ascii	"D_Read\000"
+ 2798      616400
+ 2799              	.LASF21:
+ 2800 0007 64696666 		.ascii	"diff\000"
+ 2800      00
+ 2801              	.LASF50:
+ 2802 000c 42694469 		.ascii	"BiDirPortInPut\000"
+ 2802      72506F72 
+ 2802      74496E50 
+ 2802      757400
+ 2803              	.LASF30:
+ 2804 001b 73757072 		.ascii	"supression\000"
+ 2804      65737369 
+ 2804      6F6E00
+ 2805              	.LASF17:
+ 2806 0026 73697A65 		.ascii	"sizetype\000"
+ 2806      74797065 
+ 2806      00
+ 2807              	.LASF31:
+ 2808 002f 64697374 		.ascii	"distance1\000"
+ 2808      616E6365 
+ 2808      3100
+ 2809              	.LASF32:
+ 2810 0039 64697374 		.ascii	"distance2\000"
+ 2810      616E6365 
+ 2810      3200
+ 2811              	.LASF29:
+ 2812 0043 73656E73 		.ascii	"sensors\000"
+ 2812      6F727300 
+ 2813              	.LASF52:
+ 2814 004b 54696D65 		.ascii	"Timer_2_ReadCounter\000"
+ 2814      725F325F 
+ 2814      52656164 
+ 2814      436F756E 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 54
+
+
+ 2814      74657200 
+ 2815              	.LASF57:
+ 2816 005f 4D6F7665 		.ascii	"MovementForward\000"
+ 2816      6D656E74 
+ 2816      466F7277 
+ 2816      61726400 
+ 2817              	.LASF3:
+ 2818 006f 73686F72 		.ascii	"short int\000"
+ 2818      7420696E 
+ 2818      7400
+ 2819              	.LASF13:
+ 2820 0079 75696E74 		.ascii	"uint16\000"
+ 2820      313600
+ 2821              	.LASF26:
+ 2822 0080 73656E73 		.ascii	"sensor\000"
+ 2822      6F7200
+ 2823              	.LASF12:
+ 2824 0087 75696E74 		.ascii	"uint8\000"
+ 2824      3800
+ 2825              	.LASF61:
+ 2826 008d 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 2826      73657273 
+ 2826      5C44616E 
+ 2826      69656C5C 
+ 2826      446F6375 
+ 2827 00bb 20466173 		.ascii	" Faster V3.5\\Display.cydsn\000"
+ 2827      74657220 
+ 2827      56332E35 
+ 2827      5C446973 
+ 2827      706C6179 
+ 2828              	.LASF49:
+ 2829 00d6 55535458 		.ascii	"USTX2_Write\000"
+ 2829      325F5772 
+ 2829      69746500 
+ 2830              	.LASF27:
+ 2831 00e2 57616C6C 		.ascii	"Wall_Align\000"
+ 2831      5F416C69 
+ 2831      676E00
+ 2832              	.LASF1:
+ 2833 00ed 7369676E 		.ascii	"signed char\000"
+ 2833      65642063 
+ 2833      68617200 
+ 2834              	.LASF15:
+ 2835 00f9 666C6F61 		.ascii	"float\000"
+ 2835      7400
+ 2836              	.LASF7:
+ 2837 00ff 6C6F6E67 		.ascii	"long long int\000"
+ 2837      206C6F6E 
+ 2837      6720696E 
+ 2837      7400
+ 2838              	.LASF5:
+ 2839 010d 6C6F6E67 		.ascii	"long int\000"
+ 2839      20696E74 
+ 2839      00
+ 2840              	.LASF36:
+ 2841 0116 66696E69 		.ascii	"finish\000"
+ 2841      736800
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 55
+
+
+ 2842              	.LASF28:
+ 2843 011d 73656E73 		.ascii	"sense\000"
+ 2843      6500
+ 2844              	.LASF18:
+ 2845 0123 6C6F6E67 		.ascii	"long double\000"
+ 2845      20646F75 
+ 2845      626C6500 
+ 2846              	.LASF46:
+ 2847 012f 43794465 		.ascii	"CyDelayUs\000"
+ 2847      6C617955 
+ 2847      7300
+ 2848              	.LASF2:
+ 2849 0139 756E7369 		.ascii	"unsigned char\000"
+ 2849      676E6564 
+ 2849      20636861 
+ 2849      7200
+ 2850              	.LASF55:
+ 2851 0147 4D6F7665 		.ascii	"MovementPivotLeft\000"
+ 2851      6D656E74 
+ 2851      5069766F 
+ 2851      744C6566 
+ 2851      7400
+ 2852              	.LASF43:
+ 2853 0159 42656570 		.ascii	"Beep\000"
+ 2853      00
+ 2854              	.LASF58:
+ 2855 015e 4D6F7665 		.ascii	"MovementBackward\000"
+ 2855      6D656E74 
+ 2855      4261636B 
+ 2855      77617264 
+ 2855      00
+ 2856              	.LASF56:
+ 2857 016f 4D6F7665 		.ascii	"MovementPivotRight\000"
+ 2857      6D656E74 
+ 2857      5069766F 
+ 2857      74526967 
+ 2857      687400
+ 2858              	.LASF8:
+ 2859 0182 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2859      206C6F6E 
+ 2859      6720756E 
+ 2859      7369676E 
+ 2859      65642069 
+ 2860              	.LASF9:
+ 2861 0199 756E7369 		.ascii	"unsigned int\000"
+ 2861      676E6564 
+ 2861      20696E74 
+ 2861      00
+ 2862              	.LASF45:
+ 2863 01a6 55535458 		.ascii	"USTX_Write\000"
+ 2863      5F577269 
+ 2863      746500
+ 2864              	.LASF23:
+ 2865 01b1 64697374 		.ascii	"dist\000"
+ 2865      00
+ 2866              	.LASF42:
+ 2867 01b6 43616D65 		.ascii	"Camera_linebuffer\000"
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 56
+
+
+ 2867      72615F6C 
+ 2867      696E6562 
+ 2867      75666665 
+ 2867      7200
+ 2868              	.LASF4:
+ 2869 01c8 73686F72 		.ascii	"short unsigned int\000"
+ 2869      7420756E 
+ 2869      7369676E 
+ 2869      65642069 
+ 2869      6E7400
+ 2870              	.LASF33:
+ 2871 01db 64697374 		.ascii	"dist_diff\000"
+ 2871      5F646966 
+ 2871      6600
+ 2872              	.LASF16:
+ 2873 01e5 63686172 		.ascii	"char\000"
+ 2873      00
+ 2874              	.LASF39:
+ 2875 01ea 64697374 		.ascii	"distance\000"
+ 2875      616E6365 
+ 2875      00
+ 2876              	.LASF59:
+ 2877 01f3 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2877      4320342E 
+ 2877      392E3320 
+ 2877      32303135 
+ 2877      30333033 
+ 2878 0226 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2878      20726576 
+ 2878      6973696F 
+ 2878      6E203232 
+ 2878      31323230 
+ 2879 0259 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2879      66756E63 
+ 2879      74696F6E 
+ 2879      2D736563 
+ 2879      74696F6E 
+ 2880              	.LASF11:
+ 2881 0281 696E7433 		.ascii	"int32_t\000"
+ 2881      325F7400 
+ 2882              	.LASF24:
+ 2883 0289 556C7472 		.ascii	"Ultrasonics\000"
+ 2883      61736F6E 
+ 2883      69637300 
+ 2884              	.LASF38:
+ 2885 0295 5F426F6F 		.ascii	"_Bool\000"
+ 2885      6C00
+ 2886              	.LASF25:
+ 2887 029b 556C7472 		.ascii	"UltrasonicsSensitive\000"
+ 2887      61736F6E 
+ 2887      69637353 
+ 2887      656E7369 
+ 2887      74697665 
+ 2888              	.LASF14:
+ 2889 02b0 75696E74 		.ascii	"uint32\000"
+ 2889      333200
+ 2890              	.LASF6:
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 57
+
+
+ 2891 02b7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2891      20756E73 
+ 2891      69676E65 
+ 2891      6420696E 
+ 2891      7400
+ 2892              	.LASF51:
+ 2893 02c9 42694469 		.ascii	"BiDirPortOutPut\000"
+ 2893      72506F72 
+ 2893      744F7574 
+ 2893      50757400 
+ 2894              	.LASF0:
+ 2895 02d9 646F7562 		.ascii	"double\000"
+ 2895      6C6500
+ 2896              	.LASF34:
+ 2897 02e0 616C7068 		.ascii	"alpha\000"
+ 2897      6100
+ 2898              	.LASF10:
+ 2899 02e6 5F5F696E 		.ascii	"__int32_t\000"
+ 2899      7433325F 
+ 2899      7400
+ 2900              	.LASF20:
+ 2901 02f0 636F756E 		.ascii	"countend\000"
+ 2901      74656E64 
+ 2901      00
+ 2902              	.LASF44:
+ 2903 02f9 43535F57 		.ascii	"CS_Write\000"
+ 2903      72697465 
+ 2903      00
+ 2904              	.LASF40:
+ 2905 0302 70726563 		.ascii	"prec\000"
+ 2905      00
+ 2906              	.LASF35:
+ 2907 0307 63686563 		.ascii	"check\000"
+ 2907      6B00
+ 2908              	.LASF60:
+ 2909 030d 2E5C556C 		.ascii	".\\Ultrasonics.c\000"
+ 2909      74726173 
+ 2909      6F6E6963 
+ 2909      732E6300 
+ 2910              	.LASF22:
+ 2911 031d 74696D65 		.ascii	"time\000"
+ 2911      00
+ 2912              	.LASF48:
+ 2913 0322 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 2913      725F315F 
+ 2913      52656164 
+ 2913      436F756E 
+ 2913      74657200 
+ 2914              	.LASF19:
+ 2915 0336 636F756E 		.ascii	"countstart\000"
+ 2915      74737461 
+ 2915      727400
+ 2916              	.LASF41:
+ 2917 0341 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2917      52784275 
+ 2917      66666572 
+ 2917      00
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccclGQdl.s 			page 58
+
+
+ 2918              	.LASF62:
+ 2919 034e 4D6F7665 		.ascii	"MoveAlign\000"
+ 2919      416C6967 
+ 2919      6E00
+ 2920              	.LASF53:
+ 2921 0358 43794465 		.ascii	"CyDelay\000"
+ 2921      6C617900 
+ 2922              	.LASF54:
+ 2923 0360 6173696E 		.ascii	"asin\000"
+ 2923      00
+ 2924              	.LASF37:
+ 2925 0365 70726563 		.ascii	"precision\000"
+ 2925      6973696F 
+ 2925      6E00
+ 2926              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

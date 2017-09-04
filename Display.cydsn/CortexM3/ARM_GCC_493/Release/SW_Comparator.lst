@@ -1,0 +1,2537 @@
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"SW_Comparator.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.SW_Comparator_trimAdjust,"ax",%progbits
+  19              		.align	1
+  20              		.thumb
+  21              		.thumb_func
+  22              		.type	SW_Comparator_trimAdjust, %function
+  23              	SW_Comparator_trimAdjust:
+  24              	.LFB6:
+  25              		.file 1 ".\\Generated_Source\\PSoC5\\SW_Comparator.c"
+   1:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/SW_Comparator.c **** * File Name: SW_Comparator.c
+   3:.\Generated_Source\PSoC5/SW_Comparator.c **** * Version 2.0
+   4:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+   5:.\Generated_Source\PSoC5/SW_Comparator.c **** * Description:
+   6:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This file provides the source code to the API for the Comparator component
+   7:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+   8:.\Generated_Source\PSoC5/SW_Comparator.c **** * Note:
+   9:.\Generated_Source\PSoC5/SW_Comparator.c **** *  None
+  10:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  11:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/SW_Comparator.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/SW_Comparator.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/SW_Comparator.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/SW_Comparator.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  18:.\Generated_Source\PSoC5/SW_Comparator.c **** #include "SW_Comparator.h"
+  19:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  20:.\Generated_Source\PSoC5/SW_Comparator.c **** uint8 SW_Comparator_initVar = 0u;
+  21:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  22:.\Generated_Source\PSoC5/SW_Comparator.c **** /* Internal functions definitoin */
+  23:.\Generated_Source\PSoC5/SW_Comparator.c **** static void SW_Comparator_trimAdjust(uint8 nibble) ;
+  24:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  25:.\Generated_Source\PSoC5/SW_Comparator.c **** /* static SW_Comparator_backupStruct  SW_Comparator_backup; */
+  26:.\Generated_Source\PSoC5/SW_Comparator.c **** #if (CY_PSOC5A)
+  27:.\Generated_Source\PSoC5/SW_Comparator.c ****     static SW_Comparator_LOWPOWER_BACKUP_STRUCT  SW_Comparator_lowPowerBackup;
+  28:.\Generated_Source\PSoC5/SW_Comparator.c **** #endif /* CY_PSOC5A */
+  29:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  30:.\Generated_Source\PSoC5/SW_Comparator.c **** /* variable to decide whether or not to restore the control register in 
+  31:.\Generated_Source\PSoC5/SW_Comparator.c ****    Enable() API for PSoC5A only */
+  32:.\Generated_Source\PSoC5/SW_Comparator.c **** #if (CY_PSOC5A)
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 2
+
+
+  33:.\Generated_Source\PSoC5/SW_Comparator.c ****     static uint8 SW_Comparator_restoreReg = 0u;
+  34:.\Generated_Source\PSoC5/SW_Comparator.c **** #endif /* CY_PSOC5A */
+  35:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  36:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  37:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+  38:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_Init
+  39:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+  40:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  41:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+  42:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Initialize to the schematic state
+  43:.\Generated_Source\PSoC5/SW_Comparator.c **** * 
+  44:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+  46:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  47:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+  48:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+  49:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  50:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+  51:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_Init(void) 
+  52:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+  53:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set default speed/power */
+  54:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SetSpeed(SW_Comparator_DEFAULT_SPEED);
+  55:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  56:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set default Hysteresis */
+  57:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if ( SW_Comparator_DEFAULT_HYSTERESIS == 0u )
+  58:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CR |= SW_Comparator_HYST_OFF;
+  59:.\Generated_Source\PSoC5/SW_Comparator.c ****     #else
+  60:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CR &= (uint8)(~SW_Comparator_HYST_OFF);
+  61:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* SW_Comparator_DEFAULT_HYSTERESIS == 0u */
+  62:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Power down override feature is not supported for PSoC5A. */
+  63:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+  64:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Set default Power Down Override */
+  65:.\Generated_Source\PSoC5/SW_Comparator.c ****         #if ( SW_Comparator_DEFAULT_PWRDWN_OVRD == 0u )
+  66:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_CR &= (uint8)(~SW_Comparator_PWRDWN_OVRD);
+  67:.\Generated_Source\PSoC5/SW_Comparator.c ****         #else 
+  68:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_CR |= SW_Comparator_PWRDWN_OVRD;
+  69:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* SW_Comparator_DEFAULT_PWRDWN_OVRD == 0u */
+  70:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+  71:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+  72:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set mux always on logic */
+  73:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR |= SW_Comparator_MX_AO;
+  74:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  75:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set default sync */
+  76:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CLK &= (uint8)(~SW_Comparator_SYNCCLK_MASK);
+  77:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if ( SW_Comparator_DEFAULT_BYPASS_SYNC == 0u )
+  78:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CLK |= SW_Comparator_SYNC_CLK_EN;
+  79:.\Generated_Source\PSoC5/SW_Comparator.c ****     #else
+  80:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CLK |= SW_Comparator_BYPASS_SYNC;
+  81:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* SW_Comparator_DEFAULT_BYPASS_SYNC == 0u */
+  82:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+  83:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  84:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+  85:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+  86:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_Enable
+  87:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+  88:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  89:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 3
+
+
+  90:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Enable the Comparator
+  91:.\Generated_Source\PSoC5/SW_Comparator.c **** * 
+  92:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+  93:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+  94:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  95:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+  96:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+  97:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+  98:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+  99:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_Enable(void) 
+ 100:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 101:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_PWRMGR |= SW_Comparator_ACT_PWR_EN;
+ 102:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_STBY_PWRMGR |= SW_Comparator_STBY_PWR_EN;
+ 103:.\Generated_Source\PSoC5/SW_Comparator.c ****      
+ 104:.\Generated_Source\PSoC5/SW_Comparator.c ****      /* This is to restore the value of register CR which is saved 
+ 105:.\Generated_Source\PSoC5/SW_Comparator.c ****     in prior to the modification in stop() API */
+ 106:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC5A)
+ 107:.\Generated_Source\PSoC5/SW_Comparator.c ****         if(SW_Comparator_restoreReg == 1u)
+ 108:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 109:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_CR = SW_Comparator_lowPowerBackup.compCRReg;
+ 110:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 111:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* Clear the flag */
+ 112:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_restoreReg = 0u;
+ 113:.\Generated_Source\PSoC5/SW_Comparator.c ****         }
+ 114:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC5A */
+ 115:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 116:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 117:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 118:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 119:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_Start
+ 120:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 121:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 122:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 123:.\Generated_Source\PSoC5/SW_Comparator.c **** *  The start function initializes the Analog Comparator with the default values.
+ 124:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 125:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+ 126:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+ 127:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 128:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 129:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void 
+ 130:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 131:.\Generated_Source\PSoC5/SW_Comparator.c **** * Global variables:
+ 132:.\Generated_Source\PSoC5/SW_Comparator.c **** *  SW_Comparator_initVar: Is modified when this function is called for the 
+ 133:.\Generated_Source\PSoC5/SW_Comparator.c **** *   first time. Is used to ensure that initialization happens only once.
+ 134:.\Generated_Source\PSoC5/SW_Comparator.c **** *  
+ 135:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 136:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_Start(void) 
+ 137:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 138:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 139:.\Generated_Source\PSoC5/SW_Comparator.c ****     if ( SW_Comparator_initVar == 0u )
+ 140:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 141:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_Init();
+ 142:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 143:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_initVar = 1u;
+ 144:.\Generated_Source\PSoC5/SW_Comparator.c ****     }   
+ 145:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 146:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Enable power to comparator */
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 4
+
+
+ 147:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_Enable();    
+ 148:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 149:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 150:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 151:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 152:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_Stop
+ 153:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 154:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 155:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 156:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Powers down amplifier to lowest power state.
+ 157:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 158:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+ 159:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+ 160:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 161:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 162:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+ 163:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 164:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 165:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_Stop(void) 
+ 166:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 167:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Disable power to comparator */
+ 168:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_PWRMGR &= (uint8)(~SW_Comparator_ACT_PWR_EN);
+ 169:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_STBY_PWRMGR &= (uint8)(~SW_Comparator_STBY_PWR_EN);
+ 170:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 171:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC5A)
+ 172:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Enable the variable */
+ 173:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_restoreReg = 1u;
+ 174:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 175:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Save the control register before clearing it */
+ 176:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_lowPowerBackup.compCRReg = SW_Comparator_CR;
+ 177:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CR = SW_Comparator_COMP_REG_CLR;
+ 178:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC5A */
+ 179:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 180:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 181:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 182:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 183:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_SetSpeed
+ 184:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 185:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 186:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 187:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function sets the speed of the Analog Comparator. The faster the speed
+ 188:.\Generated_Source\PSoC5/SW_Comparator.c **** *  the more power that is used.
+ 189:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 190:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+ 191:.\Generated_Source\PSoC5/SW_Comparator.c **** *  speed: (uint8) Sets operation mode of Comparator
+ 192:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 193:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 194:.\Generated_Source\PSoC5/SW_Comparator.c **** *  void
+ 195:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 196:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 197:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_SetSpeed(uint8 speed) 
+ 198:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 199:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Clear and Set power level */    
+ 200:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR = (SW_Comparator_CR & (uint8)(~SW_Comparator_PWR_MODE_MASK)) |
+ 201:.\Generated_Source\PSoC5/SW_Comparator.c ****                            (speed & SW_Comparator_PWR_MODE_MASK);
+ 202:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 203:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set trim value for high speed comparator */
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 5
+
+
+ 204:.\Generated_Source\PSoC5/SW_Comparator.c ****     if(speed == SW_Comparator_HIGHSPEED)
+ 205:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 206:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* PSoC5A */
+ 207:.\Generated_Source\PSoC5/SW_Comparator.c ****         #if (CY_PSOC5A)
+ 208:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR = SW_Comparator_HS_TRIM_TR0;
+ 209:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC5A */
+ 210:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 211:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* PSoC3, PSoC5LP or later */
+ 212:.\Generated_Source\PSoC5/SW_Comparator.c ****         #if (CY_PSOC3 || CY_PSOC5LP) 
+ 213:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR0 = SW_Comparator_HS_TRIM_TR0;
+ 214:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_HS_TRIM_TR1;
+ 215:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 216:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 217:.\Generated_Source\PSoC5/SW_Comparator.c ****     else
+ 218:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 219:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC5A */
+ 220:.\Generated_Source\PSoC5/SW_Comparator.c ****         #if (CY_PSOC5A)
+ 221:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR = SW_Comparator_LS_TRIM_TR0;
+ 222:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC5A */
+ 223:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 224:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* PSoC3, PSoC5LP or later */
+ 225:.\Generated_Source\PSoC5/SW_Comparator.c ****         #if (CY_PSOC3 || CY_PSOC5LP) 
+ 226:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR0 = SW_Comparator_LS_TRIM_TR0;
+ 227:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_LS_TRIM_TR1;
+ 228:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 229:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 230:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 231:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 232:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 233:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 234:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 235:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_GetCompare
+ 236:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 237:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 238:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 239:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function returns the comparator output value.
+ 240:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This value is not affected by the Polarity parameter.
+ 241:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This valuea lways reflects a noninverted state.
+ 242:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 243:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+ 244:.\Generated_Source\PSoC5/SW_Comparator.c **** *   None
+ 245:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 246:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 247:.\Generated_Source\PSoC5/SW_Comparator.c **** *  (uint8)  0     - if Pos_Input less than Neg_input
+ 248:.\Generated_Source\PSoC5/SW_Comparator.c **** *           non 0 - if Pos_Input greater than Neg_input.
+ 249:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 250:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 251:.\Generated_Source\PSoC5/SW_Comparator.c **** uint8 SW_Comparator_GetCompare(void) 
+ 252:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 253:.\Generated_Source\PSoC5/SW_Comparator.c ****     return( SW_Comparator_WRK & SW_Comparator_CMP_OUT_MASK);
+ 254:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 255:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 256:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 257:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 258:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_trimAdjust
+ 259:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 260:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 6
+
+
+ 261:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 262:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function adjusts the value in the low nibble/high nibble of the Analog 
+ 263:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Comparator trim register
+ 264:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 265:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:  
+ 266:.\Generated_Source\PSoC5/SW_Comparator.c **** *  nibble:
+ 267:.\Generated_Source\PSoC5/SW_Comparator.c **** *      0 -- adjusts the value in the low nibble
+ 268:.\Generated_Source\PSoC5/SW_Comparator.c **** *      1 -- adjusts the value in the high nibble
+ 269:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 270:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 271:.\Generated_Source\PSoC5/SW_Comparator.c **** *  None
+ 272:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 273:.\Generated_Source\PSoC5/SW_Comparator.c **** * Theory: 
+ 274:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Function assumes comparator block is setup for trim adjust.
+ 275:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Intended to be called from Comp_ZeroCal()
+ 276:.\Generated_Source\PSoC5/SW_Comparator.c **** * 
+ 277:.\Generated_Source\PSoC5/SW_Comparator.c **** * Side Effects:
+ 278:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Routine uses a course 1ms delay following each trim adjustment to allow 
+ 279:.\Generated_Source\PSoC5/SW_Comparator.c **** *  the comparator output to respond.
+ 280:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 281:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 282:.\Generated_Source\PSoC5/SW_Comparator.c **** static void SW_Comparator_trimAdjust(uint8 nibble) 
+ 283:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+  26              		.loc 1 283 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  32              		.cfi_def_cfa_offset 24
+  33              		.cfi_offset 4, -24
+  34              		.cfi_offset 5, -20
+  35              		.cfi_offset 6, -16
+  36              		.cfi_offset 7, -12
+  37              		.cfi_offset 8, -8
+  38              		.cfi_offset 14, -4
+ 284:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 trimCnt, trimCntMax;
+ 285:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 cmpState;   
+ 286:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 287:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* get current state of comparator output */
+ 288:.\Generated_Source\PSoC5/SW_Comparator.c ****     cmpState = SW_Comparator_WRK & SW_Comparator_CMP_OUT_MASK;
+  39              		.loc 1 288 0
+  40 0004 184D     		ldr	r5, .L16
+ 289:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 290:.\Generated_Source\PSoC5/SW_Comparator.c ****     if (nibble == 0u)
+  41              		.loc 1 290 0
+  42 0006 8046     		mov	r8, r0
+ 288:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+  43              		.loc 1 288 0
+  44 0008 2C78     		ldrb	r4, [r5]	@ zero_extendqisi2
+  45 000a 04F00804 		and	r4, r4, #8
+  46 000e E4B2     		uxtb	r4, r4
+  47              	.LVL1:
+  48              		.loc 1 290 0
+  49 0010 30B9     		cbnz	r0, .L2
+ 291:.\Generated_Source\PSoC5/SW_Comparator.c ****     {    
+ 292:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* if comparator output is high, negative offset adjust is required */
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 7
+
+
+ 293:.\Generated_Source\PSoC5/SW_Comparator.c ****         if ( cmpState != 0u )
+  50              		.loc 1 293 0
+  51 0012 2CB3     		cbz	r4, .L3
+ 294:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 295:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC5A */
+ 296:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC5A)
+ 297:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR |= SW_Comparator_CMP_TRIM1_DIR;
+ 298:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC5A */
+ 299:.\Generated_Source\PSoC5/SW_Comparator.c ****             
+ 300:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC3, PSoC5LP or later */
+ 301:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 302:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR0 |= SW_Comparator_CMP_TR0_DIR;
+  52              		.loc 1 302 0
+  53 0014 154A     		ldr	r2, .L16+4
+  54 0016 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  55 0018 43F01003 		orr	r3, r3, #16
+  56 001c 1370     		strb	r3, [r2]
+  57 001e 1FE0     		b	.L3
+  58              	.L2:
+ 303:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 304:.\Generated_Source\PSoC5/SW_Comparator.c ****         }
+ 305:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 306:.\Generated_Source\PSoC5/SW_Comparator.c ****     else
+ 307:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 308:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* if comparator output is low, positive offset adjust is required */
+ 309:.\Generated_Source\PSoC5/SW_Comparator.c ****         if ( cmpState == 0u )
+  59              		.loc 1 309 0
+  60 0020 24B9     		cbnz	r4, .L4
+ 310:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 311:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC5A */
+ 312:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC5A)
+ 313:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR |= SW_Comparator_CMP_TRIM2_DIR; 
+ 314:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC5A */
+ 315:.\Generated_Source\PSoC5/SW_Comparator.c ****             
+ 316:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC3, PSoC5LP or later */
+ 317:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 318:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR1 |= SW_Comparator_CMP_TR1_DIR;
+  61              		.loc 1 318 0
+  62 0022 134A     		ldr	r2, .L16+8
+  63 0024 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  64 0026 43F01003 		orr	r3, r3, #16
+  65 002a 1370     		strb	r3, [r2]
+  66              	.L4:
+ 319:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 320:.\Generated_Source\PSoC5/SW_Comparator.c ****         }
+ 321:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 322:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 323:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Increment trim value until compare output changes state */
+ 324:.\Generated_Source\PSoC5/SW_Comparator.c **** 	
+ 325:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC5A */
+ 326:.\Generated_Source\PSoC5/SW_Comparator.c **** 	#if (CY_PSOC5A)
+ 327:.\Generated_Source\PSoC5/SW_Comparator.c **** 	    trimCntMax = 7u;
+ 328:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif
+ 329:.\Generated_Source\PSoC5/SW_Comparator.c **** 	
+ 330:.\Generated_Source\PSoC5/SW_Comparator.c **** 	/* PSoC3, PSoC5LP or later */
+ 331:.\Generated_Source\PSoC5/SW_Comparator.c **** 	#if (CY_PSOC3 || CY_PSOC5LP)
+ 332:.\Generated_Source\PSoC5/SW_Comparator.c ****     	if(nibble == 0u)
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 8
+
+
+ 333:.\Generated_Source\PSoC5/SW_Comparator.c ****     	{
+ 334:.\Generated_Source\PSoC5/SW_Comparator.c ****     		trimCntMax = 15u;
+ 335:.\Generated_Source\PSoC5/SW_Comparator.c ****     	}
+ 336:.\Generated_Source\PSoC5/SW_Comparator.c ****     	else
+ 337:.\Generated_Source\PSoC5/SW_Comparator.c ****     	{
+ 338:.\Generated_Source\PSoC5/SW_Comparator.c ****     		trimCntMax = 7u;
+  67              		.loc 1 338 0
+  68 002c 0727     		movs	r7, #7
+  69              	.L9:
+  70              	.LVL2:
+  71 002e 0026     		movs	r6, #0
+  72              	.LVL3:
+  73              	.L8:
+ 339:.\Generated_Source\PSoC5/SW_Comparator.c ****     	}
+ 340:.\Generated_Source\PSoC5/SW_Comparator.c **** 	#endif
+ 341:.\Generated_Source\PSoC5/SW_Comparator.c **** 	
+ 342:.\Generated_Source\PSoC5/SW_Comparator.c ****     for ( trimCnt = 0u; trimCnt < trimCntMax; trimCnt++ )
+ 343:.\Generated_Source\PSoC5/SW_Comparator.c **** 	{
+ 344:.\Generated_Source\PSoC5/SW_Comparator.c ****         if (nibble == 0u)
+  74              		.loc 1 344 0
+  75 0030 B8F1000F 		cmp	r8, #0
+  76 0034 01D1     		bne	.L5
+ 345:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 346:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC5A */
+ 347:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC5A)
+ 348:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR += 1u;
+ 349:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC5A */
+ 350:.\Generated_Source\PSoC5/SW_Comparator.c ****             
+ 351:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC3, PSoC5LP or later */
+ 352:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 353:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR0 += 1u;
+  77              		.loc 1 353 0
+  78 0036 0D4A     		ldr	r2, .L16+4
+  79 0038 00E0     		b	.L14
+  80              	.L5:
+ 354:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 355:.\Generated_Source\PSoC5/SW_Comparator.c ****         }
+ 356:.\Generated_Source\PSoC5/SW_Comparator.c ****         else
+ 357:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 358:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC5A */
+ 359:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC5A)
+ 360:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR += 0x10u;
+ 361:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC5A */
+ 362:.\Generated_Source\PSoC5/SW_Comparator.c ****             
+ 363:.\Generated_Source\PSoC5/SW_Comparator.c ****             /* PSoC3, PSoC5LP or later */
+ 364:.\Generated_Source\PSoC5/SW_Comparator.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+ 365:.\Generated_Source\PSoC5/SW_Comparator.c ****                 SW_Comparator_TR1 += 1u;
+  81              		.loc 1 365 0
+  82 003a 0D4A     		ldr	r2, .L16+8
+  83              	.L14:
+  84 003c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 366:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 367:.\Generated_Source\PSoC5/SW_Comparator.c ****         }
+ 368:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 369:.\Generated_Source\PSoC5/SW_Comparator.c ****         CyDelayUs(10u);
+  85              		.loc 1 369 0
+  86 003e 0A20     		movs	r0, #10
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 9
+
+
+ 365:.\Generated_Source\PSoC5/SW_Comparator.c ****             #endif /* CY_PSOC3 || CY_PSOC5LP */
+  87              		.loc 1 365 0
+  88 0040 0133     		adds	r3, r3, #1
+  89 0042 DBB2     		uxtb	r3, r3
+  90 0044 1370     		strb	r3, [r2]
+  91              		.loc 1 369 0
+  92 0046 FFF7FEFF 		bl	CyDelayUs
+  93              	.LVL4:
+ 370:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 371:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Check for change in comparator output */
+ 372:.\Generated_Source\PSoC5/SW_Comparator.c ****         if ((SW_Comparator_WRK & SW_Comparator_CMP_OUT_MASK) != cmpState)
+  94              		.loc 1 372 0
+  95 004a 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+  96 004c 03F00803 		and	r3, r3, #8
+  97 0050 A342     		cmp	r3, r4
+  98 0052 07D1     		bne	.L1
+  99              	.LVL5:
+ 100 0054 0136     		adds	r6, r6, #1
+ 101              	.LVL6:
+ 342:.\Generated_Source\PSoC5/SW_Comparator.c **** 	{
+ 102              		.loc 1 342 0 discriminator 2
+ 103 0056 F3B2     		uxtb	r3, r6
+ 104 0058 BB42     		cmp	r3, r7
+ 105 005a E9D3     		bcc	.L8
+ 106 005c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 107              	.LVL7:
+ 108              	.L3:
+ 334:.\Generated_Source\PSoC5/SW_Comparator.c ****     	}
+ 109              		.loc 1 334 0
+ 110 0060 0F27     		movs	r7, #15
+ 111 0062 E4E7     		b	.L9
+ 112              	.LVL8:
+ 113              	.L1:
+ 114 0064 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 115              	.LVL9:
+ 116              	.L17:
+ 117              		.align	2
+ 118              	.L16:
+ 119 0068 965B0040 		.word	1073765270
+ 120 006c 36460040 		.word	1073759798
+ 121 0070 37460040 		.word	1073759799
+ 122              		.cfi_endproc
+ 123              	.LFE6:
+ 124              		.size	SW_Comparator_trimAdjust, .-SW_Comparator_trimAdjust
+ 125              		.section	.text.SW_Comparator_Enable,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	SW_Comparator_Enable
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.type	SW_Comparator_Enable, %function
+ 131              	SW_Comparator_Enable:
+ 132              	.LFB1:
+ 100:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_PWRMGR |= SW_Comparator_ACT_PWR_EN;
+ 133              		.loc 1 100 0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 10
+
+
+ 137              		@ link register save eliminated.
+ 101:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_STBY_PWRMGR |= SW_Comparator_STBY_PWR_EN;
+ 138              		.loc 1 101 0
+ 139 0000 044A     		ldr	r2, .L19
+ 140 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 141 0004 43F00803 		orr	r3, r3, #8
+ 142 0008 1370     		strb	r3, [r2]
+ 102:.\Generated_Source\PSoC5/SW_Comparator.c ****      
+ 143              		.loc 1 102 0
+ 144 000a 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+ 145 000c 43F00803 		orr	r3, r3, #8
+ 146 0010 1374     		strb	r3, [r2, #16]
+ 147 0012 7047     		bx	lr
+ 148              	.L20:
+ 149              		.align	2
+ 150              	.L19:
+ 151 0014 A7430040 		.word	1073759143
+ 152              		.cfi_endproc
+ 153              	.LFE1:
+ 154              		.size	SW_Comparator_Enable, .-SW_Comparator_Enable
+ 155              		.section	.text.SW_Comparator_Stop,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	SW_Comparator_Stop
+ 158              		.thumb
+ 159              		.thumb_func
+ 160              		.type	SW_Comparator_Stop, %function
+ 161              	SW_Comparator_Stop:
+ 162              	.LFB3:
+ 166:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Disable power to comparator */
+ 163              		.loc 1 166 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167              		@ link register save eliminated.
+ 168:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_STBY_PWRMGR &= (uint8)(~SW_Comparator_STBY_PWR_EN);
+ 168              		.loc 1 168 0
+ 169 0000 044A     		ldr	r2, .L22
+ 170 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 171 0004 03F0F703 		and	r3, r3, #247
+ 172 0008 1370     		strb	r3, [r2]
+ 169:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 173              		.loc 1 169 0
+ 174 000a 137C     		ldrb	r3, [r2, #16]	@ zero_extendqisi2
+ 175 000c 03F0F703 		and	r3, r3, #247
+ 176 0010 1374     		strb	r3, [r2, #16]
+ 177 0012 7047     		bx	lr
+ 178              	.L23:
+ 179              		.align	2
+ 180              	.L22:
+ 181 0014 A7430040 		.word	1073759143
+ 182              		.cfi_endproc
+ 183              	.LFE3:
+ 184              		.size	SW_Comparator_Stop, .-SW_Comparator_Stop
+ 185              		.section	.text.SW_Comparator_SetSpeed,"ax",%progbits
+ 186              		.align	1
+ 187              		.global	SW_Comparator_SetSpeed
+ 188              		.thumb
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 11
+
+
+ 189              		.thumb_func
+ 190              		.type	SW_Comparator_SetSpeed, %function
+ 191              	SW_Comparator_SetSpeed:
+ 192              	.LFB4:
+ 198:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Clear and Set power level */    
+ 193              		.loc 1 198 0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197              		@ link register save eliminated.
+ 198              	.LVL10:
+ 200:.\Generated_Source\PSoC5/SW_Comparator.c ****                            (speed & SW_Comparator_PWR_MODE_MASK);
+ 199              		.loc 1 200 0
+ 200 0000 0F4A     		ldr	r2, .L28
+ 201 0002 00F00301 		and	r1, r0, #3
+ 202 0006 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 204:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 203              		.loc 1 204 0
+ 204 0008 0128     		cmp	r0, #1
+ 200:.\Generated_Source\PSoC5/SW_Comparator.c ****                            (speed & SW_Comparator_PWR_MODE_MASK);
+ 205              		.loc 1 200 0
+ 206 000a 03F0FC03 		and	r3, r3, #252
+ 207 000e 43EA0103 		orr	r3, r3, r1
+ 208 0012 1370     		strb	r3, [r2]
+ 209              	.LBB4:
+ 210              	.LBB5:
+ 213:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_HS_TRIM_TR1;
+ 211              		.loc 1 213 0
+ 212 0014 0BBF     		itete	eq
+ 213 0016 0B4B     		ldreq	r3, .L28+4
+ 214              	.LBE5:
+ 215              	.LBE4:
+ 226:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_LS_TRIM_TR1;
+ 216              		.loc 1 226 0
+ 217 0018 0B4B     		ldrne	r3, .L28+8
+ 218              	.LBB10:
+ 219              	.LBB6:
+ 213:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_HS_TRIM_TR1;
+ 220              		.loc 1 213 0
+ 221 001a 1B78     		ldrbeq	r3, [r3]	@ zero_extendqisi2
+ 222              	.LBE6:
+ 223              	.LBE10:
+ 226:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_LS_TRIM_TR1;
+ 224              		.loc 1 226 0
+ 225 001c 1B78     		ldrbne	r3, [r3]	@ zero_extendqisi2
+ 226 001e 0B49     		ldr	r1, .L28+12
+ 227              	.LBB11:
+ 228              	.LBB7:
+ 213:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_HS_TRIM_TR1;
+ 229              		.loc 1 213 0
+ 230 0020 0BBF     		itete	eq
+ 231 0022 DBB2     		uxtbeq	r3, r3
+ 232              	.LBE7:
+ 233              	.LBE11:
+ 226:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_LS_TRIM_TR1;
+ 234              		.loc 1 226 0
+ 235 0024 DBB2     		uxtbne	r3, r3
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 12
+
+
+ 236              	.LBB12:
+ 237              	.LBB8:
+ 213:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_HS_TRIM_TR1;
+ 238              		.loc 1 213 0
+ 239 0026 0B70     		strbeq	r3, [r1]
+ 240              	.LBE8:
+ 241              	.LBE12:
+ 226:.\Generated_Source\PSoC5/SW_Comparator.c ****             SW_Comparator_TR1 = SW_Comparator_LS_TRIM_TR1;
+ 242              		.loc 1 226 0
+ 243 0028 0B70     		strbne	r3, [r1]
+ 244              	.LBB13:
+ 245              	.LBB9:
+ 214:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 246              		.loc 1 214 0
+ 247 002a 0CBF     		ite	eq
+ 248 002c 084B     		ldreq	r3, .L28+16
+ 249              	.LBE9:
+ 250              	.LBE13:
+ 227:.\Generated_Source\PSoC5/SW_Comparator.c ****         #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 251              		.loc 1 227 0
+ 252 002e 094B     		ldrne	r3, .L28+20
+ 253 0030 A2F59052 		sub	r2, r2, #4608
+ 254 0034 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 255 0036 0C3A     		subs	r2, r2, #12
+ 256              	.LVL11:
+ 257 0038 DBB2     		uxtb	r3, r3
+ 258 003a 1370     		strb	r3, [r2]
+ 259 003c 7047     		bx	lr
+ 260              	.L29:
+ 261 003e 00BF     		.align	2
+ 262              	.L28:
+ 263 0040 43580040 		.word	1073764419
+ 264 0044 13010049 		.word	1224737043
+ 265 0048 B3010049 		.word	1224737203
+ 266 004c 36460040 		.word	1073759798
+ 267 0050 17010049 		.word	1224737047
+ 268 0054 BB010049 		.word	1224737211
+ 269              		.cfi_endproc
+ 270              	.LFE4:
+ 271              		.size	SW_Comparator_SetSpeed, .-SW_Comparator_SetSpeed
+ 272              		.section	.text.SW_Comparator_Init,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	SW_Comparator_Init
+ 275              		.thumb
+ 276              		.thumb_func
+ 277              		.type	SW_Comparator_Init, %function
+ 278              	SW_Comparator_Init:
+ 279              	.LFB0:
+  52:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Set default speed/power */
+ 280              		.loc 1 52 0
+ 281              		.cfi_startproc
+ 282              		@ args = 0, pretend = 0, frame = 0
+ 283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284 0000 08B5     		push	{r3, lr}
+ 285              		.cfi_def_cfa_offset 8
+ 286              		.cfi_offset 3, -8
+ 287              		.cfi_offset 14, -4
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 13
+
+
+  54:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 288              		.loc 1 54 0
+ 289 0002 0120     		movs	r0, #1
+ 290 0004 FFF7FEFF 		bl	SW_Comparator_SetSpeed
+ 291              	.LVL12:
+  58:.\Generated_Source\PSoC5/SW_Comparator.c ****     #else
+ 292              		.loc 1 58 0
+ 293 0008 0C4B     		ldr	r3, .L31
+ 294 000a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 295 000c 42F02002 		orr	r2, r2, #32
+ 296 0010 1A70     		strb	r2, [r3]
+  66:.\Generated_Source\PSoC5/SW_Comparator.c ****         #else 
+ 297              		.loc 1 66 0
+ 298 0012 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 299 0014 02F0FB02 		and	r2, r2, #251
+ 300 0018 1A70     		strb	r2, [r3]
+  73:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 301              		.loc 1 73 0
+ 302 001a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 303 001c 42F00802 		orr	r2, r2, #8
+ 304 0020 1A70     		strb	r2, [r3]
+  76:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if ( SW_Comparator_DEFAULT_BYPASS_SYNC == 0u )
+ 305              		.loc 1 76 0
+ 306 0022 93F89C22 		ldrb	r2, [r3, #668]	@ zero_extendqisi2
+ 307 0026 02F0E702 		and	r2, r2, #231
+ 308 002a 83F89C22 		strb	r2, [r3, #668]
+  78:.\Generated_Source\PSoC5/SW_Comparator.c ****     #else
+ 309              		.loc 1 78 0
+ 310 002e 93F89C22 		ldrb	r2, [r3, #668]	@ zero_extendqisi2
+ 311 0032 42F00802 		orr	r2, r2, #8
+ 312 0036 83F89C22 		strb	r2, [r3, #668]
+  76:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if ( SW_Comparator_DEFAULT_BYPASS_SYNC == 0u )
+ 313              		.loc 1 76 0
+ 314 003a 08BD     		pop	{r3, pc}
+ 315              	.L32:
+ 316              		.align	2
+ 317              	.L31:
+ 318 003c 43580040 		.word	1073764419
+ 319              		.cfi_endproc
+ 320              	.LFE0:
+ 321              		.size	SW_Comparator_Init, .-SW_Comparator_Init
+ 322              		.section	.text.SW_Comparator_Start,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	SW_Comparator_Start
+ 325              		.thumb
+ 326              		.thumb_func
+ 327              		.type	SW_Comparator_Start, %function
+ 328              	SW_Comparator_Start:
+ 329              	.LFB2:
+ 137:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 330              		.loc 1 137 0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334 0000 10B5     		push	{r4, lr}
+ 335              		.cfi_def_cfa_offset 8
+ 336              		.cfi_offset 4, -8
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 14
+
+
+ 337              		.cfi_offset 14, -4
+ 139:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 338              		.loc 1 139 0
+ 339 0002 054C     		ldr	r4, .L35
+ 340 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 341 0006 1BB9     		cbnz	r3, .L34
+ 141:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 342              		.loc 1 141 0
+ 343 0008 FFF7FEFF 		bl	SW_Comparator_Init
+ 344              	.LVL13:
+ 143:.\Generated_Source\PSoC5/SW_Comparator.c ****     }   
+ 345              		.loc 1 143 0
+ 346 000c 0123     		movs	r3, #1
+ 347 000e 2370     		strb	r3, [r4]
+ 348              	.L34:
+ 148:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 349              		.loc 1 148 0
+ 350 0010 BDE81040 		pop	{r4, lr}
+ 351              		.cfi_restore 14
+ 352              		.cfi_restore 4
+ 353              		.cfi_def_cfa_offset 0
+ 147:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 354              		.loc 1 147 0
+ 355 0014 FFF7FEBF 		b	SW_Comparator_Enable
+ 356              	.LVL14:
+ 357              	.L36:
+ 358              		.align	2
+ 359              	.L35:
+ 360 0018 00000000 		.word	.LANCHOR0
+ 361              		.cfi_endproc
+ 362              	.LFE2:
+ 363              		.size	SW_Comparator_Start, .-SW_Comparator_Start
+ 364              		.section	.text.SW_Comparator_GetCompare,"ax",%progbits
+ 365              		.align	1
+ 366              		.global	SW_Comparator_GetCompare
+ 367              		.thumb
+ 368              		.thumb_func
+ 369              		.type	SW_Comparator_GetCompare, %function
+ 370              	SW_Comparator_GetCompare:
+ 371              	.LFB5:
+ 252:.\Generated_Source\PSoC5/SW_Comparator.c ****     return( SW_Comparator_WRK & SW_Comparator_CMP_OUT_MASK);
+ 372              		.loc 1 252 0
+ 373              		.cfi_startproc
+ 374              		@ args = 0, pretend = 0, frame = 0
+ 375              		@ frame_needed = 0, uses_anonymous_args = 0
+ 376              		@ link register save eliminated.
+ 253:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 377              		.loc 1 253 0
+ 378 0000 024B     		ldr	r3, .L38
+ 379 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 254:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 380              		.loc 1 254 0
+ 381 0004 00F00800 		and	r0, r0, #8
+ 382 0008 7047     		bx	lr
+ 383              	.L39:
+ 384 000a 00BF     		.align	2
+ 385              	.L38:
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 15
+
+
+ 386 000c 965B0040 		.word	1073765270
+ 387              		.cfi_endproc
+ 388              	.LFE5:
+ 389              		.size	SW_Comparator_GetCompare, .-SW_Comparator_GetCompare
+ 390              		.section	.text.SW_Comparator_ZeroCal,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	SW_Comparator_ZeroCal
+ 393              		.thumb
+ 394              		.thumb_func
+ 395              		.type	SW_Comparator_ZeroCal, %function
+ 396              	SW_Comparator_ZeroCal:
+ 397              	.LFB7:
+ 373:.\Generated_Source\PSoC5/SW_Comparator.c ****         {
+ 374:.\Generated_Source\PSoC5/SW_Comparator.c ****             break;      /* output changed state, trim phase is complete */
+ 375:.\Generated_Source\PSoC5/SW_Comparator.c ****         }        
+ 376:.\Generated_Source\PSoC5/SW_Comparator.c ****     }    
+ 377:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 378:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 379:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 380:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 381:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_ZeroCal
+ 382:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 383:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 384:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 385:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function calibrates the offset of the Analog Comparator.
+ 386:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 387:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:
+ 388:.\Generated_Source\PSoC5/SW_Comparator.c **** *  None
+ 389:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 390:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 391:.\Generated_Source\PSoC5/SW_Comparator.c **** *  (uint16)  value written in trim register when calibration complete.
+ 392:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 393:.\Generated_Source\PSoC5/SW_Comparator.c **** * Theory: 
+ 394:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function is used to optimize the calibration for user specific voltage
+ 395:.\Generated_Source\PSoC5/SW_Comparator.c **** *  range.  The comparator trim is adjusted to counter transistor offsets
+ 396:.\Generated_Source\PSoC5/SW_Comparator.c **** *   - offset is defined as positive if the output transitions to high before inP
+ 397:.\Generated_Source\PSoC5/SW_Comparator.c **** *     is greater than inN
+ 398:.\Generated_Source\PSoC5/SW_Comparator.c **** *   - offset is defined as negative if the output transitions to high after inP
+ 399:.\Generated_Source\PSoC5/SW_Comparator.c **** *     is greater than inP
+ 400:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 401:.\Generated_Source\PSoC5/SW_Comparator.c **** *  PSoC5A
+ 402:.\Generated_Source\PSoC5/SW_Comparator.c **** *  The Analog Comparator provides 1 byte for offset trim.  The byte contains two
+ 403:.\Generated_Source\PSoC5/SW_Comparator.c **** *  4 bit trim fields - one is a course trim and the other allows smaller
+ 404:.\Generated_Source\PSoC5/SW_Comparator.c **** *  offset adjustments only for slow modes.
+ 405:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - low nibble - fine trim
+ 406:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - high nibble - course trim
+ 407:.\Generated_Source\PSoC5/SW_Comparator.c **** *  PSoC3, PSoC5LP or later
+ 408:.\Generated_Source\PSoC5/SW_Comparator.c **** *  The Analog Comparator provides 2 bytes for offset trim.  The bytes contain two
+ 409:.\Generated_Source\PSoC5/SW_Comparator.c **** *  5 bit trim fields - one is a course trim and the other allows smaller
+ 410:.\Generated_Source\PSoC5/SW_Comparator.c **** *  offset adjustments only for slow modes.
+ 411:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - TR0 - fine trim
+ 412:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - TR1 - course trim
+ 413:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 414:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Trim algorithm is a two phase process
+ 415:.\Generated_Source\PSoC5/SW_Comparator.c **** *  The first phase performs course offset adjustment
+ 416:.\Generated_Source\PSoC5/SW_Comparator.c **** *  The second phase serves one of two purposes depending on the outcome of the
+ 417:.\Generated_Source\PSoC5/SW_Comparator.c **** *  first phase
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 16
+
+
+ 418:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - if the first trim value was maxed out without a comparator output 
+ 419:.\Generated_Source\PSoC5/SW_Comparator.c **** *    transition, more offset will be added by adjusting the second trim value.
+ 420:.\Generated_Source\PSoC5/SW_Comparator.c **** *  - if the first trim phase resulted in a comparator output transition, the
+ 421:.\Generated_Source\PSoC5/SW_Comparator.c **** *    second trim value will serve as fine trim (in the opposite direction)to
+ 422:.\Generated_Source\PSoC5/SW_Comparator.c **** *    ensure the offset is < 1 mV.
+ 423:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 424:.\Generated_Source\PSoC5/SW_Comparator.c **** * Trim Process:   
+ 425:.\Generated_Source\PSoC5/SW_Comparator.c **** *  1) User applies a voltage to the negative input.  Voltage should be in the
+ 426:.\Generated_Source\PSoC5/SW_Comparator.c **** *     comparator operating range or an average of the operating voltage range.
+ 427:.\Generated_Source\PSoC5/SW_Comparator.c **** *  2) Clear registers associated with analog routing to the positive input.
+ 428:.\Generated_Source\PSoC5/SW_Comparator.c **** *  3) Disable Hysteresis
+ 429:.\Generated_Source\PSoC5/SW_Comparator.c **** *  4) Set the calibration bit to short the negative and positive inputs to
+ 430:.\Generated_Source\PSoC5/SW_Comparator.c **** *     the users calibration voltage.
+ 431:.\Generated_Source\PSoC5/SW_Comparator.c **** *  5) Clear the TR register  ( TR = 0x00 )
+ 432:.\Generated_Source\PSoC5/SW_Comparator.c **** *  ** LOW MODES
+ 433:.\Generated_Source\PSoC5/SW_Comparator.c **** *  6) Check if compare output is high, if so, set the MSb of course trim field 
+ 434:.\Generated_Source\PSoC5/SW_Comparator.c **** *     to a 1.
+ 435:.\Generated_Source\PSoC5/SW_Comparator.c **** *  7) Increment the course trim field until the compare output changes
+ 436:.\Generated_Source\PSoC5/SW_Comparator.c **** *  8) Check if compare output is low, if so, set the MSb of fine trim field
+ 437:.\Generated_Source\PSoC5/SW_Comparator.c **** *     to a 1.
+ 438:.\Generated_Source\PSoC5/SW_Comparator.c **** *  9) Increment the fine trim field until the compare output changes
+ 439:.\Generated_Source\PSoC5/SW_Comparator.c **** *  ** FAST MODE - skip the steps 8,9
+ 440:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 441:.\Generated_Source\PSoC5/SW_Comparator.c **** * Side Effects:
+ 442:.\Generated_Source\PSoC5/SW_Comparator.c **** *  Routine clears analog routing associated with the comparator positive input.  
+ 443:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This may affect routing of signals from other components that are connected
+ 444:.\Generated_Source\PSoC5/SW_Comparator.c **** *  to the positive input of the comparator.
+ 445:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 446:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 447:.\Generated_Source\PSoC5/SW_Comparator.c **** uint16 SW_Comparator_ZeroCal(void) 
+ 448:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 398              		.loc 1 448 0
+ 399              		.cfi_startproc
+ 400              		@ args = 0, pretend = 0, frame = 16
+ 401              		@ frame_needed = 0, uses_anonymous_args = 0
+ 402 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 403              		.cfi_def_cfa_offset 36
+ 404              		.cfi_offset 4, -36
+ 405              		.cfi_offset 5, -32
+ 406              		.cfi_offset 6, -28
+ 407              		.cfi_offset 7, -24
+ 408              		.cfi_offset 8, -20
+ 409              		.cfi_offset 9, -16
+ 410              		.cfi_offset 10, -12
+ 411              		.cfi_offset 11, -8
+ 412              		.cfi_offset 14, -4
+ 449:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 tmpSW0;
+ 450:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 tmpSW2;
+ 451:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 tmpSW3;
+ 452:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 tmpCR;
+ 453:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 454:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Save a copy of routing registers associated with inP */
+ 455:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW0 = SW_Comparator_SW0;
+ 456:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW2 = SW_Comparator_SW2;
+ 457:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW3 = SW_Comparator_SW3;
+ 413              		.loc 1 457 0
+ 414 0004 214A     		ldr	r2, .L44
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 17
+
+
+ 455:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW2 = SW_Comparator_SW2;
+ 415              		.loc 1 455 0
+ 416 0006 224E     		ldr	r6, .L44+4
+ 456:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW3 = SW_Comparator_SW3;
+ 417              		.loc 1 456 0
+ 418 0008 224D     		ldr	r5, .L44+8
+ 455:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW2 = SW_Comparator_SW2;
+ 419              		.loc 1 455 0
+ 420 000a 96F800A0 		ldrb	r10, [r6]	@ zero_extendqisi2
+ 456:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW3 = SW_Comparator_SW3;
+ 421              		.loc 1 456 0
+ 422 000e 95F80090 		ldrb	r9, [r5]	@ zero_extendqisi2
+ 423              		.loc 1 457 0
+ 424 0012 92F80080 		ldrb	r8, [r2]	@ zero_extendqisi2
+ 458:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 459:.\Generated_Source\PSoC5/SW_Comparator.c ****      /* Clear routing for inP, retain routing for inN */
+ 460:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW0 = 0x00u;
+ 425              		.loc 1 460 0
+ 426 0016 0023     		movs	r3, #0
+ 457:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 427              		.loc 1 457 0
+ 428 0018 5FFA88F8 		uxtb	r8, r8
+ 461:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW2 = 0x00u;
+ 462:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW3 = tmpSW3 & (uint8)(~SW_Comparator_CMP_SW3_INPCTL_MASK);
+ 463:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 464:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Preserve original configuration
+ 465:.\Generated_Source\PSoC5/SW_Comparator.c ****      * - turn off Hysteresis
+ 466:.\Generated_Source\PSoC5/SW_Comparator.c ****      * - set calibration bit - shorts inN to inP
+ 467:.\Generated_Source\PSoC5/SW_Comparator.c ****     */
+ 468:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpCR = SW_Comparator_CR;
+ 429              		.loc 1 468 0
+ 430 001c 1E4C     		ldr	r4, .L44+12
+ 462:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 431              		.loc 1 462 0
+ 432 001e 08F0F601 		and	r1, r8, #246
+ 460:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW2 = 0x00u;
+ 433              		.loc 1 460 0
+ 434 0022 3370     		strb	r3, [r6]
+ 461:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW2 = 0x00u;
+ 435              		.loc 1 461 0
+ 436 0024 2B70     		strb	r3, [r5]
+ 462:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 437              		.loc 1 462 0
+ 438 0026 1170     		strb	r1, [r2]
+ 439              		.loc 1 468 0
+ 440 0028 94F800B0 		ldrb	fp, [r4]	@ zero_extendqisi2
+ 469:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR |= (SW_Comparator_CAL_ON | SW_Comparator_HYST_OFF);
+ 441              		.loc 1 469 0
+ 442 002c 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
+ 470:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 471:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Write default low values to trim register - no offset adjust */
+ 472:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC5A */
+ 473:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC5A)
+ 474:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR = SW_Comparator_DEFAULT_CMP_TRIM;
+ 475:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC5A */
+ 476:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 477:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC3, PSoC5LP or later */
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 18
+
+
+ 478:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 479:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR0 = SW_Comparator_DEFAULT_CMP_TRIM;
+ 480:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR1 = SW_Comparator_DEFAULT_CMP_TRIM;
+ 443              		.loc 1 480 0
+ 444 002e 1B4F     		ldr	r7, .L44+16
+ 469:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR |= (SW_Comparator_CAL_ON | SW_Comparator_HYST_OFF);
+ 445              		.loc 1 469 0
+ 446 0030 41F03001 		orr	r1, r1, #48
+ 447 0034 2170     		strb	r1, [r4]
+ 479:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR1 = SW_Comparator_DEFAULT_CMP_TRIM;
+ 448              		.loc 1 479 0
+ 449 0036 1A49     		ldr	r1, .L44+20
+ 448:.\Generated_Source\PSoC5/SW_Comparator.c ****     uint8 tmpSW0;
+ 450              		.loc 1 448 0
+ 451 0038 85B0     		sub	sp, sp, #20
+ 452              		.cfi_def_cfa_offset 56
+ 479:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR1 = SW_Comparator_DEFAULT_CMP_TRIM;
+ 453              		.loc 1 479 0
+ 454 003a 0B70     		strb	r3, [r1]
+ 455              		.loc 1 480 0
+ 456 003c 3B70     		strb	r3, [r7]
+ 481:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 482:.\Generated_Source\PSoC5/SW_Comparator.c **** 	
+ 483:.\Generated_Source\PSoC5/SW_Comparator.c **** 	/* Two phase trim - slow modes, one phase trim - for fast */ 
+ 484:.\Generated_Source\PSoC5/SW_Comparator.c ****     if ( (SW_Comparator_CR & SW_Comparator_PWR_MODE_MASK) == SW_Comparator_PWR_MODE_FAST)
+ 457              		.loc 1 484 0
+ 458 003e 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 455:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW2 = SW_Comparator_SW2;
+ 459              		.loc 1 455 0
+ 460 0040 5FFA8AFA 		uxtb	r10, r10
+ 461              	.LVL15:
+ 462              		.loc 1 484 0
+ 463 0044 00F00300 		and	r0, r0, #3
+ 464 0048 0128     		cmp	r0, #1
+ 456:.\Generated_Source\PSoC5/SW_Comparator.c ****     tmpSW3 = SW_Comparator_SW3;
+ 465              		.loc 1 456 0
+ 466 004a 5FFA89F9 		uxtb	r9, r9
+ 467              	.LVL16:
+ 468:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR |= (SW_Comparator_CAL_ON | SW_Comparator_HYST_OFF);
+ 468              		.loc 1 468 0
+ 469 004e 5FFA8BFB 		uxtb	fp, fp
+ 470              	.LVL17:
+ 471 0052 0192     		str	r2, [sp, #4]
+ 472 0054 0291     		str	r1, [sp, #8]
+ 473              		.loc 1 484 0
+ 474 0056 04D0     		beq	.L43
+ 485:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 486:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_trimAdjust(0u);
+ 487:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 488:.\Generated_Source\PSoC5/SW_Comparator.c ****     else /* default to trim for fast modes */
+ 489:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 490:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_trimAdjust(1u);
+ 475              		.loc 1 490 0
+ 476 0058 0120     		movs	r0, #1
+ 477 005a 0393     		str	r3, [sp, #12]
+ 478 005c FFF7FEFF 		bl	SW_Comparator_trimAdjust
+ 479              	.LVL18:
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 19
+
+
+ 491:.\Generated_Source\PSoC5/SW_Comparator.c **** 		SW_Comparator_trimAdjust(0u);
+ 480              		.loc 1 491 0
+ 481 0060 039B     		ldr	r3, [sp, #12]
+ 482              	.L43:
+ 483 0062 1846     		mov	r0, r3
+ 484 0064 FFF7FEFF 		bl	SW_Comparator_trimAdjust
+ 485              	.LVL19:
+ 492:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 493:.\Generated_Source\PSoC5/SW_Comparator.c ****    
+ 494:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Restore Config Register */
+ 495:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_CR = tmpCR;
+ 486              		.loc 1 495 0
+ 487 0068 84F800B0 		strb	fp, [r4]
+ 496:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 497:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Restore routing registers for inP */
+ 498:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW0 = tmpSW0;
+ 488              		.loc 1 498 0
+ 489 006c 86F800A0 		strb	r10, [r6]
+ 499:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW2 = tmpSW2;
+ 490              		.loc 1 499 0
+ 491 0070 85F80090 		strb	r9, [r5]
+ 500:.\Generated_Source\PSoC5/SW_Comparator.c ****     SW_Comparator_SW3 = tmpSW3;
+ 492              		.loc 1 500 0
+ 493 0074 019B     		ldr	r3, [sp, #4]
+ 494 0076 83F80080 		strb	r8, [r3]
+ 501:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 502:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC5A */
+ 503:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC5A)
+ 504:.\Generated_Source\PSoC5/SW_Comparator.c ****         return (uint16) SW_Comparator_TR;
+ 505:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC5A */
+ 506:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 507:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC3, PSoC5LP or later */
+ 508:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 509:.\Generated_Source\PSoC5/SW_Comparator.c ****         return ((uint16)((uint16)SW_Comparator_TR1 << 8u) | (SW_Comparator_TR0));        
+ 495              		.loc 1 509 0
+ 496 007a 029B     		ldr	r3, [sp, #8]
+ 497 007c 3878     		ldrb	r0, [r7]	@ zero_extendqisi2
+ 498 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 510:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 511:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 499              		.loc 1 511 0
+ 500 0080 43EA0020 		orr	r0, r3, r0, lsl #8
+ 501 0084 05B0     		add	sp, sp, #20
+ 502              		.cfi_def_cfa_offset 36
+ 503              		@ sp needed
+ 504 0086 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 505              	.LVL20:
+ 506              	.L45:
+ 507 008a 00BF     		.align	2
+ 508              	.L44:
+ 509 008c DB5A0040 		.word	1073765083
+ 510 0090 D85A0040 		.word	1073765080
+ 511 0094 DA5A0040 		.word	1073765082
+ 512 0098 43580040 		.word	1073764419
+ 513 009c 37460040 		.word	1073759799
+ 514 00a0 36460040 		.word	1073759798
+ 515              		.cfi_endproc
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 20
+
+
+ 516              	.LFE7:
+ 517              		.size	SW_Comparator_ZeroCal, .-SW_Comparator_ZeroCal
+ 518              		.section	.text.SW_Comparator_LoadTrim,"ax",%progbits
+ 519              		.align	1
+ 520              		.global	SW_Comparator_LoadTrim
+ 521              		.thumb
+ 522              		.thumb_func
+ 523              		.type	SW_Comparator_LoadTrim, %function
+ 524              	SW_Comparator_LoadTrim:
+ 525              	.LFB8:
+ 512:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 513:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 514:.\Generated_Source\PSoC5/SW_Comparator.c **** /*******************************************************************************
+ 515:.\Generated_Source\PSoC5/SW_Comparator.c **** * Function Name: SW_Comparator_LoadTrim
+ 516:.\Generated_Source\PSoC5/SW_Comparator.c **** ********************************************************************************
+ 517:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 518:.\Generated_Source\PSoC5/SW_Comparator.c **** * Summary:
+ 519:.\Generated_Source\PSoC5/SW_Comparator.c **** *  This function stores a value in the Analog Comparator trim register.
+ 520:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 521:.\Generated_Source\PSoC5/SW_Comparator.c **** * Parameters:  
+ 522:.\Generated_Source\PSoC5/SW_Comparator.c **** *  uint8 trimVal - trim value.  This value is the same format as the value 
+ 523:.\Generated_Source\PSoC5/SW_Comparator.c **** *  returned by the _ZeroCal routine.
+ 524:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 525:.\Generated_Source\PSoC5/SW_Comparator.c **** * Return:
+ 526:.\Generated_Source\PSoC5/SW_Comparator.c **** *  None
+ 527:.\Generated_Source\PSoC5/SW_Comparator.c **** *
+ 528:.\Generated_Source\PSoC5/SW_Comparator.c **** *******************************************************************************/
+ 529:.\Generated_Source\PSoC5/SW_Comparator.c **** void SW_Comparator_LoadTrim(uint16 trimVal) 
+ 530:.\Generated_Source\PSoC5/SW_Comparator.c **** {
+ 526              		.loc 1 530 0
+ 527              		.cfi_startproc
+ 528              		@ args = 0, pretend = 0, frame = 0
+ 529              		@ frame_needed = 0, uses_anonymous_args = 0
+ 530              		@ link register save eliminated.
+ 531              	.LVL21:
+ 531:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* Stores value in the Analog Comparator trim register */
+ 532:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC5A */
+ 533:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC5A)
+ 534:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR = (uint8) trimVal;
+ 535:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC5A */
+ 536:.\Generated_Source\PSoC5/SW_Comparator.c ****     
+ 537:.\Generated_Source\PSoC5/SW_Comparator.c ****     /* PSoC3, PSoC5LP or later */
+ 538:.\Generated_Source\PSoC5/SW_Comparator.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 539:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Stores value in the Analog Comparator trim register for P-type load */
+ 540:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR0 = (uint8) trimVal;
+ 532              		.loc 1 540 0
+ 533 0000 024B     		ldr	r3, .L47
+ 534 0002 C2B2     		uxtb	r2, r0
+ 541:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 542:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Stores value in the Analog Comparator trim register for N-type load */
+ 543:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_TR1 = (uint8) (trimVal >> 8); 
+ 535              		.loc 1 543 0
+ 536 0004 000A     		lsrs	r0, r0, #8
+ 537              	.LVL22:
+ 540:.\Generated_Source\PSoC5/SW_Comparator.c ****         
+ 538              		.loc 1 540 0
+ 539 0006 1A70     		strb	r2, [r3]
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 21
+
+
+ 540              		.loc 1 543 0
+ 541 0008 5870     		strb	r0, [r3, #1]
+ 542 000a 7047     		bx	lr
+ 543              	.L48:
+ 544              		.align	2
+ 545              	.L47:
+ 546 000c 36460040 		.word	1073759798
+ 547              		.cfi_endproc
+ 548              	.LFE8:
+ 549              		.size	SW_Comparator_LoadTrim, .-SW_Comparator_LoadTrim
+ 550              		.section	.text.SW_Comparator_PwrDwnOverrideEnable,"ax",%progbits
+ 551              		.align	1
+ 552              		.global	SW_Comparator_PwrDwnOverrideEnable
+ 553              		.thumb
+ 554              		.thumb_func
+ 555              		.type	SW_Comparator_PwrDwnOverrideEnable, %function
+ 556              	SW_Comparator_PwrDwnOverrideEnable:
+ 557              	.LFB9:
+ 544:.\Generated_Source\PSoC5/SW_Comparator.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 545:.\Generated_Source\PSoC5/SW_Comparator.c **** }
+ 546:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 547:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 548:.\Generated_Source\PSoC5/SW_Comparator.c **** #if (CY_PSOC3 || CY_PSOC5LP)
+ 549:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 550:.\Generated_Source\PSoC5/SW_Comparator.c ****     /*******************************************************************************
+ 551:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Function Name: SW_Comparator_PwrDwnOverrideEnable
+ 552:.\Generated_Source\PSoC5/SW_Comparator.c ****     ********************************************************************************
+ 553:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 554:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Summary:
+ 555:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  This is the power down over-ride feature. This function ignores sleep 
+ 556:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  parameter and allows the component to stay active during sleep mode.
+ 557:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 558:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Parameters:
+ 559:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  None
+ 560:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 561:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Return:
+ 562:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  None
+ 563:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 564:.\Generated_Source\PSoC5/SW_Comparator.c ****     *******************************************************************************/
+ 565:.\Generated_Source\PSoC5/SW_Comparator.c ****     void SW_Comparator_PwrDwnOverrideEnable(void) 
+ 566:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 558              		.loc 1 566 0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562              		@ link register save eliminated.
+ 567:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Set the pd_override bit in CMP_CR register */
+ 568:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CR |= SW_Comparator_PWRDWN_OVRD;
+ 563              		.loc 1 568 0
+ 564 0000 024A     		ldr	r2, .L50
+ 565 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 566 0004 43F00403 		orr	r3, r3, #4
+ 567 0008 1370     		strb	r3, [r2]
+ 568 000a 7047     		bx	lr
+ 569              	.L51:
+ 570              		.align	2
+ 571              	.L50:
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 22
+
+
+ 572 000c 43580040 		.word	1073764419
+ 573              		.cfi_endproc
+ 574              	.LFE9:
+ 575              		.size	SW_Comparator_PwrDwnOverrideEnable, .-SW_Comparator_PwrDwnOverrideEnable
+ 576              		.section	.text.SW_Comparator_PwrDwnOverrideDisable,"ax",%progbits
+ 577              		.align	1
+ 578              		.global	SW_Comparator_PwrDwnOverrideDisable
+ 579              		.thumb
+ 580              		.thumb_func
+ 581              		.type	SW_Comparator_PwrDwnOverrideDisable, %function
+ 582              	SW_Comparator_PwrDwnOverrideDisable:
+ 583              	.LFB10:
+ 569:.\Generated_Source\PSoC5/SW_Comparator.c ****     }
+ 570:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 571:.\Generated_Source\PSoC5/SW_Comparator.c **** 
+ 572:.\Generated_Source\PSoC5/SW_Comparator.c ****     /*******************************************************************************
+ 573:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Function Name: SW_Comparator_PwrDwnOverrideDisable
+ 574:.\Generated_Source\PSoC5/SW_Comparator.c ****     ********************************************************************************
+ 575:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 576:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Summary:
+ 577:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  This is the power down over-ride feature. This allows the component to stay
+ 578:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  inactive during sleep.
+ 579:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 580:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Parameters:
+ 581:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  None
+ 582:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 583:.\Generated_Source\PSoC5/SW_Comparator.c ****     * Return:
+ 584:.\Generated_Source\PSoC5/SW_Comparator.c ****     *  None
+ 585:.\Generated_Source\PSoC5/SW_Comparator.c ****     *
+ 586:.\Generated_Source\PSoC5/SW_Comparator.c ****     *******************************************************************************/
+ 587:.\Generated_Source\PSoC5/SW_Comparator.c ****     void SW_Comparator_PwrDwnOverrideDisable(void) 
+ 588:.\Generated_Source\PSoC5/SW_Comparator.c ****     {
+ 584              		.loc 1 588 0
+ 585              		.cfi_startproc
+ 586              		@ args = 0, pretend = 0, frame = 0
+ 587              		@ frame_needed = 0, uses_anonymous_args = 0
+ 588              		@ link register save eliminated.
+ 589:.\Generated_Source\PSoC5/SW_Comparator.c ****         /* Reset the pd_override bit in CMP_CR register */
+ 590:.\Generated_Source\PSoC5/SW_Comparator.c ****         SW_Comparator_CR &= (uint8)(~SW_Comparator_PWRDWN_OVRD);
+ 589              		.loc 1 590 0
+ 590 0000 024A     		ldr	r2, .L53
+ 591 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 592 0004 03F0FB03 		and	r3, r3, #251
+ 593 0008 1370     		strb	r3, [r2]
+ 594 000a 7047     		bx	lr
+ 595              	.L54:
+ 596              		.align	2
+ 597              	.L53:
+ 598 000c 43580040 		.word	1073764419
+ 599              		.cfi_endproc
+ 600              	.LFE10:
+ 601              		.size	SW_Comparator_PwrDwnOverrideDisable, .-SW_Comparator_PwrDwnOverrideDisable
+ 602              		.global	SW_Comparator_initVar
+ 603              		.bss
+ 604              		.set	.LANCHOR0,. + 0
+ 605              		.type	SW_Comparator_initVar, %object
+ 606              		.size	SW_Comparator_initVar, 1
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 23
+
+
+ 607              	SW_Comparator_initVar:
+ 608 0000 00       		.space	1
+ 609              		.text
+ 610              	.Letext0:
+ 611              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 612              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 613              		.section	.debug_info,"",%progbits
+ 614              	.Ldebug_info0:
+ 615 0000 C2020000 		.4byte	0x2c2
+ 616 0004 0400     		.2byte	0x4
+ 617 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 618 000a 04       		.byte	0x4
+ 619 000b 01       		.uleb128 0x1
+ 620 000c 88000000 		.4byte	.LASF33
+ 621 0010 01       		.byte	0x1
+ 622 0011 52000000 		.4byte	.LASF34
+ 623 0015 24010000 		.4byte	.LASF35
+ 624 0019 30000000 		.4byte	.Ldebug_ranges0+0x30
+ 625 001d 00000000 		.4byte	0
+ 626 0021 00000000 		.4byte	.Ldebug_line0
+ 627 0025 02       		.uleb128 0x2
+ 628 0026 01       		.byte	0x1
+ 629 0027 06       		.byte	0x6
+ 630 0028 05030000 		.4byte	.LASF0
+ 631 002c 02       		.uleb128 0x2
+ 632 002d 01       		.byte	0x1
+ 633 002e 08       		.byte	0x8
+ 634 002f 16010000 		.4byte	.LASF1
+ 635 0033 02       		.uleb128 0x2
+ 636 0034 02       		.byte	0x2
+ 637 0035 05       		.byte	0x5
+ 638 0036 AC020000 		.4byte	.LASF2
+ 639 003a 02       		.uleb128 0x2
+ 640 003b 02       		.byte	0x2
+ 641 003c 07       		.byte	0x7
+ 642 003d 38000000 		.4byte	.LASF3
+ 643 0041 02       		.uleb128 0x2
+ 644 0042 04       		.byte	0x4
+ 645 0043 05       		.byte	0x5
+ 646 0044 E9020000 		.4byte	.LASF4
+ 647 0048 02       		.uleb128 0x2
+ 648 0049 04       		.byte	0x4
+ 649 004a 07       		.byte	0x7
+ 650 004b 79010000 		.4byte	.LASF5
+ 651 004f 02       		.uleb128 0x2
+ 652 0050 08       		.byte	0x8
+ 653 0051 05       		.byte	0x5
+ 654 0052 79020000 		.4byte	.LASF6
+ 655 0056 02       		.uleb128 0x2
+ 656 0057 08       		.byte	0x8
+ 657 0058 07       		.byte	0x7
+ 658 0059 34020000 		.4byte	.LASF7
+ 659 005d 03       		.uleb128 0x3
+ 660 005e 04       		.byte	0x4
+ 661 005f 05       		.byte	0x5
+ 662 0060 696E7400 		.ascii	"int\000"
+ 663 0064 02       		.uleb128 0x2
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 24
+
+
+ 664 0065 04       		.byte	0x4
+ 665 0066 07       		.byte	0x7
+ 666 0067 0E020000 		.4byte	.LASF8
+ 667 006b 04       		.uleb128 0x4
+ 668 006c BF020000 		.4byte	.LASF9
+ 669 0070 02       		.byte	0x2
+ 670 0071 9201     		.2byte	0x192
+ 671 0073 2C000000 		.4byte	0x2c
+ 672 0077 04       		.uleb128 0x4
+ 673 0078 ED010000 		.4byte	.LASF10
+ 674 007c 02       		.byte	0x2
+ 675 007d 9301     		.2byte	0x193
+ 676 007f 3A000000 		.4byte	0x3a
+ 677 0083 04       		.uleb128 0x4
+ 678 0084 F4010000 		.4byte	.LASF11
+ 679 0088 02       		.byte	0x2
+ 680 0089 9401     		.2byte	0x194
+ 681 008b 48000000 		.4byte	0x48
+ 682 008f 02       		.uleb128 0x2
+ 683 0090 04       		.byte	0x4
+ 684 0091 04       		.byte	0x4
+ 685 0092 7B000000 		.4byte	.LASF12
+ 686 0096 02       		.uleb128 0x2
+ 687 0097 08       		.byte	0x8
+ 688 0098 04       		.byte	0x4
+ 689 0099 CD010000 		.4byte	.LASF13
+ 690 009d 02       		.uleb128 0x2
+ 691 009e 01       		.byte	0x1
+ 692 009f 08       		.byte	0x8
+ 693 00a0 91020000 		.4byte	.LASF14
+ 694 00a4 04       		.uleb128 0x4
+ 695 00a5 6C010000 		.4byte	.LASF15
+ 696 00a9 02       		.byte	0x2
+ 697 00aa 3C02     		.2byte	0x23c
+ 698 00ac B0000000 		.4byte	0xb0
+ 699 00b0 05       		.uleb128 0x5
+ 700 00b1 6B000000 		.4byte	0x6b
+ 701 00b5 02       		.uleb128 0x2
+ 702 00b6 04       		.byte	0x4
+ 703 00b7 07       		.byte	0x7
+ 704 00b8 65020000 		.4byte	.LASF16
+ 705 00bc 06       		.uleb128 0x6
+ 706 00bd A1010000 		.4byte	.LASF36
+ 707 00c1 01       		.byte	0x1
+ 708 00c2 C5       		.byte	0xc5
+ 709 00c3 01       		.byte	0x1
+ 710 00c4 D4000000 		.4byte	0xd4
+ 711 00c8 07       		.uleb128 0x7
+ 712 00c9 5F020000 		.4byte	.LASF37
+ 713 00cd 01       		.byte	0x1
+ 714 00ce C5       		.byte	0xc5
+ 715 00cf 6B000000 		.4byte	0x6b
+ 716 00d3 00       		.byte	0
+ 717 00d4 08       		.uleb128 0x8
+ 718 00d5 1B020000 		.4byte	.LASF38
+ 719 00d9 01       		.byte	0x1
+ 720 00da 1A01     		.2byte	0x11a
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 25
+
+
+ 721 00dc 00000000 		.4byte	.LFB6
+ 722 00e0 74000000 		.4byte	.LFE6-.LFB6
+ 723 00e4 01       		.uleb128 0x1
+ 724 00e5 9C       		.byte	0x9c
+ 725 00e6 3A010000 		.4byte	0x13a
+ 726 00ea 09       		.uleb128 0x9
+ 727 00eb 28030000 		.4byte	.LASF29
+ 728 00ef 01       		.byte	0x1
+ 729 00f0 1A01     		.2byte	0x11a
+ 730 00f2 6B000000 		.4byte	0x6b
+ 731 00f6 00000000 		.4byte	.LLST0
+ 732 00fa 0A       		.uleb128 0xa
+ 733 00fb 71010000 		.4byte	.LASF17
+ 734 00ff 01       		.byte	0x1
+ 735 0100 1C01     		.2byte	0x11c
+ 736 0102 6B000000 		.4byte	0x6b
+ 737 0106 3A000000 		.4byte	.LLST1
+ 738 010a 0A       		.uleb128 0xa
+ 739 010b 6E020000 		.4byte	.LASF18
+ 740 010f 01       		.byte	0x1
+ 741 0110 1C01     		.2byte	0x11c
+ 742 0112 6B000000 		.4byte	0x6b
+ 743 0116 71000000 		.4byte	.LLST2
+ 744 011a 0A       		.uleb128 0xa
+ 745 011b B6020000 		.4byte	.LASF19
+ 746 011f 01       		.byte	0x1
+ 747 0120 1D01     		.2byte	0x11d
+ 748 0122 6B000000 		.4byte	0x6b
+ 749 0126 8F000000 		.4byte	.LLST3
+ 750 012a 0B       		.uleb128 0xb
+ 751 012b 4A000000 		.4byte	.LVL4
+ 752 012f B8020000 		.4byte	0x2b8
+ 753 0133 0C       		.uleb128 0xc
+ 754 0134 01       		.uleb128 0x1
+ 755 0135 50       		.byte	0x50
+ 756 0136 01       		.uleb128 0x1
+ 757 0137 3A       		.byte	0x3a
+ 758 0138 00       		.byte	0
+ 759 0139 00       		.byte	0
+ 760 013a 0D       		.uleb128 0xd
+ 761 013b B8010000 		.4byte	.LASF20
+ 762 013f 01       		.byte	0x1
+ 763 0140 63       		.byte	0x63
+ 764 0141 00000000 		.4byte	.LFB1
+ 765 0145 18000000 		.4byte	.LFE1-.LFB1
+ 766 0149 01       		.uleb128 0x1
+ 767 014a 9C       		.byte	0x9c
+ 768 014b 0D       		.uleb128 0xd
+ 769 014c F2020000 		.4byte	.LASF21
+ 770 0150 01       		.byte	0x1
+ 771 0151 A5       		.byte	0xa5
+ 772 0152 00000000 		.4byte	.LFB3
+ 773 0156 18000000 		.4byte	.LFE3-.LFB3
+ 774 015a 01       		.uleb128 0x1
+ 775 015b 9C       		.byte	0x9c
+ 776 015c 0E       		.uleb128 0xe
+ 777 015d BC000000 		.4byte	0xbc
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 26
+
+
+ 778 0161 00000000 		.4byte	.LFB4
+ 779 0165 58000000 		.4byte	.LFE4-.LFB4
+ 780 0169 01       		.uleb128 0x1
+ 781 016a 9C       		.byte	0x9c
+ 782 016b 83010000 		.4byte	0x183
+ 783 016f 0F       		.uleb128 0xf
+ 784 0170 C8000000 		.4byte	0xc8
+ 785 0174 01       		.uleb128 0x1
+ 786 0175 50       		.byte	0x50
+ 787 0176 10       		.uleb128 0x10
+ 788 0177 00000000 		.4byte	.Ldebug_ranges0+0
+ 789 017b 11       		.uleb128 0x11
+ 790 017c C8000000 		.4byte	0xc8
+ 791 0180 01       		.byte	0x1
+ 792 0181 00       		.byte	0
+ 793 0182 00       		.byte	0
+ 794 0183 12       		.uleb128 0x12
+ 795 0184 FB010000 		.4byte	.LASF22
+ 796 0188 01       		.byte	0x1
+ 797 0189 33       		.byte	0x33
+ 798 018a 00000000 		.4byte	.LFB0
+ 799 018e 40000000 		.4byte	.LFE0-.LFB0
+ 800 0192 01       		.uleb128 0x1
+ 801 0193 9C       		.byte	0x9c
+ 802 0194 A8010000 		.4byte	0x1a8
+ 803 0198 0B       		.uleb128 0xb
+ 804 0199 08000000 		.4byte	.LVL12
+ 805 019d BC000000 		.4byte	0xbc
+ 806 01a1 0C       		.uleb128 0xc
+ 807 01a2 01       		.uleb128 0x1
+ 808 01a3 50       		.byte	0x50
+ 809 01a4 01       		.uleb128 0x1
+ 810 01a5 31       		.byte	0x31
+ 811 01a6 00       		.byte	0
+ 812 01a7 00       		.byte	0
+ 813 01a8 12       		.uleb128 0x12
+ 814 01a9 4B020000 		.4byte	.LASF23
+ 815 01ad 01       		.byte	0x1
+ 816 01ae 88       		.byte	0x88
+ 817 01af 00000000 		.4byte	.LFB2
+ 818 01b3 1C000000 		.4byte	.LFE2-.LFB2
+ 819 01b7 01       		.uleb128 0x1
+ 820 01b8 9C       		.byte	0x9c
+ 821 01b9 D0010000 		.4byte	0x1d0
+ 822 01bd 13       		.uleb128 0x13
+ 823 01be 0C000000 		.4byte	.LVL13
+ 824 01c2 83010000 		.4byte	0x183
+ 825 01c6 14       		.uleb128 0x14
+ 826 01c7 18000000 		.4byte	.LVL14
+ 827 01cb 3A010000 		.4byte	0x13a
+ 828 01cf 00       		.byte	0
+ 829 01d0 15       		.uleb128 0x15
+ 830 01d1 D4010000 		.4byte	.LASF39
+ 831 01d5 01       		.byte	0x1
+ 832 01d6 FB       		.byte	0xfb
+ 833 01d7 6B000000 		.4byte	0x6b
+ 834 01db 00000000 		.4byte	.LFB5
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 27
+
+
+ 835 01df 10000000 		.4byte	.LFE5-.LFB5
+ 836 01e3 01       		.uleb128 0x1
+ 837 01e4 9C       		.byte	0x9c
+ 838 01e5 16       		.uleb128 0x16
+ 839 01e6 96020000 		.4byte	.LASF40
+ 840 01ea 01       		.byte	0x1
+ 841 01eb BF01     		.2byte	0x1bf
+ 842 01ed 77000000 		.4byte	0x77
+ 843 01f1 00000000 		.4byte	.LFB7
+ 844 01f5 A4000000 		.4byte	.LFE7-.LFB7
+ 845 01f9 01       		.uleb128 0x1
+ 846 01fa 9C       		.byte	0x9c
+ 847 01fb 5C020000 		.4byte	0x25c
+ 848 01ff 0A       		.uleb128 0xa
+ 849 0200 4B000000 		.4byte	.LASF24
+ 850 0204 01       		.byte	0x1
+ 851 0205 C101     		.2byte	0x1c1
+ 852 0207 6B000000 		.4byte	0x6b
+ 853 020b A2000000 		.4byte	.LLST4
+ 854 020f 0A       		.uleb128 0xa
+ 855 0210 31000000 		.4byte	.LASF25
+ 856 0214 01       		.byte	0x1
+ 857 0215 C201     		.2byte	0x1c2
+ 858 0217 6B000000 		.4byte	0x6b
+ 859 021b B5000000 		.4byte	.LLST5
+ 860 021f 0A       		.uleb128 0xa
+ 861 0220 81000000 		.4byte	.LASF26
+ 862 0224 01       		.byte	0x1
+ 863 0225 C301     		.2byte	0x1c3
+ 864 0227 6B000000 		.4byte	0x6b
+ 865 022b C8000000 		.4byte	.LLST6
+ 866 022f 0A       		.uleb128 0xa
+ 867 0230 2B000000 		.4byte	.LASF27
+ 868 0234 01       		.byte	0x1
+ 869 0235 C401     		.2byte	0x1c4
+ 870 0237 6B000000 		.4byte	0x6b
+ 871 023b DB000000 		.4byte	.LLST7
+ 872 023f 17       		.uleb128 0x17
+ 873 0240 60000000 		.4byte	.LVL18
+ 874 0244 D4000000 		.4byte	0xd4
+ 875 0248 52020000 		.4byte	0x252
+ 876 024c 0C       		.uleb128 0xc
+ 877 024d 01       		.uleb128 0x1
+ 878 024e 50       		.byte	0x50
+ 879 024f 01       		.uleb128 0x1
+ 880 0250 31       		.byte	0x31
+ 881 0251 00       		.byte	0
+ 882 0252 13       		.uleb128 0x13
+ 883 0253 68000000 		.4byte	.LVL19
+ 884 0257 D4000000 		.4byte	0xd4
+ 885 025b 00       		.byte	0
+ 886 025c 18       		.uleb128 0x18
+ 887 025d 11030000 		.4byte	.LASF28
+ 888 0261 01       		.byte	0x1
+ 889 0262 1102     		.2byte	0x211
+ 890 0264 00000000 		.4byte	.LFB8
+ 891 0268 10000000 		.4byte	.LFE8-.LFB8
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 28
+
+
+ 892 026c 01       		.uleb128 0x1
+ 893 026d 9C       		.byte	0x9c
+ 894 026e 83020000 		.4byte	0x283
+ 895 0272 09       		.uleb128 0x9
+ 896 0273 00000000 		.4byte	.LASF30
+ 897 0277 01       		.byte	0x1
+ 898 0278 1102     		.2byte	0x211
+ 899 027a 77000000 		.4byte	0x77
+ 900 027e EE000000 		.4byte	.LLST8
+ 901 0282 00       		.byte	0
+ 902 0283 19       		.uleb128 0x19
+ 903 0284 08000000 		.4byte	.LASF31
+ 904 0288 01       		.byte	0x1
+ 905 0289 3502     		.2byte	0x235
+ 906 028b 00000000 		.4byte	.LFB9
+ 907 028f 10000000 		.4byte	.LFE9-.LFB9
+ 908 0293 01       		.uleb128 0x1
+ 909 0294 9C       		.byte	0x9c
+ 910 0295 19       		.uleb128 0x19
+ 911 0296 C5020000 		.4byte	.LASF32
+ 912 029a 01       		.byte	0x1
+ 913 029b 4B02     		.2byte	0x24b
+ 914 029d 00000000 		.4byte	.LFB10
+ 915 02a1 10000000 		.4byte	.LFE10-.LFB10
+ 916 02a5 01       		.uleb128 0x1
+ 917 02a6 9C       		.byte	0x9c
+ 918 02a7 1A       		.uleb128 0x1a
+ 919 02a8 8B010000 		.4byte	.LASF41
+ 920 02ac 01       		.byte	0x1
+ 921 02ad 14       		.byte	0x14
+ 922 02ae 6B000000 		.4byte	0x6b
+ 923 02b2 05       		.uleb128 0x5
+ 924 02b3 03       		.byte	0x3
+ 925 02b4 00000000 		.4byte	SW_Comparator_initVar
+ 926 02b8 1B       		.uleb128 0x1b
+ 927 02b9 87020000 		.4byte	.LASF42
+ 928 02bd 03       		.byte	0x3
+ 929 02be 77       		.byte	0x77
+ 930 02bf 1C       		.uleb128 0x1c
+ 931 02c0 77000000 		.4byte	0x77
+ 932 02c4 00       		.byte	0
+ 933 02c5 00       		.byte	0
+ 934              		.section	.debug_abbrev,"",%progbits
+ 935              	.Ldebug_abbrev0:
+ 936 0000 01       		.uleb128 0x1
+ 937 0001 11       		.uleb128 0x11
+ 938 0002 01       		.byte	0x1
+ 939 0003 25       		.uleb128 0x25
+ 940 0004 0E       		.uleb128 0xe
+ 941 0005 13       		.uleb128 0x13
+ 942 0006 0B       		.uleb128 0xb
+ 943 0007 03       		.uleb128 0x3
+ 944 0008 0E       		.uleb128 0xe
+ 945 0009 1B       		.uleb128 0x1b
+ 946 000a 0E       		.uleb128 0xe
+ 947 000b 55       		.uleb128 0x55
+ 948 000c 17       		.uleb128 0x17
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 29
+
+
+ 949 000d 11       		.uleb128 0x11
+ 950 000e 01       		.uleb128 0x1
+ 951 000f 10       		.uleb128 0x10
+ 952 0010 17       		.uleb128 0x17
+ 953 0011 00       		.byte	0
+ 954 0012 00       		.byte	0
+ 955 0013 02       		.uleb128 0x2
+ 956 0014 24       		.uleb128 0x24
+ 957 0015 00       		.byte	0
+ 958 0016 0B       		.uleb128 0xb
+ 959 0017 0B       		.uleb128 0xb
+ 960 0018 3E       		.uleb128 0x3e
+ 961 0019 0B       		.uleb128 0xb
+ 962 001a 03       		.uleb128 0x3
+ 963 001b 0E       		.uleb128 0xe
+ 964 001c 00       		.byte	0
+ 965 001d 00       		.byte	0
+ 966 001e 03       		.uleb128 0x3
+ 967 001f 24       		.uleb128 0x24
+ 968 0020 00       		.byte	0
+ 969 0021 0B       		.uleb128 0xb
+ 970 0022 0B       		.uleb128 0xb
+ 971 0023 3E       		.uleb128 0x3e
+ 972 0024 0B       		.uleb128 0xb
+ 973 0025 03       		.uleb128 0x3
+ 974 0026 08       		.uleb128 0x8
+ 975 0027 00       		.byte	0
+ 976 0028 00       		.byte	0
+ 977 0029 04       		.uleb128 0x4
+ 978 002a 16       		.uleb128 0x16
+ 979 002b 00       		.byte	0
+ 980 002c 03       		.uleb128 0x3
+ 981 002d 0E       		.uleb128 0xe
+ 982 002e 3A       		.uleb128 0x3a
+ 983 002f 0B       		.uleb128 0xb
+ 984 0030 3B       		.uleb128 0x3b
+ 985 0031 05       		.uleb128 0x5
+ 986 0032 49       		.uleb128 0x49
+ 987 0033 13       		.uleb128 0x13
+ 988 0034 00       		.byte	0
+ 989 0035 00       		.byte	0
+ 990 0036 05       		.uleb128 0x5
+ 991 0037 35       		.uleb128 0x35
+ 992 0038 00       		.byte	0
+ 993 0039 49       		.uleb128 0x49
+ 994 003a 13       		.uleb128 0x13
+ 995 003b 00       		.byte	0
+ 996 003c 00       		.byte	0
+ 997 003d 06       		.uleb128 0x6
+ 998 003e 2E       		.uleb128 0x2e
+ 999 003f 01       		.byte	0x1
+ 1000 0040 3F       		.uleb128 0x3f
+ 1001 0041 19       		.uleb128 0x19
+ 1002 0042 03       		.uleb128 0x3
+ 1003 0043 0E       		.uleb128 0xe
+ 1004 0044 3A       		.uleb128 0x3a
+ 1005 0045 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 30
+
+
+ 1006 0046 3B       		.uleb128 0x3b
+ 1007 0047 0B       		.uleb128 0xb
+ 1008 0048 27       		.uleb128 0x27
+ 1009 0049 19       		.uleb128 0x19
+ 1010 004a 20       		.uleb128 0x20
+ 1011 004b 0B       		.uleb128 0xb
+ 1012 004c 01       		.uleb128 0x1
+ 1013 004d 13       		.uleb128 0x13
+ 1014 004e 00       		.byte	0
+ 1015 004f 00       		.byte	0
+ 1016 0050 07       		.uleb128 0x7
+ 1017 0051 05       		.uleb128 0x5
+ 1018 0052 00       		.byte	0
+ 1019 0053 03       		.uleb128 0x3
+ 1020 0054 0E       		.uleb128 0xe
+ 1021 0055 3A       		.uleb128 0x3a
+ 1022 0056 0B       		.uleb128 0xb
+ 1023 0057 3B       		.uleb128 0x3b
+ 1024 0058 0B       		.uleb128 0xb
+ 1025 0059 49       		.uleb128 0x49
+ 1026 005a 13       		.uleb128 0x13
+ 1027 005b 00       		.byte	0
+ 1028 005c 00       		.byte	0
+ 1029 005d 08       		.uleb128 0x8
+ 1030 005e 2E       		.uleb128 0x2e
+ 1031 005f 01       		.byte	0x1
+ 1032 0060 03       		.uleb128 0x3
+ 1033 0061 0E       		.uleb128 0xe
+ 1034 0062 3A       		.uleb128 0x3a
+ 1035 0063 0B       		.uleb128 0xb
+ 1036 0064 3B       		.uleb128 0x3b
+ 1037 0065 05       		.uleb128 0x5
+ 1038 0066 27       		.uleb128 0x27
+ 1039 0067 19       		.uleb128 0x19
+ 1040 0068 11       		.uleb128 0x11
+ 1041 0069 01       		.uleb128 0x1
+ 1042 006a 12       		.uleb128 0x12
+ 1043 006b 06       		.uleb128 0x6
+ 1044 006c 40       		.uleb128 0x40
+ 1045 006d 18       		.uleb128 0x18
+ 1046 006e 9742     		.uleb128 0x2117
+ 1047 0070 19       		.uleb128 0x19
+ 1048 0071 01       		.uleb128 0x1
+ 1049 0072 13       		.uleb128 0x13
+ 1050 0073 00       		.byte	0
+ 1051 0074 00       		.byte	0
+ 1052 0075 09       		.uleb128 0x9
+ 1053 0076 05       		.uleb128 0x5
+ 1054 0077 00       		.byte	0
+ 1055 0078 03       		.uleb128 0x3
+ 1056 0079 0E       		.uleb128 0xe
+ 1057 007a 3A       		.uleb128 0x3a
+ 1058 007b 0B       		.uleb128 0xb
+ 1059 007c 3B       		.uleb128 0x3b
+ 1060 007d 05       		.uleb128 0x5
+ 1061 007e 49       		.uleb128 0x49
+ 1062 007f 13       		.uleb128 0x13
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 31
+
+
+ 1063 0080 02       		.uleb128 0x2
+ 1064 0081 17       		.uleb128 0x17
+ 1065 0082 00       		.byte	0
+ 1066 0083 00       		.byte	0
+ 1067 0084 0A       		.uleb128 0xa
+ 1068 0085 34       		.uleb128 0x34
+ 1069 0086 00       		.byte	0
+ 1070 0087 03       		.uleb128 0x3
+ 1071 0088 0E       		.uleb128 0xe
+ 1072 0089 3A       		.uleb128 0x3a
+ 1073 008a 0B       		.uleb128 0xb
+ 1074 008b 3B       		.uleb128 0x3b
+ 1075 008c 05       		.uleb128 0x5
+ 1076 008d 49       		.uleb128 0x49
+ 1077 008e 13       		.uleb128 0x13
+ 1078 008f 02       		.uleb128 0x2
+ 1079 0090 17       		.uleb128 0x17
+ 1080 0091 00       		.byte	0
+ 1081 0092 00       		.byte	0
+ 1082 0093 0B       		.uleb128 0xb
+ 1083 0094 898201   		.uleb128 0x4109
+ 1084 0097 01       		.byte	0x1
+ 1085 0098 11       		.uleb128 0x11
+ 1086 0099 01       		.uleb128 0x1
+ 1087 009a 31       		.uleb128 0x31
+ 1088 009b 13       		.uleb128 0x13
+ 1089 009c 00       		.byte	0
+ 1090 009d 00       		.byte	0
+ 1091 009e 0C       		.uleb128 0xc
+ 1092 009f 8A8201   		.uleb128 0x410a
+ 1093 00a2 00       		.byte	0
+ 1094 00a3 02       		.uleb128 0x2
+ 1095 00a4 18       		.uleb128 0x18
+ 1096 00a5 9142     		.uleb128 0x2111
+ 1097 00a7 18       		.uleb128 0x18
+ 1098 00a8 00       		.byte	0
+ 1099 00a9 00       		.byte	0
+ 1100 00aa 0D       		.uleb128 0xd
+ 1101 00ab 2E       		.uleb128 0x2e
+ 1102 00ac 00       		.byte	0
+ 1103 00ad 3F       		.uleb128 0x3f
+ 1104 00ae 19       		.uleb128 0x19
+ 1105 00af 03       		.uleb128 0x3
+ 1106 00b0 0E       		.uleb128 0xe
+ 1107 00b1 3A       		.uleb128 0x3a
+ 1108 00b2 0B       		.uleb128 0xb
+ 1109 00b3 3B       		.uleb128 0x3b
+ 1110 00b4 0B       		.uleb128 0xb
+ 1111 00b5 27       		.uleb128 0x27
+ 1112 00b6 19       		.uleb128 0x19
+ 1113 00b7 11       		.uleb128 0x11
+ 1114 00b8 01       		.uleb128 0x1
+ 1115 00b9 12       		.uleb128 0x12
+ 1116 00ba 06       		.uleb128 0x6
+ 1117 00bb 40       		.uleb128 0x40
+ 1118 00bc 18       		.uleb128 0x18
+ 1119 00bd 9742     		.uleb128 0x2117
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 32
+
+
+ 1120 00bf 19       		.uleb128 0x19
+ 1121 00c0 00       		.byte	0
+ 1122 00c1 00       		.byte	0
+ 1123 00c2 0E       		.uleb128 0xe
+ 1124 00c3 2E       		.uleb128 0x2e
+ 1125 00c4 01       		.byte	0x1
+ 1126 00c5 31       		.uleb128 0x31
+ 1127 00c6 13       		.uleb128 0x13
+ 1128 00c7 11       		.uleb128 0x11
+ 1129 00c8 01       		.uleb128 0x1
+ 1130 00c9 12       		.uleb128 0x12
+ 1131 00ca 06       		.uleb128 0x6
+ 1132 00cb 40       		.uleb128 0x40
+ 1133 00cc 18       		.uleb128 0x18
+ 1134 00cd 9742     		.uleb128 0x2117
+ 1135 00cf 19       		.uleb128 0x19
+ 1136 00d0 01       		.uleb128 0x1
+ 1137 00d1 13       		.uleb128 0x13
+ 1138 00d2 00       		.byte	0
+ 1139 00d3 00       		.byte	0
+ 1140 00d4 0F       		.uleb128 0xf
+ 1141 00d5 05       		.uleb128 0x5
+ 1142 00d6 00       		.byte	0
+ 1143 00d7 31       		.uleb128 0x31
+ 1144 00d8 13       		.uleb128 0x13
+ 1145 00d9 02       		.uleb128 0x2
+ 1146 00da 18       		.uleb128 0x18
+ 1147 00db 00       		.byte	0
+ 1148 00dc 00       		.byte	0
+ 1149 00dd 10       		.uleb128 0x10
+ 1150 00de 0B       		.uleb128 0xb
+ 1151 00df 01       		.byte	0x1
+ 1152 00e0 55       		.uleb128 0x55
+ 1153 00e1 17       		.uleb128 0x17
+ 1154 00e2 00       		.byte	0
+ 1155 00e3 00       		.byte	0
+ 1156 00e4 11       		.uleb128 0x11
+ 1157 00e5 05       		.uleb128 0x5
+ 1158 00e6 00       		.byte	0
+ 1159 00e7 31       		.uleb128 0x31
+ 1160 00e8 13       		.uleb128 0x13
+ 1161 00e9 1C       		.uleb128 0x1c
+ 1162 00ea 0B       		.uleb128 0xb
+ 1163 00eb 00       		.byte	0
+ 1164 00ec 00       		.byte	0
+ 1165 00ed 12       		.uleb128 0x12
+ 1166 00ee 2E       		.uleb128 0x2e
+ 1167 00ef 01       		.byte	0x1
+ 1168 00f0 3F       		.uleb128 0x3f
+ 1169 00f1 19       		.uleb128 0x19
+ 1170 00f2 03       		.uleb128 0x3
+ 1171 00f3 0E       		.uleb128 0xe
+ 1172 00f4 3A       		.uleb128 0x3a
+ 1173 00f5 0B       		.uleb128 0xb
+ 1174 00f6 3B       		.uleb128 0x3b
+ 1175 00f7 0B       		.uleb128 0xb
+ 1176 00f8 27       		.uleb128 0x27
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 33
+
+
+ 1177 00f9 19       		.uleb128 0x19
+ 1178 00fa 11       		.uleb128 0x11
+ 1179 00fb 01       		.uleb128 0x1
+ 1180 00fc 12       		.uleb128 0x12
+ 1181 00fd 06       		.uleb128 0x6
+ 1182 00fe 40       		.uleb128 0x40
+ 1183 00ff 18       		.uleb128 0x18
+ 1184 0100 9742     		.uleb128 0x2117
+ 1185 0102 19       		.uleb128 0x19
+ 1186 0103 01       		.uleb128 0x1
+ 1187 0104 13       		.uleb128 0x13
+ 1188 0105 00       		.byte	0
+ 1189 0106 00       		.byte	0
+ 1190 0107 13       		.uleb128 0x13
+ 1191 0108 898201   		.uleb128 0x4109
+ 1192 010b 00       		.byte	0
+ 1193 010c 11       		.uleb128 0x11
+ 1194 010d 01       		.uleb128 0x1
+ 1195 010e 31       		.uleb128 0x31
+ 1196 010f 13       		.uleb128 0x13
+ 1197 0110 00       		.byte	0
+ 1198 0111 00       		.byte	0
+ 1199 0112 14       		.uleb128 0x14
+ 1200 0113 898201   		.uleb128 0x4109
+ 1201 0116 00       		.byte	0
+ 1202 0117 11       		.uleb128 0x11
+ 1203 0118 01       		.uleb128 0x1
+ 1204 0119 9542     		.uleb128 0x2115
+ 1205 011b 19       		.uleb128 0x19
+ 1206 011c 31       		.uleb128 0x31
+ 1207 011d 13       		.uleb128 0x13
+ 1208 011e 00       		.byte	0
+ 1209 011f 00       		.byte	0
+ 1210 0120 15       		.uleb128 0x15
+ 1211 0121 2E       		.uleb128 0x2e
+ 1212 0122 00       		.byte	0
+ 1213 0123 3F       		.uleb128 0x3f
+ 1214 0124 19       		.uleb128 0x19
+ 1215 0125 03       		.uleb128 0x3
+ 1216 0126 0E       		.uleb128 0xe
+ 1217 0127 3A       		.uleb128 0x3a
+ 1218 0128 0B       		.uleb128 0xb
+ 1219 0129 3B       		.uleb128 0x3b
+ 1220 012a 0B       		.uleb128 0xb
+ 1221 012b 27       		.uleb128 0x27
+ 1222 012c 19       		.uleb128 0x19
+ 1223 012d 49       		.uleb128 0x49
+ 1224 012e 13       		.uleb128 0x13
+ 1225 012f 11       		.uleb128 0x11
+ 1226 0130 01       		.uleb128 0x1
+ 1227 0131 12       		.uleb128 0x12
+ 1228 0132 06       		.uleb128 0x6
+ 1229 0133 40       		.uleb128 0x40
+ 1230 0134 18       		.uleb128 0x18
+ 1231 0135 9742     		.uleb128 0x2117
+ 1232 0137 19       		.uleb128 0x19
+ 1233 0138 00       		.byte	0
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 34
+
+
+ 1234 0139 00       		.byte	0
+ 1235 013a 16       		.uleb128 0x16
+ 1236 013b 2E       		.uleb128 0x2e
+ 1237 013c 01       		.byte	0x1
+ 1238 013d 3F       		.uleb128 0x3f
+ 1239 013e 19       		.uleb128 0x19
+ 1240 013f 03       		.uleb128 0x3
+ 1241 0140 0E       		.uleb128 0xe
+ 1242 0141 3A       		.uleb128 0x3a
+ 1243 0142 0B       		.uleb128 0xb
+ 1244 0143 3B       		.uleb128 0x3b
+ 1245 0144 05       		.uleb128 0x5
+ 1246 0145 27       		.uleb128 0x27
+ 1247 0146 19       		.uleb128 0x19
+ 1248 0147 49       		.uleb128 0x49
+ 1249 0148 13       		.uleb128 0x13
+ 1250 0149 11       		.uleb128 0x11
+ 1251 014a 01       		.uleb128 0x1
+ 1252 014b 12       		.uleb128 0x12
+ 1253 014c 06       		.uleb128 0x6
+ 1254 014d 40       		.uleb128 0x40
+ 1255 014e 18       		.uleb128 0x18
+ 1256 014f 9742     		.uleb128 0x2117
+ 1257 0151 19       		.uleb128 0x19
+ 1258 0152 01       		.uleb128 0x1
+ 1259 0153 13       		.uleb128 0x13
+ 1260 0154 00       		.byte	0
+ 1261 0155 00       		.byte	0
+ 1262 0156 17       		.uleb128 0x17
+ 1263 0157 898201   		.uleb128 0x4109
+ 1264 015a 01       		.byte	0x1
+ 1265 015b 11       		.uleb128 0x11
+ 1266 015c 01       		.uleb128 0x1
+ 1267 015d 31       		.uleb128 0x31
+ 1268 015e 13       		.uleb128 0x13
+ 1269 015f 01       		.uleb128 0x1
+ 1270 0160 13       		.uleb128 0x13
+ 1271 0161 00       		.byte	0
+ 1272 0162 00       		.byte	0
+ 1273 0163 18       		.uleb128 0x18
+ 1274 0164 2E       		.uleb128 0x2e
+ 1275 0165 01       		.byte	0x1
+ 1276 0166 3F       		.uleb128 0x3f
+ 1277 0167 19       		.uleb128 0x19
+ 1278 0168 03       		.uleb128 0x3
+ 1279 0169 0E       		.uleb128 0xe
+ 1280 016a 3A       		.uleb128 0x3a
+ 1281 016b 0B       		.uleb128 0xb
+ 1282 016c 3B       		.uleb128 0x3b
+ 1283 016d 05       		.uleb128 0x5
+ 1284 016e 27       		.uleb128 0x27
+ 1285 016f 19       		.uleb128 0x19
+ 1286 0170 11       		.uleb128 0x11
+ 1287 0171 01       		.uleb128 0x1
+ 1288 0172 12       		.uleb128 0x12
+ 1289 0173 06       		.uleb128 0x6
+ 1290 0174 40       		.uleb128 0x40
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 35
+
+
+ 1291 0175 18       		.uleb128 0x18
+ 1292 0176 9742     		.uleb128 0x2117
+ 1293 0178 19       		.uleb128 0x19
+ 1294 0179 01       		.uleb128 0x1
+ 1295 017a 13       		.uleb128 0x13
+ 1296 017b 00       		.byte	0
+ 1297 017c 00       		.byte	0
+ 1298 017d 19       		.uleb128 0x19
+ 1299 017e 2E       		.uleb128 0x2e
+ 1300 017f 00       		.byte	0
+ 1301 0180 3F       		.uleb128 0x3f
+ 1302 0181 19       		.uleb128 0x19
+ 1303 0182 03       		.uleb128 0x3
+ 1304 0183 0E       		.uleb128 0xe
+ 1305 0184 3A       		.uleb128 0x3a
+ 1306 0185 0B       		.uleb128 0xb
+ 1307 0186 3B       		.uleb128 0x3b
+ 1308 0187 05       		.uleb128 0x5
+ 1309 0188 27       		.uleb128 0x27
+ 1310 0189 19       		.uleb128 0x19
+ 1311 018a 11       		.uleb128 0x11
+ 1312 018b 01       		.uleb128 0x1
+ 1313 018c 12       		.uleb128 0x12
+ 1314 018d 06       		.uleb128 0x6
+ 1315 018e 40       		.uleb128 0x40
+ 1316 018f 18       		.uleb128 0x18
+ 1317 0190 9742     		.uleb128 0x2117
+ 1318 0192 19       		.uleb128 0x19
+ 1319 0193 00       		.byte	0
+ 1320 0194 00       		.byte	0
+ 1321 0195 1A       		.uleb128 0x1a
+ 1322 0196 34       		.uleb128 0x34
+ 1323 0197 00       		.byte	0
+ 1324 0198 03       		.uleb128 0x3
+ 1325 0199 0E       		.uleb128 0xe
+ 1326 019a 3A       		.uleb128 0x3a
+ 1327 019b 0B       		.uleb128 0xb
+ 1328 019c 3B       		.uleb128 0x3b
+ 1329 019d 0B       		.uleb128 0xb
+ 1330 019e 49       		.uleb128 0x49
+ 1331 019f 13       		.uleb128 0x13
+ 1332 01a0 3F       		.uleb128 0x3f
+ 1333 01a1 19       		.uleb128 0x19
+ 1334 01a2 02       		.uleb128 0x2
+ 1335 01a3 18       		.uleb128 0x18
+ 1336 01a4 00       		.byte	0
+ 1337 01a5 00       		.byte	0
+ 1338 01a6 1B       		.uleb128 0x1b
+ 1339 01a7 2E       		.uleb128 0x2e
+ 1340 01a8 01       		.byte	0x1
+ 1341 01a9 3F       		.uleb128 0x3f
+ 1342 01aa 19       		.uleb128 0x19
+ 1343 01ab 03       		.uleb128 0x3
+ 1344 01ac 0E       		.uleb128 0xe
+ 1345 01ad 3A       		.uleb128 0x3a
+ 1346 01ae 0B       		.uleb128 0xb
+ 1347 01af 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 36
+
+
+ 1348 01b0 0B       		.uleb128 0xb
+ 1349 01b1 27       		.uleb128 0x27
+ 1350 01b2 19       		.uleb128 0x19
+ 1351 01b3 3C       		.uleb128 0x3c
+ 1352 01b4 19       		.uleb128 0x19
+ 1353 01b5 00       		.byte	0
+ 1354 01b6 00       		.byte	0
+ 1355 01b7 1C       		.uleb128 0x1c
+ 1356 01b8 05       		.uleb128 0x5
+ 1357 01b9 00       		.byte	0
+ 1358 01ba 49       		.uleb128 0x49
+ 1359 01bb 13       		.uleb128 0x13
+ 1360 01bc 00       		.byte	0
+ 1361 01bd 00       		.byte	0
+ 1362 01be 00       		.byte	0
+ 1363              		.section	.debug_loc,"",%progbits
+ 1364              	.Ldebug_loc0:
+ 1365              	.LLST0:
+ 1366 0000 00000000 		.4byte	.LVL0
+ 1367 0004 30000000 		.4byte	.LVL3
+ 1368 0008 0100     		.2byte	0x1
+ 1369 000a 50       		.byte	0x50
+ 1370 000b 30000000 		.4byte	.LVL3
+ 1371 000f 60000000 		.4byte	.LVL7
+ 1372 0013 0400     		.2byte	0x4
+ 1373 0015 F3       		.byte	0xf3
+ 1374 0016 01       		.uleb128 0x1
+ 1375 0017 50       		.byte	0x50
+ 1376 0018 9F       		.byte	0x9f
+ 1377 0019 60000000 		.4byte	.LVL7
+ 1378 001d 64000000 		.4byte	.LVL8
+ 1379 0021 0100     		.2byte	0x1
+ 1380 0023 50       		.byte	0x50
+ 1381 0024 64000000 		.4byte	.LVL8
+ 1382 0028 74000000 		.4byte	.LFE6
+ 1383 002c 0400     		.2byte	0x4
+ 1384 002e F3       		.byte	0xf3
+ 1385 002f 01       		.uleb128 0x1
+ 1386 0030 50       		.byte	0x50
+ 1387 0031 9F       		.byte	0x9f
+ 1388 0032 00000000 		.4byte	0
+ 1389 0036 00000000 		.4byte	0
+ 1390              	.LLST1:
+ 1391 003a 2E000000 		.4byte	.LVL2
+ 1392 003e 30000000 		.4byte	.LVL3
+ 1393 0042 0200     		.2byte	0x2
+ 1394 0044 30       		.byte	0x30
+ 1395 0045 9F       		.byte	0x9f
+ 1396 0046 30000000 		.4byte	.LVL3
+ 1397 004a 54000000 		.4byte	.LVL5
+ 1398 004e 0100     		.2byte	0x1
+ 1399 0050 56       		.byte	0x56
+ 1400 0051 54000000 		.4byte	.LVL5
+ 1401 0055 56000000 		.4byte	.LVL6
+ 1402 0059 0300     		.2byte	0x3
+ 1403 005b 76       		.byte	0x76
+ 1404 005c 01       		.sleb128 1
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 37
+
+
+ 1405 005d 9F       		.byte	0x9f
+ 1406 005e 64000000 		.4byte	.LVL8
+ 1407 0062 68000000 		.4byte	.LVL9
+ 1408 0066 0100     		.2byte	0x1
+ 1409 0068 56       		.byte	0x56
+ 1410 0069 00000000 		.4byte	0
+ 1411 006d 00000000 		.4byte	0
+ 1412              	.LLST2:
+ 1413 0071 2E000000 		.4byte	.LVL2
+ 1414 0075 60000000 		.4byte	.LVL7
+ 1415 0079 0100     		.2byte	0x1
+ 1416 007b 57       		.byte	0x57
+ 1417 007c 64000000 		.4byte	.LVL8
+ 1418 0080 68000000 		.4byte	.LVL9
+ 1419 0084 0100     		.2byte	0x1
+ 1420 0086 57       		.byte	0x57
+ 1421 0087 00000000 		.4byte	0
+ 1422 008b 00000000 		.4byte	0
+ 1423              	.LLST3:
+ 1424 008f 10000000 		.4byte	.LVL1
+ 1425 0093 68000000 		.4byte	.LVL9
+ 1426 0097 0100     		.2byte	0x1
+ 1427 0099 54       		.byte	0x54
+ 1428 009a 00000000 		.4byte	0
+ 1429 009e 00000000 		.4byte	0
+ 1430              	.LLST4:
+ 1431 00a2 44000000 		.4byte	.LVL15
+ 1432 00a6 8A000000 		.4byte	.LVL20
+ 1433 00aa 0100     		.2byte	0x1
+ 1434 00ac 5A       		.byte	0x5a
+ 1435 00ad 00000000 		.4byte	0
+ 1436 00b1 00000000 		.4byte	0
+ 1437              	.LLST5:
+ 1438 00b5 4E000000 		.4byte	.LVL16
+ 1439 00b9 8A000000 		.4byte	.LVL20
+ 1440 00bd 0100     		.2byte	0x1
+ 1441 00bf 59       		.byte	0x59
+ 1442 00c0 00000000 		.4byte	0
+ 1443 00c4 00000000 		.4byte	0
+ 1444              	.LLST6:
+ 1445 00c8 4E000000 		.4byte	.LVL16
+ 1446 00cc 8A000000 		.4byte	.LVL20
+ 1447 00d0 0100     		.2byte	0x1
+ 1448 00d2 58       		.byte	0x58
+ 1449 00d3 00000000 		.4byte	0
+ 1450 00d7 00000000 		.4byte	0
+ 1451              	.LLST7:
+ 1452 00db 52000000 		.4byte	.LVL17
+ 1453 00df 8A000000 		.4byte	.LVL20
+ 1454 00e3 0100     		.2byte	0x1
+ 1455 00e5 5B       		.byte	0x5b
+ 1456 00e6 00000000 		.4byte	0
+ 1457 00ea 00000000 		.4byte	0
+ 1458              	.LLST8:
+ 1459 00ee 00000000 		.4byte	.LVL21
+ 1460 00f2 06000000 		.4byte	.LVL22
+ 1461 00f6 0100     		.2byte	0x1
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 38
+
+
+ 1462 00f8 50       		.byte	0x50
+ 1463 00f9 06000000 		.4byte	.LVL22
+ 1464 00fd 10000000 		.4byte	.LFE8
+ 1465 0101 0400     		.2byte	0x4
+ 1466 0103 F3       		.byte	0xf3
+ 1467 0104 01       		.uleb128 0x1
+ 1468 0105 50       		.byte	0x50
+ 1469 0106 9F       		.byte	0x9f
+ 1470 0107 00000000 		.4byte	0
+ 1471 010b 00000000 		.4byte	0
+ 1472              		.section	.debug_aranges,"",%progbits
+ 1473 0000 6C000000 		.4byte	0x6c
+ 1474 0004 0200     		.2byte	0x2
+ 1475 0006 00000000 		.4byte	.Ldebug_info0
+ 1476 000a 04       		.byte	0x4
+ 1477 000b 00       		.byte	0
+ 1478 000c 0000     		.2byte	0
+ 1479 000e 0000     		.2byte	0
+ 1480 0010 00000000 		.4byte	.LFB6
+ 1481 0014 74000000 		.4byte	.LFE6-.LFB6
+ 1482 0018 00000000 		.4byte	.LFB1
+ 1483 001c 18000000 		.4byte	.LFE1-.LFB1
+ 1484 0020 00000000 		.4byte	.LFB3
+ 1485 0024 18000000 		.4byte	.LFE3-.LFB3
+ 1486 0028 00000000 		.4byte	.LFB4
+ 1487 002c 58000000 		.4byte	.LFE4-.LFB4
+ 1488 0030 00000000 		.4byte	.LFB0
+ 1489 0034 40000000 		.4byte	.LFE0-.LFB0
+ 1490 0038 00000000 		.4byte	.LFB2
+ 1491 003c 1C000000 		.4byte	.LFE2-.LFB2
+ 1492 0040 00000000 		.4byte	.LFB5
+ 1493 0044 10000000 		.4byte	.LFE5-.LFB5
+ 1494 0048 00000000 		.4byte	.LFB7
+ 1495 004c A4000000 		.4byte	.LFE7-.LFB7
+ 1496 0050 00000000 		.4byte	.LFB8
+ 1497 0054 10000000 		.4byte	.LFE8-.LFB8
+ 1498 0058 00000000 		.4byte	.LFB9
+ 1499 005c 10000000 		.4byte	.LFE9-.LFB9
+ 1500 0060 00000000 		.4byte	.LFB10
+ 1501 0064 10000000 		.4byte	.LFE10-.LFB10
+ 1502 0068 00000000 		.4byte	0
+ 1503 006c 00000000 		.4byte	0
+ 1504              		.section	.debug_ranges,"",%progbits
+ 1505              	.Ldebug_ranges0:
+ 1506 0000 14000000 		.4byte	.LBB4
+ 1507 0004 18000000 		.4byte	.LBE4
+ 1508 0008 1A000000 		.4byte	.LBB10
+ 1509 000c 1C000000 		.4byte	.LBE10
+ 1510 0010 20000000 		.4byte	.LBB11
+ 1511 0014 24000000 		.4byte	.LBE11
+ 1512 0018 26000000 		.4byte	.LBB12
+ 1513 001c 28000000 		.4byte	.LBE12
+ 1514 0020 2A000000 		.4byte	.LBB13
+ 1515 0024 2E000000 		.4byte	.LBE13
+ 1516 0028 00000000 		.4byte	0
+ 1517 002c 00000000 		.4byte	0
+ 1518 0030 00000000 		.4byte	.LFB6
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 39
+
+
+ 1519 0034 74000000 		.4byte	.LFE6
+ 1520 0038 00000000 		.4byte	.LFB1
+ 1521 003c 18000000 		.4byte	.LFE1
+ 1522 0040 00000000 		.4byte	.LFB3
+ 1523 0044 18000000 		.4byte	.LFE3
+ 1524 0048 00000000 		.4byte	.LFB4
+ 1525 004c 58000000 		.4byte	.LFE4
+ 1526 0050 00000000 		.4byte	.LFB0
+ 1527 0054 40000000 		.4byte	.LFE0
+ 1528 0058 00000000 		.4byte	.LFB2
+ 1529 005c 1C000000 		.4byte	.LFE2
+ 1530 0060 00000000 		.4byte	.LFB5
+ 1531 0064 10000000 		.4byte	.LFE5
+ 1532 0068 00000000 		.4byte	.LFB7
+ 1533 006c A4000000 		.4byte	.LFE7
+ 1534 0070 00000000 		.4byte	.LFB8
+ 1535 0074 10000000 		.4byte	.LFE8
+ 1536 0078 00000000 		.4byte	.LFB9
+ 1537 007c 10000000 		.4byte	.LFE9
+ 1538 0080 00000000 		.4byte	.LFB10
+ 1539 0084 10000000 		.4byte	.LFE10
+ 1540 0088 00000000 		.4byte	0
+ 1541 008c 00000000 		.4byte	0
+ 1542              		.section	.debug_line,"",%progbits
+ 1543              	.Ldebug_line0:
+ 1544 0000 AA010000 		.section	.debug_str,"MS",%progbits,1
+ 1544      02005700 
+ 1544      00000201 
+ 1544      FB0E0D00 
+ 1544      01010101 
+ 1545              	.LASF30:
+ 1546 0000 7472696D 		.ascii	"trimVal\000"
+ 1546      56616C00 
+ 1547              	.LASF31:
+ 1548 0008 53575F43 		.ascii	"SW_Comparator_PwrDwnOverrideEnable\000"
+ 1548      6F6D7061 
+ 1548      7261746F 
+ 1548      725F5077 
+ 1548      7244776E 
+ 1549              	.LASF27:
+ 1550 002b 746D7043 		.ascii	"tmpCR\000"
+ 1550      5200
+ 1551              	.LASF25:
+ 1552 0031 746D7053 		.ascii	"tmpSW2\000"
+ 1552      573200
+ 1553              	.LASF3:
+ 1554 0038 73686F72 		.ascii	"short unsigned int\000"
+ 1554      7420756E 
+ 1554      7369676E 
+ 1554      65642069 
+ 1554      6E7400
+ 1555              	.LASF24:
+ 1556 004b 746D7053 		.ascii	"tmpSW0\000"
+ 1556      573000
+ 1557              	.LASF34:
+ 1558 0052 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SW_Comparator.c\000"
+ 1558      6E657261 
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 40
+
+
+ 1558      7465645F 
+ 1558      536F7572 
+ 1558      63655C50 
+ 1559              	.LASF12:
+ 1560 007b 666C6F61 		.ascii	"float\000"
+ 1560      7400
+ 1561              	.LASF26:
+ 1562 0081 746D7053 		.ascii	"tmpSW3\000"
+ 1562      573300
+ 1563              	.LASF33:
+ 1564 0088 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1564      4320342E 
+ 1564      392E3320 
+ 1564      32303135 
+ 1564      30333033 
+ 1565 00bb 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1565      20726576 
+ 1565      6973696F 
+ 1565      6E203232 
+ 1565      31323230 
+ 1566 00ee 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1566      66756E63 
+ 1566      74696F6E 
+ 1566      2D736563 
+ 1566      74696F6E 
+ 1567              	.LASF1:
+ 1568 0116 756E7369 		.ascii	"unsigned char\000"
+ 1568      676E6564 
+ 1568      20636861 
+ 1568      7200
+ 1569              	.LASF35:
+ 1570 0124 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 1570      6F63756D 
+ 1570      656E7473 
+ 1570      5C436F6D 
+ 1570      70757465 
+ 1571 0153 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 1571      5069636B 
+ 1571      75705C44 
+ 1571      6973706C 
+ 1571      61792E63 
+ 1572              	.LASF15:
+ 1573 016c 72656738 		.ascii	"reg8\000"
+ 1573      00
+ 1574              	.LASF17:
+ 1575 0171 7472696D 		.ascii	"trimCnt\000"
+ 1575      436E7400 
+ 1576              	.LASF5:
+ 1577 0179 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1577      20756E73 
+ 1577      69676E65 
+ 1577      6420696E 
+ 1577      7400
+ 1578              	.LASF41:
+ 1579 018b 53575F43 		.ascii	"SW_Comparator_initVar\000"
+ 1579      6F6D7061 
+ 1579      7261746F 
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 41
+
+
+ 1579      725F696E 
+ 1579      69745661 
+ 1580              	.LASF36:
+ 1581 01a1 53575F43 		.ascii	"SW_Comparator_SetSpeed\000"
+ 1581      6F6D7061 
+ 1581      7261746F 
+ 1581      725F5365 
+ 1581      74537065 
+ 1582              	.LASF20:
+ 1583 01b8 53575F43 		.ascii	"SW_Comparator_Enable\000"
+ 1583      6F6D7061 
+ 1583      7261746F 
+ 1583      725F456E 
+ 1583      61626C65 
+ 1584              	.LASF13:
+ 1585 01cd 646F7562 		.ascii	"double\000"
+ 1585      6C6500
+ 1586              	.LASF39:
+ 1587 01d4 53575F43 		.ascii	"SW_Comparator_GetCompare\000"
+ 1587      6F6D7061 
+ 1587      7261746F 
+ 1587      725F4765 
+ 1587      74436F6D 
+ 1588              	.LASF10:
+ 1589 01ed 75696E74 		.ascii	"uint16\000"
+ 1589      313600
+ 1590              	.LASF11:
+ 1591 01f4 75696E74 		.ascii	"uint32\000"
+ 1591      333200
+ 1592              	.LASF22:
+ 1593 01fb 53575F43 		.ascii	"SW_Comparator_Init\000"
+ 1593      6F6D7061 
+ 1593      7261746F 
+ 1593      725F496E 
+ 1593      697400
+ 1594              	.LASF8:
+ 1595 020e 756E7369 		.ascii	"unsigned int\000"
+ 1595      676E6564 
+ 1595      20696E74 
+ 1595      00
+ 1596              	.LASF38:
+ 1597 021b 53575F43 		.ascii	"SW_Comparator_trimAdjust\000"
+ 1597      6F6D7061 
+ 1597      7261746F 
+ 1597      725F7472 
+ 1597      696D4164 
+ 1598              	.LASF7:
+ 1599 0234 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1599      206C6F6E 
+ 1599      6720756E 
+ 1599      7369676E 
+ 1599      65642069 
+ 1600              	.LASF23:
+ 1601 024b 53575F43 		.ascii	"SW_Comparator_Start\000"
+ 1601      6F6D7061 
+ 1601      7261746F 
+ 1601      725F5374 
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 42
+
+
+ 1601      61727400 
+ 1602              	.LASF37:
+ 1603 025f 73706565 		.ascii	"speed\000"
+ 1603      6400
+ 1604              	.LASF16:
+ 1605 0265 73697A65 		.ascii	"sizetype\000"
+ 1605      74797065 
+ 1605      00
+ 1606              	.LASF18:
+ 1607 026e 7472696D 		.ascii	"trimCntMax\000"
+ 1607      436E744D 
+ 1607      617800
+ 1608              	.LASF6:
+ 1609 0279 6C6F6E67 		.ascii	"long long int\000"
+ 1609      206C6F6E 
+ 1609      6720696E 
+ 1609      7400
+ 1610              	.LASF42:
+ 1611 0287 43794465 		.ascii	"CyDelayUs\000"
+ 1611      6C617955 
+ 1611      7300
+ 1612              	.LASF14:
+ 1613 0291 63686172 		.ascii	"char\000"
+ 1613      00
+ 1614              	.LASF40:
+ 1615 0296 53575F43 		.ascii	"SW_Comparator_ZeroCal\000"
+ 1615      6F6D7061 
+ 1615      7261746F 
+ 1615      725F5A65 
+ 1615      726F4361 
+ 1616              	.LASF2:
+ 1617 02ac 73686F72 		.ascii	"short int\000"
+ 1617      7420696E 
+ 1617      7400
+ 1618              	.LASF19:
+ 1619 02b6 636D7053 		.ascii	"cmpState\000"
+ 1619      74617465 
+ 1619      00
+ 1620              	.LASF9:
+ 1621 02bf 75696E74 		.ascii	"uint8\000"
+ 1621      3800
+ 1622              	.LASF32:
+ 1623 02c5 53575F43 		.ascii	"SW_Comparator_PwrDwnOverrideDisable\000"
+ 1623      6F6D7061 
+ 1623      7261746F 
+ 1623      725F5077 
+ 1623      7244776E 
+ 1624              	.LASF4:
+ 1625 02e9 6C6F6E67 		.ascii	"long int\000"
+ 1625      20696E74 
+ 1625      00
+ 1626              	.LASF21:
+ 1627 02f2 53575F43 		.ascii	"SW_Comparator_Stop\000"
+ 1627      6F6D7061 
+ 1627      7261746F 
+ 1627      725F5374 
+ 1627      6F7000
+ARM GAS  D:\TEMP\cckbgSJI.s 			page 43
+
+
+ 1628              	.LASF0:
+ 1629 0305 7369676E 		.ascii	"signed char\000"
+ 1629      65642063 
+ 1629      68617200 
+ 1630              	.LASF28:
+ 1631 0311 53575F43 		.ascii	"SW_Comparator_LoadTrim\000"
+ 1631      6F6D7061 
+ 1631      7261746F 
+ 1631      725F4C6F 
+ 1631      61645472 
+ 1632              	.LASF29:
+ 1633 0328 6E696262 		.ascii	"nibble\000"
+ 1633      6C6500
+ 1634              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

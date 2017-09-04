@@ -1,0 +1,1087 @@
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Quad_1_Cnt16_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Quad_1_Cnt16_SaveConfig,"ax",%progbits
+  19              		.align	1
+  20              		.global	Quad_1_Cnt16_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Quad_1_Cnt16_SaveConfig, %function
+  24              	Quad_1_Cnt16_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Quad_1_Cnt16_PM.c"
+   1:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * File Name: Quad_1_Cnt16_PM.c  
+   3:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+   5:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Description:
+   6:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *    This file provides the power management source code to API for the
+   7:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *    Counter.  
+   8:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+   9:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *   Note:
+  10:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *     None
+  11:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  12:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  19:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** #include "Quad_1_Cnt16.h"
+  20:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  21:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** static Quad_1_Cnt16_backupStruct Quad_1_Cnt16_backup;
+  22:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  23:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  24:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Function Name: Quad_1_Cnt16_SaveConfig
+  26:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Summary:
+  28:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *     Save the current user configuration
+  29:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  30:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Parameters:  
+  31:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  33:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Return: 
+  34:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+  35:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  36:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Global variables:
+  37:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Quad_1_Cnt16_backup:  Variables of this global structure are modified to 
+  38:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  store the values of non retention configuration registers when Sleep() API is 
+  39:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  called.
+  40:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  41:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** void Quad_1_Cnt16_SaveConfig(void) 
+  43:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** {
+  27              		.loc 1 43 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  44:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #if (!Quad_1_Cnt16_UsingFixedFunction)
+  45:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  46:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         Quad_1_Cnt16_backup.CounterUdb = Quad_1_Cnt16_ReadCounter();
+  35              		.loc 1 46 0
+  36 0002 FFF7FEFF 		bl	Quad_1_Cnt16_ReadCounter
+  37              	.LVL0:
+  38 0006 034C     		ldr	r4, .L2
+  39 0008 6080     		strh	r0, [r4, #2]	@ movhi
+  47:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  48:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         #if(!Quad_1_Cnt16_ControlRegRemoved)
+  49:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_backup.CounterControlRegister = Quad_1_Cnt16_ReadControlRegister();
+  40              		.loc 1 49 0
+  41 000a FFF7FEFF 		bl	Quad_1_Cnt16_ReadControlRegister
+  42              	.LVL1:
+  43 000e 2071     		strb	r0, [r4, #4]
+  44 0010 10BD     		pop	{r4, pc}
+  45              	.L3:
+  46 0012 00BF     		.align	2
+  47              	.L2:
+  48 0014 00000000 		.word	.LANCHOR0
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	Quad_1_Cnt16_SaveConfig, .-Quad_1_Cnt16_SaveConfig
+  52              		.section	.text.Quad_1_Cnt16_RestoreConfig,"ax",%progbits
+  53              		.align	1
+  54              		.global	Quad_1_Cnt16_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	Quad_1_Cnt16_RestoreConfig, %function
+  58              	Quad_1_Cnt16_RestoreConfig:
+  59              	.LFB1:
+  50:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         #endif /* (!Quad_1_Cnt16_ControlRegRemoved) */
+  51:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  52:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #endif /* (!Quad_1_Cnt16_UsingFixedFunction) */
+  53:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** }
+  54:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  55:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** /*******************************************************************************
+  57:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Function Name: Quad_1_Cnt16_RestoreConfig
+  58:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** ********************************************************************************
+  59:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  60:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Summary:
+  61:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Restores the current user configuration.
+  62:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  63:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Parameters:  
+  64:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+  65:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  66:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Return: 
+  67:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+  68:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  69:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Global variables:
+  70:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Quad_1_Cnt16_backup:  Variables of this global structure are used to 
+  71:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  72:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  73:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *******************************************************************************/
+  74:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** void Quad_1_Cnt16_RestoreConfig(void) 
+  75:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** {      
+  60              		.loc 1 75 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 10B5     		push	{r4, lr}
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  76:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #if (!Quad_1_Cnt16_UsingFixedFunction)
+  77:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  78:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****        Quad_1_Cnt16_WriteCounter(Quad_1_Cnt16_backup.CounterUdb);
+  68              		.loc 1 78 0
+  69 0002 044C     		ldr	r4, .L5
+  70 0004 6088     		ldrh	r0, [r4, #2]
+  71 0006 FFF7FEFF 		bl	Quad_1_Cnt16_WriteCounter
+  72              	.LVL2:
+  79:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  80:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         #if(!Quad_1_Cnt16_ControlRegRemoved)
+  81:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_WriteControlRegister(Quad_1_Cnt16_backup.CounterControlRegister);
+  73              		.loc 1 81 0
+  74 000a 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
+  82:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         #endif /* (!Quad_1_Cnt16_ControlRegRemoved) */
+  83:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  84:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #endif /* (!Quad_1_Cnt16_UsingFixedFunction) */
+  85:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** }
+  75              		.loc 1 85 0
+  76 000c BDE81040 		pop	{r4, lr}
+  77              		.cfi_restore 14
+  78              		.cfi_restore 4
+  79              		.cfi_def_cfa_offset 0
+  81:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         #endif /* (!Quad_1_Cnt16_ControlRegRemoved) */
+  80              		.loc 1 81 0
+  81 0010 FFF7FEBF 		b	Quad_1_Cnt16_WriteControlRegister
+  82              	.LVL3:
+  83              	.L6:
+  84              		.align	2
+  85              	.L5:
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 4
+
+
+  86 0014 00000000 		.word	.LANCHOR0
+  87              		.cfi_endproc
+  88              	.LFE1:
+  89              		.size	Quad_1_Cnt16_RestoreConfig, .-Quad_1_Cnt16_RestoreConfig
+  90              		.section	.text.Quad_1_Cnt16_Sleep,"ax",%progbits
+  91              		.align	1
+  92              		.global	Quad_1_Cnt16_Sleep
+  93              		.thumb
+  94              		.thumb_func
+  95              		.type	Quad_1_Cnt16_Sleep, %function
+  96              	Quad_1_Cnt16_Sleep:
+  97              	.LFB2:
+  86:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  87:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+  88:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** /*******************************************************************************
+  89:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Function Name: Quad_1_Cnt16_Sleep
+  90:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** ********************************************************************************
+  91:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Summary:
+  92:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *     Stop and Save the user configuration
+  93:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  94:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Parameters:  
+  95:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+  96:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+  97:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Return: 
+  98:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+  99:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 100:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Global variables:
+ 101:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Quad_1_Cnt16_backup.enableState:  Is modified depending on the enable 
+ 102:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  state of the block before entering sleep mode.
+ 103:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 104:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *******************************************************************************/
+ 105:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** void Quad_1_Cnt16_Sleep(void) 
+ 106:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** {
+  98              		.loc 1 106 0
+  99              		.cfi_startproc
+ 100              		@ args = 0, pretend = 0, frame = 0
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102 0000 08B5     		push	{r3, lr}
+ 103              		.cfi_def_cfa_offset 8
+ 104              		.cfi_offset 3, -8
+ 105              		.cfi_offset 14, -4
+ 107:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #if(!Quad_1_Cnt16_ControlRegRemoved)
+ 108:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         /* Save Counter's enable state */
+ 109:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         if(Quad_1_Cnt16_CTRL_ENABLE == (Quad_1_Cnt16_CONTROL & Quad_1_Cnt16_CTRL_ENABLE))
+ 106              		.loc 1 109 0
+ 107 0002 074B     		ldr	r3, .L11
+ 108 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 109 0006 13F0800F 		tst	r3, #128
+ 110 000a 064B     		ldr	r3, .L11+4
+ 110:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         {
+ 111:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             /* Counter is enabled */
+ 112:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_backup.CounterEnableState = 1u;
+ 111              		.loc 1 112 0
+ 112 000c 14BF     		ite	ne
+ 113 000e 0122     		movne	r2, #1
+ 113:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         }
+ 114:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         else
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 5
+
+
+ 115:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         {
+ 116:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             /* Counter is disabled */
+ 117:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_backup.CounterEnableState = 0u;
+ 114              		.loc 1 117 0
+ 115 0010 0022     		moveq	r2, #0
+ 116 0012 1A70     		strb	r2, [r3]
+ 118:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         }
+ 119:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #else
+ 120:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         Quad_1_Cnt16_backup.CounterEnableState = 1u;
+ 121:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         if(Quad_1_Cnt16_backup.CounterEnableState != 0u)
+ 122:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         {
+ 123:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_backup.CounterEnableState = 0u;
+ 124:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         }
+ 125:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #endif /* (!Quad_1_Cnt16_ControlRegRemoved) */
+ 126:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     
+ 127:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     Quad_1_Cnt16_Stop();
+ 117              		.loc 1 127 0
+ 118 0014 FFF7FEFF 		bl	Quad_1_Cnt16_Stop
+ 119              	.LVL4:
+ 128:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     Quad_1_Cnt16_SaveConfig();
+ 129:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** }
+ 120              		.loc 1 129 0
+ 121 0018 BDE80840 		pop	{r3, lr}
+ 122              		.cfi_restore 14
+ 123              		.cfi_restore 3
+ 124              		.cfi_def_cfa_offset 0
+ 128:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     Quad_1_Cnt16_SaveConfig();
+ 125              		.loc 1 128 0
+ 126 001c FFF7FEBF 		b	Quad_1_Cnt16_SaveConfig
+ 127              	.LVL5:
+ 128              	.L12:
+ 129              		.align	2
+ 130              	.L11:
+ 131 0020 76640040 		.word	1073767542
+ 132 0024 00000000 		.word	.LANCHOR0
+ 133              		.cfi_endproc
+ 134              	.LFE2:
+ 135              		.size	Quad_1_Cnt16_Sleep, .-Quad_1_Cnt16_Sleep
+ 136              		.section	.text.Quad_1_Cnt16_Wakeup,"ax",%progbits
+ 137              		.align	1
+ 138              		.global	Quad_1_Cnt16_Wakeup
+ 139              		.thumb
+ 140              		.thumb_func
+ 141              		.type	Quad_1_Cnt16_Wakeup, %function
+ 142              	Quad_1_Cnt16_Wakeup:
+ 143              	.LFB3:
+ 130:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+ 131:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** 
+ 132:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** /*******************************************************************************
+ 133:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Function Name: Quad_1_Cnt16_Wakeup
+ 134:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** ********************************************************************************
+ 135:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 136:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Summary:
+ 137:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Restores and enables the user configuration
+ 138:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  
+ 139:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Parameters:  
+ 140:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 6
+
+
+ 141:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 142:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Return: 
+ 143:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  void
+ 144:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 145:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** * Global variables:
+ 146:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  Quad_1_Cnt16_backup.enableState:  Is used to restore the enable state of 
+ 147:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *  block on wakeup from sleep mode.
+ 148:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *
+ 149:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** *******************************************************************************/
+ 150:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** void Quad_1_Cnt16_Wakeup(void) 
+ 151:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** {
+ 144              		.loc 1 151 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148 0000 08B5     		push	{r3, lr}
+ 149              		.cfi_def_cfa_offset 8
+ 150              		.cfi_offset 3, -8
+ 151              		.cfi_offset 14, -4
+ 152:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     Quad_1_Cnt16_RestoreConfig();
+ 152              		.loc 1 152 0
+ 153 0002 FFF7FEFF 		bl	Quad_1_Cnt16_RestoreConfig
+ 154              	.LVL6:
+ 153:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #if(!Quad_1_Cnt16_ControlRegRemoved)
+ 154:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         if(Quad_1_Cnt16_backup.CounterEnableState == 1u)
+ 155              		.loc 1 154 0
+ 156 0006 044B     		ldr	r3, .L16
+ 157 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 158 000a 012B     		cmp	r3, #1
+ 159 000c 03D1     		bne	.L13
+ 155:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         {
+ 156:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             /* Enable Counter's operation */
+ 157:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****             Quad_1_Cnt16_Enable();
+ 158:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         } /* Do nothing if Counter was disabled before */    
+ 159:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     #endif /* (!Quad_1_Cnt16_ControlRegRemoved) */
+ 160:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****     
+ 161:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c **** }
+ 160              		.loc 1 161 0
+ 161 000e BDE80840 		pop	{r3, lr}
+ 162              		.cfi_remember_state
+ 163              		.cfi_restore 14
+ 164              		.cfi_restore 3
+ 165              		.cfi_def_cfa_offset 0
+ 157:.\Generated_Source\PSoC5/Quad_1_Cnt16_PM.c ****         } /* Do nothing if Counter was disabled before */    
+ 166              		.loc 1 157 0
+ 167 0012 FFF7FEBF 		b	Quad_1_Cnt16_Enable
+ 168              	.LVL7:
+ 169              	.L13:
+ 170              		.cfi_restore_state
+ 171 0016 08BD     		pop	{r3, pc}
+ 172              	.L17:
+ 173              		.align	2
+ 174              	.L16:
+ 175 0018 00000000 		.word	.LANCHOR0
+ 176              		.cfi_endproc
+ 177              	.LFE3:
+ 178              		.size	Quad_1_Cnt16_Wakeup, .-Quad_1_Cnt16_Wakeup
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 7
+
+
+ 179              		.bss
+ 180              		.align	1
+ 181              		.set	.LANCHOR0,. + 0
+ 182              		.type	Quad_1_Cnt16_backup, %object
+ 183              		.size	Quad_1_Cnt16_backup, 6
+ 184              	Quad_1_Cnt16_backup:
+ 185 0000 00000000 		.space	6
+ 185      0000
+ 186              		.text
+ 187              	.Letext0:
+ 188              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 189              		.file 3 ".\\Generated_Source\\PSoC5\\Quad_1_Cnt16.h"
+ 190              		.section	.debug_info,"",%progbits
+ 191              	.Ldebug_info0:
+ 192 0000 DC010000 		.4byte	0x1dc
+ 193 0004 0400     		.2byte	0x4
+ 194 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 195 000a 04       		.byte	0x4
+ 196 000b 01       		.uleb128 0x1
+ 197 000c 29020000 		.4byte	.LASF30
+ 198 0010 01       		.byte	0x1
+ 199 0011 B7020000 		.4byte	.LASF31
+ 200 0015 C4000000 		.4byte	.LASF32
+ 201 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 202 001d 00000000 		.4byte	0
+ 203 0021 00000000 		.4byte	.Ldebug_line0
+ 204 0025 02       		.uleb128 0x2
+ 205 0026 01       		.byte	0x1
+ 206 0027 06       		.byte	0x6
+ 207 0028 EB020000 		.4byte	.LASF0
+ 208 002c 02       		.uleb128 0x2
+ 209 002d 01       		.byte	0x1
+ 210 002e 08       		.byte	0x8
+ 211 002f B6000000 		.4byte	.LASF1
+ 212 0033 02       		.uleb128 0x2
+ 213 0034 02       		.byte	0x2
+ 214 0035 05       		.byte	0x5
+ 215 0036 4B010000 		.4byte	.LASF2
+ 216 003a 02       		.uleb128 0x2
+ 217 003b 02       		.byte	0x2
+ 218 003c 07       		.byte	0x7
+ 219 003d 45000000 		.4byte	.LASF3
+ 220 0041 02       		.uleb128 0x2
+ 221 0042 04       		.byte	0x4
+ 222 0043 05       		.byte	0x5
+ 223 0044 E2020000 		.4byte	.LASF4
+ 224 0048 02       		.uleb128 0x2
+ 225 0049 04       		.byte	0x4
+ 226 004a 07       		.byte	0x7
+ 227 004b 5C010000 		.4byte	.LASF5
+ 228 004f 02       		.uleb128 0x2
+ 229 0050 08       		.byte	0x8
+ 230 0051 05       		.byte	0x5
+ 231 0052 FC010000 		.4byte	.LASF6
+ 232 0056 02       		.uleb128 0x2
+ 233 0057 08       		.byte	0x8
+ 234 0058 07       		.byte	0x7
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 8
+
+
+ 235 0059 7B010000 		.4byte	.LASF7
+ 236 005d 03       		.uleb128 0x3
+ 237 005e 04       		.byte	0x4
+ 238 005f 05       		.byte	0x5
+ 239 0060 696E7400 		.ascii	"int\000"
+ 240 0064 02       		.uleb128 0x2
+ 241 0065 04       		.byte	0x4
+ 242 0066 07       		.byte	0x7
+ 243 0067 6E010000 		.4byte	.LASF8
+ 244 006b 04       		.uleb128 0x4
+ 245 006c 2B010000 		.4byte	.LASF9
+ 246 0070 02       		.byte	0x2
+ 247 0071 9201     		.2byte	0x192
+ 248 0073 2C000000 		.4byte	0x2c
+ 249 0077 04       		.uleb128 0x4
+ 250 0078 55010000 		.4byte	.LASF10
+ 251 007c 02       		.byte	0x2
+ 252 007d 9301     		.2byte	0x193
+ 253 007f 3A000000 		.4byte	0x3a
+ 254 0083 02       		.uleb128 0x2
+ 255 0084 04       		.byte	0x4
+ 256 0085 04       		.byte	0x4
+ 257 0086 B0000000 		.4byte	.LASF11
+ 258 008a 02       		.uleb128 0x2
+ 259 008b 08       		.byte	0x8
+ 260 008c 04       		.byte	0x4
+ 261 008d 44010000 		.4byte	.LASF12
+ 262 0091 02       		.uleb128 0x2
+ 263 0092 01       		.byte	0x1
+ 264 0093 08       		.byte	0x8
+ 265 0094 0A020000 		.4byte	.LASF13
+ 266 0098 04       		.uleb128 0x4
+ 267 0099 0C010000 		.4byte	.LASF14
+ 268 009d 02       		.byte	0x2
+ 269 009e 3C02     		.2byte	0x23c
+ 270 00a0 A4000000 		.4byte	0xa4
+ 271 00a4 05       		.uleb128 0x5
+ 272 00a5 6B000000 		.4byte	0x6b
+ 273 00a9 02       		.uleb128 0x2
+ 274 00aa 04       		.byte	0x4
+ 275 00ab 07       		.byte	0x7
+ 276 00ac E0010000 		.4byte	.LASF15
+ 277 00b0 06       		.uleb128 0x6
+ 278 00b1 06       		.byte	0x6
+ 279 00b2 03       		.byte	0x3
+ 280 00b3 40       		.byte	0x40
+ 281 00b4 DD000000 		.4byte	0xdd
+ 282 00b8 07       		.uleb128 0x7
+ 283 00b9 E9010000 		.4byte	.LASF16
+ 284 00bd 03       		.byte	0x3
+ 285 00be 42       		.byte	0x42
+ 286 00bf 6B000000 		.4byte	0x6b
+ 287 00c3 00       		.byte	0
+ 288 00c4 07       		.uleb128 0x7
+ 289 00c5 58000000 		.4byte	.LASF17
+ 290 00c9 03       		.byte	0x3
+ 291 00ca 43       		.byte	0x43
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 9
+
+
+ 292 00cb 77000000 		.4byte	0x77
+ 293 00cf 02       		.byte	0x2
+ 294 00d0 07       		.uleb128 0x7
+ 295 00d1 63000000 		.4byte	.LASF18
+ 296 00d5 03       		.byte	0x3
+ 297 00d6 46       		.byte	0x46
+ 298 00d7 6B000000 		.4byte	0x6b
+ 299 00db 04       		.byte	0x4
+ 300 00dc 00       		.byte	0
+ 301 00dd 08       		.uleb128 0x8
+ 302 00de 11010000 		.4byte	.LASF19
+ 303 00e2 03       		.byte	0x3
+ 304 00e3 49       		.byte	0x49
+ 305 00e4 B0000000 		.4byte	0xb0
+ 306 00e8 09       		.uleb128 0x9
+ 307 00e9 00000000 		.4byte	.LASF20
+ 308 00ed 01       		.byte	0x1
+ 309 00ee 2A       		.byte	0x2a
+ 310 00ef 00000000 		.4byte	.LFB0
+ 311 00f3 18000000 		.4byte	.LFE0-.LFB0
+ 312 00f7 01       		.uleb128 0x1
+ 313 00f8 9C       		.byte	0x9c
+ 314 00f9 10010000 		.4byte	0x110
+ 315 00fd 0A       		.uleb128 0xa
+ 316 00fe 06000000 		.4byte	.LVL0
+ 317 0102 99010000 		.4byte	0x199
+ 318 0106 0A       		.uleb128 0xa
+ 319 0107 0E000000 		.4byte	.LVL1
+ 320 010b A4010000 		.4byte	0x1a4
+ 321 010f 00       		.byte	0
+ 322 0110 09       		.uleb128 0x9
+ 323 0111 2A000000 		.4byte	.LASF21
+ 324 0115 01       		.byte	0x1
+ 325 0116 4A       		.byte	0x4a
+ 326 0117 00000000 		.4byte	.LFB1
+ 327 011b 18000000 		.4byte	.LFE1-.LFB1
+ 328 011f 01       		.uleb128 0x1
+ 329 0120 9C       		.byte	0x9c
+ 330 0121 38010000 		.4byte	0x138
+ 331 0125 0A       		.uleb128 0xa
+ 332 0126 0A000000 		.4byte	.LVL2
+ 333 012a AF010000 		.4byte	0x1af
+ 334 012e 0B       		.uleb128 0xb
+ 335 012f 14000000 		.4byte	.LVL3
+ 336 0133 C0010000 		.4byte	0x1c0
+ 337 0137 00       		.byte	0
+ 338 0138 09       		.uleb128 0x9
+ 339 0139 31010000 		.4byte	.LASF22
+ 340 013d 01       		.byte	0x1
+ 341 013e 69       		.byte	0x69
+ 342 013f 00000000 		.4byte	.LFB2
+ 343 0143 28000000 		.4byte	.LFE2-.LFB2
+ 344 0147 01       		.uleb128 0x1
+ 345 0148 9C       		.byte	0x9c
+ 346 0149 60010000 		.4byte	0x160
+ 347 014d 0A       		.uleb128 0xa
+ 348 014e 18000000 		.4byte	.LVL4
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 10
+
+
+ 349 0152 D1010000 		.4byte	0x1d1
+ 350 0156 0B       		.uleb128 0xb
+ 351 0157 20000000 		.4byte	.LVL5
+ 352 015b E8000000 		.4byte	0xe8
+ 353 015f 00       		.byte	0
+ 354 0160 09       		.uleb128 0x9
+ 355 0161 F7020000 		.4byte	.LASF23
+ 356 0165 01       		.byte	0x1
+ 357 0166 96       		.byte	0x96
+ 358 0167 00000000 		.4byte	.LFB3
+ 359 016b 1C000000 		.4byte	.LFE3-.LFB3
+ 360 016f 01       		.uleb128 0x1
+ 361 0170 9C       		.byte	0x9c
+ 362 0171 88010000 		.4byte	0x188
+ 363 0175 0A       		.uleb128 0xa
+ 364 0176 06000000 		.4byte	.LVL6
+ 365 017a 10010000 		.4byte	0x110
+ 366 017e 0B       		.uleb128 0xb
+ 367 017f 16000000 		.4byte	.LVL7
+ 368 0183 D8010000 		.4byte	0x1d8
+ 369 0187 00       		.byte	0
+ 370 0188 0C       		.uleb128 0xc
+ 371 0189 7A000000 		.4byte	.LASF33
+ 372 018d 01       		.byte	0x1
+ 373 018e 15       		.byte	0x15
+ 374 018f DD000000 		.4byte	0xdd
+ 375 0193 05       		.uleb128 0x5
+ 376 0194 03       		.byte	0x3
+ 377 0195 00000000 		.4byte	Quad_1_Cnt16_backup
+ 378 0199 0D       		.uleb128 0xd
+ 379 019a C7010000 		.4byte	.LASF24
+ 380 019e 03       		.byte	0x3
+ 381 019f 5D       		.byte	0x5d
+ 382 01a0 77000000 		.4byte	0x77
+ 383 01a4 0D       		.uleb128 0xd
+ 384 01a5 A6010000 		.4byte	.LASF25
+ 385 01a9 03       		.byte	0x3
+ 386 01aa 55       		.byte	0x55
+ 387 01ab 6B000000 		.4byte	0x6b
+ 388 01af 0E       		.uleb128 0xe
+ 389 01b0 0F020000 		.4byte	.LASF26
+ 390 01b4 03       		.byte	0x3
+ 391 01b5 5A       		.byte	0x5a
+ 392 01b6 C0010000 		.4byte	0x1c0
+ 393 01ba 0F       		.uleb128 0xf
+ 394 01bb 77000000 		.4byte	0x77
+ 395 01bf 00       		.byte	0
+ 396 01c0 0E       		.uleb128 0xe
+ 397 01c1 8E000000 		.4byte	.LASF27
+ 398 01c5 03       		.byte	0x3
+ 399 01c6 56       		.byte	0x56
+ 400 01c7 D1010000 		.4byte	0x1d1
+ 401 01cb 0F       		.uleb128 0xf
+ 402 01cc 6B000000 		.4byte	0x6b
+ 403 01d0 00       		.byte	0
+ 404 01d1 10       		.uleb128 0x10
+ 405 01d2 18000000 		.4byte	.LASF28
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 11
+
+
+ 406 01d6 03       		.byte	0x3
+ 407 01d7 50       		.byte	0x50
+ 408 01d8 10       		.uleb128 0x10
+ 409 01d9 92010000 		.4byte	.LASF29
+ 410 01dd 03       		.byte	0x3
+ 411 01de 71       		.byte	0x71
+ 412 01df 00       		.byte	0
+ 413              		.section	.debug_abbrev,"",%progbits
+ 414              	.Ldebug_abbrev0:
+ 415 0000 01       		.uleb128 0x1
+ 416 0001 11       		.uleb128 0x11
+ 417 0002 01       		.byte	0x1
+ 418 0003 25       		.uleb128 0x25
+ 419 0004 0E       		.uleb128 0xe
+ 420 0005 13       		.uleb128 0x13
+ 421 0006 0B       		.uleb128 0xb
+ 422 0007 03       		.uleb128 0x3
+ 423 0008 0E       		.uleb128 0xe
+ 424 0009 1B       		.uleb128 0x1b
+ 425 000a 0E       		.uleb128 0xe
+ 426 000b 55       		.uleb128 0x55
+ 427 000c 17       		.uleb128 0x17
+ 428 000d 11       		.uleb128 0x11
+ 429 000e 01       		.uleb128 0x1
+ 430 000f 10       		.uleb128 0x10
+ 431 0010 17       		.uleb128 0x17
+ 432 0011 00       		.byte	0
+ 433 0012 00       		.byte	0
+ 434 0013 02       		.uleb128 0x2
+ 435 0014 24       		.uleb128 0x24
+ 436 0015 00       		.byte	0
+ 437 0016 0B       		.uleb128 0xb
+ 438 0017 0B       		.uleb128 0xb
+ 439 0018 3E       		.uleb128 0x3e
+ 440 0019 0B       		.uleb128 0xb
+ 441 001a 03       		.uleb128 0x3
+ 442 001b 0E       		.uleb128 0xe
+ 443 001c 00       		.byte	0
+ 444 001d 00       		.byte	0
+ 445 001e 03       		.uleb128 0x3
+ 446 001f 24       		.uleb128 0x24
+ 447 0020 00       		.byte	0
+ 448 0021 0B       		.uleb128 0xb
+ 449 0022 0B       		.uleb128 0xb
+ 450 0023 3E       		.uleb128 0x3e
+ 451 0024 0B       		.uleb128 0xb
+ 452 0025 03       		.uleb128 0x3
+ 453 0026 08       		.uleb128 0x8
+ 454 0027 00       		.byte	0
+ 455 0028 00       		.byte	0
+ 456 0029 04       		.uleb128 0x4
+ 457 002a 16       		.uleb128 0x16
+ 458 002b 00       		.byte	0
+ 459 002c 03       		.uleb128 0x3
+ 460 002d 0E       		.uleb128 0xe
+ 461 002e 3A       		.uleb128 0x3a
+ 462 002f 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 12
+
+
+ 463 0030 3B       		.uleb128 0x3b
+ 464 0031 05       		.uleb128 0x5
+ 465 0032 49       		.uleb128 0x49
+ 466 0033 13       		.uleb128 0x13
+ 467 0034 00       		.byte	0
+ 468 0035 00       		.byte	0
+ 469 0036 05       		.uleb128 0x5
+ 470 0037 35       		.uleb128 0x35
+ 471 0038 00       		.byte	0
+ 472 0039 49       		.uleb128 0x49
+ 473 003a 13       		.uleb128 0x13
+ 474 003b 00       		.byte	0
+ 475 003c 00       		.byte	0
+ 476 003d 06       		.uleb128 0x6
+ 477 003e 13       		.uleb128 0x13
+ 478 003f 01       		.byte	0x1
+ 479 0040 0B       		.uleb128 0xb
+ 480 0041 0B       		.uleb128 0xb
+ 481 0042 3A       		.uleb128 0x3a
+ 482 0043 0B       		.uleb128 0xb
+ 483 0044 3B       		.uleb128 0x3b
+ 484 0045 0B       		.uleb128 0xb
+ 485 0046 01       		.uleb128 0x1
+ 486 0047 13       		.uleb128 0x13
+ 487 0048 00       		.byte	0
+ 488 0049 00       		.byte	0
+ 489 004a 07       		.uleb128 0x7
+ 490 004b 0D       		.uleb128 0xd
+ 491 004c 00       		.byte	0
+ 492 004d 03       		.uleb128 0x3
+ 493 004e 0E       		.uleb128 0xe
+ 494 004f 3A       		.uleb128 0x3a
+ 495 0050 0B       		.uleb128 0xb
+ 496 0051 3B       		.uleb128 0x3b
+ 497 0052 0B       		.uleb128 0xb
+ 498 0053 49       		.uleb128 0x49
+ 499 0054 13       		.uleb128 0x13
+ 500 0055 38       		.uleb128 0x38
+ 501 0056 0B       		.uleb128 0xb
+ 502 0057 00       		.byte	0
+ 503 0058 00       		.byte	0
+ 504 0059 08       		.uleb128 0x8
+ 505 005a 16       		.uleb128 0x16
+ 506 005b 00       		.byte	0
+ 507 005c 03       		.uleb128 0x3
+ 508 005d 0E       		.uleb128 0xe
+ 509 005e 3A       		.uleb128 0x3a
+ 510 005f 0B       		.uleb128 0xb
+ 511 0060 3B       		.uleb128 0x3b
+ 512 0061 0B       		.uleb128 0xb
+ 513 0062 49       		.uleb128 0x49
+ 514 0063 13       		.uleb128 0x13
+ 515 0064 00       		.byte	0
+ 516 0065 00       		.byte	0
+ 517 0066 09       		.uleb128 0x9
+ 518 0067 2E       		.uleb128 0x2e
+ 519 0068 01       		.byte	0x1
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 13
+
+
+ 520 0069 3F       		.uleb128 0x3f
+ 521 006a 19       		.uleb128 0x19
+ 522 006b 03       		.uleb128 0x3
+ 523 006c 0E       		.uleb128 0xe
+ 524 006d 3A       		.uleb128 0x3a
+ 525 006e 0B       		.uleb128 0xb
+ 526 006f 3B       		.uleb128 0x3b
+ 527 0070 0B       		.uleb128 0xb
+ 528 0071 27       		.uleb128 0x27
+ 529 0072 19       		.uleb128 0x19
+ 530 0073 11       		.uleb128 0x11
+ 531 0074 01       		.uleb128 0x1
+ 532 0075 12       		.uleb128 0x12
+ 533 0076 06       		.uleb128 0x6
+ 534 0077 40       		.uleb128 0x40
+ 535 0078 18       		.uleb128 0x18
+ 536 0079 9742     		.uleb128 0x2117
+ 537 007b 19       		.uleb128 0x19
+ 538 007c 01       		.uleb128 0x1
+ 539 007d 13       		.uleb128 0x13
+ 540 007e 00       		.byte	0
+ 541 007f 00       		.byte	0
+ 542 0080 0A       		.uleb128 0xa
+ 543 0081 898201   		.uleb128 0x4109
+ 544 0084 00       		.byte	0
+ 545 0085 11       		.uleb128 0x11
+ 546 0086 01       		.uleb128 0x1
+ 547 0087 31       		.uleb128 0x31
+ 548 0088 13       		.uleb128 0x13
+ 549 0089 00       		.byte	0
+ 550 008a 00       		.byte	0
+ 551 008b 0B       		.uleb128 0xb
+ 552 008c 898201   		.uleb128 0x4109
+ 553 008f 00       		.byte	0
+ 554 0090 11       		.uleb128 0x11
+ 555 0091 01       		.uleb128 0x1
+ 556 0092 9542     		.uleb128 0x2115
+ 557 0094 19       		.uleb128 0x19
+ 558 0095 31       		.uleb128 0x31
+ 559 0096 13       		.uleb128 0x13
+ 560 0097 00       		.byte	0
+ 561 0098 00       		.byte	0
+ 562 0099 0C       		.uleb128 0xc
+ 563 009a 34       		.uleb128 0x34
+ 564 009b 00       		.byte	0
+ 565 009c 03       		.uleb128 0x3
+ 566 009d 0E       		.uleb128 0xe
+ 567 009e 3A       		.uleb128 0x3a
+ 568 009f 0B       		.uleb128 0xb
+ 569 00a0 3B       		.uleb128 0x3b
+ 570 00a1 0B       		.uleb128 0xb
+ 571 00a2 49       		.uleb128 0x49
+ 572 00a3 13       		.uleb128 0x13
+ 573 00a4 02       		.uleb128 0x2
+ 574 00a5 18       		.uleb128 0x18
+ 575 00a6 00       		.byte	0
+ 576 00a7 00       		.byte	0
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 14
+
+
+ 577 00a8 0D       		.uleb128 0xd
+ 578 00a9 2E       		.uleb128 0x2e
+ 579 00aa 00       		.byte	0
+ 580 00ab 3F       		.uleb128 0x3f
+ 581 00ac 19       		.uleb128 0x19
+ 582 00ad 03       		.uleb128 0x3
+ 583 00ae 0E       		.uleb128 0xe
+ 584 00af 3A       		.uleb128 0x3a
+ 585 00b0 0B       		.uleb128 0xb
+ 586 00b1 3B       		.uleb128 0x3b
+ 587 00b2 0B       		.uleb128 0xb
+ 588 00b3 27       		.uleb128 0x27
+ 589 00b4 19       		.uleb128 0x19
+ 590 00b5 49       		.uleb128 0x49
+ 591 00b6 13       		.uleb128 0x13
+ 592 00b7 3C       		.uleb128 0x3c
+ 593 00b8 19       		.uleb128 0x19
+ 594 00b9 00       		.byte	0
+ 595 00ba 00       		.byte	0
+ 596 00bb 0E       		.uleb128 0xe
+ 597 00bc 2E       		.uleb128 0x2e
+ 598 00bd 01       		.byte	0x1
+ 599 00be 3F       		.uleb128 0x3f
+ 600 00bf 19       		.uleb128 0x19
+ 601 00c0 03       		.uleb128 0x3
+ 602 00c1 0E       		.uleb128 0xe
+ 603 00c2 3A       		.uleb128 0x3a
+ 604 00c3 0B       		.uleb128 0xb
+ 605 00c4 3B       		.uleb128 0x3b
+ 606 00c5 0B       		.uleb128 0xb
+ 607 00c6 27       		.uleb128 0x27
+ 608 00c7 19       		.uleb128 0x19
+ 609 00c8 3C       		.uleb128 0x3c
+ 610 00c9 19       		.uleb128 0x19
+ 611 00ca 01       		.uleb128 0x1
+ 612 00cb 13       		.uleb128 0x13
+ 613 00cc 00       		.byte	0
+ 614 00cd 00       		.byte	0
+ 615 00ce 0F       		.uleb128 0xf
+ 616 00cf 05       		.uleb128 0x5
+ 617 00d0 00       		.byte	0
+ 618 00d1 49       		.uleb128 0x49
+ 619 00d2 13       		.uleb128 0x13
+ 620 00d3 00       		.byte	0
+ 621 00d4 00       		.byte	0
+ 622 00d5 10       		.uleb128 0x10
+ 623 00d6 2E       		.uleb128 0x2e
+ 624 00d7 00       		.byte	0
+ 625 00d8 3F       		.uleb128 0x3f
+ 626 00d9 19       		.uleb128 0x19
+ 627 00da 03       		.uleb128 0x3
+ 628 00db 0E       		.uleb128 0xe
+ 629 00dc 3A       		.uleb128 0x3a
+ 630 00dd 0B       		.uleb128 0xb
+ 631 00de 3B       		.uleb128 0x3b
+ 632 00df 0B       		.uleb128 0xb
+ 633 00e0 27       		.uleb128 0x27
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 15
+
+
+ 634 00e1 19       		.uleb128 0x19
+ 635 00e2 3C       		.uleb128 0x3c
+ 636 00e3 19       		.uleb128 0x19
+ 637 00e4 00       		.byte	0
+ 638 00e5 00       		.byte	0
+ 639 00e6 00       		.byte	0
+ 640              		.section	.debug_aranges,"",%progbits
+ 641 0000 34000000 		.4byte	0x34
+ 642 0004 0200     		.2byte	0x2
+ 643 0006 00000000 		.4byte	.Ldebug_info0
+ 644 000a 04       		.byte	0x4
+ 645 000b 00       		.byte	0
+ 646 000c 0000     		.2byte	0
+ 647 000e 0000     		.2byte	0
+ 648 0010 00000000 		.4byte	.LFB0
+ 649 0014 18000000 		.4byte	.LFE0-.LFB0
+ 650 0018 00000000 		.4byte	.LFB1
+ 651 001c 18000000 		.4byte	.LFE1-.LFB1
+ 652 0020 00000000 		.4byte	.LFB2
+ 653 0024 28000000 		.4byte	.LFE2-.LFB2
+ 654 0028 00000000 		.4byte	.LFB3
+ 655 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 656 0030 00000000 		.4byte	0
+ 657 0034 00000000 		.4byte	0
+ 658              		.section	.debug_ranges,"",%progbits
+ 659              	.Ldebug_ranges0:
+ 660 0000 00000000 		.4byte	.LFB0
+ 661 0004 18000000 		.4byte	.LFE0
+ 662 0008 00000000 		.4byte	.LFB1
+ 663 000c 18000000 		.4byte	.LFE1
+ 664 0010 00000000 		.4byte	.LFB2
+ 665 0014 28000000 		.4byte	.LFE2
+ 666 0018 00000000 		.4byte	.LFB3
+ 667 001c 1C000000 		.4byte	.LFE3
+ 668 0020 00000000 		.4byte	0
+ 669 0024 00000000 		.4byte	0
+ 670              		.section	.debug_line,"",%progbits
+ 671              	.Ldebug_line0:
+ 672 0000 B7000000 		.section	.debug_str,"MS",%progbits,1
+ 672      02006000 
+ 672      00000201 
+ 672      FB0E0D00 
+ 672      01010101 
+ 673              	.LASF20:
+ 674 0000 51756164 		.ascii	"Quad_1_Cnt16_SaveConfig\000"
+ 674      5F315F43 
+ 674      6E743136 
+ 674      5F536176 
+ 674      65436F6E 
+ 675              	.LASF28:
+ 676 0018 51756164 		.ascii	"Quad_1_Cnt16_Stop\000"
+ 676      5F315F43 
+ 676      6E743136 
+ 676      5F53746F 
+ 676      7000
+ 677              	.LASF21:
+ 678 002a 51756164 		.ascii	"Quad_1_Cnt16_RestoreConfig\000"
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 16
+
+
+ 678      5F315F43 
+ 678      6E743136 
+ 678      5F526573 
+ 678      746F7265 
+ 679              	.LASF3:
+ 680 0045 73686F72 		.ascii	"short unsigned int\000"
+ 680      7420756E 
+ 680      7369676E 
+ 680      65642069 
+ 680      6E7400
+ 681              	.LASF17:
+ 682 0058 436F756E 		.ascii	"CounterUdb\000"
+ 682      74657255 
+ 682      646200
+ 683              	.LASF18:
+ 684 0063 436F756E 		.ascii	"CounterControlRegister\000"
+ 684      74657243 
+ 684      6F6E7472 
+ 684      6F6C5265 
+ 684      67697374 
+ 685              	.LASF33:
+ 686 007a 51756164 		.ascii	"Quad_1_Cnt16_backup\000"
+ 686      5F315F43 
+ 686      6E743136 
+ 686      5F626163 
+ 686      6B757000 
+ 687              	.LASF27:
+ 688 008e 51756164 		.ascii	"Quad_1_Cnt16_WriteControlRegister\000"
+ 688      5F315F43 
+ 688      6E743136 
+ 688      5F577269 
+ 688      7465436F 
+ 689              	.LASF11:
+ 690 00b0 666C6F61 		.ascii	"float\000"
+ 690      7400
+ 691              	.LASF1:
+ 692 00b6 756E7369 		.ascii	"unsigned char\000"
+ 692      676E6564 
+ 692      20636861 
+ 692      7200
+ 693              	.LASF32:
+ 694 00c4 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 694      6F63756D 
+ 694      656E7473 
+ 694      5C436F6D 
+ 694      70757465 
+ 695 00f3 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 695      5069636B 
+ 695      75705C44 
+ 695      6973706C 
+ 695      61792E63 
+ 696              	.LASF14:
+ 697 010c 72656738 		.ascii	"reg8\000"
+ 697      00
+ 698              	.LASF19:
+ 699 0111 51756164 		.ascii	"Quad_1_Cnt16_backupStruct\000"
+ 699      5F315F43 
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 17
+
+
+ 699      6E743136 
+ 699      5F626163 
+ 699      6B757053 
+ 700              	.LASF9:
+ 701 012b 75696E74 		.ascii	"uint8\000"
+ 701      3800
+ 702              	.LASF22:
+ 703 0131 51756164 		.ascii	"Quad_1_Cnt16_Sleep\000"
+ 703      5F315F43 
+ 703      6E743136 
+ 703      5F536C65 
+ 703      657000
+ 704              	.LASF12:
+ 705 0144 646F7562 		.ascii	"double\000"
+ 705      6C6500
+ 706              	.LASF2:
+ 707 014b 73686F72 		.ascii	"short int\000"
+ 707      7420696E 
+ 707      7400
+ 708              	.LASF10:
+ 709 0155 75696E74 		.ascii	"uint16\000"
+ 709      313600
+ 710              	.LASF5:
+ 711 015c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 711      20756E73 
+ 711      69676E65 
+ 711      6420696E 
+ 711      7400
+ 712              	.LASF8:
+ 713 016e 756E7369 		.ascii	"unsigned int\000"
+ 713      676E6564 
+ 713      20696E74 
+ 713      00
+ 714              	.LASF7:
+ 715 017b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 715      206C6F6E 
+ 715      6720756E 
+ 715      7369676E 
+ 715      65642069 
+ 716              	.LASF29:
+ 717 0192 51756164 		.ascii	"Quad_1_Cnt16_Enable\000"
+ 717      5F315F43 
+ 717      6E743136 
+ 717      5F456E61 
+ 717      626C6500 
+ 718              	.LASF25:
+ 719 01a6 51756164 		.ascii	"Quad_1_Cnt16_ReadControlRegister\000"
+ 719      5F315F43 
+ 719      6E743136 
+ 719      5F526561 
+ 719      64436F6E 
+ 720              	.LASF24:
+ 721 01c7 51756164 		.ascii	"Quad_1_Cnt16_ReadCounter\000"
+ 721      5F315F43 
+ 721      6E743136 
+ 721      5F526561 
+ 721      64436F75 
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 18
+
+
+ 722              	.LASF15:
+ 723 01e0 73697A65 		.ascii	"sizetype\000"
+ 723      74797065 
+ 723      00
+ 724              	.LASF16:
+ 725 01e9 436F756E 		.ascii	"CounterEnableState\000"
+ 725      74657245 
+ 725      6E61626C 
+ 725      65537461 
+ 725      746500
+ 726              	.LASF6:
+ 727 01fc 6C6F6E67 		.ascii	"long long int\000"
+ 727      206C6F6E 
+ 727      6720696E 
+ 727      7400
+ 728              	.LASF13:
+ 729 020a 63686172 		.ascii	"char\000"
+ 729      00
+ 730              	.LASF26:
+ 731 020f 51756164 		.ascii	"Quad_1_Cnt16_WriteCounter\000"
+ 731      5F315F43 
+ 731      6E743136 
+ 731      5F577269 
+ 731      7465436F 
+ 732              	.LASF30:
+ 733 0229 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 733      4320342E 
+ 733      392E3320 
+ 733      32303135 
+ 733      30333033 
+ 734 025c 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 734      20726576 
+ 734      6973696F 
+ 734      6E203232 
+ 734      31323230 
+ 735 028f 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 735      66756E63 
+ 735      74696F6E 
+ 735      2D736563 
+ 735      74696F6E 
+ 736              	.LASF31:
+ 737 02b7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Quad_1_Cnt16_PM.c\000"
+ 737      6E657261 
+ 737      7465645F 
+ 737      536F7572 
+ 737      63655C50 
+ 738              	.LASF4:
+ 739 02e2 6C6F6E67 		.ascii	"long int\000"
+ 739      20696E74 
+ 739      00
+ 740              	.LASF0:
+ 741 02eb 7369676E 		.ascii	"signed char\000"
+ 741      65642063 
+ 741      68617200 
+ 742              	.LASF23:
+ 743 02f7 51756164 		.ascii	"Quad_1_Cnt16_Wakeup\000"
+ 743      5F315F43 
+ARM GAS  D:\TEMP\ccvvE4fu.s 			page 19
+
+
+ 743      6E743136 
+ 743      5F57616B 
+ 743      65757000 
+ 744              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

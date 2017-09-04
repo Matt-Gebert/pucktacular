@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
   29:.\Generated_Source\PSoC5/SW_Comparator_PM.c **** *  Save the current user configuration
   30:.\Generated_Source\PSoC5/SW_Comparator_PM.c **** *
   31:.\Generated_Source\PSoC5/SW_Comparator_PM.c **** * Parameters:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/SW_Comparator_PM.c **** *  void:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
   53 0002 00BF     		.section	.text.SW_Comparator_Sleep,"ax",%progbits
   54              		.align	2
   55              		.global	SW_Comparator_Sleep
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 3
 
 
   56              		.thumb
@@ -164,7 +164,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
   70              		.loc 1 85 0
   71 0002 074B     		ldr	r3, .L7
   72 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-  73 0006 13F0010F 		tst	r3, #1
+  73 0006 13F0080F 		tst	r3, #8
   74 000a 03D0     		beq	.L4
   86:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****     {
   87:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****         /* Comp is enabled */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
   89:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****     }
   90:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****     else
   91:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****     {
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 4
 
 
   92:.\Generated_Source\PSoC5/SW_Comparator_PM.c ****         /* Comp is disabled */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  106              		.loc 1 120 0
  107              		.cfi_startproc
  108              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 5
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 5
 
 
  109              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -287,40 +287,40 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  146 0006 00000000 		.4byte	.Ldebug_abbrev0
  147 000a 04       		.byte	0x4
  148 000b 01       		.uleb128 0x1
- 149 000c C6000000 		.4byte	.LASF22
+ 149 000c 0D010000 		.4byte	.LASF22
  150 0010 01       		.byte	0x1
- 151 0011 50000000 		.4byte	.LASF23
- 152 0015 AA010000 		.4byte	.LASF24
+ 151 0011 97000000 		.4byte	.LASF23
+ 152 0015 27000000 		.4byte	.LASF24
  153 0019 00000000 		.4byte	.Ldebug_ranges0+0
  154 001d 00000000 		.4byte	0
  155 0021 00000000 		.4byte	.Ldebug_line0
  156 0025 02       		.uleb128 0x2
  157 0026 01       		.byte	0x1
  158 0027 06       		.byte	0x6
- 159 0028 F5010000 		.4byte	.LASF0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 6
+ 159 0028 04020000 		.4byte	.LASF0
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 6
 
 
  160 002c 02       		.uleb128 0x2
  161 002d 01       		.byte	0x1
  162 002e 08       		.byte	0x8
- 163 002f 27000000 		.4byte	.LASF1
+ 163 002f 6E000000 		.4byte	.LASF1
  164 0033 02       		.uleb128 0x2
  165 0034 02       		.byte	0x2
  166 0035 05       		.byte	0x5
- 167 0036 32020000 		.4byte	.LASF2
+ 167 0036 41020000 		.4byte	.LASF2
  168 003a 02       		.uleb128 0x2
  169 003b 02       		.byte	0x2
  170 003c 07       		.byte	0x7
- 171 003d E2010000 		.4byte	.LASF3
+ 171 003d F1010000 		.4byte	.LASF3
  172 0041 02       		.uleb128 0x2
  173 0042 04       		.byte	0x4
  174 0043 05       		.byte	0x5
- 175 0044 81010000 		.4byte	.LASF4
+ 175 0044 C8010000 		.4byte	.LASF4
  176 0048 02       		.uleb128 0x2
  177 0049 04       		.byte	0x4
  178 004a 07       		.byte	0x7
- 179 004b 97000000 		.4byte	.LASF5
+ 179 004b DE000000 		.4byte	.LASF5
  180 004f 02       		.uleb128 0x2
  181 0050 08       		.byte	0x8
  182 0051 05       		.byte	0x5
@@ -328,7 +328,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  184 0056 02       		.uleb128 0x2
  185 0057 08       		.byte	0x8
  186 0058 07       		.byte	0x7
- 187 0059 A9000000 		.4byte	.LASF7
+ 187 0059 F0000000 		.4byte	.LASF7
  188 005d 03       		.uleb128 0x3
  189 005e 04       		.byte	0x4
  190 005f 05       		.byte	0x5
@@ -338,27 +338,27 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  194 0066 07       		.byte	0x7
  195 0067 1A000000 		.4byte	.LASF8
  196 006b 04       		.uleb128 0x4
- 197 006c 91000000 		.4byte	.LASF12
+ 197 006c D8000000 		.4byte	.LASF12
  198 0070 02       		.byte	0x2
  199 0071 9201     		.2byte	0x192
  200 0073 2C000000 		.4byte	0x2c
  201 0077 02       		.uleb128 0x2
  202 0078 04       		.byte	0x4
  203 0079 04       		.byte	0x4
- 204 007a C0000000 		.4byte	.LASF9
+ 204 007a 07010000 		.4byte	.LASF9
  205 007e 02       		.uleb128 0x2
  206 007f 08       		.byte	0x8
  207 0080 04       		.byte	0x4
- 208 0081 A3010000 		.4byte	.LASF10
+ 208 0081 EA010000 		.4byte	.LASF10
  209 0085 02       		.uleb128 0x2
  210 0086 01       		.byte	0x1
  211 0087 08       		.byte	0x8
- 212 0088 7C010000 		.4byte	.LASF11
+ 212 0088 C3010000 		.4byte	.LASF11
  213 008c 04       		.uleb128 0x4
- 214 008d 3C020000 		.4byte	.LASF13
+ 214 008d 4B020000 		.4byte	.LASF13
  215 0091 02       		.byte	0x2
  216 0092 3C02     		.2byte	0x23c
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 7
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 7
 
 
  217 0094 98000000 		.4byte	0x98
@@ -367,7 +367,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  220 009d 02       		.uleb128 0x2
  221 009e 04       		.byte	0x4
  222 009f 07       		.byte	0x7
- 223 00a0 55020000 		.4byte	.LASF14
+ 223 00a0 64020000 		.4byte	.LASF14
  224 00a4 06       		.uleb128 0x6
  225 00a5 01       		.byte	0x1
  226 00a6 03       		.byte	0x3
@@ -381,12 +381,12 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  234 00b7 00       		.byte	0
  235 00b8 00       		.byte	0
  236 00b9 08       		.uleb128 0x8
- 237 00ba 35000000 		.4byte	.LASF15
+ 237 00ba 7C000000 		.4byte	.LASF15
  238 00be 03       		.byte	0x3
  239 00bf 2D       		.byte	0x2d
  240 00c0 A4000000 		.4byte	0xa4
  241 00c4 09       		.uleb128 0x9
- 242 00c5 8A010000 		.4byte	.LASF16
+ 242 00c5 D1010000 		.4byte	.LASF16
  243 00c9 01       		.byte	0x1
  244 00ca 26       		.byte	0x26
  245 00cb 00000000 		.4byte	.LFB0
@@ -394,7 +394,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  247 00d3 01       		.uleb128 0x1
  248 00d4 9C       		.byte	0x9c
  249 00d5 09       		.uleb128 0x9
- 250 00d6 01020000 		.4byte	.LASF17
+ 250 00d6 10020000 		.4byte	.LASF17
  251 00da 01       		.byte	0x1
  252 00db 3A       		.byte	0x3a
  253 00dc 00000000 		.4byte	.LFB1
@@ -402,7 +402,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  255 00e4 01       		.uleb128 0x1
  256 00e5 9C       		.byte	0x9c
  257 00e6 0A       		.uleb128 0xa
- 258 00e7 41020000 		.4byte	.LASF18
+ 258 00e7 50020000 		.4byte	.LASF18
  259 00eb 01       		.byte	0x1
  260 00ec 52       		.byte	0x52
  261 00ed 00000000 		.4byte	.LFB2
@@ -415,10 +415,10 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  268 0100 35010000 		.4byte	0x135
  269 0104 00       		.byte	0
  270 0105 0A       		.uleb128 0xa
- 271 0106 1D020000 		.4byte	.LASF19
+ 271 0106 2C020000 		.4byte	.LASF19
  272 010a 01       		.byte	0x1
  273 010b 77       		.byte	0x77
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 8
 
 
  274 010c 00000000 		.4byte	.LFB3
@@ -431,7 +431,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  281 011f 3C010000 		.4byte	0x13c
  282 0123 00       		.byte	0
  283 0124 0C       		.uleb128 0xc
- 284 0125 67010000 		.4byte	.LASF26
+ 284 0125 AE010000 		.4byte	.LASF26
  285 0129 01       		.byte	0x1
  286 012a 15       		.byte	0x15
  287 012b B9000000 		.4byte	0xb9
@@ -439,11 +439,11 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  289 0130 03       		.byte	0x3
  290 0131 00000000 		.4byte	SW_Comparator_backup
  291 0135 0D       		.uleb128 0xd
- 292 0136 54010000 		.4byte	.LASF20
+ 292 0136 9B010000 		.4byte	.LASF20
  293 013a 03       		.byte	0x3
  294 013b 40       		.byte	0x40
  295 013c 0D       		.uleb128 0xd
- 296 013d 7C000000 		.4byte	.LASF21
+ 296 013d C3000000 		.4byte	.LASF21
  297 0141 03       		.byte	0x3
  298 0142 46       		.byte	0x46
  299 0143 00       		.byte	0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  328 001a 03       		.uleb128 0x3
  329 001b 0E       		.uleb128 0xe
  330 001c 00       		.byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 9
 
 
  331 001d 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  385 0053 49       		.uleb128 0x49
  386 0054 13       		.uleb128 0x13
  387 0055 38       		.uleb128 0x38
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 10
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 10
 
 
  388 0056 0B       		.uleb128 0xb
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  442 008d 12       		.uleb128 0x12
  443 008e 06       		.uleb128 0x6
  444 008f 40       		.uleb128 0x40
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 11
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 11
 
 
  445 0090 18       		.uleb128 0x18
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  499 000b 00       		.byte	0
  500 000c 0000     		.2byte	0
  501 000e 0000     		.2byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 12
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 12
 
 
  502 0010 00000000 		.4byte	.LFB0
@@ -704,146 +704,148 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 1
  532      676E6564 
  532      20696E74 
  532      00
- 533              	.LASF1:
- 534 0027 756E7369 		.ascii	"unsigned char\000"
- 534      676E6564 
- 534      20636861 
- 534      7200
- 535              	.LASF15:
- 536 0035 53575F43 		.ascii	"SW_Comparator_backupStruct\000"
- 536      6F6D7061 
- 536      7261746F 
- 536      725F6261 
- 536      636B7570 
- 537              	.LASF23:
- 538 0050 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SW_Comparator_PM.c\000"
- 538      6E657261 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 13
+ 533              	.LASF24:
+ 534 0027 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 534      73657273 
+ 534      5C44616E 
+ 534      69656C5C 
+ 534      446F6375 
+ 535 0055 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 535      74657220 
+ 535      56335C44 
+ 535      6973706C 
+ 535      61792E63 
+ 536              	.LASF1:
+ 537 006e 756E7369 		.ascii	"unsigned char\000"
+ 537      676E6564 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 13
 
 
- 538      7465645F 
- 538      536F7572 
- 538      63655C50 
- 539              	.LASF21:
- 540 007c 53575F43 		.ascii	"SW_Comparator_Enable\000"
- 540      6F6D7061 
- 540      7261746F 
- 540      725F456E 
- 540      61626C65 
- 541              	.LASF12:
- 542 0091 75696E74 		.ascii	"uint8\000"
- 542      3800
- 543              	.LASF5:
- 544 0097 6C6F6E67 		.ascii	"long unsigned int\000"
- 544      20756E73 
- 544      69676E65 
- 544      6420696E 
- 544      7400
- 545              	.LASF7:
- 546 00a9 6C6F6E67 		.ascii	"long long unsigned int\000"
- 546      206C6F6E 
- 546      6720756E 
- 546      7369676E 
- 546      65642069 
- 547              	.LASF9:
- 548 00c0 666C6F61 		.ascii	"float\000"
- 548      7400
- 549              	.LASF22:
- 550 00c6 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 550      4320342E 
- 550      392E3320 
- 550      32303135 
- 550      30333033 
- 551 00f9 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 551      20726576 
- 551      6973696F 
- 551      6E203232 
- 551      31323230 
- 552 012c 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 552      66756E63 
- 552      74696F6E 
- 552      2D736563 
- 552      74696F6E 
- 553              	.LASF20:
- 554 0154 53575F43 		.ascii	"SW_Comparator_Stop\000"
- 554      6F6D7061 
- 554      7261746F 
- 554      725F5374 
- 554      6F7000
- 555              	.LASF26:
- 556 0167 53575F43 		.ascii	"SW_Comparator_backup\000"
- 556      6F6D7061 
- 556      7261746F 
- 556      725F6261 
- 556      636B7570 
- 557              	.LASF11:
- 558 017c 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 14
+ 537      20636861 
+ 537      7200
+ 538              	.LASF15:
+ 539 007c 53575F43 		.ascii	"SW_Comparator_backupStruct\000"
+ 539      6F6D7061 
+ 539      7261746F 
+ 539      725F6261 
+ 539      636B7570 
+ 540              	.LASF23:
+ 541 0097 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SW_Comparator_PM.c\000"
+ 541      6E657261 
+ 541      7465645F 
+ 541      536F7572 
+ 541      63655C50 
+ 542              	.LASF21:
+ 543 00c3 53575F43 		.ascii	"SW_Comparator_Enable\000"
+ 543      6F6D7061 
+ 543      7261746F 
+ 543      725F456E 
+ 543      61626C65 
+ 544              	.LASF12:
+ 545 00d8 75696E74 		.ascii	"uint8\000"
+ 545      3800
+ 546              	.LASF5:
+ 547 00de 6C6F6E67 		.ascii	"long unsigned int\000"
+ 547      20756E73 
+ 547      69676E65 
+ 547      6420696E 
+ 547      7400
+ 548              	.LASF7:
+ 549 00f0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 549      206C6F6E 
+ 549      6720756E 
+ 549      7369676E 
+ 549      65642069 
+ 550              	.LASF9:
+ 551 0107 666C6F61 		.ascii	"float\000"
+ 551      7400
+ 552              	.LASF22:
+ 553 010d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 553      4320342E 
+ 553      392E3320 
+ 553      32303135 
+ 553      30333033 
+ 554 0140 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 554      20726576 
+ 554      6973696F 
+ 554      6E203232 
+ 554      31323230 
+ 555 0173 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 555      66756E63 
+ 555      74696F6E 
+ 555      2D736563 
+ 555      74696F6E 
+ 556              	.LASF20:
+ 557 019b 53575F43 		.ascii	"SW_Comparator_Stop\000"
+ 557      6F6D7061 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 14
 
 
- 558      00
- 559              	.LASF4:
- 560 0181 6C6F6E67 		.ascii	"long int\000"
- 560      20696E74 
- 560      00
- 561              	.LASF16:
- 562 018a 53575F43 		.ascii	"SW_Comparator_SaveConfig\000"
- 562      6F6D7061 
- 562      7261746F 
- 562      725F5361 
- 562      7665436F 
- 563              	.LASF10:
- 564 01a3 646F7562 		.ascii	"double\000"
- 564      6C6500
- 565              	.LASF24:
- 566 01aa 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 566      73657273 
- 566      5C54696D 
- 566      5C446F63 
- 566      756D656E 
- 567 01d7 706C6179 		.ascii	"play.cydsn\000"
- 567      2E637964 
- 567      736E00
+ 557      7261746F 
+ 557      725F5374 
+ 557      6F7000
+ 558              	.LASF26:
+ 559 01ae 53575F43 		.ascii	"SW_Comparator_backup\000"
+ 559      6F6D7061 
+ 559      7261746F 
+ 559      725F6261 
+ 559      636B7570 
+ 560              	.LASF11:
+ 561 01c3 63686172 		.ascii	"char\000"
+ 561      00
+ 562              	.LASF4:
+ 563 01c8 6C6F6E67 		.ascii	"long int\000"
+ 563      20696E74 
+ 563      00
+ 564              	.LASF16:
+ 565 01d1 53575F43 		.ascii	"SW_Comparator_SaveConfig\000"
+ 565      6F6D7061 
+ 565      7261746F 
+ 565      725F5361 
+ 565      7665436F 
+ 566              	.LASF10:
+ 567 01ea 646F7562 		.ascii	"double\000"
+ 567      6C6500
  568              	.LASF3:
- 569 01e2 73686F72 		.ascii	"short unsigned int\000"
+ 569 01f1 73686F72 		.ascii	"short unsigned int\000"
  569      7420756E 
  569      7369676E 
  569      65642069 
  569      6E7400
  570              	.LASF0:
- 571 01f5 7369676E 		.ascii	"signed char\000"
+ 571 0204 7369676E 		.ascii	"signed char\000"
  571      65642063 
  571      68617200 
  572              	.LASF17:
- 573 0201 53575F43 		.ascii	"SW_Comparator_RestoreConfig\000"
+ 573 0210 53575F43 		.ascii	"SW_Comparator_RestoreConfig\000"
  573      6F6D7061 
  573      7261746F 
  573      725F5265 
  573      73746F72 
  574              	.LASF19:
- 575 021d 53575F43 		.ascii	"SW_Comparator_Wakeup\000"
+ 575 022c 53575F43 		.ascii	"SW_Comparator_Wakeup\000"
  575      6F6D7061 
  575      7261746F 
  575      725F5761 
  575      6B657570 
  576              	.LASF2:
- 577 0232 73686F72 		.ascii	"short int\000"
+ 577 0241 73686F72 		.ascii	"short int\000"
  577      7420696E 
  577      7400
  578              	.LASF13:
- 579 023c 72656738 		.ascii	"reg8\000"
+ 579 024b 72656738 		.ascii	"reg8\000"
  579      00
  580              	.LASF18:
- 581 0241 53575F43 		.ascii	"SW_Comparator_Sleep\000"
+ 581 0250 53575F43 		.ascii	"SW_Comparator_Sleep\000"
  581      6F6D7061 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccseCadj.s 			page 15
+
+
  581      7261746F 
  581      725F536C 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\ccispZim.s 			page 15
-
-
  581      65657000 
  582              	.LASF14:
- 583 0255 73697A65 		.ascii	"sizetype\000"
+ 583 0264 73697A65 		.ascii	"sizetype\000"
  583      74797065 
  583      00
  584              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

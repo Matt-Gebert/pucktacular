@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
   29:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** /* `#START Camera_end_line_colours_intc` */
   30:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** 
   31:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** /* `#END` */
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 2
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
   86:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *  
   87:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
   88:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *  used to provide consistent definition across compilers:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 3
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 3
 
 
   89:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *  
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  143:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** 
  144:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** /*******************************************************************************
  145:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Function Name: Camera_end_line_colours_Interrupt
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 4
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 4
 
 
  146:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** ********************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  183:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   used to provide consistent definition across compilers:
  184:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *
  185:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   Function definition example:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 5
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 5
 
 
  186:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   CY_ISR(MyISR)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  212:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** ********************************************************************************
  213:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *
  214:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Summary:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 6
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 6
 
 
  215:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  242:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   override any effect this API would have had. This API should only be called
  243:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   after Camera_end_line_colours_Start or Camera_end_line_colours_StartEx has been called. 
  244:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   To set the initial priority for the component, use the Design-Wide Resources
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 7
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 7
 
 
  245:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   Interrupt Editor.
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  271:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Parameters:
  272:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   None
  273:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 8
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 8
 
 
  274:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Return:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  300:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Parameters:
  301:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *   None
  302:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** *
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 9
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 9
 
 
  303:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** * Return:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  182              		@ args = 0, pretend = 0, frame = 0
  183              		@ frame_needed = 0, uses_anonymous_args = 0
  184              		@ link register save eliminated.
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 10
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 10
 
 
  330:.\Generated_Source\PSoC5/Camera_end_line_colours.c ****     /* Get the state of the general interrupt. */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  216              		.loc 1 352 0
  217 0000 0222     		movs	r2, #2
  218 0002 014B     		ldr	r3, .L23
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 11
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 11
 
 
  219 0004 1A60     		str	r2, [r3]
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  268              		.global	Camera_end_line_colours_StartEx
  269              		.thumb
  270              		.thumb_func
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 12
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 12
 
 
  271              		.type	Camera_end_line_colours_StartEx, %function
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  318              		.loc 1 137 0
  319 0002 FFF7FEFF 		bl	Camera_end_line_colours_Disable
  320              	.LVL16:
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 13
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 13
 
 
  140:.\Generated_Source\PSoC5/Camera_end_line_colours.c **** }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  348 0002 014B     		ldr	r3, .L36
  349 0004 1A60     		str	r2, [r3]
  350 0006 7047     		bx	lr
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 14
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 14
 
 
  351              	.L37:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  380              		.cfi_endproc
  381              	.LFE12:
  382              		.size	Camera_end_line_colours_ClearPending, .-Camera_end_line_colours_ClearPending
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 15
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 15
 
 
  383              		.text
@@ -854,7 +854,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  393 000c A1010000 		.4byte	.LASF33
  394 0010 01       		.byte	0x1
  395 0011 FA000000 		.4byte	.LASF34
- 396 0015 56030000 		.4byte	.LASF35
+ 396 0015 F4020000 		.4byte	.LASF35
  397 0019 00000000 		.4byte	.Ldebug_ranges0+0
  398 001d 00000000 		.4byte	0
  399 0021 00000000 		.4byte	.Ldebug_line0
@@ -869,7 +869,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  408 0033 03       		.uleb128 0x3
  409 0034 01       		.byte	0x1
  410 0035 06       		.byte	0x6
- 411 0036 4A030000 		.4byte	.LASF1
+ 411 0036 91030000 		.4byte	.LASF1
  412 003a 03       		.uleb128 0x3
  413 003b 01       		.byte	0x1
  414 003c 08       		.byte	0x8
@@ -877,7 +877,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  416 0041 03       		.uleb128 0x3
  417 0042 02       		.byte	0x2
  418 0043 05       		.byte	0x5
- 419 0044 12030000 		.4byte	.LASF3
+ 419 0044 59030000 		.4byte	.LASF3
  420 0048 03       		.uleb128 0x3
  421 0049 02       		.byte	0x2
  422 004a 07       		.byte	0x7
@@ -885,7 +885,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  424 004f 03       		.uleb128 0x3
  425 0050 04       		.byte	0x4
  426 0051 05       		.byte	0x5
- 427 0052 1C030000 		.4byte	.LASF5
+ 427 0052 63030000 		.4byte	.LASF5
  428 0056 03       		.uleb128 0x3
  429 0057 04       		.byte	0x4
  430 0058 07       		.byte	0x7
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  437 0065 08       		.byte	0x8
  438 0066 07       		.byte	0x7
  439 0067 66020000 		.4byte	.LASF8
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 16
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 16
 
 
  440 006b 03       		.uleb128 0x3
@@ -939,7 +939,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  475 00b2 07       		.uleb128 0x7
  476 00b3 80000000 		.4byte	0x80
  477 00b7 06       		.uleb128 0x6
- 478 00b8 25030000 		.4byte	.LASF16
+ 478 00b8 6C030000 		.4byte	.LASF16
  479 00bc 02       		.byte	0x2
  480 00bd 3E02     		.2byte	0x23e
  481 00bf C3000000 		.4byte	0xc3
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  494 00df 02000000 		.4byte	.LFE3-.LFB3
  495 00e3 01       		.uleb128 0x1
  496 00e4 9C       		.byte	0x9c
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 17
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 17
 
 
  497 00e5 09       		.uleb128 0x9
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  551 0158 0E       		.uleb128 0xe
  552 0159 45010000 		.4byte	.LASF22
  553 015d 01       		.byte	0x1
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 18
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 18
 
 
  554 015e 0201     		.2byte	0x102
@@ -1043,7 +1043,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  573 018f 21000000 		.4byte	.LLST1
  574 0193 00       		.byte	0
  575 0194 11       		.uleb128 0x11
- 576 0195 2B030000 		.4byte	.LASF26
+ 576 0195 72030000 		.4byte	.LASF26
  577 0199 01       		.byte	0x1
  578 019a 3301     		.2byte	0x133
  579 019c 00000000 		.4byte	.LFB8
@@ -1068,7 +1068,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  598 01cc 01       		.uleb128 0x1
  599 01cd 9C       		.byte	0x9c
  600 01ce 09       		.uleb128 0x9
- 601 01cf F4020000 		.4byte	.LASF28
+ 601 01cf 3B030000 		.4byte	.LASF28
  602 01d3 01       		.byte	0x1
  603 01d4 3D       		.byte	0x3d
  604 01d5 00000000 		.4byte	.LFB0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  608 01df 20020000 		.4byte	0x220
  609 01e3 13       		.uleb128 0x13
  610 01e4 06000000 		.4byte	.LVL7
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 19
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 19
 
 
  611 01e8 BC010000 		.4byte	0x1bc
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  665 0260 00       		.byte	0
  666 0261 14       		.uleb128 0x14
  667 0262 14000000 		.4byte	.LVL14
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 20
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 20
 
 
  668 0266 42010000 		.4byte	0x142
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  722 0007 03       		.uleb128 0x3
  723 0008 0E       		.uleb128 0xe
  724 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 21
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 21
 
 
  725 000a 0E       		.uleb128 0xe
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  779 0040 3B       		.uleb128 0x3b
  780 0041 05       		.uleb128 0x5
  781 0042 49       		.uleb128 0x49
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 22
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 22
 
 
  782 0043 13       		.uleb128 0x13
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  836 007b 01       		.uleb128 0x1
  837 007c 13       		.uleb128 0x13
  838 007d 00       		.byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 23
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 23
 
 
  839 007e 00       		.byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  893 00b5 01       		.uleb128 0x1
  894 00b6 13       		.uleb128 0x13
  895 00b7 00       		.byte	0
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 24
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 24
 
 
  896 00b8 00       		.byte	0
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  950 00ef 49       		.uleb128 0x49
  951 00f0 13       		.uleb128 0x13
  952 00f1 11       		.uleb128 0x11
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 25
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 25
 
 
  953 00f2 01       		.uleb128 0x1
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1007 012a 03       		.uleb128 0x3
  1008 012b 0E       		.uleb128 0xe
  1009 012c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 26
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 26
 
 
  1010 012d 0B       		.uleb128 0xb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1064 016b 0B       		.uleb128 0xb
  1065 016c 49       		.uleb128 0x49
  1066 016d 13       		.uleb128 0x13
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 27
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 27
 
 
  1067 016e 02       		.uleb128 0x2
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1121 001c 0C000000 		.4byte	.LFE4-.LFB4
  1122 0020 00000000 		.4byte	.LFB5
  1123 0024 0C000000 		.4byte	.LFE5-.LFB5
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 28
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 28
 
 
  1124 0028 00000000 		.4byte	.LFB6
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1178 0000 59010000 		.section	.debug_str,"MS",%progbits,1
  1178      02006D00 
  1178      00000201 
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 29
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 29
 
 
  1178      FB0E0D00 
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1198      00
  1199              	.LASF34:
  1200 00fa 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Camera_end_line_colours"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 30
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 30
 
 
  1200      6E657261 
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1221      676E6564 
  1221      20696E74 
  1221      00
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 31
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 31
 
 
  1222              	.LASF23:
@@ -1850,43 +1850,45 @@ ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 1
  1241      6563746F 
  1241      72546162 
  1241      6C6500
- 1242              	.LASF28:
- 1243 02f4 43616D65 		.ascii	"Camera_end_line_colours_Start\000"
- 1243      72615F65 
- 1243      6E645F6C 
- 1243      696E655F 
- 1243      636F6C6F 
- 1244              	.LASF3:
- 1245 0312 73686F72 		.ascii	"short int\000"
-ARM GAS  C:\Users\Tim\AppData\Local\Temp\cc6SITph.s 			page 32
+ 1242              	.LASF35:
+ 1243 02f4 433A5C55 		.ascii	"C:\\Users\\Daniel\\Documents\\PSoC Creator\\ECE3091"
+ 1243      73657273 
+ 1243      5C44616E 
+ 1243      69656C5C 
+ 1243      446F6375 
+ 1244 0322 20466173 		.ascii	" Faster V3\\Display.cydsn\000"
+ 1244      74657220 
+ARM GAS  C:\Users\Daniel\AppData\Local\Temp\ccsR9ax5.s 			page 32
 
 
- 1245      7420696E 
- 1245      7400
- 1246              	.LASF5:
- 1247 031c 6C6F6E67 		.ascii	"long int\000"
- 1247      20696E74 
- 1247      00
- 1248              	.LASF16:
- 1249 0325 72656733 		.ascii	"reg32\000"
- 1249      3200
- 1250              	.LASF26:
- 1251 032b 43616D65 		.ascii	"Camera_end_line_colours_Enable\000"
- 1251      72615F65 
- 1251      6E645F6C 
- 1251      696E655F 
- 1251      636F6C6F 
- 1252              	.LASF1:
- 1253 034a 7369676E 		.ascii	"signed char\000"
- 1253      65642063 
- 1253      68617200 
- 1254              	.LASF35:
- 1255 0356 433A5C55 		.ascii	"C:\\Users\\Tim\\Documents\\GitHub\\pucktacular\\Dis"
- 1255      73657273 
- 1255      5C54696D 
- 1255      5C446F63 
- 1255      756D656E 
- 1256 0383 706C6179 		.ascii	"play.cydsn\000"
- 1256      2E637964 
- 1256      736E00
+ 1244      56335C44 
+ 1244      6973706C 
+ 1244      61792E63 
+ 1245              	.LASF28:
+ 1246 033b 43616D65 		.ascii	"Camera_end_line_colours_Start\000"
+ 1246      72615F65 
+ 1246      6E645F6C 
+ 1246      696E655F 
+ 1246      636F6C6F 
+ 1247              	.LASF3:
+ 1248 0359 73686F72 		.ascii	"short int\000"
+ 1248      7420696E 
+ 1248      7400
+ 1249              	.LASF5:
+ 1250 0363 6C6F6E67 		.ascii	"long int\000"
+ 1250      20696E74 
+ 1250      00
+ 1251              	.LASF16:
+ 1252 036c 72656733 		.ascii	"reg32\000"
+ 1252      3200
+ 1253              	.LASF26:
+ 1254 0372 43616D65 		.ascii	"Camera_end_line_colours_Enable\000"
+ 1254      72615F65 
+ 1254      6E645F6C 
+ 1254      696E655F 
+ 1254      636F6C6F 
+ 1255              	.LASF1:
+ 1256 0391 7369676E 		.ascii	"signed char\000"
+ 1256      65642063 
+ 1256      68617200 
  1257              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

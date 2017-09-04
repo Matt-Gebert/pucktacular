@@ -56,7 +56,7 @@ uint8 Buttons_ReadMask(void) ;
 ***************************************/
 
 /* Status Register Inputs */
-#define Buttons_INPUTS              2
+#define Buttons_INPUTS              3
 
 
 /***************************************

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SW_SW_1.c  
+* File Name: Pin_2.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "SW_SW_1.h"
+#include "Pin_2.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 SW_SW_1__PORT == 15 && ((SW_SW_1__MASK & 0xC0) != 0))
+	 Pin_2__PORT == 15 && ((Pin_2__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: SW_SW_1_Write
+* Function Name: Pin_2_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet SW_SW_1_SUT.c usage_SW_SW_1_Write
+*  \snippet Pin_2_SUT.c usage_Pin_2_Write
 *******************************************************************************/
-void SW_SW_1_Write(uint8 value)
+void Pin_2_Write(uint8 value)
 {
-    uint8 staticBits = (SW_SW_1_DR & (uint8)(~SW_SW_1_MASK));
-    SW_SW_1_DR = staticBits | ((uint8)(value << SW_SW_1_SHIFT) & SW_SW_1_MASK);
+    uint8 staticBits = (Pin_2_DR & (uint8)(~Pin_2_MASK));
+    Pin_2_DR = staticBits | ((uint8)(value << Pin_2_SHIFT) & Pin_2_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: SW_SW_1_SetDriveMode
+* Function Name: Pin_2_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void SW_SW_1_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet SW_SW_1_SUT.c usage_SW_SW_1_SetDriveMode
+*  \snippet Pin_2_SUT.c usage_Pin_2_SetDriveMode
 *******************************************************************************/
-void SW_SW_1_SetDriveMode(uint8 mode)
+void Pin_2_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(SW_SW_1_0, mode);
+	CyPins_SetPinDriveMode(Pin_2_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: SW_SW_1_Read
+* Function Name: Pin_2_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void SW_SW_1_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet SW_SW_1_SUT.c usage_SW_SW_1_Read  
+*  \snippet Pin_2_SUT.c usage_Pin_2_Read  
 *******************************************************************************/
-uint8 SW_SW_1_Read(void)
+uint8 Pin_2_Read(void)
 {
-    return (SW_SW_1_PS & SW_SW_1_MASK) >> SW_SW_1_SHIFT;
+    return (Pin_2_PS & Pin_2_MASK) >> Pin_2_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: SW_SW_1_ReadDataReg
+* Function Name: Pin_2_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 SW_SW_1_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred SW_SW_1_Read() API because the 
-* SW_SW_1_ReadDataReg() reads the data register instead of the status 
+* preferred Pin_2_Read() API because the 
+* Pin_2_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 SW_SW_1_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet SW_SW_1_SUT.c usage_SW_SW_1_ReadDataReg 
+*  \snippet Pin_2_SUT.c usage_Pin_2_ReadDataReg 
 *******************************************************************************/
-uint8 SW_SW_1_ReadDataReg(void)
+uint8 Pin_2_ReadDataReg(void)
 {
-    return (SW_SW_1_DR & SW_SW_1_MASK) >> SW_SW_1_SHIFT;
+    return (Pin_2_DR & Pin_2_MASK) >> Pin_2_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(SW_SW_1_INTSTAT) 
+#if defined(Pin_2_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: SW_SW_1_SetInterruptMode
+    * Function Name: Pin_2_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 SW_SW_1_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use SW_SW_1_INTR_ALL to configure the
+    *  component. Or you may use Pin_2_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - SW_SW_1_0_INTR       (First pin in the list)
-    *  - SW_SW_1_1_INTR       (Second pin in the list)
+    *  - Pin_2_0_INTR       (First pin in the list)
+    *  - Pin_2_1_INTR       (Second pin in the list)
     *  - ...
-    *  - SW_SW_1_INTR_ALL     (All pins in Pins component)
+    *  - Pin_2_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 SW_SW_1_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet SW_SW_1_SUT.c usage_SW_SW_1_SetInterruptMode
+    *  \snippet Pin_2_SUT.c usage_Pin_2_SetInterruptMode
     *******************************************************************************/
-    void SW_SW_1_SetInterruptMode(uint16 position, uint16 mode)
+    void Pin_2_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & SW_SW_1_0_INTR) != 0u) 
+		if((position & Pin_2_0_INTR) != 0u) 
 		{ 
-			 SW_SW_1_0_INTTYPE_REG = (uint8)mode; 
+			 Pin_2_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: SW_SW_1_ClearInterrupt
+    * Function Name: Pin_2_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 SW_SW_1_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet SW_SW_1_SUT.c usage_SW_SW_1_ClearInterrupt
+    *  \snippet Pin_2_SUT.c usage_Pin_2_ClearInterrupt
     *******************************************************************************/
-    uint8 SW_SW_1_ClearInterrupt(void)
+    uint8 Pin_2_ClearInterrupt(void)
     {
-        return (SW_SW_1_INTSTAT & SW_SW_1_MASK) >> SW_SW_1_SHIFT;
+        return (Pin_2_INTSTAT & Pin_2_MASK) >> Pin_2_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

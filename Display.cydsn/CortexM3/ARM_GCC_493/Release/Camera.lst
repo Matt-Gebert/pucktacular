@@ -1,0 +1,2257 @@
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Camera.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Camera_WriteReg,"ax",%progbits
+  19              		.align	1
+  20              		.global	Camera_WriteReg
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Camera_WriteReg, %function
+  24              	Camera_WriteReg:
+  25              	.LFB63:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Camera.c"
+   1:.\Generated_Source\PSoC5/Camera.c **** #include "Camera.h"
+   2:.\Generated_Source\PSoC5/Camera.c **** 
+   3:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_settings[][2];
+   4:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_format[];
+   5:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_sxga[];
+   6:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_vga[];
+   7:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_qvga[];
+   8:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_cif[];
+   9:.\Generated_Source\PSoC5/Camera.c **** extern const uint8 Camera_qcif[];
+  10:.\Generated_Source\PSoC5/Camera.c **** 
+  11:.\Generated_Source\PSoC5/Camera.c **** static uint8 DMA_channel,DMA_TD;
+  12:.\Generated_Source\PSoC5/Camera.c **** 
+  13:.\Generated_Source\PSoC5/Camera.c **** void Camera_WriteReg(const uint8 reg,const uint8 value)
+  14:.\Generated_Source\PSoC5/Camera.c **** {
+  27              		.loc 1 14 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              	.LVL0:
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0546     		mov	r5, r0
+  39 0004 0C46     		mov	r4, r1
+  40              	.LVL1:
+  41              	.L2:
+  15:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,0)!=Camera_I2C_MSTR_NO_ERROR);
+  42              		.loc 1 15 0 discriminator 1
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 2
+
+
+  43 0006 3020     		movs	r0, #48
+  44 0008 0021     		movs	r1, #0
+  45 000a FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+  46              	.LVL2:
+  47 000e 0028     		cmp	r0, #0
+  48 0010 F9D1     		bne	.L2
+  16:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(reg);
+  49              		.loc 1 16 0
+  50 0012 2846     		mov	r0, r5
+  51 0014 FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+  52              	.LVL3:
+  17:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(value);
+  53              		.loc 1 17 0
+  54 0018 2046     		mov	r0, r4
+  55 001a FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+  56              	.LVL4:
+  18:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+  19:.\Generated_Source\PSoC5/Camera.c **** }
+  57              		.loc 1 19 0
+  58 001e BDE83840 		pop	{r3, r4, r5, lr}
+  59              		.cfi_restore 14
+  60              		.cfi_restore 5
+  61              		.cfi_restore 4
+  62              		.cfi_restore 3
+  63              		.cfi_def_cfa_offset 0
+  18:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+  64              		.loc 1 18 0
+  65 0022 FFF7FEBF 		b	Camera_I2C_MasterSendStop
+  66              	.LVL5:
+  67              		.cfi_endproc
+  68              	.LFE63:
+  69              		.size	Camera_WriteReg, .-Camera_WriteReg
+  70              		.section	.text.Camera_ReadReg,"ax",%progbits
+  71              		.align	1
+  72              		.global	Camera_ReadReg
+  73              		.thumb
+  74              		.thumb_func
+  75              		.type	Camera_ReadReg, %function
+  76              	Camera_ReadReg:
+  77              	.LFB64:
+  20:.\Generated_Source\PSoC5/Camera.c **** 
+  21:.\Generated_Source\PSoC5/Camera.c **** uint8 Camera_ReadReg(const uint8 reg)
+  22:.\Generated_Source\PSoC5/Camera.c **** {
+  78              		.loc 1 22 0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              	.LVL6:
+  83 0000 10B5     		push	{r4, lr}
+  84              		.cfi_def_cfa_offset 8
+  85              		.cfi_offset 4, -8
+  86              		.cfi_offset 14, -4
+  87 0002 0446     		mov	r4, r0
+  88              	.LVL7:
+  89              	.L6:
+  23:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,0)!=Camera_I2C_MSTR_NO_ERROR);
+  90              		.loc 1 23 0 discriminator 1
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 3
+
+
+  91 0004 3020     		movs	r0, #48
+  92 0006 0021     		movs	r1, #0
+  93 0008 FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+  94              	.LVL8:
+  95 000c 0028     		cmp	r0, #0
+  96 000e F9D1     		bne	.L6
+  24:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterWriteByte(reg);
+  97              		.loc 1 24 0
+  98 0010 2046     		mov	r0, r4
+  99 0012 FFF7FEFF 		bl	Camera_I2C_MasterWriteByte
+ 100              	.LVL9:
+  25:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+ 101              		.loc 1 25 0
+ 102 0016 FFF7FEFF 		bl	Camera_I2C_MasterSendStop
+ 103              	.LVL10:
+ 104              	.L7:
+  26:.\Generated_Source\PSoC5/Camera.c **** 	
+  27:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_I2C_MasterSendStart(0x30,1)!=Camera_I2C_MSTR_NO_ERROR);
+ 105              		.loc 1 27 0 discriminator 1
+ 106 001a 3020     		movs	r0, #48
+ 107 001c 0121     		movs	r1, #1
+ 108 001e FFF7FEFF 		bl	Camera_I2C_MasterSendStart
+ 109              	.LVL11:
+ 110 0022 0028     		cmp	r0, #0
+ 111 0024 F9D1     		bne	.L7
+  28:.\Generated_Source\PSoC5/Camera.c ****     uint8 value=Camera_I2C_MasterReadByte(Camera_I2C_NAK_DATA);
+ 112              		.loc 1 28 0
+ 113 0026 FFF7FEFF 		bl	Camera_I2C_MasterReadByte
+ 114              	.LVL12:
+ 115 002a 0446     		mov	r4, r0
+ 116              	.LVL13:
+  29:.\Generated_Source\PSoC5/Camera.c ****     Camera_I2C_MasterSendStop();
+ 117              		.loc 1 29 0
+ 118 002c FFF7FEFF 		bl	Camera_I2C_MasterSendStop
+ 119              	.LVL14:
+  30:.\Generated_Source\PSoC5/Camera.c **** 	return value;
+  31:.\Generated_Source\PSoC5/Camera.c **** }
+ 120              		.loc 1 31 0
+ 121 0030 2046     		mov	r0, r4
+ 122 0032 10BD     		pop	{r4, pc}
+ 123              		.cfi_endproc
+ 124              	.LFE64:
+ 125              		.size	Camera_ReadReg, .-Camera_ReadReg
+ 126              		.section	.text.Camera_SyncFrame,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	Camera_SyncFrame
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	Camera_SyncFrame, %function
+ 132              	Camera_SyncFrame:
+ 133              	.LFB65:
+  32:.\Generated_Source\PSoC5/Camera.c **** 
+  33:.\Generated_Source\PSoC5/Camera.c **** void Camera_SyncFrame()
+  34:.\Generated_Source\PSoC5/Camera.c **** {
+ 134              		.loc 1 34 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 4
+
+
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138 0000 08B5     		push	{r3, lr}
+ 139              		.cfi_def_cfa_offset 8
+ 140              		.cfi_offset 3, -8
+ 141              		.cfi_offset 14, -4
+ 142              	.L11:
+  35:.\Generated_Source\PSoC5/Camera.c **** 	while(Camera_VSYNC_Read());
+ 143              		.loc 1 35 0 discriminator 1
+ 144 0002 FFF7FEFF 		bl	Camera_VSYNC_Read
+ 145              	.LVL15:
+ 146 0006 0028     		cmp	r0, #0
+ 147 0008 FBD1     		bne	.L11
+ 148              	.L12:
+  36:.\Generated_Source\PSoC5/Camera.c **** 	while(!Camera_VSYNC_Read());
+ 149              		.loc 1 36 0 discriminator 1
+ 150 000a FFF7FEFF 		bl	Camera_VSYNC_Read
+ 151              	.LVL16:
+ 152 000e 0028     		cmp	r0, #0
+ 153 0010 FBD0     		beq	.L12
+  37:.\Generated_Source\PSoC5/Camera.c **** }
+ 154              		.loc 1 37 0
+ 155 0012 08BD     		pop	{r3, pc}
+ 156              		.cfi_endproc
+ 157              	.LFE65:
+ 158              		.size	Camera_SyncFrame, .-Camera_SyncFrame
+ 159              		.section	.text.Camera_Start,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	Camera_Start
+ 162              		.thumb
+ 163              		.thumb_func
+ 164              		.type	Camera_Start, %function
+ 165              	Camera_Start:
+ 166              	.LFB66:
+  38:.\Generated_Source\PSoC5/Camera.c **** 
+  39:.\Generated_Source\PSoC5/Camera.c **** void Camera_Start()
+  40:.\Generated_Source\PSoC5/Camera.c **** {
+ 167              		.loc 1 40 0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171 0000 38B5     		push	{r3, r4, r5, lr}
+ 172              		.cfi_def_cfa_offset 16
+ 173              		.cfi_offset 3, -16
+ 174              		.cfi_offset 4, -12
+ 175              		.cfi_offset 5, -8
+ 176              		.cfi_offset 14, -4
+  41:.\Generated_Source\PSoC5/Camera.c **** 	//Camera_SIOD_SetDriveMode(Camera_SIOD_DM_RES_UP); //turn on pull-up resistors on I2C pins
+  42:.\Generated_Source\PSoC5/Camera.c **** 	//Camera_SIOC_SetDriveMode(Camera_SIOC_DM_RES_UP);
+  43:.\Generated_Source\PSoC5/Camera.c **** 	Camera_I2C_Start();
+ 177              		.loc 1 43 0
+ 178 0002 FFF7FEFF 		bl	Camera_I2C_Start
+ 179              	.LVL17:
+  44:.\Generated_Source\PSoC5/Camera.c **** 	
+  45:.\Generated_Source\PSoC5/Camera.c **** 	Camera_WriteReg(0x12,0x80); //reset
+ 180              		.loc 1 45 0
+ 181 0006 1220     		movs	r0, #18
+ 182 0008 8021     		movs	r1, #128
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 5
+
+
+ 183 000a FFF7FEFF 		bl	Camera_WriteReg
+ 184              	.LVL18:
+  46:.\Generated_Source\PSoC5/Camera.c **** 	CyDelay(1);
+ 185              		.loc 1 46 0
+ 186 000e 0120     		movs	r0, #1
+ 187 0010 FFF7FEFF 		bl	CyDelay
+ 188              	.LVL19:
+  47:.\Generated_Source\PSoC5/Camera.c **** 	uint16 i;
+  48:.\Generated_Source\PSoC5/Camera.c **** 	for(i=0;Camera_settings[i][0]!=0xff;i++) Camera_WriteReg(Camera_settings[i][0],Camera_settings[i][
+ 189              		.loc 1 48 0
+ 190 0014 0024     		movs	r4, #0
+ 191              	.LVL20:
+ 192              	.L17:
+ 193              		.loc 1 48 0 is_stmt 0 discriminator 1
+ 194 0016 484B     		ldr	r3, .L23
+ 195 0018 A2B2     		uxth	r2, r4
+ 196              	.LVL21:
+ 197 001a 13F81200 		ldrb	r0, [r3, r2, lsl #1]	@ zero_extendqisi2
+ 198 001e 0134     		adds	r4, r4, #1
+ 199 0020 FF28     		cmp	r0, #255
+ 200 0022 05D0     		beq	.L21
+ 201              		.loc 1 48 0 discriminator 3
+ 202 0024 03EB4203 		add	r3, r3, r2, lsl #1
+ 203 0028 5978     		ldrb	r1, [r3, #1]	@ zero_extendqisi2
+ 204 002a FFF7FEFF 		bl	Camera_WriteReg
+ 205              	.LVL22:
+ 206 002e F2E7     		b	.L17
+ 207              	.LVL23:
+ 208              	.L21:
+ 209 0030 0024     		movs	r4, #0
+ 210              	.LVL24:
+ 211              	.L19:
+  49:.\Generated_Source\PSoC5/Camera.c **** 	for(i=0;Camera_format[i]!=0xff;i++) Camera_WriteReg(Camera_format[i],Camera_qvga[i]); //qvga forma
+ 212              		.loc 1 49 0 is_stmt 1 discriminator 1
+ 213 0032 424A     		ldr	r2, .L23+4
+ 214 0034 A3B2     		uxth	r3, r4
+ 215              	.LVL25:
+ 216 0036 D05C     		ldrb	r0, [r2, r3]	@ zero_extendqisi2
+ 217 0038 0134     		adds	r4, r4, #1
+ 218 003a FF28     		cmp	r0, #255
+ 219 003c 04D0     		beq	.L22
+ 220              		.loc 1 49 0 is_stmt 0 discriminator 3
+ 221 003e 404A     		ldr	r2, .L23+8
+ 222 0040 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+ 223 0042 FFF7FEFF 		bl	Camera_WriteReg
+ 224              	.LVL26:
+ 225 0046 F4E7     		b	.L19
+ 226              	.LVL27:
+ 227              	.L22:
+  50:.\Generated_Source\PSoC5/Camera.c **** 	
+  51:.\Generated_Source\PSoC5/Camera.c **** 	DMA_channel=Camera_DMA_DmaInitialize(1,1,HI16(CYDEV_PERIPH_BASE),HI16(CYDEV_SRAM_BASE)); //periphe
+ 228              		.loc 1 51 0 is_stmt 1
+ 229 0048 0120     		movs	r0, #1
+ 230 004a 41F6FF73 		movw	r3, #8191
+ 231              	.LVL28:
+ 232 004e 0146     		mov	r1, r0
+ 233 0050 4FF48042 		mov	r2, #16384
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 6
+
+
+ 234 0054 FFF7FEFF 		bl	Camera_DMA_DmaInitialize
+ 235              	.LVL29:
+ 236 0058 3A4C     		ldr	r4, .L23+12
+  52:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+  53:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetAddress(DMA_TD,LO16(Camera_FIFO_dp__F0_REG),LO16((uint32)Camera_linebuffer));
+ 237              		.loc 1 53 0
+ 238 005a 3B4D     		ldr	r5, .L23+16
+  51:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 239              		.loc 1 51 0
+ 240 005c 2070     		strb	r0, [r4]
+  52:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 241              		.loc 1 52 0
+ 242 005e FFF7FEFF 		bl	CyDmaTdAllocate
+ 243              	.LVL30:
+ 244              		.loc 1 53 0
+ 245 0062 ADB2     		uxth	r5, r5
+ 246 0064 2A46     		mov	r2, r5
+ 247 0066 46F24741 		movw	r1, #25671
+  52:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 248              		.loc 1 52 0
+ 249 006a 6070     		strb	r0, [r4, #1]
+ 250              		.loc 1 53 0
+ 251 006c FFF7FEFF 		bl	CyDmaTdSetAddress
+ 252              	.LVL31:
+  54:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetConfiguration(DMA_TD,sizeof(Camera_linebuffer),DMA_TD,TD_INC_DST_ADR|Camera_DMA__TD_T
+ 253              		.loc 1 54 0
+ 254 0070 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 255 0072 0623     		movs	r3, #6
+ 256 0074 0246     		mov	r2, r0
+ 257 0076 4FF42071 		mov	r1, #640
+ 258 007a FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 259              	.LVL32:
+  55:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChPriority(DMA_channel,0); //ensure highest priority for DMA channel
+ 260              		.loc 1 55 0
+ 261 007e 0021     		movs	r1, #0
+ 262 0080 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 263 0082 FFF7FEFF 		bl	CyDmaChPriority
+ 264              	.LVL33:
+  56:.\Generated_Source\PSoC5/Camera.c **** 
+  57:.\Generated_Source\PSoC5/Camera.c ****     Camera_end_line_StartEx(Camera_end_line);
+ 265              		.loc 1 57 0
+ 266 0086 3148     		ldr	r0, .L23+20
+ 267 0088 FFF7FEFF 		bl	Camera_end_line_StartEx
+ 268              	.LVL34:
+  58:.\Generated_Source\PSoC5/Camera.c ****     
+  59:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 269              		.loc 1 59 0
+ 270 008c 304B     		ldr	r3, .L23+24
+  60:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+  61:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+  62:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG; //clear fifo
+  63:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+ 271              		.loc 1 63 0
+ 272 008e 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  59:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 273              		.loc 1 59 0
+ 274 0090 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 7
+
+
+  60:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG;
+ 275              		.loc 1 60 0
+ 276 0092 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  61:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_dp__F0_REG; //clear fifo
+ 277              		.loc 1 61 0
+ 278 0094 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  62:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+ 279              		.loc 1 62 0
+ 280 0096 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 281              		.loc 1 63 0
+ 282 0098 FFF7FEFF 		bl	CyDmaClearPendingDrq
+ 283              	.LVL35:
+  64:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
+ 284              		.loc 1 64 0
+ 285 009c 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
+ 286 009e 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 287 00a0 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 288              	.LVL36:
+  65:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+ 289              		.loc 1 65 0
+ 290 00a4 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 291 00a6 0121     		movs	r1, #1
+ 292 00a8 FFF7FEFF 		bl	CyDmaChEnable
+ 293              	.LVL37:
+  66:.\Generated_Source\PSoC5/Camera.c ****     
+  67:.\Generated_Source\PSoC5/Camera.c ****     
+  68:.\Generated_Source\PSoC5/Camera.c ****     
+  69:.\Generated_Source\PSoC5/Camera.c ****     Camera_R_Start();
+ 294              		.loc 1 69 0
+ 295 00ac 294A     		ldr	r2, .L23+28
+  70:.\Generated_Source\PSoC5/Camera.c ****     Camera_G_Start();
+  71:.\Generated_Source\PSoC5/Camera.c ****     Camera_B_Start();
+  72:.\Generated_Source\PSoC5/Camera.c ****     Camera_M_Start();
+  73:.\Generated_Source\PSoC5/Camera.c ****     
+  74:.\Generated_Source\PSoC5/Camera.c ****     DMA_channel=Camera_DMA_Colours_DmaInitialize(1,1,HI16(CYDEV_PERIPH_BASE),HI16(CYDEV_SRAM_BASE))
+ 296              		.loc 1 74 0
+ 297 00ae 0120     		movs	r0, #1
+  69:.\Generated_Source\PSoC5/Camera.c ****     Camera_G_Start();
+ 298              		.loc 1 69 0
+ 299 00b0 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 300              		.loc 1 74 0
+ 301 00b2 0146     		mov	r1, r0
+  69:.\Generated_Source\PSoC5/Camera.c ****     Camera_G_Start();
+ 302              		.loc 1 69 0
+ 303 00b4 43F00103 		orr	r3, r3, #1
+ 304 00b8 1370     		strb	r3, [r2]
+  70:.\Generated_Source\PSoC5/Camera.c ****     Camera_G_Start();
+ 305              		.loc 1 70 0
+ 306 00ba 6FF48273 		mvn	r3, #260
+ 307 00be 1A44     		add	r2, r2, r3
+ 308 00c0 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 309 00c2 43F00103 		orr	r3, r3, #1
+ 310 00c6 1370     		strb	r3, [r2]
+  71:.\Generated_Source\PSoC5/Camera.c ****     Camera_M_Start();
+ 311              		.loc 1 71 0
+ 312 00c8 92F80631 		ldrb	r3, [r2, #262]	@ zero_extendqisi2
+ 313 00cc 43F00103 		orr	r3, r3, #1
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 8
+
+
+ 314 00d0 82F80631 		strb	r3, [r2, #262]
+  72:.\Generated_Source\PSoC5/Camera.c ****     
+ 315              		.loc 1 72 0
+ 316 00d4 D379     		ldrb	r3, [r2, #7]	@ zero_extendqisi2
+ 317 00d6 43F00103 		orr	r3, r3, #1
+ 318 00da D371     		strb	r3, [r2, #7]
+ 319              		.loc 1 74 0
+ 320 00dc 41F6FF73 		movw	r3, #8191
+ 321 00e0 4FF48042 		mov	r2, #16384
+ 322 00e4 FFF7FEFF 		bl	Camera_DMA_Colours_DmaInitialize
+ 323              	.LVL38:
+ 324 00e8 2070     		strb	r0, [r4]
+  75:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 325              		.loc 1 75 0
+ 326 00ea FFF7FEFF 		bl	CyDmaTdAllocate
+ 327              	.LVL39:
+  76:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetAddress(DMA_TD,LO16(Camera_FIFO_Colours_dp__F0_REG),LO16((uint32)Camera_linebuffer));
+ 328              		.loc 1 76 0
+ 329 00ee 2A46     		mov	r2, r5
+ 330 00f0 46F24B41 		movw	r1, #25675
+  75:.\Generated_Source\PSoC5/Camera.c **** 	DMA_TD=CyDmaTdAllocate();
+ 331              		.loc 1 75 0
+ 332 00f4 6070     		strb	r0, [r4, #1]
+ 333              		.loc 1 76 0
+ 334 00f6 FFF7FEFF 		bl	CyDmaTdSetAddress
+ 335              	.LVL40:
+  77:.\Generated_Source\PSoC5/Camera.c ****     CyDmaTdSetConfiguration(DMA_TD,sizeof(Camera_linebuffer)/4,DMA_TD,TD_INC_DST_ADR|Camera_DMA__TD
+ 336              		.loc 1 77 0
+ 337 00fa 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 338 00fc 0623     		movs	r3, #6
+ 339 00fe 0246     		mov	r2, r0
+ 340 0100 A021     		movs	r1, #160
+ 341 0102 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 342              	.LVL41:
+  78:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChPriority(DMA_channel,0); //ensure highest priority for DMA channel
+ 343              		.loc 1 78 0
+ 344 0106 0021     		movs	r1, #0
+ 345 0108 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 346 010a FFF7FEFF 		bl	CyDmaChPriority
+ 347              	.LVL42:
+  79:.\Generated_Source\PSoC5/Camera.c **** 
+  80:.\Generated_Source\PSoC5/Camera.c ****     Camera_end_line_colours_StartEx(Camera_end_line);
+ 348              		.loc 1 80 0
+ 349 010e 0F48     		ldr	r0, .L23+20
+ 350 0110 FFF7FEFF 		bl	Camera_end_line_colours_StartEx
+ 351              	.LVL43:
+  81:.\Generated_Source\PSoC5/Camera.c ****     
+  82:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+ 352              		.loc 1 82 0
+ 353 0114 104B     		ldr	r3, .L23+32
+  83:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+  84:.\Generated_Source\PSoC5/Camera.c ****     *(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+  85:.\Generated_Source\PSoC5/Camera.c ****     *(reg8*)Camera_FIFO_Colours_dp__F0_REG; //clear fifo
+  86:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+ 354              		.loc 1 86 0
+ 355 0116 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  82:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 9
+
+
+ 356              		.loc 1 82 0
+ 357 0118 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  83:.\Generated_Source\PSoC5/Camera.c **** 	*(reg8*)Camera_FIFO_Colours_dp__F0_REG;
+ 358              		.loc 1 83 0
+ 359 011a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  84:.\Generated_Source\PSoC5/Camera.c ****     *(reg8*)Camera_FIFO_Colours_dp__F0_REG; //clear fifo
+ 360              		.loc 1 84 0
+ 361 011c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+  85:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaClearPendingDrq(DMA_channel); //invalidate pending requests
+ 362              		.loc 1 85 0
+ 363 011e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 364              		.loc 1 86 0
+ 365 0120 FFF7FEFF 		bl	CyDmaClearPendingDrq
+ 366              	.LVL44:
+  87:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChSetInitialTd(DMA_channel,DMA_TD); //set initial TD
+ 367              		.loc 1 87 0
+ 368 0124 6178     		ldrb	r1, [r4, #1]	@ zero_extendqisi2
+ 369 0126 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 370 0128 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 371              	.LVL45:
+  88:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+ 372              		.loc 1 88 0
+ 373 012c 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 374 012e 0121     		movs	r1, #1
+  89:.\Generated_Source\PSoC5/Camera.c **** }...
+ 375              		.loc 1 89 0
+ 376 0130 BDE83840 		pop	{r3, r4, r5, lr}
+ 377              		.cfi_restore 14
+ 378              		.cfi_restore 5
+ 379              		.cfi_restore 4
+ 380              		.cfi_restore 3
+ 381              		.cfi_def_cfa_offset 0
+  88:.\Generated_Source\PSoC5/Camera.c **** 	CyDmaChEnable(DMA_channel,1); //enable channel (start streaming)
+ 382              		.loc 1 88 0
+ 383 0134 FFF7FEBF 		b	CyDmaChEnable
+ 384              	.LVL46:
+ 385              	.L24:
+ 386              		.align	2
+ 387              	.L23:
+ 388 0138 00000000 		.word	Camera_settings
+ 389 013c 00000000 		.word	Camera_format
+ 390 0140 00000000 		.word	Camera_qvga
+ 391 0144 00000000 		.word	.LANCHOR0
+ 392 0148 00000000 		.word	Camera_linebuffer
+ 393 014c 00000000 		.word	Camera_end_line
+ 394 0150 47640040 		.word	1073767495
+ 395 0154 98650040 		.word	1073767832
+ 396 0158 4B640040 		.word	1073767499
+ 397              		.cfi_endproc
+ 398              	.LFE66:
+ 399              		.size	Camera_Start, .-Camera_Start
+ 400              		.comm	Camera_linebuffer,640,4
+ 401              		.bss
+ 402              		.set	.LANCHOR0,. + 0
+ 403              		.type	DMA_channel, %object
+ 404              		.size	DMA_channel, 1
+ 405              	DMA_channel:
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 10
+
+
+ 406 0000 00       		.space	1
+ 407              		.type	DMA_TD, %object
+ 408              		.size	DMA_TD, 1
+ 409              	DMA_TD:
+ 410 0001 00       		.space	1
+ 411              		.text
+ 412              	.Letext0:
+ 413              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 414              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 415              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 416              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 417              		.file 6 ".\\Generated_Source\\PSoC5\\Camera.h"
+ 418              		.file 7 "Generated_Source\\PSoC5/Camera_I2C.h"
+ 419              		.file 8 "Generated_Source\\PSoC5/Camera_VSYNC.h"
+ 420              		.file 9 "Generated_Source\\PSoC5/Camera_DMA_dma.h"
+ 421              		.file 10 "Generated_Source\\PSoC5/CYDMAC.H"
+ 422              		.file 11 "Generated_Source\\PSoC5/CyLib.h"
+ 423              		.file 12 "Generated_Source\\PSoC5/Camera_end_line.h"
+ 424              		.file 13 "Generated_Source\\PSoC5/Camera_DMA_Colours_dma.h"
+ 425              		.file 14 "Generated_Source\\PSoC5/Camera_end_line_colours.h"
+ 426              		.section	.debug_info,"",%progbits
+ 427              	.Ldebug_info0:
+ 428 0000 08060000 		.4byte	0x608
+ 429 0004 0400     		.2byte	0x4
+ 430 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 431 000a 04       		.byte	0x4
+ 432 000b 01       		.uleb128 0x1
+ 433 000c 12030000 		.4byte	.LASF47
+ 434 0010 01       		.byte	0x1
+ 435 0011 75000000 		.4byte	.LASF48
+ 436 0015 0C010000 		.4byte	.LASF49
+ 437 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 438 001d 00000000 		.4byte	0
+ 439 0021 00000000 		.4byte	.Ldebug_line0
+ 440 0025 02       		.uleb128 0x2
+ 441 0026 01       		.byte	0x1
+ 442 0027 06       		.byte	0x6
+ 443 0028 EB030000 		.4byte	.LASF0
+ 444 002c 02       		.uleb128 0x2
+ 445 002d 01       		.byte	0x1
+ 446 002e 08       		.byte	0x8
+ 447 002f FE000000 		.4byte	.LASF1
+ 448 0033 02       		.uleb128 0x2
+ 449 0034 02       		.byte	0x2
+ 450 0035 05       		.byte	0x5
+ 451 0036 F8020000 		.4byte	.LASF2
+ 452 003a 02       		.uleb128 0x2
+ 453 003b 02       		.byte	0x2
+ 454 003c 07       		.byte	0x7
+ 455 003d 83010000 		.4byte	.LASF3
+ 456 0041 03       		.uleb128 0x3
+ 457 0042 4D000000 		.4byte	.LASF9
+ 458 0046 02       		.byte	0x2
+ 459 0047 3F       		.byte	0x3f
+ 460 0048 4C000000 		.4byte	0x4c
+ 461 004c 02       		.uleb128 0x2
+ 462 004d 04       		.byte	0x4
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 11
+
+
+ 463 004e 05       		.byte	0x5
+ 464 004f DB030000 		.4byte	.LASF4
+ 465 0053 02       		.uleb128 0x2
+ 466 0054 04       		.byte	0x4
+ 467 0055 07       		.byte	0x7
+ 468 0056 71010000 		.4byte	.LASF5
+ 469 005a 02       		.uleb128 0x2
+ 470 005b 08       		.byte	0x8
+ 471 005c 05       		.byte	0x5
+ 472 005d CB020000 		.4byte	.LASF6
+ 473 0061 02       		.uleb128 0x2
+ 474 0062 08       		.byte	0x8
+ 475 0063 07       		.byte	0x7
+ 476 0064 5E020000 		.4byte	.LASF7
+ 477 0068 04       		.uleb128 0x4
+ 478 0069 04       		.byte	0x4
+ 479 006a 05       		.byte	0x5
+ 480 006b 696E7400 		.ascii	"int\000"
+ 481 006f 02       		.uleb128 0x2
+ 482 0070 04       		.byte	0x4
+ 483 0071 07       		.byte	0x7
+ 484 0072 38020000 		.4byte	.LASF8
+ 485 0076 03       		.uleb128 0x3
+ 486 0077 AE020000 		.4byte	.LASF10
+ 487 007b 03       		.byte	0x3
+ 488 007c 2C       		.byte	0x2c
+ 489 007d 41000000 		.4byte	0x41
+ 490 0081 05       		.uleb128 0x5
+ 491 0082 F8000000 		.4byte	.LASF11
+ 492 0086 04       		.byte	0x4
+ 493 0087 9201     		.2byte	0x192
+ 494 0089 2C000000 		.4byte	0x2c
+ 495 008d 05       		.uleb128 0x5
+ 496 008e 2A020000 		.4byte	.LASF12
+ 497 0092 04       		.byte	0x4
+ 498 0093 9301     		.2byte	0x193
+ 499 0095 3A000000 		.4byte	0x3a
+ 500 0099 05       		.uleb128 0x5
+ 501 009a 31020000 		.4byte	.LASF13
+ 502 009e 04       		.byte	0x4
+ 503 009f 9401     		.2byte	0x194
+ 504 00a1 53000000 		.4byte	0x53
+ 505 00a5 02       		.uleb128 0x2
+ 506 00a6 04       		.byte	0x4
+ 507 00a7 04       		.byte	0x4
+ 508 00a8 F2000000 		.4byte	.LASF14
+ 509 00ac 02       		.uleb128 0x2
+ 510 00ad 08       		.byte	0x8
+ 511 00ae 04       		.byte	0x4
+ 512 00af C5010000 		.4byte	.LASF15
+ 513 00b3 02       		.uleb128 0x2
+ 514 00b4 01       		.byte	0x1
+ 515 00b5 08       		.byte	0x8
+ 516 00b6 F3020000 		.4byte	.LASF16
+ 517 00ba 05       		.uleb128 0x5
+ 518 00bb 1B000000 		.4byte	.LASF17
+ 519 00bf 04       		.byte	0x4
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 12
+
+
+ 520 00c0 3402     		.2byte	0x234
+ 521 00c2 53000000 		.4byte	0x53
+ 522 00c6 05       		.uleb128 0x5
+ 523 00c7 54010000 		.4byte	.LASF18
+ 524 00cb 04       		.byte	0x4
+ 525 00cc 3C02     		.2byte	0x23c
+ 526 00ce D2000000 		.4byte	0xd2
+ 527 00d2 06       		.uleb128 0x6
+ 528 00d3 81000000 		.4byte	0x81
+ 529 00d7 05       		.uleb128 0x5
+ 530 00d8 90020000 		.4byte	.LASF19
+ 531 00dc 04       		.byte	0x4
+ 532 00dd 4E02     		.2byte	0x24e
+ 533 00df E3000000 		.4byte	0xe3
+ 534 00e3 07       		.uleb128 0x7
+ 535 00e4 04       		.byte	0x4
+ 536 00e5 E9000000 		.4byte	0xe9
+ 537 00e9 08       		.uleb128 0x8
+ 538 00ea 02       		.uleb128 0x2
+ 539 00eb 04       		.byte	0x4
+ 540 00ec 07       		.byte	0x7
+ 541 00ed B6020000 		.4byte	.LASF20
+ 542 00f1 09       		.uleb128 0x9
+ 543 00f2 02030000 		.4byte	.LASF50
+ 544 00f6 01       		.byte	0x1
+ 545 00f7 0D       		.byte	0xd
+ 546 00f8 00000000 		.4byte	.LFB63
+ 547 00fc 26000000 		.4byte	.LFE63-.LFB63
+ 548 0100 01       		.uleb128 0x1
+ 549 0101 9C       		.byte	0x9c
+ 550 0102 6F010000 		.4byte	0x16f
+ 551 0106 0A       		.uleb128 0xa
+ 552 0107 72656700 		.ascii	"reg\000"
+ 553 010b 01       		.byte	0x1
+ 554 010c 0D       		.byte	0xd
+ 555 010d 6F010000 		.4byte	0x16f
+ 556 0111 00000000 		.4byte	.LLST0
+ 557 0115 0B       		.uleb128 0xb
+ 558 0116 47000000 		.4byte	.LASF21
+ 559 011a 01       		.byte	0x1
+ 560 011b 0D       		.byte	0xd
+ 561 011c 6F010000 		.4byte	0x16f
+ 562 0120 21000000 		.4byte	.LLST1
+ 563 0124 0C       		.uleb128 0xc
+ 564 0125 0E000000 		.4byte	.LVL2
+ 565 0129 82040000 		.4byte	0x482
+ 566 012d 3D010000 		.4byte	0x13d
+ 567 0131 0D       		.uleb128 0xd
+ 568 0132 01       		.uleb128 0x1
+ 569 0133 51       		.byte	0x51
+ 570 0134 01       		.uleb128 0x1
+ 571 0135 30       		.byte	0x30
+ 572 0136 0D       		.uleb128 0xd
+ 573 0137 01       		.uleb128 0x1
+ 574 0138 50       		.byte	0x50
+ 575 0139 02       		.uleb128 0x2
+ 576 013a 08       		.byte	0x8
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 13
+
+
+ 577 013b 30       		.byte	0x30
+ 578 013c 00       		.byte	0
+ 579 013d 0C       		.uleb128 0xc
+ 580 013e 18000000 		.4byte	.LVL3
+ 581 0142 9C040000 		.4byte	0x49c
+ 582 0146 51010000 		.4byte	0x151
+ 583 014a 0D       		.uleb128 0xd
+ 584 014b 01       		.uleb128 0x1
+ 585 014c 50       		.byte	0x50
+ 586 014d 02       		.uleb128 0x2
+ 587 014e 75       		.byte	0x75
+ 588 014f 00       		.sleb128 0
+ 589 0150 00       		.byte	0
+ 590 0151 0C       		.uleb128 0xc
+ 591 0152 1E000000 		.4byte	.LVL4
+ 592 0156 9C040000 		.4byte	0x49c
+ 593 015a 65010000 		.4byte	0x165
+ 594 015e 0D       		.uleb128 0xd
+ 595 015f 01       		.uleb128 0x1
+ 596 0160 50       		.byte	0x50
+ 597 0161 02       		.uleb128 0x2
+ 598 0162 74       		.byte	0x74
+ 599 0163 00       		.sleb128 0
+ 600 0164 00       		.byte	0
+ 601 0165 0E       		.uleb128 0xe
+ 602 0166 26000000 		.4byte	.LVL5
+ 603 016a B1040000 		.4byte	0x4b1
+ 604 016e 00       		.byte	0
+ 605 016f 0F       		.uleb128 0xf
+ 606 0170 81000000 		.4byte	0x81
+ 607 0174 10       		.uleb128 0x10
+ 608 0175 BB000000 		.4byte	.LASF51
+ 609 0179 01       		.byte	0x1
+ 610 017a 15       		.byte	0x15
+ 611 017b 81000000 		.4byte	0x81
+ 612 017f 00000000 		.4byte	.LFB64
+ 613 0183 34000000 		.4byte	.LFE64-.LFB64
+ 614 0187 01       		.uleb128 0x1
+ 615 0188 9C       		.byte	0x9c
+ 616 0189 0B020000 		.4byte	0x20b
+ 617 018d 0A       		.uleb128 0xa
+ 618 018e 72656700 		.ascii	"reg\000"
+ 619 0192 01       		.byte	0x1
+ 620 0193 15       		.byte	0x15
+ 621 0194 6F010000 		.4byte	0x16f
+ 622 0198 42000000 		.4byte	.LLST2
+ 623 019c 11       		.uleb128 0x11
+ 624 019d 47000000 		.4byte	.LASF21
+ 625 01a1 01       		.byte	0x1
+ 626 01a2 1C       		.byte	0x1c
+ 627 01a3 81000000 		.4byte	0x81
+ 628 01a7 01       		.uleb128 0x1
+ 629 01a8 54       		.byte	0x54
+ 630 01a9 0C       		.uleb128 0xc
+ 631 01aa 0C000000 		.4byte	.LVL8
+ 632 01ae 82040000 		.4byte	0x482
+ 633 01b2 C2010000 		.4byte	0x1c2
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 14
+
+
+ 634 01b6 0D       		.uleb128 0xd
+ 635 01b7 01       		.uleb128 0x1
+ 636 01b8 51       		.byte	0x51
+ 637 01b9 01       		.uleb128 0x1
+ 638 01ba 30       		.byte	0x30
+ 639 01bb 0D       		.uleb128 0xd
+ 640 01bc 01       		.uleb128 0x1
+ 641 01bd 50       		.byte	0x50
+ 642 01be 02       		.uleb128 0x2
+ 643 01bf 08       		.byte	0x8
+ 644 01c0 30       		.byte	0x30
+ 645 01c1 00       		.byte	0
+ 646 01c2 0C       		.uleb128 0xc
+ 647 01c3 16000000 		.4byte	.LVL9
+ 648 01c7 9C040000 		.4byte	0x49c
+ 649 01cb D6010000 		.4byte	0x1d6
+ 650 01cf 0D       		.uleb128 0xd
+ 651 01d0 01       		.uleb128 0x1
+ 652 01d1 50       		.byte	0x50
+ 653 01d2 02       		.uleb128 0x2
+ 654 01d3 74       		.byte	0x74
+ 655 01d4 00       		.sleb128 0
+ 656 01d5 00       		.byte	0
+ 657 01d6 12       		.uleb128 0x12
+ 658 01d7 1A000000 		.4byte	.LVL10
+ 659 01db B1040000 		.4byte	0x4b1
+ 660 01df 0C       		.uleb128 0xc
+ 661 01e0 22000000 		.4byte	.LVL11
+ 662 01e4 82040000 		.4byte	0x482
+ 663 01e8 F8010000 		.4byte	0x1f8
+ 664 01ec 0D       		.uleb128 0xd
+ 665 01ed 01       		.uleb128 0x1
+ 666 01ee 51       		.byte	0x51
+ 667 01ef 01       		.uleb128 0x1
+ 668 01f0 31       		.byte	0x31
+ 669 01f1 0D       		.uleb128 0xd
+ 670 01f2 01       		.uleb128 0x1
+ 671 01f3 50       		.byte	0x50
+ 672 01f4 02       		.uleb128 0x2
+ 673 01f5 08       		.byte	0x8
+ 674 01f6 30       		.byte	0x30
+ 675 01f7 00       		.byte	0
+ 676 01f8 12       		.uleb128 0x12
+ 677 01f9 2A000000 		.4byte	.LVL12
+ 678 01fd BC040000 		.4byte	0x4bc
+ 679 0201 12       		.uleb128 0x12
+ 680 0202 30000000 		.4byte	.LVL14
+ 681 0206 B1040000 		.4byte	0x4b1
+ 682 020a 00       		.byte	0
+ 683 020b 13       		.uleb128 0x13
+ 684 020c 24000000 		.4byte	.LASF22
+ 685 0210 01       		.byte	0x1
+ 686 0211 21       		.byte	0x21
+ 687 0212 00000000 		.4byte	.LFB65
+ 688 0216 14000000 		.4byte	.LFE65-.LFB65
+ 689 021a 01       		.uleb128 0x1
+ 690 021b 9C       		.byte	0x9c
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 15
+
+
+ 691 021c 33020000 		.4byte	0x233
+ 692 0220 12       		.uleb128 0x12
+ 693 0221 06000000 		.4byte	.LVL15
+ 694 0225 D1040000 		.4byte	0x4d1
+ 695 0229 12       		.uleb128 0x12
+ 696 022a 0E000000 		.4byte	.LVL16
+ 697 022e D1040000 		.4byte	0x4d1
+ 698 0232 00       		.byte	0
+ 699 0233 13       		.uleb128 0x13
+ 700 0234 C0030000 		.4byte	.LASF23
+ 701 0238 01       		.byte	0x1
+ 702 0239 27       		.byte	0x27
+ 703 023a 00000000 		.4byte	.LFB66
+ 704 023e 5C010000 		.4byte	.LFE66-.LFB66
+ 705 0242 01       		.uleb128 0x1
+ 706 0243 9C       		.byte	0x9c
+ 707 0244 E2030000 		.4byte	0x3e2
+ 708 0248 14       		.uleb128 0x14
+ 709 0249 6900     		.ascii	"i\000"
+ 710 024b 01       		.byte	0x1
+ 711 024c 2F       		.byte	0x2f
+ 712 024d 8D000000 		.4byte	0x8d
+ 713 0251 63000000 		.4byte	.LLST3
+ 714 0255 12       		.uleb128 0x12
+ 715 0256 06000000 		.4byte	.LVL17
+ 716 025a DC040000 		.4byte	0x4dc
+ 717 025e 0C       		.uleb128 0xc
+ 718 025f 0E000000 		.4byte	.LVL18
+ 719 0263 F1000000 		.4byte	0xf1
+ 720 0267 77020000 		.4byte	0x277
+ 721 026b 0D       		.uleb128 0xd
+ 722 026c 01       		.uleb128 0x1
+ 723 026d 51       		.byte	0x51
+ 724 026e 02       		.uleb128 0x2
+ 725 026f 09       		.byte	0x9
+ 726 0270 80       		.byte	0x80
+ 727 0271 0D       		.uleb128 0xd
+ 728 0272 01       		.uleb128 0x1
+ 729 0273 50       		.byte	0x50
+ 730 0274 01       		.uleb128 0x1
+ 731 0275 42       		.byte	0x42
+ 732 0276 00       		.byte	0
+ 733 0277 0C       		.uleb128 0xc
+ 734 0278 14000000 		.4byte	.LVL19
+ 735 027c E3040000 		.4byte	0x4e3
+ 736 0280 8A020000 		.4byte	0x28a
+ 737 0284 0D       		.uleb128 0xd
+ 738 0285 01       		.uleb128 0x1
+ 739 0286 50       		.byte	0x50
+ 740 0287 01       		.uleb128 0x1
+ 741 0288 31       		.byte	0x31
+ 742 0289 00       		.byte	0
+ 743 028a 12       		.uleb128 0x12
+ 744 028b 2E000000 		.4byte	.LVL22
+ 745 028f F1000000 		.4byte	0xf1
+ 746 0293 12       		.uleb128 0x12
+ 747 0294 46000000 		.4byte	.LVL26
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 16
+
+
+ 748 0298 F1000000 		.4byte	0xf1
+ 749 029c 0C       		.uleb128 0xc
+ 750 029d 58000000 		.4byte	.LVL29
+ 751 02a1 F4040000 		.4byte	0x4f4
+ 752 02a5 C2020000 		.4byte	0x2c2
+ 753 02a9 0D       		.uleb128 0xd
+ 754 02aa 01       		.uleb128 0x1
+ 755 02ab 53       		.byte	0x53
+ 756 02ac 03       		.uleb128 0x3
+ 757 02ad 0A       		.byte	0xa
+ 758 02ae FF1F     		.2byte	0x1fff
+ 759 02b0 0D       		.uleb128 0xd
+ 760 02b1 01       		.uleb128 0x1
+ 761 02b2 52       		.byte	0x52
+ 762 02b3 03       		.uleb128 0x3
+ 763 02b4 0A       		.byte	0xa
+ 764 02b5 0040     		.2byte	0x4000
+ 765 02b7 0D       		.uleb128 0xd
+ 766 02b8 01       		.uleb128 0x1
+ 767 02b9 51       		.byte	0x51
+ 768 02ba 01       		.uleb128 0x1
+ 769 02bb 31       		.byte	0x31
+ 770 02bc 0D       		.uleb128 0xd
+ 771 02bd 01       		.uleb128 0x1
+ 772 02be 50       		.byte	0x50
+ 773 02bf 01       		.uleb128 0x1
+ 774 02c0 31       		.byte	0x31
+ 775 02c1 00       		.byte	0
+ 776 02c2 12       		.uleb128 0x12
+ 777 02c3 62000000 		.4byte	.LVL30
+ 778 02c7 18050000 		.4byte	0x518
+ 779 02cb 0C       		.uleb128 0xc
+ 780 02cc 70000000 		.4byte	.LVL31
+ 781 02d0 23050000 		.4byte	0x523
+ 782 02d4 E6020000 		.4byte	0x2e6
+ 783 02d8 0D       		.uleb128 0xd
+ 784 02d9 01       		.uleb128 0x1
+ 785 02da 52       		.byte	0x52
+ 786 02db 02       		.uleb128 0x2
+ 787 02dc 75       		.byte	0x75
+ 788 02dd 00       		.sleb128 0
+ 789 02de 0D       		.uleb128 0xd
+ 790 02df 01       		.uleb128 0x1
+ 791 02e0 51       		.byte	0x51
+ 792 02e1 03       		.uleb128 0x3
+ 793 02e2 0A       		.byte	0xa
+ 794 02e3 4764     		.2byte	0x6447
+ 795 02e5 00       		.byte	0
+ 796 02e6 0C       		.uleb128 0xc
+ 797 02e7 7E000000 		.4byte	.LVL32
+ 798 02eb 42050000 		.4byte	0x542
+ 799 02ef 00030000 		.4byte	0x300
+ 800 02f3 0D       		.uleb128 0xd
+ 801 02f4 01       		.uleb128 0x1
+ 802 02f5 53       		.byte	0x53
+ 803 02f6 01       		.uleb128 0x1
+ 804 02f7 36       		.byte	0x36
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 17
+
+
+ 805 02f8 0D       		.uleb128 0xd
+ 806 02f9 01       		.uleb128 0x1
+ 807 02fa 51       		.byte	0x51
+ 808 02fb 03       		.uleb128 0x3
+ 809 02fc 0A       		.byte	0xa
+ 810 02fd 8002     		.2byte	0x280
+ 811 02ff 00       		.byte	0
+ 812 0300 0C       		.uleb128 0xc
+ 813 0301 86000000 		.4byte	.LVL33
+ 814 0305 66050000 		.4byte	0x566
+ 815 0309 13030000 		.4byte	0x313
+ 816 030d 0D       		.uleb128 0xd
+ 817 030e 01       		.uleb128 0x1
+ 818 030f 51       		.byte	0x51
+ 819 0310 01       		.uleb128 0x1
+ 820 0311 30       		.byte	0x30
+ 821 0312 00       		.byte	0
+ 822 0313 12       		.uleb128 0x12
+ 823 0314 8C000000 		.4byte	.LVL34
+ 824 0318 80050000 		.4byte	0x580
+ 825 031c 12       		.uleb128 0x12
+ 826 031d 9C000000 		.4byte	.LVL35
+ 827 0321 91050000 		.4byte	0x591
+ 828 0325 12       		.uleb128 0x12
+ 829 0326 A4000000 		.4byte	.LVL36
+ 830 032a A6050000 		.4byte	0x5a6
+ 831 032e 0C       		.uleb128 0xc
+ 832 032f AC000000 		.4byte	.LVL37
+ 833 0333 C0050000 		.4byte	0x5c0
+ 834 0337 41030000 		.4byte	0x341
+ 835 033b 0D       		.uleb128 0xd
+ 836 033c 01       		.uleb128 0x1
+ 837 033d 51       		.byte	0x51
+ 838 033e 01       		.uleb128 0x1
+ 839 033f 31       		.byte	0x31
+ 840 0340 00       		.byte	0
+ 841 0341 0C       		.uleb128 0xc
+ 842 0342 E8000000 		.4byte	.LVL38
+ 843 0346 DA050000 		.4byte	0x5da
+ 844 034a 67030000 		.4byte	0x367
+ 845 034e 0D       		.uleb128 0xd
+ 846 034f 01       		.uleb128 0x1
+ 847 0350 53       		.byte	0x53
+ 848 0351 03       		.uleb128 0x3
+ 849 0352 0A       		.byte	0xa
+ 850 0353 FF1F     		.2byte	0x1fff
+ 851 0355 0D       		.uleb128 0xd
+ 852 0356 01       		.uleb128 0x1
+ 853 0357 52       		.byte	0x52
+ 854 0358 03       		.uleb128 0x3
+ 855 0359 0A       		.byte	0xa
+ 856 035a 0040     		.2byte	0x4000
+ 857 035c 0D       		.uleb128 0xd
+ 858 035d 01       		.uleb128 0x1
+ 859 035e 51       		.byte	0x51
+ 860 035f 01       		.uleb128 0x1
+ 861 0360 31       		.byte	0x31
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 18
+
+
+ 862 0361 0D       		.uleb128 0xd
+ 863 0362 01       		.uleb128 0x1
+ 864 0363 50       		.byte	0x50
+ 865 0364 01       		.uleb128 0x1
+ 866 0365 31       		.byte	0x31
+ 867 0366 00       		.byte	0
+ 868 0367 12       		.uleb128 0x12
+ 869 0368 EE000000 		.4byte	.LVL39
+ 870 036c 18050000 		.4byte	0x518
+ 871 0370 0C       		.uleb128 0xc
+ 872 0371 FA000000 		.4byte	.LVL40
+ 873 0375 23050000 		.4byte	0x523
+ 874 0379 8B030000 		.4byte	0x38b
+ 875 037d 0D       		.uleb128 0xd
+ 876 037e 01       		.uleb128 0x1
+ 877 037f 52       		.byte	0x52
+ 878 0380 02       		.uleb128 0x2
+ 879 0381 75       		.byte	0x75
+ 880 0382 00       		.sleb128 0
+ 881 0383 0D       		.uleb128 0xd
+ 882 0384 01       		.uleb128 0x1
+ 883 0385 51       		.byte	0x51
+ 884 0386 03       		.uleb128 0x3
+ 885 0387 0A       		.byte	0xa
+ 886 0388 4B64     		.2byte	0x644b
+ 887 038a 00       		.byte	0
+ 888 038b 0C       		.uleb128 0xc
+ 889 038c 06010000 		.4byte	.LVL41
+ 890 0390 42050000 		.4byte	0x542
+ 891 0394 A4030000 		.4byte	0x3a4
+ 892 0398 0D       		.uleb128 0xd
+ 893 0399 01       		.uleb128 0x1
+ 894 039a 53       		.byte	0x53
+ 895 039b 01       		.uleb128 0x1
+ 896 039c 36       		.byte	0x36
+ 897 039d 0D       		.uleb128 0xd
+ 898 039e 01       		.uleb128 0x1
+ 899 039f 51       		.byte	0x51
+ 900 03a0 02       		.uleb128 0x2
+ 901 03a1 08       		.byte	0x8
+ 902 03a2 A0       		.byte	0xa0
+ 903 03a3 00       		.byte	0
+ 904 03a4 0C       		.uleb128 0xc
+ 905 03a5 0E010000 		.4byte	.LVL42
+ 906 03a9 66050000 		.4byte	0x566
+ 907 03ad B7030000 		.4byte	0x3b7
+ 908 03b1 0D       		.uleb128 0xd
+ 909 03b2 01       		.uleb128 0x1
+ 910 03b3 51       		.byte	0x51
+ 911 03b4 01       		.uleb128 0x1
+ 912 03b5 30       		.byte	0x30
+ 913 03b6 00       		.byte	0
+ 914 03b7 12       		.uleb128 0x12
+ 915 03b8 14010000 		.4byte	.LVL43
+ 916 03bc FE050000 		.4byte	0x5fe
+ 917 03c0 12       		.uleb128 0x12
+ 918 03c1 24010000 		.4byte	.LVL44
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 19
+
+
+ 919 03c5 91050000 		.4byte	0x591
+ 920 03c9 12       		.uleb128 0x12
+ 921 03ca 2C010000 		.4byte	.LVL45
+ 922 03ce A6050000 		.4byte	0x5a6
+ 923 03d2 15       		.uleb128 0x15
+ 924 03d3 38010000 		.4byte	.LVL46
+ 925 03d7 C0050000 		.4byte	0x5c0
+ 926 03db 0D       		.uleb128 0xd
+ 927 03dc 01       		.uleb128 0x1
+ 928 03dd 51       		.byte	0x51
+ 929 03de 01       		.uleb128 0x1
+ 930 03df 31       		.byte	0x31
+ 931 03e0 00       		.byte	0
+ 932 03e1 00       		.byte	0
+ 933 03e2 11       		.uleb128 0x11
+ 934 03e3 BF020000 		.4byte	.LASF24
+ 935 03e7 01       		.byte	0x1
+ 936 03e8 0B       		.byte	0xb
+ 937 03e9 81000000 		.4byte	0x81
+ 938 03ed 05       		.uleb128 0x5
+ 939 03ee 03       		.byte	0x3
+ 940 03ef 00000000 		.4byte	DMA_channel
+ 941 03f3 11       		.uleb128 0x11
+ 942 03f4 E4030000 		.4byte	.LASF25
+ 943 03f8 01       		.byte	0x1
+ 944 03f9 0B       		.byte	0xb
+ 945 03fa 81000000 		.4byte	0x81
+ 946 03fe 05       		.uleb128 0x5
+ 947 03ff 03       		.byte	0x3
+ 948 0400 01000000 		.4byte	DMA_TD
+ 949 0404 16       		.uleb128 0x16
+ 950 0405 A6010000 		.4byte	.LASF26
+ 951 0409 05       		.byte	0x5
+ 952 040a 9606     		.2byte	0x696
+ 953 040c 10040000 		.4byte	0x410
+ 954 0410 06       		.uleb128 0x6
+ 955 0411 76000000 		.4byte	0x76
+ 956 0415 17       		.uleb128 0x17
+ 957 0416 99000000 		.4byte	0x99
+ 958 041a 25040000 		.4byte	0x425
+ 959 041e 18       		.uleb128 0x18
+ 960 041f EA000000 		.4byte	0xea
+ 961 0423 9F       		.byte	0x9f
+ 962 0424 00       		.byte	0
+ 963 0425 19       		.uleb128 0x19
+ 964 0426 B3010000 		.4byte	.LASF27
+ 965 042a 06       		.byte	0x6
+ 966 042b 13       		.byte	0x13
+ 967 042c 15040000 		.4byte	0x415
+ 968 0430 05       		.uleb128 0x5
+ 969 0431 03       		.byte	0x3
+ 970 0432 00000000 		.4byte	Camera_linebuffer
+ 971 0436 17       		.uleb128 0x17
+ 972 0437 81000000 		.4byte	0x81
+ 973 043b 47040000 		.4byte	0x447
+ 974 043f 1A       		.uleb128 0x1a
+ 975 0440 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 20
+
+
+ 976 0441 EA000000 		.4byte	0xea
+ 977 0445 01       		.byte	0x1
+ 978 0446 00       		.byte	0
+ 979 0447 1B       		.uleb128 0x1b
+ 980 0448 AB000000 		.4byte	.LASF28
+ 981 044c 01       		.byte	0x1
+ 982 044d 03       		.byte	0x3
+ 983 044e 52040000 		.4byte	0x452
+ 984 0452 0F       		.uleb128 0xf
+ 985 0453 36040000 		.4byte	0x436
+ 986 0457 17       		.uleb128 0x17
+ 987 0458 81000000 		.4byte	0x81
+ 988 045c 62040000 		.4byte	0x462
+ 989 0460 1A       		.uleb128 0x1a
+ 990 0461 00       		.byte	0
+ 991 0462 1B       		.uleb128 0x1b
+ 992 0463 CD030000 		.4byte	.LASF29
+ 993 0467 01       		.byte	0x1
+ 994 0468 04       		.byte	0x4
+ 995 0469 6D040000 		.4byte	0x46d
+ 996 046d 0F       		.uleb128 0xf
+ 997 046e 57040000 		.4byte	0x457
+ 998 0472 1B       		.uleb128 0x1b
+ 999 0473 69000000 		.4byte	.LASF30
+ 1000 0477 01       		.byte	0x1
+ 1001 0478 07       		.byte	0x7
+ 1002 0479 7D040000 		.4byte	0x47d
+ 1003 047d 0F       		.uleb128 0xf
+ 1004 047e 57040000 		.4byte	0x457
+ 1005 0482 1C       		.uleb128 0x1c
+ 1006 0483 00000000 		.4byte	.LASF31
+ 1007 0487 07       		.byte	0x7
+ 1008 0488 B1       		.byte	0xb1
+ 1009 0489 81000000 		.4byte	0x81
+ 1010 048d 9C040000 		.4byte	0x49c
+ 1011 0491 1D       		.uleb128 0x1d
+ 1012 0492 81000000 		.4byte	0x81
+ 1013 0496 1D       		.uleb128 0x1d
+ 1014 0497 81000000 		.4byte	0x81
+ 1015 049b 00       		.byte	0
+ 1016 049c 1C       		.uleb128 0x1c
+ 1017 049d 75020000 		.4byte	.LASF32
+ 1018 04a1 07       		.byte	0x7
+ 1019 04a2 B6       		.byte	0xb6
+ 1020 04a3 81000000 		.4byte	0x81
+ 1021 04a7 B1040000 		.4byte	0x4b1
+ 1022 04ab 1D       		.uleb128 0x1d
+ 1023 04ac 81000000 		.4byte	0x81
+ 1024 04b0 00       		.byte	0
+ 1025 04b1 1E       		.uleb128 0x1e
+ 1026 04b2 D9020000 		.4byte	.LASF34
+ 1027 04b6 07       		.byte	0x7
+ 1028 04b7 B5       		.byte	0xb5
+ 1029 04b8 81000000 		.4byte	0x81
+ 1030 04bc 1C       		.uleb128 0x1c
+ 1031 04bd CC010000 		.4byte	.LASF33
+ 1032 04c1 07       		.byte	0x7
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 21
+
+
+ 1033 04c2 B7       		.byte	0xb7
+ 1034 04c3 81000000 		.4byte	0x81
+ 1035 04c7 D1040000 		.4byte	0x4d1
+ 1036 04cb 1D       		.uleb128 0x1d
+ 1037 04cc 81000000 		.4byte	0x81
+ 1038 04d0 00       		.byte	0
+ 1039 04d1 1E       		.uleb128 0x1e
+ 1040 04d2 35000000 		.4byte	.LASF35
+ 1041 04d6 08       		.byte	0x8
+ 1042 04d7 29       		.byte	0x29
+ 1043 04d8 81000000 		.4byte	0x81
+ 1044 04dc 1F       		.uleb128 0x1f
+ 1045 04dd 9D020000 		.4byte	.LASF52
+ 1046 04e1 07       		.byte	0x7
+ 1047 04e2 93       		.byte	0x93
+ 1048 04e3 20       		.uleb128 0x20
+ 1049 04e4 F7030000 		.4byte	.LASF41
+ 1050 04e8 0B       		.byte	0xb
+ 1051 04e9 76       		.byte	0x76
+ 1052 04ea F4040000 		.4byte	0x4f4
+ 1053 04ee 1D       		.uleb128 0x1d
+ 1054 04ef 99000000 		.4byte	0x99
+ 1055 04f3 00       		.byte	0
+ 1056 04f4 1C       		.uleb128 0x1c
+ 1057 04f5 45020000 		.4byte	.LASF36
+ 1058 04f9 09       		.byte	0x9
+ 1059 04fa 1E       		.byte	0x1e
+ 1060 04fb 81000000 		.4byte	0x81
+ 1061 04ff 18050000 		.4byte	0x518
+ 1062 0503 1D       		.uleb128 0x1d
+ 1063 0504 81000000 		.4byte	0x81
+ 1064 0508 1D       		.uleb128 0x1d
+ 1065 0509 81000000 		.4byte	0x81
+ 1066 050d 1D       		.uleb128 0x1d
+ 1067 050e 8D000000 		.4byte	0x8d
+ 1068 0512 1D       		.uleb128 0x1d
+ 1069 0513 8D000000 		.4byte	0x8d
+ 1070 0517 00       		.byte	0
+ 1071 0518 1E       		.uleb128 0x1e
+ 1072 0519 CA000000 		.4byte	.LASF37
+ 1073 051d 0A       		.byte	0xa
+ 1074 051e 38       		.byte	0x38
+ 1075 051f 81000000 		.4byte	0x81
+ 1076 0523 1C       		.uleb128 0x1c
+ 1077 0524 57000000 		.4byte	.LASF38
+ 1078 0528 0A       		.byte	0xa
+ 1079 0529 3F       		.byte	0x3f
+ 1080 052a BA000000 		.4byte	0xba
+ 1081 052e 42050000 		.4byte	0x542
+ 1082 0532 1D       		.uleb128 0x1d
+ 1083 0533 81000000 		.4byte	0x81
+ 1084 0537 1D       		.uleb128 0x1d
+ 1085 0538 8D000000 		.4byte	0x8d
+ 1086 053c 1D       		.uleb128 0x1d
+ 1087 053d 8D000000 		.4byte	0x8d
+ 1088 0541 00       		.byte	0
+ 1089 0542 1C       		.uleb128 0x1c
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 22
+
+
+ 1090 0543 59010000 		.4byte	.LASF39
+ 1091 0547 0A       		.byte	0xa
+ 1092 0548 3B       		.byte	0x3b
+ 1093 0549 BA000000 		.4byte	0xba
+ 1094 054d 66050000 		.4byte	0x566
+ 1095 0551 1D       		.uleb128 0x1d
+ 1096 0552 81000000 		.4byte	0x81
+ 1097 0556 1D       		.uleb128 0x1d
+ 1098 0557 8D000000 		.4byte	0x8d
+ 1099 055b 1D       		.uleb128 0x1d
+ 1100 055c 81000000 		.4byte	0x81
+ 1101 0560 1D       		.uleb128 0x1d
+ 1102 0561 81000000 		.4byte	0x81
+ 1103 0565 00       		.byte	0
+ 1104 0566 1C       		.uleb128 0x1c
+ 1105 0567 96010000 		.4byte	.LASF40
+ 1106 056b 0A       		.byte	0xa
+ 1107 056c 2C       		.byte	0x2c
+ 1108 056d BA000000 		.4byte	0xba
+ 1109 0571 80050000 		.4byte	0x580
+ 1110 0575 1D       		.uleb128 0x1d
+ 1111 0576 81000000 		.4byte	0x81
+ 1112 057a 1D       		.uleb128 0x1d
+ 1113 057b 81000000 		.4byte	0x81
+ 1114 057f 00       		.byte	0
+ 1115 0580 20       		.uleb128 0x20
+ 1116 0581 DA000000 		.4byte	.LASF42
+ 1117 0585 0C       		.byte	0xc
+ 1118 0586 18       		.byte	0x18
+ 1119 0587 91050000 		.4byte	0x591
+ 1120 058b 1D       		.uleb128 0x1d
+ 1121 058c D7000000 		.4byte	0xd7
+ 1122 0590 00       		.byte	0
+ 1123 0591 1C       		.uleb128 0x1c
+ 1124 0592 E6010000 		.4byte	.LASF43
+ 1125 0596 0A       		.byte	0xa
+ 1126 0597 2B       		.byte	0x2b
+ 1127 0598 BA000000 		.4byte	0xba
+ 1128 059c A6050000 		.4byte	0x5a6
+ 1129 05a0 1D       		.uleb128 0x1d
+ 1130 05a1 81000000 		.4byte	0x81
+ 1131 05a5 00       		.byte	0
+ 1132 05a6 1C       		.uleb128 0x1c
+ 1133 05a7 97000000 		.4byte	.LASF44
+ 1134 05ab 0A       		.byte	0xa
+ 1135 05ac 2F       		.byte	0x2f
+ 1136 05ad BA000000 		.4byte	0xba
+ 1137 05b1 C0050000 		.4byte	0x5c0
+ 1138 05b5 1D       		.uleb128 0x1d
+ 1139 05b6 81000000 		.4byte	0x81
+ 1140 05ba 1D       		.uleb128 0x1d
+ 1141 05bb 81000000 		.4byte	0x81
+ 1142 05bf 00       		.byte	0
+ 1143 05c0 1C       		.uleb128 0x1c
+ 1144 05c1 1C020000 		.4byte	.LASF45
+ 1145 05c5 0A       		.byte	0xa
+ 1146 05c6 29       		.byte	0x29
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 23
+
+
+ 1147 05c7 BA000000 		.4byte	0xba
+ 1148 05cb DA050000 		.4byte	0x5da
+ 1149 05cf 1D       		.uleb128 0x1d
+ 1150 05d0 81000000 		.4byte	0x81
+ 1151 05d4 1D       		.uleb128 0x1d
+ 1152 05d5 81000000 		.4byte	0x81
+ 1153 05d9 00       		.byte	0
+ 1154 05da 1C       		.uleb128 0x1c
+ 1155 05db FB010000 		.4byte	.LASF46
+ 1156 05df 0D       		.byte	0xd
+ 1157 05e0 1E       		.byte	0x1e
+ 1158 05e1 81000000 		.4byte	0x81
+ 1159 05e5 FE050000 		.4byte	0x5fe
+ 1160 05e9 1D       		.uleb128 0x1d
+ 1161 05ea 81000000 		.4byte	0x81
+ 1162 05ee 1D       		.uleb128 0x1d
+ 1163 05ef 81000000 		.4byte	0x81
+ 1164 05f3 1D       		.uleb128 0x1d
+ 1165 05f4 8D000000 		.4byte	0x8d
+ 1166 05f8 1D       		.uleb128 0x1d
+ 1167 05f9 8D000000 		.4byte	0x8d
+ 1168 05fd 00       		.byte	0
+ 1169 05fe 21       		.uleb128 0x21
+ 1170 05ff A0030000 		.4byte	.LASF53
+ 1171 0603 0E       		.byte	0xe
+ 1172 0604 18       		.byte	0x18
+ 1173 0605 1D       		.uleb128 0x1d
+ 1174 0606 D7000000 		.4byte	0xd7
+ 1175 060a 00       		.byte	0
+ 1176 060b 00       		.byte	0
+ 1177              		.section	.debug_abbrev,"",%progbits
+ 1178              	.Ldebug_abbrev0:
+ 1179 0000 01       		.uleb128 0x1
+ 1180 0001 11       		.uleb128 0x11
+ 1181 0002 01       		.byte	0x1
+ 1182 0003 25       		.uleb128 0x25
+ 1183 0004 0E       		.uleb128 0xe
+ 1184 0005 13       		.uleb128 0x13
+ 1185 0006 0B       		.uleb128 0xb
+ 1186 0007 03       		.uleb128 0x3
+ 1187 0008 0E       		.uleb128 0xe
+ 1188 0009 1B       		.uleb128 0x1b
+ 1189 000a 0E       		.uleb128 0xe
+ 1190 000b 55       		.uleb128 0x55
+ 1191 000c 17       		.uleb128 0x17
+ 1192 000d 11       		.uleb128 0x11
+ 1193 000e 01       		.uleb128 0x1
+ 1194 000f 10       		.uleb128 0x10
+ 1195 0010 17       		.uleb128 0x17
+ 1196 0011 00       		.byte	0
+ 1197 0012 00       		.byte	0
+ 1198 0013 02       		.uleb128 0x2
+ 1199 0014 24       		.uleb128 0x24
+ 1200 0015 00       		.byte	0
+ 1201 0016 0B       		.uleb128 0xb
+ 1202 0017 0B       		.uleb128 0xb
+ 1203 0018 3E       		.uleb128 0x3e
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 24
+
+
+ 1204 0019 0B       		.uleb128 0xb
+ 1205 001a 03       		.uleb128 0x3
+ 1206 001b 0E       		.uleb128 0xe
+ 1207 001c 00       		.byte	0
+ 1208 001d 00       		.byte	0
+ 1209 001e 03       		.uleb128 0x3
+ 1210 001f 16       		.uleb128 0x16
+ 1211 0020 00       		.byte	0
+ 1212 0021 03       		.uleb128 0x3
+ 1213 0022 0E       		.uleb128 0xe
+ 1214 0023 3A       		.uleb128 0x3a
+ 1215 0024 0B       		.uleb128 0xb
+ 1216 0025 3B       		.uleb128 0x3b
+ 1217 0026 0B       		.uleb128 0xb
+ 1218 0027 49       		.uleb128 0x49
+ 1219 0028 13       		.uleb128 0x13
+ 1220 0029 00       		.byte	0
+ 1221 002a 00       		.byte	0
+ 1222 002b 04       		.uleb128 0x4
+ 1223 002c 24       		.uleb128 0x24
+ 1224 002d 00       		.byte	0
+ 1225 002e 0B       		.uleb128 0xb
+ 1226 002f 0B       		.uleb128 0xb
+ 1227 0030 3E       		.uleb128 0x3e
+ 1228 0031 0B       		.uleb128 0xb
+ 1229 0032 03       		.uleb128 0x3
+ 1230 0033 08       		.uleb128 0x8
+ 1231 0034 00       		.byte	0
+ 1232 0035 00       		.byte	0
+ 1233 0036 05       		.uleb128 0x5
+ 1234 0037 16       		.uleb128 0x16
+ 1235 0038 00       		.byte	0
+ 1236 0039 03       		.uleb128 0x3
+ 1237 003a 0E       		.uleb128 0xe
+ 1238 003b 3A       		.uleb128 0x3a
+ 1239 003c 0B       		.uleb128 0xb
+ 1240 003d 3B       		.uleb128 0x3b
+ 1241 003e 05       		.uleb128 0x5
+ 1242 003f 49       		.uleb128 0x49
+ 1243 0040 13       		.uleb128 0x13
+ 1244 0041 00       		.byte	0
+ 1245 0042 00       		.byte	0
+ 1246 0043 06       		.uleb128 0x6
+ 1247 0044 35       		.uleb128 0x35
+ 1248 0045 00       		.byte	0
+ 1249 0046 49       		.uleb128 0x49
+ 1250 0047 13       		.uleb128 0x13
+ 1251 0048 00       		.byte	0
+ 1252 0049 00       		.byte	0
+ 1253 004a 07       		.uleb128 0x7
+ 1254 004b 0F       		.uleb128 0xf
+ 1255 004c 00       		.byte	0
+ 1256 004d 0B       		.uleb128 0xb
+ 1257 004e 0B       		.uleb128 0xb
+ 1258 004f 49       		.uleb128 0x49
+ 1259 0050 13       		.uleb128 0x13
+ 1260 0051 00       		.byte	0
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 25
+
+
+ 1261 0052 00       		.byte	0
+ 1262 0053 08       		.uleb128 0x8
+ 1263 0054 15       		.uleb128 0x15
+ 1264 0055 00       		.byte	0
+ 1265 0056 27       		.uleb128 0x27
+ 1266 0057 19       		.uleb128 0x19
+ 1267 0058 00       		.byte	0
+ 1268 0059 00       		.byte	0
+ 1269 005a 09       		.uleb128 0x9
+ 1270 005b 2E       		.uleb128 0x2e
+ 1271 005c 01       		.byte	0x1
+ 1272 005d 3F       		.uleb128 0x3f
+ 1273 005e 19       		.uleb128 0x19
+ 1274 005f 03       		.uleb128 0x3
+ 1275 0060 0E       		.uleb128 0xe
+ 1276 0061 3A       		.uleb128 0x3a
+ 1277 0062 0B       		.uleb128 0xb
+ 1278 0063 3B       		.uleb128 0x3b
+ 1279 0064 0B       		.uleb128 0xb
+ 1280 0065 27       		.uleb128 0x27
+ 1281 0066 19       		.uleb128 0x19
+ 1282 0067 11       		.uleb128 0x11
+ 1283 0068 01       		.uleb128 0x1
+ 1284 0069 12       		.uleb128 0x12
+ 1285 006a 06       		.uleb128 0x6
+ 1286 006b 40       		.uleb128 0x40
+ 1287 006c 18       		.uleb128 0x18
+ 1288 006d 9742     		.uleb128 0x2117
+ 1289 006f 19       		.uleb128 0x19
+ 1290 0070 01       		.uleb128 0x1
+ 1291 0071 13       		.uleb128 0x13
+ 1292 0072 00       		.byte	0
+ 1293 0073 00       		.byte	0
+ 1294 0074 0A       		.uleb128 0xa
+ 1295 0075 05       		.uleb128 0x5
+ 1296 0076 00       		.byte	0
+ 1297 0077 03       		.uleb128 0x3
+ 1298 0078 08       		.uleb128 0x8
+ 1299 0079 3A       		.uleb128 0x3a
+ 1300 007a 0B       		.uleb128 0xb
+ 1301 007b 3B       		.uleb128 0x3b
+ 1302 007c 0B       		.uleb128 0xb
+ 1303 007d 49       		.uleb128 0x49
+ 1304 007e 13       		.uleb128 0x13
+ 1305 007f 02       		.uleb128 0x2
+ 1306 0080 17       		.uleb128 0x17
+ 1307 0081 00       		.byte	0
+ 1308 0082 00       		.byte	0
+ 1309 0083 0B       		.uleb128 0xb
+ 1310 0084 05       		.uleb128 0x5
+ 1311 0085 00       		.byte	0
+ 1312 0086 03       		.uleb128 0x3
+ 1313 0087 0E       		.uleb128 0xe
+ 1314 0088 3A       		.uleb128 0x3a
+ 1315 0089 0B       		.uleb128 0xb
+ 1316 008a 3B       		.uleb128 0x3b
+ 1317 008b 0B       		.uleb128 0xb
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 26
+
+
+ 1318 008c 49       		.uleb128 0x49
+ 1319 008d 13       		.uleb128 0x13
+ 1320 008e 02       		.uleb128 0x2
+ 1321 008f 17       		.uleb128 0x17
+ 1322 0090 00       		.byte	0
+ 1323 0091 00       		.byte	0
+ 1324 0092 0C       		.uleb128 0xc
+ 1325 0093 898201   		.uleb128 0x4109
+ 1326 0096 01       		.byte	0x1
+ 1327 0097 11       		.uleb128 0x11
+ 1328 0098 01       		.uleb128 0x1
+ 1329 0099 31       		.uleb128 0x31
+ 1330 009a 13       		.uleb128 0x13
+ 1331 009b 01       		.uleb128 0x1
+ 1332 009c 13       		.uleb128 0x13
+ 1333 009d 00       		.byte	0
+ 1334 009e 00       		.byte	0
+ 1335 009f 0D       		.uleb128 0xd
+ 1336 00a0 8A8201   		.uleb128 0x410a
+ 1337 00a3 00       		.byte	0
+ 1338 00a4 02       		.uleb128 0x2
+ 1339 00a5 18       		.uleb128 0x18
+ 1340 00a6 9142     		.uleb128 0x2111
+ 1341 00a8 18       		.uleb128 0x18
+ 1342 00a9 00       		.byte	0
+ 1343 00aa 00       		.byte	0
+ 1344 00ab 0E       		.uleb128 0xe
+ 1345 00ac 898201   		.uleb128 0x4109
+ 1346 00af 00       		.byte	0
+ 1347 00b0 11       		.uleb128 0x11
+ 1348 00b1 01       		.uleb128 0x1
+ 1349 00b2 9542     		.uleb128 0x2115
+ 1350 00b4 19       		.uleb128 0x19
+ 1351 00b5 31       		.uleb128 0x31
+ 1352 00b6 13       		.uleb128 0x13
+ 1353 00b7 00       		.byte	0
+ 1354 00b8 00       		.byte	0
+ 1355 00b9 0F       		.uleb128 0xf
+ 1356 00ba 26       		.uleb128 0x26
+ 1357 00bb 00       		.byte	0
+ 1358 00bc 49       		.uleb128 0x49
+ 1359 00bd 13       		.uleb128 0x13
+ 1360 00be 00       		.byte	0
+ 1361 00bf 00       		.byte	0
+ 1362 00c0 10       		.uleb128 0x10
+ 1363 00c1 2E       		.uleb128 0x2e
+ 1364 00c2 01       		.byte	0x1
+ 1365 00c3 3F       		.uleb128 0x3f
+ 1366 00c4 19       		.uleb128 0x19
+ 1367 00c5 03       		.uleb128 0x3
+ 1368 00c6 0E       		.uleb128 0xe
+ 1369 00c7 3A       		.uleb128 0x3a
+ 1370 00c8 0B       		.uleb128 0xb
+ 1371 00c9 3B       		.uleb128 0x3b
+ 1372 00ca 0B       		.uleb128 0xb
+ 1373 00cb 27       		.uleb128 0x27
+ 1374 00cc 19       		.uleb128 0x19
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 27
+
+
+ 1375 00cd 49       		.uleb128 0x49
+ 1376 00ce 13       		.uleb128 0x13
+ 1377 00cf 11       		.uleb128 0x11
+ 1378 00d0 01       		.uleb128 0x1
+ 1379 00d1 12       		.uleb128 0x12
+ 1380 00d2 06       		.uleb128 0x6
+ 1381 00d3 40       		.uleb128 0x40
+ 1382 00d4 18       		.uleb128 0x18
+ 1383 00d5 9742     		.uleb128 0x2117
+ 1384 00d7 19       		.uleb128 0x19
+ 1385 00d8 01       		.uleb128 0x1
+ 1386 00d9 13       		.uleb128 0x13
+ 1387 00da 00       		.byte	0
+ 1388 00db 00       		.byte	0
+ 1389 00dc 11       		.uleb128 0x11
+ 1390 00dd 34       		.uleb128 0x34
+ 1391 00de 00       		.byte	0
+ 1392 00df 03       		.uleb128 0x3
+ 1393 00e0 0E       		.uleb128 0xe
+ 1394 00e1 3A       		.uleb128 0x3a
+ 1395 00e2 0B       		.uleb128 0xb
+ 1396 00e3 3B       		.uleb128 0x3b
+ 1397 00e4 0B       		.uleb128 0xb
+ 1398 00e5 49       		.uleb128 0x49
+ 1399 00e6 13       		.uleb128 0x13
+ 1400 00e7 02       		.uleb128 0x2
+ 1401 00e8 18       		.uleb128 0x18
+ 1402 00e9 00       		.byte	0
+ 1403 00ea 00       		.byte	0
+ 1404 00eb 12       		.uleb128 0x12
+ 1405 00ec 898201   		.uleb128 0x4109
+ 1406 00ef 00       		.byte	0
+ 1407 00f0 11       		.uleb128 0x11
+ 1408 00f1 01       		.uleb128 0x1
+ 1409 00f2 31       		.uleb128 0x31
+ 1410 00f3 13       		.uleb128 0x13
+ 1411 00f4 00       		.byte	0
+ 1412 00f5 00       		.byte	0
+ 1413 00f6 13       		.uleb128 0x13
+ 1414 00f7 2E       		.uleb128 0x2e
+ 1415 00f8 01       		.byte	0x1
+ 1416 00f9 3F       		.uleb128 0x3f
+ 1417 00fa 19       		.uleb128 0x19
+ 1418 00fb 03       		.uleb128 0x3
+ 1419 00fc 0E       		.uleb128 0xe
+ 1420 00fd 3A       		.uleb128 0x3a
+ 1421 00fe 0B       		.uleb128 0xb
+ 1422 00ff 3B       		.uleb128 0x3b
+ 1423 0100 0B       		.uleb128 0xb
+ 1424 0101 11       		.uleb128 0x11
+ 1425 0102 01       		.uleb128 0x1
+ 1426 0103 12       		.uleb128 0x12
+ 1427 0104 06       		.uleb128 0x6
+ 1428 0105 40       		.uleb128 0x40
+ 1429 0106 18       		.uleb128 0x18
+ 1430 0107 9742     		.uleb128 0x2117
+ 1431 0109 19       		.uleb128 0x19
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 28
+
+
+ 1432 010a 01       		.uleb128 0x1
+ 1433 010b 13       		.uleb128 0x13
+ 1434 010c 00       		.byte	0
+ 1435 010d 00       		.byte	0
+ 1436 010e 14       		.uleb128 0x14
+ 1437 010f 34       		.uleb128 0x34
+ 1438 0110 00       		.byte	0
+ 1439 0111 03       		.uleb128 0x3
+ 1440 0112 08       		.uleb128 0x8
+ 1441 0113 3A       		.uleb128 0x3a
+ 1442 0114 0B       		.uleb128 0xb
+ 1443 0115 3B       		.uleb128 0x3b
+ 1444 0116 0B       		.uleb128 0xb
+ 1445 0117 49       		.uleb128 0x49
+ 1446 0118 13       		.uleb128 0x13
+ 1447 0119 02       		.uleb128 0x2
+ 1448 011a 17       		.uleb128 0x17
+ 1449 011b 00       		.byte	0
+ 1450 011c 00       		.byte	0
+ 1451 011d 15       		.uleb128 0x15
+ 1452 011e 898201   		.uleb128 0x4109
+ 1453 0121 01       		.byte	0x1
+ 1454 0122 11       		.uleb128 0x11
+ 1455 0123 01       		.uleb128 0x1
+ 1456 0124 9542     		.uleb128 0x2115
+ 1457 0126 19       		.uleb128 0x19
+ 1458 0127 31       		.uleb128 0x31
+ 1459 0128 13       		.uleb128 0x13
+ 1460 0129 00       		.byte	0
+ 1461 012a 00       		.byte	0
+ 1462 012b 16       		.uleb128 0x16
+ 1463 012c 34       		.uleb128 0x34
+ 1464 012d 00       		.byte	0
+ 1465 012e 03       		.uleb128 0x3
+ 1466 012f 0E       		.uleb128 0xe
+ 1467 0130 3A       		.uleb128 0x3a
+ 1468 0131 0B       		.uleb128 0xb
+ 1469 0132 3B       		.uleb128 0x3b
+ 1470 0133 05       		.uleb128 0x5
+ 1471 0134 49       		.uleb128 0x49
+ 1472 0135 13       		.uleb128 0x13
+ 1473 0136 3F       		.uleb128 0x3f
+ 1474 0137 19       		.uleb128 0x19
+ 1475 0138 3C       		.uleb128 0x3c
+ 1476 0139 19       		.uleb128 0x19
+ 1477 013a 00       		.byte	0
+ 1478 013b 00       		.byte	0
+ 1479 013c 17       		.uleb128 0x17
+ 1480 013d 01       		.uleb128 0x1
+ 1481 013e 01       		.byte	0x1
+ 1482 013f 49       		.uleb128 0x49
+ 1483 0140 13       		.uleb128 0x13
+ 1484 0141 01       		.uleb128 0x1
+ 1485 0142 13       		.uleb128 0x13
+ 1486 0143 00       		.byte	0
+ 1487 0144 00       		.byte	0
+ 1488 0145 18       		.uleb128 0x18
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 29
+
+
+ 1489 0146 21       		.uleb128 0x21
+ 1490 0147 00       		.byte	0
+ 1491 0148 49       		.uleb128 0x49
+ 1492 0149 13       		.uleb128 0x13
+ 1493 014a 2F       		.uleb128 0x2f
+ 1494 014b 0B       		.uleb128 0xb
+ 1495 014c 00       		.byte	0
+ 1496 014d 00       		.byte	0
+ 1497 014e 19       		.uleb128 0x19
+ 1498 014f 34       		.uleb128 0x34
+ 1499 0150 00       		.byte	0
+ 1500 0151 03       		.uleb128 0x3
+ 1501 0152 0E       		.uleb128 0xe
+ 1502 0153 3A       		.uleb128 0x3a
+ 1503 0154 0B       		.uleb128 0xb
+ 1504 0155 3B       		.uleb128 0x3b
+ 1505 0156 0B       		.uleb128 0xb
+ 1506 0157 49       		.uleb128 0x49
+ 1507 0158 13       		.uleb128 0x13
+ 1508 0159 3F       		.uleb128 0x3f
+ 1509 015a 19       		.uleb128 0x19
+ 1510 015b 02       		.uleb128 0x2
+ 1511 015c 18       		.uleb128 0x18
+ 1512 015d 00       		.byte	0
+ 1513 015e 00       		.byte	0
+ 1514 015f 1A       		.uleb128 0x1a
+ 1515 0160 21       		.uleb128 0x21
+ 1516 0161 00       		.byte	0
+ 1517 0162 00       		.byte	0
+ 1518 0163 00       		.byte	0
+ 1519 0164 1B       		.uleb128 0x1b
+ 1520 0165 34       		.uleb128 0x34
+ 1521 0166 00       		.byte	0
+ 1522 0167 03       		.uleb128 0x3
+ 1523 0168 0E       		.uleb128 0xe
+ 1524 0169 3A       		.uleb128 0x3a
+ 1525 016a 0B       		.uleb128 0xb
+ 1526 016b 3B       		.uleb128 0x3b
+ 1527 016c 0B       		.uleb128 0xb
+ 1528 016d 49       		.uleb128 0x49
+ 1529 016e 13       		.uleb128 0x13
+ 1530 016f 3F       		.uleb128 0x3f
+ 1531 0170 19       		.uleb128 0x19
+ 1532 0171 3C       		.uleb128 0x3c
+ 1533 0172 19       		.uleb128 0x19
+ 1534 0173 00       		.byte	0
+ 1535 0174 00       		.byte	0
+ 1536 0175 1C       		.uleb128 0x1c
+ 1537 0176 2E       		.uleb128 0x2e
+ 1538 0177 01       		.byte	0x1
+ 1539 0178 3F       		.uleb128 0x3f
+ 1540 0179 19       		.uleb128 0x19
+ 1541 017a 03       		.uleb128 0x3
+ 1542 017b 0E       		.uleb128 0xe
+ 1543 017c 3A       		.uleb128 0x3a
+ 1544 017d 0B       		.uleb128 0xb
+ 1545 017e 3B       		.uleb128 0x3b
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 30
+
+
+ 1546 017f 0B       		.uleb128 0xb
+ 1547 0180 27       		.uleb128 0x27
+ 1548 0181 19       		.uleb128 0x19
+ 1549 0182 49       		.uleb128 0x49
+ 1550 0183 13       		.uleb128 0x13
+ 1551 0184 3C       		.uleb128 0x3c
+ 1552 0185 19       		.uleb128 0x19
+ 1553 0186 01       		.uleb128 0x1
+ 1554 0187 13       		.uleb128 0x13
+ 1555 0188 00       		.byte	0
+ 1556 0189 00       		.byte	0
+ 1557 018a 1D       		.uleb128 0x1d
+ 1558 018b 05       		.uleb128 0x5
+ 1559 018c 00       		.byte	0
+ 1560 018d 49       		.uleb128 0x49
+ 1561 018e 13       		.uleb128 0x13
+ 1562 018f 00       		.byte	0
+ 1563 0190 00       		.byte	0
+ 1564 0191 1E       		.uleb128 0x1e
+ 1565 0192 2E       		.uleb128 0x2e
+ 1566 0193 00       		.byte	0
+ 1567 0194 3F       		.uleb128 0x3f
+ 1568 0195 19       		.uleb128 0x19
+ 1569 0196 03       		.uleb128 0x3
+ 1570 0197 0E       		.uleb128 0xe
+ 1571 0198 3A       		.uleb128 0x3a
+ 1572 0199 0B       		.uleb128 0xb
+ 1573 019a 3B       		.uleb128 0x3b
+ 1574 019b 0B       		.uleb128 0xb
+ 1575 019c 27       		.uleb128 0x27
+ 1576 019d 19       		.uleb128 0x19
+ 1577 019e 49       		.uleb128 0x49
+ 1578 019f 13       		.uleb128 0x13
+ 1579 01a0 3C       		.uleb128 0x3c
+ 1580 01a1 19       		.uleb128 0x19
+ 1581 01a2 00       		.byte	0
+ 1582 01a3 00       		.byte	0
+ 1583 01a4 1F       		.uleb128 0x1f
+ 1584 01a5 2E       		.uleb128 0x2e
+ 1585 01a6 00       		.byte	0
+ 1586 01a7 3F       		.uleb128 0x3f
+ 1587 01a8 19       		.uleb128 0x19
+ 1588 01a9 03       		.uleb128 0x3
+ 1589 01aa 0E       		.uleb128 0xe
+ 1590 01ab 3A       		.uleb128 0x3a
+ 1591 01ac 0B       		.uleb128 0xb
+ 1592 01ad 3B       		.uleb128 0x3b
+ 1593 01ae 0B       		.uleb128 0xb
+ 1594 01af 27       		.uleb128 0x27
+ 1595 01b0 19       		.uleb128 0x19
+ 1596 01b1 3C       		.uleb128 0x3c
+ 1597 01b2 19       		.uleb128 0x19
+ 1598 01b3 00       		.byte	0
+ 1599 01b4 00       		.byte	0
+ 1600 01b5 20       		.uleb128 0x20
+ 1601 01b6 2E       		.uleb128 0x2e
+ 1602 01b7 01       		.byte	0x1
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 31
+
+
+ 1603 01b8 3F       		.uleb128 0x3f
+ 1604 01b9 19       		.uleb128 0x19
+ 1605 01ba 03       		.uleb128 0x3
+ 1606 01bb 0E       		.uleb128 0xe
+ 1607 01bc 3A       		.uleb128 0x3a
+ 1608 01bd 0B       		.uleb128 0xb
+ 1609 01be 3B       		.uleb128 0x3b
+ 1610 01bf 0B       		.uleb128 0xb
+ 1611 01c0 27       		.uleb128 0x27
+ 1612 01c1 19       		.uleb128 0x19
+ 1613 01c2 3C       		.uleb128 0x3c
+ 1614 01c3 19       		.uleb128 0x19
+ 1615 01c4 01       		.uleb128 0x1
+ 1616 01c5 13       		.uleb128 0x13
+ 1617 01c6 00       		.byte	0
+ 1618 01c7 00       		.byte	0
+ 1619 01c8 21       		.uleb128 0x21
+ 1620 01c9 2E       		.uleb128 0x2e
+ 1621 01ca 01       		.byte	0x1
+ 1622 01cb 3F       		.uleb128 0x3f
+ 1623 01cc 19       		.uleb128 0x19
+ 1624 01cd 03       		.uleb128 0x3
+ 1625 01ce 0E       		.uleb128 0xe
+ 1626 01cf 3A       		.uleb128 0x3a
+ 1627 01d0 0B       		.uleb128 0xb
+ 1628 01d1 3B       		.uleb128 0x3b
+ 1629 01d2 0B       		.uleb128 0xb
+ 1630 01d3 27       		.uleb128 0x27
+ 1631 01d4 19       		.uleb128 0x19
+ 1632 01d5 3C       		.uleb128 0x3c
+ 1633 01d6 19       		.uleb128 0x19
+ 1634 01d7 00       		.byte	0
+ 1635 01d8 00       		.byte	0
+ 1636 01d9 00       		.byte	0
+ 1637              		.section	.debug_loc,"",%progbits
+ 1638              	.Ldebug_loc0:
+ 1639              	.LLST0:
+ 1640 0000 00000000 		.4byte	.LVL0
+ 1641 0004 06000000 		.4byte	.LVL1
+ 1642 0008 0100     		.2byte	0x1
+ 1643 000a 50       		.byte	0x50
+ 1644 000b 06000000 		.4byte	.LVL1
+ 1645 000f 26000000 		.4byte	.LFE63
+ 1646 0013 0400     		.2byte	0x4
+ 1647 0015 F3       		.byte	0xf3
+ 1648 0016 01       		.uleb128 0x1
+ 1649 0017 50       		.byte	0x50
+ 1650 0018 9F       		.byte	0x9f
+ 1651 0019 00000000 		.4byte	0
+ 1652 001d 00000000 		.4byte	0
+ 1653              	.LLST1:
+ 1654 0021 00000000 		.4byte	.LVL0
+ 1655 0025 06000000 		.4byte	.LVL1
+ 1656 0029 0100     		.2byte	0x1
+ 1657 002b 51       		.byte	0x51
+ 1658 002c 06000000 		.4byte	.LVL1
+ 1659 0030 26000000 		.4byte	.LFE63
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 32
+
+
+ 1660 0034 0400     		.2byte	0x4
+ 1661 0036 F3       		.byte	0xf3
+ 1662 0037 01       		.uleb128 0x1
+ 1663 0038 51       		.byte	0x51
+ 1664 0039 9F       		.byte	0x9f
+ 1665 003a 00000000 		.4byte	0
+ 1666 003e 00000000 		.4byte	0
+ 1667              	.LLST2:
+ 1668 0042 00000000 		.4byte	.LVL6
+ 1669 0046 04000000 		.4byte	.LVL7
+ 1670 004a 0100     		.2byte	0x1
+ 1671 004c 50       		.byte	0x50
+ 1672 004d 04000000 		.4byte	.LVL7
+ 1673 0051 34000000 		.4byte	.LFE64
+ 1674 0055 0400     		.2byte	0x4
+ 1675 0057 F3       		.byte	0xf3
+ 1676 0058 01       		.uleb128 0x1
+ 1677 0059 50       		.byte	0x50
+ 1678 005a 9F       		.byte	0x9f
+ 1679 005b 00000000 		.4byte	0
+ 1680 005f 00000000 		.4byte	0
+ 1681              	.LLST3:
+ 1682 0063 14000000 		.4byte	.LVL19
+ 1683 0067 16000000 		.4byte	.LVL20
+ 1684 006b 0200     		.2byte	0x2
+ 1685 006d 30       		.byte	0x30
+ 1686 006e 9F       		.byte	0x9f
+ 1687 006f 16000000 		.4byte	.LVL20
+ 1688 0073 1A000000 		.4byte	.LVL21
+ 1689 0077 0100     		.2byte	0x1
+ 1690 0079 54       		.byte	0x54
+ 1691 007a 1A000000 		.4byte	.LVL21
+ 1692 007e 2D000000 		.4byte	.LVL22-1
+ 1693 0082 0100     		.2byte	0x1
+ 1694 0084 52       		.byte	0x52
+ 1695 0085 2E000000 		.4byte	.LVL22
+ 1696 0089 30000000 		.4byte	.LVL23
+ 1697 008d 0100     		.2byte	0x1
+ 1698 008f 54       		.byte	0x54
+ 1699 0090 30000000 		.4byte	.LVL23
+ 1700 0094 32000000 		.4byte	.LVL24
+ 1701 0098 0100     		.2byte	0x1
+ 1702 009a 52       		.byte	0x52
+ 1703 009b 32000000 		.4byte	.LVL24
+ 1704 009f 36000000 		.4byte	.LVL25
+ 1705 00a3 0100     		.2byte	0x1
+ 1706 00a5 54       		.byte	0x54
+ 1707 00a6 36000000 		.4byte	.LVL25
+ 1708 00aa 45000000 		.4byte	.LVL26-1
+ 1709 00ae 0100     		.2byte	0x1
+ 1710 00b0 53       		.byte	0x53
+ 1711 00b1 46000000 		.4byte	.LVL26
+ 1712 00b5 48000000 		.4byte	.LVL27
+ 1713 00b9 0100     		.2byte	0x1
+ 1714 00bb 54       		.byte	0x54
+ 1715 00bc 48000000 		.4byte	.LVL27
+ 1716 00c0 4E000000 		.4byte	.LVL28
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 33
+
+
+ 1717 00c4 0100     		.2byte	0x1
+ 1718 00c6 53       		.byte	0x53
+ 1719 00c7 00000000 		.4byte	0
+ 1720 00cb 00000000 		.4byte	0
+ 1721              		.section	.debug_aranges,"",%progbits
+ 1722 0000 34000000 		.4byte	0x34
+ 1723 0004 0200     		.2byte	0x2
+ 1724 0006 00000000 		.4byte	.Ldebug_info0
+ 1725 000a 04       		.byte	0x4
+ 1726 000b 00       		.byte	0
+ 1727 000c 0000     		.2byte	0
+ 1728 000e 0000     		.2byte	0
+ 1729 0010 00000000 		.4byte	.LFB63
+ 1730 0014 26000000 		.4byte	.LFE63-.LFB63
+ 1731 0018 00000000 		.4byte	.LFB64
+ 1732 001c 34000000 		.4byte	.LFE64-.LFB64
+ 1733 0020 00000000 		.4byte	.LFB65
+ 1734 0024 14000000 		.4byte	.LFE65-.LFB65
+ 1735 0028 00000000 		.4byte	.LFB66
+ 1736 002c 5C010000 		.4byte	.LFE66-.LFB66
+ 1737 0030 00000000 		.4byte	0
+ 1738 0034 00000000 		.4byte	0
+ 1739              		.section	.debug_ranges,"",%progbits
+ 1740              	.Ldebug_ranges0:
+ 1741 0000 00000000 		.4byte	.LFB63
+ 1742 0004 26000000 		.4byte	.LFE63
+ 1743 0008 00000000 		.4byte	.LFB64
+ 1744 000c 34000000 		.4byte	.LFE64
+ 1745 0010 00000000 		.4byte	.LFB65
+ 1746 0014 14000000 		.4byte	.LFE65
+ 1747 0018 00000000 		.4byte	.LFB66
+ 1748 001c 5C010000 		.4byte	.LFE66
+ 1749 0020 00000000 		.4byte	0
+ 1750 0024 00000000 		.4byte	0
+ 1751              		.section	.debug_line,"",%progbits
+ 1752              	.Ldebug_line0:
+ 1753 0000 B8020000 		.section	.debug_str,"MS",%progbits,1
+ 1753      02000902 
+ 1753      00000201 
+ 1753      FB0E0D00 
+ 1753      01010101 
+ 1754              	.LASF31:
+ 1755 0000 43616D65 		.ascii	"Camera_I2C_MasterSendStart\000"
+ 1755      72615F49 
+ 1755      32435F4D 
+ 1755      61737465 
+ 1755      7253656E 
+ 1756              	.LASF17:
+ 1757 001b 63797374 		.ascii	"cystatus\000"
+ 1757      61747573 
+ 1757      00
+ 1758              	.LASF22:
+ 1759 0024 43616D65 		.ascii	"Camera_SyncFrame\000"
+ 1759      72615F53 
+ 1759      796E6346 
+ 1759      72616D65 
+ 1759      00
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 34
+
+
+ 1760              	.LASF35:
+ 1761 0035 43616D65 		.ascii	"Camera_VSYNC_Read\000"
+ 1761      72615F56 
+ 1761      53594E43 
+ 1761      5F526561 
+ 1761      6400
+ 1762              	.LASF21:
+ 1763 0047 76616C75 		.ascii	"value\000"
+ 1763      6500
+ 1764              	.LASF9:
+ 1765 004d 5F5F696E 		.ascii	"__int32_t\000"
+ 1765      7433325F 
+ 1765      7400
+ 1766              	.LASF38:
+ 1767 0057 4379446D 		.ascii	"CyDmaTdSetAddress\000"
+ 1767      61546453 
+ 1767      65744164 
+ 1767      64726573 
+ 1767      7300
+ 1768              	.LASF30:
+ 1769 0069 43616D65 		.ascii	"Camera_qvga\000"
+ 1769      72615F71 
+ 1769      76676100 
+ 1770              	.LASF48:
+ 1771 0075 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Camera.c\000"
+ 1771      6E657261 
+ 1771      7465645F 
+ 1771      536F7572 
+ 1771      63655C50 
+ 1772              	.LASF44:
+ 1773 0097 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
+ 1773      61436853 
+ 1773      6574496E 
+ 1773      69746961 
+ 1773      6C546400 
+ 1774              	.LASF28:
+ 1775 00ab 43616D65 		.ascii	"Camera_settings\000"
+ 1775      72615F73 
+ 1775      65747469 
+ 1775      6E677300 
+ 1776              	.LASF51:
+ 1777 00bb 43616D65 		.ascii	"Camera_ReadReg\000"
+ 1777      72615F52 
+ 1777      65616452 
+ 1777      656700
+ 1778              	.LASF37:
+ 1779 00ca 4379446D 		.ascii	"CyDmaTdAllocate\000"
+ 1779      61546441 
+ 1779      6C6C6F63 
+ 1779      61746500 
+ 1780              	.LASF42:
+ 1781 00da 43616D65 		.ascii	"Camera_end_line_StartEx\000"
+ 1781      72615F65 
+ 1781      6E645F6C 
+ 1781      696E655F 
+ 1781      53746172 
+ 1782              	.LASF14:
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 35
+
+
+ 1783 00f2 666C6F61 		.ascii	"float\000"
+ 1783      7400
+ 1784              	.LASF11:
+ 1785 00f8 75696E74 		.ascii	"uint8\000"
+ 1785      3800
+ 1786              	.LASF1:
+ 1787 00fe 756E7369 		.ascii	"unsigned char\000"
+ 1787      676E6564 
+ 1787      20636861 
+ 1787      7200
+ 1788              	.LASF49:
+ 1789 010c 443A5C44 		.ascii	"D:\\Documents\\Computer Science\\PSoc\\ECE3091 Auto"
+ 1789      6F63756D 
+ 1789      656E7473 
+ 1789      5C436F6D 
+ 1789      70757465 
+ 1790 013b 5075636B 		.ascii	"PuckPickup\\Display.cydsn\000"
+ 1790      5069636B 
+ 1790      75705C44 
+ 1790      6973706C 
+ 1790      61792E63 
+ 1791              	.LASF18:
+ 1792 0154 72656738 		.ascii	"reg8\000"
+ 1792      00
+ 1793              	.LASF39:
+ 1794 0159 4379446D 		.ascii	"CyDmaTdSetConfiguration\000"
+ 1794      61546453 
+ 1794      6574436F 
+ 1794      6E666967 
+ 1794      75726174 
+ 1795              	.LASF5:
+ 1796 0171 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1796      20756E73 
+ 1796      69676E65 
+ 1796      6420696E 
+ 1796      7400
+ 1797              	.LASF3:
+ 1798 0183 73686F72 		.ascii	"short unsigned int\000"
+ 1798      7420756E 
+ 1798      7369676E 
+ 1798      65642069 
+ 1798      6E7400
+ 1799              	.LASF40:
+ 1800 0196 4379446D 		.ascii	"CyDmaChPriority\000"
+ 1800      61436850 
+ 1800      72696F72 
+ 1800      69747900 
+ 1801              	.LASF26:
+ 1802 01a6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1802      52784275 
+ 1802      66666572 
+ 1802      00
+ 1803              	.LASF27:
+ 1804 01b3 43616D65 		.ascii	"Camera_linebuffer\000"
+ 1804      72615F6C 
+ 1804      696E6562 
+ 1804      75666665 
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 36
+
+
+ 1804      7200
+ 1805              	.LASF15:
+ 1806 01c5 646F7562 		.ascii	"double\000"
+ 1806      6C6500
+ 1807              	.LASF33:
+ 1808 01cc 43616D65 		.ascii	"Camera_I2C_MasterReadByte\000"
+ 1808      72615F49 
+ 1808      32435F4D 
+ 1808      61737465 
+ 1808      72526561 
+ 1809              	.LASF43:
+ 1810 01e6 4379446D 		.ascii	"CyDmaClearPendingDrq\000"
+ 1810      61436C65 
+ 1810      61725065 
+ 1810      6E64696E 
+ 1810      67447271 
+ 1811              	.LASF46:
+ 1812 01fb 43616D65 		.ascii	"Camera_DMA_Colours_DmaInitialize\000"
+ 1812      72615F44 
+ 1812      4D415F43 
+ 1812      6F6C6F75 
+ 1812      72735F44 
+ 1813              	.LASF45:
+ 1814 021c 4379446D 		.ascii	"CyDmaChEnable\000"
+ 1814      61436845 
+ 1814      6E61626C 
+ 1814      6500
+ 1815              	.LASF12:
+ 1816 022a 75696E74 		.ascii	"uint16\000"
+ 1816      313600
+ 1817              	.LASF13:
+ 1818 0231 75696E74 		.ascii	"uint32\000"
+ 1818      333200
+ 1819              	.LASF8:
+ 1820 0238 756E7369 		.ascii	"unsigned int\000"
+ 1820      676E6564 
+ 1820      20696E74 
+ 1820      00
+ 1821              	.LASF36:
+ 1822 0245 43616D65 		.ascii	"Camera_DMA_DmaInitialize\000"
+ 1822      72615F44 
+ 1822      4D415F44 
+ 1822      6D61496E 
+ 1822      69746961 
+ 1823              	.LASF7:
+ 1824 025e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1824      206C6F6E 
+ 1824      6720756E 
+ 1824      7369676E 
+ 1824      65642069 
+ 1825              	.LASF32:
+ 1826 0275 43616D65 		.ascii	"Camera_I2C_MasterWriteByte\000"
+ 1826      72615F49 
+ 1826      32435F4D 
+ 1826      61737465 
+ 1826      72577269 
+ 1827              	.LASF19:
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 37
+
+
+ 1828 0290 63796973 		.ascii	"cyisraddress\000"
+ 1828      72616464 
+ 1828      72657373 
+ 1828      00
+ 1829              	.LASF52:
+ 1830 029d 43616D65 		.ascii	"Camera_I2C_Start\000"
+ 1830      72615F49 
+ 1830      32435F53 
+ 1830      74617274 
+ 1830      00
+ 1831              	.LASF10:
+ 1832 02ae 696E7433 		.ascii	"int32_t\000"
+ 1832      325F7400 
+ 1833              	.LASF20:
+ 1834 02b6 73697A65 		.ascii	"sizetype\000"
+ 1834      74797065 
+ 1834      00
+ 1835              	.LASF24:
+ 1836 02bf 444D415F 		.ascii	"DMA_channel\000"
+ 1836      6368616E 
+ 1836      6E656C00 
+ 1837              	.LASF6:
+ 1838 02cb 6C6F6E67 		.ascii	"long long int\000"
+ 1838      206C6F6E 
+ 1838      6720696E 
+ 1838      7400
+ 1839              	.LASF34:
+ 1840 02d9 43616D65 		.ascii	"Camera_I2C_MasterSendStop\000"
+ 1840      72615F49 
+ 1840      32435F4D 
+ 1840      61737465 
+ 1840      7253656E 
+ 1841              	.LASF16:
+ 1842 02f3 63686172 		.ascii	"char\000"
+ 1842      00
+ 1843              	.LASF2:
+ 1844 02f8 73686F72 		.ascii	"short int\000"
+ 1844      7420696E 
+ 1844      7400
+ 1845              	.LASF50:
+ 1846 0302 43616D65 		.ascii	"Camera_WriteReg\000"
+ 1846      72615F57 
+ 1846      72697465 
+ 1846      52656700 
+ 1847              	.LASF47:
+ 1848 0312 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1848      4320342E 
+ 1848      392E3320 
+ 1848      32303135 
+ 1848      30333033 
+ 1849 0345 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1849      20726576 
+ 1849      6973696F 
+ 1849      6E203232 
+ 1849      31323230 
+ 1850 0378 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1850      66756E63 
+ARM GAS  D:\TEMP\cciNwpvw.s 			page 38
+
+
+ 1850      74696F6E 
+ 1850      2D736563 
+ 1850      74696F6E 
+ 1851              	.LASF53:
+ 1852 03a0 43616D65 		.ascii	"Camera_end_line_colours_StartEx\000"
+ 1852      72615F65 
+ 1852      6E645F6C 
+ 1852      696E655F 
+ 1852      636F6C6F 
+ 1853              	.LASF23:
+ 1854 03c0 43616D65 		.ascii	"Camera_Start\000"
+ 1854      72615F53 
+ 1854      74617274 
+ 1854      00
+ 1855              	.LASF29:
+ 1856 03cd 43616D65 		.ascii	"Camera_format\000"
+ 1856      72615F66 
+ 1856      6F726D61 
+ 1856      7400
+ 1857              	.LASF4:
+ 1858 03db 6C6F6E67 		.ascii	"long int\000"
+ 1858      20696E74 
+ 1858      00
+ 1859              	.LASF25:
+ 1860 03e4 444D415F 		.ascii	"DMA_TD\000"
+ 1860      544400
+ 1861              	.LASF0:
+ 1862 03eb 7369676E 		.ascii	"signed char\000"
+ 1862      65642063 
+ 1862      68617200 
+ 1863              	.LASF41:
+ 1864 03f7 43794465 		.ascii	"CyDelay\000"
+ 1864      6C617900 
+ 1865              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
